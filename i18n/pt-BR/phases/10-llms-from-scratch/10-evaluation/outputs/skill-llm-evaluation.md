@@ -1,6 +1,6 @@
 ---
 name: skill-llm-evaluation
-description: Decision framework for choosing the right LLM evaluation strategy based on task type, budget, and requirements
+description: Quadro de decisão para a escolha da estratégia de avaliação de LLM adequada com base no tipo de tarefa, orçamento e requisitos
 version: 1.0.0
 phase: 10
 lesson: 10
@@ -13,15 +13,15 @@ Ao avaliar um sistema de Mestrado em Direito Jurídico, aplique este quadro de d
 
 ## Quando utilizar cada tipo de avaliação
 
-**Benchmarks (MMLU, HumanEval, SWE-bench):**Você está fazendo a seleção inicial de modelos. Você precisa restringir 10 modelos candidatos para 3. Os índices de referência fornecem classificação aproximada a custo zero. Não use os índices de referência como sua avaliação final.
+**Benchmarks (MMLU, HumanEval, SWE-bench):** Você está fazendo a seleção inicial de modelos. Você precisa restringir 10 modelos candidatos para 3. Os índices de referência fornecem classificação aproximada a custo zero. Não use os índices de referência como sua avaliação final.
 
-**Custom evals:**Você está construindo para produção. Você tem uma tarefa específica com modos de falha específicos. Avaliações personalizadas são a única avaliação que prevê o desempenho no mundo real. Mínimo 50 casos de teste para protótipo, 200+ para produção.
+**Custom evals:** Você está construindo para produção. Você tem uma tarefa específica com modos de falha específicos. Avaliações personalizadas são a única avaliação que prevê o desempenho no mundo real. Mínimo 50 casos de teste para protótipo, 200+ para produção.
 
-**LLM-as-judge:**A sua tarefa é aberta (resumo, escrita, conversa). Metricas de coincidência exatas e de sobreposição de tokens são muito rígidas. LLM como juiz custa ~ $ 0,01 por julgamento e concorda com os seres humanos ~ 80% do tempo.
+**LLM-as-judge:** A sua tarefa é aberta (resumo, escrita, conversa). Metricas de coincidência exatas e de sobreposição de tokens são muito rígidas. LLM como juiz custa ~ $ 0,01 por julgamento e concorda com os seres humanos ~ 80% do tempo.
 
-**Human evals:**As apostas são altas e as métricas automatizadas discordam.$0.10-$Reserva para casos ambíguos e calibração periódica de métricas automatizadas.
+**Human evals:** As apostas são altas e as métricas automatizadas discordam. $0.10-$Reserva para casos ambíguos e calibração periódica de métricas automatizadas.
 
-**ELO from pairwise comparisons:**O Pairwise é mais confiável do que a pontuação absoluta porque os humanos (e os juízes de LLM) são melhores em julgamentos relativos.
+**ELO from pairwise comparisons:** O Pairwise é mais confiável do que a pontuação absoluta porque os humanos (e os juízes de LLM) são melhores em julgamentos relativos.
 
 ## Seleção de função de pontuação
 

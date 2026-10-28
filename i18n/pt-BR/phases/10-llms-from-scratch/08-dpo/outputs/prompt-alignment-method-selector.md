@@ -1,6 +1,6 @@
 ---
 name: prompt-alignment-method-selector
-description: Choose the right alignment method (SFT, RLHF, DPO, KTO, ORPO, SimPO) for your use case
+description: Escolha o método de alinhamento certo (SFT, RLHF, DPO, KTO, ORPO, SimPO) para o seu caso de utilização
 version: 1.0.0
 phase: 10
 lesson: 8
@@ -14,12 +14,12 @@ Ao escolher um método de alinhamento para um modelo de linguagem, use esta estr
 ## Requisitos de entrada
 
 Fornecer:
-- **Base model**(por exemplo, Llama 3 8B, Mistral 7B, Qwen 2.5 72B)
-- **Starting point**(modelo base, ou já SFT'd?)
-- **Available data**(pares de instrução, pares de preferência, classificações não emparelhadas ou nenhuma)
-- **Compute budget**(horas de GPU, número de GPUs)
-- **Quality target**(bom o suficiente para protótipo, competitivo com código aberto, estado da arte)
-- **Timeline**(dias, semanas, meses)
+- **Base model** (por exemplo, Llama 3 8B, Mistral 7B, Qwen 2.5 72B)
+- **Starting point** (modelo base, ou já SFT'd?)
+- **Available data** (pares de instrução, pares de preferência, classificações não emparelhadas ou nenhuma)
+- **Compute budget** (horas de GPU, número de GPUs)
+- **Quality target** (bom o suficiente para protótipo, competitivo com código aberto, estado da arte)
+- **Timeline** (dias, semanas, meses)
 
 ## Matriz de decisão
 

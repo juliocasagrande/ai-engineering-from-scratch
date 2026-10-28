@@ -1,6 +1,6 @@
 ---
 name: skill-quantization
-description: Choose the right quantization strategy for deploying LLMs based on hardware, quality, and latency constraints
+description: Escolha a estratégia de quantização certa para a implantação de LLM com base em restrições de hardware, qualidade e latência
 version: 1.0.0
 phase: 10
 lesson: 11
@@ -14,11 +14,11 @@ Ao implementar um modelo de linguagem, use esta estrutura para selecionar o form
 ## Requisitos de entrada
 
 Fornecer:
-- **Model**(nome, número de parâmetros, precisão original)
-- **Target hardware**(modelo GPU/VRAM, CPU, Apple Silicon, dispositivo de borda)
-- **Latency target**(tokens/segundo, tempo para o primeiro token)
-- **Quality floor**(aumento máximo de perplexidade aceitável, delta do índice de referência)
-- **Serving pattern**( tamanho do lote, comprimento máximo do contexto, usuários simultâneos)
+- **Model** (nome, número de parâmetros, precisão original)
+- **Target hardware** (modelo GPU/VRAM, CPU, Apple Silicon, dispositivo de borda)
+- **Latency target** (tokens/segundo, tempo para o primeiro token)
+- **Quality floor** (aumento máximo de perplexidade aceitável, delta do índice de referência)
+- **Serving pattern** ( tamanho do lote, comprimento máximo do contexto, usuários simultâneos)
 
 ## Seleção rápida
 
@@ -49,49 +49,49 @@ Nem todos os tensores devem receber o mesmo tratamento.
 ## Comparação de Métodos
 
 ### GPTQ
-- **When:**Inferência da GPU, queres um modelo compatível com o Face Hugging
-- **Calibration data:**128 exemplos, 2048 tokens cada
-- **Time:**30 a 60 minutos para 70B na A100
-- **Tooling:** `gptqmodel`- Não .`exllama`- Não .`exllamav2`
-- **Strength:**Um zoológico modelo enorme bem testado em Hugging Face
-- **Weakness:**Aplicação mais lenta do que a AWQ, de qualidade ligeiramente inferior à AWQ em alguns modelos
+- **When:** Inferência da GPU, queres um modelo compatível com o Face Hugging
+- **Calibration data:** 128 exemplos, 2048 tokens cada
+- **Time:** 30 a 60 minutos para 70B na A100
+- **Tooling:** `gptqmodel`- Não . `exllama`- Não . `exllamav2`
+- **Strength:** Um zoológico modelo enorme bem testado em Hugging Face
+- **Weakness:** Aplicação mais lenta do que a AWQ, de qualidade ligeiramente inferior à AWQ em alguns modelos
 
 ### AQ
-- **When:**Inferência de GPU, você quer a melhor qualidade por bit
-- **Calibration data:**128 exemplos
-- **Time:**15-30 minutos para 70B na A100
-- **Tooling:** `llmcompressor`- Não .`vLLM`(apoio nativo)
-- **Strength:**Melhor qualidade INT4, rápida aplicação, integração vLLM
-- **Weakness:**Zoológico modelo menor do que o GPTQ
+- **When:** Inferência de GPU, você quer a melhor qualidade por bit
+- **Calibration data:** 128 exemplos
+- **Time:** 15-30 minutos para 70B na A100
+- **Tooling:** `llmcompressor`- Não . `vLLM` (apoio nativo)
+- **Strength:** Melhor qualidade INT4, rápida aplicação, integração vLLM
+- **Weakness:** Zoológico modelo menor do que o GPTQ
 
 ### GGUF
-- **When:**Inferência de CPU, Apple Silicon, ecossistema llama.cpp
-- **Variants:**A posição de referência do ponto 1 do artigo 5.o do Regulamento (UE) n.o 1095/2013 é a seguinte:
-- **Recommended default:**Q4_K_M (melhor equilíbrio entre qualidade e tamanho)
-- **Tooling:** `llama.cpp`- Não .`ollama`- Não .`LM Studio`
-- **Strength:**Arquivos independentes, precisão mista, ecossistema maciço
-- **Weakness:**Não óptimo para GPU (projetado para CPU/Metal)
+- **When:** Inferência de CPU, Apple Silicon, ecossistema llama.cpp
+- **Variants:** A posição de referência do ponto 1 do artigo 5.o do Regulamento (UE) n.o 1095/2013 é a seguinte:
+- **Recommended default:** Q4_K_M (melhor equilíbrio entre qualidade e tamanho)
+- **Tooling:** `llama.cpp`- Não . `ollama`- Não . `LM Studio`
+- **Strength:** Arquivos independentes, precisão mista, ecossistema maciço
+- **Weakness:** Não óptimo para GPU (projetado para CPU/Metal)
 
 ### SmoothQuant
-- **When:**INT8 na GPU, precisa de quantização de peso e ativação
-- **Key idea:**Migração de dificuldade de quantização das ativações para pesos através de escalação por canal
-- **Tooling:** `smoothquant`- Não .`TensorRT-LLM`
-- **Strength:**Abilita o W8A8 (peso e ativação no INT8) para aceleração de 2x
-- **Weakness:**Apenas INT8, não se estende ao INT4
+- **When:** INT8 na GPU, precisa de quantização de peso e ativação
+- **Key idea:** Migração de dificuldade de quantização das ativações para pesos através de escalação por canal
+- **Tooling:** `smoothquant`- Não . `TensorRT-LLM`
+- **Strength:** Abilita o W8A8 (peso e ativação no INT8) para aceleração de 2x
+- **Weakness:** Apenas INT8, não se estende ao INT4
 
 ## Protocolo de validação da qualidade
 
 Após quantização, valida antes de implantar:
 
-1. **Perplexity test.**Compute no WikiText-2 ou no seu corpus de domínio. Delta < 0,5 é excelente, 0,5-1,0 é bom, > 2,0 é um problema.
+1. **Perplexity test.** Compute no WikiText-2 ou no seu corpus de domínio. Delta < 0,5 é excelente, 0,5-1,0 é bom, > 2,0 é um problema.
 
-2. **Benchmark sweep.**Execute MMLU (general), GSM8K (matemática), HumanEval (código).
+2. **Benchmark sweep.** Execute MMLU (general), GSM8K (matemática), HumanEval (código).
 
-3. **Output comparison.**Gerar 100 respostas a partir de modelos originais e quantizados. Usar LLM-as-judge para calcular a taxa de vitória.
+3. **Output comparison.** Gerar 100 respostas a partir de modelos originais e quantizados. Usar LLM-as-judge para calcular a taxa de vitória.
 
-4. **Latency measurement.**Messa-se os tokens/segundo no tamanho do lote 1 e no tamanho do lote-alvo. Verifique se a aceleração justifica o custo da qualidade.
+4. **Latency measurement.** Messa-se os tokens/segundo no tamanho do lote 1 e no tamanho do lote-alvo. Verifique se a aceleração justifica o custo da qualidade.
 
-5. **Long-context test.**Se servir contextos longos (> tokens 4K), teste no seu comprimento máximo de contexto.
+5. **Long-context test.** Se servir contextos longos (> tokens 4K), teste no seu comprimento máximo de contexto.
 
 ## Calculador de orçamento de memória
 

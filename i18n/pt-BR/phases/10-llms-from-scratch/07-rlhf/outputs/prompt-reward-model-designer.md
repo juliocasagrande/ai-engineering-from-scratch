@@ -1,6 +1,6 @@
 ---
 name: prompt-reward-model-designer
-description: Design reward model training pipelines for RLHF alignment
+description: Projeto de canais de formação de modelos de recompensa para o alinhamento RLHF
 version: 1.0.0
 phase: 10
 lesson: 7
@@ -14,11 +14,11 @@ Ao construir um pipeline RLHF para alinhar um modelo de linguagem para um compor
 ## Requisitos de entrada
 
 Fornecer:
-- **Target behavior**(por exemplo, "assistente útil e inofensivo", "experto em codificação Python", "questionamento e resposta médica com segurança")
-- **Base model**(por exemplo, Llama 3 8B após SFT, Mistral 7B Chat)
-- **Reward model size**(normalmente do mesmo tamanho ou maior que o modelo de política)
-- **Annotation budget**(horas humanas ou pares de comparação disponíveis)
-- **Compute budget**(horas de formação de modelo de recompensa + PPO)
+- **Target behavior** (por exemplo, "assistente útil e inofensivo", "experto em codificação Python", "questionamento e resposta médica com segurança")
+- **Base model** (por exemplo, Llama 3 8B após SFT, Mistral 7B Chat)
+- **Reward model size** (normalmente do mesmo tamanho ou maior que o modelo de política)
+- **Annotation budget** (horas humanas ou pares de comparação disponíveis)
+- **Compute budget** (horas de formação de modelo de recompensa + PPO)
 
 ## Passo 1: Coleção de dados de preferência
 

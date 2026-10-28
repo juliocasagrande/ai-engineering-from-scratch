@@ -1,6 +1,6 @@
 ---
 name: prompt-tokenizer-builder
-description: Build and debug production-quality tokenizers for LLM projects
+description: Construir e depurar tokenizadores de qualidade de produção para projetos de MLL
 version: 1.0.0
 phase: 10
 lesson: 2
@@ -15,20 +15,20 @@ Ao construir ou depurar um tokenizer para um projeto de LLM, siga este quadro.
 
 Cada tokenizer de produção precisa destas cinco etapas. Se faltar uma, você vai atingir casos de borda na produção.
 
-1. **Normalize**Aplicar normalização de Unicode NFKC. Isso desintegra ligaturas ("fi" -> "fi"), normaliza caracteres de largura completa e padroniza o espaço branco. Esqueça isso e a mesma palavra recebe diferentes IDs de token dependendo de como foi digitada.
+1. **Normalize** Aplicar normalização de Unicode NFKC. Isso desintegra ligaturas ("fi" -> "fi"), normaliza caracteres de largura completa e padroniza o espaço branco. Esqueça isso e a mesma palavra recebe diferentes IDs de token dependendo de como foi digitada.
 
-2. **Pre-Tokenize**-- Divide o texto em pedaços antes do BPE. Use o padrão regex do GPT-2 para modelos centrados no inglês. Use a abordagem de byte bruto do SentencePiece para modelos multilíngües. A escolha determina se o BPE pode se fundir através de limites de palavras.
+2. **Pre-Tokenize** -- Divide o texto em pedaços antes do BPE. Use o padrão regex do GPT-2 para modelos centrados no inglês. Use a abordagem de byte bruto do SentencePiece para modelos multilíngües. A escolha determina se o BPE pode se fundir através de limites de palavras.
 
-3. **BPE Merge**Aplicar a tabela de fusão aprendida para sequências de byte dentro de cada peça. a tabela de fusão é o conhecimento aprendido do tokenizer. tudo o resto é plumbing.
+3. **BPE Merge** Aplicar a tabela de fusão aprendida para sequências de byte dentro de cada peça. a tabela de fusão é o conhecimento aprendido do tokenizer. tudo o resto é plumbing.
 
-4. **Special Token Injection**- Correspondem a tokens especiais exatamente antes da execução do BPE. [BOS], [EOS], [PAD], marcadores de modelos de bate-papo recebem identidades fixas.
+4. **Special Token Injection** - Correspondem a tokens especiais exatamente antes da execução do BPE. [BOS], [EOS], [PAD], marcadores de modelos de bate-papo recebem identidades fixas.
 
-5. **ID Mapping**- Converte cadeias de tokens para números inteiros. O modelo vê apenas números inteiros.
+5. **ID Mapping** - Converte cadeias de tokens para números inteiros. O modelo vê apenas números inteiros.
 
 ## Problemas de Desembaraço de Tokenizer
 
 **Symptom: model produces garbage on chat input**
-- Verifique o modelo de chat. Cada modelo tem um formato diferente.`<|start_header_id|>`Marcadores.`<|im_start|>`Uma modelo errada coloca entrada fora da distribuição de treinamento.
+- Verifique o modelo de chat. Cada modelo tem um formato diferente. Llama 3 usa `<|start_header_id|>` Marcadores. `<|im_start|>` Uma modelo errada coloca entrada fora da distribuição de treinamento.
 
 **Symptom: non-English text uses too many tokens**
 - Verifique a fertilidade (tokens por palavra). acima de 2.0 significa que o tokenizer desperdiça a janela de contexto nessa língua. Soluções: retrain com dados mais multilíngues, aumentar o tamanho do vocabulário ou usar SentencePiece com Unigram.

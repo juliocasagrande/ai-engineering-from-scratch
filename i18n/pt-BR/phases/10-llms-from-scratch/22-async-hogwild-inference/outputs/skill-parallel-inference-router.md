@@ -1,6 +1,6 @@
 ---
 name: parallel-inference-router
-description: Route a reasoning workload between voting, tree-of-thought, multi-agent, Hogwild!, and speculative decoding strategies.
+description: A rota de um trabalho de raciocínio entre votação, árvore de pensamento, multi-agente, Hogwild! e estratégias de decodificação especulativa.
 version: 1.0.0
 phase: 10
 lesson: 22
@@ -14,7 +14,7 @@ Produzir:
 1. Classificação de tarefas. Raciocínio longo (5k + tokens), cadeia de pensamento média (1k-5k), chat curto (menos de 1k) ou classificação.
 2. O sistema de decodificação de sequências internos (descódigo especulativo) versus transversal (voting, Hogwild!, multi-agent).
 3. Recomendação de estratégia. Escolha entre: apenas descodificação especulativa (default segura para qualquer carga de trabalho acima de 100 tokens), especulativa + Hogwild! (razão longa com estrutura paralelavel), árvore de pensamento (problemas explícitos de ramificação e poda), multi-agente (problemas de especialização de papéis), conjunto de votação (classificação de alto risco).
-4. Para descodificação especulativa: família de projetos (default EAGLE-3) e `N`(Fase 10 · 15 habilidade) Para Hogwild!: número de trabalhadores N (2 a 4, raramente mais), modelo de resposta de coordenação, confirmação de implantação de um único nó.
+4. Para a descodificação especulativa: família de projetos (default EAGLE-3) e `N` (Fase 10 · 15 habilidade) Para Hogwild!: número de trabalhadores N (2 a 4, raramente mais), modelo de resposta de coordenação, confirmação de implantação de um único nó.
 5. Estimativa combinada de aceleração: se combinar a descodificação especulativa com Hogwild!, informe a aceleração multiplicativa (intervalo típico: 3x especificação * 1,5-2x Hogwild! = 4,5-6x).
 
 Rejeitos duros:

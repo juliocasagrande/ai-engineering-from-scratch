@@ -1,6 +1,6 @@
 ---
 name: speculative-tuning
-description: Profile a decode workload and pick draft model, draft length K, temperature gate, and fallback policy for speculative decoding.
+description: Profile uma carga de trabalho de decodificação e escolha modelo de rascunho, comprimento de rascunho K, porta de temperatura e política de retrocesso para decodificação especulativa.
 version: 1.0.0
 phase: 10
 lesson: 25

@@ -1,6 +1,6 @@
 ---
 name: llm-pipeline-reviewer
-description: Review an end-to-end LLM training pipeline manifest before a multi-million-dollar run.
+description: Revisar um manifesto de formação de LLM de ponta a ponta antes de uma corrida de milhões de dólares.
 version: 1.0.0
 phase: 10
 lesson: 13

@@ -1,6 +1,6 @@
 ---
 name: skill-inference-optimization
-description: Diagnose and optimize LLM inference serving throughput, latency, and cost
+description: Diagnóstico e otimização da inferência LLM servindo o rendimento, a latência e o custo
 version: 1.0.0
 phase: 10
 lesson: 12
@@ -40,12 +40,12 @@ Messa a relação ops:byte para a sua carga de trabalho:
 
 ### Passo 3: Aplique as otimizações em ordem
 
-1. **KV cache**- Sempre a favor, sem desvantagens.
-2. **Continuous batching**- sempre ligado, sem desvantagem (vLLM/SGLang fazer isso por padrão)
-3. **Prefix caching**-- ativar se você tem compartilhado system prompts (a maioria dos chatbots fazem)
-4. **Quantization**-- KV cache INT8/FP8 reduz a memória 2-4x com perda de qualidade mínima
-5. **Speculative decoding**-- adicionar quando a latência importa mais do que o rendimento
-6. **Tensor parallelism**-- dividido em GPUs quando o modelo não cabe em um
+1. **KV cache** - Sempre a favor, sem desvantagens.
+2. **Continuous batching** - sempre ligado, sem desvantagem (vLLM/SGLang fazer isso por padrão)
+3. **Prefix caching** -- ativar se você tem compartilhado system prompts (a maioria dos chatbots fazem)
+4. **Quantization** -- KV cache INT8/FP8 reduz a memória 2-4x com perda de qualidade mínima
+5. **Speculative decoding** -- adicionar quando a latência importa mais do que o rendimento
+6. **Tensor parallelism** -- dividido em GPUs quando o modelo não cabe em um
 
 ## Fórmula de memória cache KV
 

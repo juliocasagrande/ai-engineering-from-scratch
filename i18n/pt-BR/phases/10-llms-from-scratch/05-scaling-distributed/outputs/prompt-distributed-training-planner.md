@@ -1,6 +1,6 @@
 ---
 name: prompt-distributed-training-planner
-description: Plan a distributed training run given model size and available hardware
+description: Planejar uma formação distribuída, dada a dimensão do modelo e o hardware disponível
 version: 1.0.0
 phase: 10
 lesson: 5
@@ -14,12 +14,12 @@ Ao planejar uma formação distribuída para um modelo de linguagem grande, use 
 ## Requisitos de entrada
 
 Fornecer:
-- **Model size**(parâmetros em bilhões)
-- **Target training tokens**(em trilhões)
-- **Available GPUs**(tipo: A100/H100/H200, contagem, interconexão: NVLink/InfiniBand)
-- **GPU memory**(80 GB para A100/H100, 141 GB para H200)
-- **Nodes**(GPUs por nó, número de nós)
-- **Budget constraints**(Costo máximo em dólares, tempo máximo de relógio de parede)
+- **Model size** (parâmetros em bilhões)
+- **Target training tokens** (em trilhões)
+- **Available GPUs** (tipo: A100/H100/H200, contagem, interconexão: NVLink/InfiniBand)
+- **GPU memory** (80 GB para A100/H100, 141 GB para H200)
+- **Nodes** (GPUs por nó, número de nós)
+- **Budget constraints** (Costo máximo em dólares, tempo máximo de relógio de parede)
 
 ## Passo 1: Orçamento de memória
 

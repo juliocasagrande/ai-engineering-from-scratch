@@ -1,6 +1,6 @@
 ---
 name: prompt-eval-designer
-description: Design a custom evaluation suite for any LLM task, including test cases, scoring functions, and pass/fail thresholds
+description: Conceber uma suíte de avaliação personalizada para qualquer tarefa de Mestrado em Direito Jurídico, incluindo casos de teste, funções de pontuação e limiares de aprovação/falha
 phase: 10
 lesson: 10
 ---
@@ -22,11 +22,11 @@ Dividir a tarefa em subcapacidades mensuráveis:
 
 Gerenciar casos de ensaio em três níveis:
 
-**Tier 1 -- Happy path (40% of cases):**As informações que são utilizadas são as tipicas de entrada que representam a utilização mais comum.
+**Tier 1 -- Happy path (40% of cases):** As informações que são utilizadas são as tipicas de entrada que representam a utilização mais comum.
 
-**Tier 2 -- Edge cases (40% of cases):**condições de fronteira, entradas ambíguas, entradas vazias, entradas muito longas, entradas multilingües, entradas adversárias.
+**Tier 2 -- Edge cases (40% of cases):** condições de fronteira, entradas ambíguas, entradas vazias, entradas muito longas, entradas multilingües, entradas adversárias.
 
-**Tier 3 -- Regression cases (20% of cases):**As informações de entrada específicas que causaram falhas no passado impedem que os bugs conhecidos se repitam.
+**Tier 3 -- Regression cases (20% of cases):** As informações de entrada específicas que causaram falhas no passado impedem que os bugs conhecidos se repitam.
 
 Cada caso de ensaio deve incluir:
 - `input`: o pedido exato enviado ao modelo

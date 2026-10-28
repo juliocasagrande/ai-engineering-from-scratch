@@ -1,6 +1,6 @@
 ---
 name: checkpointing-planner
-description: Choose an activation recomputation policy per layer (none / selective / full / offload) given a training config and HBM budget.
+description: Escolha uma política de recomputamento de ativação por camada (não / seletiva / completa / descarregada) dada a configuração de treinamento e o orçamento do HBM.
 version: 1.0.0
 phase: 10
 lesson: 34

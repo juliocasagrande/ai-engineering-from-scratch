@@ -1,6 +1,6 @@
 ---
 name: prompt-data-quality-checker
-description: Validate and debug data quality in LLM pre-training pipelines
+description: Validação e depuração da qualidade dos dados em canais de pré-formação do MLL
 version: 1.0.0
 phase: 10
 lesson: 3
@@ -13,27 +13,27 @@ Ao construir ou auditar um pipeline de dados para a pré-formação do Mestrado 
 
 ## Bandeiras vermelhas na produção de oleodutos
 
-**Deduplication removed less than 20% of web data.**O Common Crawl normalmente contém 30-40% de duplicados. Se o seu passo dedup remover menos de 20%, seus parâmetros MinHash são muito conservadores ou seu limiar é muito alto. Verifique: tamanho da baranda k, número de funções hash, número de bandas LSH, limiar Jaccard.
+**Deduplication removed less than 20% of web data.** O Common Crawl normalmente contém 30-40% de duplicados. Se o seu passo dedup remover menos de 20%, seus parâmetros MinHash são muito conservadores ou seu limiar é muito alto. Verifique: tamanho da baranda k, número de funções hash, número de bandas LSH, limiar Jaccard.
 
-**Compression ratio below 2.0 chars/token.**Isso significa que o seu tokenizer está a dividir-se de forma muito agressiva. Ou reestrine com mais fusões, aumente o tamanho do vocabulário, ou verifique se a pré-tokenização não está fragmentando o texto desnecessariamente.
+**Compression ratio below 2.0 chars/token.** Isso significa que o seu tokenizer está a dividir-se de forma muito agressiva. Ou reestrine com mais fusões, aumente o tamanho do vocabulário, ou verifique se a pré-tokenização não está fragmentando o texto desnecessariamente.
 
-**Compression ratio above 6.0 chars/token.**O tokenizador aprendeu fusões muito específicas de domínio que podem não generalizar.
+**Compression ratio above 6.0 chars/token.** O tokenizador aprendeu fusões muito específicas de domínio que podem não generalizar.
 
-**Sequence utilization below 90%.**O seu documento é muito curto (filtra-o ou aumenta o comprimento mínimo do documento) ou a sua embalagem de sequência é ineficiente (transforma-se de embalagem ingênua para embalagem de documentos múltiplos).
+**Sequence utilization below 90%.** O seu documento é muito curto (filtra-o ou aumenta o comprimento mínimo do documento) ou a sua embalagem de sequência é ineficiente (transforma-se de embalagem ingênua para embalagem de documentos múltiplos).
 
-**Vocab utilization below 50%.**Ou o vocabulário é grande demais para o seu domínio ou o tokenizer foi treinado em dados muito diferentes.
+**Vocab utilization below 50%.** Ou o vocabulário é grande demais para o seu domínio ou o tokenizer foi treinado em dados muito diferentes.
 
 ## Calibração de filtros de qualidade
 
 Faça estas verificações numa amostra aleatória de 1.000 documentos em cada fase do gasoduto:
 
-1. **Read 20 random documents after cleaning.**Os dados contêm HTML residual, JavaScript, texto de navegação ou placa de caldeira?
+1. **Read 20 random documents after cleaning.** Os dados contêm HTML residual, JavaScript, texto de navegação ou placa de caldeira?
 
-2. **Read 20 random documents that PASSED the quality filter.**Alguma delas é spam, lista de palavras-chave ou gerada por máquina?
+2. **Read 20 random documents that PASSED the quality filter.** Alguma delas é spam, lista de palavras-chave ou gerada por máquina?
 
-3. **Read 20 random documents that FAILED the quality filter.**Se sim, o seu filtro é muito agressivo.
+3. **Read 20 random documents that FAILED the quality filter.** Se sim, o seu filtro é muito agressivo.
 
-4. **Read 20 random near-duplicate pairs from dedup.**Se não, baixar o limiar Jaccard ou aumentar o número de funções hash.
+4. **Read 20 random near-duplicate pairs from dedup.** Se não, baixar o limiar Jaccard ou aumentar o número de funções hash.
 
 ## Relações de mistura de dados
 

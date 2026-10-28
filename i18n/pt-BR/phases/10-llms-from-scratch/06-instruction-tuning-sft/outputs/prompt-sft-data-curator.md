@@ -1,6 +1,6 @@
 ---
 name: prompt-sft-data-curator
-description: Design and curate instruction datasets for supervised fine-tuning
+description: Concepção e instrução de curadoria de conjuntos de dados para ajustes finos supervisionados
 version: 1.0.0
 phase: 10
 lesson: 6
@@ -14,10 +14,10 @@ Ao projetar um conjunto de dados de ajuste de instruções para uma capacidade e
 ## Requisitos de entrada
 
 Fornecer:
-- **Target capability**(por exemplo, "Generação de código Python", "Q&A médica", "conversa de várias voltas")
-- **Base model**(por exemplo, Llama 3 8B, Mistral 7B, Qwen 2.5 72B)
-- **Budget**(horas de anotação, custos de API para a geração sintética)
-- **Format preference**(Alpaca, ShareGPT, ChatML)
+- **Target capability** (por exemplo, "Generação de código Python", "Q&A médica", "conversa de várias voltas")
+- **Base model** (por exemplo, Llama 3 8B, Mistral 7B, Qwen 2.5 72B)
+- **Budget** (horas de anotação, custos de API para a geração sintética)
+- **Format preference** (Alpaca, ShareGPT, ChatML)
 
 ## Passo 1: Design de conjunto de dados
 
@@ -31,10 +31,10 @@ Fornecer:
 
 A qualidade sempre supera a quantidade. 1.000 exemplos escritos por especialistas (LIMA, maio 2023) combinaram modelos treinados em mais de 50.000 exemplos. Priorizar:
 
-1. **Diversity**-- abranger toda a gama de capacidades-alvo
-2. **Accuracy**- cada resposta deve ser factualmente correta
-3. **Clarity**- as respostas devem ser concisas e bem estruturadas
-4. **Difficulty gradient**- incluir exemplos fáceis, médios e difíceis
+1. **Diversity** -- abranger toda a gama de capacidades-alvo
+2. **Accuracy** - cada resposta deve ser factualmente correta
+3. **Clarity** - as respostas devem ser concisas e bem estruturadas
+4. **Difficulty gradient** - incluir exemplos fáceis, médios e difíceis
 
 ### Lista de verificação da diversidade
 

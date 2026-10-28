@@ -1,6 +1,6 @@
 ---
 name: skill-tokenizer
-description: Choosing and building tokenizers for LLM projects
+description: Escolha e construção de tokenizers para projetos de LLM
 version: 1.0.0
 phase: 10
 lesson: 1
@@ -13,11 +13,11 @@ Ao iniciar um projecto de Mestrado em Direito Jurídico, aplicar este quadro de 
 
 ## Quando utilizar cada tokenizer
 
-**Byte-level BPE (tiktoken):**Você está construindo ou ajustando modelos da família GPT. Você precisa de manuseio garantido de qualquer sequência de byte de entrada.
+**Byte-level BPE (tiktoken):** Você está construindo ou ajustando modelos da família GPT. Você precisa de manuseio garantido de qualquer sequência de byte de entrada.
 
-**WordPiece (Hugging Face):**Você está trabalhando com modelos da família BERT para classificação, NER ou tarefas de incorporação. Você precisa do prefixo de continuação "##" para tarefas a jusante que dependem de sinais de fronteira de palavras.
+**WordPiece (Hugging Face):** Você está trabalhando com modelos da família BERT para classificação, NER ou tarefas de incorporação. Você precisa do prefixo de continuação "##" para tarefas a jusante que dependem de sinais de fronteira de palavras.
 
-**SentencePiece (BPE or Unigram):**Você está treinando a partir do zero. Você precisa de tokenization linguística-agnóstica. Os seus dados incluem línguas CJK, tailandês ou outros scripts sem limites de palavras em espaço branco. LLaMA, T5, e a maioria dos modelos multilíngues usam isso.
+**SentencePiece (BPE or Unigram):** Você está treinando a partir do zero. Você precisa de tokenization linguística-agnóstica. Os seus dados incluem línguas CJK, tailandês ou outros scripts sem limites de palavras em espaço branco. LLaMA, T5, e a maioria dos modelos multilíngues usam isso.
 
 ## Orientações para o tamanho do vocabulário
 
@@ -32,7 +32,7 @@ O vocabulário maior significa sequências mais curtas (inferação mais barata)
 1. Divisão no espaço em branco antes do BPE para evitar fusões de palavras cruzadas
 2. Separar dígitos individualmente se você quer que o modelo aprenda aritmética
 3. Normalize Unicode (NFC) antes da tokenization para comportamento consistente
-4. Adicionar tokens especiais para o seu caso de uso: `<pad>`- Não .`<eos>`- Não .`<bos>`- Não .`<unk>`, e quaisquer marcadores específicos de tarefa
+4. Adicionar tokens especiais para o seu caso de uso: `<pad>`- Não . `<eos>`- Não . `<bos>`- Não . `<unk>`, e quaisquer marcadores específicos de tarefa
 
 ## Banderas vermelhas no comportamento do tokenizer
 
