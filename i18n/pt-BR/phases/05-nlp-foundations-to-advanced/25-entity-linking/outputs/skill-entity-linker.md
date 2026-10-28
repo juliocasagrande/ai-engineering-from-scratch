@@ -1,6 +1,6 @@
 ---
 name: entity-linker
-description: Design an entity linking pipeline — KB, candidate generator, disambiguator, evaluation.
+description: Desenhar uma entidade que conecte o pipeline  KB, gerador candidato, desambiguador, avaliação.
 version: 1.0.0
 phase: 5
 lesson: 25

@@ -1,6 +1,6 @@
 ---
 name: multilingual-picker
-description: Pick source language, target model, and evaluation plan for a multilingual NLP task.
+description: Escolha a linguagem-fonte, o modelo-alvo e o plano de avaliação para uma tarefa de PNL multilingue.
 version: 1.0.0
 phase: 5
 lesson: 18

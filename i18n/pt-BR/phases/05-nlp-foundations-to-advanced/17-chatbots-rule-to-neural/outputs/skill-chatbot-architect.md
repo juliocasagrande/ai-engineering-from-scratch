@@ -1,6 +1,6 @@
 ---
 name: chatbot-architect
-description: Design a chatbot stack for a given use case.
+description: Projetar uma pilha de chatbot para um determinado caso de uso.
 version: 1.0.0
 phase: 5
 lesson: 17

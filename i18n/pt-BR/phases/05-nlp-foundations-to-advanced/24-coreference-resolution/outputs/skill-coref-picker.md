@@ -1,6 +1,6 @@
 ---
 name: coref-picker
-description: Pick a coreference approach, evaluation plan, and integration strategy.
+description: Escolha uma abordagem de base, um plano de avaliação e uma estratégia de integração.
 version: 1.0.0
 phase: 5
 lesson: 24

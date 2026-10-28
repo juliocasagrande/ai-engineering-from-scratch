@@ -1,6 +1,6 @@
 ---
 name: embedding-picker
-description: Pick embedding model, dimension, and retrieval mode for a given corpus and deployment.
+description: Escolha o modelo de incorporação, dimensão e modo de recuperação para um determinado corpo e implantação.
 version: 1.0.0
 phase: 5
 lesson: 22

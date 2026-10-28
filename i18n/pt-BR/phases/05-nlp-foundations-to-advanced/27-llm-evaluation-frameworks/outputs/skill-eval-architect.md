@@ -1,6 +1,6 @@
 ---
 name: eval-architect
-description: Design an LLM evaluation plan with calibrated judge and CI gates.
+description: Desenhar um plano de avaliação do LLM com um juiz calibrado e portões de CI.
 version: 1.0.0
 phase: 5
 lesson: 27

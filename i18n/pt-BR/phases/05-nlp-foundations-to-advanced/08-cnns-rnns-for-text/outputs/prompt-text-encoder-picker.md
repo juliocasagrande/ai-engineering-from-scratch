@@ -1,6 +1,6 @@
 ---
 name: text-encoder-picker
-description: Pick a text encoder architecture for a given constraint set.
+description: Escolha uma arquitetura de codificador de texto para um conjunto de restrições.
 phase: 5
 lesson: 08
 ---

@@ -1,6 +1,6 @@
 ---
 name: qa-architect
-description: Choose QA architecture, retrieval strategy, and evaluation plan.
+description: Escolha arquitetura de QA, estratégia de recuperação e plano de avaliação.
 version: 1.0.0
 phase: 5
 lesson: 13
@@ -10,7 +10,7 @@ tags: [nlp, qa, rag]
 Dados os requisitos (dimensão do corpo, tipo de pergunta, restrição de faculdade, orçamento de latência), saída:
 
 1. Arquitetura. Extractiva, RAG com leitor extractivo, RAG com leitor gerativo, ou LLM de livro fechado. Razão de uma frase.
-2. Não, BM25, denso.`all-MiniLM-L6-v2`), ou híbrido.
+2. Não, BM25, denso (nome do codificador como `all-MiniLM-L6-v2`), ou híbrido.
 3. Leitor. Modelo sintonizado com SQuAD (`deepset/roberta-base-squad2`), LLM por nome, ou DistilBERT, ajustado para domínio.
 4. Avaliação: EM + F1 para referências extractivas; precisão de resposta + precisão de citação + calibração de recusa para produção.
 
