@@ -1,6 +1,6 @@
 ---
 name: vision-rag-designer
-description: Design a vision-native document RAG using ColPali / ColQwen2 / VisRAG, with storage estimate and generator-pick.
+description: Desenhar um documento RAG nativo de visão usando ColPali / ColQwen2 / VisRAG, com estimativa de armazenamento e seleção de gerador.
 version: 1.0.0
 phase: 12
 lesson: 23

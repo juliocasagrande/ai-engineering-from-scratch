@@ -1,6 +1,6 @@
 ---
 name: llava-vibes-eval
-description: Run a 10-prompt vibes-eval on a LLaVA-family VLM and produce a human-readable scorecard.
+description: Execute uma vibração de 10 pulsos num VLM da família LLaVA e produz uma placa de pontuação legível por humanos.
 version: 1.0.0
 phase: 12
 lesson: 05

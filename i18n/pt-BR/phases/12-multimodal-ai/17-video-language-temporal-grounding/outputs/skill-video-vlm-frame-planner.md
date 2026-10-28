@@ -1,6 +1,6 @@
 ---
 name: video-vlm-frame-planner
-description: Plan frame sampling, per-frame pooling, output format, and benchmark targets for a video-language model deployment.
+description: Planejar a amostragem de quadros, a agregação por quadros, o formato de saída e os objetivos de referência para a implantação de um modelo de vídeo-linguagem.
 version: 1.0.0
 phase: 12
 lesson: 17
@@ -14,7 +14,7 @@ Produzir:
 1. Seleção de amostras de quadros. Uniforme para conteúdo estável, FPS dinâmico para movimento místico, orientado a eventos para ação pesada, tela de teclado + contexto para cinematográfico.
 2. A concentração por quadro: 2x2 para grandes detalhes, 3x3 por defeito, 4x4 ou 6x6 para fluxos de trabalho de agentes onde a densidade de conteúdo é menos importante do que a cobertura.
 3. Encodificação temporal: M-RoPE alinhado com o tempo para a família Qwen2.5-VL (TMRoPE em Qwen2.5-Omni); incorporação temporal aprendida para modelos menores; nenhuma codificação para tarefas de um único clipe.
-4. Formatos de saída. JSON com `{event, start, end, confidence}`para o grounding; texto livre para resumo; token-delimited para fluxos mistos.
+4. Formatos de saída. JSON com `{event, start, end, confidence}` para o grounding; texto livre para resumo; token-delimited para fluxos mistos.
 5. O plano de referência: vídeo para PME em geral, TempCompass para terra, EgoSchema para longo horizonte. Especifique o nível de precisão esperado.
 6. Contexto / orçamento de latência. Tokens totais = duração * fps * tokens_per_frame. Avisa se exceder 40% do contexto.
 

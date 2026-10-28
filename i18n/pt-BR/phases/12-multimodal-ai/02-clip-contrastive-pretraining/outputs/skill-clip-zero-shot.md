@@ -1,6 +1,6 @@
 ---
 name: clip-zero-shot
-description: Run zero-shot image classification with a CLIP / SigLIP checkpoint, producing ranked predictions with similarity scores.
+description: Execute classificação de imagem de tiros zero com um ponto de verificação CLIP / SigLIP, produzindo previsões classificadas com pontuações de semelhança.
 version: 1.0.0
 phase: 12
 lesson: 02
@@ -11,10 +11,10 @@ Dadas uma lista de imagens (caminhos de arquivo ou URLs) e uma lista de nomes de
 
 Produzir:
 
-1. Construção rápida. Para cada classe, formule modelos de texto N (default: `a photo of a {class}`- Não .`a picture of a {class}`- Não .`an image of a {class}`). Embed cada prompt com o codificador de texto e média para formar o protótipo de classe.
+1. Construção rápida. Para cada classe, formule modelos de texto N (default: `a photo of a {class}`- Não . `a picture of a {class}`- Não . `an image of a {class}`). Embed cada prompt com o codificador de texto e média para formar o protótipo de classe.
 2. Embedagem de imagem. Embed cada imagem de entrada com o codificador de visão declarado. Normalize ambos os lados para o comprimento da unidade.
 3. Previsões classificadas. Computa a semelhança cosínica entre cada inserção de imagem e cada protótipo de classe. Retorna o top-1 e top-5 com pontuações.
-4. Metadados do ponto de controlo. Nomear o ponto de controlo exacto utilizado em Hugging Face (por exemplo, `openai/clip-vit-large-patch14`ou `google/siglip2-so400m-patch14-384`) e a resolução que espera.
+4. Metadados do ponto de controlo. Nomear o ponto de controlo exacto utilizado em Hugging Face (por exemplo, `openai/clip-vit-large-patch14` ou `google/siglip2-so400m-patch14-384`) e a resolução que espera.
 5. Nota de honestidade: indicar que o zero-shot em classes fora da distribuição pré-treino é improvável; superficial top-1 pontuação como um proxy de confiança e avisar quando é inferior a 0,2 .
 
 Rejeitos duros:

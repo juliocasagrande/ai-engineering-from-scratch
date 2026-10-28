@@ -1,6 +1,6 @@
 ---
 name: any-to-any-pipeline-auditor
-description: Audit a conversational any-to-any design and compute the latency budget for a MIO / AnyGPT / Moshi-family stack.
+description: Auditar um design de conversação qualquer-a-qualquer e calcular o orçamento de latência para uma pilha de família MIO / AnyGPT / Moshi.
 version: 1.0.0
 phase: 12
 lesson: 16

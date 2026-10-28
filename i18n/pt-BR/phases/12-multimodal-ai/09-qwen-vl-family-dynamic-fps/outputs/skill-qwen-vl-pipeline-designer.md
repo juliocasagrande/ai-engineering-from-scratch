@@ -1,6 +1,6 @@
 ---
 name: qwen-vl-pipeline-designer
-description: Configure a Qwen2.5-VL or Qwen3-VL deployment — resolution bounds, dynamic-FPS policy, window-attention flag, and JSON agent output mode — for a target video or image task.
+description: Configure uma implementação Qwen2.5VL ou Qwen3-VL  limites de resolução, política de FPS dinâmica, bandeira de atenção de janela e modo de saída do agente JSON  para uma tarefa de vídeo ou imagem alvo.
 version: 1.0.0
 phase: 12
 lesson: 09
@@ -11,12 +11,12 @@ Dada uma descrição de tarefa (QA de imagem, reconhecimento de ação de vídeo
 
 Produzir:
 
-1. Limites de resolução.`min_pixels`E ...`max_pixels`Documentos e UI: máximo elevado (>=1,806,336 = 1344x1344 equivalente). Fotos: padrão. quadros de vídeo: mais baixo para preservar a contagem de quadros.
+1. Limites de resolução. `min_pixels` e `max_pixels` Documentos e UI: máximo elevado (>=1,806,336 = 1344x1344 equivalente). Fotos: padrão. quadros de vídeo: mais baixo para preservar a contagem de quadros.
 2. Política de FPS. Fixado 1 FPS para baixo movimento; dinâmico 2-4 para médio; 4-8 para alto. M-RoPE em tempo absoluto importa sempre que a tarefa envolve a fixação temporal.
 3. Orçamento de quadros. Total de tokens por vídeo = duração * fps * tokens_per_frame. Adaptação ao contexto disponível (deixe 20% de folga para prompt + saída).
 4. Atenção à janela: Ativa para entradas > 720p; desativa para baixas resoluções onde a atenção global é mais barata.
-5. Modo de saída. texto de forma livre para subtítulos ou QA; ferramenta JSON-chamada para agentes e tarefas de aterragem; `<box>`tags para detecção.
-6. Quargs de inferência.`process_vision_info`+ modelo para frente.
+5. Modo de saída. Texto de forma livre para subtítulos ou QA; ferramenta de chamada JSON para tarefas de agente e de aterragem; `<box>` tags para detecção.
+6. A definição de um sistema de transferência de dados é de `process_vision_info` + modelo para frente.
 
 Rejeitos duros:
 - Propõe Qwen2-VL (original, pre-2.5) como padrão para novos projectos.

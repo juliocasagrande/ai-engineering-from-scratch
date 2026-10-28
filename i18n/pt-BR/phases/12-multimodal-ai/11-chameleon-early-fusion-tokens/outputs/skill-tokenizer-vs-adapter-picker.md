@@ -1,6 +1,6 @@
 ---
 name: tokenizer-vs-adapter-picker
-description: Pick between Chameleon-style early fusion (shared-vocab tokenizer) and LLaVA-style late fusion (adapter on frozen LLM) for a VLM project.
+description: Escolha entre fusão inicial no estilo Chameleon (tokenizer de vocabulário compartilhado) e fusão tardia no estilo LLaVA (adaptor em LLM congelado) para um projeto VLM.
 version: 1.0.0
 phase: 12
 lesson: 11

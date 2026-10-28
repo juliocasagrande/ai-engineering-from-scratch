@@ -1,6 +1,6 @@
 ---
 name: long-video-strategy-planner
-description: Pick brute-context, ring-attention, token-compression, or agentic-retrieval for a long-video understanding task and compute latency + recall expectations.
+description: Escolha conteúdo bruto, atenção de ring, compressão de tokens ou recuperação de agentes para uma tarefa de compreensão de vídeo longo e computa a latência + expectativas de recall.
 version: 1.0.0
 phase: 12
 lesson: 18

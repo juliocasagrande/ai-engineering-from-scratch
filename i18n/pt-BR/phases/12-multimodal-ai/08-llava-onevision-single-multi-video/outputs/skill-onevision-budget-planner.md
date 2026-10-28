@@ -1,6 +1,6 @@
 ---
 name: onevision-budget-planner
-description: Allocate LLaVA-OneVision-style unified visual-token budgets across single-image, multi-image, and video scenarios for a target product mix.
+description: Asigne orçamentos unificados de tokens visuais de estilo LLaVA-OneVision em cenários de imagem única, imagem múltipla e vídeo para uma mistura de produtos alvo.
 version: 1.0.0
 phase: 12
 lesson: 08

@@ -1,6 +1,6 @@
 ---
 name: unified-gen-model-picker
-description: Pick between Show-o / Transfusion / Emu3 / Janus-Pro families for a product that needs both multimodal understanding and generation with open weights.
+description: Escolha entre as famílias Show-o / Transfusion / Emu3 / Janus-Pro para um produto que precise tanto de compreensão multimodal quanto de geração com pesos abertos.
 version: 1.0.0
 phase: 12
 lesson: 14

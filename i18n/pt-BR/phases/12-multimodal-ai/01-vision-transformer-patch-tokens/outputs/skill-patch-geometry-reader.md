@@ -1,6 +1,6 @@
 ---
 name: patch-geometry-reader
-description: Read a ViT config and produce a patch-token, parameter, and VRAM analysis for downstream VLM planning.
+description: Leia uma configuração ViT e produzir um patch-token, parâmetro e análise VRAM para planejamento VLM em baixo fluxo.
 version: 1.0.0
 phase: 12
 lesson: 01

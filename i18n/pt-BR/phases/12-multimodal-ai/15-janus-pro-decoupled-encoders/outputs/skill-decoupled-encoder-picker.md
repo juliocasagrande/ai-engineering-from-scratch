@@ -1,6 +1,6 @@
 ---
 name: decoupled-encoder-picker
-description: Decide whether a unified VLM should decouple its visual encoders and pick between Janus-Pro, JanusFlow, and InternVL-U.
+description: Decidir se um VLM unificado deve desacoplar seus codificadores visuais e escolher entre Janus-Pro, JanusFlow e InternVL-U.
 version: 1.0.0
 phase: 12
 lesson: 15
@@ -14,7 +14,7 @@ Produzir:
 1. Seleção de arquitetura: Janus-Pro (geração VQ), JanusFlow (geração de fluxo corrigida), InternVL-U (pre-treinamento nativo + descoplado).
 2. Combo de codificador: SigLIP-SO400m para compreensão; MAGVIT-v2 / IBQ VQ para geração discreta; VAE de estilo SD3 para contínuo.
 3. Plano de fase de dados: alinhamento de fase 1 (50-100M pares), fase 2 unificada (70M+ pares), instrução de fase 3 (1M+ amostras). Cite o modelo de 5,4x do Janus-Pro + resultado de escalagem de dados 2,8x.
-4. Estratégia de encaminhamento.`<understand>`- Não .`<generate>`) ou baseado em classificação de tarefas.
+4. Estratégia de encaminhamento. `<understand>` - Não . `<generate>`) ou baseado em classificação de tarefas.
 5. Iniciar a partir de um LLM pré-treinado (DeepSeek, Qwen, Llama) em vez de do zero.
 6. O limite máximo de qualidade: MMMU (~60 em 7B) e GenEval (~0,80 em 7B para Janus-Pro / ~0,85+ para InternVL-U).
 
