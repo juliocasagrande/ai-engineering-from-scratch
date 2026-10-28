@@ -1,0 +1,78 @@
+{
+  "lesson": "07-building-an-mcp-server",
+  "title": "Construir um servidor MCP: Python sem estado e TypeScript",
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "Onde um servidor MCP moderno lê as capacidades do cliente?",
+      "options": [
+        "De Mcp-Session-Id",
+        "Desde a primeira chamada inicializar",
+        "De cada pedido atual",
+        "A partir do ambiente de processo"
+      ],
+      "correct": 2,
+      "explanation": "MCP 2026-07-28 carrega capacidades do cliente em todos os parâmetros da solicitação._meta."
+    },
+    {
+      "stage": "check",
+      "question": "Que método deve implementar um servidor moderno?",
+      "options": [
+        "Iniciar",
+        "servidor/descoberta",
+        "recursos/subscrever",
+        "desligamento"
+      ],
+      "correct": 1,
+      "explanation": "O servidor/discovery é obrigatório em servidores modernos, embora os clientes possam chamar primeiro outro método."
+    },
+    {
+      "stage": "check",
+      "question": "Quais campos de resultados bem sucedidos são necessários nas ferramentas/listas?",
+      "options": [
+        "ProtocoloVersion e ferramentas",
+        "ResultadoTípo, TTLM, cacheScope, ferramentas",
+        "Inicializado e ferramentas",
+        "Id e ferramentas"
+      ],
+      "correct": 1,
+      "explanation": "Os resultados da lista moderna são digitalizados e cachéáveis."
+    },
+    {
+      "stage": "check",
+      "question": "Por que um servidor deve classificar ferramentas deterministicamente?",
+      "options": [
+        "Estabilizar os caches e o contexto modelo",
+        "Para criar uma sessão",
+        "Negociar o protocolo",
+        "Substituição da autorização"
+      ],
+      "correct": 0,
+      "explanation": "A ordem estável faz com que registros equivalentes produzam respostas equivalentes."
+    },
+    {
+      "stage": "post",
+      "question": "Uma chamada de ferramenta válida é executada mas a operação do domínio falha.",
+      "options": [
+        "Notificações/iniciadas",
+        "Deletar HTTP",
+        "Um resultado completo de ferramenta com isError true",
+        "Um novo pedido de servidor"
+      ],
+      "correct": 2,
+      "explanation": "As falhas de nível de ferramenta permanecem visíveis ao modelo através do conteúdo e éError."
+    },
+    {
+      "stage": "post",
+      "question": "O que deve acabar com a vida útil de um servidor de estúdio?",
+      "options": [
+        "EOF em stdin",
+        "Um pedido de GET",
+        "Um RPC de desligamento obrigatório",
+        "Expirar o prazo de receção do documento de identificação"
+      ],
+      "correct": 0,
+      "explanation": "O EOF é o sinal de desligamento portátil de estúdio."
+    }
+  ]
+}

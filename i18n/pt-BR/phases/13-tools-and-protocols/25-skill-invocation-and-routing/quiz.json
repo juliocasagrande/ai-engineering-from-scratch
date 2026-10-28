@@ -1,0 +1,78 @@
+{
+  "lesson": "25-skill-invocation-and-routing",
+  "title": "Invocação de habilidades e roteamento",
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "Qual evento é um exemplo de ativação de habilidades programáticas do ponto de vista do anfitrião?",
+      "options": [
+        "Um arsenal de avaliação seleciona uma habilidade nomeada para um cenário programado",
+        "Um usuário escolhe uma habilidade nomeada na interface de usuário",
+        "Um modelo infere uma habilidade da relevância semântica",
+        "Um catálogo lê descrições durante a descoberta"
+      ],
+      "correct": 0,
+      "explanation": "A ativação programática vem do fluxo de controle de tempo de execução ou aproveitamento, como uma avaliação selecionando uma habilidade exata. A seleção humana é a ativação explícita do usuário, enquanto a correspondência semântica é a ativação implícita do modelo."
+    },
+    {
+      "stage": "check",
+      "question": "Um anfitrião reconhece .`user-invocable: false`Como deve um guia de portabilidade descrever esse campo?",
+      "options": [
+        "Um bits de permissão do sistema de arquivos",
+        "Substituição da descrição de habilidade",
+        "Uma extensão de invocação específica do host interpretada por um adaptador",
+        "Um campo necessário em todas as habilidades de agente"
+      ],
+      "correct": 2,
+      "explanation": "Um host particular pode atribuir significado a uma extensão sem torná-la universal. ferramentas portáteis devem preservar ou adaptar explicitamente o campo e evitar comportamentos idênticos promissores em tempos de execução que não o reconhecem."
+    },
+    {
+      "stage": "check",
+      "question": "O que deve fazer um roteador modelo implícito com uma consulta quase perdida abaixo do seu limiar de ativação?",
+      "options": [
+        "Ativar a primeira habilidade alfabética",
+        "Baixar silenciosamente o limiar para esse pedido",
+        "Converte a consulta em um comando de corte humano",
+        "Recusar a ativação e continuar sem a habilidade ou pedir esclarecimentos"
+      ],
+      "correct": 3,
+      "explanation": "Os negativos quase perdidos são os que aparecem com excesso de desencadeamento. Um limiar é útil apenas se o roteador o honrar, relatar a não ativação e permitir que o raciocínio ou esclarecimento normal continue."
+    },
+    {
+      "stage": "check",
+      "question": "No modelo humano 2x2, o que faz?`human=true, model=false`- Não me digas?",
+      "options": [
+        "A habilidade tem autoridade de ferramenta ilimitada",
+        "Um ser humano pode invocá-lo explicitamente, mas o modelo não deve selecioná-lo implícitamente",
+        "Só um arame de avaliação pode ativá-lo",
+        "O modelo só pode ativá-lo após uma solicitação de rede"
+      ],
+      "correct": 1,
+      "explanation": "Os eixos descrevem os canais de ativação, não as permissões. Este quadrante suporta a seleção deliberada do usuário, suprimindo o roteamento automático do modelo, que é útil para fluxos de trabalho disruptivos ou caros."
+    },
+    {
+      "stage": "post",
+      "question": "Por que um arame de avaliação geralmente ativa uma habilidade pelo nome exato?",
+      "options": [
+        "Faz as descrições desnecessárias",
+        "Nome exato concede privilégios de fuga de caixa de areia",
+        "Isola o comportamento de habilidade da variância de roteamento para que as corridas repetidas sejam comparáveis",
+        "Prova que todos os hosts compartilham uma sintaxe de comando"
+      ],
+      "correct": 2,
+      "explanation": "Um arnes geralmente precisa testar a habilidade em si, não o modelo de descoberta. A seleção programática exata remove uma fonte de variância; avaliações separadas de gatilho podem então medir a precisão implícita de roteamento e a recuperação."
+    },
+    {
+      "stage": "post",
+      "question": "Qual desenho mantém a invocação e a autoridade corretamente separadas?",
+      "options": [
+        "Permitir a ativação do modelo apenas quando o pacote contém um script de shell",
+        "Se um usuário invocar uma habilidade, aprovar todas as ações que ele solicite",
+        "Ativação de rota através da política de hospedagem, em seguida, rever cada ação solicitada sob o modelo de permissão",
+        "Deixar extensão de metadados substituir o sistema de arquivos e rede política"
+      ],
+      "correct": 2,
+      "explanation": "A ativação decide se as instruções entram em contexto. A revisão de permissões decide se as leituras, escrevências, comandos ou chamadas de rede propostas podem ocorrer. Mantendo esses portões separados impede que a descoberta ou invocação se torne uma autoridade acidental."
+    }
+  ]
+}

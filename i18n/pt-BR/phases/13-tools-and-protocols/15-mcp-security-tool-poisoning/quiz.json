@@ -1,0 +1,78 @@
+{
+  "lesson": "15-mcp-security-tool-poisoning",
+  "title": "Segurança MCP: Metadados envenenados, roteamento e estado MRTR",
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "Qual campo MCP é seguro para usar como identidade de cliente autenticada?",
+      "options": [
+        "Nenhum dos campos de informação de cliente auto-relatados",
+        "clienteInfo.nome",
+        "clienteInfo.version",
+        "ClienteCapacidades"
+      ],
+      "correct": 0,
+      "explanation": "As informações e capacidades do cliente são metadados de protocolo, não provas de autenticação."
+    },
+    {
+      "stage": "check",
+      "question": "O que deve fazer um hash gateway depois de aprovar uma ferramenta?",
+      "options": [
+        "O descritivo completo canônico, incluindo descrição, esquema e anotações relevantes",
+        "Apenas o nome da ferramenta",
+        "Apenas o nome do servidor",
+        "Identificador de sessão atual"
+      ],
+      "correct": 0,
+      "explanation": "O pin de descrição inteira detecta mudanças de esquema e anotação que um hash de descrição apenas não apresenta."
+    },
+    {
+      "stage": "check",
+      "question": "Como deve um gateway expor duas ferramentas de backend ambas chamadas de busca?",
+      "options": [
+        "Peça ao modelo para inferir o servidor",
+        "Escolha aleatoriamente um backend",
+        "Usar nomes qualificados estáveis, como notas.busca e issues.search",
+        "Mantenha a última ferramenta descoberta"
+      ],
+      "correct": 2,
+      "explanation": "Os nomes qualificados fazem com que o roteamento, aprovação, auditoria e validação de cabeçalhos se refira a uma ferramenta estável."
+    },
+    {
+      "stage": "check",
+      "question": "Quais declarações de capacidade do cliente suportam a solicitação de formulários MCP?",
+      "options": [
+        "Ou é a elicitação: {} implícita ou é a elicitação: {form: {}} explícita",
+        "Qualquer objeto de extensões não vazias",
+        "Apenas uma sessão de protocolo com formulário habilitado",
+        "Só elicitation.url"
+      ],
+      "correct": 0,
+      "explanation": "Um objeto de elicitação vazio implica suporte de formulário, enquanto o formulário: {} o afirma explicitamente."
+    },
+    {
+      "stage": "post",
+      "question": "Por que é que o Estado deve exigir a proteção da integridade e ser obrigado a argumentar exatamente?",
+      "options": [
+        "Para selecionar um campo de cache",
+        "Substituição da OAuth",
+        "Para impedir um cliente de reutilizar ou alterar a confirmação para outra ação",
+        "Para fazer JSON menor"
+      ],
+      "correct": 2,
+      "explanation": "requisitestate viagens de ida e volta através de um colega não confiável, de modo que o servidor deve detectar manipulações e mudanças de contexto."
+    },
+    {
+      "stage": "post",
+      "question": "Qual é a ordem correta para um portal moderno?",
+      "options": [
+        "Confia em informações do cliente, executa, depois auditora",
+        "Aceitar as capacidades declaradas como permissão",
+        "Authenticar, validar fios e cabeçalhos, verificar a compatibilidade das capacidades, autorizar, e executar",
+        "Crie uma sessão, percorra por ordem de descoberta, depois autorize"
+      ],
+      "correct": 2,
+      "explanation": "A ambigüidade e a identidade dos fios devem ser resolvidas antes da autorização e execução."
+    }
+  ]
+}

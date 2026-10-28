@@ -1,0 +1,78 @@
+{
+  "lesson": "12-mcp-roots-and-elicitation",
+  "title": "Espetáculo explícito e solicitação de desapatados",
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "Que garantia de segurança forneceu a MCP Roots?",
+      "options": [
+        "Orientação informativa do espaço de trabalho, não autorização ou sandboxing",
+        "Isolamento do sistema operacional para cada processo de servidor",
+        "Prova de que o chamador possui todos os arquivos abaixo da raiz",
+        "Prevenção automática de fuga de ligações simbólicas"
+      ],
+      "correct": 0,
+      "explanation": "As raízes foram informativas e são obsoletas em 2026-07-28."
+    },
+    {
+      "stage": "check",
+      "question": "Qual é a substituição moderna mais clara quando o escopo do espaço de trabalho muda por chamada de ferramenta?",
+      "options": [
+        "Um valor oculto armazenado durante uma sessão de transporte",
+        "Uma solicitação de raízes/listas enviada após mutação",
+        "Nome do cliente informado",
+        "Um argumento URI explícito de espaço de trabalho que o servidor autoriza"
+      ],
+      "correct": 3,
+      "explanation": "Um manto explícito é visível e reprodutivo, mas o servidor ainda deve autorizá-lo para o principal autenticado."
+    },
+    {
+      "stage": "check",
+      "question": "Como é efectuada a obtenção de formulários no modo MCP 2026-07-28?",
+      "options": [
+        "Como redirecionamento HTTP do servidor/descoberta",
+        "Por meio de notificações/raizes/lista_alterada",
+        "Como um pedido inverso sobre um fluxo de Mcp-Session-ID",
+        "Dentro de entradaRequests sobre um resultado input_required"
+      ],
+      "correct": 3,
+      "explanation": "MRTR incorpora elicitação/criar em inputRequests, em seguida, o cliente retrata a operação original com inputRespostas. Elicitação {} e elicitation.form support form mode; apenas URL-support retorna -32021 com data.requiredCapabilities.elicitation.form."
+    },
+    {
+      "stage": "check",
+      "question": "Que valor nunca deve ser recolhido através da elicitação de modo de forma?",
+      "options": [
+        "Uma confirmação booleana de ação destrutiva",
+        "Um id de nota selecionado de um enum",
+        "Um token de acesso API",
+        "Preferência de exibição não sensível"
+      ],
+      "correct": 2,
+      "explanation": "Secrets e credenciales não devem transitar o cliente MCP. Use um fluxo de modo URL cuidadosamente ligado para interações externas sensíveis."
+    },
+    {
+      "stage": "post",
+      "question": "Um usuário recusa uma solicitação de exclusão.",
+      "options": [
+        "Excluir porque o modelo já selecionou a nota",
+        "Tratar o conteúdo que falta como consentimento implícito",
+        "Retorna um resultado completo de recusa sem erro e preserva a nota",
+        "Repita o mesmo diálogo até que o usuário aceite"
+      ],
+      "correct": 2,
+      "explanation": "A recusa é a recusa explícita. Não deve ser convertida em consentimento, indução de erro ou mutação."
+    },
+    {
+      "stage": "post",
+      "question": "Que projeto liga com segurança uma confirmação destrutiva ao que o usuário viu?",
+      "options": [
+        "Base64-encodear o ID de nota escolhido sem assinatura",
+        "Assine o principal, o argumento original, os candidatos, fase e expiração, e depois revise o alvo ao vivo",
+        "Use clientInfo como a identidade de usuário autorizada",
+        "Confie em qualquer nota de identificação devolvida com ação aceitar"
+      ],
+      "correct": 1,
+      "explanation": "Um estado protegido pela integridade impede a adulteração. Uma reivindicação atômica compartilhada de uma única vez impede a repetição, enquanto os controles ao vivo finais abordam raças antes da mutação."
+    }
+  ]
+}

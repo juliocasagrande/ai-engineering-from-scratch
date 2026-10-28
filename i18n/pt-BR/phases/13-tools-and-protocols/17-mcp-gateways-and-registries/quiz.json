@@ -1,0 +1,78 @@
+{
+  "lesson": "17-mcp-gateways-and-registries",
+  "title": "Portas de acesso e registro de MCP sem nacionalidade",
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "O que deve preservar um portal MCP atual entre as solicitações ordinárias dos clientes?",
+      "options": [
+        "Um Mcp-Session-ID por backend",
+        "A última conexão HTTP",
+        "Um fluxo de eventos GET independente",
+        "Sem sessão de protocolo; cada pedido contém as informações necessárias para validá-lo e encaminhá-lo"
+      ],
+      "correct": 3,
+      "explanation": "MCP 2026-07-28 As solicitações ordinárias são autônomas e podem chegar a qualquer instância de gateway saudável."
+    },
+    {
+      "stage": "check",
+      "question": "Qual o escopo de cache que um resultado de ferramentas/lista filtrado por principal deve geralmente usar?",
+      "options": [
+        "público",
+        "global",
+        "privado",
+        "sessão"
+      ],
+      "correct": 2,
+      "explanation": "Uma lista de ferramentas específica do utilizador não deve ser compartilhada em contextos de autorização."
+    },
+    {
+      "stage": "check",
+      "question": "Como deve um gateway avançar uma ferramenta para um backend atual?",
+      "options": [
+        "Abre um GET primeiro",
+        "Copie o token do portador externo e o ID da sessão",
+        "Reutilizar o ID JSON-RPC externo como estado durável",
+        "Crie uma nova solicitação independente com metadados do cliente do gateway e recursos mediados"
+      ],
+      "correct": 3,
+      "explanation": "O gateway é o cliente do backend e cria um novo pedido independentemente válido."
+    },
+    {
+      "stage": "check",
+      "question": "Como deve um portal utilizar um registro oficial do servidor do Registro durante a admissão?",
+      "options": [
+        "Validar a forma de publicação, depois juntá-la para separar o editor verificado, proveniência, política e estado de aprovação",
+        "Tratar a publicação como uma revisão de segurança concluída",
+        "Recursos de verificação de cópia de campos de registos arbitrários",
+        "Confia em qualquer registro cujo nome pareça familiar"
+      ],
+      "correct": 0,
+      "explanation": "O servidor.json carrega metadados de publicação. A proveniência verificada e a decisão de aprovação do gateway permanecem como evidência externa de admissão."
+    },
+    {
+      "stage": "post",
+      "question": "Como são abertas as notificações de mudança de lista de longa duração no moderno Streamable HTTP?",
+      "options": [
+        "Por meio de um pedido de assinatura/ouvido POST cuja resposta é SSE",
+        "Por meio de recursos/subscrição",
+        "Por meio de um GET independente com o último evento-ID",
+        "Por meio de notificações/iniciadas"
+      ],
+      "correct": 0,
+      "explanation": "subscrições/ouvido substitui o antigo modelo de subscrição de recursos e GET não solicitado."
+    },
+    {
+      "stage": "post",
+      "question": "Qual é a regra de roteamento de extensão das tarefas atual?",
+      "options": [
+        "Utilize tarefas/resultados para a saída final",
+        "Use tarefas/lista para recuperar todas as tarefas em uma sessão",
+        "Route tarefas/obter, tarefas/atualização e tarefas/cancelar usando taskId como Mcp-Name",
+        "Armazenar a tarefa em Mcp-Session-ID"
+      ],
+      "correct": 2,
+      "explanation": "A extensão oficial usa get, update e cancelar; ids de tarefa fornecem o roteamento sem sessões de protocolo."
+    }
+  ]
+}

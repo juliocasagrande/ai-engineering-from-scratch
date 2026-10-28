@@ -1,0 +1,78 @@
+{
+  "lesson": "11-mcp-sampling",
+  "title": "Introdução do modelo de MCP: Migração e MRTR sem nacionalidade",
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "Um novo servidor MCP precisa de inferência de modelo. Qual é a arquitetura padrão para 2026-07-28?",
+      "options": [
+        "Integrar-se directamente com um fornecedor modelo",
+        "Enviar amostragem/crearMessagem antes de cada chamada de ferramenta",
+        "Armazenar a chave do modelo do cliente em uma sessão de protocolo",
+        "Abre um fluxo permanente de SSE para amostragem"
+      ],
+      "correct": 0,
+      "explanation": "A amostragem é obsoleta para novos projetos. A integração direta do provedor é a preferência recomendada quando um servidor precisa de inferência de modelo."
+    },
+    {
+      "stage": "check",
+      "question": "Como um servidor 2026-07-28 solicita compatibilidade Amostra durante ferramentas/chamadas?",
+      "options": [
+        "Escreve o prompt no servidor/descoberta",
+        "Coloca o prompt em um cabeçalho de Mcp-Session-ID",
+        "Retorna o resultadoTípico de entrada_requerido com amostragem/crearMessagem em entradaRequests",
+        "Envia uma solicitação JSON-RPC inversa na mesma conexão"
+      ],
+      "correct": 2,
+      "explanation": "O MRTR transporta solicitações de servidor a cliente dentro de um resultado input_required, evitando um canal de solicitação inversa. A ferramenta summarize_repo anunciada deve primeiro estar disponível através de ferramentas deterministas/listas com um inputSchema válido."
+    },
+    {
+      "stage": "check",
+      "question": "Qual propriedade prova que uma retestada MRTR é uma solicitação independente JSON-RPC?",
+      "options": [
+        "Omite metadados por pedido",
+        "Usa a mesma identificação que a solicitação original.",
+        "Utiliza um novo ID ao repetir o método e argumentos originais",
+        "Remove os argumentos de ferramenta originais"
+      ],
+      "correct": 2,
+      "explanation": "O cliente repete a operação original com um novo ID JSON-RPC, inputResponses atual e o requisito em ecoState."
+    },
+    {
+      "stage": "check",
+      "question": "O que deve proteger o requisitoEstado quando afeta o acesso aos recursos?",
+      "options": [
+        "HMAC ou criptografia autenticada vinculada ao principal, à solicitação e à expiração",
+        "Base64 codificação só",
+        "Nome de clienteInfo",
+        "Uma longa sessão de transporte"
+      ],
+      "correct": 0,
+      "explanation": "O Estado passa por um cliente não confiável."
+    },
+    {
+      "stage": "post",
+      "question": "O cliente não publicou a Sampling em suas capacidades de pedido. Que resposta de protocolo exata deve o servidor usar?",
+      "options": [
+        "Enviar a solicitação de amostragem embutida de qualquer forma",
+        "Retorno -32021 com dados.requeridosCapacidades, ou escolha um caminho não de amostragem",
+        "Adicionar a capacidade aos metadados do cliente",
+        "Assumir capacidade de um pedido anterior"
+      ],
+      "correct": 1,
+      "explanation": "Um servidor não deve emitir uma solicitação de entrada que o cliente não declarou suporte para a solicitação atual. O código exato de capacidade faltante é -32021."
+    },
+    {
+      "stage": "post",
+      "question": "Que migração mantém um ciclo de compatibilidade de dois rodadas sem estado na camada de protocolo?",
+      "options": [
+        "Carregar apenas entrada de rodada correnteRespostas e estado de fase assinado em cada nova re- tentativa",
+        "Estado de fase de armazenamento em Mcp-Session-ID",
+        "Reutilizar o ID original da solicitação até a conclusão",
+        "Acumular todas as respostas do modelo em uma sessão oculta"
+      ],
+      "correct": 0,
+      "explanation": "Cada retrait é autônomo. solicitação assinadaEstado carrega estado intermediário validado, e inputRespostas contém apenas a rodada atual."
+    }
+  ]
+}

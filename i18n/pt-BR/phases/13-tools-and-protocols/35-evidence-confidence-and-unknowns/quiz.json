@@ -1,0 +1,78 @@
+{
+  "lesson": "35-evidence-confidence-and-unknowns",
+  "title": "Evidências, Confiança e Desconhecidos na Análise Binária",
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "A rea dá a cada registro de evidência um valor de confiança.",
+      "options": [
+        "Um número de 0,0 a 1,0.",
+        "Observados, derivados ou inferidos",
+        "Passar, falhar ou desconhecido",
+        "Baixo, médio, alto ou crítico"
+      ],
+      "correct": 1,
+      "explanation": "A confiança é um enum de três valores em src/domain/evidence.ts."
+    },
+    {
+      "stage": "check",
+      "question": "Duas pessoas executam a mesma consulta rea no mesmo arquivo objeto em pastas diferentes em máquinas diferentes.",
+      "options": [
+        "Diferem porque o caminho local é diferente",
+        "É o mesmo porque o hash exclui nome e local_path",
+        "É o mesmo apenas quando os nomes das pastas coincidem",
+        "Diferem porque o relógio da máquina é diferente."
+      ],
+      "correct": 1,
+      "explanation": "A projeção semântica mantém o assunto digesto, formato e arquitetura e deixa o nome e local_path. A mesma observação dos mesmos bytes obtém a mesma identificação em qualquer lugar."
+    },
+    {
+      "stage": "check",
+      "question": "Uma reivindicação diz grau ((55) == 0. O livro conta com o registro de pseudocódio Ghidra e o modelo de tabela derivada. Qual é o status da reivindicação?",
+      "options": [
+        "Passar, porque o registro de pseudocódio é observado",
+        "O processo de aprovação é de dois registos que concordam com a alegação",
+        "falha, porque o pseudocódio mostra uma expressão diferente",
+        "não suportado, porque nenhuma corrida observada indica o resultado"
+      ],
+      "correct": 3,
+      "explanation": "O pseudocódio é uma observação do que Ghidra imprimiu, não do que a função retorna."
+    },
+    {
+      "stage": "check",
+      "question": "Uma imagem instantânea foi salva sob o perfil a04af771. Uma versão posterior altera a jump_table_evidence para um contrato v2.",
+      "options": [
+        "Começa Ghidra e sobreescreve as entradas antigas",
+        "Replica as entradas e marca cada uma obsoleta",
+        "Recusar a importação com profile_mismatch",
+        "Replica apenas as entradas que não têm mesa de salto"
+      ],
+      "correct": 2,
+      "explanation": "O digestão de perfil cobre cada cadeia de versão de contrato. Uma versão alterada dá um novo digestão, e o instantâneo não corresponde mais à ligação ativa."
+    },
+    {
+      "stage": "post",
+      "question": "O que encerra um resíduo desconhecido com a disposição verificada?",
+      "options": [
+        "Pelo menos uma identificação de prova com a confiança e autoridade necessárias",
+        "Remover o desconhecido do livro",
+        "Uma sentença racional escrita pelo analista",
+        "Uma nova revisão com o status resolvido e uma lista de evidências vazia"
+      ],
+      "correct": 0,
+      "explanation": "Uma resolução verificada nomeia identidades de evidências, e o livro-razão verifica que cada uma é observada e carrega a autoridade que o desconhecido pediu."
+    },
+    {
+      "stage": "post",
+      "question": "As corridas da construção host mostraram grau ((95) == 4 e grau ((100) == 4. A reivindicação cobre todas as pontuações de 90 a 100. Qual estágio é correto?",
+      "options": [
+        "desconhecido, porque 2 das 11 entradas têm observado corridas",
+        "Passar, porque cada corrida observada concordou com a alegação",
+        "Não suportado, porque o objeto x86-64 em si nunca correu",
+        "falha, porque nove entradas nunca foram executadas"
+      ],
+      "correct": 0,
+      "explanation": "A cobertura parcial é desconhecida, não passa e não falha."
+    }
+  ]
+}

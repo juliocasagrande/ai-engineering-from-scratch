@@ -1,0 +1,78 @@
+{
+  "lesson": "31-mcp-conformance-versioning-and-operations",
+  "title": "Engenharia de Conformidade do MCP: Versão, Evidência e Operações",
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "Por que uma chamada de ferramentas/listas de SDK bem-sucedida é insuficiente para comprovar a conformidade?",
+      "options": [
+        "O valor normalizado pode esconder campos de fio, comportamento de versão, alterações de proxy e respostas inválidas",
+        "SDKs não podem chamar ferramentas MCP",
+        "Uma chamada bem-sucedida sempre seleciona a era do legado",
+        "Conformidade aplica-se apenas aos editores do Registo"
+      ],
+      "correct": 0,
+      "explanation": "A conformidade deve inspecionar a solicitação e resposta em bruto, a era de versão selecionada, os intermediários e a transformação do SDK."
+    },
+    {
+      "stage": "check",
+      "question": "Uma sonda moderna retorna o erro JSON-RPC -32021. O que deve fazer um cliente com capacidade de retrocesso?",
+      "options": [
+        "Enviar imediatamente inicialização para a era do legado",
+        "Trata o colega como fora do sistema",
+        "Manter a era moderna e corrigir ou relatar a declaração de capacidade faltante",
+        "Ignore o erro e tente novamente sem capacidades"
+      ],
+      "correct": 2,
+      "explanation": "Um erro moderno reconhecido prova o comportamento moderno. É evidência de correção, não permissão para rebaixar."
+    },
+    {
+      "stage": "check",
+      "question": "Como um cliente moderno deve lidar com um resultado com resultadoTyp completo e um campo aditivo desconhecido?",
+      "options": [
+        "Mudar o resultadoType para input_required",
+        "Rejeitar todos os resultados que contêm uma chave desconhecida",
+        "Aceitar o tipo de resultado conhecido e preservar ou ignorar deliberadamente o campo aditivo de acordo com o seu papel",
+        "Trata o campo desconhecido como um aperto de mão legado"
+      ],
+      "correct": 2,
+      "explanation": "Os campos aditivos suportam a compatibilidade avançada. Eles são diferentes de um discriminador de ciclo de vida desconhecido."
+    },
+    {
+      "stage": "check",
+      "question": "Qual é a resposta JSON-RPC necessária a uma notificação sem ID?",
+      "options": [
+        "Um resultado de servidor/descoberta",
+        "Não há resposta JSON-RPC",
+        "Um resultado completo com conteúdo zero",
+        "Um erro com id null"
+      ],
+      "correct": 1,
+      "explanation": "As notificações são de sentido único. O serializador de transporte final não deve emitir um sucesso ou erro JSON-RPC."
+    },
+    {
+      "stage": "post",
+      "question": "Que prova prova prova melhor que um proxy preservou um erro de protocolo de origem?",
+      "options": [
+        "Reedição da entrada, origem e estado da saída e evidências corporais com digestões estáveis",
+        "Um screenshot do painel de controle de entrada",
+        "Apenas a classe de exceção do SDK",
+        "O tempo de funcionamento do processo proxy"
+      ],
+      "correct": 0,
+      "explanation": "Evidências de três limites revelam o colapso do estado, a reescritura do corpo e o salto exato em que o comportamento mudou."
+    },
+    {
+      "stage": "post",
+      "question": "Um candidato falha nas transcrições negativas e a versão anterior não tem provas de admissão ou saúde.",
+      "options": [
+        "Selecione a versão mais recente do Registro",
+        "Promover porque as transcrições douradas passaram",
+        "Volte para o pacote com a tag mais recente",
+        "Retardar a liberação até que seja comprovado um alvo de reestruturação ou um candidato corrigido elegível"
+      ],
+      "correct": 3,
+      "explanation": "Um regresso sem admissão exata e evidências de saúde é outra liberação não verificada, por isso a ação segura é manter."
+    }
+  ]
+}

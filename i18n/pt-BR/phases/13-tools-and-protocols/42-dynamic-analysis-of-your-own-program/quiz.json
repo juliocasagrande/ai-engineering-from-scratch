@@ -1,0 +1,90 @@
+{
+  "lesson": "42-dynamic-analysis-of-your-own-program",
+  "title": "Análise Dinâmica do Seu Proprio Programa: Desembaraçadores, Traços e Confirmação de Reclamações Estáticas",
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "Você define pontos de intervalo em bump, classificar e sum_balances em uma construção de seu próprio programa, executá-lo até a conclusão, e cada relatório de ponto de intervalo atinge contagem = 0.",
+      "options": [
+        "Que o programa não tem funções",
+        "Que nenhuma cópia fora de linha das três funções correu para esta entrada nesta construção, e nada sobre outras entradas ou outras construções",
+        "Que os pontos de intervalo foram definidos nos endereços errados",
+        "As três funções são código morto e podem ser removidas"
+      ],
+      "correct": 1,
+      "explanation": "Uma contagem de hits é uma observação sobre uma execução de uma construção. Em -O2 o compilador alinhou as três funções e dobrou os resultados em constantes, de modo que as cópias exportadas nunca foram executadas. As funções ainda estão na tabela de símbolos."
+    },
+    {
+      "stage": "check",
+      "question": "No ponto de ruptura do choque, o lldb imprime x0 = 0x16fdfe008, x1 = 0x5, e a leitura de memória -s4 -fx -c8 $x0 imprime 0x00000073 0x000000fa 0x00000009 0x00000000 0x00000000 0x3ff40000 0x00000719 0x00000001. Que afirmação estática confirma a segunda palavra?",
+      "options": [
+        "Esse saldo está no offset 4 e mantém 250, o valor que DWARF coloca em DW_AT_data_member_location 0x04",
+        "Essa taxa é uma flutuação",
+        "Que x1 mantém o ponteiro estrutural",
+        "Que o estruto tem 16 bytes de comprimento"
+      ],
+      "correct": 0,
+      "explanation": "As palavras são os bytes estrutural que começam em a. O Word 1 fica em offset 4, mantém 0xfa = 250, e corresponde à variável frame a->balance. As palavras 4 e 5 são o IEEE-754 duplo 1,25 no offset 16, e as palavras 6 e 7 são o indicador de rótulo no offset 24."
+    },
+    {
+      "stage": "check",
+      "question": "Em classificar em -O0, o primeiro ramo condicional é tbz w8, #0x1f, 0x100000504 com a queda-through em 0x1000004f4. A corrida para em 0x1000004f4 para uma conta com saldo -40.",
+      "options": [
+        "Refutado, porque o ramo para 0x100000504 não foi tomado",
+        "Confirmado, porque tbz ramifica quando o bit 31 é zero, então um saldo negativo cai através do bloco de retorno -1 exatamente como a condição levantada prevê",
+        "Não observado, porque tbz não é um ramo condicional",
+        "Refutado, porque -40 é menos de 200"
+      ],
+      "correct": 1,
+      "explanation": "tbz é o bits de teste e branca se zero. Bit 31 de -40 é definido, então o ramo não é tomado e a execução cai através. A afirmação estática diz que a borda tomada é para equilíbrio >= 0 e a borda de queda é para equilíbrio < 0, o que é o que a parada mostra."
+    },
+    {
+      "stage": "check",
+      "question": "Set de pontos de observação variável a-> tamanho dos relatórios de saldo = 4, tipo = m, e impressões de lista de pontos de observação Número de pontos de observação de hardware suportados: 4.",
+      "options": [
+        "Porque o macOS permite apenas quatro depuradores ao mesmo tempo",
+        "Como os pontos de observação de dados utilizam registros de depuração por núcleo, DR0 a DR3 em x86-64 e pares DBGWVR/DBGWCR em arm64, portanto, existe um número fixo deles e uma região ampla pode usar mais de um",
+        "Porque os pontos de vigilância são implementados em software e o Ildb limita-os para manter o processo rápido",
+        "Porque o contagem é o número de bytes observados"
+      ],
+      "correct": 1,
+      "explanation": "Os pontos de vigilância de hardware comparam todos os acessos de memória com um pequeno conjunto de registros de endereços. x86-64 tem quatro, as implementações arm64 têm entre 2 e 64, e esta máquina relata 4. Quando os slots ficam esgotados, o lldb recusa o próximo ponto de vigilância."
+    },
+    {
+      "stage": "post",
+      "question": "You saved a core with process save-core --style stack at the bump breakpoint. Loading it with lldb -c shows balance = 250 but label = \"\" with the pointer 0x100000719 intact. What happened?",
+      "options": [
+        "Lldb não pode imprimir strings de arquivos do núcleo",
+        "O núcleo está corrupto.",
+        "O programa nunca estabeleceu um rótulo",
+        "A cadeia vive no segmento __TEXT do executável, que um núcleo de estilo stack não inclui, então o ponteiro está presente e os bytes por trás dele não estão"
+      ],
+      "correct": 3,
+      "explanation": "A stack-style core saves the stack and modified memory, 49152 bytes here. The literal \"savings\" is read-only data in the binary. lldb warns that such a core may not show binaries, and --style full includes all process memory."
+    },
+    {
+      "stage": "post",
+      "question": "No silício da Apple, por que a conta account.c do clang -g -o produz um binário que o lldb pode depurar sem qualquer passo adicional de assinatura?",
+      "options": [
+        "Porque as ferramentas de linha de comando desativam a proteção da integridade do sistema",
+        "Como o linker ad-hoc sinaliza a saída arm64 por padrão (flags adhoc,linker-signed), o binário não é endurecido e não tem direitos, então a regra da Apple de que o alvo deve optar por não fazer depuração não se aplica",
+        "Porque o Ildb ignora as assinaturas de código",
+        "Porque o binário carrega o direito de com.apple.security.cs.debugger"
+      ],
+      "correct": 1,
+      "explanation": "O código design -dvvv mostra Signature=adhoc e flags=0x20002 ((adhoc,linker-signed) sem direitos. O lado debugger é coberto por debugserver, que a Apple assinou com seus próprios direitos privados. Somente um binário endurecido sem get-task-allow recusa a porta de tarefa."
+    },
+    {
+      "stage": "post",
+      "question": "Qual afirmação sobre gravação e reprodução com rr é correta para um aprendiz em um Mac de silicone da Apple?",
+      "options": [
+        "rr funciona dentro do Docker no macOS porque o Docker executa Linux",
+        "rr substitui lldb no macOS desde 5.9.0",
+        "rr é executado no macOS e registos com dtrace",
+        "rr é apenas Linux, precisa de contadores de desempenho de hardware, e nenhuma virtualização no macOS os expõe, então o único caminho é uma máquina Linux ou uma VM em outros lugares com contra virtualização habilitada"
+      ],
+      "correct": 3,
+      "explanation": "RR grava em Linux com contadores de perf em Intel, AMD Zen ou certos núcleos AArch64, incluindo a Apple M-série sob Linux."
+    }
+  ]
+}

@@ -1,0 +1,78 @@
+{
+  "lesson": "28-mcp-tool-contracts-and-content",
+  "title": "Contratos e conteúdo das ferramentas de MCP",
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "Uma ferramenta publica um outputSchema com matriz de tipos.",
+      "options": [
+        "Qualquer valor JSON porque outputSchema é apenas documentação",
+        "Apenas um objeto porque os resultados estruturados do MCP são apenas objetos",
+        "Uma matriz cujos elementos satisfazem o esquema publicado",
+        "Um bloco de texto sem estruturaContento"
+      ],
+      "correct": 2,
+      "explanation": "O conteúdo estruturado pode ser qualquer valor JSON, incluindo uma matriz, mas deve ser conforme com o outputSchema quando a ferramenta publica um."
+    },
+    {
+      "stage": "check",
+      "question": "Um resultado de ferramentas/lista contém nextCursor como uma cadeia vazia.",
+      "options": [
+        "Tratar a cadeia vazia como o fim da pagination",
+        "Enviar outra solicitação de lista com o cursor de cadeia vazia exato",
+        "Substitua-o com o cursor zero",
+        "Descifrá-lo para descobrir o número da próxima página"
+      ],
+      "correct": 1,
+      "explanation": "Os valores do cursor são opacos. Uma cadeia vazia é um cursor válido não-zero e deve ser enviado de volta exatamente."
+    },
+    {
+      "stage": "check",
+      "question": "Qual parâmetro deve ser rejeitado por uma política de implantação rigorosa quando marcado com cabeçalho x-mcp?",
+      "options": [
+        "Um campo de token de cadeia espelhado como token",
+        "Um campo inteiro de fragmento espelhado como fragmento",
+        "Um campo de região de cadeia espelhado como Região",
+        "Um campo booleano dry_run espelhado como Dry-Run"
+      ],
+      "correct": 0,
+      "explanation": "O protocolo aconselha contra o espelhamento de valores sensíveis. Uma política de admissão de clientes rigorosa deve rejeitar tokens, senhas, segredos, credenciais e campos de PII."
+    },
+    {
+      "stage": "check",
+      "question": "Qual é a principal diferença entre um bloco de recurso_link e um bloco de recurso incorporado?",
+      "options": [
+        "Um link de recurso aponta para dados obtidos mais tarde, enquanto um recurso incorporado carrega dados agora",
+        "Um link de recurso é autorizado automaticamente para sempre",
+        "Um recurso incorporado deve também aparecer nos recursos/lista",
+        "Apenas os links de recursos podem incluir um URI"
+      ],
+      "correct": 0,
+      "explanation": "Um link adiar a recuperação e precisa de autorização quando seguido."
+    },
+    {
+      "stage": "post",
+      "question": "Como deve um cliente lidar com um descrito de ferramentas mal formado numa página de ferramentas/lista?",
+      "options": [
+        "Rejeitar essa ferramenta enquanto continua a avaliar ferramentas não relacionadas",
+        "Repare silenciosamente o descritivo",
+        "Expor, mas adicionar um aviso para o modelo de pedido",
+        "Tratar cada execução de ferramenta como uma notificação JSON-RPC"
+      ],
+      "correct": 0,
+      "explanation": "A admissão de descriptores é por ferramenta. Uma definição mal formada deve ser excluída sem tornar as ferramentas válidas indisponíveis."
+    },
+    {
+      "stage": "post",
+      "question": "Qual falha pertence a um erro JSON-RPC em vez de um resultado de ferramenta com isError true?",
+      "options": [
+        "Uma fonte de relatório não está temporariamente disponível",
+        "Uma API a jusante retorna um erro específico de ferramenta a ser executado",
+        "Uma regra empresarial rejeita a data solicitada",
+        "O nome da ferramenta solicitada não existe"
+      ],
+      "correct": 3,
+      "explanation": "Uma ferramenta desconhecida impede o despacho de protocolo e pertence a um erro JSON-RPC."
+    }
+  ]
+}

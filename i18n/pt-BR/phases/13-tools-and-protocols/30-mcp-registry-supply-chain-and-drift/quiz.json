@@ -1,0 +1,78 @@
+{
+  "lesson": "30-mcp-registry-supply-chain-and-drift",
+  "title": "Cadeia de abastecimento do Registo de MCP: Admissão, derivação e rollback",
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "O que estabelece uma publicação bem-sucedida num registo de MCP para um portal de produção?",
+      "options": [
+        "O registro passou os controles de publicação do Registro, enquanto a admissão local ainda é necessária",
+        "O endpoint ao vivo corresponde exatamente ao pacote publicado",
+        "A versão mais recente deve substituir imediatamente todas as rotas antigas",
+        "O servidor é seguro para todos os diretores."
+      ],
+      "correct": 0,
+      "explanation": "A publicação do registo estabelece os fatos da publicação."
+    },
+    {
+      "stage": "check",
+      "question": "Qual comparação do espaço de nomes rejeita com.examplevil/tool quando o espaço de nomes verificado é com.example?",
+      "options": [
+        "Verifique se o nome completo começa com com.example",
+        "Busque o exemplo de substring",
+        "Divide na ponta e compare o segmento do espaço de nomes exatamente",
+        "Confie no espaço de nomes escrito dentro do servidor.json"
+      ],
+      "correct": 2,
+      "explanation": "Uma comparação exata de segmentos preserva os limites do espaço de nomes e utiliza autoridade fornecida por um verificador de confiança."
+    },
+    {
+      "stage": "check",
+      "question": "Um servidor ao vivo adiciona uma nova ferramenta enquanto seu registro e coordenadas do pacote permanecem inalterados.",
+      "options": [
+        "Um novo digestor de descrição normalizado comparado com o pin de conjunto de ferramentas admitido",
+        "O timestamp de publicação do Registo",
+        "O método de autenticação do espaço de nomes",
+        "A linha de versão semântica sozinha"
+      ],
+      "correct": 0,
+      "explanation": "O pinagem do descrito ao vivo detecta a deriva de comportamento que os metadados da publicação e as coordenadas do pacote não podem mostrar."
+    },
+    {
+      "stage": "check",
+      "question": "O que deve acontecer quando uma versão do Registro admitida passa de ativa para obsoleta?",
+      "options": [
+        "Quarantena-o de novos encaminhamentos e conserva a prova histórica de admissão",
+        "Reescrever o registro publicado de volta ao ativo",
+        "Eliminar todas as provas para que os clientes não possam descobri-las",
+        "Ignorar o status porque a propriedade do pacote já foi verificada"
+      ],
+      "correct": 0,
+      "explanation": "O estado é a entrada operacional. A quarentena deixa de usar novos, enquanto as evidências conservadas apoiam a análise de auditoria e de retrocesso."
+    },
+    {
+      "stage": "post",
+      "question": "Qual alvo é elegível para um retrocesso automático?",
+      "options": [
+        "Qualquer versão cujo nome seja classificado antes do candidato",
+        "Um pin admissível anteriormente que esteja ativo sob a política, saudável e não em quarentena",
+        "A versão marcada como a mais recente, mesmo que nunca tenha sido revisada",
+        "Uma versão do Registo excluída com um nome familiar do pacote"
+      ],
+      "correct": 1,
+      "explanation": "O Rollback restaura uma rota admissível conhecida."
+    },
+    {
+      "stage": "post",
+      "question": "Por que os cabeças dos registos de admissão devem estar ancoradas num domínio de confiança separado?",
+      "options": [
+        "Faz com que os artefatos sejam desnecessários .",
+        "Permite que os editores definam o status gerenciado pelo Registo",
+        "Converte variedades de versões mutáveis em pinos exatos",
+        "Uma cadeia de hash local detecta edições, enquanto uma âncora separada torna uma reescritura local completa detectável"
+      ],
+      "correct": 3,
+      "explanation": "Um atacante que pode reescrever todo o livro-razão local pode recomputar sua cadeia. Uma âncora externa assinada ou escrita uma vez expõe essa reescritura."
+    }
+  ]
+}

@@ -1,0 +1,78 @@
+{
+  "lesson": "36-rebuild-and-prove-equal",
+  "title": "Reconstruir e provar iguais: testes diferenciais, comparação de bytes e o ciclo de evidências",
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "Uma porcentagem de mudança reconstruída passa quatro testes manuscritos.",
+      "options": [
+        "A reconstrução concorda com o original nessas quatro entradas e nada mais.",
+        "A reconstrução compila para os mesmos bytes",
+        "A saída do decompiler foi correta .",
+        "A reconstrução é igual ao original para cada entrada"
+      ],
+      "correct": 0,
+      "explanation": "Um conjunto de testes prova concordância sobre as entradas que contém."
+    },
+    {
+      "stage": "check",
+      "question": "Os cálculos originais (depois - antes) * 100 / antes em int de 32 bits. A reconstrução usa um intermediário de 64 bits.",
+      "options": [
+        "Nunca, porque o revés de volta para int remove a diferença",
+        "Em entradas onde o produto de 32 bits se enrola e antes não é 1 ou -1",
+        "Em cada entrada com um negativo antes",
+        "Só quando o anterior é zero"
+      ],
+      "correct": 1,
+      "explanation": "O original divide o produto embalado de 32 bits. A reconstrução divide o produto exato de 64 bits e truncadas depois."
+    },
+    {
+      "stage": "check",
+      "question": "Dois objetos x86-64 ELF possuem os mesmos 46 bytes de código para a classificação, incluindo zero bytes no campo de relocação.",
+      "options": [
+        "O adendo vive no registro .rela.text, e a tabela que esses registros apontam pode diferir",
+        "0 bytes nunca aparecem no código da máquina",
+        "O tamanho da função é armazenado em .rodata",
+        "Objetos RELA não podem ser comparados"
+      ],
+      "correct": 0,
+      "explanation": "Em um objeto RELA os bytes de campo são zero e o adendo está no registro de relocação."
+    },
+    {
+      "stage": "check",
+      "question": "A grade contém antes = -1 e depois = 536870911. O original compilado x86-64 executa idiv com INT_MIN / -1.",
+      "options": [
+        "Retorna INT_MIN",
+        "Ele aumenta um erro de divisão e o processo obtém SIGFPE",
+        "Retorna 0 porque o guarda o trata.",
+        "Retorna INT_MAX"
+      ],
+      "correct": 1,
+      "explanation": "x86-64 idiv aumenta #DE quando o quociente não se encaixa. AArch64 sdiv retorna INT_MIN para os mesmos operands, então o oráculo depende da arquitetura."
+    },
+    {
+      "stage": "post",
+      "question": "O que o estudo de 2026 sobre a refinação de decompiladores LLM mediu quando a taxa de construção aumentou de 75% para 90%?",
+      "options": [
+        "A correspondência de comportamento aumentou pela mesma quantidade",
+        "O estudo não mediu o comportamento",
+        "A legibilidade caiu e o comportamento permaneceu inalterado.",
+        "A correspondência de comportamento caiu de 74% para 62%"
+      ],
+      "correct": 3,
+      "explanation": "Liu, Raff e Micinski (arXiv 2609.05370) descobriram que os tipos inventados, calles e guardas fizeram com que mais candidatos compilassem enquanto menos coincidem com o original em entradas confusas."
+    },
+    {
+      "stage": "post",
+      "question": "A perna 1 não pôde ser executada porque o host não tem compilador C. A perna 2 passou para ambas as funções. Qual é o status de prova?",
+      "options": [
+        "Não conhecido, porque uma alegação não verificada nunca se agrega para passar",
+        "Passaram, porque cada reivindicação que correu passou",
+        "Passar, porque a igualdade de byte implica a igualdade de comportamento",
+        "Falha, porque uma perna não correu"
+      ],
+      "correct": 0,
+      "explanation": "Uma reivindicação que não foi verificada permanece desconhecida, e desconhecida nunca se torna pass."
+    }
+  ]
+}

@@ -1,0 +1,78 @@
+{
+  "lesson": "14-mcp-apps",
+  "title": "Aplicações do MCP no Protocolo sobre apátridas",
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "Onde um aplicativo MCP moderno deve ligar o seu recurso de interface de interface a uma ferramenta?",
+      "options": [
+        "Apenas no resultado final do texto",
+        "Em um fluxo HTTP GET independente",
+        "Em um cookie de sessão MCP",
+        "Na definição de ferramenta devolvida por ferramentas/lista"
+      ],
+      "correct": 3,
+      "explanation": "O _meta.ui.resourceUri no instrumento permite que o host pré-carregue e revise a interface antes da invocação."
+    },
+    {
+      "stage": "check",
+      "question": "Como um cliente 2026-07-28 anuncia suporte a MCP Apps?",
+      "options": [
+        "Com notificações/iniciadas",
+        "Com o Mcp-Session-ID",
+        "Em io.modelocontextoprotocolo/clienteCapacidades.extenções em cada pedido",
+        "Acceptando todos os recursos"
+      ],
+      "correct": 2,
+      "explanation": "As extensões são de opção através do mapa de capacidades do cliente por pedido."
+    },
+    {
+      "stage": "check",
+      "question": "O que inicializa ui/inicializa?",
+      "options": [
+        "Uma sessão de servidor de nível de protocolo",
+        "Registro de cliente",
+        "A aplicação pós- mensagem ponte entre um iframe e um host",
+        "O canal de GET HTTP"
+      ],
+      "correct": 2,
+      "explanation": "ui/initialize pertence ao dialeto de ponte Apps e é separado do aperto de mão do núcleo MCP removido."
+    },
+    {
+      "stage": "check",
+      "question": "Qual resposta de recursos é mais segura para um aplicativo bundled independente do usuário?",
+      "options": [
+        "Nenhum resultadoTípo e nenhuma política de cache",
+        "ResultadoTípico completo, um ttlMs limitado, cacheScope público e CSP de primeira negação",
+        "Um token de sessão incorporado no HTML",
+        "Um ilimitado ttlM e domínios CSP wildcard"
+      ],
+      "correct": 1,
+      "explanation": "Um resultado completo, sugestões de cache explícitas e um CSP estreito tornam as políticas de fio e navegador inspecionáveis."
+    },
+    {
+      "stage": "post",
+      "question": "Um host recebe um corpo de recursos/leitura para um URI mas um cabeçalho diferente de Mcp-Name.",
+      "options": [
+        "Abre ambos os recursos",
+        "Prefiro o cabeçalho.",
+        "Prefiro o corpo.",
+        "Retorno HTTP 400 com erro JSON-RPC -32020"
+      ],
+      "correct": 3,
+      "explanation": "Os cabeçalhos de roteamento e o corpo devem corresponder antes de o suporte de versão ou a política de recursos ser avaliada; o transporte retorna HTTP 400 com erro JSON-RPC -32020."
+    },
+    {
+      "stage": "post",
+      "question": "Qual é o retorno correto para um host sem o suporte de MCP Apps?",
+      "options": [
+        "Retorna HTML como um host de confiança cromo",
+        "Mantenha a ferramenta utilizável com texto comum ou saída estruturada e omita a ligação da UI",
+        "Criar uma sessão oculta e tentar novamente",
+        "Conceder a extensão automaticamente"
+      ],
+      "correct": 1,
+      "explanation": "Uma extensão opcional não deve tornar a ferramenta subjacente inutilizável para os clientes que não a negociarem."
+    }
+  ]
+}

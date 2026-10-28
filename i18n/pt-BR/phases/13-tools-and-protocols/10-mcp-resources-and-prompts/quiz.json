@@ -1,0 +1,78 @@
+{
+  "lesson": "10-mcp-resources-and-prompts",
+  "title": "Recursos e indicações do MCP",
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "Um host precisa recuperar uma nota de arquitetura estável por URI. Qual primitivo MCP se encaixa melhor?",
+      "options": [
+        "Um recurso",
+        "Notificação de cancelamento",
+        "Uma sessão de protocolo",
+        "Uma ferramenta destrutiva"
+      ],
+      "correct": 0,
+      "explanation": "Um recurso expõe conteúdo endereçável através de um URI. Uma ferramenta executa uma operação, enquanto sessões e cancelamento não modelam conteúdo legível."
+    },
+    {
+      "stage": "check",
+      "question": "O que deve retornar um servidor 2026-07-28 quando recursos/leitura recebe um recurso URI desconhecido?",
+      "options": [
+        "Uma notificação de recursos/lista_alteração",
+        "Erro JSON-RPC -32601",
+        "Uma matriz de conteúdo vazia com sucesso",
+        "Erro JSON-RPC -32602"
+      ],
+      "correct": 3,
+      "explanation": "O contrato de recursos atual usa parâmetros inválidos, código -32602, para um URI inválido ou desconhecido de recurso."
+    },
+    {
+      "stage": "check",
+      "question": "Qual política de cache é mais segura para uma nota de propriedade do usuário devolvida por recursos/leitura?",
+      "options": [
+        "Público porque o URI é estável",
+        "Compartilhado entre os usuários quando o tipo de MIME coincide",
+        "Privado com TTL limitado",
+        "Público com um TTL ilimitado"
+      ],
+      "correct": 2,
+      "explanation": "Um resultado de propriedade do usuário não deve cruzar as fronteiras de identidade. Um cache privado limitado pode reduzir as leituras repetidas enquanto preserva o contexto de autorização."
+    },
+    {
+      "stage": "check",
+      "question": "O que identifica cada notificação num fluxo de resposta de assinaturas/ouvidos?",
+      "options": [
+        "O ID original da solicitação de escuta em metadados de assinatura",
+        "O tipo de recurso MIME",
+        "Uma sessão de protocolo recém-gerada",
+        "O ID de processo do servidor"
+      ],
+      "correct": 0,
+      "explanation": "O ID JSON-RPC das assinaturas/ouvindo torna-se io.modelcontextprotocol/subscriptionId e é repetido no reconhecimento e em cada evento posterior."
+    },
+    {
+      "stage": "post",
+      "question": "Por que os recursos/lista e as instruções/lista devem ser deterministas para as mesmas entradas de solicitação?",
+      "options": [
+        "Conceder ao público acesso a todas as entradas devolvidas",
+        "Para evitar a validação de cursores de pagination",
+        "Para estabilizar caches, instantâneos e interfaces host",
+        "Para fazer a lista de membros depende de uma leitura prévia"
+      ],
+      "correct": 2,
+      "explanation": "A adesão estável e a ordenação prevê que falhem cache barulhentos e que as interfaces mudem. A autorização ainda pode afetar a visibilidade porque as credenciais são entradas explícitas de solicitação."
+    },
+    {
+      "stage": "post",
+      "question": "O que deve expor um servidor MCP atual mesmo quando os clientes podem ligar diretamente para recursos/listas?",
+      "options": [
+        "Um método de recursos/subscrição para cada URI",
+        "Um método de inicialização que cria uma sessão de protocolo",
+        "Um fluxo de eventos HTTP GET independente",
+        "servidor/descoberta com revisões e capacidades suportadas"
+      ],
+      "correct": 3,
+      "explanation": "Os servidores devem implementar servidor/descoberta para que os clientes possam obter uma capacidade e uma imagem de versão."
+    }
+  ]
+}

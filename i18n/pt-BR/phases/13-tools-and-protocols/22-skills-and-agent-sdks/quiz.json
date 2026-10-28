@@ -1,0 +1,78 @@
+{
+  "lesson": "22-skills-and-agent-sdks",
+  "title": "Competências de agente: contrato portátil e limite de tempo de execução",
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "Uma equipe tem um método de revisão reutilizável e uma API existente que fornece dados de solicitações de puxão. Que projeto atribui cada preocupação ao primitivo certo de acordo com a política de tempo de execução?",
+      "options": [
+        "Colocar o método de revisão em uma habilidade de agente e expor a API através de uma ferramenta MCP",
+        "Substitua a API com um pedido de usuário mais longo",
+        "Colocar o método e a implementação da API em AGENTS.md",
+        "Usar um gancho de ciclo de vida como a única fonte de instruções de revisão"
+      ],
+      "correct": 0,
+      "explanation": "Uma habilidade carrega conhecimento processual reutilizável, enquanto MCP expõe uma capacidade externa. Eles podem compor. AGENTS.md é melhor para padrões em todo o repositório, e um gancho responde a eventos do ciclo de vida em vez de substituir qualquer camada."
+    },
+    {
+      "stage": "check",
+      "question": "Por que um validador deve exigir que o nome SKILL.md corresponda ao diretório que o contém?",
+      "options": [
+        "Garante que cada hospedeiro suporta a mesma sintaxe de invocação",
+        "Dá à descoberta e embalagem uma identidade estável em vez de dois nomes conflitantes",
+        "Faz com que a direcção do Markdown seja correta",
+        "Permite que a habilidade para contornar permissões host"
+      ],
+      "correct": 1,
+      "explanation": "As ferramentas de descoberta frequentemente indexam uma habilidade por pasta e frontmatter."
+    },
+    {
+      "stage": "check",
+      "question": "Um SKILL.md contém um campo que só um runtime entende.",
+      "options": [
+        "Mover o campo para o nome da habilidade",
+        "Tratá-lo como uma extensão host e validá-lo apenas sob uma política de host explícita",
+        "O campo silenciosamente torna-se parte do padrão central",
+        "Cada tempo de execução deve implementá-lo antes de carregar a habilidade"
+      ],
+      "correct": 1,
+      "explanation": "Os metadados portáteis do núcleo e as extensões de tempo de execução do host são contratos separados. Um adaptador pode reconhecer uma extensão, mas um validador do núcleo não deve afirmar que o campo tenha semântica universal."
+    },
+    {
+      "stage": "check",
+      "question": "Qual primitivo melhor representa um cheque que deve ser executado após cada chamada de ferramenta?",
+      "options": [
+        "Um recurso de MCP",
+        "Um tiro de um só momento",
+        "Um glossário de repositório",
+        "Um gancho de ciclo de vida"
+      ],
+      "correct": 3,
+      "explanation": "O requisito definidor é o tempo de evento, então um gancho de ciclo de vida é o mecanismo certo. Uma habilidade pode explicar um fluxo de trabalho e o MCP pode expor uma capacidade, mas nenhuma delas dispara inerentemente após cada chamada de ferramenta."
+    },
+    {
+      "stage": "post",
+      "question": "Quando é o Agentes.md um lar melhor do que um Agente de Habilidade?",
+      "options": [
+        "Quando um serviço externo precisa de uma chamada de API autenticada",
+        "Quando um script precisa ser executado fora da prisão do espaço de trabalho",
+        "Quando as convenções devem ser aplicadas durante todo o trabalho num repositório",
+        "Quando as instruções devem ser carregadas apenas para uma tarefa especialista rara"
+      ],
+      "correct": 2,
+      "explanation": "AGENTS.md comunica um contexto de repositório duradouro, como comandos de construção e convenções de codificação."
+    },
+    {
+      "stage": "post",
+      "question": "O que é que uma habilidade de agente válida dá por si só?",
+      "options": [
+        "Um comando universal de corte em cada agente hospedeiro",
+        "Instruções processuais detectáveis, sujeitas às políticas de execução do anfitrião",
+        "Permissão para executar todos os scripts em conjunto",
+        "Acesso automático à rede"
+      ],
+      "correct": 1,
+      "explanation": "O artefato portátil fornece metadados e instruções. Descoberta, UI de invocação, acesso a ferramentas, aprovações e execução de script continuam sendo responsabilidades em tempo de execução, portanto, a validade não é equivalente à autoridade."
+    }
+  ]
+}

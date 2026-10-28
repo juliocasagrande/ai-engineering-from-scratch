@@ -1,0 +1,78 @@
+{
+  "lesson": "29-mcp-reliability-cancellation-and-flow-control",
+  "title": "Confiabilidade, cancelamento e controlo de fluxo do MCP",
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "Uma resposta de mutação é perdida e o cliente retrata com um novo ID JSON-RPC.",
+      "options": [
+        "O novo ID JSON-RPC deduplica automaticamente a mutação",
+        "O descrito da ferramenta inclui um idempotentHint",
+        "Uma chave de independência de aplicação durável reutilizada com argumentos idênticos",
+        "A retest usa a mesma conexão HTTP"
+      ],
+      "correct": 2,
+      "explanation": "Os ids JSON-RPC correlham as mensagens. A idempotencia empresarial requer uma chave durável, uma impressão digital de argumento e um resultado comprometido armazenado."
+    },
+    {
+      "stage": "check",
+      "question": "Como é que um cliente cancela um pedido de voo através do estúdio no MCP 2026-07-28?",
+      "options": [
+        "As tarefas de chamada/cancelação para o ID JSON-RPC",
+        "Enviar notificações/cancelar com o ID do pedido ativo",
+        "Fechar uma corrente de SSE por pedido",
+        "Enviar um pedido de DELETE ao ponto final do MCP"
+      ],
+      "correct": 1,
+      "explanation": "O stdio não tem fluxo de resposta por pedido, por isso o cliente envia as notificações de incêndio e esquecimento/notificação cancelada."
+    },
+    {
+      "stage": "check",
+      "question": "Como um cliente cancelar uma solicitação HTTP Streamable em voo?",
+      "options": [
+        "Fechar o fluxo de resposta SSE desse pedido",
+        "Notificações POST/canceladas para o ponto final do MCP",
+        "Esperar que o servidor envie notificações/cancelado",
+        "Enviar o último evento ID com um valor vazio"
+      ],
+      "correct": 0,
+      "explanation": "Para o moderno Streamable HTTP, fechar o fluxo de resposta específico de solicitação é o sinal de cancelamento."
+    },
+    {
+      "stage": "check",
+      "question": "O progresso continua a chegar antes de cada tempo de vaga.",
+      "options": [
+        "Um prazo máximo absoluto medido a partir do início do pedido",
+        "O cursor de página seguinte expira",
+        "O intervalo de manutenção de proxy",
+        "Intervalo de votação"
+      ],
+      "correct": 0,
+      "explanation": "O progresso válido pode reiniciar o relógio de inatividade, mas um prazo máximo absoluto deve permanecer em vigor."
+    },
+    {
+      "stage": "post",
+      "question": "O que é comprovado por uma resposta bem-sucedida às tarefas/cancelamento?",
+      "options": [
+        "O resultado duradouro foi excluído",
+        "O trabalhador já parou .",
+        "O servidor reconheceu a intenção de cancelamento",
+        "A tarefa deve acabar por ser cancelada ."
+      ],
+      "correct": 2,
+      "explanation": "A cancelamento da tarefa é cooperativa. A tarefa pode continuar trabalhando, terminar primeiro ou chegar cancelada após um ponto de controle de trabalhadores."
+    },
+    {
+      "stage": "post",
+      "question": "Um fluxo de subscrição SSE cai após vários eventos de progresso. Qual plano de recuperação se encaixa no MCP 2026-07-28?",
+      "options": [
+        "Reinicie o último evento e reproduza todas as mutações no voo .",
+        "Abra um GET event stream e restabeleça o Mcp-Session-ID",
+        "Mantenha o antigo ID da solicitação e presuma que nenhuma atualização foi perdida",
+        "Abra um novo pedido de escuta, reafirma o estado de autoridade e evite repetição de mutações inseguras"
+      ],
+      "correct": 3,
+      "explanation": "Os fluxos modernos de MCP não são retomáveis com o Last-Event-ID. A recuperação utiliza um novo pedido, além de uma reformulação autorizada e segurança explícita de retoma."
+    }
+  ]
+}

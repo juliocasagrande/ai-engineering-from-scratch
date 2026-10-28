@@ -1,0 +1,78 @@
+{
+  "lesson": "33-disassembly-and-control-flow",
+  "title": "Desmontagem e fluxo de controle: de bytes a um gráfico que você pode verificar",
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "Uma lista de desmontagem do llvm-objdump mostra cada byte de uma função decodificada em mnemônica real.",
+      "options": [
+        "Que a função não tem saltos indiretos",
+        "Que cada instrução na lista executa",
+        "Que o gráfico de fluxo de controle é completo",
+        "Só que uma varredura linear encontrou um limite de instrução para cada byte, o que ainda pode ser errado quando os dados estão dentro do código"
+      ],
+      "correct": 3,
+      "explanation": "Uma varredura decodifica dados como código e re-sincroniza-os em alguns bytes, de modo que uma listação plausível não é prova dos limites de instrução ou da acessibilidade."
+    },
+    {
+      "stage": "check",
+      "question": "Os bytes 48 8d 0d 00 00 00 00 decodificam para leaq (%rip), %rcx e .rela.text mantém R_X86_64_PC32 .rodata-0x4 no campo de deslocamento. Onde aponta o operando após a ligação?",
+      "options": [
+        ".rodata+0x0, porque o processador adiciona o campo para o próximo endereço de instrução, que é de 4 bytes além do campo",
+        ".Rodata-0x4",
+        "O endereço da própria lei",
+        ".Rodata+0x4"
+      ],
+      "correct": 0,
+      "explanation": "R_X86_64_PC32 armazena S + A - P. O campo é os últimos 4 bytes da instrução, então o alvo final é S + A + 4 = .rodata + 0."
+    },
+    {
+      "stage": "check",
+      "question": "Na fixação de armadilha os bytes da tabela são 31 c0 90 48 e a próxima instrução real é 83 c0 01 (add $ 1, %eax).",
+      "options": [
+        "Um bocado em 0x14",
+        "Um erro de código op válido em 0x13",
+        "Adicionar $0x1, %eax em 0x14",
+        "Nada começa em 0x14. O 48 em 0x13 torna-se um prefixo REX e as impressões de varredura adicionam $0x1, %rax que vão de 0x13 a 0x17"
+      ],
+      "correct": 3,
+      "explanation": "O byte REX junta os três bytes do adicionado real, então a lista mostra um adicionar de 64 bits um byte cedo e sem instruções no alvo da ramificação."
+    },
+    {
+      "stage": "check",
+      "question": "A descida recorrente sobre a classificação em -O0 termina em jmpq *%rax e relata três blocos.",
+      "options": [
+        "Os bytes da tabela em .rodata, que são todos zero no arquivo objeto",
+        "O tamanho da função na tabela de símbolos",
+        "A localização lea que nomeia a tabela, a cmp ou sub mais ja que limita o índice, e as cinco entradas R_X86_64_PC32 em .rela.rodata que dão alvo = adição - 4k",
+        "A ordem dos blocos na lista"
+      ],
+      "correct": 2,
+      "explanation": "Em um objeto relocavel, a tabela mantém os possuidores de lugares. As transferências nas entradas da tabela são a única fonte dos alvos, e a verificação de limites dá a contagem de entradas."
+    },
+    {
+      "stage": "post",
+      "question": "Por que o algoritmo iterativo do dominador de Cooper, Harvey e Kennedy processam blocos em pós-ordem inversa?",
+      "options": [
+        "Porque o bloco de entrada deve ser processado em última",
+        "Assim, a maioria dos antecessores de um bloco já tem um dominador imediato quando o bloco é visitado, o que permite que o ponto fixo convergir em poucos passos",
+        "Porque elimina a necessidade de um passo de intersecção",
+        "Porque a ordem posterior inversa é a ordem dos endereços na memória"
+      ],
+      "correct": 1,
+      "explanation": "A ordem posterior inversa visita um bloco após seus antecessores avançados, de modo que cada passagem propaga dominadores ao longo das bordas da frente e somente as bordas traseiras precisam de outra passagem."
+    },
+    {
+      "stage": "post",
+      "question": "No -O1 clang compila a nota para cmpl $4, %ecx; ja; leaq (%rip), %rcx com uma realocação para .rodata; movl (%rcx,%rax,4), %eax; retq. O que deve relatar a análise?",
+      "options": [
+        "Uma chamada pela mesa",
+        "Uma tabela de valores em .rodata+0x14 contendo 1, 2, 3, 4, 4, três blocos básicos, sem transferência indirecta",
+        "Um salto indireto não resolvido",
+        "Uma mesa de salto com cinco alvos de código"
+      ],
+      "correct": 1,
+      "explanation": "A carga é um movimento simples e a função retorna logo depois dela. Otimizador substituiu os blocos de caixa com uma tabela de valores de retorno, que muda a carga e não o fluxo de controle."
+    }
+  ]
+}

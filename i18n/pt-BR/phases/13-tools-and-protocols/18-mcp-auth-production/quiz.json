@@ -1,0 +1,78 @@
+{
+  "lesson": "18-mcp-auth-production",
+  "title": "Autor de MCP em Produção: Inscrição e Tokens vinculados ao emissor",
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "Um cliente de MCP descobre um emissor de servidor de autorização diferente para o mesmo recurso.",
+      "options": [
+        "Reutilizar apenas o token de acesso após mudar de audiência localmente",
+        "Registrar-se para o novo emitente e manter as credenciais isoladas por emitente",
+        "Reutilizar ambos porque o URL do recurso MCP não mudou",
+        "Armazenar ambos sob o nome da ferramenta em vez do emissor"
+      ],
+      "correct": 1,
+      "explanation": "Os identificadores de clientes e credenciais de registro pertencem ao emissor de servidor de autorização que os criou. Uma mudança de emissor requer inscrição independente, e cada token de acesso é armazenado em cache sob esse emissor e seu público de recursos."
+    },
+    {
+      "stage": "check",
+      "question": "Qual é a abordagem de inscrição preferida pelo perfil de autorização do MCP 2026-07-28?",
+      "options": [
+        "RFC 7591 Registro dinâmico de clientes para cada pedido",
+        "Um documento de metadados de ID do cliente servido a partir do URL HTTPS do cliente",
+        "Uma sessão de protocolo que armazena um identificador global de cliente",
+        "Um segredo de cliente compartilhado embutidos em cada cliente de desktop"
+      ],
+      "correct": 1,
+      "explanation": "O CIMD permite que o servidor de autorização resolva metadados do cliente a partir de um identificador de cliente HTTPS."
+    },
+    {
+      "stage": "check",
+      "question": "Um pedido de DCR desatualizado descreve um cliente de desktop loopback. Que metadados são essenciais para classificá-lo corretamente?",
+      "options": [
+        "Identificação de sessão",
+        "Um redirecionamento de URI de cartão selvagem",
+        "application_type definido como nativo",
+        "Um token reutilizável"
+      ],
+      "correct": 2,
+      "explanation": "A orientação atual de compatibilidade requer o tipo de aplicação correto. Um cliente de desktop loopback é nativo; os clientes da web usam URIs de redireção HTTPS."
+    },
+    {
+      "stage": "check",
+      "question": "Por que o cliente valida o valor RFC 9207 iss antes de resgatar um código de autorização?",
+      "options": [
+        "Para evitar a resgate do código de um emissor honesto no ponto final errado do token",
+        "Para evitar a atualização do cache JWKS",
+        "Para substituir a PKCE por \"discovery of issuer\"",
+        "Para selecionar uma ferramenta do servidor/descoberta"
+      ],
+      "correct": 0,
+      "explanation": "O controlo do emitente defende-se contra a confusão entre servidor de autorização e complementa a PKCE confirmando que a resposta provém do emitente registado antes da redirecção."
+    },
+    {
+      "stage": "post",
+      "question": "Onde deve um servidor de recursos MCP autorizar o caché para o transporte atual sem estado?",
+      "options": [
+        "Em Mcp-Session-ID até que o cliente envie DELETE",
+        "Dentro do resultado de servidor/descoberta para todas as chamadas posteriores",
+        "Na ligação SSE até a recon ligação",
+        "Nenhum lugar como decisão de sessão de protocolo; validar o token do portador em cada pedido"
+      ],
+      "correct": 3,
+      "explanation": "MCP 2026-07-28 remove sessões de protocolo. Cada solicitação cruza o limite de autorização de forma independente, de modo que a identidade, o público, a expiração e o escopo são verificados cada vez."
+    },
+    {
+      "stage": "post",
+      "question": "Qual é a prova mais forte de implantação antes de confiar num servidor de autorização?",
+      "options": [
+        "Metadados descobertos do servidor-alvo verificados em relação a PKCE, emissor, inscrição e requisitos de vinculação de recursos",
+        "Uma tabela de categoria de vendedor copiada de uma lição anterior",
+        "Uma página de produto que diz que OAuth é suportado",
+        "Um login bem sucedido que não inspeciona o público do token"
+      ],
+      "correct": 0,
+      "explanation": "A documentação de descoberta ao vivo é o contrato concreto a verificar, seguido de uma validação de extremo a extremo do emissor e do público."
+    }
+  ]
+}

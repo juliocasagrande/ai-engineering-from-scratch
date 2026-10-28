@@ -1,0 +1,78 @@
+{
+  "lesson": "08-building-an-mcp-client",
+  "title": "Construir um cliente MCP: Descoberta, Routing e Dual-Era Fallback",
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "O que é que um cliente de estúdio de dupla era deve enviar primeiro?",
+      "options": [
+        "Identificação de sessão",
+        "servidor/descoberta",
+        "Iniciar",
+        "GET HTTP"
+      ],
+      "correct": 1,
+      "explanation": "A sonda de descoberta cria um limite claro entre os metadados modernos por pedido e a inicialização herdada."
+    },
+    {
+      "stage": "check",
+      "question": "Uma sonda de descoberta retorna -32022 com uma versão mutuamente suportada.",
+      "options": [
+        "Reprova a descoberta moderna na versão suportada",
+        "Enviar inicialização",
+        "Abra o GET HTTP",
+        "Ignorar o servidor"
+      ],
+      "correct": 0,
+      "explanation": "-32022 é uma evidência moderna reconhecida, por isso o cliente permanece moderno e retrata."
+    },
+    {
+      "stage": "check",
+      "question": "Qual condição é suficiente para escolher a era do legado?",
+      "options": [
+        "Qualquer erro -32601",
+        "O colega está numa lista de legacy",
+        "O peer é listado e uma sonda de inicialização limitada retorna um resultado legado válido",
+        "Um tempo de descoberta por si só"
+      ],
+      "correct": 2,
+      "explanation": "A lista de permissões permite uma sonda, mas apenas um resultado de inicialização positiva validamente estruturalmente válido para uma revisão do legado configurado prova a era do legado."
+    },
+    {
+      "stage": "check",
+      "question": "Como deve um cliente lidar com duas ferramentas chamadas de busca?",
+      "options": [
+        "Silenciosamente sobreescrever um",
+        "Confide em ordem de inicialização",
+        "Prefixo ou rejeição por política declarada",
+        "Criar uma sessão de protocolo"
+      ],
+      "correct": 2,
+      "explanation": "O prefixo ou rejeição explícito mantém o roteamento visível e determinista."
+    },
+    {
+      "stage": "post",
+      "question": "Um resultado legado omite o resultadoTip após o cliente negociar uma era legada.",
+      "options": [
+        "Como input_required",
+        "Como completa",
+        "Como erro de transporte",
+        "Como servidor/descoberta"
+      ],
+      "correct": 1,
+      "explanation": "Os clientes tratam o resultType ausente de versões anteriores do protocolo como completo."
+    },
+    {
+      "stage": "post",
+      "question": "O que deve acontecer após uma perda de transporte moderno antes de a rotina retomar?",
+      "options": [
+        "Reconectar, redescobrir e re-listar",
+        "Resumo com o último evento-ID",
+        "Echo Mcp-Session-ID",
+        "Reutilizar metadados antigos de conexão"
+      ],
+      "correct": 0,
+      "explanation": "O cliente reconstrui a contabilidade de pares e retenta apenas operações seguras com novos IDs de solicitação."
+    }
+  ]
+}

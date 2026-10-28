@@ -1,0 +1,78 @@
+{
+  "lesson": "06-mcp-fundamentals",
+  "title": "Fundamentos do MCP: Solicitações de apátridas e JSON-RPC",
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "O que cria o estado de protocolo entre duas solicitações MCP 2026-07-28?",
+      "options": [
+        "A conexão HTTP",
+        "Nada no núcleo do protocolo",
+        "Identificação de sessão",
+        "O processo de estúdio"
+      ],
+      "correct": 1,
+      "explanation": "O núcleo moderno do protocolo é estatal, cada pedido tem a sua própria versão e capacidades."
+    },
+    {
+      "stage": "check",
+      "question": "Quais dois campos param._meta são necessários em cada solicitação moderna?",
+      "options": [
+        "ClienteInfo e cacheScope",
+        "ProtocoloVersion e clienteCapacidades",
+        "Id e capacidades de sessão",
+        "ServidorInfo e TTLM"
+      ],
+      "correct": 1,
+      "explanation": "É necessária a versão de protocolo e as capacidades do cliente."
+    },
+    {
+      "stage": "check",
+      "question": "Que método deve implementar cada servidor MCP moderno para a descoberta inicial?",
+      "options": [
+        "Ferramentas/lista",
+        "Iniciar",
+        "servidor/descoberta",
+        "Notificações/iniciadas"
+      ],
+      "correct": 2,
+      "explanation": "O servidor/discover anuncia versões, capacidades, instruções e identidade do servidor suportados."
+    },
+    {
+      "stage": "check",
+      "question": "O que significa o código de erro -32022?",
+      "options": [
+        "Erro interno",
+        "Descoincidência de cabeçalhos",
+        "Método não encontrado",
+        "Versão de protocolo não suportada"
+      ],
+      "correct": 3,
+      "explanation": "Não suportadoProtocolVersionError inclui a versão solicitada e as versões que o servidor suporta."
+    },
+    {
+      "stage": "post",
+      "question": "Qual é o resultado que requer o TTLM e cacheScope no MCP 2026-07-28?",
+      "options": [
+        "Um erro JSON-RPC",
+        "Resultado de ferramentas/lista",
+        "Resultado das ferramentas/chamadas",
+        "Notificação de cancelamento"
+      ],
+      "correct": 1,
+      "explanation": "Os resultados de listagem e recursos/leitura são resultados cachéáveis com indicações de cache necessárias."
+    },
+    {
+      "stage": "post",
+      "question": "Como deve um servidor escolher as capacidades para o pedido atual?",
+      "options": [
+        "Leia-os de Mcp-Session-Id.",
+        "Inferir-lhes do processo",
+        "Reutilizar a declaração do primeiro pedido",
+        "Leia-os a partir dos metadados atuais da solicitação"
+      ],
+      "correct": 3,
+      "explanation": "Um servidor não deve inferir capacidades modernas a partir do estado da conexão ou da solicitação anterior."
+    }
+  ]
+}

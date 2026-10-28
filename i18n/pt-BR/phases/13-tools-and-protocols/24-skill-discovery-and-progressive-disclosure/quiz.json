@@ -1,0 +1,78 @@
+{
+  "lesson": "24-skill-discovery-and-progressive-disclosure",
+  "title": "Descobrir habilidades e revelar progressivamente",
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "Um anfitrião encontra o mesmo nome de habilidade nos domínios de projeto e usuário.",
+      "options": [
+        "Política documentada de abrangência e prioridade do anfitrião",
+        "O diretório com o mais recente timestamp",
+        "O corpo mais longo da SKILL.md",
+        "O primeiro verbo da descrição da habilidade"
+      ],
+      "correct": 0,
+      "explanation": "O formato de habilidade portátil não cria uma ordem de prioridade universal. Um host deve declarar como os escopo se sombram e deve relatar colisões em vez de confiar silenciosamente na ordem de iteração do sistema de arquivos."
+    },
+    {
+      "stage": "check",
+      "question": "O que pertence ao primeiro catálogo de descobertas enviado a um modelo antes da implementação?",
+      "options": [
+        "Todos os guiões, recursos e referências completos",
+        "Um registro de identidade compacto, como nome e descrição",
+        "A saída de executar cada script em conjunto",
+        "Apenas o selo de tempo de modificação"
+      ],
+      "correct": 1,
+      "explanation": "A descoberta de nível um deve conter metadados suficientes para encaminhar uma tarefa sem carregar instruções completas. Os corpos e os recursos referenciados são divulgados mais tarde, o que protege o orçamento contextual e evita a execução prematura."
+    },
+    {
+      "stage": "check",
+      "question": "Qual sequência implementa corretamente a divulgação progressiva no âmbito deste contrato?",
+      "options": [
+        "Carregar todos os corpos, descartar a maioria, e depois criar um catálogo",
+        "Leia as referências primeiro, e depois deduza qual habilidade as possui",
+        "Execute scripts, carregue ativos, depois descubra nomes",
+        "Metadados do catálogo, carregar o corpo SKILL.md selecionado, e depois ler a referência necessária"
+      ],
+      "correct": 3,
+      "explanation": "A descoberta, a ativação e a carga de recursos são fases separadas. Cada etapa passa mais contexto apenas depois que a fase anterior estabelece relevância, de modo que os corpos de habilidades e referências não relacionados permanecem fora do prompt."
+    },
+    {
+      "stage": "check",
+      "question": "Por que deve ser relatado que um duplicado de igual precedência é ambíguo?",
+      "options": [
+        "Porque escolher por ordem de diretório incidental faz com que o roteamento não seja determinista e difícil de auditar",
+        "Porque cada colisão significa que ambas as habilidades são inválidas.",
+        "Porque os nomes duplicados recebem automaticamente acesso à rede",
+        "Porque o alcance do usuário deve sempre ganhar"
+      ],
+      "correct": 0,
+      "explanation": "Se dois candidatos têm o mesmo nome e a mesma classificação política, a ordem léxica ou de iteração não é autoridade significativa."
+    },
+    {
+      "stage": "post",
+      "question": "Referências de SKILL.md `references/archive/schema.md`O que deve fazer a validação?",
+      "options": [
+        "Copiar o arquivo para um cache global automaticamente",
+        "Executa-o para descobrir se é útil",
+        "Rejeitar-se como uma cadeia de referência mais profunda do que o contrato de pacote permite",
+        "Segue-o porque todos os caminhos relativos são seguros"
+      ],
+      "correct": 2,
+      "explanation": "Um contrato de um nível permite arquivos ou caminhos diretos, tais como `references/schema.md`O limite mantém os pacotes inspeccionáveis e bloqueia a complexidade de travessia antes de o conteúdo ser carregado."
+    },
+    {
+      "stage": "post",
+      "question": "Qual é a resposta mais defendivel quando um catálogo excede o orçamento de contexto declarado?",
+      "options": [
+        "Aplicar limites deterministas, relatar entradas omitidas e permitir uma descoberta mais estreita",
+        "Ignore o orçamento sempre que uma habilidade tem uma longa descrição",
+        "Remover nomes de habilidades enquanto mantém corpo completo de instrução",
+        "Entradas de amostragem aleatória em cada corrida"
+      ],
+      "correct": 0,
+      "explanation": "A truncation determinista ou omissão torna o comportamento do catálogo reprodutivo e mensurável."
+    }
+  ]
+}

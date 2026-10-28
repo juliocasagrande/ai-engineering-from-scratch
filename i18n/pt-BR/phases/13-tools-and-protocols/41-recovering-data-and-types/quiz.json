@@ -1,0 +1,102 @@
+{
+  "lesson": "41-recovering-data-and-types",
+  "title": "Recuperação de dados e tipos: estruturas, arrays, objetos C++ e DWARF",
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "Uma lista mostra addl 0x4 ((%rax), %ecx onde %rax detém o primeiro parâmetro. O que esta instrução prova sobre o tipo do parâmetro?",
+      "options": [
+        "Que aponta para um objeto com um campo de 4 bytes no offset 4, sem nome, sem tamanho estrutural e sem informações sobre os outros bytes",
+        "Que o parâmetro é um int",
+        "Que aponta para um estruto cujo campo no offset 4 é um inteiro de 4 bytes chamado equilíbrio",
+        "Que o objeto tem 8 bytes de comprimento"
+      ],
+      "correct": 0,
+      "explanation": "O deslocamento dá o offset e o sufixo l dá a largura."
+    },
+    {
+      "stage": "check",
+      "question": "Aplicar as regras do Sistema V para a conta estrutural {car tipo; int saldo; código curto; taxa dupla; const char *etiqueta; }. Quais são os offsets de membros e o tamanho?",
+      "options": [
+        "0, 8, 16, 24, 32 e tamanho 40, porque cada membro está alinhado a 8",
+        "0, 1, 5, 7, 15 e tamanho 23, porque os membros estão lotados",
+        "0, 4, 8, 12, 16 e tamanho 24, porque cada membro está alinhado a 4",
+        "0, 4, 8, 16, 24 e tamanho 32, porque cada membro vai para o offset mais baixo que é um múltiplo de seu alinhamento e o tamanho é um múltiplo do alinhamento mais rigoroso, 8"
+      ],
+      "correct": 3,
+      "explanation": "int precisa de 4 para que ele vai para 4, dobrar precisa de 8 para que ele vai para 16, o punhal segue em 24, e 32 é já um múltiplo de 8."
+    },
+    {
+      "stage": "check",
+      "question": "Em -O2, um loop lê valores de 4 bytes em offsets 4, 36, 68, 100, 132, 164, 196 e 228 de um punteiro e avança o punteiro em 256 por cada pass.",
+      "options": [
+        "Oito campos de 4 bytes e um estruto de pelo menos 232 bytes",
+        "Um passo de 4, o maior divisor comum dos offsets",
+        "Um campo de 4 bytes no offset 4 com um passo do elemento de 32, porque 256 é 8 vezes 32 e há exatamente 8 offsets, então o loop foi desenrolado 8 vezes",
+        "Um passo de 256 e um campo no offset 4"
+      ],
+      "correct": 2,
+      "explanation": "Acesso de largura igual d bytes separados com um passo de loop de k vezes d e k offsets distintos são k cópias de um elemento de acesso."
+    },
+    {
+      "stage": "check",
+      "question": "No objeto -g realocavel, cada entrada de .debug_str_offsets é zero no arquivo. Como um leitor encontra a cadeia para DW_AT_name com o formulário DW_FORM_strx1?",
+      "options": [
+        "Ele lê a cadeia de .debug_line_str",
+        "Aplica as R_X86_64_32 relocalizações de .rela.debug_str_offsets, então lê a entrada de 4 bytes em str_offsets_base mais 4 vezes o índice, que é o offset em .debug_str",
+        "Ele lê o índice como um offset direto para .debug_str",
+        "Busca .debug_str pelo nome do membro"
+      ],
+      "correct": 1,
+      "explanation": "Em um objeto relocatable, a tabela de offsets de cadeia mantém os possuidores de lugar. Os adicionados de relocação carregam os offsets reais, e str_offsets_base, que é 8, sai do cabeçalho da tabela."
+    },
+    {
+      "stage": "check",
+      "question": "Descrever contém movq (%rdi), %rax seguido de callq *0x10(%rax). Que função virtual alcança esta chamada em um recto?",
+      "options": [
+        "O destruidor, porque o slot 0 é a primeira entrada",
+        "Não pode ser conhecido sem executar o programa",
+        "Rect::area(), porque o vptr pontos no ponto de endereço e 0x10 dividido por 8 é slot 2, que as relocalizações vtable e DW_AT_vtable_elem_location ambos atribuem à área",
+        "Rect::name(), porque 0x10 é a segunda entrada após o punteiro de tipoinfo"
+      ],
+      "correct": 2,
+      "explanation": "O vptr mantém o ponto de endereço, 16 bytes além do símbolo, após o offset-to-top e o punteiro de tipoinfo."
+    },
+    {
+      "stage": "post",
+      "question": "O que codifica o nome de Itanium mangled _ZNK4Rect4areaEv?",
+      "options": [
+        "Rect::area() const: _Z prefixo, N abre um nome aninhado, K marca uma função membro const, 4Rect e 4area são nomes de comprimento prefixo, E fecha, v é uma lista de parâmetros vazio",
+        "Um vttable para o recto",
+        "Rect::area(void*)",
+        "área ((Rect) com um parâmetro"
+      ],
+      "correct": 0,
+      "explanation": "Seção 5.1 do Itanium C++ ABI: os nomes especiais _ZTV, _ZTI e _ZTS são vtable, typeinfo e typeinfo nome; uma função simples codifica seu nome aninhado e, em seguida, seus tipos de parâmetros."
+    },
+    {
+      "stage": "post",
+      "question": "Ghidra sem DWARF impresso *(int *)(param_1 + 4) para o choque. Que única alteração faz com que ele imprima um->equilíbrio?",
+      "options": [
+        "Re-exercício de análise automática",
+        "Um tipo de estruturas no gerenciador de tipos de dados com um membro de 4 bytes int no offset 4, aplicado ao parâmetro, que o decompilador então propaga; DWARF fornece esse estruturas automaticamente e o layout recuperado permite que você digite manualmente",
+        "Mudar o decompiler para uma convenção de chamada diferente",
+        "Renomear param_1 para a"
+      ],
+      "correct": 1,
+      "explanation": "As instruções são idênticas em ambos os objetos. A saída do decompilador muda quando um tipo de dados está disponível para o parâmetro, seja proveniente do DWARF ou do analista."
+    },
+    {
+      "stage": "post",
+      "question": "O pass recupera cinco campos e tamanho 32 para estruturas de três construções.",
+      "options": [
+        "A largura de cada campo",
+        "O passo do elemento da matriz",
+        "Os nomes dos membros, o qualificador const e o tipo exacto de ponto do punteiro no offset 24",
+        "Qual campo tem um valor de ponto flutuante"
+      ],
+      "correct": 2,
+      "explanation": "Ampliações vêm dos mnemônicos, o passo dos loops e o flutuante das instruções escalares SSE. Os nomes e qualificadores existem apenas na fonte e no DWARF, e a punta é conhecida apenas por ser elementos 1 byte de distância."
+    }
+  ]
+}

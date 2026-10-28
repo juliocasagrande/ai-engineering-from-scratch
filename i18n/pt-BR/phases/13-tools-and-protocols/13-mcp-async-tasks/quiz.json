@@ -1,0 +1,78 @@
+{
+  "lesson": "13-mcp-async-tasks",
+  "title": "Extensão das tarefas do MCP: Trabalho duradouro sobre um núcleo sem nacionalidade",
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "Como é que um servidor de apoio MCP sem estado pode funcionar que dura dez minutos?",
+      "options": [
+        "Mantém a ligação Mcp-Session-ID aberta por 10 minutos",
+        "Armazenar o progresso apenas no estado de inicialização",
+        "Requer que todos os clientes usem um equilíbrio de carga pegajoso",
+        "Retorna um manilho de tarefa durável explícito apoiado pelo armazenamento de aplicativos"
+      ],
+      "correct": 3,
+      "explanation": "Estatal descreve o modelo de solicitação de protocolo. O estado duradouro da aplicação é representado por um ID de tarefa explícito e armazenamento compartilhado."
+    },
+    {
+      "stage": "check",
+      "question": "Quando um servidor pode retornar o resultadoTyp task de ferramentas/chamadas?",
+      "options": [
+        "Após o pedido atual anunciar a extensão e a tarefa é duradoura leitura",
+        "Sempre que uma sessão anterior anunciou tarefas",
+        "Antes da persistência para que o cliente possa votar com otimismo",
+        "Só quando os params._meta.task.required é verdadeiro"
+      ],
+      "correct": 0,
+      "explanation": "A criação de tarefas é orientada para o servidor, mas o suporte à capacidade de solicitação corrente e a criação duradoura antes da devolução são obrigatórios."
+    },
+    {
+      "stage": "check",
+      "question": "Uma resposta tarefa/receber tem resultadoTípo completo e estado em funcionamento.",
+      "options": [
+        "A resposta viola a extensão",
+        "O trabalho subjacente concluído",
+        "A tarefa foi cancelada .",
+        "O RPC de pesquisa foi concluído mas o trabalho ainda está em andamento"
+      ],
+      "correct": 3,
+      "explanation": "resultType descreve as tarefas/obter RPC. O status da tarefa descreve de forma independente o trabalho duradouro. Quando o status é concluído, o CallToolResult aninhado tem o seu próprio resultadoType completo e metadados de serverInfo."
+    },
+    {
+      "stage": "check",
+      "question": "Como um cliente responde input_required depois de uma tarefa já existir?",
+      "options": [
+        "As tarefas/resultados de chamada com um campo de resposta",
+        "Abrir uma nova sessão de inicialização",
+        "Reprova as ferramentas/chamadas originais com a mesma identificação",
+        "Enviar tarefas/atualizações com inputRespostas para chaves de tarefas pendentes"
+      ],
+      "correct": 3,
+      "explanation": "A entrada de tarefas após a criação é feita por tarefas/obter e realizada através de tarefas/atualização, não por retomar a chamada original."
+    },
+    {
+      "stage": "post",
+      "question": "O que garante uma resposta bem-sucedida às tarefas/cancelamento?",
+      "options": [
+        "O servidor reconheceu a intenção de cancelamento",
+        "O resultado foi excluído",
+        "O status final da tarefa será cancelado",
+        "O trabalhador já parou ."
+      ],
+      "correct": 0,
+      "explanation": "O cancelamento é cooperativo e eventualmente consistente. O trabalho pode terminar ou ignorar o cancelamento após a confirmação."
+    },
+    {
+      "stage": "post",
+      "question": "Qual conjunto de métodos corresponde à extensão oficial atual das tarefas?",
+      "options": [
+        "ferramentas/tarefa, notificações/resultado da tarefa e raízes/lista",
+        "tarefas/receber, tarefas/atualizar e tarefas/cancelar",
+        "tarefas/criar, tarefas/subscrever e tarefas/limpar",
+        "tarefas/estado, tarefas/resultados e tarefas/lista"
+      ],
+      "correct": 1,
+      "explanation": "A extensão usa tarefas/obter, tarefas/atualização e tarefas/cancelação. Cada solicitação HTTP define Mcp-Name para params.taskId. Os métodos de status, resultado e lista mais antigos são apenas para migração."
+    }
+  ]
+}

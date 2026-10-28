@@ -1,0 +1,78 @@
+{
+  "lesson": "09-mcp-transports",
+  "title": "Transporte de MCP: estúdio e HTTP sem Estado",
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "Qual método HTTP carrega todas as mensagens HTTP Streamable modernas?",
+      "options": [
+        "O PATCH",
+        "Deletar",
+        "GET",
+        "POST"
+      ],
+      "correct": 3,
+      "explanation": "Cada pedido ou notificação moderna JSON-RPC é um novo POST para um endpoint MCP."
+    },
+    {
+      "stage": "check",
+      "question": "Qual deve ser o retorno de um ponto final de MCP apenas moderno para GET e DELETE?",
+      "options": [
+        "301 - Ação",
+        "200",
+        "202.",
+        "405 - Ação"
+      ],
+      "correct": 3,
+      "explanation": "O GET e o DELETE autônomos não fazem parte do Streamable HTTP 2026-07-28."
+    },
+    {
+      "stage": "check",
+      "question": "Que cabeçalhos devem corresponder ao corpo de cada pedido moderno?",
+      "options": [
+        "Identificação de sessão e identificação do último evento",
+        "ETag e Se-Não-Match",
+        "MCP-Protocolo-Version e MCP-Método",
+        "Cookie e hospedeiro"
+      ],
+      "correct": 2,
+      "explanation": "O Mcp-Name também é necessário para ferramentas/chamadas, recursos/leituras e instruções/receitas."
+    },
+    {
+      "stage": "check",
+      "question": "Como é que um cliente solicita notificações de alterações duradouras?",
+      "options": [
+        "Subscrições/audições POST",
+        "recursos/subscrever",
+        "Identificação de sessão",
+        "GET /mcp"
+      ],
+      "correct": 0,
+      "explanation": "As inscrições/ouve abrem o fluxo de resposta. A sua confirmação, notificações e resultado final contêm o id da solicitação de ouvido como metadados de assinatura."
+    },
+    {
+      "stage": "post",
+      "question": "Um fluxo SSE moderno, escopoado por solicitação, rompe antes de sua resposta final.",
+      "options": [
+        "DETERRAR a sessão",
+        "Reutilizar o mesmo fluxo de resposta",
+        "Resumo com o último evento-ID",
+        "Reprova com segurança com um novo ID JSON-RPC"
+      ],
+      "correct": 3,
+      "explanation": "Uma nova solicitação com um novo documento de identificação é uma nova tentativa segura."
+    },
+    {
+      "stage": "post",
+      "question": "O que deve um servidor fazer com o Mcp-Session-ID em uma solicitação de 2026-07-28?",
+      "options": [
+        "Ignora-o e não o ecoe .",
+        "Rejeitar todos os pedidos que o incluam",
+        "Usá-lo para roteamento",
+        "- Vai-o girar ."
+      ],
+      "correct": 0,
+      "explanation": "As sessões de protocolo e o cabeçalho das sessões foram removidos da revisão moderna."
+    }
+  ]
+}

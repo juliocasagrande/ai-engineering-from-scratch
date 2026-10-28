@@ -1,0 +1,78 @@
+{
+  "lesson": "27-skill-evals-packaging-and-portability",
+  "title": "Evalências de habilidade, embalagens e portabilidade",
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "Qual conjunto de avaliação revela melhor se uma descrição de habilidade excede o desencadeamento no modelo da lição?",
+      "options": [
+        "Indicações positivas claras e semânticamente próximas que devem permanecer negativas",
+        "Apenas uma demonstração de ponta a ponta bem-sucedida",
+        "Uma lista de extensões de arquivo suportadas",
+        "Apenas instruções copiadas do nome da habilidade"
+      ],
+      "correct": 0,
+      "explanation": "Os positivos fáceis medem se a tarefa pretendida pode ser desencadeada. Os negativos quase perdidos medem se as tarefas adjacentes desencadeam incorretamente, o que é necessário para calcular os falsos positivos e precisão."
+    },
+    {
+      "stage": "check",
+      "question": "Um teste de gatilho tem 8 verdadeiros positivos e 2 falsos positivos.",
+      "options": [
+        "0,8 recall, mas precisão não pode ser calculada",
+        "0,8",
+        "0,2",
+        "1.0"
+      ],
+      "correct": 1,
+      "explanation": "A precisão é verdadeiros positivos divididos por todos os positivos previstos: 8 / (8 + 2) = 0,8."
+    },
+    {
+      "stage": "check",
+      "question": "Por que comparar artefatos de base e com habilidade usando as mesmas afirmações?",
+      "options": [
+        "Para garantir que a habilidade funcione em cada hospedeiro",
+        "Para eliminar a necessidade de testes de gatilho",
+        "Deixar a habilidade modificar o resultado esperado durante a avaliação",
+        "Para medir se a habilidade melhora a saída da tarefa em vez de apenas ativar"
+      ],
+      "correct": 3,
+      "explanation": "A ativação não é o resultado. Um contrato de artefato compartilhado testa se o carregamento das mudanças de habilidade requer títulos, evidências, esquemas ou conteúdo proibido, mantendo a medição comparável à linha de base."
+    },
+    {
+      "stage": "check",
+      "question": "Um anfitrião carrega o SKILL.md mas cai .`references/`E ...`scripts/`Como deve uma matriz de portabilidade classificar um pacote que requer ambos?",
+      "options": [
+        "Nativo, porque a matriz frontal está carregada",
+        "Requerido adaptador, com os recursos de arquivo de acompanhamento e script faltantes listados",
+        "Não suportado, mesmo que um adaptador possa preservar arquivos",
+        "Garantir portabilidade após renomear o diretório"
+      ],
+      "correct": 1,
+      "explanation": "O host entende o arquivo principal, por isso não é totalmente não suportado. Ele ainda não pode satisfazer os requisitos declarados do pacote de forma nativa, e a matriz deve nomear o trabalho exato do adaptador em vez de aplanar a portabilidade para sim ou não."
+    },
+    {
+      "stage": "post",
+      "question": "O que adiciona uma taxa repetida além de uma avaliação de gatilho passante?",
+      "options": [
+        "Substituição de linho de embalagem estrutural",
+        "Permissão para a habilidade de executar scripts em conjunto",
+        "Evidências de coerência entre as execuções múltiplas de cada caso",
+        "Um comando de invocação host universal"
+      ],
+      "correct": 2,
+      "explanation": "Uma única execução pode esconder não-determinismo. Por caso, as taxas de execução repetidas revelam a ativação escassada ou produção de artefatos, enquanto a fibra estrutural, as permissões de tempo de execução e os adaptadores de hospedeiro permanecem preocupações separadas."
+    },
+    {
+      "stage": "post",
+      "question": "Qual porta de libertação é mais completa para um pacote de habilidades de agente?",
+      "options": [
+        "O pacote tem muitos arquivos de referência e uma longa descrição",
+        "A habilidade funciona na máquina do autor sem uma linha de base",
+        "SKILL.md existe e um prompt positivo o ativa",
+        "Todas as seis camadas passam, os valores locais capturados têm digestões correspondentes ligadas à fonte, e uma atestativa de confiança fora do pacote liga a raiz completa da evidência"
+      ],
+      "correct": 3,
+      "explanation": "As seis camadas são estrutura do pacote; desencadeia roteamento com precisão, recall e estabilidade de execução repetida; instrução e comportamento de artefato; corretão do script; segurança e autoridade; e embalagem mais portabilidade, incluindo uma instalação limpa verificada por manifesto. Cada camada deve passar. Os digestos locais ligados à fonte detectam desajustes, mas podem ser recomputados com aparelhos reetiquetados, de modo que a preparação para a produção também requer uma certificação externa cuja exata confiança SHA-256 liga a raiz completa da evidência."
+    }
+  ]
+}

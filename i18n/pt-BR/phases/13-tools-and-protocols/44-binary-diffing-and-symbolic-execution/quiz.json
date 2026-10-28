@@ -1,0 +1,90 @@
+{
+  "lesson": "44-binary-diffing-and-symbolic-execution",
+  "title": "Differenciamento binário e execução simbólica: funções de correspondência e solução de entradas",
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "Em BinDiff's estratégia, quando é permitido uma assinatura criar uma correspondência?",
+      "options": [
+        "Quando as duas funções compartilham pelo menos metade das suas instruções",
+        "Quando as duas funções têm o mesmo endereço",
+        "Quando o valor da assinatura aparece exatamente uma vez em cada binário",
+        "Quando as duas funções têm o mesmo tamanho"
+      ],
+      "correct": 2,
+      "explanation": "A página de conceitos do BinDiff descreve um atributo de cada vez: um valor único em ambos os lados é um coincidência, um valor ambíguo é forrado com o próximo atributo, e um valor sem contraparte permanece inigualável."
+    },
+    {
+      "stage": "check",
+      "question": "O grau é byte para byte idêntico no livro-x86_64-O1.o e no livro-x86_64-O2.o, mas o correlador de função exata de Ghidra não corresponde.",
+      "options": [
+        "Ghidra compara mnemônicos, não bytes",
+        "A função tem um tamanho diferente nos dois programas",
+        "Os dois objetos foram compilados com compiladores diferentes",
+        "Ghidra aplica relocalizações na importação, e .rodata fica 0x70 bytes mais adiante no programa O2, de modo que o deslocamento RIP-relativo no leak difere entre as duas imagens carregadas"
+      ],
+      "correct": 3,
+      "explanation": "As imagens carregadas diferem em quatro bytes do deslocamento de leaq (122 versus 234)."
+    },
+    {
+      "stage": "check",
+      "question": "O radiff2 -AC relata a classificação em -O0 versus -O1 como UNMATCH com relação 0.426829, e a lição reproduz esse número apenas comparando 82 bytes em vez de 118 da função.",
+      "options": [
+        "O radar2 desprende o prólogo e o epílogo antes de imprimir as impressões digitais.",
+        "A lista de grau em -O0 tem 82 instruções",
+        "Radar2 mede contagens de instruções, não bytes",
+        "Sem aplicar realocações, o radar2 não resolve a tabela de salto, por isso a sua impressão digital só mantém os blocos acessíveis antes do salto indireto mais o caso padrão"
+      ],
+      "correct": 3,
+      "explanation": "A impressão digital é a concatenation dos blocos básicos encontrados pela análise. com -e bin.relocs.apply=true radar2 encontra todos os 118 bytes e a relação torna-se 0,288136, que a lição também reproduz."
+    },
+    {
+      "stage": "check",
+      "question": "O matcher executa o estágio de forma do gráfico de fluxo antes do estágio de nome e combina percent_change em -O0 com grade_label em -O1.",
+      "options": [
+        "A tabela de símbolos foi corrompida.",
+        "Um diamante de quatro blocos com sequência de graus 0/2, 1/1, 1/1, 2/0 é a forma de cada se-else que se une antes do retorno, então a forma era única em ambos os lados, mas não específica",
+        "As duas funções compute o mesmo valor",
+        "O matcher comparou os objetos errados"
+      ],
+      "correct": 1,
+      "explanation": "O estágio tem qualidade média por esta razão. BinDiff executa nome correspondente no início quando os nomes existem, e nessa ordem as quatro funções coincidem pelo nome."
+    },
+    {
+      "stage": "post",
+      "question": "Um executor simbólico executar total com contagem restringida a 0 <= contagem <= N e relata caminhos 3, 5 e 9 para N = 2, 4, 8. O que faz uma contagem não restringida?",
+      "options": [
+        "Ele combina todos os caminhos em um só",
+        "Produz exactamente mais um caminho",
+        "Faz o solvente voltar sem estar satisfeito",
+        "Ele produz um caminho por contagem de iterações possíveis, então o executor nunca termina sem um limite ou um cap"
+      ],
+      "correct": 3,
+      "explanation": "Cada iteração forja um caminho de saída e um caminho contínuo. A pesquisa de Baldoni et al. nomeia os ciclos sobre a entrada simbólica como a principal fonte de explosão do caminho, e o limite da lição de 24 blocos por caminho mostra o corte."
+    },
+    {
+      "stage": "post",
+      "question": "Para percent_change, os resultados da pesquisa limitada antes de = -10, após = -15, angr retornará antes de = 21055744, depois de = 332315210, e z3 retornará antes de = -25092599, depois de = 305712160 para o resultado da consulta == 50. Qual declaração é correta?",
+      "options": [
+        "Apenas uma das três respostas pode ser correta",
+        "Angr e z3 discordam, portanto, a restrição é insatisfatória",
+        "A busca limitada é errada porque os números são pequenos",
+        "As três respostas são todos modelos da mesma restrição, e um solvente retorna algum testemunho, não um específico"
+      ],
+      "correct": 3,
+      "explanation": "A lição avalia cada modelo com o avaliador de IR e todos dão 50. Um modelo prova satisfação; uma entrada específica precisa de uma restrição extra."
+    },
+    {
+      "stage": "post",
+      "question": "Ghidra Version Tracking matched grade at -O1 e -O2 apenas pelo Nome do Símbolo Exact. O grade_case10_wrong.o matched tem os mesmos 46 bytes de código que grade. Que cheque separa os dois casos?",
+      "options": [
+        "Lendo os bytes os pontos de realocação em: a tabela é 1, 2, 3, 4, 4 no original e 1, 2, 3, 4, 3 no candidato",
+        "Um hash mnemônico",
+        "Comparar os tamanhos das funções",
+        "Uma assinatura de forma de fluxo"
+      ],
+      "correct": 0,
+      "explanation": "As assinaturas de byte, mnemônica e forma passam todas. Somente a verificação de dados referenciados, que lê a tabela através da relocação e a verificação de limites, informa a constante alterada."
+    }
+  ]
+}

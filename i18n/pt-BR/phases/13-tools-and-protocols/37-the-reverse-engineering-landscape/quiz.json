@@ -1,0 +1,78 @@
+{
+  "lesson": "37-the-reverse-engineering-landscape",
+  "title": "A paisagem de engenharia inversa: história, famílias de ferramentas e como é construído um decompiler",
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "Radar2, rizin, angr e Ghidra abrem todos o livro-razão x86_64-O1.o e relatam quatro funções, mas a classificação fica em 0x08000050, 0x400010 e 0x100010 em três delas.",
+      "options": [
+        "O objeto foi compilado três vezes e o compilador colocou a nota diferente cada vez",
+        "Cada ferramenta escolhe seu próprio endereço base para um objeto realojável, então a mesma função mantém seu .text offset 0x10 sob três bases diferentes",
+        "A tabela de símbolos armazena três endereços alternativos e cada ferramenta escolhe um deles",
+        "Duas das ferramentas desmontaram a seção errada e os endereços pertencem a .rodata ."
+      ],
+      "correct": 1,
+      "explanation": "Um objeto relocable não tem endereço de carga. radar2 e rizin mapear o arquivo em 0x08000000, angr em 0x400000, Ghidra em 0x100000. Subtraindo a base de .texto dá o mesmo offset 0x10 em cada ferramenta."
+    },
+    {
+      "stage": "check",
+      "question": "No livro-razão x86_64-O0.o o arnes relata 3 blocos para classificação em radar2, 8 em rizin e angr, e 9 em Ghidra.",
+      "options": [
+        "Angr encontrou mais código do que Ghidra porque decodifica o enchimento de alinhamento como blocos de caso",
+        "O radar2 decifrou os blocos de caixa , mas os uniu num bloco porque compartilham um alvo .",
+        "Ghidra dividiu o bloco de interruptor no jmp rax para colocar sua etiqueta switchD, rizin resolveu cinco casos como um switch_op, e radare2 parou no salto indireto com 36 bytes nunca alcançado",
+        "As quatro contagens vêm de quatro funções diferentes e o arame as misturou"
+      ],
+      "correct": 2,
+      "explanation": "As contagens vêm dos mesmos bytes. A diferença é a distância que cada ferramenta segue jmp rax: radar2 para, rizin e Ghidra lê a tabela através de suas relocalizações, angr mantém os blocos do caso, mas encaminha o salto para um nó insolúvel."
+    },
+    {
+      "stage": "check",
+      "question": "O pypcode eleva sub rsp, 0x10 em nove operações que escrevem CF, OF, SF, ZF e PF, e pyvex eleva-o em sete declarações com PUT(cc_op) = 0x8 e nenhuma bandeira.",
+      "options": [
+        "O código P e o VEX discordam sobre a semântica da subtração em x86-64",
+        "O código P escreve cada bandeira ansiosamente; o VEX armazena um conjunto de códigos de condição (operação e operands) e calcula uma bandeira somente quando uma instrução posterior a lê",
+        "A pyvex perdeu as bandeiras e o elevador é incompleto para esta instrução.",
+        "Os dois elevadores usaram diferentes tamanhos de operand, de 64 bits em código P e de 32 bits em VEX"
+      ],
+      "correct": 1,
+      "explanation": "Os dois elevadores estão completos. SLEIGH escreve as bandeiras na instrução. VEX registra cc_op, cc_dep1, cc_dep2, cc_ndep e avalia uma bandeira preguiçosa no ramo que a usa."
+    },
+    {
+      "stage": "check",
+      "question": "Na lista de \"sweep-trap.o llvm-objdump\" 8 as instruções começam dentro da lista de \"search\" e radar2, rizin e Ghidra 6. De onde vêm os dois \"start extra\"?",
+      "options": [
+        "Ilvm-objdump imprime as entradas de realocação como instruções e as outras ferramentas as escondem",
+        "O varredão linear decodifica os quatro bytes da tabela 31 c0 90 48 como xorl, nop e um prefixo REX que engole o addl real, então ganha começa em 0x10, 0x12, e 0x13 e perde o começo em 0x14",
+        "A varredura conta o tampão no no depois de mais_um como parte da busca",
+        "Radare2, Rizin e Ghidra ignoraram duas instruções legítimas porque param no primeiro Jmp"
+      ],
+      "correct": 1,
+      "explanation": "O arnes relata o início extra 0x10, 0x12, 0x13 e um começo faltante em 0x14 para a varredura. Os três construtores de gráficos deixam 0x10 a 0x14 sem reivindicação, e os nomes do arnes que variam como dados dentro de uma função."
+    },
+    {
+      "stage": "post",
+      "question": "Ghidra decompilou a classificação em -O1 para param_1 / 10 - 6 e angr decompilou os mesmos bytes para (a0 * 1717986919) >> 0x22.",
+      "options": [
+        "O desmontagem, porque as duas ferramentas decodificaram instruções diferentes em 0x13.",
+        "O carregador, porque Angr aplicou as transferências e Ghidra não",
+        "Reescrever termo na fase de fluxo de dados: Ghidra's Rule pool dobra o idioma de multiplicação e mudança de volta em uma divisão, angr simplificador deixa a aritmética como levantado",
+        "O emissor, porque angr imprime constantes em decimal e Ghidra em hexadecimal"
+      ],
+      "correct": 2,
+      "explanation": "Ambas as ferramentas decodificam o mesmo imul por 0x66666667 e sar por 34. O loop de simplificação de Ghidra reescreve esse idioma em uma divisão; a simplificação AIL de Angr não, então a aritmética levantada chega ao emissor."
+    },
+    {
+      "stage": "post",
+      "question": "Um colega de equipa propõe confiar na ferramenta que relata os blocos mais básicos, porque mais blocos significam mais código encontrado.",
+      "options": [
+        "O radar2 relata 3 blocos para classificação em -O0 e é a única ferramenta que está correta",
+        "Ghidra relata 9 blocos para classificação em -O0 onde rizin relata 8 para as mesmas bordas, e angr adiciona um bloco sem símbolo em cada espaço de empolgação, então a contagem de blocos mede os limites de blocos e heurísticas em vez de código encontrado",
+        "Cada ferramenta relata a mesma contagem de blocos em cada dispositivo, por isso a regra não pode ser testada",
+        "O llvm-objdump relata o maior número de blocos e é um varredamento linear"
+      ],
+      "correct": 1,
+      "explanation": "O bloco extra de Ghidra é uma divisão de rótulo em jmp rax, e as funções extras de angr são bytes de alinhamento."
+    }
+  ]
+}

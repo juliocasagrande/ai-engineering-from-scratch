@@ -1,0 +1,102 @@
+{
+  "lesson": "38-calling-conventions-and-stack-frames",
+  "title": "Convenções de chamada e quadros de pilha: Sistema V, Windows x64 e AArch64",
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "A mesma função C dupla misturada ((int i, dupla d, longa longa l, flutuante f) é compilada para Linux x86-64 e para Windows x64.",
+      "options": [
+        "Ambos usam edi, xmm0, rsi, xmm1, porque ambos os ABIs preenchem listas inteiras e SSE em ordem",
+        "Sistema V: edi, xmm0, rsi, xmm1 (dois listas). Microsoft x64: ecx, xmm1, r8, xmm3 (um slot por posição)",
+        "O sistema V passa d e f na pilha, porque os registros SSE contêm apenas valores de devolução",
+        "Ambos usam ecx, xmm0, rdx, xmm1, porque ambos os ABIs começam a lista de números inteiros em rcx"
+      ],
+      "correct": 1,
+      "explanation": "psABI 3.2.3 atribui classes INTEGER e SSE de duas listas de registros separadas. A convenção da Microsoft é posicional: o argumento k usa RCX/RDX/R8/R9 ou XMM0 para XMM3 para a fatia k, então um duplo na fatia 1 vai para XMM1 e um flutuante na fatia 3 na XMM3."
+    },
+    {
+      "stage": "check",
+      "question": "Em -O2 a Microsoft x64 construção de 8_args lê seu quinto argumento em 0x28 ((%rsp) sem prólogo.",
+      "options": [
+        "O marcador de quadro compensado mais o Rbp salvado que o prólogo empurrou diante do corpo",
+        "Cinco slots de argumento de 8 bytes contados a partir do ponteiro de pilha, um slot por argumento",
+        "O padding de alinhamento que o compilador escolheu para que a carga esteja em um limite de 16 bytes",
+        "8 bytes de endereço de devolução mais o armazenamento de sombras de 32 bytes para os quatro argumentos do registro"
+      ],
+      "correct": 3,
+      "explanation": "Na entrada 0(%rsp) é o endereço de retorno e 8(%rsp) a 39(%rsp) são os quatro slots de casa."
+    },
+    {
+      "stage": "check",
+      "question": "mantém -O2 no Sistema V começa com pushq %rbp; pushq %r14; pushq %rbx e depois chama ext sem subq. Por que a pilha está alinhada na chamada?",
+      "options": [
+        "24 bytes de empurradas mais o endereço de retorno de 8 bytes é 32, um múltiplo de 16",
+        "O Callee ext realinha a pilha no seu próprio prólogo antes de usá-la",
+        "Cada pushq mantém a pilha alinhada de 16 bytes, então qualquer número de empurrões é alinhado",
+        "A zona vermelha absorve o desalinhamento, por isso a chamada não precisa de um subq"
+      ],
+      "correct": 0,
+      "explanation": "psABI 3.2.2 diz (%rsp + 8) é um múltiplo de 16 na entrada. Três empurros trazem a profundidade para 24, e 24 + 8 = 32, então o local de chamada é alinhado sem um subq."
+    },
+    {
+      "stage": "check",
+      "question": "O AArch64 mantém prólogo é stp x29, x30, [sp, #-0x30]!; str x21, [sp, #0x10]; mov x29, sp; stp x20, x19, [sp, #0x20]. Onde está o registro de quadro?",
+      "options": [
+        "No topo do quadro ao lado do chamador, porque o registro deve estar acima das salvas",
+        "Em sp+0 e sp+8 após o prólogo: x29 no endereço inferior, x30 acima, x29 pontos nele",
+        "Em nenhum lugar, porque uma função que salva x21 não precisa de um registro de quadro",
+        "Em x19 e x20, porque o stp de x20 e x19 armazena o registro último"
+      ],
+      "correct": 1,
+      "explanation": "A stp pré-indexada armazena x29 na nova sp e x30 na sp + 8, e mov x29, sp faz x29 ponto no par. A Apple arm64 construção da mesma função coloca o registro no topo do quadro em vez."
+    },
+    {
+      "stage": "check",
+      "question": "Em -O0 a construção do sistema V de oito_args armazena seis registros de argumentos para -0x8 ((%rbp) até -0x30 ((%rbp) sem subq. O que torna essas lojas legais?",
+      "options": [
+        "Eles estão na zona vermelha de 128 bytes abaixo do rsp, e a folha não faz nenhuma chamada que os sobreescreva",
+        "Rbp aponta 48 bytes abaixo de rsp após o prólogo, então as lojas estão acima de rsp",
+        "O chamador atribuiu os 48 bytes antes da chamada, como parte da sua área de saída",
+        "As lojas vão para o quadro do chamador, que o chamador possui até que ele volte"
+      ],
+      "correct": 0,
+      "explanation": "A zona vermelha é os 128 bytes além de %rsp que os gestores de sinal não modificam. As builds da Microsoft e AArch64 Linux da mesma função atribuem o espaço com subq ou sub sp, porque essas ABIs não têm zona vermelha."
+    },
+    {
+      "stage": "post",
+      "question": "Struct big_ret ((long long seed) retorna um estruto de 32 bytes. Como cada ABI retorna?",
+      "options": [
+        "Os três devolvem em quatro registros, porque cada ABI tem quatro registros de resultados",
+        "Endereço de tampão em rdi (semente a rsi), em rcx (semente a rdx) ou em x8 (semente permanece em x0)",
+        "O sistema V e o Microsoft x64 devolvem-no em rax:rdx, e o AArch64 devolve-o em x0:x1",
+        "Todos os três devolvem-no na pilha acima do endereço de devolução, no quadro do chamador"
+      ],
+      "correct": 1,
+      "explanation": "psABI 3.2.3 classifica um agregado de 32 bytes como MEMORY e passa o endereço em %rdi como se fosse o primeiro argumento. A Microsoft muda os argumentos reais um para o lado direito após o ponteiro oculto no RCX. AAPCS64 6.9 usa o registro de resultados indiretos x8 e deixa x0 a x7 intocado."
+    },
+    {
+      "stage": "post",
+      "question": "Radar2 6.2.4 lista sete argumentos para 8_args em -O2 no sistema V: rdi, rsi, rdx, r8, r9 e dois slots de pilha. Qual argumento está faltando e por quê?",
+      "options": [
+        "Rcx, porque a sua única leitura é o índice de leaq (%rdx,%rcx), %rax",
+        "R9, porque r9 é salvo de chamadas e a ferramenta salta registros salvos de chamadas",
+        "O segundo espaço da pilha, porque 16 bytes acima de rsp está fora do quadro",
+        "Nada, porque a função lê apenas sete valores de suas entradas"
+      ],
+      "correct": 0,
+      "explanation": "A fonte tem oito parâmetros e os bytes ler %rcx uma vez, dentro de um lea. O analista nesta lição conta registros base e índice como lê e encontra todos os seis argumentos de registro. A saída da ferramenta discorda com a fonte, então gravá-lo como uma descoberta para verificar."
+    },
+    {
+      "stage": "post",
+      "question": "A entrada .xdata para mantém no objeto do Windows é 01 07 04 00 07 32 03 30 02 70 01 60. O que diz?",
+      "options": [
+        "Versão 1, registro de quadro rbp com offset 0x70, e três empurrões de rbx, rdi, rsi",
+        "Versão 1, um prolog de 7 bytes, uma alocação de 8 bytes no offset 7, então empurra de rbx, rdi, rsi",
+        "Versão 1, um prólogo de 7 bytes e três salvos não voláteis para a loja de sombras",
+        "Versão 1, um prolog de 7 bytes, uma alocação de 32 bytes no offset 7, então empurra de rbx, rdi, rsi"
+      ],
+      "correct": 3,
+      "explanation": "O byte UNWIND_CODE 0x32 é op 2 (UWOP_ALLOC_SMALL) com informação 3, então 3*8+8 = 32 bytes. Os bytes 0x30, 0x70, 0x60 são op 0 (UWOP_PUSH_NONVOL) com números de registro 3, 7, 6: rbx, rdi, rsi. Isso corresponde ao prólogo 56 57 53 48 83 ec 20 lido dos bytes."
+    }
+  ]
+}

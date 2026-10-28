@@ -1,0 +1,90 @@
+{
+  "lesson": "43-bytecode-and-managed-formats",
+  "title": "Além do código nativo: Python, JVM, .NET e WebAssembly Bytecode",
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "Um decompilador imprime \"Opcode não suportado\" em um arquivo .pyc cujos primeiros quatro bytes são 2b 0e 0d 0a. O que diz o cabeçalho?",
+      "options": [
+        "O ficheiro foi compilado com o nível de otimização 2",
+        "O arquivo é baseado em hash e o hash falhou",
+        "O arquivo está corrupto, porque um pyc deve começar com os bytes da palavra cpython",
+        "A palavra mágica é 3627, que é o número CPython 3.14 escreve, e a ferramenta não tem tabela de código op para essa versão"
+      ],
+      "correct": 3,
+      "explanation": "Os dois primeiros bytes são a palavra mágica de pequeno endio 0x0e2b = 3627, o valor no arquivo de cabeçalho CPython 3.14 . CR LF segue para que uma leitura de modo de texto quebre a magia. Nada aqui é sobre corrupção ou hash."
+    },
+    {
+      "stage": "check",
+      "question": "Por que o main.py pode ler os nomes, constantes e tabela de linhas de um pyc 3.11 enquanto está em execução sob 3.14, mas não pode listar suas instruções?",
+      "options": [
+        "Porque 3.14 removido o módulo dis",
+        "Porque o marshal tem um formato de código de tipo estável que a lição reimplementa, enquanto os números de código op e layouts de cache mudam entre as versões e dis sabe apenas a tabela do intérprete em execução",
+        "Porque os arquivos 3.11 estão encriptados",
+        "Porque os nomes vivem em um arquivo .pyi separado"
+      ],
+      "correct": 1,
+      "explanation": "O unmarshaler lê códigos de tipo e a ordem do campo de objeto de código do marshal.c. Os bytes de instrução são opacos sem a tabela de código opico da versão que os escreveu, e é por isso que o python3.11 -m dis foi capturado nas fixações."
+    },
+    {
+      "stage": "check",
+      "question": "Na classe Ledger-g, os bytes no pc 4 são aa 00 00 00 00 00 00 00 2c 00 00 00 00 06 00 00 00 0a então cinco valores de 4 bytes.",
+      "options": [
+        "3 instruções",
+        "Os altos bytes do offset padrão",
+        "Padding para que as palavras padrão, baixa e alta começem em um computador que é um múltiplo de 4, como JVMS 6.5 table switch requer",
+        "O índice de poulista constante do interruptor"
+      ],
+      "correct": 2,
+      "explanation": "O código op é colocado em pc 4, então o próximo pc de 4 alinhados é 8. O offset padrão 0x2c = 44 é relativo ao endereço do código op, dando o alvo 48."
+    },
+    {
+      "stage": "check",
+      "question": "Javac -g:none reduziu Ledger.class de 1832 bytes (javac -g) para 1404 bytes. Quais bytes desapareceram?",
+      "options": [
+        "Os corpos do método, que foram recompilados em forma compacta",
+        "Os atributos LineNumberTable, LocalVariableTable e SourceFile e suas cadeias de pool constantes, enquanto cada matriz de código permanece o mesmo",
+        "O StackMapTable, que só os depuradores usam",
+        "A piscina constante, que a JVM reconstrui no momento da carga"
+      ],
+      "correct": 1,
+      "explanation": "O teste de lição compara a matriz de código de grau em todas as três builds e encontra os mesmos 50 bytes. Somente os atributos de depuração e as entradas Utf8 que referem desaparecem. StackMapTable permanece porque o verificador precisa dele."
+    },
+    {
+      "stage": "check",
+      "question": "ledger.wasm não tem seção de nome, mas wasm-objdump imprime <grade> na função. De onde veio o nome e qual nome ainda falta?",
+      "options": [
+        "Do cabeçalho da seção Código, que começa cada corpo com o seu nome",
+        "A partir da seção Tipo, que armazena um nome por tipo de função",
+        "From the Export section, which maps the string grade to function index 2; the local names score and bucket are missing until wat2wasm --debug-names adds a name custom section",
+        "A partir do segmento de dados no offset 1024"
+      ],
+      "correct": 2,
+      "explanation": "As exportações contêm cadeias apenas para funções exportadas. Os locais não têm nomes em nenhum lugar do módulo plano. A construção de nomes aumenta o arquivo de 290 para 425 bytes e adiciona função e nomes locais como uma seção personalizada."
+    },
+    {
+      "stage": "post",
+      "question": "A linha MethodDef para Grade tem blob de assinatura 00 01 08 08 e o cabeçalho do corpo nomeia o token de assinatura local 0x11000001 com blob 07 01 08. Que fato sobre Grade ainda falta na montagem?",
+      "options": [
+        "O nome da variável local, porque os metadados ECMA-335 armazenam tipos locais em um StandAloneSig e deixam nomes locais no arquivo PDB separado",
+        "Nome do parâmetro",
+        "Tipo de devolução",
+        "Tipo de parâmetro"
+      ],
+      "correct": 0,
+      "explanation": "A barra diz estática int32(int32), a linha de tabela Param diz pontuação, e o StandAloneSig diz um local int32. Nenhuma tabela possui um nome local."
+    },
+    {
+      "stage": "post",
+      "question": "Em qual dos cinco recipientes um decompiler tem que reconstruir o interruptor a partir de saltos, em vez de lê-lo como uma instrução ou um bloco?",
+      "options": [
+        "A montagem .NET, porque o switch é um prefixo",
+        "O CPython pyc, onde o grau é quatro pares COMPARE_OP e POP_JUMP_IF_FALSE, e o objeto nativo, onde é um jmpq através de uma tabela de realocação",
+        "A classe JVM, porque table switch é uma mesa de salto",
+        "O módulo WebAssembly, porque br_table não tem estrutura"
+      ],
+      "correct": 1,
+      "explanation": "table switch, br_table e CIL switch cada um carregam seus alvos de caso em uma instrução, e Wasm nidifica os casos em blocos. CPython e x86-64 armazenam apenas saltos, razão pela qual seus descompiladores dependem da análise de fluxo de controle e quebrar quando as formas de salto mudam."
+    }
+  ]
+}

@@ -1,0 +1,78 @@
+{
+  "lesson": "26-skill-permissions-sandboxes-and-trust",
+  "title": "Permissões para habilidades, Sandboxes e Confiança",
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "Um SKILL.md diz`You may write anywhere on disk`Que autoridade dá essa sentença?",
+      "options": [
+        "Não há autoridade; o modelo de permissão do hospedeiro ainda decide cada ação",
+        "Escrever acesso ao diretório de casa do usuário",
+        "Escrever acesso a cada caminho nomeado por uma referência",
+        "Escrever acesso depois que o modelo repete a frase"
+      ],
+      "correct": 0,
+      "explanation": "O conteúdo de habilidade é dados de instrução, não um token de capacidade. O escopo do sistema de arquivos, o acesso às ferramentas, a política de rede e as aprovações vêm do host e permanecem em vigor mesmo quando a habilidade exige permissões mais amplas."
+    },
+    {
+      "stage": "check",
+      "question": "Por que uma prisão de espaço de trabalho deve resolver os sincronemas antes de verificar a contenção?",
+      "options": [
+        "Os caminhos resolvidos automaticamente redactam segredos",
+        "A resolução torna todos os caminhos escritos",
+        "Os links de símbolos contêm sempre YAML mal formado",
+        "Um caminho lexical no espaço de trabalho pode apontar através de um link para um alvo fora da prisão"
+      ],
+      "correct": 3,
+      "explanation": "Verificar apenas a cadeia de entrada não apresenta links como `workspace/report`A contenção deve ser avaliada no objectivo resolvido, e os sistemas conservadores podem rejeitar inteiramente os objectivos de sincronismo direto."
+    },
+    {
+      "stage": "check",
+      "question": "Uma página web externa incorporada em uma tarefa diz para desativar verificações de aprovação. Como o runtime deve tratar esse texto neste cenário?",
+      "options": [
+        "Como extensão portátil SKILL.md",
+        "Como dados não confiáveis que não podem expandir a autoridade",
+        "Como nova política de sistema de prioridade",
+        "Como aprovação do utilizador"
+      ],
+      "correct": 1,
+      "explanation": "Os conteúdos externos podem informar a tarefa, mas não fazem parte do canal de política confiável."
+    },
+    {
+      "stage": "check",
+      "question": "Qual é a maneira mais segura de instrução para demonstrar revisão destrutiva de comandos?",
+      "options": [
+        "Permitir sempre que o pacote de habilidades contém um script",
+        "Execute o comando no repositório do curso e restaurar os arquivos mais tarde",
+        "Parse e classifique um vetor argv, retornar `deny`, e nunca a executar",
+        "Imprimir uma cadeia de shell que os alunos podem colar sem revisão"
+      ],
+      "correct": 2,
+      "explanation": "Um simulador de política pode ensinar permissões executáveis, padrões destrutivos, verificações de metacaracteres e veredictos sem criar efeitos colaterais reais."
+    },
+    {
+      "stage": "post",
+      "question": "Uma habilidade propõe uma chamada HTTPS para uma origem fora da lista de acesso à rede. O usuário já invocou a habilidade. Qual é o veredicto correto?",
+      "options": [
+        "Só se a descrição mencionar a internet",
+        "Permitir, porque a invocação implica o consentimento da rede",
+        "Reescrever o nome do host para o primeiro host autorizado",
+        "Recusar no âmbito da política de rede; a ativação não é autorização"
+      ],
+      "correct": 3,
+      "explanation": "O portal de invocação controla a carga de instruções, enquanto o portal de rede controla origens normalizadas de HTTPS, incluindo portas efetivas."
+    },
+    {
+      "stage": "post",
+      "question": "O que deve acontecer quando um pedido de escrita contém possíveis materiais secretos e não existe um caminho de uso secreto aprovado?",
+      "options": [
+        "Confia nele se o caminho-alvo estiver dentro do espaço de trabalho",
+        "Substitua-o por um valor aleatório e continue",
+        "Registrar a carga útil para que os revisores possam inspecionar o valor completo",
+        "Negá-lo sem imprimir o valor, e exigir um fluxo de trabalho secreto autorizado separadamente"
+      ],
+      "correct": 3,
+      "explanation": "O revisor deve bloquear o pedido, evitar o eco de material sensível e exigir uma política explícita e aprovação antes de qualquer uso secreto legítimo."
+    }
+  ]
+}

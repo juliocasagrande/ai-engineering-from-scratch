@@ -1,0 +1,78 @@
+{
+  "lesson": "16-mcp-security-oauth-2-1",
+  "title": "Autorização do MCP: CIMD, vinculação do emissor, PKCE e Step-Up",
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "Qual o mecanismo preferido para a inscrição de novos clientes da MCP OAuth em 2026-07-28?",
+      "options": [
+        "Um token de acesso no URL",
+        "Identificação de sessão",
+        "Documentos de Metadados de ID do Cliente",
+        "Registro dinâmico de clientes"
+      ],
+      "correct": 2,
+      "explanation": "Prefere-se a CIMD; o DCR é desaproveitado e mantido como um caminho de compatibilidade."
+    },
+    {
+      "stage": "check",
+      "question": "Que tipo de aplicação_cliente de desktop com um redirecionamento loopback deve declarar durante o fallback DCR?",
+      "options": [
+        "web",
+        "sem nacionalidade",
+        "nativo",
+        "confidencial"
+      ],
+      "correct": 2,
+      "explanation": "Os clientes de desktop, móvel, linha de comando e loopback são aplicativos nativos."
+    },
+    {
+      "stage": "check",
+      "question": "O que deve fazer um cliente com um valor de resposta de autorização?",
+      "options": [
+        "Normalize e compare nomes de hospedeiro",
+        "Armazenar como clienteInfo",
+        "Ignore-o depois que o PKCE tiver sucesso",
+        "Comparar exatamente com o emissor registrado antes de usar a resposta"
+      ],
+      "correct": 3,
+      "explanation": "A verificação do emitente da RFC 9207 evita confusões entre as respostas de autorização entre os emitentes."
+    },
+    {
+      "stage": "check",
+      "question": "Como deve uma chave cliente acessar as credenciais de OAuth e os tokens emitidos pelo emissor?",
+      "options": [
+        "Credenciais emitidas por emissor e tokens por emissor mais recurso",
+        "Todos os registos e tokens sob um nome global de cliente",
+        "Por nome de exibição do servidor apenas",
+        "Por identificador de sessão de protocolo"
+      ],
+      "correct": 0,
+      "explanation": "As chaves de emissor e de recurso impedem que as credenciais criadas cruzem as autoridades de segurança ou o público."
+    },
+    {
+      "stage": "post",
+      "question": "Um recurso retorna 403 com notas de alcance:delete. Qual é o passo seguinte correto?",
+      "options": [
+        "Adicionar notas:apagar localmente sem autorização",
+        "Explicar o âmbito, obter o consentimento, autorizar para ele, e depois tentar novamente com um novo ID de solicitação",
+        "Enviar o token MCP para uma API de fluxo inferior",
+        "Reutilizar o token atual e ignorar o desafio"
+      ],
+      "correct": 1,
+      "explanation": "O Step-up obtém um token recém-autorizado antes de retomar a operação."
+    },
+    {
+      "stage": "post",
+      "question": "Qual é a URL de metadados RFC 9728 para o recurso MCP https://notes.example.com/mcp?",
+      "options": [
+        "https://notes.example.com/.well-known/oauth-protected-resource/mcp",
+        "https://auth.example.com/.well-known/oauth-protected-resource",
+        "https://notes.example.com/.well-known/oauth-protected-resource",
+        "https://notes.example.com/mcp/.well-known/oauth-protected-resource"
+      ],
+      "correct": 0,
+      "explanation": "A RFC 9728 preserva o caminho de recurso protegido após o segmento bem conhecido, por isso é necessário o sufixo /mcp."
+    }
+  ]
+}

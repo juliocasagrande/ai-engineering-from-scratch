@@ -1,0 +1,90 @@
+{
+  "lesson": "39-compiler-idioms-and-optimization",
+  "title": "Idiomas de compilador: o que a otimização faz ao seu código e como lê-lo de volta",
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "Uma função compilada em -O2 contém imulq $0x24924925, %rax, %rax; shrq $0x20, %rax; sub %eax, %edi; shrl %edi; addl %edi, %eax; shrl $0x2, %eax. O que é calculado?",
+      "options": [
+        "x % 7",
+        "x * 613566757 seguido de uma soma de verificação",
+        "x / 613566757",
+        "x / 7 para x sem assinatura: o multiplicador é o baixo 32 bits de teto ((2^35 / 7), que é 33 bits de largura, então o compilador adiciona a sequência de fixação"
+      ],
+      "correct": 3,
+      "explanation": "o ceil(2^35 / 7) = 0x124924925 não se encaixa em 32 bits. O compilador multiplica pelos 32 bits baixos, depois adiciona de volta o dividendo através da sequência subtração, mudança, adição, mudança, que é a forma adicional do método Granlund-Montgomery."
+    },
+    {
+      "stage": "check",
+      "question": "O reconhecedor lê magia 0x66666667 e total de deslocamento 34 em uma divisão assinada. Como provam que o divisor é 10 e não 5?",
+      "options": [
+        "Ele calcula 2^34 / 0x6666667 , tenta 10 e 11, e aceita 10 porque magic_numbers(10, assinado) retorna exatamente 0x66666667 com o turno 34; o mesmo multiplicador com o turno 33 significaria 5",
+        "Não pode: 0x66666667 é ambíguo",
+        "Ele executa a função em uma entrada de amostra",
+        "Parece a constante de cima numa tabela de números mágicos conhecidos"
+      ],
+      "correct": 0,
+      "explanation": "O divisor é uma função do multiplicador e da mudança total juntos. divisor_from_magic recalcula a menor mudança válida para cada candidato e aceita a cujas constantes coincidem."
+    },
+    {
+      "stage": "check",
+      "question": "A comutação de table_switch em -O2 é cmpl $6, %edi; ja; leaq (%rip), %rcx com R_X86_64_PC32 .rodata+0x24; movl (%rcx,%rax,4), %eax; retq. Onde estão os valores do caso e quantos existem?",
+      "options": [
+        "Sete palavras de 32 bits em .rodata+0x28: o adendo mais 4 para o campo RIP-relativo, lido diretamente do objeto",
+        "Em operandes imediatos da cadeia de comparação",
+        "Nas entradas de realocação de .rela.rodata",
+        "Cinco blocos de código após o salto"
+      ],
+      "correct": 0,
+      "explanation": "Esta é a redução da tabela de busca do LLVM. A tabela mantém valores. Os bytes são finais no objeto, então a tabela não precisa de realocação. A verificação de limites dá 6 + 1 entradas."
+    },
+    {
+      "stage": "check",
+      "question": "Em -O0, a fixação div10u compila para divl %ecx enquanto digere, no mesmo objeto, divide por 10 com imulq $0x66666667.",
+      "options": [
+        "Divl é mais rápido em -O0",
+        "Com -mllvm -fast-isel=false cada divisão -O0 se torna o multiplicador mágico, então a divisão de hardware é a escolha do FastISel e o multiplicador é do SelectionDAG; o bloco de digest mantém um interruptor que FastISel entrega para SelectionDAG",
+        "As duas funções foram compiladas por compiladores diferentes",
+        "Digest usa aritmética não assinada"
+      ],
+      "correct": 1,
+      "explanation": "O idiomas-x86_64-nofastisel-O0 mostra o multiplicador em cada divisão uma vez que o selector rápido é desativado."
+    },
+    {
+      "stage": "post",
+      "question": "O interruptor de digestamento é uma tabela de busca em -O1 e uma tabela de salto em -O2 em x86-64.",
+      "options": [
+        "Cinco endereços de código",
+        "As entradas 1, 2, 4, 8, 8 exactamente como estão escritas",
+        "Um valor padrão de -1",
+        "As entradas 16, 32, 64, 128, 128: a multiplicação posterior por 16 foi dobrada na tabela, e o reconhecedor registra o fator"
+      ],
+      "correct": 3,
+      "explanation": "O compilador mudou a banda * 16 para os valores da tabela. O reconhecedor compara a tabela com os valores do caso de origem até um fator constante e relata o foldedFactor 16."
+    },
+    {
+      "stage": "post",
+      "question": "-O2 contém andl $0x7ffffff8, cmpl $7 com ja, dois acumuladores paddd, adição de $0x20, e um segundo ciclo com addl (%rdi,%rdx,4). Qual é a leitura correta?",
+      "options": [
+        "Dois circuitos não relacionados na fonte",
+        "Um memset",
+        "Um ciclo fonte: um corpo vectorizado que lida com 8 polegadas por iteração com dois acumuladores de 4 faixas, uma contagem de viagem arredondada para baixo para um múltiplo de 8, e um ciclo restante escalar para o resto",
+        "Um ciclo desenrolado com 32 cópias"
+      ],
+      "correct": 2,
+      "explanation": "A máscara ronda a contagem de viagem até um múltiplo de 8, o guarda salta o corpo vetorial abaixo de 8 elementos, os dois acumuladores são o fator de interleave, e o ciclo restante termina os últimos 0 a 7 elementos."
+    },
+    {
+      "stage": "post",
+      "question": "Angr 10.0.3 imprime div10u como a0 / 10 e div10s como v1 = a0 * 1717986919; retornar ((long long)(v1) >> 0x22) + (v1 >> 63);. Ghidra 12.1.4 imprime grau como param_1 / 10 - 6. O que isso diz sobre a saída do decompilador?",
+      "options": [
+        "Angr está errado sobre div10s",
+        "O dobramento de idiomas é uma escolha por regra em cada decompilador, de modo que a mesma construção de fonte pode aparecer dobrada em uma ferramenta e como aritmética bruta em outra, e a derivação do reconhecedor é o que a resolve",
+        "A divisão assinada não pode ser dobrada",
+        "Ghidra adivinhou"
+      ],
+      "correct": 1,
+      "explanation": "A RuleDivOpt de Ghidra converte a forma de multiplicar e mudar em INT_SDIV. angr dobrou a forma não assinada e deixou a forma assinada como aritmética. Ambas as saídas são corretas; apenas uma é legível, e a derivação de número mágico prova a expressão fonte que eles querem dizer."
+    }
+  ]
+}

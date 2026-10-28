@@ -1,0 +1,78 @@
+{
+  "lesson": "32-program-anatomy-elf-from-scratch",
+  "title": "Anatomia do Programa: Um Leitor ELF do zero",
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "Qual regra aplica-se a cada alvo de análise nas lições 32 a 36?",
+      "options": [
+        "O alvo é um programa que escreveu e compilaram por si mesmos.",
+        "O alvo é um programa com um mapa de fonte publicado",
+        "O alvo é um programa menor que um megabyte .",
+        "O alvo é qualquer programa instalado na sua máquina"
+      ],
+      "correct": 0,
+      "explanation": "A faixa analisa apenas o código que você possui, mantendo cada lição dentro das regras de autorização de 17 U.S.C. 1201 ((f), Diretiva 2009/24/EC, Sega e Connectix."
+    },
+    {
+      "stage": "check",
+      "question": "Um símbolo em um objeto realocavel tem st_value 0x10 e st_shndx 2, e a seção 2 tem sh_offset 0x40 e sh_addr 0. Onde estão os bytes no arquivo?",
+      "options": [
+        "No arquivo de compensação 0x50, a secção de compensação mais o valor",
+        "No arquivo de compensação 0x42, o índice de seção mais o valor",
+        "No arquivo de compensação 0x10, porque st_value é um arquivo de compensação",
+        "No arquivo de compensação 0x40, o início da sua secção"
+      ],
+      "correct": 0,
+      "explanation": "Em um objeto st_value é um offset dentro da seção do símbolo. O offset de arquivo é sh_offset + st_value - sh_addr, aqui 0x40 + 0x10 - 0 = 0x50."
+    },
+    {
+      "stage": "check",
+      "question": "Um registro em .rela.text lê offset 0x36, R_X86_64_PC32, .rodata+0x10, e a instrução lea que mantém o campo termina em 0x3a. Onde fica a lea após a ligação?",
+      "options": [
+        "Em .rodata+0x36, o deslocamento do campo",
+        "No .rodata+0x10, o adendo nomeia o alvo",
+        "No .text+0x10, as transferências sempre apontam para a seção parcheada",
+        "Em .rodata+0x14, já que S + A - P é adicionado ao final da instrução"
+      ],
+      "correct": 3,
+      "explanation": "O processador adiciona o valor armazenado para 0x3a. O valor armazenado é S + A - P com P = 0x36, então o resultado é .rodata + 0x10 + 4 = .rodata + 0x14."
+    },
+    {
+      "stage": "check",
+      "question": "Que estrutura o carregador ELF lê para mapear um executável na memória?",
+      "options": [
+        "A tabela de cordas, encontrada através de e_shstrndx",
+        "A tabela de cabeçalhos de programas, encontrada através de e_phoff",
+        "A tabela de símbolos, encontrada através do .symtab",
+        "A tabela de cabeçalhos de secções, encontrada através de e_shoff"
+      ],
+      "correct": 1,
+      "explanation": "Programas cabeçalhos são a vista de execução. Um executável despojado pode ter nenhuma tabela de cabeçalhos de seção em tudo e ainda executar."
+    },
+    {
+      "stage": "post",
+      "question": "Como um leitor Mach-O encontra o comprimento de uma função de uma entrada nlist_64?",
+      "options": [
+        "Ele lê o campo n_desc, que armazena o tamanho da função em bytes",
+        "Ele toma o próximo endereço do símbolo na mesma seção menos este",
+        "Ele lê o tamanho do registro seção_64 que contém o símbolo",
+        "Ele lê o tamanho do comando LC_SYMTAB, um campo por símbolo"
+      ],
+      "correct": 1,
+      "explanation": "nlist_64 tem n_strx, n_type, n_sect, n_desc e n_value, e nenhum campo de tamanho."
+    },
+    {
+      "stage": "post",
+      "question": "Por que os testes de lição comparam o leitor com o texto capturado de llvm-objdump em vez de executar a ferramenta?",
+      "options": [
+        "Porque o texto capturado analisa mais rápido do que executar a ferramenta em cada teste",
+        "Porque llvm-objdump não pode ler objetos relocalizáveis sem um sysroot Linux",
+        "Porque a comparação funciona em qualquer máquina e o oráculo não pode deslocar-se",
+        "Porque o curso proíbe todas as ferramentas externas, incluindo o compilador"
+      ],
+      "correct": 2,
+      "explanation": "O dispositivo mantém a saída da ferramenta de uma versão conhecida da ferramenta. Os testes não precisam de ferramenta instalada, e uma versão posterior da ferramenta não pode mudar o que o leitor é comparado com."
+    }
+  ]
+}

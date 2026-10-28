@@ -1,0 +1,78 @@
+{
+  "lesson": "23-capstone-tool-ecosystem",
+  "title": "Capstone: Ecossistema de Ferramentas Estatais",
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "O que prova uma corrida bem sucedida do arnês stdlib desta lição?",
+      "options": [
+        "A política e o fluxo de dados no processo comportaram-se como afirmado",
+        "Um transporte real de MCP completado inicialização",
+        "Um servidor de autorização OAuth emitido um token válido",
+        "Um colecionador recebeu todos os espaços da OpenTelemetry"
+      ],
+      "correct": 0,
+      "explanation": "O arnes usa funções Python, tokens estáticos, fixtures e espaços de memória. Ele valida essas fronteiras locais, deixando protocolo, autorização, exportação, navegador e integração de caixa de areia para testes posteriores."
+    },
+    {
+      "stage": "check",
+      "question": "Qual fluxo corresponde à revisão MCP 2026-07-28 para descobrir um servidor e pesquisar trabalho de longa data?",
+      "options": [
+        "servidor/conexão, ferramentas/pesquisa, tarefas/estado",
+        "Servidor/descoberta, ferramentas/chamadas que retornam um manuseio de tarefa, tarefas/receber",
+        "Iniciar, ferramentas/chamadas, tarefas/resultados",
+        "GET /mcp, ferramentas/chamadas, tarefas/listas"
+      ],
+      "correct": 1,
+      "explanation": "A revisão sem estatuto utiliza obrigatoriamente `server/discover`- O opcional .`io.modelcontextprotocol/tasks`extensão retorna um manuseio de tarefa e utiliza `tasks/get`A tarefa terminal tem o seu resultado final.`tasks/result`, e `tasks/list`Não estão neste fluxo."
+    },
+    {
+      "stage": "check",
+      "question": "Como A2A v1 nomeia a operação de envio de mensagens em suas ligações gRPC e JSON-RPC?",
+      "options": [
+        "AgenteMessage",
+        "mensagem/criar",
+        "tarefas/envio",
+        "Enviar mensagem"
+      ],
+      "correct": 3,
+      "explanation": "Utilizações do A2A v1 `SendMessage`para gRPC e JSON-RPC. Sua ligação HTTP + JSON expõe `POST /message:send`- Não ."
+    },
+    {
+      "stage": "check",
+      "question": "Qual chamada do MCP Apps SDK permite que um aplicativo solicite uma ferramenta em seu servidor originário?",
+      "options": [
+        "host.callTool(name, args)",
+        "app.callServerTool({ name, arguments })",
+        "app.invoke(name, args)",
+        "servidor. ferramentas. chamada(args)"
+      ],
+      "correct": 1,
+      "explanation": "A instância do App chama `callServerTool`com um objeto que contenha `name`e opcionais `arguments`O anfitrião representa o subjacente .`tools/call`- O pedido."
+    },
+    {
+      "stage": "post",
+      "question": "Que autoridade o Agente Skill fornece sobre as ferramentas MCP e a caixa de areia?",
+      "options": [
+        "O sistema de controlo de dados é um sistema de controlo de dados.",
+        "Ele concede todas as ferramentas nomeadas no corpo",
+        "O acesso à rede é apenas de leitura",
+        "Nenhum; adaptadores de hospedagem e política ainda autorizam cada capacidade"
+      ],
+      "correct": 3,
+      "explanation": "O processo de fornecimento de habilidades. Descoberta, invocação, exposição de ferramentas, autorização, credenciais e isolamento são aplicados pelo anfitrião e limites externos de tempo de execução."
+    },
+    {
+      "stage": "post",
+      "question": "Que evidência prova melhor que a telemetria ultrapassou o limite de exportação da produção?",
+      "options": [
+        "Uma instrução de habilidade dizendo para emitir tensões",
+        "Um dicionário local que contenha uma chave de rastreamento",
+        "Diagrama da hierarquia de tempo prevista",
+        "Dados do receptor com as afirmações de rastreamento e de origem"
+      ],
+      "correct": 3,
+      "explanation": "Uma observação do lado do receptor prova que o caminho do SDK, propagador, exportador, transporte e coletor funcionou."
+    }
+  ]
+}

@@ -1,0 +1,78 @@
+{
+  "lesson": "34-lifting-to-pseudocode",
+  "title": "Levantamento para Pseudocode: IR, SSA e Estruturação a partir do zero",
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "Ghidra decompilou percent_change de um arquivo de objeto correto como uma função que retorna 16 bytes e leva três parâmetros. A fonte tem dois parâmetros int e retorna int. O que isso mostra?",
+      "options": [
+        "Pseudocode é uma alegação derivada cujo tipo e convenções de chamada podem ser erradas enquanto todas as instruções são corretas",
+        "Ghidra não pode ler objetos relocalizáveis ELF",
+        "O arquivo do objeto está corrupto .",
+        "Clang compilada mal a função"
+      ],
+      "correct": 0,
+      "explanation": "As instruções são corretas e o decompiler as leu corretamente. As suas conjecturas sobre o valor de retorno e o terceiro parâmetro vieram de idiv escrevendo tanto rax quanto rdx sem que o chamador diga o contrário."
+    },
+    {
+      "stage": "check",
+      "question": "Na convenção de chamada do sistema V AMD64, qual registro carrega o segundo argumento inteiro de uma função?",
+      "options": [
+        "%rcx",
+        "%rdx",
+        "%rsi",
+        "% de raxa"
+      ],
+      "correct": 2,
+      "explanation": "A sequência é %rdi, %rsi, %rdx, %rcx, %r8, %r9 (psABI secção 3.2.3)."
+    },
+    {
+      "stage": "check",
+      "question": "O elevador vê cmpl $0x4, %ecx seguido de ja. Qual condição C é o ramo assumido?",
+      "options": [
+        "ecx >= 4 como comparação assinada",
+        "ecx > 4 como comparação assinada",
+        "(int) ecx > 4",
+        "ecx ! = 4"
+      ],
+      "correct": 2,
+      "explanation": "A condição acima não assinada é CF = 0 e ZF = 0, o que significa que um ecx negativo é um valor não assinado muito grande, por isso o salto também cobre pontuações abaixo de 60 em grau."
+    },
+    {
+      "stage": "check",
+      "question": "Por que a construção SSA coloca uma função phi para a soma no cabeçalho do loop no total?",
+      "options": [
+        "Cada cabeçalho de loop recebe um phi para cada registo",
+        "O cabeçalho lê memória",
+        "As bandeiras registam mudanças dentro do loop",
+        "Duas definições da soma chegam ao cabeçalho: o zero inicial e a actualização dentro do corpo"
+      ],
+      "correct": 3,
+      "explanation": "A phi é colocada na fronteira de domínio de cada definição. O cabeçalho é a junção onde o bloco de configuração e o limite de volta do loop se encontram, então as duas definições que chegam precisam de um nome combinado."
+    },
+    {
+      "stage": "post",
+      "question": "A nota multiplica a pontuação de sinal extendido por 0x66666667, move o produto para a direita por 34, e adiciona o bit de sinal do produto.",
+      "options": [
+        "pontuação * 10",
+        "pontuação de 10%",
+        "um hash da pontuação",
+        "pontuação / 10 com truncation C para zero"
+      ],
+      "correct": 3,
+      "explanation": "0x66666667 é o teto de 2^34 / 10. A multiplicação e a mudança dão piso ((score / 10) para pontuações não negativas. O bit de sinal adicionado move os quotientes negativos para zero, o que é o que a divisão C faz."
+    },
+    {
+      "stage": "post",
+      "question": "Nosso elevador imprimiu int total ((int *param_1, int param_2) enquanto Ghidra imprimiu int total ((long param_1, uint param_2). Qual afirmação sobre as duas assinaturas é correta?",
+      "options": [
+        "O elevador está errado porque a fonte diz const int *",
+        "O elevador deduz um ponteiro da carga em escala de 4 bytes e Ghidra manteve a largura do registro",
+        "Ghidra está errado porque param_1 é usado como um punteiro",
+        "As duas assinaturas provam que o objeto foi compilado duas vezes ."
+      ],
+      "correct": 1,
+      "explanation": "O elevador transformou a carga de rdi + rdx * 4 em um acesso de elemento int, e Ghidra manteve um inteiro de 64 bits. Nem pode recuperar o qualificador const."
+    }
+  ]
+}
