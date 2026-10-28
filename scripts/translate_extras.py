@@ -81,6 +81,17 @@ def translate_markdown(source: str, lang: str, provider: str) -> str:
     return header + translated
 
 
+def refresh_description(source: str, published: str, lang: str, provider: str) -> str:
+    """Update old cache hits whose frontmatter description stayed English."""
+    pattern = re.compile(r"(?m)^(description:\s*)([^\n]+)$")
+    original = pattern.search(source)
+    current = pattern.search(published)
+    if not original or not current or original.group(2) != current.group(2):
+        return published
+    replacement = translate_string(original.group(2), lang, provider)
+    return published[:current.start(2)] + replacement + published[current.end(2):]
+
+
 def source_files(phase: Path):
     phase_readme = phase / "README.md"
     if phase_readme.is_file():
@@ -118,6 +129,13 @@ def main() -> None:
         digest = lessons.source_hash(source)
         dest = lessons.OUT_ROOT / args.lang / rel
         if cache.get(rel) == digest and dest.exists():
+            if source_file.suffix == ".md" and source_file.name != "README.md" and not args.dry_run:
+                published = dest.read_text(encoding="utf-8")
+                updated = refresh_description(source, published, args.lang, args.provider)
+                if updated != published:
+                    dest.write_text(updated, encoding="utf-8")
+                    translated += 1
+                    continue
             skipped += 1
             continue
         if args.dry_run:

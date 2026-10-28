@@ -38,6 +38,19 @@ class TranslateExtrasTest(unittest.TestCase):
         finally:
             extras.translate_string = original
 
+    def test_cached_artifact_updates_only_english_description(self):
+        original = extras.translate_string
+        try:
+            extras.translate_string = lambda _text, _lang, _provider: 'Descrição traduzida'
+            source = '---\nname: sample\ndescription: English description\n---\nEnglish body.\n'
+            published = source.replace('English body.', 'Corpo traduzido.')
+            result = extras.refresh_description(source, published, 'pt-BR', 'nllb')
+            self.assertIn('description: Descrição traduzida', result)
+            self.assertTrue(result.endswith('Corpo traduzido.\n'))
+            self.assertEqual(extras.refresh_description(source, result, 'pt-BR', 'nllb'), result)
+        finally:
+            extras.translate_string = original
+
     def test_technical_span_never_reaches_sentence_model(self):
         original = extras.lessons._nllb_sentence
         original_pipe = extras.lessons._nllb_pipe
