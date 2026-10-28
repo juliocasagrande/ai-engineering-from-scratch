@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Translate phase quizzes and reusable Markdown artifacts into i18n/<lang>.
+"""Translate phase README, quizzes and Markdown artifacts into i18n/<lang>.
 
 The canonical English files stay on main. This companion to translate_lessons.py
 is scoped by phase so CI can resume from a published per-phase hash cache.
@@ -65,6 +65,12 @@ def translate_markdown(source: str, lang: str, provider: str) -> str:
     # Preserve prompt/skill metadata and its machine-readable names.
     match = re.match(r"\A(---\n.*?\n---\n)([\s\S]*)\Z", source, re.S)
     header, body = match.groups() if match else ("", source)
+    if header:
+        header = re.sub(
+            r"(?m)^(description:\s*)([^\n]+)$",
+            lambda m: m.group(1) + translate_string(m.group(2), lang, provider),
+            header,
+        )
     if provider in {"echo", "nllb"}:
         translated = lessons.nllb_translate_doc(body, lessons.NLLB_CODES[lang],
                                                  translate_fn=(lambda s: s) if provider == "echo" else None)
@@ -76,6 +82,9 @@ def translate_markdown(source: str, lang: str, provider: str) -> str:
 
 
 def source_files(phase: Path):
+    phase_readme = phase / "README.md"
+    if phase_readme.is_file():
+        yield phase_readme
     for lesson in sorted(phase.iterdir()):
         if not lesson.is_dir() or not lessons.LESSON_DIR_RE.match(lesson.name):
             continue
