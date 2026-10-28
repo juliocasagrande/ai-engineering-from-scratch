@@ -1,0 +1,78 @@
+{
+  "lesson": "phase-19/28-observability-otel-traces",
+  "title": "Observabilidade: OTel GenAI Spans e Prometheus Metrics",
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "Antes de ler a lição: qual é o benefício prático de escrever os espaços do seu arame na forma de atributo OTel GenAI?",
+      "options": [
+        "Todo backend compatível com o OTel pode lê-los sem um paredeiro personalizado.",
+        "O OTel é um padrão só para Python, por isso o arnes recebe sugestões de tipo.",
+        "É exigido pela HIPAA.",
+        "Os espaços OTel comprimem melhor no disco."
+      ],
+      "correct": 0,
+      "explanation": "As convenções são um contrato com o ecossistema mais amplo."
+    },
+    {
+      "stage": "check",
+      "question": "Uma exceção é levantada dentro de um contexto SpanBuilder.span (span)",
+      "options": [
+        "O estatuto permanece UNSET e a exceção é silenciosamente engolida.",
+        "A faixa é caída para evitar a poluição do rastro.",
+        "status=ERROR, status_message inclui o tipo de exceção e a mensagem, e um evento \"excepção\" é anexado.",
+        "O espaço é renomeado em \"erro\"."
+      ],
+      "correct": 2,
+      "explanation": "O estado ERROR mais um evento de exceção corresponde à especificação OTel."
+    },
+    {
+      "stage": "check",
+      "question": "A exposição Prometheus para um histograma inclui linhas de _bucket, _sum e _count.",
+      "options": [
+        "As contagens cumulativas reduzem o erro de ponto flutuante.",
+        "Contas cumulativas permitem que o raspador compute contas por balde através da subtração sem armazenar todas as observações.",
+        "Os contagens cumulativas são o único formato que a Grafana suporta.",
+        "Não são acumulativas; a exposição da lição não é padrão."
+      ],
+      "correct": 1,
+      "explanation": "A escolha de projeto de Prometheus: um backend lê contagens cumulativas e calcula diferenças por balde."
+    },
+    {
+      "stage": "check",
+      "question": "O arnes envolve uma execução de ferramenta em um espaço. Que teclas de atributo identificam-na como uma chamada de ferramenta sob as convenções da GenAI?",
+      "options": [
+        "Operação + ferramenta. nome.",
+        "Agente.Arnês. Ferramenta + Agente.Arnês.Call.",
+        "gen_ai.system + gen_ai.request.model.",
+        "gen_ai.tool.name + gen_ai.tool.call.id."
+      ],
+      "correct": 3,
+      "explanation": "gen_ai.tool.name e gen_ai.tool.call.id são as chaves canônicas para as execuções de ferramentas nas convenções da GenAI."
+    },
+    {
+      "stage": "post",
+      "question": "Quer consultar 'qual é a latência p95 de ligações read_file'. Que artefato quer saber?",
+      "options": [
+        "O campo status_message do espaço.",
+        "O contador tools_called_total, dividido pela janela de tempo.",
+        "A ferramenta de histograma Prometheus_latency_ms{tool=\"read_file\"} raspada sobre uma janela.",
+        "Cada período de duração_ms em traces.jsonl, analisado por um script."
+      ],
+      "correct": 2,
+      "explanation": "Histogramas são a ferramenta certa para percentilhas. O contador só conta; o rastro contém intervalos crus, mas não é pré-agregado."
+    },
+    {
+      "stage": "post",
+      "question": "Um revisor pergunta por que a lição rola manualmente em vez de importar o opentelemetry-sdk. Qual é a resposta correta?",
+      "options": [
+        "O rolamento manual ensina o formato de fio; o SDK pode cair mais tarde com as mesmas chaves de atributo.",
+        "A rolar à mão é mais rápida na hora de correr.",
+        "O SDK requer uma conexão de rede no momento da importação.",
+        "O KSD não apoia as convenções da GenAI."
+      ],
+      "correct": 0,
+      "explanation": "As convenções são estáveis em todas as implementações. A versão rolada à mão existe para maior clareza; cabos de produção no SDK e reutiliza as mesmas teclas gen_ai.*"
+    }
+  ]
+}

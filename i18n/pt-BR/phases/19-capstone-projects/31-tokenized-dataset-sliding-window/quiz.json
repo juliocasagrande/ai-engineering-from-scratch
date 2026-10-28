@@ -1,0 +1,78 @@
+{
+  "lesson": "31-tokenized-dataset-sliding-window",
+  "title": "Set de dados Tokenized com janela deslizante",
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "Qual é o contrato de forma para um lote de treinamento de LM causal?",
+      "options": [
+        "(B, T) ids de entrada e (B, T) ids de destino, onde o objetivo é a entrada deslocada para a esquerda por um",
+        "(B, V) vetores de um só calor sobre o vocabulário",
+        "Mascaras de atenção (B, T, T) com as identidades de entrada na diagonal",
+        "(B, 2) pares de identificação de entrada e de rótulos"
+      ],
+      "correct": 0,
+      "explanation": "O treinamento de LM Causal lê (B, T) ids de entrada e prevê a mesma forma de ids de destino, onde o objetivo[t] = entrada[t+1]."
+    },
+    {
+      "stage": "check",
+      "question": "Quantas janelas de comprimento T + 1 cabem em um fluxo de id de comprimento N com passo S?",
+      "options": [
+        "max(0, 1 + (N - (T + 1)) // S)",
+        "N - T - S",
+        "(N - T) * S",
+        "N // (T + 1)"
+      ],
+      "correct": 0,
+      "explanation": "A primeira janela começa em 0, as janelas subsequentes começam em múltiplos de S. A última janela deve ainda cobrir ids T + 1."
+    },
+    {
+      "stage": "check",
+      "question": "Que efeito tem a redução da medida à metade no conjunto de dados?",
+      "options": [
+        "Reduz a metade o número de exemplos de formação por época",
+        "Elimina a sobreposição entre janelas consecutivas",
+        "O número de exemplares de formação por época é aproximadamente duplicado.",
+        "Não tem efeito porque as janelas nunca se sobrepõem."
+      ],
+      "correct": 2,
+      "explanation": "Um passo menor produz mais janelas sobrepostas, aumentando a contagem de exemplos e a diversidade de limites ao custo de mais computação por época."
+    },
+    {
+      "stage": "check",
+      "question": "Por que passar uma tocha explícita.Generador para o DataLoader?",
+      "options": [
+        "Faz o misturamento determinista através de corridas com a mesma semente",
+        "Elimina a necessidade de enchimento em lote",
+        "A capacitação de várias GPUs",
+        "Acelera o carregamento de dados"
+      ],
+      "correct": 0,
+      "explanation": "Um gerador sementeado reproduz o mesmo misturamento."
+    },
+    {
+      "stage": "post",
+      "question": "Por que o conjunto de dados retorna (entrada[:-1], entrada[1:]) de cada janela de tamanho T+1?",
+      "options": [
+        "Ele joga fora um ID para salvar memória",
+        "Remove um token especial da entrada",
+        "É uma peculiaridade da indexação do tensor PyTorch",
+        "Implementa a meta de mudança por uma para que a perda mede a previsão do próximo token"
+      ],
+      "correct": 3,
+      "explanation": "O objetivo na posição t é a entrada na posição t+1. Cortar a janela em [:-1] e [1:] expressa esse contrato."
+    },
+    {
+      "stage": "post",
+      "question": "Por que a lição deixa cair janelas de trás incompletas em vez de as enchê-los?",
+      "options": [
+        "O desvio mantém todos os exemplos da mesma extensão, por isso não é necessária máscara de perda",
+        "Os dados retirados são recuperados até a próxima época",
+        "A empolgação alteraria o tamanho do vocabulário .",
+        "Os tokens empilhados não são suportados pelo modelo"
+      ],
+      "correct": 0,
+      "explanation": "Todos os exemplos são exatamente T tokens longos por construção, então o lote é um tensor retangular limpo e a perda se aplica uniformemente sem uma máscara."
+    }
+  ]
+}

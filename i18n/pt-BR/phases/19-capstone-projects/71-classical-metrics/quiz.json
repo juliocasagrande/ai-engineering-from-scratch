@@ -1,0 +1,78 @@
+{
+  "lesson": "71-classical-metrics",
+  "title": "Metricas clássicas",
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "Por que o tokenizer é escolhido na camada métrica em vez da camada runner?",
+      "options": [
+        "Os tokenizers são específicos do modelo e o corredor não pode ver o modelo",
+        "O tokenizer define o que conta como um token; trocando-o muda o índice de referência",
+        "Implementações métricas são O ((n) independentemente da escolha do tokenizer",
+        "Numpy requer um tokenizer no momento da importação"
+      ],
+      "correct": 1,
+      "explanation": "O BLEU e a F1 são sensíveis à tokenização."
+    },
+    {
+      "stage": "pre",
+      "question": "O que a precisão modificada de n-gram faz que a precisão simples de n-gram não faz?",
+      "options": [
+        "Ele reduz cada número de candidatos n-gram por conta máxima visto em qualquer referência",
+        "Corre mais rápido do que a precisão normal .",
+        "Ele usa uma base de registro diferente",
+        "Retorna um valor de 0 a 100 em vez de 0 a 1"
+      ],
+      "correct": 0,
+      "explanation": "A redução do limite de referência impede que um candidato infla sua pontuação repetindo uma palavra de alta precisão repetidamente."
+    },
+    {
+      "stage": "check",
+      "question": "Por que a BLEU utiliza uma penalidade de brevidade?",
+      "options": [
+        "Candidatos longos tornam a média geométrica numericamente instável",
+        "A penalidade de brevidade substitui o limite máximo de contagem de n gramas",
+        "Compensar o suavização do aditivo-um",
+        "Sem ele, um candidato muito curto que corresponda a algumas palavras obtém uma alta precisão e um azul injusto"
+      ],
+      "correct": 3,
+      "explanation": "A precisão sozinha recompensa as saídas curtas."
+    },
+    {
+      "stage": "check",
+      "question": "Com o que é que a ROUGE-L compara?",
+      "options": [
+        "A distância entre as cadeias de candidato e de referência de Levenshtein",
+        "A precisão de 4 gramas em relação a qualquer 4 gramas de referência",
+        "A sucessão comum mais longa das sequências de tokens de candidato e de referência",
+        "O índice Jaccard de nível de caracteres"
+      ],
+      "correct": 2,
+      "explanation": "O ROUGE-L utiliza o comprimento do LCS, calcula a precisão (LCS/cand-len) e a recuperação (LCS/ref-len) combinada com o F-beta."
+    },
+    {
+      "stage": "check",
+      "question": "Para que caso a F1 de nível de token retorna 1.0?",
+      "options": [
+        "Quando a previsão e o alvo compartilham exatamente um token",
+        "Quando a previsão é um superconjunto do alvo com ruído extra",
+        "Quando a previsão é vazia e o alvo não é vazio",
+        "Quando a previsão e o alvo são ambos vazios"
+      ],
+      "correct": 3,
+      "explanation": "Por convenção, o vazio é um jogo perfeito. Qualquer alvo não vazio com uma previsão vazia é 0.0."
+    },
+    {
+      "stage": "post",
+      "question": "Por que enviar em metric_name em vez de categoria na função de pontuação?",
+      "options": [
+        "O corredor não tem acesso ao campo de categoria",
+        "Permite que a mesma categoria use métricas diferentes em todas as tarefas e mantém o despachador métrico-agnóstico",
+        "Categoria é mais difícil de validar do que metric_name",
+        "Metric_name é menor que categoria"
+      ],
+      "correct": 1,
+      "explanation": "A tarefa de resumo pode usar rouge_l num registro e bleu_4 noutro; o despachador não precisa se importar."
+    }
+  ]
+}

@@ -1,0 +1,78 @@
+{
+  "lesson": "49-lm-eval-harness",
+  "title": "Arnesamento de Avaliação de Modelos de Língua",
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "Quais quatro campos definem um exemplo de tarefa no formato JSONL do arnes?",
+      "options": [
+        "id, prompt, metas, métricas e um opcional extras ditar para dados laterais as necessidades métricas",
+        "nome, pontuação, carga útil, fornecedor",
+        "Peso e preconceito",
+        "entrada e saída"
+      ],
+      "correct": 0,
+      "explanation": "A linha JSONL é o contrato. O campo extras permite que a métrica code_exec passe em pares sem contaminar o prompt."
+    },
+    {
+      "stage": "pre",
+      "question": "Por que a assinatura da função métrica (previsão, metas, extras) -> flutua?",
+      "options": [
+        "Retorna um número inteiro",
+        "Precisa do modelo de objeto.",
+        "É a menor assinatura que lida com a combinação de cadeia de alvo único, a combinação de cores de referência múltipla, e o code_exec com dados laterais, mantendo as pontuações em uma faixa comparável [0,0, 1.0]",
+        "Seleção aleatória"
+      ],
+      "correct": 2,
+      "explanation": "Os floats em [0,1] significam por tarefa e as pontuações gerais são médias interpretáveis."
+    },
+    {
+      "stage": "check",
+      "question": "Como a métrica code_exec resiste a previsões maliciosas?",
+      "options": [
+        "Ele usa recipientes de caixa de areia",
+        "Ele corre a previsão com um despojado__builtins__O espaço de nome expõe apenas alguns nomes seguros; as declarações de importação não são efetivas porque o importador não está no âmbito de aplicação",
+        "Não é",
+        "Rejeita qualquer coisa que contenha def"
+      ],
+      "correct": 1,
+      "explanation": "As tiras de espaço de nomes seguros da lição são construídas em um punhado de nomes."
+    },
+    {
+      "stage": "check",
+      "question": "O que é que a abstracção do adaptador de modelo lhe compra?",
+      "options": [
+        "É o único código específico do modelo no arnes; troque o adaptador para apontar para um novo fornecedor, e as tarefas, métricas, corredor e formato de tabela de classificação permanecem os mesmos",
+        "É necessário por tocha",
+        "Nada .",
+        "Faz o modelo mais rápido."
+      ],
+      "correct": 0,
+      "explanation": "O ToyAdapter na lição é um padrão determinista. Um HttpAdapter para um fornecedor real tem a mesma superfície de gerar ((prompts) -> lista[str]."
+    },
+    {
+      "stage": "check",
+      "question": "Por que o JSON do rankingboard carrega uma cadeia de esquema como o rankingboard.v1?",
+      "options": [
+        "Então, futuras mudanças de formato vão bater na versão e os painéis de controle podem enviar em vez de quebrar silenciosamente",
+        "Comprime o arquivo",
+        "Para SEO",
+        "É aleatório."
+      ],
+      "correct": 0,
+      "explanation": "O mesmo truque que a carga útil do ponto de controlo da lição 47."
+    },
+    {
+      "stage": "post",
+      "question": "Ao ler um ranking, como é calculado o total_score, e o que você deve observar ao comparar duas corridas?",
+      "options": [
+        "Amostra aleatória",
+        "soma das contagens corretas",
+        "Mediano de pontuações por tarefa (cada uma em [0,1]); quando comparada, também diferem as previsões por exemplo para tarefas cujas pontuações se mudaram, porque a pontuação sozinha oculta quais exemplos regressaram",
+        "Melhor pontuação de tarefa"
+      ],
+      "correct": 2,
+      "explanation": "Mean of per-task means weights every task equally. Use --include-per-example to keep the prediction-level evidence next to the score so regressions are visible."
+    }
+  ]
+}

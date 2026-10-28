@@ -1,0 +1,90 @@
+{
+  "lesson": "15-constitutional-safety-harness",
+  "title": "Capstone 15  Arnes de Segurança Constitucional + Range Red-Team",
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "O que significa segurança em camadas nesta pedra angular?",
+      "options": [
+        "Defesa em profundidade através de desinfecção de entrada, trilhas de política, classificador de entrada, modelo, filtro de saída e nível HITL",
+        "Exercício de um único classificador forte na entrada",
+        "Regex baseado em regras únicas sobre as saídas",
+        "Revisão manual de cada resposta"
+      ],
+      "correct": 0,
+      "explanation": ""
+    },
+    {
+      "stage": "pre",
+      "question": "Qual classificador lida com a cobertura multilíngue em aproximadamente 132 línguas?",
+      "options": [
+        "Guarda de Lama 4",
+        "Segurança do conteúdo do Nemotron 3",
+        "- X-Guard",
+        "ShieldGemma-2"
+      ],
+      "correct": 2,
+      "explanation": ""
+    },
+    {
+      "stage": "check",
+      "question": "Por que é medida a recusa excessiva num sistema benigno como o XSTest?",
+      "options": [
+        "Para rastrear blocos falsos positivos para que o modelo permaneça útil enquanto melhora a inofensividade",
+        "Certificação do quadro de proteção",
+        "Para substituir a pontuação da equipa vermelha",
+        "Para benchmarking de token de passagem"
+      ],
+      "correct": 0,
+      "explanation": ""
+    },
+    {
+      "stage": "check",
+      "question": "Qual é o ciclo constitucional de autocrítica nesta pedra angular?",
+      "options": [
+        "Um modelo de recompensa RLHF treinado a partir do zero",
+        "O Critic LLM marca os projetos contra uma constituição escrita, solicita o modelo reescreve as saídas objecionadas e o SFT corre nos pares melhorados",
+        "Uma única passagem avançada através da Guarda de Llama 4",
+        "Um re-ranqueador sobre candidato jailbreak prompts"
+      ],
+      "correct": 1,
+      "explanation": ""
+    },
+    {
+      "stage": "check",
+      "question": "Como são marcadas as fuga de prisão bem-sucedidas em termos de severidade nas descobertas?",
+      "options": [
+        "Por meio do modelo que produziu a resposta",
+        "Usando CVSS 4.0 com vetor de ataque, complexidade e impacto, além de uma linha de tempo de divulgação",
+        "Por contagem de símbolos crus do pedido",
+        "Em uma escala de 1 a 10 sintonizada à mão escolhida pelo operador"
+      ],
+      "correct": 1,
+      "explanation": ""
+    },
+    {
+      "stage": "post",
+      "question": "Que seis famílias de ataque é que a equipa vermelha dirige?",
+      "options": [
+        "PSI, KL, MMD, KS, JS e Wasserstein",
+        "PAIR, TAP, GCG, codificação (ASCII/base64/rot13), persona multi-turn e comutador de código multilingue",
+        "Força bruta, dicionário, replay, MITM, phishing e CSRF",
+        "A Comissão deve apresentar ao Parlamento Europeu e ao Conselho as suas propostas de decisão."
+      ],
+      "correct": 1,
+      "explanation": ""
+    },
+    {
+      "stage": "post",
+      "question": "Por que a automação de alcance (cron + alertas) faz parte da rubrica?",
+      "options": [
+        "Cron é a única maneira de ligar para OPA",
+        "É necessária uma automação para desativar a Guarda Llama 4",
+        "Exigem-se explícitamente manuais de execução",
+        "Pesquisas continuas programadas capturam a deriva na taxa de sucesso do ataque e regressões de recusa excessiva ao longo do tempo"
+      ],
+      "correct": 3,
+      "explanation": ""
+    }
+  ]
+}

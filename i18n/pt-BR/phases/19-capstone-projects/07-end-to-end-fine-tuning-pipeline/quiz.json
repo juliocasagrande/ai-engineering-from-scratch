@@ -1,0 +1,90 @@
+{
+  "lesson": "07-end-to-end-fine-tuning-pipeline",
+  "title": "Capstone 07  Pipeline de ajuste fino de ponta a ponta (Dados para SFT para DPO para servido)",
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "O que é controlado pelo sistema de proteção contra contaminação durante a preparação dos dados?",
+      "options": [
+        "O tokenizer deriva entre as fases SFT e DPO",
+        "Fugas de testes de referências públicas, como MMLU-Pro e MT-Bench-v2, para dados de formação",
+        "Descoincidências entre treinamento e serviço de motorista de GPU",
+        "GGUF versão distorção através llama.cpp construções"
+      ],
+      "correct": 1,
+      "explanation": ""
+    },
+    {
+      "stage": "pre",
+      "question": "Por que a oleoduto consiste em SFT e depois em DPO (ou GRPO) em vez de DPO sozinho?",
+      "options": [
+        "O DPO não pode funcionar em pesos quantizados",
+        "Axolotl não implementa DPO",
+        "O SFT estabelece o comportamento do domínio em conclusões rotuladas, enquanto o DPO ou o GRPO alinha o modelo com pares de preferências ou recompensas verificáveis",
+        "O DPO requer uma arquitetura de modelo base separada"
+      ],
+      "correct": 2,
+      "explanation": ""
+    },
+    {
+      "stage": "check",
+      "question": "O que contribui a EAGLE-3 para a fase de serviço do vLLM?",
+      "options": [
+        "Uma política de APA para as chamadas de ferramentas",
+        "Um passo automático de dedupção de dados",
+        "Uma nova camada de caching de prompt",
+        "Capítulos de rascunhos que preveem N tokens para a frente; o alvo verifica em uma passagem para 2-3x de throughput"
+      ],
+      "correct": 3,
+      "explanation": ""
+    },
+    {
+      "stage": "check",
+      "question": "Que métrica relata o quão bem um projeto de descodificação especulativa alinha-se com o modelo alvo?",
+      "options": [
+        "Taxa de aceitação",
+        "Perplexidade",
+        "IPS",
+        "Delta de cobertura"
+      ],
+      "correct": 0,
+      "explanation": ""
+    },
+    {
+      "stage": "check",
+      "question": "Que trio de quantos a navega para flexibilidade de implantação?",
+      "options": [
+        "GPTQ-INT4-Marlin, AWQ-INT4 e GGUF-Q4_K_M",
+        "FP32, FP16, BF16",
+        "INT8 apenas em três horários de execução",
+        "O CO2 é o CO2 que é o CO2 que é o CO2 que é o CO2 que é o CO2 que é o CO2 que é o CO2 que é o CO2 que é o CO2 que é o CO2 que é o CO2 que é o CO2 que é o CO2 que é o CO2 que é o CO2 que é o CO2 que é o CO2 que é o CO2 que é o CO2 que é o CO2 que é o CO2 que é o CO2 que é o CO2 que é o CO2 que é o CO2 que é o CO2 que é o CO2 que é o CO2 que é o CO2 que é o CO2 que é o CO2 que é o CO2 que é o CO2 que é o CO2 que é o CO2 que é o CO2 que é o CO2 que é o CO2 que é o CO2 que é o CO2 que é o CO2 que é o CO2 que é o CO2 que é o CO2 que é o CO2 que é o CO2 que é o CO2 que é o CO2 que é o CO2 que é o CO2 que é o CO2"
+      ],
+      "correct": 0,
+      "explanation": ""
+    },
+    {
+      "stage": "post",
+      "question": "Que convenção-quadro segue o modelo de cartão 2026 nesta pedra angular?",
+      "options": [
+        "EmbracingFace YAML apenas material frontal",
+        "Formatos de cartão modelo da OpenAI",
+        "Fichas de dados para conjuntos de dados",
+        "Modelo de quadro de abertura (MOF) 2026 modelo que abrange dados, formação, avaliação, segurança, licença e reprodutividade"
+      ],
+      "correct": 3,
+      "explanation": ""
+    },
+    {
+      "stage": "post",
+      "question": "Que métrica HPA é usada para auto-escala as réplicas de servir?",
+      "options": [
+        "temperatura da GPU",
+        "Utilização da CPU",
+        "Tempo de espera na fila",
+        "Bytes de saída de rede"
+      ],
+      "correct": 2,
+      "explanation": ""
+    }
+  ]
+}

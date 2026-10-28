@@ -1,0 +1,78 @@
+{
+  "lesson": "32-token-positional-embeddings",
+  "title": "Marcas e inserções positionais",
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "Que forma produz a etapa de incorporação a partir de ids (B, T)?",
+      "options": [
+        "(B, T, D) onde D é a dimensão do modelo",
+        "(B, V)",
+        "(B, T, V) onde V é o tamanho do vocabulário",
+        "(B, T)"
+      ],
+      "correct": 0,
+      "explanation": "Cada id é mapeado para um vetor D-dimensional. O lote mantém B e T e ganha uma nova dimensão de característica D."
+    },
+    {
+      "stage": "check",
+      "question": "Como são compostas as inscrições simbólicas e posicionais nesta lição?",
+      "options": [
+        "Por uma projeção linear extra",
+        "Tomando o máximo de elementos",
+        "Por soma elementar, transmitiendo o vetor de posição através do lote",
+        "Por concatenação ao longo do eixo de características"
+      ],
+      "correct": 2,
+      "explanation": "Os dois tensores de forma (B, T, D) e (T, D) são somados."
+    },
+    {
+      "stage": "check",
+      "question": "Quantos parâmetros apropriados contribui um inserimento posicional sinusoidal?",
+      "options": [
+        "max_context_length * d_model",
+        "0",
+        "max_context_length",
+        "Modelo"
+      ],
+      "correct": 1,
+      "explanation": "A tabela sinusoidal é calculada a partir de uma fórmula e armazenada como um amortecedor."
+    },
+    {
+      "stage": "check",
+      "question": "Qual codificação posicional não pode aceitar uma sequência mais longa do que o seu limite de construção?",
+      "options": [
+        "Embarcação sinusoidal posicional",
+        "Nem um nem outro.",
+        "Ambos os dois .",
+        "Embarcação posicional aprendida"
+      ],
+      "correct": 2,
+      "explanation": "Nesta implementação da lição, ambas as classes impõem max_context_length no tempo adiante. Aprendizado é inerentemente limitado a tabela; sinusidal aqui também é limitado porque usa uma tabela pré-construída."
+    },
+    {
+      "stage": "post",
+      "question": "Por que o esquema sinusoidal usa tanto o pecado como o cos em pares de características adjacentes?",
+      "options": [
+        "Assim que o vetor na posição p+k é uma função linear do vetor na posição p",
+        "Porque o cos por si só não pode ser propagado de volta através",
+        "Porque o pecado sozinho não é periódico",
+        "Porque duplica a contagem de parâmetros"
+      ],
+      "correct": 0,
+      "explanation": "A combinação de sin e cos no mesmo comprimento de onda significa que uma mudança de posição por k é uma rotação, que é um mapa linear."
+    },
+    {
+      "stage": "post",
+      "question": "Por que a incorporação para trás passa apenas as linhas de atualização da tabela de tokens que apareceram no lote?",
+      "options": [
+        "As filas não tocadas na passagem para a frente produzem gradiente zero pela regra da cadeia",
+        "O optimizador salta as fileiras que não viu",
+        "PyTorch só armazena gradientes para entradas não-zero",
+        "Os tokens são armazenados em uma estrutura de dados escassa"
+      ],
+      "correct": 0,
+      "explanation": "Uma linha que não contribuiu para nenhuma saída tem derivada zero para a perda, então seu gradiente é zero para esse passo."
+    }
+  ]
+}

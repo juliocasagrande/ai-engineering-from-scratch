@@ -1,0 +1,78 @@
+{
+  "lesson": "37-loading-pretrained-weights",
+  "title": "Carregando Pesos Pré-Ensentados",
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "Porque é que o carregador precisa de um mapa de nome?",
+      "options": [
+        "Pesos GPT-2 publicados usam nomes como wte, wpe, h.N.attn.c_attn; o modelo local usa tok_embed, pos_embed, blocos.N.attn.qkv; o carregador traduz um para o outro",
+        "Os arquivos dos safetensores estão encriptados",
+        "Tensores pré-treinados e parâmetros locais têm o mesmo nome",
+        "A tocha requer isso."
+      ],
+      "correct": 0,
+      "explanation": "As duas convenções de nomeação são histórias diferentes; o mapa é um ditado literal expandido por camada."
+    },
+    {
+      "stage": "check",
+      "question": "O que é o conv1d transpose, e que tensores precisam dele?",
+      "options": [
+        "Todos os tensores de peso",
+        "GPT-2 publicado armazena c_attn, c_proj e c_fc pesos em tensorflow conv1d layout, que é a transposição do que nn.Linear.weight espera; o carregador chama .t() sobre aqueles durante a atribuição",
+        "Só a incorporação",
+        "Apenas as escalas LayerNorm"
+      ],
+      "correct": 1,
+      "explanation": "Três sufixos precisam ser transpostos; os preconceitos e as LayerNorms já estão corretamente moldados."
+    },
+    {
+      "stage": "check",
+      "question": "Porque é que a cabeça do LM não está no arquivo dos seguranças?",
+      "options": [
+        "É muito grande .",
+        "Está carregado de um arquivo separado",
+        "É calculado no tempo de execução a partir de logits",
+        "Gravidade de ligação: a cabeça LM compartilha armazenamento com a embedding token (wte), de modo que o carregamento wte e aliasing lm_head.weight = tok_embed.weight após a carga reconstruem a cabeça"
+      ],
+      "correct": 3,
+      "explanation": "A configuração de lm_head.weight = tok_embed.weight após o wte lands restaura o alias; copiando, em vez disso, duplica a contagem de parâmetros."
+    },
+    {
+      "stage": "check",
+      "question": "O que faz o carregador em caso de desajuste de forma?",
+      "options": [
+        "Pedaçou o tensor menor",
+        "Acontece o processo",
+        "Regista a desajuste no LoadReport.shape_mismatch e recusa-se a atribuir, deixando o parâmetro local intacto",
+        "Truncates o tensor maior"
+      ],
+      "correct": 2,
+      "explanation": "Os modelos com metade de carga são máquinas silenciosas; recusar a atribuição mantém o relatório honesto."
+    },
+    {
+      "stage": "post",
+      "question": "Porque é que o material da demonstração não é um download real do GPT-2?",
+      "options": [
+        "Arquivos reais não estão no formato de safetensores",
+        "Pesos reais são criptografados",
+        "A demonstração deve ser executada offline e rapidamente; o estúdio usa a convenção de nomeação pré-treinada exata para que o caminho do código do carregador seja idêntico, e trocar em um arquivo real não muda nada sobre o carregador",
+        "Os tensores de segurança não podem armazenar tensores grandes"
+      ],
+      "correct": 2,
+      "explanation": "O mesmo caminho de código, carga útil menor; o carregador funciona em qualquer um."
+    },
+    {
+      "stage": "post",
+      "question": "Por que gerar uma amostra antes e depois da carga?",
+      "options": [
+        "Para medir a velocidade de inferência",
+        "Para definir a semente aleatória",
+        "Se as amostras de pós-carga forem idênticas às amostras de pré-carga, a carga não alterou o modelo, o que significa que o mapeamento não obteve todos os tensores",
+        "Para aquecer o cache da GPU"
+      ],
+      "correct": 2,
+      "explanation": "A geração de sanidade é a porta mais barata: uma impressão digital de amostra que não muda expõe uma carga quebrada que o resumo do LoadReport não captaria por si só."
+    }
+  ]
+}

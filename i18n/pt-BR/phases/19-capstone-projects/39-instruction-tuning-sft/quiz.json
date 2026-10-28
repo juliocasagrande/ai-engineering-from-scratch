@@ -1,0 +1,78 @@
+{
+  "lesson": "phase-19/39-instruction-tuning-sft",
+  "title": "A sintonização das instruções por meio de sintonização supervisionada",
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "Antes de ler: se um modelo base de baunilha recebe o sinal \"Qual é a capital da França?\" e \"E que dizer da Itália e da Espanha também?\"",
+      "options": [
+        "O modelo está a perder o facto de Paris.",
+        "O modelo tem o comportamento do modelo de linguagem, mas não tem contrato de formato que siga instruções.",
+        "O modelo precisa de um vocabulário maior.",
+        "O modelo base deve ser reiniciado e treinado novamente."
+      ],
+      "correct": 1,
+      "explanation": "O modelo base pode estender o texto, mas nunca foi demonstrado que uma instrução espera uma resposta correspondente."
+    },
+    {
+      "stage": "check",
+      "question": "A função collate define rótulos[i] = -100 nas posições de instrução e nas posições de empolgação.",
+      "options": [
+        "PyTorch normaliza por comprimento de sequência para que as posições mascaradas se cancelem.",
+        "ignor_index=-100 é homenageado pela F.cross_entropy: essas posições contribuem com perda zero e gradiente zero.",
+        "A entropia cruzada deixa cair silenciosamente qualquer alvo negativo.",
+        "A saída do modelo nessas posições é definida automaticamente em NaN."
+      ],
+      "correct": 1,
+      "explanation": "ignor_index é um argumento documentado da F.cross_entropy. Alvos iguais a ele contribuem com zero para a perda e zero para os gradientes. -100 é o valor padrão convencional."
+    },
+    {
+      "stage": "check",
+      "question": "Por que ?`shifted_loss`Fragmento`logits[:, :-1, :]`E ...`labels[:, 1:]`Em vez de usá-los nas mesmas posições?",
+      "options": [
+        "É uma otimização opcional; o uso de rótulos de mesma posição também funciona.",
+        "Excluir automaticamente a posição final de engarrafamento.",
+        "Porque o modelo na posição i prevê o token na posição i+1 sob o objetivo de token seguinte causal.",
+        "Para fazer os tensores do mesmo tamanho após o passo de collage."
+      ],
+      "correct": 2,
+      "explanation": "O LM Causal treina a posição i para prever o token i + 1. A fatia alinha a previsão na posição i com o rótulo de ouro na posição i + 1, que é o objetivo padrão do next-token."
+    },
+    {
+      "stage": "check",
+      "question": "Você treina sem a máscara: os rótulos são iguais a input_ids com não -100. O modelo treina mas a correspondência exata na resposta é pior do que com a máscara. A causa mais provável?",
+      "options": [
+        "O modelo não pode aprender o símbolo de fronteira sem a máscara.",
+        "O optimista supera os tokens de resposta.",
+        "A entropia cruzada é instável quando a perda inclui especials.",
+        "A maior parte do sinal de gradiente vai para prever a instrução (a maior região mascarada estava retendo-o)."
+      ],
+      "correct": 3,
+      "explanation": "Quando as posições de instrução contam para a perda, elas dominam o gradiente porque geralmente há mais deles do que os tokens de resposta. A taxa de aprendizagem eficaz da parte que você se importa (a resposta) cai, e o modelo gasta capacidade para reconstruir as entradas que o usuário sempre fornece."
+    },
+    {
+      "stage": "post",
+      "question": "O que é que é o que é o que é o que é o que é o que é o que é o que é o que é o que é o que é o que é o que é o que é o que é o que é o que é o que é o que é o que é o que é o que é o que é o que é o que é o que é o que é o que é o que é o que é o que é o que é o que é o que é o que é o que é o que é o que é o que é o que é o que é o que é o que é o que é o que é o que é o que é o que é o que é o que é o que é o que é o que é o que é o que é o que é o que é o que é o que é o que é o que é o é?",
+      "options": [
+        "Duração média da sequência.",
+        "Entropia cruzada da referência no modelo.",
+        "O nível de tokens F1 em relação à referência, que os créditos se sobrepõem mesmo quando não são idênticos a caracteres.",
+        "Perda no set de espera."
+      ],
+      "correct": 2,
+      "explanation": "O nível de tokens F1 (contado entre tokens de previsão e de referência após a normalização) acredita que o modelo consegue obter a maior parte da resposta correta mesmo quando a forma de superfície é diferente."
+    },
+    {
+      "stage": "post",
+      "question": "Se você quiser usar o modelo SFT em um chatbot que suporta diálogo de várias voltas, qual é a mudança mínima necessária para os dados e a máscara?",
+      "options": [
+        "Nenhum: os modelos SFT sempre suportam a saída de várias viradas.",
+        "Adicionar um marcador de USUÁRIO e de ASISTENTE por turno, virar concatenados e mascarar tudo, exceto o virar de assistente que está sendo treinado.",
+        "Passe a perda para erro médio quadrado.",
+        "Aumentar o vocabulário."
+      ],
+      "correct": 1,
+      "explanation": "A SFT de várias viradas geraliza o modelo de uma única volta. Cada virada recebe um marcador de papel. A máscara é a união de todas as posições não-assistentes mais acolchamento. O objetivo do treinamento é inalterado."
+    }
+  ]
+}

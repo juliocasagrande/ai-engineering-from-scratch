@@ -1,0 +1,90 @@
+{
+  "lesson": "17-personal-ai-tutor",
+  "title": "Capstone 17  Personal AI Tutor (Adaptivo, Multimodal, com Memória)",
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "O que faz uma política de tutor sócrata quando um aluno pergunta a resposta direta?",
+      "options": [
+        "Substitui para um nó conceitual diferente",
+        "Regista o pedido e fica em silêncio",
+        "Faz uma pergunta que leva o aluno à resposta",
+        "Dá a resposta imediatamente e segue em frente"
+      ],
+      "correct": 2,
+      "explanation": ""
+    },
+    {
+      "stage": "pre",
+      "question": "Que estrutura codifica o gráfico do currículo?",
+      "options": [
+        "Apenas o nó mais recentemente estudado",
+        "Uma mistura aleatória de tópicos",
+        "Um gráfico direcionado de conceitos com bordas pré-requisitas, anexado ao conteúdo do RER",
+        "Lista plana de conceitos não relacionados"
+      ],
+      "correct": 2,
+      "explanation": ""
+    },
+    {
+      "stage": "check",
+      "question": "O que o modelo de aprendiz actualiza após cada interação?",
+      "options": [
+        "O esquema gráfico do currículo",
+        "Pesos do Mestrado em Direito Fundamental",
+        "Probabilidade de domínio por conceito através do rastreamento do conhecimento bayesiano ou de uma variante similar",
+        "A política de retenção da COPPA"
+      ],
+      "correct": 2,
+      "explanation": ""
+    },
+    {
+      "stage": "check",
+      "question": "Como é que a memória é dividida entre as lojas episódicas e semânticas?",
+      "options": [
+        "Episódico é para o pai; semântico é para o aluno",
+        "Episódico mantém todas as interações; semântica mantém erros e preferências compactadas promovidas a partir episódico",
+        "Episódico contém embutidos; semântico contém áudio bruto",
+        "São duplicados dos mesmos dados."
+      ],
+      "correct": 1,
+      "explanation": ""
+    },
+    {
+      "stage": "check",
+      "question": "Que restrição modela a retenção de memória para os alunos do K-12?",
+      "options": [
+        "A retenção conforme a COPPA com exclusão automática após uma janela definida e acesso dos pais",
+        "Reterção com base na extensão do contexto do modelo",
+        "Reter permanentemente sem exclusão",
+        "Apenas o RGPD"
+      ],
+      "correct": 0,
+      "explanation": ""
+    },
+    {
+      "stage": "post",
+      "question": "Qual é a estrutura do estudo de eficácia utilizado para a obtenção do resultado?",
+      "options": [
+        "Uma única sessão de uma hora com um aprendiz",
+        "Pesquisa anônima na internet",
+        "Um teste de AB de 30 segundos",
+        "Pre-test e pós-test durante duas semanas com 10 alunos, comparados com uma coorte de base não adaptativa"
+      ],
+      "correct": 3,
+      "explanation": ""
+    },
+    {
+      "stage": "post",
+      "question": "Que vias de entrada multimodal expõe o tutor ao aluno?",
+      "options": [
+        "Fotografia apenas através de um modelo OCR personalizado",
+        "Texto digitado, voz via LiveKit + Whisper e matemática de fotos via dots.ocr ou PaliGemma 2",
+        "Apenas texto",
+        "Somente voz sem texto ou foto"
+      ],
+      "correct": 1,
+      "explanation": ""
+    }
+  ]
+}

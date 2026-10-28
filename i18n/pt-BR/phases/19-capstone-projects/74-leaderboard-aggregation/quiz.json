@@ -1,0 +1,78 @@
+{
+  "lesson": "74-leaderboard-aggregation",
+  "title": "Agregação do quadro de desempenho",
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "Por que o agregador exige que cada pontuação de entrada seja em [0, 1]?",
+      "options": [
+        "Sem uma escala comum, uma única métrica com um intervalo de 0-100 domina a média por modelo",
+        "A Numpy precisa disso.",
+        "É o limite de lixo para a ECE",
+        "A renderização de marcação espera dois decimais"
+      ],
+      "correct": 0,
+      "explanation": "Se a taxa de passagem for em [0,1] e o BLEU é em [0,100], este último enchém a média."
+    },
+    {
+      "stage": "pre",
+      "question": "Que informação significa esconder a pontuação que expõe a taxa de ganho?",
+      "options": [
+        "O intervalo de arranque",
+        "Se o modelo está bem calibrado",
+        "Os ganhos por tarefa resistem a valores anormais e mudanças de escala; a média é sensível a ambos",
+        "Número de tarefas concluídas"
+      ],
+      "correct": 2,
+      "explanation": "A taxa de vitória conta as vitórias tarefa por tarefa. Um modelo pode ter uma média alta de uma tarefa fácil e ainda perder a maioria das comparações em pares."
+    },
+    {
+      "stage": "check",
+      "question": "Como o bootstrap_mean_ci estima o intervalo de confiança?",
+      "options": [
+        "Assumindo uma distribuição normal na média",
+        "Re-sampulando as pontuações da tarefa com substituição, calculaindo a média sobre cada amostra, e depois tomando os percentil alfa/2 e 1 - alfa/2",
+        "Computação do desvio padrão analítica",
+        "Ao ligar para scipy.stats.bootstrap"
+      ],
+      "correct": 1,
+      "explanation": "Não-parametral percentil bootstrap nas pontuações por tarefa; nenhuma suposição distributiva, nenhuma scipy."
+    },
+    {
+      "stage": "check",
+      "question": "Quando é que o CI de diferença de pares é relatado `significant`- Não .",
+      "options": [
+        "Quando ambos os modelos têm mais de trinta tarefas",
+        "Quando o CI não contém zero",
+        "Quando as taxas de vitória são desiguais",
+        "Quando a diferença média é maior que 0,1"
+      ],
+      "correct": 1,
+      "explanation": "Uma IC que exclui estritamente o zero significa que é improvável que a diferença seja zero no nível escolhido; essa é a definição operacional que a lição utiliza."
+    },
+    {
+      "stage": "check",
+      "question": "Por que a banda de arranque em pares é emparelhada em vez de independente?",
+      "options": [
+        "O bootstrap emparelhado respeita que a mesma tarefa alimenta ambos os modelos; as diferenças são calculadas tarefa a tarefa antes de re-samplar",
+        "O bootstrap emparelhado é o único que suporta o numpy",
+        "O arranque em par corre mais rápido.",
+        "O bootstrap independente é ilegal em Python"
+      ],
+      "correct": 0,
+      "explanation": "A banda de arranque emparelhada reduz o ruído: nós amostramos sobre tarefas, não sobre modelos, então a comparação é sobre o mesmo conjunto de tarefas em cada iteração."
+    },
+    {
+      "stage": "post",
+      "question": "Por que o agregador de devolução por categoria significa ao lado do número de título?",
+      "options": [
+        "A média de títulos pode mascarar a fraqueza de nível de categoria (bom em geral, ruim no código); por categoria expõe que",
+        "Por categoria significa correr mais rápido que a média geral",
+        "É exigido pelo JSON Schema",
+        "A tradução de marcação requer isso"
+      ],
+      "correct": 0,
+      "explanation": "Um modelo pode ganhar no agregado, sendo bom em todos os lugares ou dominando uma categoria."
+    }
+  ]
+}

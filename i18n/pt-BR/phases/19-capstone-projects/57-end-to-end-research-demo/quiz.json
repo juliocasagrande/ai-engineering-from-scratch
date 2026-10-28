@@ -1,0 +1,78 @@
+{
+  "lesson": "57-end-to-end-research-demo",
+  "title": "Demo de pesquisa de ponta a ponta",
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "Qual é o trabalho da demonstração nesta lição?",
+      "options": [
+        "Para comparar o cronograma com uma linha de base",
+        "Para chamar um modelo de linguagem real em cada ramo",
+        "Substituir as lições anteriores por um novo quadro único",
+        "Para compor as primitivas das lições anteriores através de importações simples Python"
+      ],
+      "correct": 3,
+      "explanation": "A demonstração é um teste de composição. Cada etapa existe em sua própria lição. A demonstração importa-las e envia o relatório."
+    },
+    {
+      "stage": "pre",
+      "question": "Por que a lição carrega lições anteriores através do importlib em vez de uma importância normal de pacotes?",
+      "options": [
+        "Porque o importlib é mais rápido",
+        "Porque cada lição anterior é um código / pasta independente, não um pacote instalado; importlib carrega-os por caminho de arquivo",
+        "Porque o Asyncio requer importlib",
+        "Porque as aulas compartilham um nome de módulo e colisiam"
+      ],
+      "correct": 1,
+      "explanation": "As lições não são pacotes instalados. Cada um envia um main.py dentro de seu próprio código/pasta. importlib.util.spec_from_file_location carrega-as por caminho sem contaminar o espaço de nomes do módulo global."
+    },
+    {
+      "stage": "check",
+      "question": "Como o selecionador de melhor resultado decide entre ramos quando mais de um desencadeou um papel?",
+      "options": [
+        "Ele escolhe o ramo com a maior recompensa média, quebrando os laços alfabeticamente por ID do ramo",
+        "Ele escolhe o ramo com mais experiências executadas",
+        "Ele escolhe ao acaso para ser justo .",
+        "Ele escolhe o primeiro ramo desencadeado"
+      ],
+      "correct": 0,
+      "explanation": "A média mais alta ganha, as ligações quebram na identificação do ramo, então a demonstração é determinista."
+    },
+    {
+      "stage": "check",
+      "question": "Que erro o selecionador faz quando o programador relata zero desencadeamentos de papel?",
+      "options": [
+        "ValorErro",
+        "Não retorna nenhum.",
+        "PapelValidaçãoErro",
+        "NoTriggerError, que abrevia a demonstração antes que o escritor execute"
+      ],
+      "correct": 3,
+      "explanation": "NoTriggerError é o modo de falha digitado. Returnar Nenhum deixaria o escritor executar em uma entrada malformada e quebrar mais tarde com um erro menos acionável."
+    },
+    {
+      "stage": "post",
+      "question": "Porque é que a demonstração é executada duas vezes com a mesma semente no teste de determinismo?",
+      "options": [
+        "Para apanhar uma fuga de memória",
+        "Para afirmar que o ramo escolhido, recompensa e papel secção ids são idênticos em todas as corridas",
+        "Para fazer o asíncio duas vezes",
+        "Para provar que o cronista é justo"
+      ],
+      "correct": 1,
+      "explanation": "O determinismo faz parte do contrato, duas corridas com a mesma semente devem produzir os mesmos artefatos."
+    },
+    {
+      "stage": "post",
+      "question": "O que contém o relatório de demonstração após uma corrida bem sucedida?",
+      "options": [
+        "Apenas o arquivo final do LaTeX",
+        "Apenas a contagem do experimento e uma cadeia de status",
+        "Um modelo de solicitação e registro de conclusão",
+        "Scheduler_report, best_branch, best_reward, critic_resultado, paper_manifest e stop_reason"
+      ],
+      "correct": 3,
+      "explanation": "A produção de cada estágio é preservada. O relatório é uma composição de saídas upstream, não um resumo transformado."
+    }
+  ]
+}

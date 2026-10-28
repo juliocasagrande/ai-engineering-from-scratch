@@ -1,0 +1,78 @@
+{
+  "lesson": "45-gradient-clipping-amp",
+  "title": "Cortar gradualmente e precisão mista",
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "Que problema resolve o corte global de gradiente L2?",
+      "options": [
+        "Um único lote ruim pode aumentar a norma de gradiente por ordens de magnitude; cortar limita o pior passo de otimização para que um lote não possa redefinir horas de aprendizagem",
+        "Drift de vocabulário",
+        "Treinamento lento",
+        "Restarto aleatório"
+      ],
+      "correct": 0,
+      "explanation": "O corte é o cinto de segurança que impede que um lote barulhento quebre a curva de perda."
+    },
+    {
+      "stage": "check",
+      "question": "Qual é a ordem correta das operações GradScaler em um passo?",
+      "options": [
+        "scaler.scale(loss).backward(); scaler.unscale_(optimizer); clip_grad_norm_; scaler.step(optimizer); scaler.update()",
+        "Para trás, passo, escala, atualização",
+        "Qualquer ordem; o escalador reordena internamente",
+        "passo, escala, não escala, retrocesso, atualização"
+      ],
+      "correct": 0,
+      "explanation": "Clip em gradientes não escalados entre unscale_ e passo; atualização sempre executado."
+    },
+    {
+      "stage": "check",
+      "question": "O que faz o scaler.update) em um passo saltado?",
+      "options": [
+        "Fecha a corrida",
+        "Nada .",
+        "Média o fator de escala e redefine o contador de não-inf; esquecendo-se de chamá-lo no caminho de salto é o bug que produz 'o fator de escala nunca mudou'",
+        "Duplica o fator de escalagem"
+      ],
+      "correct": 2,
+      "explanation": "O escalor ajusta o seu fator com base na relação salto / limpo em passos recentes."
+    },
+    {
+      "stage": "check",
+      "question": "Por que é necessário verificar a finitude da perda mesmo com um GradScaler?",
+      "options": [
+        "Porque o GradScaler é lento.",
+        "É decorativo.",
+        "PyTorch requer isso",
+        "GradScaler lida com o desbordamento de passagem para trás, mas uma perda não finita não produz gradientes úteis; saltar antes de voltar para trás economiza o cálculo e evita a poluição do estado do escalador"
+      ],
+      "correct": 3,
+      "explanation": "O controlo de perda cobre falhas de passagem avançada; o escalador cobre falhas de passagem retroactiva."
+    },
+    {
+      "stage": "post",
+      "question": "Qual é o sinal de produção na taxa de salto de rolamento?",
+      "options": [
+        "Sempre na página em qualquer salto",
+        "Um punhado de saltos por corrida é saudável; centenas de saltos por época (acima de aproximadamente 5% de taxa de rolamento) é um alerta duro de que o modelo está em um regime FP16 não pode suportar",
+        "A taxa de saltos é irrelevante",
+        "Página apenas em saques consecutivos"
+      ],
+      "correct": 1,
+      "explanation": "A alerta baseada em taxa capta modos de falha silenciosos que as páginas ocasionalmente saltam não."
+    },
+    {
+      "stage": "post",
+      "question": "Por que mudar de FP16 para BF16 autocast quando os saltos são frequentes?",
+      "options": [
+        "O BF16 tem uma faixa de exponentes mais ampla do que o FP16 e raramente precisa de escala de perda; a taxa de saltos normalmente cai para zero no mesmo modelo",
+        "O BF16 é mais lento, por isso salta menos.",
+        "BF16 é mais recente",
+        "Tradição aleatória"
+      ],
+      "correct": 0,
+      "explanation": "O FP16 favorece a precisão da mantissa sobre o alcance; o BF16 negocia para o outro lado, removendo completamente a classe de sobrevoo."
+    }
+  ]
+}

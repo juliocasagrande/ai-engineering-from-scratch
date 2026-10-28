@@ -1,0 +1,78 @@
+{
+  "lesson": "44-cosine-lr-warmup",
+  "title": "Cósseo LR com aquecimento linear",
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "Por que o cronograma cosino com aquecimento começa em zero em vez de em lr_max?",
+      "options": [
+        "Tradição aleatória",
+        "Porque o IR_max é ilegal no passo zero",
+        "As primeiras mil atualizações são ruidosas; uma rampa linear de zero a lr_max dá ao optimizador um pequeno tamanho efetivo de passo enquanto as estimativas em execução se estabilizam",
+        "Porque Adão precisa disso."
+      ],
+      "correct": 2,
+      "explanation": "O Warmup mantém pequenas atualizações frágil; o modelo, de outra forma, diverge ou é planalto."
+    },
+    {
+      "stage": "check",
+      "question": "Por que o cronograma é implementado como uma única função passo a passo em vez de três segmentos colados?",
+      "options": [
+        "Um cronograma coletado perde um limite na primeira vez que o lr_max é alterado; a função única avalia a mesma expressão de forma fechada e preserva a continuidade no aquecimento e nos pontos finais totais",
+        "Os lanternas exigem isso.",
+        "- Acabado .",
+        "Funções individuais são menores"
+      ],
+      "correct": 0,
+      "explanation": "A continuidade em lr(sessões de aquecimento) e lr(sessões totais) segue-se do formulário fechado."
+    },
+    {
+      "stage": "check",
+      "question": "O que acontece com o passo > total_steps no cronograma?",
+      "options": [
+        "Voltou a minha mãe.",
+        "É uma exceção.",
+        "Envolve-se",
+        "O programa não se extrapola, e os formadores que precisam de estender a formação mudam os total_pasos explicitamente"
+      ],
+      "correct": 3,
+      "explanation": "Um chão fixado mantém um treinador de sobre-tiros em um estado documentado em vez de cair."
+    },
+    {
+      "stage": "check",
+      "question": "Por que o gradiente de registro L2 é normalizado ao lado da taxa de aprendizagem?",
+      "options": [
+        "Tradição",
+        "A norma é a outra metade da saúde do treino: uma corrida divergente aumenta a sua norma antes da perda; um pico demasiado agressivo aparece como uma norma que permanece alta após o aquecimento",
+        "Parece bonito.",
+        "Adão precisa disso."
+      ],
+      "correct": 1,
+      "explanation": "A co-registrosagem torna os horários patológicos visíveis no tempo de execução, não depois do fato."
+    },
+    {
+      "stage": "post",
+      "question": "Por que configurar as etapas de aquecimento como uma fração do total das etapas de produção?",
+      "options": [
+        "As frações são mais limpas",
+        "Uma contagem fixa de aquecimento que se adapte a uma corrida de 20 km não é essencialmente aquecimento em uma corrida de 200 M; a fração (típica 1-3 por cento) balança com duração de treinamento",
+        "Requisitos de hardware",
+        "Preferência aleatória"
+      ],
+      "correct": 1,
+      "explanation": "O aquecimento absoluto conta o mau comportamento em escala de duração do treino."
+    },
+    {
+      "stage": "post",
+      "question": "Por que é típico na produção um IR_min não zero?",
+      "options": [
+        "Um piso perto de 10% da lr_max mantém o aprendizado do optimizador durante a cauda longa; uma lr_min de zero produz uma curva que parece boa e um modelo que não terminou o treinamento",
+        "Estabilidade numérica",
+        "Compatibilidade retrospectiva",
+        "O Adão requer não-zero"
+      ],
+      "correct": 0,
+      "explanation": "A cauda do cronograma é onde os refinamentos em estágio final aterram; o cero desperdiça esse sinal."
+    }
+  ]
+}

@@ -1,0 +1,78 @@
+{
+  "lesson": "75-end-to-end-eval-runner",
+  "title": "Corredor de Eval de ponta a ponta",
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "Qual é a superfície mais pequena possível para a interface do ModelAdapter?",
+      "options": [
+        "Completo, incorporado, classificado, resumido",
+        "init, login, gerar, fechar",
+        "gerar(prompt, tarefa) retornar texto mais confiança opcional e por token nll",
+        "carga_pesos, gerar, salvar_pesos"
+      ],
+      "correct": 2,
+      "explanation": "Um método cobre qualquer adaptador. Tudo o resto é decoração opcional. O corredor não precisa de uma superfície mais rica."
+    },
+    {
+      "stage": "pre",
+      "question": "Por que o corredor aceita uma bandeira paralela em vez de correr sempre em paralelo?",
+      "options": [
+        "Os testes precisam de ordem de execução determinista; a bandeira permite que eles mudem para sequencial",
+        "Execução paralela não é segura no CPython",
+        "Execução paralela requer GPU",
+        "ThreadPoolExecutor não é stdlib"
+      ],
+      "correct": 0,
+      "explanation": "Os testes querem reprodução, a produção quer rendimento, a bandeira divide essas preocupações sem dois caminhos de código."
+    },
+    {
+      "stage": "check",
+      "question": "Como o corredor determina a bandeira correta para o tampão de calibração?",
+      "options": [
+        "Utiliza métricas de estilo exact_match no limiar 1.0 e métricas classificadas no limiar 0.5 por padrão",
+        "Chama o adaptador duas vezes e compara as saídas",
+        "Ele usa a confiança média de lixo",
+        "Ele usa a decomposição Brier"
+      ],
+      "correct": 0,
+      "explanation": "O limiar é conhecido por métricas: métricas de estilo exact_match usam um corte próximo a 1,0, enquanto métricas classificadas usam 0,5 por padrão."
+    },
+    {
+      "stage": "check",
+      "question": "Por que o corredor cria registros EvalRun e os entrega ao agregador em vez de calcular a lista de resultados?",
+      "options": [
+        "Mantém o corredor agnóstico para o agregador e deixa a camada de classificação evoluir sem tocar no corredor",
+        "O agregador é mais rápido em matrizes numpy do que as classes de dados",
+        "EvalRun é exigido pelo JSON Schema",
+        "O EvalRun é mais eficiente na memória"
+      ],
+      "correct": 0,
+      "explanation": "A composição sobre a linha de entrada. O corredor produz registros; o agregador possui a matemática do ranking. Cada lição possui uma preocupação."
+    },
+    {
+      "stage": "check",
+      "question": "Qual é o papel do bloco de perplexidade no envelope final do JSON?",
+      "options": [
+        "É calculado a partir do IC de arranque",
+        "É o número de modelagem de linguagem de cada modelo, independente da pontuação da tarefa.",
+        "É a entrada para o relatório de calibração",
+        "É necessário para o ranking do ranking"
+      ],
+      "correct": 1,
+      "explanation": "A perplexidade fica ao lado do ranking, não dentro dele."
+    },
+    {
+      "stage": "post",
+      "question": "Qual é o critério de saída limpa da demonstração autoterminação?",
+      "options": [
+        "Cada tarefa validada, cada tarefa marcada, calibração agregada, e adaptador baseado em regras estritamente acima do adaptador aleatório no ranking",
+        "Cada tarefa com pontuação acima de 0,9",
+        "ECE inferior a 0,05 para cada modelo",
+        "O CI do Bootstrap exclui zero para cada par"
+      ],
+      "correct": 0,
+      "explanation": "A demonstração impõe o contrato de ponta a ponta: cada camada foi executada e o adaptador mais preciso é classificado em conformidade."
+    }
+  ]
+}

@@ -1,0 +1,78 @@
+{
+  "lesson": "55-critic-loop",
+  "title": "Loop crítico",
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "Por que o crítico pontua em cinco dimensões fixas em vez de retornar um parágrafo de forma livre?",
+      "options": [
+        "Porque os modelos não podem gerar parágrafos de forma confiável",
+        "Porque o revisor só aceita JSON",
+        "Porque o LaTeX requer um campo de pontuação",
+        "Porque um vetor fixo permite que o arnes detecte regressões por dimensão em rodadas"
+      ],
+      "correct": 3,
+      "explanation": "Um vetor de dimensão fixa transforma a crítica em dados estruturados que o arnes pode comparar em todas as rodadas."
+    },
+    {
+      "stage": "pre",
+      "question": "Em que ordem o ciclo verifica as condições de parada no final de uma rodada?",
+      "options": [
+        "Plateau, depois alvo, depois orçamento",
+        "Orçamento, depois planalto, depois alvo.",
+        "Qualquer que seja o primeiro a disparar por um empate aleatório .",
+        "Alvo, depois planalto, depois orçamento."
+      ],
+      "correct": 3,
+      "explanation": "O objetivo atingido ganha (o trabalho é feito). Depois, o plano (não há mais progresso possível)."
+    },
+    {
+      "stage": "check",
+      "question": "Porque é que a detecção de planalto requer duas rodadas planas consecutivas em vez de uma?",
+      "options": [
+        "Porque o modelo retorna pontuações não deterministas",
+        "Porque a pontuação determinista ainda tem ruído por rodada; uma rodada plana não é suficiente sinal",
+        "Porque a classe de dados requer uma lista",
+        "Porque o painel espera dois pontos"
+      ],
+      "correct": 1,
+      "explanation": "Mesmo a saída de um marcador determinista muda de rodada em rodada dependendo das sugestões aplicadas."
+    },
+    {
+      "stage": "check",
+      "question": "O que recebe o revisor como entrada a cada rodada?",
+      "options": [
+        "A fonte de LaTeX cru",
+        "Um parágrafo gerado por modelo",
+        "O objeto completo da Crítica incluindo as pontuações",
+        "O papel e a lista de registos de sugestões"
+      ],
+      "correct": 3,
+      "explanation": "Revisor.__call__Cada Sugestão tem uma dimensão, uma seção-alvo e uma instrução de edição. O revisor não vê pontuações."
+    },
+    {
+      "stage": "post",
+      "question": "O que contém o rastro para cada rodada?",
+      "options": [
+        "Só o esboço final do papel",
+        "Só o veredicto de convergência",
+        "A data de execução e a conclusão do modelo",
+        "Número redondo, vetor de pontuação, média, sugestões aplicadas, veredicto"
+      ],
+      "correct": 3,
+      "explanation": "O rastreamento é o registro de eventos por rodada. Os painéis de controle o mostram como um gráfico de pontuação sobre o tempo; a próxima etapa lê-lo para decidir se vale a pena manter o ramo."
+    },
+    {
+      "stage": "post",
+      "question": "Que veredicto final produzirá um crítico que continua a emitir sugestões que nunca melhoram qualquer pontuação?",
+      "options": [
+        "A Comissão propôs que a Comissão adoptasse um",
+        "O objetivo, porque o orçamento esconde o bug",
+        "O plano de desenvolvimento é um problema de grande importância.",
+        "Uma exceção, porque o ciclo cai"
+      ],
+      "correct": 2,
+      "explanation": "Ou é um fogo de planalto (dois rodadas planas) ou de orçamento (capeta dura)."
+    }
+  ]
+}

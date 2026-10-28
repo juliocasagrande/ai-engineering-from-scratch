@@ -1,0 +1,78 @@
+{
+  "lesson": "60-projection-layer-modality-align",
+  "title": "Layer de projeção para o alinhamento de modalidade",
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "Por que o codificador de visão produz tokens que o decodificador de texto não pode consumir diretamente?",
+      "options": [
+        "Os tokens de imagem são criptografados",
+        "Os tokens de imagem são muito curtos",
+        "Estão em um formato de arquivo diferente.",
+        "Os tokens de imagem vivem numa base que o codificador aprendeu durante o treinamento de visão sem correspondência com os vetores de palavras do decodificador"
+      ],
+      "correct": 3,
+      "explanation": "Os dois codificadores aprendem bases independentes; é necessário um módulo de ponte para alinhá-los num espaço compartilhado."
+    },
+    {
+      "stage": "pre",
+      "question": "Por que é suficiente a MLP de duas camadas para o alinhamento de modalidades na prática?",
+      "options": [
+        "Proibição de projecção de uma camada",
+        "PyTorch requer duas camadas",
+        "Uma curva não linear (GELU) entre duas projeções lineares é empíricamente suficiente para alinhar características de estilo CLIP com incorporados de texto",
+        "Projeções mais profundas são ilegais"
+      ],
+      "correct": 2,
+      "explanation": "LLaVA e seus descendentes enviam este MLP de duas camadas porque a não-linearidade fixa desajustes de curvatura que um único linear não pode."
+    },
+    {
+      "stage": "check",
+      "question": "Por que o codificador de visão está congelado durante esta fase de alinhamento?",
+      "options": [
+        "O codificador está vazio.",
+        "O codificador de parâmetros 86M não pode ser reestruturado num pequeno corpus simulado; a projeção de parâmetros 1,3M sozinha é suficientemente leve para alinhar em minutos",
+        "Congelado significa tempo mais rápido na parede",
+        "PyTorch não suporta o treinamento do codificador"
+      ],
+      "correct": 1,
+      "explanation": "Congelando o codificador e a tabela de texto, a projeção é a única coisa que aprende, que é a forma operacional de cada VLM baseado em adaptador."
+    },
+    {
+      "stage": "check",
+      "question": "O que o cosine_alignment_loss(image_emb, text_emb) retorna quando os dois vetores apontam em direções opostas?",
+      "options": [
+        "Infinito",
+        "1.0",
+        "0,0",
+        "2.0"
+      ],
+      "correct": 3,
+      "explanation": "A perda é 1 - cos ((angle). vetores antiparallel têm cos = -1, então a perda é 1 - (-1) = 2.0."
+    },
+    {
+      "stage": "check",
+      "question": "Por que o CLS pooling é usado para produzir um único vector de nível de imagem a partir de 197 tokens?",
+      "options": [
+        "Economiza espaço no disco",
+        "PyTorch soma tokens automaticamente",
+        "Os tokens de parche não são utilizados",
+        "As legendas são um vetor por amostra, então o lado da imagem também precisa de um vetor; o token CLS é o resumo de imagem do codificador embuído"
+      ],
+      "correct": 3,
+      "explanation": "A alinhamento é um vetor de imagem contra um vetor de legenda; o pooling CLS produz esse vetor de imagem sem parâmetros extras."
+    },
+    {
+      "stage": "post",
+      "question": "Qual sistema de produção faz o mapa mais direto para o padrão da lição 60?",
+      "options": [
+        "LLaVA 1.5: codificador de visão congelado, LLM congelado, treino apenas de uma projeção de MLP de duas camadas",
+        "PaLM",
+        "AlphaFold",
+        "Difusão estável"
+      ],
+      "correct": 0,
+      "explanation": "O treinamento de fase um da LLaVA é exatamente este: um codificador congelado e LM com uma ponte de duas camadas MLP como a única peça treinável."
+    }
+  ]
+}

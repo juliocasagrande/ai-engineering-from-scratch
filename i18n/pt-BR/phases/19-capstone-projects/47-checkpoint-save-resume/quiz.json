@@ -1,0 +1,78 @@
+{
+  "lesson": "47-checkpoint-save-resume",
+  "title": "Ponto de verificação Salvar e Relançar",
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "Qual é o melhor conjunto para descrever um ponto de controlo completo de treinamento?",
+      "options": [
+        "Qualquer coisa que torch.save() pode ser serializada",
+        "Peso de modelo apenas",
+        "Estado do modelo, estado do optimizador, estado do cronógrafo, contadores de passos, histórico de perdas e estado RNG para Python, numpy, CPU de tocha, CUDA de tocha",
+        "Só o histórico de perdas"
+      ],
+      "correct": 2,
+      "explanation": "O resumo deve seguir a mesma trajetória. sem momentos de otimização, posição do cronista e estado RNG a perda resumida é uma curva diferente."
+    },
+    {
+      "stage": "pre",
+      "question": "Por que o guardador escreve para um arquivo temporário e depois renomeia em vez de escrever o nome do alvo diretamente?",
+      "options": [
+        "A entrada/ saída mais rápida",
+        "O renome POSIX dentro do mesmo diretório é atômico, então uma interrupção no meio da escrita deixa o arquivo bom anterior no lugar em vez de um arquivo meio escrito no nome do alvo",
+        "- Desaparece o arquivo.",
+        "Ele contorna o fsync"
+      ],
+      "correct": 1,
+      "explanation": "Os nomes de dispositivos cruzados perdem atomicidade, por isso o arquivo temporário deve estar no diretório-alvo."
+    },
+    {
+      "stage": "check",
+      "question": "Por que um ponto de controlo fragmentado armazena um sha256 em index.json por fragment?",
+      "options": [
+        "Assim, o carregador pode detectar um fragmento truncado ou alterado no tempo de carga em vez de silenciosamente fundir um estado_dict mau",
+        "Porque a tocha exige isso.",
+        "Para SEO",
+        "Para comprimir o arquivo"
+      ],
+      "correct": 0,
+      "explanation": "load_sharded_checkpoint verifica o hash real de cada fragmento contra o gravado, e o hash do arquivo meta também, e aumenta antes de se fundir em qualquer desajuste."
+    },
+    {
+      "stage": "check",
+      "question": "Como continua a retomada com a compensação certa dentro da época atual?",
+      "options": [
+        "Ele usa uma base de dados especial",
+        "Salta para o próximo limite da época",
+        "Reinicia sempre a partir do passo 0",
+        "Os registros do TrainState (epoca, batch_in_epoch) e o estado de RNG são restaurados, de modo que o carregador avance rapidamente o gerador para além dos lotes já consumidos antes de continuar"
+      ],
+      "correct": 3,
+      "explanation": "Sem (epoca, batch_in_epoch) você passa para o próximo limite de época e trabalha com resíduos."
+    },
+    {
+      "stage": "check",
+      "question": "O que é que o campo de esquema da carga útil lhe compra?",
+      "options": [
+        "Um gancho de migração: alterações futuras no formato acidentam a cadeia de esquema e o carregador pode enviá-la em vez de quebrar corridas antigas",
+        "Nada .",
+        "Compressão",
+        "Um nome de arquivo bonito"
+      ],
+      "correct": 0,
+      "explanation": "A lição usa ckpt.v1; a próxima versão é ckpt.v2 com uma função de migração. Sem o campo, a evolução do formato requer quebra."
+    },
+    {
+      "stage": "post",
+      "question": "Leindo o resumo demo de currículo, o que max_loss_diff_after_resume cerca de 0 prova?",
+      "options": [
+        "Nada útil.",
+        "Que o disco é rápido",
+        "Que o modelo é bom",
+        "Que a trajetória de perda após o reinicio corresponda à linha de base ininterrupta no ruído de ponto flutuante, o que significa que o estado de RNG e o estado de otimização foram ambos restaurados fielmente"
+      ],
+      "correct": 3,
+      "explanation": "Se você esquecer RNG você vê uma curva diferente e uma diferença não trivial. Se você esquecer estado de otimização a diferença é enorme."
+    }
+  ]
+}

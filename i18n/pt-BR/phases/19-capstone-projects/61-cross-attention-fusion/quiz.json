@@ -1,0 +1,78 @@
+{
+  "lesson": "61-cross-attention-fusion",
+  "title": "Fusão de atenção cruzada",
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "Qual é a diferença operacional entre fusão precoce e fusão tardia na modelagem de linguagem visual?",
+      "options": [
+        "A fusão tardia usa mais memória .",
+        "A fusão precoce é ilegal .",
+        "A fusão inicial concatenar os tokens de imagem e texto em uma sequência; a fusão tardia mantém-nos separados e ponte através da atenção cruzada em cada bloco",
+        "A fusão inicial é a primeira em tempo de relógio de parede"
+      ],
+      "correct": 2,
+      "explanation": "O chameleão e o Emu3 são de fusão precoce; Flamingo e BLIP-2 são de fusão tardia."
+    },
+    {
+      "stage": "pre",
+      "question": "Num bloco de decodificação com auto-atenção e atenção cruzada, qual deles usa uma máscara causal?",
+      "options": [
+        "Nem um nem outro.",
+        "Ambos os dois .",
+        "Apenas atenção cruzada",
+        "Só auto-atenção; a imagem é totalmente observada e a atenção cruzada não tem ordem temporal"
+      ],
+      "correct": 3,
+      "explanation": "A geração de texto é autoregressiva, então a auto-atenção do texto é causal."
+    },
+    {
+      "stage": "check",
+      "question": "Por que o cache de KV de atenção cruzada é construído uma vez por imagem?",
+      "options": [
+        "As chaves e valores da imagem não mudam à medida que o texto é decodificado, por isso projetar memória uma vez e reutilizar o K e V em todas as etapas de decodificação é a velocidade de inferência inteira",
+        "Evita usar a GPU",
+        "PyTorch requer armazenamento em cache",
+        "Cachar economiza espaço no disco"
+      ],
+      "correct": 0,
+      "explanation": "O codificador de visão é executado uma vez, a projeção KV é calculada uma vez, cada token de texto reutiliza o cache gratuitamente."
+    },
+    {
+      "stage": "check",
+      "question": "Qual é a forma de saída da atenção cruzada quando o comprimento do texto é Nt=10 e o comprimento da imagem é Nv=197 com hidden=256?",
+      "options": [
+        "(B, 10, 256)",
+        "(B, 207, 256)",
+        "(B, 10, 197)",
+        "(B, 197, 256)"
+      ],
+      "correct": 0,
+      "explanation": "A forma de saída de atenção cruzada segue o fluxo de consulta, de modo que a saída é (B, Nt, oculta) independentemente do comprimento da chave."
+    },
+    {
+      "stage": "check",
+      "question": "Porque não se usa máscara para a atenção transversal?",
+      "options": [
+        "As máscaras sempre causam NAN",
+        "As máscaras são caras demais.",
+        "A imagem é totalmente observada antes de a geração de texto começar; cada posição de texto pode atender a cada correção",
+        "PyTorch não suporta máscaras cruzadas"
+      ],
+      "correct": 2,
+      "explanation": "Não há ordem temporal nos patches de imagem e não há vazamento para prevenir, então a atenção cruzada vê toda a imagem."
+    },
+    {
+      "stage": "post",
+      "question": "Que extensão acrescentaria para recuperar a estabilidade do estilo Flamingo durante o treino?",
+      "options": [
+        "Remover o FFN",
+        "Insira um portão tanh aprendido no residual de atenção cruzada para que o modelo possa começar a partir de comportamento apenas de texto e crescer no fluxo de imagem",
+        "Deixe cair a camada de auto-atenção",
+        "Use apenas uma cabeça de atenção"
+      ],
+      "correct": 1,
+      "explanation": "O portal tanh do Flamingo começa em zero, recupera o comportamento apenas de texto no init e dá ao modelo uma rampa suave para a atenção cruzada."
+    }
+  ]
+}

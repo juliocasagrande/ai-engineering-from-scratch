@@ -1,0 +1,78 @@
+{
+  "lesson": "79-pipeline-parallel",
+  "title": "Análise paralela e de bolhas de oleodutos",
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "O que é a bolha do gasoduto?",
+      "options": [
+        "Um pacote de rede",
+        "Um bug no NCCL",
+        "Tempo de inatividade no início e no final do oleoduto: fases sem trabalho até que o primeiro microbatch chegue a eles e depois que o último microbatch sai",
+        "Fugas de memória"
+      ],
+      "correct": 2,
+      "explanation": "Com microbatches M e estágios N, bolha por estágio é (N-1) / ((M+N-1)."
+    },
+    {
+      "stage": "pre",
+      "question": "Porque é que a memória de ativação do GPipe é proporcional a M?",
+      "options": [
+        "Limite de hardware",
+        "Limite de compilador",
+        "Insetos",
+        "Todas as ativas dos microbaches M devem ser mantidas até que o equipamento seja retrocediente; nada se libera até que o esgotamento comece"
+      ],
+      "correct": 3,
+      "explanation": "O GPipe enche o oleoduto com todos os avanços antes de qualquer retrocesso."
+    },
+    {
+      "stage": "check",
+      "question": "Como é que o 1F1B melhora em relação ao GPipe?",
+      "options": [
+        "Maior capacidade de produção",
+        "A mesma bolha, mas a memória de ativação limitada; uma vez que o mb 0 avança até o último estágio, começa a sua retrocida e as ativações são livres",
+        "Modelo menor",
+        "Bolha inferior"
+      ],
+      "correct": 1,
+      "explanation": "Megatron-LM e PipeDream usam 1F1B para ligar a memória de ativação pela profundidade do tubo, não pela contagem de microbatches."
+    },
+    {
+      "stage": "check",
+      "question": "Por que é mais importante calcular a paridade por etapa do que contar parâmetros iguais?",
+      "options": [
+        "Memória alinhada",
+        "Estética",
+        "As fases mais lentas abrem todos os ciclos; outras fases estão à espera. As camadas de inserção têm muitos parâmetros, mas pouca computação, por isso a partição por contagem de parâmetros desequilibra o pipeline",
+        "Mais fácil de codificar"
+      ],
+      "correct": 2,
+      "explanation": "Megatron-LM exposes --num-layers-per-stage as a list to allow uneven layer counts when per-layer cost differs."
+    },
+    {
+      "stage": "check",
+      "question": "O que vai mal se todas as chamadas de estágio forem enviadas antes do recovero?",
+      "options": [
+        "Bolha mais alta",
+        "Lento",
+        "O limite de atraso no fio; fixação padrão é intercalar o mesmo rank enviado-primeiro e o rankado-requeado-primeiro",
+        "Fugas de memória"
+      ],
+      "correct": 2,
+      "explanation": "Os pares de envio/recv sincrônicos precisam que um lado esteja recebendo quando o outro envia."
+    },
+    {
+      "stage": "post",
+      "question": "Pipeline mais ZeRO-1 combina quais duas memórias ganha?",
+      "options": [
+        "Apenas ativação",
+        "Nada .",
+        "Parâmetro fragmentado por etapa (cada categoria contém apenas uma fase de camadas) mais fragmentado por categoria de optimizador (cada categoria contém apenas 1/N do estado de optimizador para a sua etapa)",
+        "Compressão e quantificação"
+      ],
+      "correct": 2,
+      "explanation": "Os fragmentos de pipeline se dividem em várias linhas; os fragmentos de ZeRO se posicionam no estado de otimização dentro do grupo paralelo de dados em cada ranking de pipeline."
+    }
+  ]
+}

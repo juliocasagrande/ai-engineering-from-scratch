@@ -1,0 +1,78 @@
+{
+  "lesson": "21-tool-registry-schema-validation",
+  "title": "Registro de ferramentas com validação de esquema",
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "Por que registar o esquema de uma ferramenta separadamente de seu gerenciador?",
+      "options": [
+        "Porque os processadores não podem devolver JSON",
+        "Então o validador permanece dados puros, e o processador permanece código opaco",
+        "Porque os esquemas devem ser compilados",
+        "Porque os esquemas têm de viver no YAML"
+      ],
+      "correct": 1,
+      "explanation": "Manter o esquema como dados e o processador como código permite que o validador seja uma função pura sobre a árvore do esquema."
+    },
+    {
+      "stage": "check",
+      "question": "Que palavras-chave estão intencionalmente fora do subconjunto que esta lição implementa?",
+      "options": [
+        "itens, enum",
+        "Um de qualquer, $ref, tudo de",
+        "Minos, maxos, padrão",
+        "Tipo, propriedades, exigidos"
+      ],
+      "correct": 1,
+      "explanation": "As palavras-chave omitidas adicionam ciclos e resolução de referência. Mantemos o subconjunto linear para que o validador permaneça um único passe recorrente."
+    },
+    {
+      "stage": "check",
+      "question": "Por que o register() rejeita por defeito os duplicados?",
+      "options": [
+        "Porque o esquema não pode ser revalidado",
+        "As sobras silenciosas são a causa da derivação do catálogo de ferramentas de produção",
+        "Porque o registo não pode armazenar mais de um registro por nome",
+        "Porque os manipuladores não podem ser substituídos"
+      ],
+      "correct": 1,
+      "explanation": "Forcing override=True aparece no caso em que duas partes do código pretendem possuir o mesmo nome da ferramenta."
+    },
+    {
+      "stage": "check",
+      "question": "O que faz o validador quando um esquema especifica um número inteiro de tipo mas recebe o valor True?",
+      "options": [
+        "Forças para inteiro silenciosamente",
+        "Trata-o como um e passa",
+        "Levanta uma exceção não manipulada",
+        "Retorna um erro de tipo porque bool não é um número inteiro neste validador"
+      ],
+      "correct": 3,
+      "explanation": "Python bool é uma subclasse de int, mas o validador filtra o bool do cheque de números inteiros."
+    },
+    {
+      "stage": "post",
+      "question": "Quando o objeto de entrada é {'user': {'email': 0}} e o esquema requer que o user.email seja uma cadeia, qual é o caminho de erro?",
+      "options": [
+        "/ usuário",
+        "/user/email",
+        "- Não .",
+        "usuário.email"
+      ],
+      "correct": 1,
+      "explanation": "O ponteiro JSON codifica a descida através do usuário e depois o e-mail como /user/email."
+    },
+    {
+      "stage": "post",
+      "question": "Porque é que o registo não é um limite de segurança?",
+      "options": [
+        "Porque os manipuladores são assíncronos",
+        "Porque os gestores podem ainda ter mau comportamento depois de passarem a validação",
+        "Porque o registo está em processo.",
+        "Porque o esquema é JSON"
+      ],
+      "correct": 1,
+      "explanation": "O comportamento, os tempos de saída e o isolamento pertencem ao despachador e à caixa de areia."
+    }
+  ]
+}

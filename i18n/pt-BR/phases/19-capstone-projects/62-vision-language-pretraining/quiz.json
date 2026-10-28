@@ -1,0 +1,78 @@
+{
+  "lesson": "62-vision-language-pretraining",
+  "title": "Pre-treinamento da linguagem visual",
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "Que duas capacidades distintas combinam a InfoNCE e a LM em um único modelo?",
+      "options": [
+        "Ranking (encontrar a imagem certa para uma legenda) e geração (escrever uma legenda para uma imagem)",
+        "Compressão e descompressão",
+        "Rapidez e precisão",
+        "Tokenization e detokenization"
+      ],
+      "correct": 0,
+      "explanation": "A InfoNCE lida com o ranking; a LM lida com a geração de perdas."
+    },
+    {
+      "stage": "pre",
+      "question": "No InfoNCE, para um lote de pares N, quantos pares positivos e quantos pares negativos são formados?",
+      "options": [
+        "N positivos ao longo da diagonal da matriz de semelhança e N*(N-1) negativos fora da diagonal",
+        "N positivos e N negativos",
+        "1 positivo e N negativo",
+        "N^2 positivos"
+      ],
+      "correct": 0,
+      "explanation": "Os pares correspondentes N estão na diagonal; tudo fora da diagonal é negativo."
+    },
+    {
+      "stage": "check",
+      "question": "Por que a temperatura contrastiva é geralmente um parâmetro aprendido?",
+      "options": [
+        "Evita usar Adão",
+        "PyTorch requer isso",
+        "O tau aprendido é mais rápido na GPU.",
+        "A sintonização manual é frágil; deixar tau aprender permite que o modelo encontre o pico de softmax certo à medida que a escala de incorporação evolui durante o treinamento"
+      ],
+      "correct": 3,
+      "explanation": "O CLIP introduziu o log-tau aprendido para que o softmax contrastivo permaneça no regime útil à medida que as normas de incorporação crescem."
+    },
+    {
+      "stage": "check",
+      "question": "Quais submodules recebem gradiente da perda de LM mas não da perda de contraste?",
+      "options": [
+        "O projeto MLP",
+        "O codificador de visão",
+        "O codificador do lado do texto",
+        "O decodificador de atenção cruzada"
+      ],
+      "correct": 3,
+      "explanation": "A perda de contraste não toca no decodificador; a perda de LM não toca no encodificador do poço médio do lado do texto."
+    },
+    {
+      "stage": "check",
+      "question": "O que é que o ignor_index=PAD_ID consegue na entropia cruzada de LM?",
+      "options": [
+        "Acelera a perda",
+        "Encrypts pad tokens",
+        "Mascaras de empolgação posições fora da perda para que o modelo não seja punido por prever tokens depois da legenda termina",
+        "Tokens de reordem"
+      ],
+      "correct": 2,
+      "explanation": "As posições de padding não levam sinal; ignorá-las impede a perda de aprender a prever pad."
+    },
+    {
+      "stage": "post",
+      "question": "Porque é que uma demonstração de 50 passos sobre dados sintéticos é suficiente para chamar a lição completa?",
+      "options": [
+        "O modelo atinge o estado da arte a 50 passos",
+        "50 passos é o máximo suportado",
+        "A demonstração demonstra que as obras de canalização de gradiente terminam de ponta a ponta; a forma de treinamento de produção é idêntica, mas corre por milhões de passos em dados reais",
+        "Dados reais mudarão a arquitetura"
+      ],
+      "correct": 2,
+      "explanation": "A dinâmica demonstrada (ambas perdas diminuem, não há NaN, tau estável) é a mesma dinâmica que uma corrida de bilhões de imagens mostraria; apenas aumentada."
+    }
+  ]
+}

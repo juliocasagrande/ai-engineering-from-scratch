@@ -1,0 +1,78 @@
+{
+  "lesson": "46-gradient-accumulation",
+  "title": "Acumulação gradual",
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "Qual é a identidade de lote eficaz que a acumulação de gradientes exprime?",
+      "options": [
+        "efetivo_batch = micro_batch / accum_steps",
+        "effective_batch = apenas de tamanho mundial",
+        "efficient_batch = micro_batch + accum_steps",
+        "efetivo_batch = micro_batch * accum_steps"
+      ],
+      "correct": 3,
+      "explanation": "Micro lote é o que se encaixa na memória; etapas de acumulação são quantas adiante + para trás passa gradientes de pilha para o mesmo tampão antes de um passo de otimização."
+    },
+    {
+      "stage": "pre",
+      "question": "Por que a perda deve ser dividida por accum_steps antes de retroceder em cada micro lote?",
+      "options": [
+        "Faz a curva de perdas mais bonita",
+        "Evita as NANs",
+        "É necessário apenas para precisão mista",
+        "PyTorch soma gradientes em param.grad por padrão, então sem a divisão o gradiente acumulado é N vezes muito grande e o passo de otimização é N vezes muito agressivo"
+      ],
+      "correct": 3,
+      "explanation": "O amortecimento de acumulação é uma soma. A escalação por micro-parcela por 1/N empurra essa soma de volta para a mesma escala que uma única parcela completa para trás produziria."
+    },
+    {
+      "stage": "check",
+      "question": "Quando é que o passo de otimização entra no ciclo de acumulação?",
+      "options": [
+        "Nunca; o optimizador é substituído",
+        "Duas vezes por janela para segurança",
+        "Depois de cada micro lote",
+        "Só após o último micro lote na janela de acumulação"
+      ],
+      "correct": 3,
+      "explanation": "A fase de acumulação em meados contamina todos os parâmetros do resto da corrida."
+    },
+    {
+      "stage": "check",
+      "question": "O que o contexto no_sync envolve em uma execução real multi-GPU?",
+      "options": [
+        "O carregador de dados",
+        "Os micro lotes não finais, de modo que o gradiente tudo reduz apenas incêndios após o último para trás em vez de N vezes",
+        "O passo de otimização",
+        "O passe para a frente"
+      ],
+      "correct": 1,
+      "explanation": "O no_sync do DDP salta o colectivo de gradiente. Envolvendo todos, exceto o último micro lote transforma N coletivos por passo efetivo em um."
+    },
+    {
+      "stage": "check",
+      "question": "O que a função equivalência_check em main.py afirma?",
+      "options": [
+        "Que a perda converge",
+        "Que os gradientes são zero",
+        "Que um único lote completo para trás e um accum_steps dividido para trás com perda / N produzem o mesmo gradiente buffer e os mesmos parâmetros pós-passo até uma pequena tolerância",
+        "O volume é constante."
+      ],
+      "correct": 2,
+      "explanation": "A limitação da afirmação é o máximo-abs-diferência abaixo de 1e-4. sem a perda de escala a diferença explode; com a escala fica no ruído do ponto flutuante."
+    },
+    {
+      "stage": "post",
+      "question": "Leindo a velocidade contra a curva de lote efetiva, o que permanece praticamente constante e que escalas?",
+      "options": [
+        "A capacidade aumenta porque o modelo fica mais rápido",
+        "Ambas as métricas escalam linearmente com accum",
+        "As amostras por segundo saturam-se perto do limite de hardware enquanto o tempo da parede por passo do optimizador escala linearmente com accum_steps; os passos do optimizador por segundo são o que cai",
+        "Amostra por segundo de gotas com lote efetivo maior"
+      ],
+      "correct": 2,
+      "explanation": "Cada micro lote custa o mesmo para frente + para trás. A acumulação compra suavização estatística por passo de otimização, não o rendimento bruto; a curva é uma verificação útil da realidade contra o folclore."
+    }
+  ]
+}

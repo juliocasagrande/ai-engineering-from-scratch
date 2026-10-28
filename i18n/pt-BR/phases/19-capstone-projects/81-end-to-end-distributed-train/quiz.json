@@ -1,0 +1,78 @@
+{
+  "lesson": "81-end-to-end-distributed-train",
+  "title": "Formação distribuída de ponta a ponta",
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "Por que é importante uma pedra final quando cada lição já tinha seus próprios testes?",
+      "options": [
+        "A composição é uma propriedade separada: as peças podem passar nos testes unitários, mas os impasses de integração, a perda divergem ou a memória cresce quando funcionam juntas",
+        "Cosméticos",
+        "Mais lento",
+        "Mais fácil de classificar"
+      ],
+      "correct": 0,
+      "explanation": "Testes de ponta a ponta capturam bugs de cabos que nenhuma peça testa isoladamente: encontro, ordem de barreira, contratos de coleta."
+    },
+    {
+      "stage": "pre",
+      "question": "Que quatro invariantes verifica a demonstração?",
+      "options": [
+        "Velocidade",
+        "Tokens por segundo",
+        "Ferramentas",
+        "(a) a perda corre para o passo 20 sem NaN, (b) a norma de parâmetros de cada classificação concorda, (c) a memória de otimização por classificação é igual à fórmula ZeRO-1, (d) o ponto de controlo passo-10 recarrega byte-equivalente"
+      ],
+      "correct": 3,
+      "explanation": "Cada invariante pega um erro de composição diferente: NaN pega divergência, norma-agreção pega deriva de sincronização, memória pega bugs fragmentando, checkpoint pega escrever atomicidade."
+    },
+    {
+      "stage": "check",
+      "question": "Porque é que o modelo é um pequeno GPT em vez de um MLP?",
+      "options": [
+        "Requerido",
+        "Parecem bonitos.",
+        "GPT adiciona estatísticas de execução LayerNorm, inserindo forma de gradiente e softmax + casos de borda de entropia cruzada que um MLP ocultaria",
+        "Mais rápido"
+      ],
+      "correct": 2,
+      "explanation": "A sincronização de gradiente MLP foi verificada na lição 77; a pedra final precisa de um modelo com mais casos de borda para provar composição sob operações realistas."
+    },
+    {
+      "stage": "check",
+      "question": "O que significa auto-terminar neste contexto?",
+      "options": [
+        "O processo mata-se a si mesmo .",
+        "Contagem fixa de etapas (20), saída 0 no momento da conclusão, nenhum ser humano no circuito; se qualquer peça bloquear o demo nunca retorna e o CI o pega",
+        "Recuperação de acidente",
+        "Manual"
+      ],
+      "correct": 1,
+      "explanation": "Uma corrida limitada com saída 0 permite que a plataforma de ensaio afirme a terminação; enquanto os ciclos Verdadeiros mascaram os impasses."
+    },
+    {
+      "stage": "check",
+      "question": "Como a demonstração combina DDP e ZeRO?",
+      "options": [
+        "Apenas para o ZeRO",
+        "Os dois ao mesmo tempo.",
+        "Transmissão de estilo DDP em init para sincronização de parâmetros, o reduc_scatter+allgather do ZeRO-1 substitui o optimizer.step; o gradiente DDP allreduce é subsumido no reduc_scatter do ZeRO",
+        "Apenas DDP"
+      ],
+      "correct": 2,
+      "explanation": "ZeRO-1 possui a sincronização de gradiente via reduce_scatter, por isso o allreduce separado do DDP não é necessário; a transmissão em init é a única chamada específica do DDP que sobrevive."
+    },
+    {
+      "stage": "post",
+      "question": "Por que a produção usa a cadência do ponto de controlo do relógio de parede em vez de contar os passos?",
+      "options": [
+        "Parece mais limpo.",
+        "Mais rápido",
+        "Requerido pela NCCL",
+        "O tempo de passos varia com o comprimento da sequência e o número de microbatches; uma cadência de 10 minutos capta o mesmo cálculo independentemente do tamanho do modelo"
+      ],
+      "correct": 3,
+      "explanation": "A lição usa a base de passos para clareza; a produção normalmente economiza a cada 5-15 minutos de relógio de parede."
+    }
+  ]
+}

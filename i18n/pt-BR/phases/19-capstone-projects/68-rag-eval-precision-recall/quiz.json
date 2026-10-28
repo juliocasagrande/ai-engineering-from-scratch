@@ -1,0 +1,78 @@
+{
+  "lesson": "68-rag-eval-precision-recall",
+  "title": "Avaliação do RAG: Precisão, Recall, MRR, nDCG, Fiellidade, Relevança da resposta",
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "Por que é que o recall@k é geralmente a métrica de recuperação de títulos em produção RAG?",
+      "options": [
+        "Recall ignora classificação",
+        "O recall é exigido pela especificação OpenAPI",
+        "Recall é o mesmo que precisão em RAG",
+        "A geração pode deixar cair pedaços irrelevantes, mas não pode inventar uma resposta a partir de um pedaço que nunca viu, então perder o pedaço certo é o fracasso mais caro"
+      ],
+      "correct": 3,
+      "explanation": "Um retriever que perde a peça certa não pode ser reparado para baixo; pedaços excedentes desperdiçam tokens, mas raramente envenenam a resposta."
+    },
+    {
+      "stage": "pre",
+      "question": "O que é que a RMR calcula?",
+      "options": [
+        "Contagem de tokens da resposta",
+        "A média geométrica da semelhança cosínica",
+        "Rango médio do segundo documento relevante",
+        "A média de 1 / posição do primeiro documento relevante em todas as consultas"
+      ],
+      "correct": 3,
+      "explanation": "O MRR é dominado pelo topo da lista: o ranking 1 contribui para 1.0, o ranking 2 contribui para 0.5, o ranking 10 contribui para 0.1."
+    },
+    {
+      "stage": "check",
+      "question": "Quando é que você deve contactar o nDCG em vez de recall@k?",
+      "options": [
+        "Quando o retriever não devolver pontuações",
+        "Quando o corpo é pequeno",
+        "Nunca .",
+        "Quando os rótulos de ouro têm relevância graduada (por exemplo, doc A é 3, doc B é 2, doc C é 1) e as métricas binárias perdem informações"
+      ],
+      "correct": 3,
+      "explanation": "A nDCG usa ganhos graduados e um desconto de posição; recall aplania tudo para binário."
+    },
+    {
+      "stage": "check",
+      "question": "Qual é a diferença entre fidelidade e relevância da resposta?",
+      "options": [
+        "A fidelidade é uma métrica de recuperação e a relevância é uma métrica de chunker",
+        "São a mesma métrica com dois nomes.",
+        "A fidelidade mede a precisão; as medidas de relevância recordam",
+        "A fidelidade pergunta \"a resposta está fundamentada no contexto recuperado\"; a relevância da resposta pergunta \"a resposta responde à pergunta\""
+      ],
+      "correct": 3,
+      "explanation": "Uma resposta fiel, mas fora do tópico, tem um alto valor em fidelidade, mas baixa em relevância; uma resposta relevante, mas sem fundamento, tem um alto valor em relevância, mas baixa em fidelidade."
+    },
+    {
+      "stage": "check",
+      "question": "Um pipeline mostra recall decente@5 mas baixa MRR. Qual estágio deve investigar primeiro?",
+      "options": [
+        "O gerador",
+        "O candeeiro .",
+        "O ingestor de corpus",
+        "O re-ranqueador, porque o pedaço direito está no topo-k, mas não no topo"
+      ],
+      "correct": 3,
+      "explanation": "Recall@5 significa que o ouro está no topo-5; baixo MRR significa que não está no topo da lista."
+    },
+    {
+      "stage": "post",
+      "question": "Qual é o risco de produção que torna um arquivo de qurels congelado perigoso ao longo do tempo?",
+      "options": [
+        "A suite de eval usa espaço em disco",
+        "Os vetores de inserção expiram",
+        "O retriever deixa de trabalhar após seis meses.",
+        "Qrels podre: o corpus muda e um documento que foi a resposta dourado no último trimestre não é mais a resposta correta; métricas são relatados contra rótulos obsoletos"
+      ],
+      "correct": 3,
+      "explanation": "Agendem uma revisão trimestral ou as suas métricas vão medir o que não é certo à medida que o corpo evolui."
+    }
+  ]
+}

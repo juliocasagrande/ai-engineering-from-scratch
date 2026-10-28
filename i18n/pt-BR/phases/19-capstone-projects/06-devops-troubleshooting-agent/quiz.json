@@ -1,0 +1,90 @@
+{
+  "lesson": "06-devops-troubleshooting-agent",
+  "title": "Capstone 06  DevOps Agente de solução de problemas para Kubernetes",
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "Qual é a posição de permissão padrão para a superfície RBAC do agente de solução de problemas?",
+      "options": [
+        "Cluster-admin para que possa auto-curar",
+        "Somente leitura por padrão, com verbos destrutivos fechados atrás de um servidor separado e aprovação humana",
+        "Equivalente ao engenheiro em serviço",
+        "Nome-espaço-admin no espaço de nomes afetado apenas"
+      ],
+      "correct": 1,
+      "explanation": ""
+    },
+    {
+      "stage": "pre",
+      "question": "Qual é o gráfico de conhecimento que o agente percorre durante a análise de causas?",
+      "options": [
+        "Os nós são objetos K8s mais fontes de telemetria; bordas codificam propriedade, agendamento e observação",
+        "Nomes métricos Prometheus organizados por equipe",
+        "Uma lista plana de cápsulas recém-reiniciadas",
+        "Um gráfico de compromissos do GitHub e revisões de relações públicas"
+      ],
+      "correct": 0,
+      "explanation": ""
+    },
+    {
+      "stage": "check",
+      "question": "Como são classificadas as hipóteses de causa raiz para o brief Slack?",
+      "options": [
+        "Nome de alerta alfabético",
+        "Por probabilidade de registro do modelo",
+        "Por ordem que foram criados.",
+        "Por uma pontuação de evidência combinando recência, especificidade, comprimento do gráfico e contagem de citações"
+      ],
+      "correct": 3,
+      "explanation": ""
+    },
+    {
+      "stage": "check",
+      "question": "Porque é que o registro de auditoria ordena o agente considerado e os executados?",
+      "options": [
+        "O ArgoCD só aceita comandos considerados",
+        "Os ataques de repetição exigem ambas as listas",
+        "A API Slack precisa de ambos para a entrega",
+        "Os revisores podem apanhar quase-erros onde o agente quase executou um comando destrutivo"
+      ],
+      "correct": 3,
+      "explanation": ""
+    },
+    {
+      "stage": "check",
+      "question": "Que mecanismo impede que o agente volte de volta unilateralmente em uma má implantação?",
+      "options": [
+        "Ferramentas destrutivas vivem em um servidor MCP separado atrás de um token de aprovação de um cartão Slack",
+        "PagerDuty pausa automaticamente a implantação",
+        "Proteção de ramificações no repo GitOps",
+        "Um segundo juiz de LLM vota sobre o regresso"
+      ],
+      "correct": 0,
+      "explanation": ""
+    },
+    {
+      "stage": "post",
+      "question": "Qual é o objetivo da p50 para a hipótese de tempo das medidas rubricas?",
+      "options": [
+        "Menos de 1 hora",
+        "Menos de 30 segundos",
+        "No próximo turno de chamada",
+        "Menos de 5 minutos de alerta para Slack brief"
+      ],
+      "correct": 3,
+      "explanation": ""
+    },
+    {
+      "stage": "post",
+      "question": "Quão grande é a suite de incidentes sintéticos usada para marcar a precisão do RCA?",
+      "options": [
+        "5 cenários",
+        "20 cenários que abrangem OOMKill, DNS flap, HPA thrash, PVC fill, e muito mais",
+        "1 incidente de demonstração com script",
+        "100 alertas de produção selecionadas aleatoriamente"
+      ],
+      "correct": 1,
+      "explanation": ""
+    }
+  ]
+}

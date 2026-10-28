@@ -1,0 +1,78 @@
+{
+  "lesson": "phase-19/40-dpo-from-scratch",
+  "title": "Otimizar preferências diretas a partir de zero",
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "Antes de ler: sob o modelo de preferência Bradley-Terry, a probabilidade de um ser humano preferir a conclusão y_w a y_l dada a resposta x é sigmoid(r(x, y_w) - r(x, y_l)). Qual é a implicação?",
+      "options": [
+        "Apenas a diferença de recompensa importa; qualquer função adicionada a r(x, y_w) e r(x, y_l) é cancelada.",
+        "Deve ser o primeiro a se adequar antes de treinar a política.",
+        "Bradley-Terry requer uma constante normalizadora Z(x) que não desaparece.",
+        "Sigmoid é incompatível com a probabilidade máxima."
+      ],
+      "correct": 0,
+      "explanation": "A preferência Bradley-Terry depende apenas da diferença de recompensa. Qualquer coisa comum a ambas as conclusões é cancelada. Esta é a razão estrutural pela qual o DPO pode evitar um modelo de recompensa explícito: o termo de ponta-só na fórmula de política ideal cancela."
+    },
+    {
+      "stage": "check",
+      "question": "A perda de DPO para um único triplo é -log sigmoid(beta * (logp_w_pol - logp_w_ref) - (logp_l_pol - logp_l_ref) ) ). Se logp_w_pol = logp_w_ref e logp_l_pol = logp_l_ref, a perda é igual?",
+      "options": [
+        "Beta.",
+        "- Um.",
+        "log(2).",
+        "- Não."
+      ],
+      "correct": 2,
+      "explanation": "Ambas as diferenças são zero, então o argumento sigmoide é zero, o valor sigmoide é 0,5, e -log(0.5) = log(2). Esta é a perda quando a política não se moveu da referência."
+    },
+    {
+      "stage": "check",
+      "question": "Durante a formação do DPO, a probabilidade de registro escolhida no modelo de referência muda entre épocas porque a política diverge dela.",
+      "options": [
+        "Só é verdade quando a beta não é zero.",
+        "Falso a menos que os gradientes sejam explícitamente desativados com no_grad.",
+        "É verdade: a referência varia à medida que as políticas são atualizadas.",
+        "Falso: a referência está congelada; os log-probos de referência são calculados uma vez e reutilizados."
+      ],
+      "correct": 3,
+      "explanation": "A referência é congelada para toda a execução DPO. Seus parâmetros nunca atualizam. A implementação quer faz snapshots de referência de log-probs uma vez ou enrola o pass forward de referência em no_grad com requisit_grad=False definido em seus parâmetros."
+    },
+    {
+      "stage": "check",
+      "question": "Tomando o gradiente de L_DPO em relação ao logp_w_pol (a probabilidade de log da política da conclusão escolhida), o sinal é?",
+      "options": [
+        "Positivo (aumento da perda à medida que aumenta a probabilidade de registro).",
+        "Zero (perda independente de registos de política).",
+        "Indeterminado (depende da referência).",
+        "Negativo (a perda diminui à medida que o log-prob escolhido aumenta)."
+      ],
+      "correct": 3,
+      "explanation": "O gradiente é -beta * (1 - sigmoid(z)), que não é positivo. Aumentar a probabilidade de registro escolhida diminui a perda, que é exatamente o sinal de treinamento que queremos."
+    },
+    {
+      "stage": "post",
+      "question": "No seu dispositivo, a perda do DPO diminui, mas a política começa a preferir conclusões mais curtas em geral, mesmo quando a menor é pior.",
+      "options": [
+        "Bias de comprimento: sequências mais longas acumulam mais termos de probabilidade de log (cada um negativo), de modo que a soma de log-probs penaliza a comprimento estruturalmente.",
+        "O optimista está a usar a taxa de aprendizagem errada.",
+        "A referência não está adequadamente congelada.",
+        "O beta é muito baixo."
+      ],
+      "correct": 0,
+      "explanation": "A soma de log-probabilidades é tendenciosa em direção a sequências mais curtas porque cada token adicional adiciona um termo de log-probabilidade negativo."
+    },
+    {
+      "stage": "post",
+      "question": "Quer substituir o sigmoide + log loss pela variante IPO (z - 1) ^ 2. Qual é o efeito prático sobre a dinâmica de treinamento?",
+      "options": [
+        "Elimina completamente a necessidade do modelo de referência.",
+        "Não satura como a perda sigmoide, que aguenta melhor sob rótulos de preferência barulhentos.",
+        "Não requer nenhum parâmetro beta.",
+        "É matematicamente equivalente em todos os pontos."
+      ],
+      "correct": 1,
+      "explanation": "A perda quadrada da IPO não satura como o sigmoide faz, o que ajuda quando os rótulos de preferência são barulhentos ou quando alguns triples são erroneamente rotulados. Empiricamente, reduz a otimização excessiva em pequenos conjuntos de dados de preferências."
+    }
+  ]
+}

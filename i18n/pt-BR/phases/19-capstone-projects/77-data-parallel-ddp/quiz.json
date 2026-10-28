@@ -1,0 +1,78 @@
+{
+  "lesson": "77-data-parallel-ddp",
+  "title": "Dados paralelas DDP a partir do zero",
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "Por que o DDP transmite parâmetros na construção em vez de confiar na mesma semente em todas as fileiras?",
+      "options": [
+        "Transmissão salva memória",
+        "A transmissão é mais rápida do que a semente .",
+        "PyTorch proíbe a introdução da mesma semente",
+        "A mesma semente inicia a derivação por epsilon flutuante entre as fileiras; a transmissão garante pesos de byte iguais antes do início do treinamento"
+      ],
+      "correct": 3,
+      "explanation": "As operações de flutuação em diferentes hardware (ou mesmo diferentes ordens de processo) podem diferir no nível de bits. Uma transmissão a partir de rank 0 é a única maneira de obter pesos iguais em byte em todos os lugares."
+    },
+    {
+      "stage": "pre",
+      "question": "O que o DDP faz depois de voltar atrás e antes do optimizer.step?",
+      "options": [
+        "Allreduce-SUM o gradiente de cada parâmetro e divide por world_size para obter o gradiente médio",
+        "Nada .",
+        "Salva um ponto de controlo",
+        "Registros de transmissão"
+      ],
+      "correct": 0,
+      "explanation": "O gradiente médio é invariante para world_size, então uma taxa de aprendizagem sintonizada em uma fila funciona em N filas."
+    },
+    {
+      "stage": "check",
+      "question": "Por que dividir por world_size depois de allreduce-SUM em vez de usar allreduce-MEAN?",
+      "options": [
+        "Allreduce-MEAN não existe em gloo",
+        "world_size é desconhecido",
+        "Divisão por tamanho mundial em cada classificação é uma operação local; todos redução-MEAN seria implementado da mesma forma sob o capô",
+        "A divisão produz NaN"
+      ],
+      "correct": 2,
+      "explanation": "As duas abordagens produzem a mesma aritmética."
+    },
+    {
+      "stage": "check",
+      "question": "O que é que a redução de gradientes na produção de DDP consegue?",
+      "options": [
+        "Coalesce muitos pequenos allreduces em um grande allreduce, amortecendo o piso de latência por chamada",
+        "Libera a memória de gradiente",
+        "Gradientes de quantização para int8",
+        "Salta para trás"
+      ],
+      "correct": 0,
+      "explanation": "Um modelo de parâmetro 1B tem milhares de tensores de grau; um allreduce por tensor paga latência de zero ou NCCL milhares de vezes."
+    },
+    {
+      "stage": "check",
+      "question": "Por que não existe no PyTorch DDP?",
+      "options": [
+        "Para mudar de backends",
+        "Desligar DDP",
+        "Para depurar",
+        "A acumulação de gradientes sobre os microbatches K precisa ignorar o pós-retorno allreduce para K-1 deles; no_sync envolve que pausa"
+      ],
+      "correct": 3,
+      "explanation": "Sem sincronização, o allreduce incende K vezes por passo acumulado e o rendimento cai para o chão."
+    },
+    {
+      "stage": "post",
+      "question": "Por que a implementação de referência desta lição anda por cada micro-parcela de cada rank sequencialmente em um processo?",
+      "options": [
+        "É a única maneira de usar o gloo",
+        "O processo único é mais rápido",
+        "Salva memória.",
+        "Dá uma linha de base igual a byte: o gradiente médio sequencial deve ser igual ao gradiente médio total reduzido do DDP em cada passo"
+      ],
+      "correct": 3,
+      "explanation": "A equivalência ao loop de referência é o teste de corretão de carga; sem ele, os bugs de sincronização de gradiente se escondem até o passo 10000."
+    }
+  ]
+}

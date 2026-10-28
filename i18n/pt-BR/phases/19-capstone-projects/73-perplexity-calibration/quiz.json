@@ -1,0 +1,78 @@
+{
+  "lesson": "73-perplexity-calibration",
+  "title": "Perplexidade e Calibração",
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "O que implica uma perplexidade de 1.0 sobre um modelo de linguagem no corpo de teste?",
+      "options": [
+        "O modelo está quebrado.",
+        "O modelo atribui probabilidade 1 a cada token real; é um modelo perfeito",
+        "O modelo é uniforme sobre o vocabulário",
+        "O corpo está vazio."
+      ],
+      "correct": 1,
+      "explanation": "Perplexidade é igual a exp ((avg probabilidade de log negativo). Quando cada token recebe probabilidade 1, a NLL é zero, e exp ((0) é 1."
+    },
+    {
+      "stage": "pre",
+      "question": "Por que o arnes requer probabilidades de registro não negativas do adaptador?",
+      "options": [
+        "Numpy cai com negativos",
+        "As bordas do canteiro na ECE assumem positividade",
+        "Perplexidade não definida para valores negativos",
+        "As probabilidades de log negativas são não negativas por definição; receber um valor negativo significa que o adaptador enviou log p, não -log p"
+      ],
+      "correct": 3,
+      "explanation": "-log p de uma probabilidade é não negativo. Um valor negativo é uma violação de contrato que daria silenciosamente perplexidade < 1, o que é impossível."
+    },
+    {
+      "stage": "check",
+      "question": "O que é a medida de erro de calibração esperado?",
+      "options": [
+        "O diferencial médio entre a confiança de nível de bin e a precisão de nível de bin, ponderado pelo tamanho do bin",
+        "A entropia cruzada das previsões",
+        "A distância absoluta média entre as etiquetas previstas e verdadeiras",
+        "A variação da saída softmax"
+      ],
+      "correct": 0,
+      "explanation": "ECE trens previsões por confiança, mede a diferença entre a confiança média e a precisão média por trem, pesos por tamanho de trem."
+    },
+    {
+      "stage": "check",
+      "question": "Por que a implementação também retorna os populated_bins ao lado do valor ECE?",
+      "options": [
+        "É o denominador da pontuação Brier",
+        "É necessário para o numpy",
+        "Ele sinaliza quando há poucas caixas de lixo para que o número seja confiável",
+        "É necessário para os diagramas de confiabilidade"
+      ],
+      "correct": 2,
+      "explanation": "Com poucos canteiros povoados, o ECE é dominado pelo ruído."
+    },
+    {
+      "stage": "check",
+      "question": "O que é que o Brier consegue que o ECE não consegue?",
+      "options": [
+        "Não precisa de rótulos de verdade.",
+        "É mais rápido para calcular",
+        "Funciona apenas em resultados binários",
+        "Ele penaliza a calibração errada local diretamente, já que é o erro por previsão quadrado"
+      ],
+      "correct": 3,
+      "explanation": "O ECE só olha para as médias por contenedor. Brier quadrata o erro por previsão, então ele pega o caso em que os contenedores cancelam em média, mas são individualmente miscalibrados."
+    },
+    {
+      "stage": "post",
+      "question": "Por que a calibração é um relatório por modelo e não uma métrica por tarefa?",
+      "options": [
+        "A calibração é muito lenta para calcular por tarefa",
+        "As tarefas não têm probabilidades",
+        "O ECE exige que o corredor conheça a arquitetura do modelo",
+        "As tarefas individuais têm poucas previsões para estimar estatísticas binárias; os relatórios são agregados em toda a avaliação"
+      ],
+      "correct": 3,
+      "explanation": "A calibração por tarefa é dominada pelo ruído. O corredor compartilha pares de confiança/correção em todas as tarefas antes de calcular o ECE, Brier e o diagrama de confiabilidade."
+    }
+  ]
+}

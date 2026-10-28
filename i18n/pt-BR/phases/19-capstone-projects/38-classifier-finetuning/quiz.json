@@ -1,0 +1,78 @@
+{
+  "lesson": "phase-19/38-classifier-finetuning",
+  "title": "Classificador - Ajuste perfeito por troca de cabeça",
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "Antes de ler: um modelo de linguagem pré-entrenado tem um corpo com parâmetros de 5M e uma cabeça de saída que projeta um vocabulário de 30K. Você quer um classificador de 2 classes. Qual é o primeiro movimento mais defensivel?",
+      "options": [
+        "Congelou a cabeça e treinou apenas o corpo.",
+        "Descarregue o corpo e treine um novo transformador a partir do zero no conjunto de 800 exemplares rotulados.",
+        "Mantenha a cabeça original mas masquear todas as logitas de saída exceto duas.",
+        "Substitua apenas a cabeça por uma camada linear de 2 classes e decida mais tarde se treinar o corpo."
+      ],
+      "correct": 3,
+      "explanation": "O corpo é a parte mais cara e codifica a estrutura útil do pré-treino."
+    },
+    {
+      "stage": "check",
+      "question": "Por que a lição usa mean pooling com uma pesagem de máscara de atenção em vez de uma média simples através do eixo de sequência?",
+      "options": [
+        "O meio simples ignora a dimensão do lote.",
+        "A piscina média exige mascaramento por convenção, mesmo quando não há almofadas.",
+        "A média simples é matematicamente indefinida para transformadores.",
+        "As posições de empate contribuem com estados ocultos irrelevantes que puxariam o vetor em conjunto para zero."
+      ],
+      "correct": 3,
+      "explanation": "Os tokens de empolgação não carregam sinal, mas o corpo ainda produz estados ocultos para eles. sem enmascaramento, as posições empolgadas corromperam a representação em conjunto, especialmente em seqüências curtas em um lote empolgado para o exemplo mais longo."
+    },
+    {
+      "stage": "check",
+      "question": "- Não .`train_classifier`, o optimizador é construído com `[p for p in model.parameters() if p.requires_grad]`O que é que esse idioma impõe?",
+      "options": [
+        "É exigido pelo construtor Adam.",
+        "Diz ao PyTorch para auto-agredir através de parâmetros congelados de qualquer maneira.",
+        "Ignora silenciosamente a cabeça quando o corpo está congelado.",
+        "Ele constrói o grupo param apenas do subconjunto treinável, de modo que os casos de cabeça apenas e de FT completa compartilham o mesmo caminho de código."
+      ],
+      "correct": 3,
+      "explanation": "O optimizador só atualiza os parâmetros na sua lista de parâmetros.`requires_grad`, a mesma função de treinamento funciona para ambos os regimes; a interrupção é a chamada de congelamento, não o ciclo."
+    },
+    {
+      "stage": "check",
+      "question": "A precisão é 0,9 e a recall é 0,6 na classe de spam.",
+      "options": [
+        "0,30",
+        "0,50",
+        "0,75",
+        "0,72"
+      ],
+      "correct": 3,
+      "explanation": "F1 é a média harmônica de precisão e de recall: 2 * 0,9 * 0,6 / (0,9 + 0,6) = 1,08 / 1,5 = 0,72."
+    },
+    {
+      "stage": "post",
+      "question": "Reestrine o modelo com ajuste perfeito, com a mesma taxa de aprendizagem que o treinamento apenas na cabeça.",
+      "options": [
+        "PyTorch desativa silenciosamente os gradientes durante o ajuste completo.",
+        "Os parâmetros corporais precisavam de uma taxa de aprendizagem menor que a cabeça.",
+        "A perda de entropia cruzada não é definida para problemas de duas classes.",
+        "Adão é incompatível com os objetivos de classificação."
+      ],
+      "correct": 1,
+      "explanation": "Um corpo pré-entrenado geralmente precisa de uma taxa de aprendizagem menor do que uma cabeça fresca. Um padrão comum são dois grupos de parâmetros: alta LR na cabeça, menor LR no corpo. A mesma LR para ambos destrói o sinal pré-entrenamento."
+    },
+    {
+      "stage": "post",
+      "question": "A sua equipa quer colocar o classificador e perguntar como gravar qual regime produziu o ponto de controlo da produção.",
+      "options": [
+        "O valor final da perda, uma vez que a perda apenas para cada pessoa é sempre maior que a perda total de FT.",
+        "O `trainable`Compreendo .`TrainReport`, que varia em ordens de magnitude entre os regimes.",
+        "A matriz de confusão, que identifica de forma única o regime.",
+        "O triplo de recall de precisão F1."
+      ],
+      "correct": 1,
+      "explanation": "`trainable`O número de parâmetros que receberam gradientes durante o treinamento é de`hidden * num_classes`O número é o rastro de auditoria."
+    }
+  ]
+}

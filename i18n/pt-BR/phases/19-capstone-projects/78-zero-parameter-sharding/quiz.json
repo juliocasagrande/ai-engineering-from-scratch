@@ -1,0 +1,78 @@
+{
+  "lesson": "78-zero-parameter-sharding",
+  "title": "Otimizador ZeRO Estado de fragmentação",
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "Por que o ZeRO coloca o estado de otimização de fragmentos em primeiro lugar em vez de parâmetros?",
+      "options": [
+        "O estado de otimização é o maior termo de memória e só é tocado durante o passo, não para frente ou para trás",
+        "A DeepSpeed manda-o",
+        "Otimizar é mais importante",
+        "Os parâmetros são mais fáceis"
+      ],
+      "correct": 0,
+      "explanation": "Para Adam em precisão mista, o fp32 master mais dois momentos é 12 bytes por rank vs 4P para fp16 params + grads."
+    },
+    {
+      "stage": "pre",
+      "question": "Qual é o padrão de fio por etapa do ZeRO estágio 1?",
+      "options": [
+        "Nada .",
+        "Uma transmissão",
+        "Um total redução",
+        "Um reducer_scatter em gradientes mais um todo-gather em parâmetros atualizados"
+      ],
+      "correct": 3,
+      "explanation": "Reduce_scatter fornece a cada rank apenas seu gradiente fragment; allgather distribui os parâmetros atualizados fragmentos de volta."
+    },
+    {
+      "stage": "check",
+      "question": "Por que a largura de banda por passo é a mesma que a DDP?",
+      "options": [
+        "Não é o mesmo.",
+        "Magia",
+        "O ZeRO utiliza compressão",
+        "Allreduce é igual a reduce_scatter mais allgather em largura de banda; ZeRO divide isso em duas metades em dados diferentes"
+      ],
+      "correct": 3,
+      "explanation": "O ring allreduce é implementado como reduce_scatter e depois allgather."
+    },
+    {
+      "stage": "check",
+      "question": "Para um modelo 7B com Adam em precisão mista em 8 fileiras, qual é a queda de memória vs. DDP de vainilha?",
+      "options": [
+        "99%",
+        "0",
+        "10%",
+        "Cerca de 65% (vanilha 16P vs ZeRO-1 4P + 12P/N = 5,5P)"
+      ],
+      "correct": 3,
+      "explanation": "Vanilha: 2P + 2P + 4P + 4P + 4P = 16P. ZeRO-1: 2P + 2P + (4P + 4P + 4P)/8 = 5.5P."
+    },
+    {
+      "stage": "check",
+      "question": "O que acrescenta o ZeRO-2 ao ZeRO-1?",
+      "options": [
+        "Remove o optimizador",
+        "Também deixa cair os gradientes não fragmentados após reduzir_scatter, liberando memória de gradiente por rank; largura de banda permanece a mesma",
+        "Nada .",
+        "Interruptor de backend para NCCL"
+      ],
+      "correct": 1,
+      "explanation": "O ZeRO-2 ceroza a porção de gradiente não fragmentado após a redução; a mesma largura de banda do ZeRO-1, mas menor memória de gradiente."
+    },
+    {
+      "stage": "post",
+      "question": "Porque é que a ZeRO exige que o posto de controlo do Estado mais óptimo registre qual é o rank que possui qual é o shard?",
+      "options": [
+        "Não é",
+        "Cosméticos",
+        "Compressão",
+        "Sem a propriedade por rank o estado salvo é ilegível ao reiniciar; reiniciar no mesmo tamanho mundial precisa colocar o fragmento certo de volta na posição certa"
+      ],
+      "correct": 3,
+      "explanation": "A lição 80 constrói o manifesto de checkpoint fragmentado precisamente para que uma corrida ZeRO possa retomar na mesma topologia."
+    }
+  ]
+}

@@ -1,0 +1,78 @@
+{
+  "lesson": "48-distributed-fsdp-ddp",
+  "title": "Dados paralelas distribuídos e FSDP a partir de zero",
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "Que duas operações coletivas são o núcleo de um envelope DDP de zero?",
+      "options": [
+        "apenas redu_scatter",
+        "Barreira e barreira",
+        "Enviar e recuperar",
+        "emissão na construção para que cada rank começa a partir dos mesmos parâmetros, e all_reduce depois para trás para que cada rank termina com o gradiente médio"
+      ],
+      "correct": 3,
+      "explanation": "Transmissão em init mantém as fileiras em sincronia no passo zero. Todo-redução após retrocesso mantém-as em sincronia em cada passo que segue."
+    },
+    {
+      "stage": "pre",
+      "question": "Porque é que esta lição funciona na CPU sem CUDA?",
+      "options": [
+        "Ele usa tensores simulados",
+        "Não utiliza tocha. distribuída em tudo",
+        "torch.distributed envia um backend gloo que executa coletivos sobre soquetes simples, de modo que os trabalhadores torch.multiprocessamento na CPU formam um grupo de processo real; apenas a etiqueta do dispositivo muda em uma caixa de GPU",
+        "É um estômago."
+      ],
+      "correct": 2,
+      "explanation": "Gloo é o backend coletivo da CPU. Os mesmos sites de chamadas funcionam no nccl na GPU; a superfície da API é idêntica."
+    },
+    {
+      "stage": "check",
+      "question": "O que o manual_all_reduce_matches_single_process test prova?",
+      "options": [
+        "Que a CUDA é desnecessária",
+        "Que o optimizador converge",
+        "Nada .",
+        "Que a soma de gradientes por rank e divisão por world_size recupera o gradiente um único processo computava sobre a entrada concatenada, dentro do ruído de ponto flutuante"
+      ],
+      "correct": 3,
+      "explanation": "A redução média de entropia cruzada no lote completo é igual à média de média por rank."
+    },
+    {
+      "stage": "check",
+      "question": "O que o esboço do FSDP nesta lição faz por parâmetro em cada passagem para a frente?",
+      "options": [
+        "Computa um hash",
+        "Reinicializa o parâmetro",
+        "Nada .",
+        "Pads o parâmetro plano para um múltiplo de world_size, fatias, todos_reunindo as fatias em cada posição, solta o pad, e verifica a reconstrução coincide com o original"
+      ],
+      "correct": 3,
+      "explanation": "Cada rank possui 1/world_size de cada parâmetro. O conjunto reconstrui o tensor completo para computação; FSDP de produção sobrepõe o conjunto com o trabalho da camada anterior."
+    },
+    {
+      "stage": "check",
+      "question": "Por que o gloo all_gather é dimensionado para shards de tamanho igual ao mundo mesmo quando o comprimento do parâmetro não é divisível pelo tamanho do mundo?",
+      "options": [
+        "Acelera a rede.",
+        "Seleção aleatória",
+        "É um inseto.",
+        "Gloo's all_gather requer tamanhos de tensor de saída iguais por rank, então o parâmetro plano é empurrado para o lado direito para um múltiplo de world_size antes de cortar e o empurrão é deixado cair após o reunir"
+      ],
+      "correct": 3,
+      "explanation": "Gloo (e nccl) todos_gather espera resultados do mesmo tamanho."
+    },
+    {
+      "stage": "post",
+      "question": "Lendo a saída da demonstração, param_sum_spread perto de zero em filas diz-lhe o que?",
+      "options": [
+        "Nada de significativo.",
+        "Que cada rank terminou a corrida com os mesmos valores de parâmetro, o que significa a transmissão na construção e o total-redução após cada atraso ambos funcionou; se qualquer um foi quebrado a diferença cresceria sobre os passos",
+        "Que a perda é baixa",
+        "Que a rede é rápida"
+      ],
+      "correct": 1,
+      "explanation": "A invariante do DDP é a paridade de parâmetros entre as fileiras."
+    }
+  ]
+}

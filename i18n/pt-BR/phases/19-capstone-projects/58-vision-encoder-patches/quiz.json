@@ -1,0 +1,78 @@
+{
+  "lesson": "58-vision-encoder-patches",
+  "title": "Patches de codificação visual",
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "Porque é que um Transformador de Visão usa parches em vez de alimentar um pixel por token?",
+      "options": [
+        "Os parches são necessários para PyTorch",
+        "Sequências de pixels por token explodem computação de atenção quadrática e perdem a traçabilidade em resoluções típicas",
+        "Patches melhoram a qualidade da imagem",
+        "Evita o uso de um tokenizer"
+      ],
+      "correct": 1,
+      "explanation": "Uma imagem de 224x224 é de 150528 pixels. A atenção é quadrática em comprimento, então o parcheamento de 16x16 reduz a sequência para 196 tokens e torna o modelo tratável."
+    },
+    {
+      "stage": "pre",
+      "question": "Qual é a relação entre Conv2d com kernel = step = patch_size e plano-then-linear?",
+      "options": [
+        "Conv2d adiciona não linearidade",
+        "Produzem resultados diferentes",
+        "Conv2d é uma maneira mais rápida de escrever a mesma projeção linear sobre cada parche",
+        "Planar-depois-linear é impossível"
+      ],
+      "correct": 2,
+      "explanation": "Cada ponto de saída da Conv2d produz os pixels de correção com um filtro, que é idêntico ao plano-depois-linear."
+    },
+    {
+      "stage": "check",
+      "question": "Por que a posição sinusoidal 2D está incorporando determinista em vez de aprendida?",
+      "options": [
+        "Os sinais de erro/cos fixos interpolam limpo para redes que o modelo nunca viu, o que é útil quando a resolução muda",
+        "É necessário o init aleatório",
+        "Economiza espaço no disco",
+        "As posições aprendidas são ilegais ."
+      ],
+      "correct": 0,
+      "explanation": "As posições sinusoidais fixas são deterministas em resoluções e deixam o mesmo codificador funcionar em entradas em que não foi treinado."
+    },
+    {
+      "stage": "check",
+      "question": "Qual é o comprimento da sequência de saída de uma imagem de 224x224 com patch_size=16 e um token CLS?",
+      "options": [
+        "224 - Ação",
+        "- Ação de segurança",
+        "196",
+        "197"
+      ],
+      "correct": 3,
+      "explanation": "224/16 = 14, então 14x14 = 196 patches, mais um token CLS para 197 tokens totais."
+    },
+    {
+      "stage": "check",
+      "question": "Por que a reconstrução (desdobrar-se, então, não-estratificada) é um teste de sanidade útil na parte frontal do parche?",
+      "options": [
+        "Acelera a inferência",
+        "Pixéis de volta-trip através de patch-flat sem projeção deve ser igual à entrada; falha significa que a matemática de desdobramento é errada",
+        "Melhora a precisão",
+        "É exigido pela ONNX"
+      ],
+      "correct": 1,
+      "explanation": "O passo de correção é inversível sem projeção. Se a rotação de ida e volta desviar, a lógica de desdobramento é bug e o resto do codificador é inseguro."
+    },
+    {
+      "stage": "post",
+      "question": "Que mudanças se trocar uma posição aprendida por uma sinusoidal 2D nesta lição?",
+      "options": [
+        "Nada muda.",
+        "As posições sinusoidais são aleatórias por passo.",
+        "As posições aprendidas podem caber um pouco melhor a uma resolução fixa; as posições sinusoidais transferem para novas resoluções sem reformulação",
+        "Posições sinusoidais custam mais parâmetros"
+      ],
+      "correct": 2,
+      "explanation": "As posições aprendidas são flexíveis em uma resolução."
+    }
+  ]
+}

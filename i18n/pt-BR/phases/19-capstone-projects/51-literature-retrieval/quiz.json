@@ -1,0 +1,78 @@
+{
+  "lesson": "51-literature-retrieval",
+  "title": "Recuperação de literatura",
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "Porque é que o cliente de recuperação executa um pass BM25 e um pass de citação?",
+      "options": [
+        "Porque as APIs falsas exigem isso",
+        "Porque o parcer falha de outra forma",
+        "Porque BM25 precisa do gráfico para construir o seu índice",
+        "Porque os hits léxicos perdem os papéis fundamentais com vocabulário diferente, e os hits gráficos perdem os papéis que não compartilham citação com a semente"
+      ],
+      "correct": 3,
+      "explanation": "Cada passagem capta o que o outro perde. Lexical cobre o vocabulário compartilhado; o gráfico cobre papéis ancestrais e descendentes independentemente do vocabulário."
+    },
+    {
+      "stage": "pre",
+      "question": "Por que o transcurso do gráfico de citação é limitado a dois saltos?",
+      "options": [
+        "Porque o limite de recorrência do Python proíbe três saltos",
+        "Porque além de dois saltos o conjunto de resultados tende a desviar-se do tópico e sobrecarregar o ranking para baixo",
+        "Porque o BM25 só consegue dois saltos",
+        "Porque o corpus só armazena duas camadas de citações"
+      ],
+      "correct": 1,
+      "explanation": "Dois saltos é o teto prático. Três saltos explodem o resultado definido em um gráfico conectado e raramente retornam mais em artigos sobre tópicos."
+    },
+    {
+      "stage": "check",
+      "question": "O que é que a IDF avalia para um termo que aparece em todos os documentos?",
+      "options": [
+        "Infinito negativo",
+        "Um grande valor positivo",
+        "Não definido; a implementação do BM25 não o aplica",
+        "Um valor próximo a zero"
+      ],
+      "correct": 3,
+      "explanation": "Quando df é igual a N, o numerador e denominador dentro do log estão próximos, e o +1 mantém o termo não negativo, mas pequeno."
+    },
+    {
+      "stage": "check",
+      "question": "Que teclas usa o passo de fusão para dedup hits das duas passagens?",
+      "options": [
+        "BM25 balde de pontuação",
+        "Identificação de papel estável",
+        "Ano e primeiro autor",
+        "Texto do título"
+      ],
+      "correct": 1,
+      "explanation": "O título e o autor são duplicados em todas as versões, o ano é ambíguo."
+    },
+    {
+      "stage": "check",
+      "question": "O que o graph_score retorna para um papel que é dois saltos do conjunto de sementes?",
+      "options": [
+        "A pontuação BM25 dividida por dez",
+        "0,3 por padrão",
+        "1.0 por padrão",
+        "0"
+      ],
+      "correct": 1,
+      "explanation": "O cronograma de pontuação padrão do gráfico é de 1,0 em saltos zero, 0,6 em um saltos, 0,3 em dois saltos e zero além disso."
+    },
+    {
+      "stage": "check",
+      "question": "Por que o corpus é carregado uma vez em um Cliente de Recuperação em vez de ser reeditado por consulta?",
+      "options": [
+        "Porque a pontuação da recência exige",
+        "Porque o índice BM25 e o gráfico de citações são construídos uma vez no momento da construção e reutilizados em consultas",
+        "Porque as APIs falsas são lentas em cada chamada",
+        "Porque o parser é global"
+      ],
+      "correct": 1,
+      "explanation": "A construção do índice é a etapa cara. A reutilização do índice amortiza os custos em todas as consultas que o cliente lida."
+    }
+  ]
+}

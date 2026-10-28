@@ -1,0 +1,90 @@
+{
+  "lesson": "16-github-issue-to-pr-agent",
+  "title": "Capstone 16  GitHub Issue-to-PR Agente Autônomo",
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "Como é que o agente de codificação em nuvem asíncrona é activado na produção?",
+      "options": [
+        "Um link do GitHub lançado por um rótulo de problema ou comentário de relações públicas, enviado para um trabalhador de sandbox",
+        "Um upload manual de arquivo",
+        "Uma sessão de SSH duradoura em uma máquina virtual",
+        "Um cron cron cron programado atingindo o repo"
+      ],
+      "correct": 0,
+      "explanation": ""
+    },
+    {
+      "stage": "pre",
+      "question": "Por que o agente deve executar com um token de instalação de aplicativo GitHub de curta duração em vez de um token de acesso pessoal?",
+      "options": [
+        "Tokens de acesso pessoal não podem abrir relações públicas",
+        "Os tokens da aplicação concedem credenciais de curta duração, de fina gra, de alcance, adequadas para trabalhadores por tarefa",
+        "Aplicativos evitam completamente os limites de taxa do GitHub",
+        "Aplicativos exigem menos código do que PATs"
+      ],
+      "correct": 1,
+      "explanation": ""
+    },
+    {
+      "stage": "check",
+      "question": "Que duas proteções impedem o agente de se acumular?",
+      "options": [
+        "Desativar o git do trabalhador",
+        "Proteção de galhos que não impõe empurrões diretos ou forçados para o principal, com o aplicativo não na lista de bypass",
+        "Requer um captcha por empurrão",
+        "Criptografar o repo antes de clonar"
+      ],
+      "correct": 1,
+      "explanation": ""
+    },
+    {
+      "stage": "check",
+      "question": "Por que a proteção de path-scoped para .github/flows de trabalho é aplicada ao trabalhador em vez de como uma permissão do GitHub App?",
+      "options": [
+        ".github/workflows é um caminho virtual",
+        "As permissões do GitHub App não são escadas de caminho, então a lista de permisos do trabalhador para verificar a diferença proposta é o lugar certo para aplicá-la",
+        "O alcance do caminho é impossível em qualquer forma",
+        "Os fluxos de trabalho são armazenados fora do repo"
+      ],
+      "correct": 1,
+      "explanation": ""
+    },
+    {
+      "stage": "check",
+      "question": "Que gating acontece depois do ciclo de agentes terminar, antes de abrir uma PR?",
+      "options": [
+        "O modelo revisor reescreve a diferença",
+        "A PR abre imediatamente sem verificações",
+        "A CI completa é executada na caixa de areia; o delta da cobertura é calculado; as relações públicas com uma regressão além de um limiar são rotuladas de revisão das necessidades",
+        "O repo é forçado a"
+      ],
+      "correct": 2,
+      "explanation": ""
+    },
+    {
+      "stage": "post",
+      "question": "Que orçamento o despachador impõe por repo por dia?",
+      "options": [
+        "Só um tapete de virada",
+        "Um limite máximo em dólares por PR mais um número máximo de PR por repo por dia",
+        "Relações públicas ilimitadas e custos ilimitados",
+        "Só um tapete de relógio de parede"
+      ],
+      "correct": 1,
+      "explanation": ""
+    },
+    {
+      "stage": "post",
+      "question": "O que entra no órgão de relações públicas que o agente publica?",
+      "options": [
+        "Racionalização, resumo de diferença, URL de rastreamento, custo e número de voltas para que os revisores possam auditar e acompanhar",
+        "Apenas a diferença",
+        "Nada; a PR tem um corpo vazio",
+        "Apenas um logue de mudança gerado"
+      ],
+      "correct": 0,
+      "explanation": ""
+    }
+  ]
+}

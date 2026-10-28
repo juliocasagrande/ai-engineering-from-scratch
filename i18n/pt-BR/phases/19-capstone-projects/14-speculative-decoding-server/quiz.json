@@ -1,0 +1,90 @@
+{
+  "lesson": "14-speculative-decoding-server",
+  "title": "Capstone 14  Servidor de Inferência de Descódigo Especulativo",
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "Qual é o mecanismo de duas camadas por trás da descodificação especulativa?",
+      "options": [
+        "Dois modelos-alvo alternam por token",
+        "Um modelo de incorporação e um sintetizador",
+        "Um cache de recuperação e um re-ranqueador",
+        "Um projecto de modelo propõe k tokens candidatos; o modelo-alvo verifica-os em uma única passagem"
+      ],
+      "correct": 3,
+      "explanation": ""
+    },
+    {
+      "stage": "pre",
+      "question": "O que é que a EAGLE-3 faz que os rascunhos de ngram não fazem?",
+      "options": [
+        "Evita a tokenização inteiramente",
+        "Ele só funciona em CPUs",
+        "Treina os cabeças de rascunho nos estados ocultos do modelo alvo para maiores taxas de aceitação",
+        "Substitui o modelo-alvo"
+      ],
+      "correct": 2,
+      "explanation": ""
+    },
+    {
+      "stage": "check",
+      "question": "Por que é relatada a latência de cauda p99 nos tamanhos de lote 1, 8 e 32?",
+      "options": [
+        "Os tokens de estado estável por segundo podem esconder que a verificação de passagem em rejeição é mais cara do que a descodificação de vainilha",
+        "O vLLM não pode servir os tamanhos dos lotes inferiores a 8",
+        "p99 só importa no tamanho do lote 32",
+        "A latência da cauda é independente do tamanho do lote"
+      ],
+      "correct": 0,
+      "explanation": ""
+    },
+    {
+      "stage": "check",
+      "question": "Por que a taxa de aceitação afunda quando a distribuição do tráfego muda?",
+      "options": [
+        "A alinhamento do projeto depende da distribuição de entrada: ShareGPT, código e dados de domínio exercem padrões diferentes",
+        "O cronógrafo do sistema operacional reorganiza a memória da GPU",
+        "Mudanças na quantificação no tempo de execução",
+        "VLLM gira modelos por hora"
+      ],
+      "correct": 0,
+      "explanation": ""
+    },
+    {
+      "stage": "check",
+      "question": "Em que sinal Kubernetes HPA escala a implantação?",
+      "options": [
+        "IOPS de disco",
+        "Utilização da CPU",
+        "Tempo de espera de fila para pedidos de inferência",
+        "Nodos de autoescalado de agrupamento"
+      ],
+      "correct": 2,
+      "explanation": ""
+    },
+    {
+      "stage": "post",
+      "question": "O que é que o P-Eagle acrescenta ao série Eagle-3?",
+      "options": [
+        "Quantização em peso FP4",
+        "Retiramento do modelo-alvo",
+        "Especulação paralela em uma árvore de rascunhos de ramos verificados em uma passagem-alvo",
+        "Curatura automática de conjuntos de dados"
+      ],
+      "correct": 2,
+      "explanation": ""
+    },
+    {
+      "stage": "post",
+      "question": "Qual é o objetivo de produção que a rubrica exige em relação à linha de base não especulativa?",
+      "options": [
+        "Pelo menos 2,5 vezes a qualidade correspondente em dois modelos",
+        "Qualquer melhora acima do valor de referência",
+        "Aproximadamente 1,1x na qualidade correspondente",
+        "Exatamente 10x de capacidade em qualquer qualidade"
+      ],
+      "correct": 0,
+      "explanation": ""
+    }
+  ]
+}

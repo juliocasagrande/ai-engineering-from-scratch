@@ -1,0 +1,78 @@
+{
+  "lesson": "69-end-to-end-rag-system",
+  "title": "Sistema de RAG de ponta a ponta",
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "Por que o teste de integração é a única nota honesta de um gasoduto RAG de seis componentes?",
+      "options": [
+        "Os componentes funcionam em máquinas diferentes",
+        "O fragmento é o único componente que importa.",
+        "Os servidores de produção não podem executar testes individuais em fase",
+        "A métrica isolada de cada estágio não prevê a métrica do sistema porque cada estágio interage com o próximo; a única classificação válida é a corrida de todo o pipeline de ponta a ponta contra os mesmos qrels"
+      ],
+      "correct": 3,
+      "explanation": "Não compõem vitórias isoladas; o pipeline é classificado com base na saída conjunta."
+    },
+    {
+      "stage": "pre",
+      "question": "Qual é o papel do rejeitamento de baixa confiança no gerador de respostas?",
+      "options": [
+        "Ele registra todas as recusas no disco",
+        "Retorna \"Não sei\" quando a pontuação do re-ranqueador superior-1 está abaixo de um limiar específico do corpo, evitando respostas alucinadas quando o contexto recuperado não aborda a consulta",
+        "Bloqueia consultas de mais de 100 tokens",
+        "Acta uma recuperação com um fragmento diferente"
+      ],
+      "correct": 1,
+      "explanation": "Uma pontuação consistentemente baixa de nível 1 é o modelo que não diz nada no corpus responde a esta pergunta; rejeitar em vez de alucinar."
+    },
+    {
+      "stage": "check",
+      "question": "Porque é que os triples de treinamento de re-ranqueamento são mantidos separados das perguntas de avaliação?",
+      "options": [
+        "Para evitar vazamentos de testes de treinamento; se as consultas de avaliação se sobrepõem ao conjunto de treinamento de rango, a avaliação parece mágica e o teste de regressão não detecta a deriva real",
+        "Porque a RRF não pode fundir listas sobrepostas",
+        "Porque o cross-encoder requer vocabulários distintos",
+        "Para salvar memória de GPU"
+      ],
+      "correct": 0,
+      "explanation": "A separação rigorosa é a higiene básica; caso contrário, a métrica de re-ranqueamento não prevê o comportamento da produção."
+    },
+    {
+      "stage": "check",
+      "question": "Qual é o propósito do código de saída da demo autoterminação?",
+      "options": [
+        "É exigido pelo Python",
+        "O re-ranqueador usa-o como sinal de treinamento.",
+        "Cosméticos",
+        "Encode a passagem/falha contra os limiares métricos; um teste de fumaça CI pode conectar a demonstração ao gasoduto e gatear a fusão em uma saída não zero"
+      ],
+      "correct": 3,
+      "explanation": "O código de saída 0 significa limiares cumpridos; não zero significa regressão."
+    },
+    {
+      "stage": "check",
+      "question": "Como é que uma âncora de citação parece neste tubo?",
+      "options": [
+        "Envelope JSON-RPC",
+        "[doc_id:chunk_index]",
+        "Marca o link para baixo com o URL da fonte",
+        "O vetor de inserção literal"
+      ],
+      "correct": 1,
+      "explanation": "O gerador emite o tuple (doc_id, chunk_index) como uma âncora para que uma interface ou auditor de baixa corrente possa mapear cada reivindicação de volta ao seu pedaço de origem."
+    },
+    {
+      "stage": "post",
+      "question": "Qual é o modo de falha invisível para o gerador simulado e deve ser testado com um LLM real antes do envio?",
+      "options": [
+        "Latência",
+        "Alucinação: o gerador simulado emite apenas texto de pedaços recuperados e não pode inventar conteúdo; um LLM real pode ignorar os pedaços e gerar respostas sem fundamento",
+        "Tokenization",
+        "Dimensão do índice de vetores"
+      ],
+      "correct": 1,
+      "explanation": "A simulação não pode testar a segurança do gerador contra conteúdo alucinado; apenas um modelo real de troca pode."
+    }
+  ]
+}

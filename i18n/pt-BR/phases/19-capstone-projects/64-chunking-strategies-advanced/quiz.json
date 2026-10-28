@@ -1,0 +1,78 @@
+{
+  "lesson": "64-chunking-strategies-advanced",
+  "title": "Estratégias de desmantelamento, comparadas",
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "Por que a escolha de choque é um limite superior na qualidade da recuperação e não apenas um hiperparâmetro?",
+      "options": [
+        "Porque o LLM nunca lê pedaços",
+        "Porque o BM25 não tem papel no RAG moderno",
+        "Porque nenhum incrustador, re-ranqueador ou LLM para baixo pode recuperar um espaço de resposta que foi cortado em pedaços incoerentes",
+        "Porque o modelo de incorporação é fixado no tempo de treinamento"
+      ],
+      "correct": 2,
+      "explanation": "Se o pedaço que mantém o espaço de resposta for incoerente, a incorporação se move para o cluster errado e os componentes a jusante não podem reparar o dano."
+    },
+    {
+      "stage": "pre",
+      "question": "Qual estratégia é a mais forte de estratégia única quando não tens conhecimento prévio do corpo?",
+      "options": [
+        "Embalagem de frases",
+        "Janela fixa",
+        "Divisão recorrente",
+        "Marcação estrutural"
+      ],
+      "correct": 2,
+      "explanation": "A divisão recorrente se adapta por região tentando primeiro o separador mais forte e recuando, para sobreviver à estrutura inconsistente."
+    },
+    {
+      "stage": "check",
+      "question": "O que é a memória nesta lição?",
+      "options": [
+        "Se os pedaços de cima-k contêm a cadeia de consulta literal",
+        "A semelhança cosínea entre a consulta e os pedaços de cima-k",
+        "O número de documentos únicos no topo-k",
+        "Se qualquer um dos pedaços de cima-k sobrepõe a resposta ouro span"
+      ],
+      "correct": 3,
+      "explanation": "Cada consulta tem compensações de ouro; recall@k é 1 se qualquer peça de topo-k se sobrepõe ao espaço de ouro, caso contrário 0; média entre consultas."
+    },
+    {
+      "stage": "check",
+      "question": "Porque é que o chunking de janelas fixas falha muito no código ou no YAML corpora?",
+      "options": [
+        "Cortar identificadores e pares de valores de chave em metade, produzindo pedaços que incorporam ao ruído",
+        "Perde caracteres Unicode",
+        "Não pode ser paralela",
+        "Produz pedaços maiores do que a janela de contexto do modelo de incorporação"
+      ],
+      "correct": 0,
+      "explanation": "Cortes de nível de caracteres dentro de um símbolo destruem o significado que o modelo de incorporação deve capturar."
+    },
+    {
+      "stage": "check",
+      "question": "Qual é o critério de terminação da deriva centróide no chunking semântico?",
+      "options": [
+        "A semelhança cosínica entre o vetor médio em execução e a frase seguinte cai abaixo de um limiar",
+        "Contagem de caracteres excede o máximo",
+        "Contagem de frases excede um limite de código rígido",
+        "O lixo consumiu todo o orçamento de incorporação"
+      ],
+      "correct": 0,
+      "explanation": "A fragmentação semântica é cortada quando o centroide em execução não corresponde mais à frase seguinte por um limiar de semelhança configurado."
+    },
+    {
+      "stage": "post",
+      "question": "Que modo de falha de incorporar estável introduz o chunking semântico que as outras quatro estratégias não introduzem?",
+      "options": [
+        "Peças muito pequenas para o contexto de incorporação",
+        "Os limites de pedaços mudam sempre que você muda o modelo de pedaço, exigindo uma reconstrução coordenada",
+        "Os pedaços já não são indexaveis pelo BM25",
+        "Os Chunks perdem os seus offsets de início e fim"
+      ],
+      "correct": 1,
+      "explanation": "O agrupamento semântico depende de um modelo de incorporação; trocar o modelo muda os limites, então o modelo de pedaços deve ser fixado separadamente ou reconstruído junto com o modelo de recuperação."
+    }
+  ]
+}

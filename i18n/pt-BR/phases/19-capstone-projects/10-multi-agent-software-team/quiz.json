@@ -1,0 +1,90 @@
+{
+  "lesson": "10-multi-agent-software-team",
+  "title": "Capstone 10  Equipa de engenharia de software multi-agente",
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "Porque é que um arnes de agente único bate num teto em tarefas grandes mesmo com um contexto de 200k tokens?",
+      "options": [
+        "Os modelos não têm suporte para git",
+        "Agentes solteiros não podem fazer chamadas de ferramentas",
+        "O contexto não pode conter o plano de arquitetura, quatro fatias paralelas de base de código, comentário do revisor e saída de teste ao mesmo tempo",
+        "As caixas de areia recusam-se a hospedar mais de um processo"
+      ],
+      "correct": 2,
+      "explanation": ""
+    },
+    {
+      "stage": "pre",
+      "question": "O que é que o papel do arquiteto possui nesta forma de fábrica?",
+      "options": [
+        "A execução da sala de testes numa caixa de areia limpa",
+        "Lendo o número e emitindo um plano com subtarefas que têm interfaces explícitas",
+        "Revisão da diferença combinada para alucinações",
+        "Ramos de fusão por força quando os programadores discordam"
+      ],
+      "correct": 1,
+      "explanation": ""
+    },
+    {
+      "stage": "check",
+      "question": "Porque é que cada codificador trabalha na sua própria árvore de trabalho git mais uma caixa de areia Daytona?",
+      "options": [
+        "O arquiteto requer IDs de árvore de trabalho",
+        "Daytona é a única caixa de areia que suporta SSH",
+        "Árvores de trabalho isoladas permitem que os programadores N implementem subtarefas em paralelo sem pisar em arquivos compartilhados",
+        "Os árvores de trabalho são mais rápidos em clonar do que os ramos"
+      ],
+      "correct": 2,
+      "explanation": ""
+    },
+    {
+      "stage": "check",
+      "question": "Que restrição é posta ao crítico para manter-se honesto?",
+      "options": [
+        "Não pode aprovar as diferenças que tenha escrito ou proposto",
+        "Só pode funcionar depois que o testeiro desligar",
+        "Deve aprovar todas as diferenças que lê.",
+        "Deve ser o mesmo modelo que o arquiteto ."
+      ],
+      "correct": 0,
+      "explanation": ""
+    },
+    {
+      "stage": "check",
+      "question": "Por que a rubrica pesa a eficiência dos tokens em relação a uma linha de base de um agente único?",
+      "options": [
+        "O agente único não tem história de observabilidade",
+        "Os limites do papel adicionam conteúdo de resumo e transferência, então a verdadeira questão é se a fábrica ganha por dólar",
+        "O multi-agente é sempre mais barato.",
+        "O custo do token não está relacionado com o desempenho"
+      ],
+      "correct": 1,
+      "explanation": ""
+    },
+    {
+      "stage": "post",
+      "question": "Que artefato é produzido a partir de cada número falhado durante a pós-mortem?",
+      "options": [
+        "Um novo modelo de plano de arquitetura",
+        "Uma especificação atualizada do protocolo A2A",
+        "Histograma de falhas de entrega que identifica quais limites de função foram rompidos (planagem, fusão, revisão, teste)",
+        "Um tronco de força"
+      ],
+      "correct": 2,
+      "explanation": ""
+    },
+    {
+      "stage": "post",
+      "question": "Qual conjunto de avaliação o capstone usa para marcar pass@1 em diferentes papéis?",
+      "options": [
+        "HumanEval-Java",
+        "Migração",
+        "MT-Bench-v2",
+        "Subconjunto SWE-bench Pro de 50 edições"
+      ],
+      "correct": 3,
+      "explanation": ""
+    }
+  ]
+}

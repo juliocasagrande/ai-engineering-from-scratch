@@ -1,0 +1,78 @@
+{
+  "lesson": "70-task-spec-format",
+  "title": "Formatos de especificação de tarefas",
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "Por que congelar o esquema de registro de tarefas antes de escrever o código de pontuação?",
+      "options": [
+        "Fecha o contrato para que os dados, corredores e pós-processadores concordam sobre nomes de campos",
+        "Permite novos nomes métricos arbitrários sem alterações adicionais",
+        "Faz o parsementa JSON correr mais rápido",
+        "Elimina a necessidade de um validador"
+      ],
+      "correct": 0,
+      "explanation": "O esquema é o contrato que todos os consumidores de baixo leem."
+    },
+    {
+      "stage": "pre",
+      "question": "Qual é o vocabulário fechado que o campo metric_name aceita?",
+      "options": [
+        "Qualquer cadeia que o autor da tarefa escolha",
+        "Apenas exacto_match e f1",
+        "Qualquer que seja o corredor configurado para reconhecer",
+        "Exact_match, f1, bleu_4, rouge_l, precisão, code_exec"
+      ],
+      "correct": 3,
+      "explanation": "A lição fixa o vocabulário métrico em seis nomes. Adicionar um requer uma nova lição e uma nova entrada de validador."
+    },
+    {
+      "stage": "check",
+      "question": "O que faz o validador quando vê um campo desconhecido de nível superior num registro?",
+      "options": [
+        "Regista um aviso mas aceita o registro",
+        "Despeja-o e continua",
+        "Renomeá-lo para metadados. desconhecido",
+        "Retorna um erro de validação e rejeita o registro"
+      ],
+      "correct": 3,
+      "explanation": "Os campos desconhecidos são um risco de compatibilidade com o futuro. O validador os rejeita para que o esquema permaneça a única fonte de verdade."
+    },
+    {
+      "stage": "check",
+      "question": "Por que são anexados exemplos de poucas tiras ao registro da tarefa em vez de serem calculados pelo corredor?",
+      "options": [
+        "Pouco-choque é utilizado apenas durante o ajuste fino",
+        "A intenção do autor faz parte da avaliação; exemplos vinculativos à tarefa removem a variação por modelo na construção rápida",
+        "Economiza espaço no disco",
+        "O corredor não tem ficheiro de entrada/entrada"
+      ],
+      "correct": 1,
+      "explanation": "A composição de poucas fotos faz parte da definição de eval, não da interface do modelo."
+    },
+    {
+      "stage": "check",
+      "question": "Qual par metricidade é ilegal no validador?",
+      "options": [
+        "code_exec + code_exec",
+        "Resumo + rouge_l",
+        "aritmética + exact_match",
+        "mcq + bleu_4"
+      ],
+      "correct": 3,
+      "explanation": "O validador impõe que as tarefas mcq utilizem apenas exact_match ou precisão."
+    },
+    {
+      "stage": "post",
+      "question": "O que a regra de extract_letter de pós_processo retorna quando a geração é `Answer: C is correct`- Não .",
+      "options": [
+        "Resposta",
+        "Uma corda vazia",
+        "A linha inteira inalterada",
+        "C."
+      ],
+      "correct": 3,
+      "explanation": "extract_letter retorna o primeiro caracter correspondente [A-E] na geração. A cadeia tem C no início do corpo."
+    }
+  ]
+}

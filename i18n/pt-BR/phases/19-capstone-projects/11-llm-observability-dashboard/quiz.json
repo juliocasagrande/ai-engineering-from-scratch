@@ -1,0 +1,90 @@
+{
+  "lesson": "11-llm-observability-dashboard",
+  "title": "Capstone 11  LLM Observabilidade e Eval Dashboard",
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "Em que esquema de ingestão convergem a Langfuse, Phoenix e OpenLLMetry?",
+      "options": [
+        "Formatos de exposição Prometheus",
+        "OpenTelemetry Convenções semânticas GenAI sobre OTLP HTTP",
+        "JSON proprietário por fornecedor",
+        "Arquivos de registro CSV simples"
+      ],
+      "correct": 1,
+      "explanation": ""
+    },
+    {
+      "stage": "pre",
+      "question": "Por que separar o ClickHouse e o Postgres no nível de armazenamento?",
+      "options": [
+        "São intercâmbios e um é escolhido aleatoriamente",
+        "O postgres é mais rápido para ingestão de tempo",
+        "ClickHouse lida com análises colunárias em intervalos de tempo enquanto o Postgres mantém usuários, sessões e metadados do aplicativo",
+        "ClickHouse não pode armazenar cadeias"
+      ],
+      "correct": 2,
+      "explanation": ""
+    },
+    {
+      "stage": "check",
+      "question": "O que faz o processador de amostragem de cauda no coletor OpenTelemetry?",
+      "options": [
+        "Decide se manter um rastreamento após a conclusão, usando regras como erros de manutenção mais sucessos de amostra",
+        "Repõe antigos vestígios em Postgres",
+        "Transmite todos os bytes incondicionalmente",
+        "Truncates spans abaixo de 100ms"
+      ],
+      "correct": 0,
+      "explanation": ""
+    },
+    {
+      "stage": "check",
+      "question": "Como é que o painel detecta a deriva ao longo das semanas?",
+      "options": [
+        "Conta identificação de rastreamento única",
+        "Computa a divergência PSI ou KL em embutidos conjuntos de prompt e observa as tendências de avaliação",
+        "Oculares manuais do painel de instrumentos",
+        "Leia o último tempo de implantação"
+      ],
+      "correct": 1,
+      "explanation": ""
+    },
+    {
+      "stage": "check",
+      "question": "Qual é a meta de tempo de detecção (MTTD) do produto entregue em relação a uma regressão de vazamento de PII injetada?",
+      "options": [
+        "Menos de 1 hora",
+        "Dentro de 24 horas",
+        "Menos de 5 minutos a partir do bug implantado para o alerta Slack",
+        "No próximo turno de chamada"
+      ],
+      "correct": 2,
+      "explanation": ""
+    },
+    {
+      "stage": "post",
+      "question": "Quais famílias do SDK devem produzir extensões genéicas canônicas para atender à rubrica de cobertura de rastreamento?",
+      "options": [
+        "OpenAI e apenas Anthropic",
+        "Qualquer SDK é suficiente",
+        "Apenas VLLM",
+        "Pelo menos seis: OpenAI, Anthropic, Google GenAI, LangChain, LlamaIndex e vLLM"
+      ],
+      "correct": 3,
+      "explanation": ""
+    },
+    {
+      "stage": "post",
+      "question": "Como os resultados da avaliação estão ligados à convocatória original de Mestrado em Direito Jurídico?",
+      "options": [
+        "Como uma tabela separada de Postgres sem rastro de identificação",
+        "Como um CSV enviado por e-mail todas as noites",
+        "Somente como mensagens Slack",
+        "Como intervalos de avaliação escritos como filhos do pai rastrear em ClickHouse"
+      ],
+      "correct": 3,
+      "explanation": ""
+    }
+  ]
+}

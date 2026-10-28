@@ -1,0 +1,78 @@
+{
+  "lesson": "34-transformer-block",
+  "title": "Bloco de transformador a partir do zero",
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "Quais são as duas subcamadas que vivem dentro de um único bloco de transformer de decodificador?",
+      "options": [
+        "Convolção e porta recorrente",
+        "Atenção causal múltipla e MLP de posição, cada um envolto numa conexão residual",
+        "Encoder e decodificador RNN",
+        "Embedding lookup e softmax"
+      ],
+      "correct": 1,
+      "explanation": "Cada bloco de decodificador LLM moderno é atenção mais MLP, cada um com seu próprio caminho residual e sua própria LayerNorm."
+    },
+    {
+      "stage": "check",
+      "question": "Qual é a diferença fundamental entre a profundidade pré-LN e a profundidade pós-LN?",
+      "options": [
+        "Pre-LN usa diferentes matemáticas de atenção",
+        "Pre-LN funciona apenas para codificadores",
+        "O pre-LN mantém o sinal residual não normalizado para que os gradientes se propaguem limpo para a incorporação; o post-LN coloca a norma após a adição residual, o que reduz os gradientes na profundidade e precisa de aquecimento",
+        "Post-LN é mais rápido na GPU"
+      ],
+      "correct": 2,
+      "explanation": "Os treinos pré-LN são estáveis sem aquecimento em taxas de aprendizagem comuns; o post-LN é o que o artigo de 2017 enviou e precisava de aquecimento."
+    },
+    {
+      "stage": "check",
+      "question": "O que faz a máscara causal na atenção multi-cabeça?",
+      "options": [
+        "Deixe cair tokens aleatórios",
+        "Estabelece o triângulo superior da atenção logitas para o infinito negativo para que token eu não posso atender a tokens em posições maiores que i",
+        "Normaliza os resultados da atenção",
+        "Escolhe a sequência mais longa do lote"
+      ],
+      "correct": 1,
+      "explanation": "Esquecer a máscara causal treina um modelo que pode ler tokens futuros; a máscara é a única peça que impõe causalidade."
+    },
+    {
+      "stage": "check",
+      "question": "Por que usar uma projeção QKV fundida em vez de três linhas separadas?",
+      "options": [
+        "Evita uma suave max",
+        "Altera a expressividade do modelo",
+        "Remove o resíduo",
+        "Um linear de largura 3 vezes d_modelo desmorona três lançamentos de núcleo e três matmuls em um, mais rápido em cada acelerador e corresponde à implementação de referência GPT-2"
+      ],
+      "correct": 3,
+      "explanation": "A mesma matemática, menos núcleos; implementações de referência de GPT-2, LLaMA e Mistral todos enviam a projeção fusível."
+    },
+    {
+      "stage": "post",
+      "question": "Onde deve ser colocado o dropout NÃO num bloco de transformador?",
+      "options": [
+        "No próprio caminho da identidade residual, uma vez que quebra a identidade aditiva que permite que o gradiente flua na profundidade",
+        "Dentro da expansão de alimentação",
+        "Na saída de atenção softmax",
+        "Após a segunda linear MLP"
+      ],
+      "correct": 0,
+      "explanation": "A interrupção pertence à saída de atenção e à atualização residual do MLP, nunca ao ramo de identidade do residual."
+    },
+    {
+      "stage": "post",
+      "question": "Por que registar a máscara causal como um amortecimento em vez de atribuí-la por chamada?",
+      "options": [
+        "Os tampões funcionam apenas com GPU",
+        "Os tampões estão encriptados",
+        "Os tampões melhoram a precisão numérica",
+        "A máscara depende apenas do comprimento máximo do contexto, por isso, atribuí-la uma vez na construção e cortar a janela ativa por chamada evita um ponto quente do alocador em contexto longo"
+      ],
+      "correct": 3,
+      "explanation": "Asigne uma vez com register_buffer, corte por prosseguir; caso contrário, a máscara se torna um custo de atribuição por chamada."
+    }
+  ]
+}

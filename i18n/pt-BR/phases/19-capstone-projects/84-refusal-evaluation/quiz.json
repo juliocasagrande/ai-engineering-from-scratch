@@ -1,0 +1,78 @@
+{
+  "lesson": "84-refusal-evaluation",
+  "title": "Capstone 84  Avaliação de recusa",
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "O que é a medida de subrejeição?",
+      "options": [
+        "Quantas vezes o modelo recusa instruções rotuladas de segurança",
+        "O custo da chamada de API por pedido",
+        "Quantas vezes o modelo responde a pedidos rotulados de inseguros",
+        "Quantos tokens o modelo emite por resposta"
+      ],
+      "correct": 2,
+      "explanation": ""
+    },
+    {
+      "stage": "pre",
+      "question": "Porque usar um falso Mestrado em vez de um modelo real para esta aula?",
+      "options": [
+        "Porque os modelos reais não são permitidos em pedra-cap",
+        "Porque os LLM falsos são mais precisos do que os reais.",
+        "Então, a mesma entrada produz a mesma saída em todas as corridas, fazendo mudanças de código atribuíveis a causas conhecidas",
+        "Porque a lição requer hardware de GPU"
+      ],
+      "correct": 2,
+      "explanation": ""
+    },
+    {
+      "stage": "check",
+      "question": "Dado o número seguro de resposta = 30, o número seguro de rejeição = 5, qual é a taxa de rejeição excessiva?",
+      "options": [
+        "0,30",
+        "0,17",
+        "0,50",
+        "0,05"
+      ],
+      "correct": 1,
+      "explanation": ""
+    },
+    {
+      "stage": "check",
+      "question": "O que é medido pelo erro de calibração esperado (ECE) aqui?",
+      "options": [
+        "A fração de recusas em pedidos inseguros",
+        "A diferença entre a confiança declarada do modelo e a sua precisão observada, distribuída entre os intervalos de confiança",
+        "A contagem total de tokens em todas as respostas",
+        "O número de regras regex que dispararam"
+      ],
+      "correct": 1,
+      "explanation": ""
+    },
+    {
+      "stage": "check",
+      "question": "Por que o quadro se une a pedidos inseguros contra a taxonomia da lição 82?",
+      "options": [
+        "Para re-exercer a lição 82 corpus loader",
+        "Para aumentar a gravidade de cada pedido por um",
+        "Para relatar a recusa insuficiente por categoria de ataque para que a equipa veja em que limite o modelo foge",
+        "Para remover duplicados"
+      ],
+      "correct": 2,
+      "explanation": ""
+    },
+    {
+      "stage": "post",
+      "question": "Por que o quadro retorna tanto a subrejeição como a sobre-rejeição, em vez de uma única pontuação de segurança?",
+      "options": [
+        "Porque a recusa insuficiente só é utilizada em CI",
+        "Porque são dois erros opostos e um único número esconde o que é pior em uma determinada construção",
+        "Porque a recusa excessiva é calculada por uma equipa diferente",
+        "Porque as classes de dados Python preferem múltiplos campos"
+      ],
+      "correct": 1,
+      "explanation": ""
+    }
+  ]
+}

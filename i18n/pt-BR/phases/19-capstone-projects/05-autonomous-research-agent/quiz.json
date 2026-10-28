@@ -1,0 +1,90 @@
+{
+  "lesson": "05-autonomous-research-agent",
+  "title": "Capstone 05  Agente de Pesquisa Autônoma (Classe Cientista de IA)",
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "Que forma de busca usa o agente da classe de Cientistas de IA para explorar experimentos?",
+      "options": [
+        "Expansão de largura-primeira com pontuação aleatória",
+        "Pesquisa de feixe sobre as saídas de tokens",
+        "Aprendizagem de reforço pura a partir de feedback humano",
+        "Melhor primeiro busco de árvore sobre nós de experimento com uma novidade x qualidade x pontuação orçamental"
+      ],
+      "correct": 3,
+      "explanation": ""
+    },
+    {
+      "stage": "pre",
+      "question": "Why is the sandbox configured with --network=none and bounded resource caps?",
+      "options": [
+        "Para forçar o agente a usar o caching rápido",
+        "Para evitar a saída da rede e conter os efeitos colaterais do experimento dentro de um envelope reprodutível",
+        "Para reforçar a aritmética determinista de pontos flutuantes",
+        "Para permitir a passagem da GPU por padrão"
+      ],
+      "correct": 1,
+      "explanation": ""
+    },
+    {
+      "stage": "check",
+      "question": "Qual é o papel do passo crítico da visão no ciclo de escritores?",
+      "options": [
+        "Gera novas ideias de experimento a partir de capturas de tela",
+        "Substitui matplotlib no momento de renderização",
+        "Transforma os números em gráficos de barras",
+        "Compila o esboço do LaTeX para PDF, então tem um layout de crítica VLM, legibilidade de figuras e alinhamento de reivindicação-evidência"
+      ],
+      "correct": 3,
+      "explanation": ""
+    },
+    {
+      "stage": "check",
+      "question": "Como o grupo de críticos faz o canal?",
+      "options": [
+        "Os revisores votam anonimamente e a maioria ganha",
+        "Cinco juízes pontuação em rubricas de estilo NeurIPS e o agregado ponderado deve limpar um limiar, caso contrário o projeto loop volta ao escritor",
+        "Um único juiz aceita ou rejeita uma bandeira binária",
+        "Revisões executadas apenas após publicação"
+      ],
+      "correct": 1,
+      "explanation": ""
+    },
+    {
+      "stage": "check",
+      "question": "Que disciplina de custos impõe a pedra final por papel?",
+      "options": [
+        "Horas de GPU rastreadas mas nunca capadas",
+        "Um orçamento duro de 30 dólares seguido através de contadores Langfuse e estimativas pré-exercícios",
+        "Otimizar apenas os custos sem verificações de qualidade",
+        "Computação ilimitada, apenas para relógios de parede rígidos"
+      ],
+      "correct": 1,
+      "explanation": ""
+    },
+    {
+      "stage": "post",
+      "question": "Qual função de pontuação classifica os nós da árvore para expansão adicional?",
+      "options": [
+        "Conto de citações de artigos relacionados",
+        "Prioridade uniforme aleatória",
+        "Duração da saída e contagem dos tokens",
+        "Novidade x qualidade x orçamento restante"
+      ],
+      "correct": 3,
+      "explanation": ""
+    },
+    {
+      "stage": "post",
+      "question": "O que é que a equipa vermelha diz sobre o sistema?",
+      "options": [
+        "Tentativas de fuga de caixa de areia, como bombas de garfo, exfiltração de rede e fuga de arquivos",
+        "Taxa de acidente de cache em instruções do sistema",
+        "Fugas de dados de vários inquilinos no vector DB",
+        "Cabeça de latência sob perda de pacotes"
+      ],
+      "correct": 0,
+      "explanation": ""
+    }
+  ]
+}

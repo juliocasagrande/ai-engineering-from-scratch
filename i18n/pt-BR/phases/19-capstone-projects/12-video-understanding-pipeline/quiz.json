@@ -1,0 +1,90 @@
+{
+  "lesson": "12-video-understanding-pipeline",
+  "title": "Capstone 12  Video Compreensão de Pipeline (Escena, QA, Busca)",
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "Por que é ainda necessário um índice de nível de cena mesmo quando um VLM de longo contexto pode ler um vídeo de 2 horas de forma nativa?",
+      "options": [
+        "Os cortes de cenas são a única coisa que um VLM entende.",
+        "Índices vetoriais não suportam arquivos de vídeo",
+        "VLMs de longo contexto não podem transmitir saída",
+        "Ingerir 100 horas de vídeo em um corpo consultavel requer recuperação a nível de cena, mesmo quando os vídeos individuais podem ser lidos inteiros"
+      ],
+      "correct": 3,
+      "explanation": ""
+    },
+    {
+      "stage": "pre",
+      "question": "Que três tipos de vetores cada cena recebe no índice multi-vetor?",
+      "options": [
+        "Forma de onda de áudio, espectrograma mel e MFCCs",
+        "Posição, profundidade e fluxo óptico",
+        "Hash, gzip e CRC",
+        "Embedagem de legendas, embalagem de tela de teclado e embalagem de transcrição"
+      ],
+      "correct": 3,
+      "explanation": ""
+    },
+    {
+      "stage": "check",
+      "question": "Como os resultados dos três fluxos de recuperação são combinados no momento da consulta?",
+      "options": [
+        "Por meio de fusão recíproca de rango nas três listas classificadas",
+        "Mediante a média das semelhanças cosinais",
+        "Escolhendo apenas a legenda",
+        "Tomando o sindicato sem marcar"
+      ],
+      "correct": 0,
+      "explanation": ""
+    },
+    {
+      "stage": "check",
+      "question": "O que o passo temporal de aterragem refina dentro da cena superior?",
+      "options": [
+        "A janela de marca de tempo (começo, fim) que contém a resposta",
+        "O quadro de teclado incorporando dimensão",
+        "A transcrição da palavra timestamps de Whisper",
+        "O número de vetores armazenados no Qdrant"
+      ],
+      "correct": 0,
+      "explanation": ""
+    },
+    {
+      "stage": "check",
+      "question": "Qual classe de perguntas é relatada separadamente porque é um ponto de alucinação conhecido?",
+      "options": [
+        "Questões de tradução",
+        "Questões de identificação do orador",
+        "Questões de contagem e tipo de ação, em que os VLMs contem erroneamente ou ordenam erroneamente os eventos",
+        "Perguntas descritivas sobre paisagens"
+      ],
+      "correct": 2,
+      "explanation": ""
+    },
+    {
+      "stage": "post",
+      "question": "Que métrica de aterragem mede a rubrica num conjunto de manobras?",
+      "options": [
+        "Perplexidade",
+        "Intersecção-superunião (IoU)",
+        "Taxa de aceitação",
+        "MRR@10"
+      ],
+      "correct": 1,
+      "explanation": ""
+    },
+    {
+      "stage": "post",
+      "question": "Por que o pipeline requer sinais de tempo citados nas respostas?",
+      "options": [
+        "Os timestamps são necessários para a saída Whisper",
+        "Os timestamps são necessários para as cargas úteis Qdrant",
+        "Reduzem a dimensão de inserção",
+        "Eles deixam o espectador saltar para o exato (video_id, começo, fim) para que os usuários possam verificar a afirmação"
+      ],
+      "correct": 3,
+      "explanation": ""
+    }
+  ]
+}

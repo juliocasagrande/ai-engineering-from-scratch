@@ -1,0 +1,90 @@
+{
+  "lesson": "02-rag-over-codebase",
+  "title": "Capstone 02  RAG sobre base de código (Cross-Repo Semantic Search)",
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "Por que a busca ingênua de cosinos sobre pedaços brutos não é suficiente para a recuperação de código transversal?",
+      "options": [
+        "Indices vetoriais não podem armazenar cargas úteis maiores que 1KB",
+        "A semelhança de cosinos é indefinida em embutidos de código",
+        "Modelos de incorporação não veem o código como tokens",
+        "Envenena os resultados de código gerado, duplicação monorepo e símbolos raramente importados"
+      ],
+      "correct": 3,
+      "explanation": ""
+    },
+    {
+      "stage": "pre",
+      "question": "O que significa o \"chunking\" consciente da AST no fluxo de ingestão?",
+      "options": [
+        "Divisão do código em janelas fixas de 256 tokens",
+        "Compressão de pedaços com gzip antes de armazenamento",
+        "Cortar os limites dos nós de guarda-árvore, tais como os intervalos de função e classe",
+        "Deixar os comentários e o espaço em branco antes de incorporar"
+      ],
+      "correct": 2,
+      "explanation": ""
+    },
+    {
+      "stage": "check",
+      "question": "Que três modalidades recuperáveis cada pedaço entra neste tubo?",
+      "options": [
+        "Texto bruto, gzip e hash",
+        "Identificadores de tokens, árvore de sintaxe e gráfico de chamada",
+        "AST, IR e código de byte",
+        "Embedings densos, termos BM25 e um resumo em linguagem natural"
+      ],
+      "correct": 3,
+      "explanation": ""
+    },
+    {
+      "stage": "check",
+      "question": "Qual é o papel do reencoderador cruzado após a etapa de recuperação híbrida?",
+      "options": [
+        "Ele pontua cada par de candidato de consulta juntos para maior precisão do que cosino sozinho",
+        "Reescreve os fragmentos para remover o código gerado",
+        "Re-embed a consulta em um modelo diferente",
+        "Comprime os pedaços antes de enviar para o sintetizador"
+      ],
+      "correct": 0,
+      "explanation": ""
+    },
+    {
+      "stage": "check",
+      "question": "Por que o sintetizador rejeita respostas sem âncoras (repo/path:start-end)?",
+      "options": [
+        "A fidelidade da citação abre a resposta para que os usuários possam verificar cada alegação",
+        "Ancoras são necessárias pelo esquema de banco de dados vetorial",
+        "Ancores reduzir o custo do token na chamada de síntese",
+        "São necessárias âncoras para a re-ranqueamento do BM25 a jusante"
+      ],
+      "correct": 0,
+      "explanation": ""
+    },
+    {
+      "stage": "post",
+      "question": "O que é que o re-indexamento incremental requer para ficar abaixo de 60 segundos em um empurrão de 50 arquivos?",
+      "options": [
+        "Deixando cair o gráfico de símbolos inteiramente",
+        "Jogar o índice BM25 e reconstruí-lo a partir do zero",
+        "Reincorporar o corpus completo do 2M-LOC em cada compromisso",
+        "Re-embed apenas pedaços cujo texto mudou e recomputando bordas de símbolos afetados"
+      ],
+      "correct": 3,
+      "explanation": ""
+    },
+    {
+      "stage": "post",
+      "question": "Quais medidas métricas determinam se as alegações recuperadas são verificáveis na fonte?",
+      "options": [
+        "Citado fidelidade",
+        "latência de consulta p95",
+        "nDCG@10",
+        "MRR@10"
+      ],
+      "correct": 0,
+      "explanation": ""
+    }
+  ]
+}

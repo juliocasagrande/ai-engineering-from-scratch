@@ -1,0 +1,78 @@
+{
+  "lesson": "80-checkpoint-sharded-resume",
+  "title": "Ponto de Controle e Resumo Atômico",
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "Por que é que o \"reunir-then-write\" é o padrão errado de ponto de controlo na escala?",
+      "options": [
+        "Todos os estados passam pela classificação 0; escrever largura de banda é o link único mais lento, não o agregado, por isso uma escrita em escala TB leva horas",
+        "Precisa de hardware especial.",
+        "Ele usa muita CPU.",
+        "Parece feio."
+      ],
+      "correct": 0,
+      "explanation": "Escalas de escrita fragmentadas com tamanho de cluster: 64 fileiras escrevendo em paralelo terminam em 1/64 o tempo de uma fileira escrevendo o estado reunido."
+    },
+    {
+      "stage": "pre",
+      "question": "O que o manifesto registra que os ficheiros de fragmentos não podem?",
+      "options": [
+        "world_size, versão de esquema, por fragmento sha256, e propriedade de fragmento; dá ao carregador um contrato para validar antes de tocar estado",
+        "Nome de hospedeiro",
+        "Números aleatórios",
+        "Nome do sistema de arquivos"
+      ],
+      "correct": 0,
+      "explanation": "Sem o manifesto, o carregador tem que adivinhar qual fragmento pertence a qual categoria e confiança a contagem de arquivos é correta."
+    },
+    {
+      "stage": "check",
+      "question": "Por que escrever para <name>.tmp e renomear em vez de escrever diretamente?",
+      "options": [
+        "Requerido por tocha",
+        "Mais rápido",
+        "Salva memória",
+        "O renome POSIX dentro de um sistema de arquivos é atômico: uma interrupção no meio da escrita deixa o arquivo anterior intocado."
+      ],
+      "correct": 3,
+      "explanation": "Sem atômico escrever uma salva parcial mais um manifesto atualizado apontando para ele corrompe o estado na próxima carga."
+    },
+    {
+      "stage": "check",
+      "question": "O que é que o Sha256 por fragmento defende contra?",
+      "options": [
+        "Desaceleração",
+        "Ataques de rede",
+        "Escreve parcial ou corrupto; verificar o hash na carga pega fragmentos truncados antes de tocar o estado do modelo",
+        "Fugas de memória"
+      ],
+      "correct": 2,
+      "explanation": "Sem verificação sha256, um fragmento truncado carrega silenciosamente e corrompe o optimizador, surgindo mais tarde como perda de NaN."
+    },
+    {
+      "stage": "check",
+      "question": "Por que o caminho de carga rejeita um desajuste de tamanho mundial?",
+      "options": [
+        "Reiniciar um layout de fragmentos de 4 fileiras em 8 fileiras silenciosamente atribui fragmentos; rejeição alta força o operador a usar o caminho de reequilíbrio de tamanho transversal",
+        "O hardware precisa dele.",
+        "Mais fácil de codificar",
+        "Cosméticos"
+      ],
+      "correct": 0,
+      "explanation": "O reequilíbrio de tamanho mundial é uma operação separada; em silêncio, a colheita de fragmentos de tamanho errado corrompe o estado."
+    },
+    {
+      "stage": "post",
+      "question": "Por que a produção gira os pontos de controlo (manter o último K)?",
+      "options": [
+        "Compressão",
+        "Estética",
+        "Não é",
+        "Sem rotação o disco enche a meia execução e o próximo ponto de controle falha; rotação elimina o mais antigo antes de escrever o novo, limitando o uso do disco"
+      ],
+      "correct": 3,
+      "explanation": "As corridas reais mantêm 3-5 pontos de verificação recentes; o mais antigo é deixado cair antes de cada nova salvação para que o orçamento do disco seja fixado."
+    }
+  ]
+}

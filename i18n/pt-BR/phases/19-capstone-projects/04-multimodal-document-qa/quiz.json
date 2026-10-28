@@ -1,0 +1,90 @@
+{
+  "lesson": "04-multimodal-document-qa",
+  "title": "Capstone 04  Documentos multimodal QA (Visão-Primeira PDF, Tablas, Gráficos)",
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "Por que a fronteira de 2026 prefere a interação tardia da visão em primeiro lugar ao OCR-depois do texto em documentos financeiros e artigos científicos?",
+      "options": [
+        "Os canais de OCR desmontam tabelas giratórias, equações densas e imagens de gráficos, perdendo metade do sinal",
+        "OCR não pode ser executado em GPUs",
+        "Modelos de visão são mais baratos por página",
+        "O OCR é mais lento do que a renderização"
+      ],
+      "correct": 0,
+      "explanation": ""
+    },
+    {
+      "stage": "pre",
+      "question": "O que significa interação tardia na recuperação de estilo ColPali?",
+      "options": [
+        "Cada token de consulta pontua em relação a cada token de patch, e os máximos por token são somados através do MaxSim",
+        "Embedings são calculados após o usuário clicar em um resultado",
+        "O re-ranqueador só corre no candidato final",
+        "As inserções são adiadas até o tempo de avaliação"
+      ],
+      "correct": 0,
+      "explanation": ""
+    },
+    {
+      "stage": "check",
+      "question": "Quantos vetores de parches um ColQwen embutidos produz por página, e que problema de armazenamento isso cria?",
+      "options": [
+        "Exatamente 128 vetores, que se encaixam limpo em qualquer vetor DB",
+        "Cerca de 2048 vetores de parches por página, armazenamento bruto em aumento em comparação com índices de vetores únicos",
+        "1 vetor por página, sem problema de armazenamento",
+        "16 vetores com carga de armazenamento insignificante"
+      ],
+      "correct": 1,
+      "explanation": ""
+    },
+    {
+      "stage": "check",
+      "question": "O que faz o DocPruner neste canal?",
+      "options": [
+        "Remove duplicadas páginas PDF antes de ingerir",
+        "Comprime o índice multi-vector mantendo os parches de alto sinal em cerca de 50% com perda insignificante de precisão",
+        "Culturas de bordas de caixas em torno das regiões de evidência",
+        "Reescreve a consulta embutida para vetores mais curtos"
+      ],
+      "correct": 1,
+      "explanation": ""
+    },
+    {
+      "stage": "check",
+      "question": "Por que um canal de texto OCR ainda está inserido em algumas páginas?",
+      "options": [
+        "VLMs não podem ler imagens a 180 DPI",
+        "O OCR é a principal modalidade de recuperação",
+        "Melhora a qualidade de renderização de PDF",
+        "Páginas densas em equações e com tabelas pesadas beneficiam de um texto que cai ao lado da imagem"
+      ],
+      "correct": 3,
+      "explanation": ""
+    },
+    {
+      "stage": "post",
+      "question": "Qual é o ponto de referência que esta pedra angular visa para a avaliação da recuperação da visão?",
+      "options": [
+        "ViDoRe v3",
+        "RewardBench-2",
+        "MMLU-Pro",
+        "SWE-bench Pro"
+      ],
+      "correct": 0,
+      "explanation": ""
+    },
+    {
+      "stage": "post",
+      "question": "O que significa a rubrica por \"terração de região de evidências\"?",
+      "options": [
+        "Relançar a latência na cauda p99",
+        "Número total de páginas recuperadas por consulta",
+        "Fração das caixas de limite citadas que realmente contêm o intervalo de resposta",
+        "Relação de compressão obtida por DocPruner"
+      ],
+      "correct": 2,
+      "explanation": ""
+    }
+  ]
+}

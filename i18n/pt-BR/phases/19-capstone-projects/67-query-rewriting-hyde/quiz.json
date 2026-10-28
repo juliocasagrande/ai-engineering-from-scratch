@@ -1,0 +1,78 @@
+{
+  "lesson": "67-query-rewriting-hyde",
+  "title": "Reescrever Query: HyDE, Multi-Query e Decomposition",
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "Qual é o mecanismo central da HyDE (Hypothetical Document Embeddings)?",
+      "options": [
+        "Embed a consulta do usuário através de um modelo maior",
+        "Hash a consulta e procure-a em um cache",
+        "Execute a consulta através de vários retrievers e escolha o melhor",
+        "Gerar uma resposta falsa com um LLM, incorporar esse documento hipotético, e recuperar contra seu vetor em vez do vetor de consulta"
+      ],
+      "correct": 3,
+      "explanation": "O HyDE escreve uma passagem em forma de documento na voz do corpus e recupera essa incorporação; o vetor de consulta é substituído."
+    },
+    {
+      "stage": "pre",
+      "question": "Por que é aceitável que o documento hipotético gerado pelo Mestrado em Direito Jurídico na HyDE seja factualmente errado?",
+      "options": [
+        "O re-ranqueador repara erros factuais",
+        "A chamada de LLM é revertida quando errado",
+        "O retriever se importa com a distribuição simbólica, não com a corretão factual; o vetor da hipótese atinge a passagem real",
+        "O usuário nunca vê o hipotético"
+      ],
+      "correct": 2,
+      "explanation": "A recuperação é semelhança em inserir espaço; se o vocabulário do hipotético coincide com o corpus, o vetor aterra na região certa."
+    },
+    {
+      "stage": "check",
+      "question": "Qual a diferença entre expansão de consultas múltiplas e decomposição de consultas?",
+      "options": [
+        "A multi-question produz N parafrases da mesma pergunta; a decomposição produz subquestions que juntos cobrem uma pergunta multi-tema",
+        "A decomposição é executada localmente; a consulta múltipla requer um modelo remoto",
+        "São idênticos.",
+        "Utiliza cosino para várias consultas; utiliza BM25 para a decomposição"
+      ],
+      "correct": 0,
+      "explanation": "As paráfrases preservam a intenção; as subquestions dividem uma consulta multi-tópico em peças independentemente responsáveis."
+    },
+    {
+      "stage": "check",
+      "question": "Quando é que a decomposição da consulta supera a separação e a recuperação do dano?",
+      "options": [
+        "Quando o BM25 estiver desativado",
+        "Quando o corpo é pequeno demais",
+        "Quando a consulta é atômica (tema único), o decomposer inventa subquestions falsas e todas as recuperações retornam o mesmo documento com grau reduzido",
+        "Quando a consulta é muito longa para o LLM"
+      ],
+      "correct": 2,
+      "explanation": "A decomposição de uma consulta atômica divide-a em sub-questions falsas; suas recuperações diluem a fusão para que o documento certo esteja mais baixo."
+    },
+    {
+      "stage": "check",
+      "question": "Por que as três estratégias de reescritura se fundem com a RRF em vez de interpolação de pontuação?",
+      "options": [
+        "A interpolação de pontuação requer calibração por corpo; a RRF combina contribuições baseadas em classificação sem calibração, que é necessária ao fundir N retratos de diferentes reescrituras",
+        "A interpolação de pontuações não pode lidar com mais de duas listas",
+        "RRF é executado em GPUs e interpolação de pontuação não",
+        "RRF é a única operação suportada pelo Python"
+      ],
+      "correct": 0,
+      "explanation": "O mesmo argumento que a lição 65; a fusão baseada em rank não precisa de sintonização alfa por corpo e permanece estável em todas as saídas do reescritor."
+    },
+    {
+      "stage": "post",
+      "question": "Qual é o nível de latência quando executamos os três reescritores em paralelo?",
+      "options": [
+        "Três chamadas de LLM em série",
+        "A recuperação única mais lenta",
+        "Uma chamada de LLM (as reescrituras e recuperações são executadas em paralelo; a chamada de LLM é a sala)",
+        "Zero, porque os reescritores causam tudo"
+      ],
+      "correct": 2,
+      "explanation": "Os três reescritores se expandem para uma chamada de modelo; se executam em paralelo o piso é uma latência de chamada de modelo, então as recuperações executam em paralelo depois."
+    }
+  ]
+}

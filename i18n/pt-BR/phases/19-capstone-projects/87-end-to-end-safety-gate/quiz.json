@@ -1,0 +1,78 @@
+{
+  "lesson": "87-end-to-end-safety-gate",
+  "title": "Capstone 87  Porta de segurança de ponta a ponta",
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "Onde estão os três pontos de controlo no ciclo de vida do pedido?",
+      "options": [
+        "Os três correm antes que o modelo seja chamado",
+        "Pre-gen executa no prompt antes do modelo, durante-gen filtra o fluxo, pós-gen executa na saída concluída",
+        "Apenas post-gen runs; pre-gen e durante-gen são alias",
+        "Os três correm depois do modelo terminar"
+      ],
+      "correct": 1,
+      "explanation": ""
+    },
+    {
+      "stage": "pre",
+      "question": "Qual é o objetivo da filtragem durante a geração?",
+      "options": [
+        "Para aumentar o throughput dos tokens",
+        "Para amortecer pedaços e encerrar o fluxo cedo quando uma continuação prejudicial conhecida aparece, antes que o usuário vê",
+        "Para substituir o aviso de pedido por um recusa",
+        "Para traduzir a saída para outro idioma"
+      ],
+      "correct": 1,
+      "explanation": ""
+    },
+    {
+      "stage": "check",
+      "question": "Como o agregador decide a ação final?",
+      "options": [
+        "Só olhando para o motor das regras",
+        "Ao tomar a gravidade máxima através do detector, token-filter, classificador e regras sinais e mapeá-lo para bloquear, redigir, avisar, ou permitir",
+        "Mediante a média das confidencialidades de cada sinal",
+        "Ao chamar a modelo uma segunda vez"
+      ],
+      "correct": 1,
+      "explanation": ""
+    },
+    {
+      "stage": "check",
+      "question": "Por que o portal emite um RequestTrace estruturado por pedido?",
+      "options": [
+        "Para desacelerar o sistema",
+        "Para substituir a madeira",
+        "Para dar um revisor um rastro de auditoria por ponto de verificação para que uma regressão em qualquer camada possa ser rastreada para o módulo certo",
+        "Replicar o rastro no prompt"
+      ],
+      "correct": 2,
+      "explanation": ""
+    },
+    {
+      "stage": "check",
+      "question": "O que acontece quando a confiança pré-genética excede o limite de bloqueio?",
+      "options": [
+        "O modelo ainda é chamado para a integridade",
+        "O portão faz uma exceção .",
+        "O portal retorna a política de recusa e sai completamente durante a geração e pós-geração",
+        "O portão baixa o limiar e retrata"
+      ],
+      "correct": 2,
+      "explanation": ""
+    },
+    {
+      "stage": "post",
+      "question": "Porque é que a demonstração permite que algumas instruções de codificação cheguem à geração?",
+      "options": [
+        "Porque os truques de codificação não são ataques reais",
+        "Porque o pipeline de entrada nem sempre os normaliza a tempo; o filtro durante a geração é a defesa em profundidade que capta a continuação vazada",
+        "Porque as regras do motor lida com a codificação",
+        "Porque o modelo recusa-os de qualquer maneira."
+      ],
+      "correct": 1,
+      "explanation": ""
+    }
+  ]
+}

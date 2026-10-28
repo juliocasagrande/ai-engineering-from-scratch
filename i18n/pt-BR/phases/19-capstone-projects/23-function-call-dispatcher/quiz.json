@@ -1,0 +1,90 @@
+{
+  "lesson": "23-function-call-dispatcher",
+  "title": "Dispensador de chamadas de função",
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "Por que o tempo de espera numa ferramenta não idempotente não retrata?",
+      "options": [
+        "Porque o despachador não pode medir chamadas não idempotentes",
+        "Porque os manipuladores não idempotentes correm mais rápido",
+        "Porque as chaves de impotência são lentas",
+        "Porque a ferramenta pode ter cometido parcialmente; retomada pode duplicar o efeito"
+      ],
+      "correct": 3,
+      "explanation": "Reprovando uma db.write que tenha sido cronometrada em 4,9s pode produzir uma segunda escrita. O despachador recusa, a menos que o operador lhe diga que a chamada é segura para repetir."
+    },
+    {
+      "stage": "pre",
+      "question": "O que é que o dedupido da chave de impotência protege contra?",
+      "options": [
+        "Erros de validação do esquema",
+        "Uma nova tentativa que dispara enquanto a chamada original ainda está em voo",
+        "Reinicialização do processo",
+        "Redes lentas"
+      ],
+      "correct": 1,
+      "explanation": "Sem dedupe, uma nova tentativa em 5s corre um original lento ainda pendente."
+    },
+    {
+      "stage": "check",
+      "question": "Que tipos de erros são elegíveis para retestamento neste dispecerador?",
+      "options": [
+        "schema e não_conhecido",
+        "O prazo de validade (se idempotente) e transitório",
+        "Interno e orçamento_excedido",
+        "Todos eles."
+      ],
+      "correct": 1,
+      "explanation": "Schema e not_found são deterministas. Interno mascara um erro de manipulador desconhecido. Orçamento excedido é um rendimento. Somente timeout-on-idempotent e TransientError explícito retest."
+    },
+    {
+      "stage": "check",
+      "question": "O que é que o semáforo em torno de Run_with_retries protege?",
+      "options": [
+        "O manipulador de si mesmo",
+        "O backend de muitas chamadas simultâneas espalhadas por reunir()",
+        "O validador",
+        "O contador de retest"
+      ],
+      "correct": 1,
+      "explanation": "Um conjunto de 40 chamadas abriria 40 despachos simultâneos sem limite."
+    },
+    {
+      "stage": "check",
+      "question": "Porque é que a chave de idempotencia é derivada pelo telefonista, e não pelo emissor?",
+      "options": [
+        "Porque o cache não pode armazenar cadeias",
+        "Porque o registo não teria a chave",
+        "Porque derivar de args sozinho faz duas chamadas semanticamente diferentes colidir se eles acontecem compartilhar args",
+        "Porque os hashes do Python são instáveis"
+      ],
+      "correct": 2,
+      "explanation": "O chamador conhece o ID do passo, a intenção do planejador, o usuário."
+    },
+    {
+      "stage": "post",
+      "question": "Que código de erro JSON-RPC mapeia uma falha de esquema no envio?",
+      "options": [
+        "- 32602",
+        "- 32603",
+        "- 32700",
+        "- 32601"
+      ],
+      "correct": 0,
+      "explanation": "O despachador devolve-o antes de qualquer manipulador correr."
+    },
+    {
+      "stage": "post",
+      "question": "Depois de chegar a max_attempts com timeouts em uma ferramenta idempotent, o que é devolvido?",
+      "options": [
+        "DispatchOk sem resultado",
+        "DispatchError com kind=timeout e tentativas==max_attempts",
+        "É levantada uma exceção",
+        "DispatchError com kind=internal"
+      ],
+      "correct": 1,
+      "explanation": "O despachador retorna um envelope de erro digitado. O tipo reflete o último modo de falha, tentativas reflete quantas tentativas fez."
+    }
+  ]
+}

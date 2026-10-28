@@ -1,0 +1,90 @@
+{
+  "lesson": "20-agent-harness-loop-contract",
+  "title": "Contrato de Loop do Agente Harness",
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "Por que modelar o loop do arnes como uma máquina de estado explícito em vez de um loop de tempo com bandeiras?",
+      "options": [
+        "É a única forma que o modelo pode chamar",
+        "Evita a necessidade de testes",
+        "Permite que o arnes rejeite transições ilegais em um lugar e repete sessões do registro de eventos",
+        "É mais rápido no CPython ."
+      ],
+      "correct": 2,
+      "explanation": "Uma máquina de estado coloca as regras de legalidade em uma função de transição. A mesma sequência de entrada reproduz o mesmo estado, o que torna possível a repetição de sessão."
+    },
+    {
+      "stage": "pre",
+      "question": "O que representa um ponto de atracção no circuito?",
+      "options": [
+        "Um temporizador que dispara a cada N segundos",
+        "Um ponto onde o loop produz o controle e espera que o chamador forneça uma entrada",
+        "Um assinante de gancho que muda a carga útil",
+        "Uma chamada modelo que retorna um nome de ferramenta"
+      ],
+      "correct": 1,
+      "explanation": "Os pontos de puxão são retornos, não exceções. O chamador pega o que o arame pediu e liga para o contínuo."
+    },
+    {
+      "stage": "check",
+      "question": "Qual é o único ponto legal para uma chamada de ferramenta?",
+      "options": [
+        "Planejamento",
+        "AWAITING_TOOL",
+        "Execução",
+        "Reflexão"
+      ],
+      "correct": 1,
+      "explanation": "Apenas AWAITING_TOOL produz um ponto de puxão da ferramenta."
+    },
+    {
+      "stage": "check",
+      "question": "O que acontece quando um gancho levanta o \"HookAbort\" antes da chamada?",
+      "options": [
+        "O gancho não está registrado.",
+        "A chamada de ferramenta é ignorada, incêndio on_error, e o loop se move para REFLECTING",
+        "A sessão passa imediatamente para DONE",
+        "O orçamento é reiniciado ."
+      ],
+      "correct": 1,
+      "explanation": "HookAbort cancela o despacho de ferramenta de voo, dispara on_error com a razão de abortar e continua."
+    },
+    {
+      "stage": "check",
+      "question": "Por que os ganchos e os eventos são mantidos separados?",
+      "options": [
+        "Porque os tipos de eventos são bytes e os ganchos são cordas",
+        "Os ganchos são imperativos e podem mutar ou abortar.",
+        "Porque o script de auditoria proíbe os assinantes",
+        "Porque o registro de eventos não pode armazenar dicts"
+      ],
+      "correct": 1,
+      "explanation": "Os ganchos mudam o comportamento, os eventos descrevem o comportamento, misturando-os com política de casais e telemetria, que é o erro que estamos a evitar."
+    },
+    {
+      "stage": "post",
+      "question": "Quando o orçamento do relógio de parede for excedido, qual será o próximo estado?",
+      "options": [
+        "CADA  a sessão é encerrada",
+        "IDLE  um ponto de atracção é devolvido com um motivo de orçamento_excedido",
+        "Planejamento  é elaborado um novo plano",
+        "EXECUTING  o ciclo retrata"
+      ],
+      "correct": 1,
+      "explanation": "O arnes passa para IDLE, dispara em_budget_excedido e retorna um PullRequest para que o chamador possa decidir se deve estender ou fechar."
+    },
+    {
+      "stage": "post",
+      "question": "Porque é que esta lição está a falar do planejador em vez de chamar uma modelo?",
+      "options": [
+        "Porque os modelos são lentos em ligar localmente",
+        "Para manter o contrato de ciclo testável e determinista antes de qualquer modelo é ligado",
+        "Para guardar tokens",
+        "Porque os modelos não podem devolver chamadas de ferramenta"
+      ],
+      "correct": 1,
+      "explanation": "A fixação do contrato de ciclo primeiro permite que as lições posteriores trocem em planejadores reais, registros e dispeitores sem renegociar a máquina do estado."
+    }
+  ]
+}

@@ -1,0 +1,78 @@
+{
+  "lesson": "53-result-evaluator",
+  "title": "Avaliação de resultados",
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "Por que o avaliador usa um teste t em par, em vez de comparar dois números individuais?",
+      "options": [
+        "Porque o numpy requer matrizes emparelhadas",
+        "Porque o corredor não pode emitir um único número",
+        "Porque o acoplamento da mesma semente em candidato e linha de base isola a mudança de configuração do ruído de inicialização aleatória",
+        "Porque os testes são sempre exigidos pelo IRB"
+      ],
+      "correct": 2,
+      "explanation": "A combinação por semente elimina os efeitos de inicialização aleatória. A diferença restante é atribuível à alteração de configuração, que é o que o teste mede."
+    },
+    {
+      "stage": "pre",
+      "question": "Porque é que o avaliador tem um campo de direcção em cada métrica?",
+      "options": [
+        "Porque o Numpy precisa de direção para a variância",
+        "Porque a precisão e a perda apontam de maneiras opostas; o sinal da melhora depende de qual direção é melhor para a métrica a ser comparada",
+        "Porque o corredor precisa",
+        "Porque o parcer espera isso"
+      ],
+      "correct": 1,
+      "explanation": "O campo direcionado indica a função de melhoria que a convenção de assinatura deve aplicar."
+    },
+    {
+      "stage": "check",
+      "question": "O que é que o caminho do veredicto retorna quando a melhoria está abaixo do limiar mesmo que o valor p seja significativo?",
+      "options": [
+        "ruído",
+        "Regressão",
+        "falhou",
+        "Melhoria"
+      ],
+      "correct": 0,
+      "explanation": "Uma alteração estatisticamente significativa que é muito pequena para agir é ainda ruído do ponto de vista do ciclo."
+    },
+    {
+      "stage": "check",
+      "question": "Por que o avaliador transforma métricas de escala de registro antes de melhorar a computação?",
+      "options": [
+        "Porque o valor p depende dele",
+        "Porque os troncos de nómpas são mais rápidos",
+        "Porque o corredor só emite log escaladas métricas",
+        "Porque a perplexidade e métricas similares crescem exponencialmente com a perda; transformar-se em espaço de registro faz um limiar de 2% significativo em métricas lineares e log"
+      ],
+      "correct": 3,
+      "explanation": "A perplexidade é exp ((perda). Uma pequena alteração de perda é uma grande alteração de perplexidade."
+    },
+    {
+      "stage": "check",
+      "question": "Quando o ajudante de teste em par torna p_valor = Nenhum?",
+      "options": [
+        "Quando a variância é zero",
+        "Quando os meios são iguais",
+        "Quando a escala métrica é log",
+        "Quando existem menos de duas amostras em par"
+      ],
+      "correct": 3,
+      "explanation": "A distribuição t precisa de pelo menos um grau de liberdade. com n inferior a dois não há estimativa de variância e o auxiliar retorna Nenhum para que o caminho do veredicto possa marcar a corrida como ruído."
+    },
+    {
+      "stage": "check",
+      "question": "O que acontece se até um resultado candidato tiver um rótulo terminal diferente de OK?",
+      "options": [
+        "O avaliador retorna um veredicto falhado e registra os terminais errados na lógica",
+        "O avaliador deixa cair essa semente e procede",
+        "O avaliador retrata a corrida",
+        "O avaliador volta a fazer um teste unilateral."
+      ],
+      "correct": 0,
+      "explanation": "Uma corrida falhada inválida o conjunto de candidatos. O avaliador curta-circuitos o caminho do veredicto e retornos falharam com os terminais ofensores listados, por isso o orquestador não tira uma conclusão de uma corrida falhada."
+    }
+  ]
+}

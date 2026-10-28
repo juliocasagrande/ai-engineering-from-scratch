@@ -1,0 +1,90 @@
+{
+  "lesson": "03-realtime-voice-assistant",
+  "title": "Capstone 03  Assistente de voz em tempo real (ASR a LLM a TTS)",
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "Porque não pode um agente de voz ser construído com três chamadas de bloqueio REST?",
+      "options": [
+        "Os pontos finais do REST têm um tempo de 30 segundos",
+        "REST é incompatível com o WebRTC",
+        "A serialização JSON é muito lenta para dados de áudio",
+        "A latência de ponta a ponta abaixo de 800 ms requer o streaming por pipeline em cada etapa"
+      ],
+      "correct": 3,
+      "explanation": ""
+    },
+    {
+      "stage": "pre",
+      "question": "Qual é o papel do detetor de rotação ao lado do VAD?",
+      "options": [
+        "Mistura música de fundo no fluxo de saída",
+        "Detecta qual alto-falante está falando em uma chamada multi-partidária",
+        "Leia transcrições parciais e marca se o usuário realmente terminou sua declaração",
+        "Treina um clone de voz personalizado para o agente"
+      ],
+      "correct": 2,
+      "explanation": ""
+    },
+    {
+      "stage": "check",
+      "question": "Quando o usuário começa a falar enquanto o agente está no meio da resposta, o que deve acontecer para o barge-in se sentir bem?",
+      "options": [
+        "O TTS termina a frase atual antes de ceder",
+        "O agente aumenta o volume do TTS para afirmar a prioridade",
+        "O TTS é cancelado imediatamente, a saída restante do LLM é reduzida, e a ASR rearmas",
+        "O tubo de armazenamento de áudio do usuário até que o TTS seja concluído"
+      ],
+      "correct": 2,
+      "explanation": ""
+    },
+    {
+      "stage": "check",
+      "question": "Por que é emitido um preenchimento curto como \"um segundo, deixe-me verificar\" quando uma ferramenta excede cerca de 300ms?",
+      "options": [
+        "Acta um modelo de retorno ASR",
+        "Evita o silêncio para que a conversa não se detenda enquanto a ferramenta do canal lateral funciona",
+        "Melhora o WER na próxima declaração",
+        "Resete o tampão de nervosismo WebRTC"
+      ],
+      "correct": 1,
+      "explanation": ""
+    },
+    {
+      "stage": "check",
+      "question": "O primeiro pedaço de áudio deve sair do servidor dentro de quanto tempo do primeiro token de LLM?",
+      "options": [
+        "200 ms",
+        "800 ms",
+        "2 segundos",
+        "20 ms"
+      ],
+      "correct": 0,
+      "explanation": ""
+    },
+    {
+      "stage": "post",
+      "question": "Que métrica mede diretamente a entrada inapropriada ou o fechamento de curvas excessivamente ansiosos?",
+      "options": [
+        "MOS",
+        "Taxa de corte falso",
+        "Taxa de aceitação",
+        "WER"
+      ],
+      "correct": 1,
+      "explanation": ""
+    },
+    {
+      "stage": "post",
+      "question": "Sob a perda de 3% de pacotes, em que dois comportamentos adaptativos depende o pipeline?",
+      "options": [
+        "Cambio para um LLM maior e desativação do TTS",
+        "Manter transcrições parciais e aumentar o limiar de porta de fala do VAD",
+        "Reiniciar a sala LiveKit",
+        "Regressando aos codecs de áudio PSTN"
+      ],
+      "correct": 1,
+      "explanation": ""
+    }
+  ]
+}

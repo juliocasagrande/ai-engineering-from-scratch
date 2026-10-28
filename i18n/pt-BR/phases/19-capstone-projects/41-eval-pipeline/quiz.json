@@ -1,0 +1,78 @@
+{
+  "lesson": "phase-19/41-eval-pipeline",
+  "title": "O canal de avaliação completo",
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "Antes de ler: um colega relata que o seu modelo tem perplexidade 4.2 no conjunto de resistência.",
+      "options": [
+        "Sim: perplexidade abaixo de 5 significa que o modelo é bom.",
+        "A perplexidade diz-lhe o quão bem o modelo se encaixa na distribuição da linguagem.",
+        "Perplexidade é inútil sem um aviso explícito.",
+        "Só os modelos de juízes podem responder a essa pergunta."
+      ],
+      "correct": 1,
+      "explanation": "A perplexidade é uma dimensão. Um modelo pode ter baixa perplexidade e ainda estar errado em tarefas factuais, ou ter perplexidade decente e ainda produzir respostas de má qualidade. Você precisa de múltiplas avaliações, cada uma medindo uma dimensão diferente."
+    },
+    {
+      "stage": "check",
+      "question": "A avaliação de perplexidade soma a probabilidade de registro negativo por token sobre posições não pad e divide pela contagem total de tokens não pad.",
+      "options": [
+        "A perplexidade não é definida para os dados em lote.",
+        "A média de perplexidades por lote é matematicamente equivalente.",
+        "Os lotes contêm tokens empilhados que devem ser sempre medidos.",
+        "A medição das perplexidades por lote subpõe a seqüências curtas (as suas variações por lote são maiores) e produz um agregado tendencioso."
+      ],
+      "correct": 3,
+      "explanation": "A agregação por token é a definição do livro de texto e evita preconceitos de tamanho e comprimento do lote."
+    },
+    {
+      "stage": "check",
+      "question": "O token F1 retorna 1.0 quando tanto a previsão quanto a referência estão vazias. Qual outro caso deve retornar um valor específico?",
+      "options": [
+        "Quando o pred está vazio mas a referência não está vazia, a F1 deve ser 1.0.",
+        "Quando pred contém exatamente um token correspondente, F1 deve ser 0,5.",
+        "Quando o pred não é vazio mas a referência é vazia, a F1 deve ser indefinida.",
+        "Quando apenas um dos pred ou referência estiver vazio, a F1 deve ser 0,0."
+      ],
+      "correct": 3,
+      "explanation": "Empty-empty é uma combinação vazia. Mixed empty-non-empty é o caso de falta inequívoca: há conteúdo de um lado e nada do outro. A convenção SQuAD é F1 = 0 nesse caso."
+    },
+    {
+      "stage": "check",
+      "question": "O agregador normaliza a perplexidade com `1 / (1 + log(max(ppl, 1.0)))`O que garante isto sobre a pontuação normalizada?",
+      "options": [
+        "Está sempre em [0, 1] e diminui monotonicamente à medida que a perplexidade bruta aumenta.",
+        "Está sempre em [0, 1] e aumenta monotonicamente à medida que a perplexidade bruta cresce.",
+        "Não tem limites acima.",
+        "Ele só retorna 0 ou 1 (binário)."
+      ],
+      "correct": 0,
+      "explanation": "Perplexidade 1 (planos teóricos) mapas para 1.0. mapas infinitos para 0. A pontuação é em [0, 1] e perplexidade menor é melhor, que corresponde à direção das outras métricas normalizadas."
+    },
+    {
+      "stage": "post",
+      "question": "Trocas o juiz falso por um juiz de modelo de fronteira.",
+      "options": [
+        "Reescrever o agregador para aceitar um intervalo de pontuação diferente.",
+        "Adicionar uma nova entrada para DEFAULT_WEIGHTS.",
+        "Substitui o `judge_fn`Argumento para `judge_eval`com uma função que tem a mesma assinatura: (instrução, previsão, referência) -> JudgeVerdict.",
+        "Migra toda a suite de avaliação para a entrada/ saída sincronizada."
+      ],
+      "correct": 2,
+      "explanation": "A interface do juiz é`(instruction, prediction, reference) -> JudgeVerdict`A linha de condução é descoplada da implementação do juiz por esse limite, que é o ponto."
+    },
+    {
+      "stage": "post",
+      "question": "A sua pontuação total é 0,72, mas a correspondência exacta é 0,40 e o juiz é 4,5/5.",
+      "options": [
+        "O agregado é mal calculado.",
+        "O modelo está a passar no corpo de LM.",
+        "O juiz está mal alinhado com a correspondência exacta por definição.",
+        "O modelo está a bater na corda de ouro com menos frequência, mas o juiz acha que as respostas de forma aberta são decentes."
+      ],
+      "correct": 3,
+      "explanation": "O EM baixo com o alto juiz sugere parafrase: as respostas são corretas em substância mas não caracter por caráter com o ouro. Esta é exatamente a dimensão que o EM perde e o juiz capta. A troca é informativa, não um bug."
+    }
+  ]
+}

@@ -1,0 +1,78 @@
+{
+  "lesson": "65-hybrid-retrieval-bm25-dense",
+  "title": "Retorno híbrido com BM25 e embutidos densos",
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "Por que um ponto final de RAG de produção precisa de uma só vez de uma recuperação lexical e semântica?",
+      "options": [
+        "A lei exige uma busca léxica para a conformidade",
+        "A recuperação semântica é sempre mais precisa",
+        "Reduz a metade do tamanho do índice",
+        "A distribuição de consultas mistura consultas de identificador literal e parafraseadas; uma modalidade falha em cada classe"
+      ],
+      "correct": 3,
+      "explanation": "BM25 domina os símbolos literais; dense domina as parafrases."
+    },
+    {
+      "stage": "pre",
+      "question": "Qual é o parâmetro BM25 b na padrão 0,75?",
+      "options": [
+        "Número de campos no documento",
+        "Um exponente de tempo de consulta sobre similaridade cosínica",
+        "Um multiplicador no termo IDF",
+        "Um botão de normalização de comprimento: documentos mais longos são penalizados mas não linearmente"
+      ],
+      "correct": 3,
+      "explanation": "b interpola entre a normalização de não comprimento (0) e a normalização completa (1); 0,75 é a recomendação publicada."
+    },
+    {
+      "stage": "check",
+      "question": "O que calcula a Fusão de Classe Reciproca para cada candidato?",
+      "options": [
+        "Medio do BM25 e pontuações densas após a normalização mínima-máxima",
+        "soma de 1 / (k + rank) em cada lista classificada que contém o candidato",
+        "Produto das semelhanças cosinas entre modalidades",
+        "A média de classificação entre modalidades"
+      ],
+      "correct": 1,
+      "explanation": "A RRF soma 1 / (k + rank) contribuições por lista classificada; k = 60 é a padrão publicada."
+    },
+    {
+      "stage": "check",
+      "question": "Por que é preferida a fusão baseada em classificação em relação a uma interpolação linear de pontuações BM25 e cosina?",
+      "options": [
+        "Os pontos de cosina são ilimitados",
+        "Os pontuações BM25 são ilimitados e corpus-dependentes; cosino é limitado em -1 a 1; as escalas de pontuação não são comparáveis entre corpora",
+        "Os resultados do BM25 não podem ser classificados",
+        "Interpolação linear requer suporte de GPU"
+      ],
+      "correct": 1,
+      "explanation": "A interpolação de pontuação quebra cada reíndice porque as distribuições de pontuação mudam; as classificações são comparáveis entre as modalidades por construção."
+    },
+    {
+      "stage": "check",
+      "question": "O que acontece com RRF quando você faz a constante k muito pequena?",
+      "options": [
+        "A fusão torna-se equivalente a uma soma de pontuação linear",
+        "A contribuição do top 1 domina a fusão; as funções profundas contribuem quase nada",
+        "Termos fora do corpo obtêm uma pontuação positiva",
+        "A fusão ignora a segunda modalidade"
+      ],
+      "correct": 1,
+      "explanation": "O pequeno k concentra a contribuição de nível 1, o grande k aplania a curva de contribuição e permite aos candidatos profundos votar."
+    },
+    {
+      "stage": "post",
+      "question": "Qual modo de falha evita especificamente a ponderação de campo através da repetição de tokens?",
+      "options": [
+        "Adicionar um segundo passo de agregação de pontuação no momento da consulta; a matemática permanece idêntica e a lógica de combinação por pontuação de campo não é necessária",
+        "Embedings fora do vocabulário",
+        "BM25 IDF desmoronando para zero",
+        "A semelhança cosínica vai para negativo"
+      ],
+      "correct": 0,
+      "explanation": "Repetição de tokens no tempo do índice multiplica a frequência do termo, o que permite que a matemática de pontuação BM25 permaneça uma soma em vez de um combinador de pontuação de campo separado."
+    }
+  ]
+}

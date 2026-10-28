@@ -1,0 +1,78 @@
+{
+  "lesson": "30-bpe-tokenizer-from-scratch",
+  "title": "Tokenizer BPE do zero",
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "Por que um tokenizer BPE de nível de byte começa com um alfabeto de 256 símbolos?",
+      "options": [
+        "É o menor alfabeto que suporta a língua inglesa",
+        "Garante que qualquer entrada UTF-8 pode ser representada antes de qualquer fusão ser aprendida",
+        "Elimina a necessidade de armazenar uma tabela de fusão",
+        "Corresponde ao tamanho da GPU warp na maioria dos aceleradores"
+      ],
+      "correct": 1,
+      "explanation": "Os 256 byte ids brutos cobrem todas as entradas possíveis UTF-8."
+    },
+    {
+      "stage": "check",
+      "question": "O que faz cada etapa de treinamento BPE?",
+      "options": [
+        "Diminuir o vocabulário, removendo o id menos comum",
+        "Treina uma pequena rede neural para marcar subpalavras",
+        "Divide uma palavra aleatória e atribui-lhe um novo ID",
+        "Contará pares de símbolos adjacentes ao longo do corpus e fundirá o mais frequente"
+      ],
+      "correct": 3,
+      "explanation": "Cada passo encontra o par adjacente de maior frequência através do corpus, o funde em um novo símbolo e registra a fusão."
+    },
+    {
+      "stage": "check",
+      "question": "Quando codificamos um novo texto, em que ordem são aplicadas fusões?",
+      "options": [
+        "Por posição na entrada, de esquerda para direita, independentemente da posição de formação",
+        "Por grau, a fusão recebida durante a formação, primeiro grau mais baixo",
+        "Por bytes do par, ordenados por ordem alfabética",
+        "Em ordem aleatória até que não se aplique nenhum"
+      ],
+      "correct": 1,
+      "explanation": "A inferência aplica fusões na ordem em que foram aprendidas. A primeira fusão na tabela ganha quando múltiplas fusões podem ser aplicadas."
+    },
+    {
+      "stage": "check",
+      "question": "Qual é o comportamento do codificador em uma cadeia de tokens especiais quando permit_special é Falso?",
+      "options": [
+        "Ele levanta um erro",
+        "Encode os bytes literais da cadeia",
+        "Silenciosamente salta a corda",
+        "Mapeia a cadeia para o seu ID reservado"
+      ],
+      "correct": 1,
+      "explanation": "Com allow_special off string como <daraendoftext, uma derivação> é tratada como bytes brutos e passa pelo loop de fusão como qualquer outra entrada."
+    },
+    {
+      "stage": "post",
+      "question": "Porque é que o decodificador nunca precisa de um identificador de token desconhecido?",
+      "options": [
+        "Cada token aprendido é a concatenation de dois tokens conhecidos, recorrendo até bytes individuais",
+        "O codificador tira tokens desconhecidos antes de decodificar",
+        "O decodificador sempre retorna a cadeia vazia para ids desconhecidos",
+        "O modelo rejeita identidades desconhecidas durante a amostragem"
+      ],
+      "correct": 0,
+      "explanation": "Cada id resolve-se a um byte bruto ou a dois ids conhecidos anteriormente."
+    },
+    {
+      "stage": "post",
+      "question": "O que acontece com o comprimento codificado de uma frase fixa à medida que o vocabulário-alvo cresce?",
+      "options": [
+        "Tem tendência a diminuir porque os vocabulários maiores cobrem mais subpalavras",
+        "Oscila aleatoriamente porque o BPE não é determinista",
+        "Fica constante porque cada id codifica um único byte",
+        "Aumente linearmente com o tamanho do vocabulário"
+      ],
+      "correct": 0,
+      "explanation": "Vocabulários maiores aprendem mais fusões, por isso as subpalavras comuns se desmoronam em ids individuais e a sequência codificada fica mais curta."
+    }
+  ]
+}

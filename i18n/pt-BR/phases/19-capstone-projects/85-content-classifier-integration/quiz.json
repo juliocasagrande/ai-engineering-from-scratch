@@ -1,0 +1,78 @@
+{
+  "lesson": "85-content-classifier-integration",
+  "title": "Capstone 85  Integração do Classificador de Conteúdo",
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "Por que executar classificadores do lado de saída se a entrada já foi verificada?",
+      "options": [
+        "Porque qualquer entrada de contorno produz uma saída que o usuário verá, e a saída é o último lugar para pegá-lo",
+        "Porque os classificadores de entrada são depreciados",
+        "Porque a biblioteca padrão requer ambas as coisas.",
+        "Para fazer o sistema mais lento a propósito"
+      ],
+      "correct": 0,
+      "explanation": ""
+    },
+    {
+      "stage": "pre",
+      "question": "Que três classificadores estão ligados nesta lição?",
+      "options": [
+        "OCR, ASR, TTS",
+        "Qualidade, factualidade, citação",
+        "Toxicidade, PII, vazamento de instruções",
+        "Sentimento, linguagem, comprimento"
+      ],
+      "correct": 2,
+      "explanation": ""
+    },
+    {
+      "stage": "check",
+      "question": "O que faz o roteador quando um veredicto é alto e outro é médio?",
+      "options": [
+        "Execute ambas as ações em sequência",
+        "Tome a máxima severidade e aplicar essa ação; bloqueio domina redact",
+        "Deixem os veredictos e enviem o original .",
+        "Exerça apenas a ação média"
+      ],
+      "correct": 1,
+      "explanation": ""
+    },
+    {
+      "stage": "check",
+      "question": "Por que é usado um cheque Luhn dentro do classificador de PII?",
+      "options": [
+        "Para comprimir o regex",
+        "Para calcular o SSN",
+        "Para distinguir corridas de dígitos em forma de cartão de crédito de sequências arbitrárias de dígitos com baixos falsos positivos",
+        "Para traduzir dígitos em letras"
+      ],
+      "correct": 2,
+      "explanation": ""
+    },
+    {
+      "stage": "check",
+      "question": "Como é que o classificador de instruções de vazamento decide?",
+      "options": [
+        "Por detecção de aparelhos de fixação enrolados na saída",
+        "Computação do trigram cosino entre a saída e um sistema conhecido de prompt, com um limiar",
+        "Ao chamar outro modelo",
+        "Com o contagem de tokens"
+      ],
+      "correct": 1,
+      "explanation": ""
+    },
+    {
+      "stage": "post",
+      "question": "Por que o classificador de toxicidade verifica a negação numa pequena janela à esquerda?",
+      "options": [
+        "Para aumentar a taxa de falsos positivos",
+        "Para diminuir o regex",
+        "Para saltar partidas como \"você não é estúpido\" para que o classificador não redigir demais tranquilidades comuns",
+        "Porque a negação é exigida pelo Unicode"
+      ],
+      "correct": 2,
+      "explanation": ""
+    }
+  ]
+}

@@ -1,0 +1,78 @@
+{
+  "lesson": "42-large-corpus-downloader",
+  "title": "Grande Descarregador de Corpus",
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "Por que o downloader mantém um ponto de controlo separado .partial.json por fragmento?",
+      "options": [
+        "Para fazer o diretório de cache parecer organizado",
+        "Então, um download retomado pode verificar o prefixo sha256 sobre os bytes verificados antes de anexar, tornando a corrupção silenciosa impossível",
+        "Para armazenar o URL no caso do arquivo de fragmentos se move",
+        "Porque o urllib exige isso"
+      ],
+      "correct": 1,
+      "explanation": "Os registros do checkpoint verificaram_bytes e o sha256 desses bytes; resume só prossegue quando o hash no disco coincide."
+    },
+    {
+      "stage": "check",
+      "question": "O que é que o esquema de banda LSH compra que o dedup exato não compra?",
+      "options": [
+        "Uso constante de memória",
+        "Compressão sem perda",
+        "Busca sublinear que as bandeiras quase duplicam com alta semelhança Jaccard mesmo quando os documentos diferem por alguns tokens",
+        "Calculação mais rápida sha256"
+      ],
+      "correct": 2,
+      "explanation": "MinHash mais LSH capta parafrases e variantes de caldeira que o dedup exato passa."
+    },
+    {
+      "stage": "check",
+      "question": "Por que o ponto de controlo é escrito antes dos bytes serem anexados, e não depois?",
+      "options": [
+        "Se o processo morrer entre a escrita e a atualização do ponto de verificação, o próximo currículo lê um ponto de verificação que está atrás dos bytes e silenciosamente reaparece, corrompendo o arquivo",
+        "Economiza espaço no disco",
+        "É conveniente .",
+        "É mais rápido."
+      ],
+      "correct": 0,
+      "explanation": "O checkpoint-first corresponde a um registro de antecedência: um crash deixa o offset verificado atrás ou igual ao arquivo, nunca adiante."
+    },
+    {
+      "stage": "check",
+      "question": "Qual é o papel do arquivo de bloqueio sha256 do manifesto?",
+      "options": [
+        "Acelera as leituras.",
+        "É um backup do manifesto.",
+        "Os estágios do fluxo inferior se recusam a iniciar a menos que o conteúdo do manifesto coincida com o hash afixado, fechando a superfície silenciosa de ataque onde um atacante edita um arquivo",
+        "Regista a data"
+      ],
+      "correct": 2,
+      "explanation": "Colocar o hash do manifesto torna a ligação entre código e dados um contrato de endereço de conteúdo."
+    },
+    {
+      "stage": "post",
+      "question": "Por que o dedup é colocado ao longo da tokenization em vez de depois?",
+      "options": [
+        "Tokenizers rejeitam duplicados",
+        "A tokenization é cara; executá-la duas vezes no mesmo documento duplica o custo sem benefício da curva de perda, por isso, deixar cair duplicados primeiro é estritamente mais barato",
+        "O tokenizer precisa de um vocabulário primeiro",
+        "O tokenizer não pode ler JSONL"
+      ],
+      "correct": 1,
+      "explanation": "Dedup é a primeira etapa em que cada documento duplicado deixa o tokenizer passar."
+    },
+    {
+      "stage": "post",
+      "question": "O que é que a lapidação de um duplicado caído preserva que a exclusão silenciosa não?",
+      "options": [
+        "Relação de compressão",
+        "Espaço no disco",
+        "Estabilidade manifestada sha256",
+        "A ligação entre o duplicado e o detentor com o qual colidiu, mais uma trilha de auditoria que sobrevive a uma mudança posterior no limiar"
+      ],
+      "correct": 3,
+      "explanation": "As lápides deixam um futuro passar para revisitar o limiar de dedupção; os apagados perdem a evidência."
+    }
+  ]
+}

@@ -1,0 +1,78 @@
+{
+  "lesson": "52-experiment-runner",
+  "title": "Corredor de Experimento",
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "Por que o corredor gera um subprocesso em vez de importar o script do experimento em processo?",
+      "options": [
+        "Porque o subprocesso é mais rápido do que a importação",
+        "Porque um processo separado dá ao corredor um controle de morte em tempo ou limites de memória e isola os acidentes do orquestador",
+        "Porque o Python não permite importações aninhadas",
+        "Porque o formato das métricas requer"
+      ],
+      "correct": 1,
+      "explanation": "Um processo separado é o isolamento mais simples que a linguagem navega. O pai mantém um manilho de morte e um espaço de endereço independente, de modo que um experimento de queda não pode levar o orquestador com ele."
+    },
+    {
+      "stage": "pre",
+      "question": "Por que é que o capacete de memória é descrito como macio?",
+      "options": [
+        "Porque só se aplica ao monte, não à pilha.",
+        "Porque o pesquisador tem um intervalo não zero, então um processo pode aumentar acima do limite entre as pesquisas e o corredor só age na próxima observação",
+        "Porque o sistema operacional sempre o superou.",
+        "Porque o Numpy ignora o chapéu"
+      ],
+      "correct": 1,
+      "explanation": "O limite é aplicado por meio de um sondagem, não por um limite no núcleo. O intervalo de sondagem é a resolução do limite, e picos curtos podem exceder brevemente o limite antes da próxima observação."
+    },
+    {
+      "stage": "check",
+      "question": "Qual é a etiqueta do terminal que o corredor retorna quando o stdout tem as métricas mas o código de saída não é zero?",
+      "options": [
+        "tempo de descanso",
+        "acidente",
+        "- Está bem.",
+        "- Não."
+      ],
+      "correct": 1,
+      "explanation": "O terminal só está bem quando o código de saída é zero e as métricas são analisadas."
+    },
+    {
+      "stage": "check",
+      "question": "Como o corredor identifica a mancha final dentro do stdout?",
+      "options": [
+        "Ele escaneia o STERR para o JSON",
+        "Espera exactamente uma linha de saída",
+        "Ele lê a última linha json cujas chaves cobrem as chaves métricas necessárias; as linhas anteriores cobrindo tornam-se métricas intermediárias",
+        "Ele lê a primeira linha de Json"
+      ],
+      "correct": 2,
+      "explanation": "As métricas finais são a última linha que paralisa como json e inclui todas as chaves necessárias."
+    },
+    {
+      "stage": "check",
+      "question": "Por que o ajudante da ablação varre um botão de cada vez em vez de um fatorial completo?",
+      "options": [
+        "Porque um botão por vez produz um eixo limpo o avaliador pode traçar, enquanto o fatorial completo explode exponencialmente e confunde a interpretação",
+        "Porque a semente só varia ao longo de um botão",
+        "Porque o corredor não pode lançar mais de um subprocesso",
+        "Porque o numpy não suporta o produto cartesiano"
+      ],
+      "correct": 0,
+      "explanation": "Os barulhos de um único botão mantêm o resultado interpretável. Os custos fatoriais completos escalam exponencialmente com o número de botões e a tabela resultante é difícil de ler."
+    },
+    {
+      "stage": "check",
+      "question": "Que garantia dá o avaliador a encaminhamento de sementes de espécie para config['__seed'?",
+      "options": [
+        "Consumo de memória mais baixo",
+        "Tempo de parede mais rápido",
+        "Um teste de significância gratuito",
+        "Determinismo, de modo que uma reexerção com a mesma semente produz métricas idênticas e o avaliador pode detectar alterações reais a partir de ruído aleatório"
+      ],
+      "correct": 3,
+      "explanation": "Os pins de semente inicialização aleatória no experimento. Duas corridas com a mesma semente produzem métricas idênticas, o que permite ao avaliador distinguir uma regressão real de um desenho diferente."
+    }
+  ]
+}

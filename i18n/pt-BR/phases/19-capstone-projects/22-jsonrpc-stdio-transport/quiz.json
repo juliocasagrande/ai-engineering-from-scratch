@@ -1,0 +1,90 @@
+{
+  "lesson": "22-jsonrpc-stdio-transport",
+  "title": "JSON-RPC 2.0 sobre Newline-Delimited Stdio",
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "O que distingue uma notificação JSON-RPC de uma solicitação no fio?",
+      "options": [
+        "Notificações omitem o campo id; os servidores não devem responder a eles",
+        "Diferente campo de versão jsonrpc",
+        "Notificações usam um espaço de nomes de método diferente",
+        "As notificações são enroladas numa matriz"
+      ],
+      "correct": 0,
+      "explanation": "A ausência de id é o único marcador. Os servidores não respondem, porque não há id para se correlacionar."
+    },
+    {
+      "stage": "pre",
+      "question": "Por que é o JSON de linha nova e limitada suficiente para o enquadramento do estúdio?",
+      "options": [
+        "Porque UTF-8 não tem newline byte",
+        "Porque a especificação manda",
+        "Porque os tubos garantem a atomização de nova linha",
+        "Porque o JSON não permite novas linhas literais dentro de cordas sem escapar, então cada objeto pode ser uma linha"
+      ],
+      "correct": 3,
+      "explanation": "Json.dumps emite uma única linha por objeto; novas linhas literárias dentro de cordas são escapadas. Isso torna \\n um segregador de registro seguro."
+    },
+    {
+      "stage": "check",
+      "question": "Qual código de erro o transporte retorna quando a análise JSON falha?",
+      "options": [
+        "- 32600",
+        "- 32700",
+        "- 32603",
+        "- 32601"
+      ],
+      "correct": 1,
+      "explanation": "-32700 é erro de parse. O ID da resposta é nulo porque nenhum ID pode ser extraído."
+    },
+    {
+      "stage": "check",
+      "question": "Se um manipulador elevar um erro de valor simples, o que o transporte retorna?",
+      "options": [
+        "Não retorna; a ligação cai",
+        "Params inválidos (-32602)",
+        "Método não encontrado (-32601)",
+        "Erro interno (-32603) com a excepção de nome de classe nos dados"
+      ],
+      "correct": 3,
+      "explanation": "As exceções não mapeadas aparecem como -32603. data.exception preserva o nome da classe para o cliente."
+    },
+    {
+      "stage": "check",
+      "question": "O que o servidor retorna quando um lote contém apenas notificações?",
+      "options": [
+        "Nada  nenhum byte é escrito",
+        "Um nulo por notificação",
+        "Uma matriz vazia",
+        "Uma única resposta nula"
+      ],
+      "correct": 0,
+      "explanation": "Regra da especificação: se cada entrada for uma notificação, o servidor fica em silêncio."
+    },
+    {
+      "stage": "post",
+      "question": "Uma linha com JSON quebrado chega no meio de uma sessão. O que acontece com as linhas subsequentes?",
+      "options": [
+        "São amortecidos até que a linha quebrada seja retestada",
+        "O transporte escreve uma resposta -32700 e continua a ler a próxima linha como fresca",
+        "O transporte fecha o rio",
+        "Todos são rejeitados com -32600"
+      ],
+      "correct": 1,
+      "explanation": "A camada de enquadramento não deve envenenar o fluxo."
+    },
+    {
+      "stage": "post",
+      "question": "Por que o transporte não consulta diretamente o registo das ferramentas?",
+      "options": [
+        "Para manter a camada de transporte apenas em forma de JSON-RPC; o processador costura o transporte para o registro",
+        "Porque o registo é sincronizado",
+        "Porque o Registro guarda segredos",
+        "Porque o transporte é diferente"
+      ],
+      "correct": 0,
+      "explanation": "O transporte fala o cabo. O despachador (próxima lição) é onde o transporte encontra registro encontra tempo."
+    }
+  ]
+}

@@ -1,0 +1,78 @@
+{
+  "lesson": "35-gpt-model-assembly",
+  "title": "Assembléia de modelo GPT",
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "Qual é a pequena configuração de referência GPT-2 que esta lição reproduz?",
+      "options": [
+        "Vocab 30000, contexto 512, d_modelo 512, 6 cabeças, 6 camadas",
+        "Vocab 50257, contexto 1024, d_modelo 768, 12 cabeças, 12 camadas, parâmetros próximos a 124 milhões",
+        "Vocab 50000, contexto 4096, d_modelo 4096, 32 cabeças, 32 camadas",
+        "Vocab 100000, contexto 2048, d_modelo 1024, 16 cabeças, 24 camadas"
+      ],
+      "correct": 1,
+      "explanation": "GPT-2 pequeno é a configuração do parâmetro 124M; combiná-lo confirma o cablagem é correto."
+    },
+    {
+      "stage": "check",
+      "question": "O que significa o peso de ligação na montagem do modelo?",
+      "options": [
+        "A incorporação de tokens e a cabeça LM compartilham exatamente o mesmo tensor de parâmetros; o optimizador atualiza uma matriz que serve tanto as buscas quanto a projeção de saída",
+        "Dois tensores diferentes com a mesma forma que são copiados a cada passo",
+        "Um termo de viés compartilhado entre as camadas",
+        "Uma restrição nas cabeças de atenção"
+      ],
+      "correct": 0,
+      "explanation": "Estabelecimento de lm_head.weight = tok_embed.weight compartilha armazenamento; copiar não. Salva vocab times d_model parâmetros."
+    },
+    {
+      "stage": "check",
+      "question": "Como a geração desliza a sua janela de contexto?",
+      "options": [
+        "Cada passo leva os últimos tokens de longo contexto da sequência em execução (prompt mais gerado) e alimenta os para o modelo",
+        "Truncates para a metade do contexto cada passo",
+        "Pads para o contexto máximo com zeros",
+        "Reinicia a partir do momento em que fazemos cada passo"
+      ],
+      "correct": 0,
+      "explanation": "A janela deslizante deixa cair os tokens mais antigos uma vez que a sequência em execução supera o comprimento do contexto."
+    },
+    {
+      "stage": "check",
+      "question": "Por que iniciar a projeção de saída de atenção e a segunda linear MLP em um std menor do que o resto?",
+      "options": [
+        "O conjunto de dados requer",
+        "A amostragem de topo-k requer pesos menores",
+        "Ambos alimentam-se diretamente em uma adição residual. Escalada de 1 sobre o quadrado de 2 vezes as camadas num__, mantém o fluxo residual em escala através de 12 camadas",
+        "Salva memória."
+      ],
+      "correct": 2,
+      "explanation": "Sem a escalagem, o fluxo residual cresce com profundidade e empurra a LayerNorm final para um regime quente."
+    },
+    {
+      "stage": "post",
+      "question": "O que faz a temperatura no momento da amostragem?",
+      "options": [
+        "Seleciona a taxa de aprendizado do optimizador",
+        "Divide os logits antes de softmax. T menos de 1 agita a distribuição em direção à ganância, T igual a 1 mantém a distribuição do modelo natural, T maior que 1 aplania",
+        "Escala as incorporações",
+        "Adiciona o abandono à cabeça"
+      ],
+      "correct": 1,
+      "explanation": "A temperatura é o botão mais simples; combinado com o top-k, controla o quão exploratório é a geração."
+    },
+    {
+      "stage": "post",
+      "question": "O que faz o filtro top-k antes da amostragem?",
+      "options": [
+        "Escolhe os pontos mais baixos",
+        "Mantém os logits k com os valores mais altos, mascaras o resto para infinito negativo, então softmax sobre os sobreviventes para que a amostragem multinomial só vê os tokens top k",
+        "Remove todos os logos abaixo de zero",
+        "Limite as logitas em k"
+      ],
+      "correct": 1,
+      "explanation": "Top-k truncas a cauda longa antes de softmax; top_k=1 é ganancioso, maior k mantém mais diversidade."
+    }
+  ]
+}

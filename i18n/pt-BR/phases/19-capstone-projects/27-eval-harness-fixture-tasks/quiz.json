@@ -1,0 +1,78 @@
+{
+  "lesson": "phase-19/27-eval-harness-fixture-tasks",
+  "title": "Arneses iguais com tarefas de fixação",
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "Antes de ler a lição: que propriedade precisa um bom verificador de avaliação de agentes acima de todas as outras?",
+      "options": [
+        "Determinismo em todas as corridas.",
+        "Velocidade na faixa de milissegundos.",
+        "Uma explicação em linguagem natural do veredicto.",
+        "Cobertura de cada linha do código do candidato."
+      ],
+      "correct": 0,
+      "explanation": "O determinismo é o que torna uma regressão detectável. Um verificador não determinista transforma cada vermelho em uma moeda."
+    },
+    {
+      "stage": "check",
+      "question": "Um candidato obtém 3 passes em 5 amostras em uma única tarefa. Qual é o valor da fórmula pass@5 da lição (arredondada para dois decimais)?",
+      "options": [
+        "0,75",
+        "- 1h",
+        "0,99",
+        "0,60"
+      ],
+      "correct": 2,
+      "explanation": "Pass@k = 1 - (1 - p) ^ k = 1 - (1 - 0,6) ^ 5 = 1 - 0,4^5 = 1 - 0,01024 = 0,98976, que ronda para 0,99. A taxa bruta por amostra (0,6) é o valor da opção (a) nomea, mas a fórmula amplifica-la em todas as amostras k."
+    },
+    {
+      "stage": "check",
+      "question": "Por que a lição inclui tanto pass@1 como pass@k no relatório?",
+      "options": [
+        "Pass@1 é a versão suportada pelo registo de verificadores; pass@k é reservado para futuros verificadores.",
+        "Pass@k pode esconder um modelo que é certo apenas um em muitas amostras, então pass@1 ancora o resultado para a qualidade da primeira tentativa.",
+        "pass@1 é o valor que os usuários veem no painel de controle; pass@k é para depuração interna.",
+        "pass@k e pass@1 são matematicamente idênticos para k > 1."
+      ],
+      "correct": 1,
+      "explanation": "Pass@k faz com que os modelos que recebem a resposta uma vez em muitas tentativas pareçam fortes; pass@1 é o primeiro andar da tentativa."
+    },
+    {
+      "stage": "check",
+      "question": "O arnes chama _prepare_scratch antes de cada amostra.",
+      "options": [
+        "Ele garante que cada amostra comece a partir da configuração do buggy, não da saída da amostra anterior.",
+        "Evita as condições de raça nos directórios temporários compartilhados.",
+        "É relevante apenas para verificadores de conchas.",
+        "É puramente uma otimização de desempenho."
+      ],
+      "correct": 0,
+      "explanation": "Sem um arranhão novo, a amostra N+1 começa a partir da saída da amostra N. O arame mediria \"limpeza na segunda tentativa\" em vez de sucesso na primeira tentativa."
+    },
+    {
+      "stage": "post",
+      "question": "Adicionar um novo verificador 'pytest_passes' que executa pytest no dir de ressecamento.",
+      "options": [
+        "É impossível expressar o pytest como verificador.",
+        "shell_exit_zero, porque os sinais mais pesados passam através do código de saída 0.",
+        "file_equals, porque pytest escreve um arquivo de resultados.",
+        "regex_match, porque a saída pytest contém a palavra \"passado\"."
+      ],
+      "correct": 1,
+      "explanation": "pytest sai 0 em passagem e não zero em falha. shell_exit_zero é a primitiva correta."
+    },
+    {
+      "stage": "post",
+      "question": "Um revisor pergunta: 'É esta regressão no modelo ou no arnes?' Qual artefato responde a essa pergunta?",
+      "options": [
+        "O resultado por tarefa, por amostra, mais a mensagem de detalhes do verificador.",
+        "Os arquivos JSON fixos.",
+        "A transcrição da cadeia de pensamentos do agente.",
+        "O código fonte do registo do verificador."
+      ],
+      "correct": 0,
+      "explanation": "A latência por amostra, detalhes do verificador e pass/fail permitem triagem: as mesmas fixações, diferentes veredictos, então o modelo mudou; os mesmos veredictos, mas latência diferente, então algo mais se mudou."
+    }
+  ]
+}

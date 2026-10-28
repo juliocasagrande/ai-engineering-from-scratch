@@ -1,0 +1,78 @@
+{
+  "lesson": "66-reranker-cross-encoder",
+  "title": "Reranker de codificação cruzada",
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "Qual é a diferença arquitetônica entre um bi-encoder e um cross-encoder?",
+      "options": [
+        "Um bi-encoder incorpora query e documento de forma independente; um cross-encoder lê a sequência concatenada (query, document) com toda a atenção em ambos os lados",
+        "Os bi-encodadores são treinados; os cross-encoders não são",
+        "Os bi-encodadores usam cosino; os cross-encoders usam produto ponto",
+        "Os cross-encoders funcionam apenas em GPUs"
+      ],
+      "correct": 0,
+      "explanation": "A atenção cruzada através da junção é o que dá ao encodeador cruzado a sua precisão; o bi-encodeador nunca vê a consulta e o documento juntos."
+    },
+    {
+      "stage": "pre",
+      "question": "Por que não pode um cross-encoder ser usado como o retriever primário em um corpus de documentos de 10M?",
+      "options": [
+        "Não pode incorporar texto",
+        "Requer uma passagem avançada por par (query, document), que é 10M passes por query",
+        "Não suporta pontuações negativas",
+        "Requer o token CLS no final da sequência"
+      ],
+      "correct": 1,
+      "explanation": "O throughput desabate na escala corpus; o cross-encoder corre uma vez por par em vez de uma vez por documento no tempo do índice."
+    },
+    {
+      "stage": "check",
+      "question": "Qual é o papel do parâmetro N num gasoduto de retorno e re-ranqueamento de duas etapas?",
+      "options": [
+        "É o tamanho do vocabulário",
+        "É a dimensão oculta do codificador cruzado",
+        "É o número de camadas no encodeador cruzado",
+        "É o número de candidatos devolvidos pelo bi-encoder para o cross-encoder para rescore"
+      ],
+      "correct": 3,
+      "explanation": "N é o pool de re-ranking; limita a qualidade (o encoder cruzado não pode exceder o recall bi-encoder em N) e a latência (o encoder cruzado corre N passes para a frente)."
+    },
+    {
+      "stage": "check",
+      "question": "Por que é que você deve escolher N estritamente maior que K (normalmente 3x ou mais)?",
+      "options": [
+        "BM25 requer-o para o cálculo das Forças de Defesa de Israel",
+        "N menor reduz a dimensão de incorporação",
+        "O cross-encoder requer que N seja um múltiplo de K",
+        "Se N é igual a K, o encodador cruzado não pode reordenar, apenas reponderar; o elevador de rebanho cai para zero"
+      ],
+      "correct": 3,
+      "explanation": "Com N = K não há nada para reordenar; o único trabalho do cross-encoder é escolher o K certo de N, que precisa de N > K."
+    },
+    {
+      "stage": "check",
+      "question": "O que faz a cabeça de coleta do cross-encoder nesta lição?",
+      "options": [
+        "Pools sobre a distribuição do vocabulário",
+        "Calcula o softmax sobre as posições do documento",
+        "Medias das saídas da última camada sobre posições não pad e alimenta uma única cabeça linear para produzir um escalar de relevância",
+        "soma dos índices de inserção"
+      ],
+      "correct": 2,
+      "explanation": "O pool médio sobre posições não pad, então uma única camada linear produz a pontuação de relevância; o CLS-pooling é uma alternativa com qualidade semelhante."
+    },
+    {
+      "stage": "post",
+      "question": "Que modo de falha de produção é detectado pela gravação da pontuação de codificação cruzada de nível 1?",
+      "options": [
+        "Queries fora do domínio: quando a pontuação do top-1 re-ranker está abaixo de um limiar específico do corpus, o modelo está sinalizando que nada no corpus realmente responde à pergunta",
+        "Interrupções da rede",
+        "Drift de vocabulário no tokenizer",
+        "Corrupção do índice no bi-encoder"
+      ],
+      "correct": 0,
+      "explanation": "Uma pontuação consistentemente baixa de nível 1 é o cross-encoder dizendo que o pool recuperado não contém a resposta; superfície que para o LLM como baixa confiança."
+    }
+  ]
+}

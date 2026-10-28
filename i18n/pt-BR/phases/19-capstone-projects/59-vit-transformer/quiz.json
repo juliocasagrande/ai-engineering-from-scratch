@@ -1,0 +1,78 @@
+{
+  "lesson": "59-vit-transformer",
+  "title": "Encoder de Transformador de Visão",
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "Por que o bloco ViT padrão usa colocação pré-LayerNorm em vez de pós-LayerNorm?",
+      "options": [
+        "O pre-LN corre mais rápido .",
+        "Post-LN usa mais memória",
+        "Os treinos pré-LN são estavelmente profundos sem aquecimento da taxa de aprendizagem, enquanto os treinos pós-LN se desviam por cerca de 6 camadas",
+        "Post-LN é patenteado"
+      ],
+      "correct": 2,
+      "explanation": "O pre-LN normaliza a entrada de cada subcamada, mantendo as normas de gradiente limitadas à medida que a profundidade cresce."
+    },
+    {
+      "stage": "pre",
+      "question": "Em hidden=768 com cabeças=12, qual é a dimensão por cabeça e por que é importante?",
+      "options": [
+        "12, para que cada cabeça possa funcionar em uma pequena GPU",
+        "96, definido pela ResNet-50",
+        "768, porque todas as cabeças compartilham a projeção",
+        "O sistema de controlo de cada mapa de atenção permite que 12 cabeças assistam de forma independente em paralelo"
+      ],
+      "correct": 3,
+      "explanation": "head_dim = hidden / heads = 64. Cada cabeça projeta o token em sua própria 64-D q/k/v e calcula seu próprio mapa de atenção."
+    },
+    {
+      "stage": "check",
+      "question": "O codificador ViT precisa de uma máscara de atenção causal?",
+      "options": [
+        "Apenas durante a formação",
+        "Não: o codificador é bidirecional, cada token pode atender a cada outro token na mesma sequência",
+        "Sim, como um decodificador GPT",
+        "Apenas para a linha CLS"
+      ],
+      "correct": 1,
+      "explanation": "Os codificadores de visão são bidirecionais. O mascaramento causal aparece mais tarde quando um decodificador de texto consome a saída de atenção cruzada."
+    },
+    {
+      "stage": "check",
+      "question": "O que representa o estado oculto final do token CLS depois dos 12 blocos?",
+      "options": [
+        "Um resumo vetorial aprendido de toda a imagem que os cabeçalhos para baixo projetam em logits de classe ou embutidos contrastados",
+        "Só o último parche.",
+        "Ruído aleatório",
+        "Uma cópia da entrada de inserção"
+      ],
+      "correct": 0,
+      "explanation": "O token CLS começa vazio e acumula informações de cada parche através da auto-atenção em todos os 12 blocos."
+    },
+    {
+      "stage": "check",
+      "question": "Porque é que a camada de alimentação é expandida para 4x a dim oculta?",
+      "options": [
+        "Reduz a metade os FLOPs",
+        "PyTorch requer 4x",
+        "Um ponto doce empírico desde o Transformer original; menores sub-ajustes, maiores excessos em orçamento fixo de dados",
+        "Elimina a necessidade de atenção."
+      ],
+      "correct": 2,
+      "explanation": "O fator 4x tem sido mantido em transformadores de linguagem e visão desde 2017."
+    },
+    {
+      "stage": "post",
+      "question": "Qual extensão de família mantém a matemática do bloco inalterada mas adiciona tokens aprendidos pré-pendidos?",
+      "options": [
+        "Mascaramento causal",
+        "Rotação de RoPE",
+        "Tokens de registro (DINOv2): alguns vetores aprendidos prependidos após CLS que capturam estatísticas globais e mapas de atenção suaves",
+        "Método de formação"
+      ],
+      "correct": 2,
+      "explanation": "Os tokens de registro estabilizam a atenção sem alterar a matemática do bloco; são espaços extras na sequência."
+    }
+  ]
+}

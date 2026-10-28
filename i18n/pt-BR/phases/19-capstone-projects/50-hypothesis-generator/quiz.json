@@ -1,0 +1,78 @@
+{
+  "lesson": "50-hypothesis-generator",
+  "title": "Gerador de hipóteses",
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "Por que o gerador produz uma fila classificada em vez de uma única hipótese?",
+      "options": [
+        "Porque o corredor precisa de profundidade para que possa fazer a próxima hipótese quando a primeira falhar.",
+        "Porque o modelo simulado só emite listas",
+        "Porque a incorporação requer mais de uma entrada",
+        "Porque o parser não pode ler um único bloco"
+      ],
+      "correct": 0,
+      "explanation": "O objetivo de gerar uma fila é amortizar o custo de amostragem ao longo do ciclo. Quando a primeira hipótese falha, o corredor aparece o próximo sem um novo passe de amostragem."
+    },
+    {
+      "stage": "pre",
+      "question": "O que a rampa de temperatura consegue em cada passagem?",
+      "options": [
+        "Amplifica a distribuição de amostragem para que os rascunhos posteriores possam desembarcar mais longe da semente",
+        "Aumenta a dimensão de incorporação",
+        "Ele aumenta a tolerância do parser",
+        "Triplifica o valor da semente"
+      ],
+      "correct": 0,
+      "explanation": "A rampa incentiva cada passagem a se afastar mais para que o filtro de novidade tenha algo a fazer."
+    },
+    {
+      "stage": "check",
+      "question": "Quando é que o filtro de novidade rejeita um esboço?",
+      "options": [
+        "Quando a pontuação de classificação está abaixo do limiar",
+        "Quando a sua distância cosínica mínima a qualquer sobrevivente anterior cai abaixo do limiar de novidade",
+        "Quando o parser passa mas o conteúdo da tag está errado",
+        "Quando o seu rascunho é maior do que a duração da fila"
+      ],
+      "correct": 1,
+      "explanation": "Novidade é a distância mínima para sobreviventes anteriores. se essa distância estiver abaixo do limiar o rascunho é um duplicado próximo e é deixado cair."
+    },
+    {
+      "stage": "check",
+      "question": "Que três componentes combinam na pontuação de classificação?",
+      "options": [
+        "Latência, capacidade de produção, custo",
+        "Novidade, especificidade, testável",
+        "Temperatura, semente, índice de passagem",
+        "Variaveis, métricas, comprimento da linha de base"
+      ],
+      "correct": 1,
+      "explanation": "A pontuação de classificação é uma soma ponderada de novidade, especificidade e testabilidade."
+    },
+    {
+      "stage": "check",
+      "question": "Por que o modelo de língua falsa é teclado num balde de temperatura em vez de flutuar cru?",
+      "options": [
+        "Porque os baldes fazem o horário discreto para que uma pequena mudança de temperatura possa escolher um esboço diferente",
+        "Porque a incorporação requer",
+        "Porque o parser precisa de um inteiro",
+        "Porque os flutuantes não podem ser hashed"
+      ],
+      "correct": 0,
+      "explanation": "Os baldes discretam o cronograma contínuo. Duas temperaturas adjacentes podem mapear para baldes diferentes e puxar diferentes rascunhos do banco scriptado, que é como o simulador simula amostragem variada."
+    },
+    {
+      "stage": "check",
+      "question": "O que acontece se cada esboço do modelo falso falhar no parser?",
+      "options": [
+        "O gerador gera um erro grave",
+        "A fila está vazia e cada passagem registra uma rejeição de análise para que o modo de falha seja auditável",
+        "O limiar de novidade é reduzido automaticamente",
+        "O corredor retrata com um novo aviso"
+      ],
+      "correct": 1,
+      "explanation": "As falhas do parser são registradas como registros com uma razão de rejeição de parse. A fila pode voltar vazia sem quebrar o loop, e os registros explicam o porquê."
+    }
+  ]
+}

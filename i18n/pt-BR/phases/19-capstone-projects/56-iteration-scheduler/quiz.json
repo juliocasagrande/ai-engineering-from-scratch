@@ -1,0 +1,78 @@
+{
+  "lesson": "56-iteration-scheduler",
+  "title": "Programação de Iteração",
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "Por que o cronista usa a pontuação UCB em vez de sempre escolher o melhor ramo atual?",
+      "options": [
+        "Porque a fila não pode ser ordenada de outra forma",
+        "Porque o Asyncio requer UCB",
+        "Porque a UCB é mais rápida para calcular",
+        "Porque os picos gananciosos nunca exploram; UCB equilibra a exploração com a exploração"
+      ],
+      "correct": 3,
+      "explanation": "A UCB escolhe o líder reservando capacidade para ramos menos exploradas através do termo sqrt(ln N / n)."
+    },
+    {
+      "stage": "pre",
+      "question": "Qual é a pontuação que recebe um ramo com zero corridas completadas sob UCB1?",
+      "options": [
+        "Infinito positivo, por isso, os ramos não testados são sempre escolhidos primeiro",
+        "A recompensa média de todos os outros ramos",
+        "0",
+        "A constante de exploração c"
+      ],
+      "correct": 0,
+      "explanation": "A lição atribui +inf para run=0. Isso garante que cada ramo seja tentado pelo menos uma vez antes de qualquer ramo ser revisitado."
+    },
+    {
+      "stage": "check",
+      "question": "Como o cronógrafo mantém ocupados vários slots?",
+      "options": [
+        "Ele usa asyncio.create_task por hipótese enviada e espera FIRST_COMPLETED no conjunto de voo",
+        "Ele corre o corredor em uma piscina de fios",
+        "Bloqueia o ciclo de eventos num sono",
+        "Utiliza multiprocessamento"
+      ],
+      "correct": 0,
+      "explanation": "Cada hipótese enviada torna-se uma tarefa. O ciclo principal espera no FIRST_COMPLETED para que um slot acabado seja libertado imediatamente e outra hipótese seja enviada."
+    },
+    {
+      "stage": "check",
+      "question": "Quando é que o agendador emite um paper.trigger para um ramo?",
+      "options": [
+        "Sempre que um resultado atinge aquele ramo",
+        "Quando o chão de prunes é atingido",
+        "Só no final da corrida",
+        "No primeiro resultado, cuja média de ramificação atenda ou exceda o limiar de papel, e apenas uma vez por ramificação"
+      ],
+      "correct": 3,
+      "explanation": "O gatilho dispara uma vez por ramo, a primeira vez que a média do ramo cruza o limiar."
+    },
+    {
+      "stage": "post",
+      "question": "O que acontece com um ramo cuja recompensa média permanece abaixo do chão de ameixa depois do limiar mínimo de corridas?",
+      "options": [
+        "Nada , a UCB vai escolher outra filial .",
+        "O piso da recompensa é baixado automaticamente",
+        "O ramo é marcado e as hipóteses restantes sobre esse ramo são removidas da fila",
+        "O cronista cria uma exceção"
+      ],
+      "correct": 2,
+      "explanation": "A poda remove o ramo da programação futura. A poda é separada do coletor: UCB ranks, poda culls."
+    },
+    {
+      "stage": "post",
+      "question": "Quais dos dois orçamentos o agendador impõe como limites rígidos?",
+      "options": [
+        "Memória e CPU",
+        "Trigadores de papel e contagem de ameixas",
+        "Frota e profundidade da fila",
+        "max_experimentos (total de corridas) e max_secondes (mural)"
+      ],
+      "correct": 3,
+      "explanation": "Os dois disparos e as razões para parar. max_experimentos limita o trabalho total. max_secondes limita o tempo de parede. Os registros de rastreamento que um parou a corrida."
+    }
+  ]
+}

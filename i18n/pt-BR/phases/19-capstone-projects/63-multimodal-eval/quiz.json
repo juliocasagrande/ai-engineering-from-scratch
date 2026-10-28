@@ -1,0 +1,78 @@
+{
+  "lesson": "63-multimodal-eval",
+  "title": "Avaliação multimodal",
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "Por que a perda de formação por si só é uma medida insuficiente da qualidade de um modelo multimodal?",
+      "options": [
+        "A perda é uma corda.",
+        "Os valores de perda são aleatórios",
+        "Medidas de perda de formação adequadas à distribuição de formação; superfícies de avaliação (retorno, VQA, subtítulos) medem se o modelo se generaliza para tarefas realizadas",
+        "A perda é difícil de calcular"
+      ],
+      "correct": 2,
+      "explanation": "A redução das perdas é necessária, mas não suficiente."
+    },
+    {
+      "stage": "pre",
+      "question": "O que é a medição R@5 em uma avaliação de recuperação de 100 amostras?",
+      "options": [
+        "Fração de consultas cuja correspondência correta atinja os 5 candidatos mais recrutados de 100",
+        "5% de precisão",
+        "Cinco consultas por segundo",
+        "A quinta legenda é sempre correta."
+      ],
+      "correct": 0,
+      "explanation": "R@K = fração de consultas com o alvo nos candidatos classificados em topo."
+    },
+    {
+      "stage": "check",
+      "question": "Por que o BLEU-4 toma a média geométrica de precisões de 1 a 4 gramas em vez da média aritmética?",
+      "options": [
+        "A média geométrica é maior",
+        "PyTorch suporta apenas média geométrica",
+        "A aritmética é mais lenta.",
+        "A média geométrica é zero se qualquer n-gram precisão é zero, que é a propriedade de correspondência estritamente BLEU quer; suavizamento lida com o caso zero"
+      ],
+      "correct": 3,
+      "explanation": "A média geométrica impõe que todas as ordens de n-grama contribuam; uma precisão de 4 gramas de zero colapsar a pontuação antes de suavizar."
+    },
+    {
+      "stage": "check",
+      "question": "O que é que a pena de brevidade na BLEU-4 protege contra?",
+      "options": [
+        "Fugas de memória",
+        "Capções longas que são penalizadas",
+        "Capções curtas de jogo de alta precisão emitindo apenas tokens de alta frequência seguros; BP < 1 quando gerado < comprimento de referência",
+        "Erros de tokenização"
+      ],
+      "correct": 2,
+      "explanation": "Sem a BP, uma legenda de uma palavra que corresponda a uma palavra de referência obtém uma pontuação de 1,0."
+    },
+    {
+      "stage": "check",
+      "question": "Por que a BLEU de referência múltipla geralmente obtém uma pontuação superior à BLEU de referência única na mesma geração?",
+      "options": [
+        "Cada n-gram na geração pode corresponder a qualquer referência, de modo que a contagem de cortes é maior quando mais referências estão disponíveis",
+        "A referência única está quebrada",
+        "Referências custam memória extra",
+        "A matemática é diferente."
+      ],
+      "correct": 0,
+      "explanation": "Mais referências dão ao n-grama mais chances de ser combinado; os números cortados crescem e a precisão aumenta."
+    },
+    {
+      "stage": "post",
+      "question": "Qual superfície de avaliação não usa embutidos de modelos e apenas correspondência de nível de identificação?",
+      "options": [
+        "Similhança cosínica",
+        "BLEU-4",
+        "VQA correspondência exata: uma resposta prevista id é comparada diretamente a uma referência id sem inserção de passo",
+        "Recuperação"
+      ],
+      "correct": 2,
+      "explanation": "A correspondência exata do VQA é uma comparação de números inteiros após o modelo emitir seu token de resposta; nenhuma matemática de incorporação ou semelhança envolvida."
+    }
+  ]
+}

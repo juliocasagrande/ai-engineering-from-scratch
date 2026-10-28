@@ -1,0 +1,78 @@
+{
+  "lesson": "83-prompt-injection-detector",
+  "title": "Capstone 83  Detector de injecção rápida",
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "O que o detector retorna para uma resposta?",
+      "options": [
+        "Apenas uma decisão de bloco booleano",
+        "A resposta do sistema completo do modelo",
+        "Uma lista de todas as regras da base de regras",
+        "Uma categoria e uma confiança em [0, 1]"
+      ],
+      "correct": 3,
+      "explanation": ""
+    },
+    {
+      "stage": "pre",
+      "question": "Por que normalização corre antes de substring e regex regras?",
+      "options": [
+        "Porque o regex é mais lento do que a substring",
+        "Porque a biblioteca padrão proíbe a execução de regras no texto original",
+        "Porque a normalização reduz o tamanho do arquivo no disco",
+        "Porque normalize expõe tokens ocultos como base64, rot13, e inserções de largura zero para as regras do downstream"
+      ],
+      "correct": 3,
+      "explanation": ""
+    },
+    {
+      "stage": "check",
+      "question": "Dado que verdadeiros positivos = 6, falsos positivos = 2 para a categoria C, qual é a precisão?",
+      "options": [
+        "0,86",
+        "0,60",
+        "0,75",
+        "0,50"
+      ],
+      "correct": 2,
+      "explanation": ""
+    },
+    {
+      "stage": "check",
+      "question": "Por que o corpus benigno é parte da avaliação?",
+      "options": [
+        "Para calcular o recall de ataques",
+        "Para aumentar o número de precisão",
+        "Para treinar as regras",
+        "Medir a taxa de falsos positivos em textos seguros e capturar regras demasiado amplas"
+      ],
+      "correct": 3,
+      "explanation": ""
+    },
+    {
+      "stage": "check",
+      "question": "O que faz o método de análise quando não há regras?",
+      "options": [
+        "Retorna a categoria da regra mais recente tentada",
+        "Retorna uma categoria aleatória",
+        "Retorna a categoria benigna com confiança 0.0",
+        "Levanta uma exceção"
+      ],
+      "correct": 2,
+      "explanation": ""
+    },
+    {
+      "stage": "post",
+      "question": "Porque é que esta lição diz que o detector não é o portão de segurança?",
+      "options": [
+        "Porque o detector é implementado em Python",
+        "Porque as regras são armazenadas como dados",
+        "Porque o detector é rápido demais para ser útil.",
+        "Como o detector é um sinal entre vários que o portal irá compor, com cada sinal de negociação de precisão contra a chamada de forma diferente"
+      ],
+      "correct": 3,
+      "explanation": ""
+    }
+  ]
+}

@@ -1,0 +1,78 @@
+{
+  "lesson": "phase-19/29-end-to-end-coding-task-demo",
+  "title": "Agente de codificação de ponta a ponta no arnes",
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "Antes de ler a lição: por que a demonstração de ponta a ponta substitui o MLL por uma política determinista?",
+      "options": [
+        "As políticas deterministas sempre superam os LLM nas tarefas de codificação.",
+        "A lição não pode pagar o custo da inferência.",
+        "O LLM é muito lento para fazer testes.",
+        "O arame é o que a lição está a testar; a política é a costura substituível."
+      ],
+      "correct": 3,
+      "explanation": "O contrato de aproveitamento não importa se a política é um LLM ou uma máquina estatal."
+    },
+    {
+      "stage": "check",
+      "question": "A máquina de estado do agente tem cinco estados, em que ordem os executa numa passagem normal?",
+      "options": [
+        "RUN_TESTS -> SURVEY -> INSPECT -> FIX -> VERIFY.",
+        "SURVEY -> RUN_TESTS -> INSPECT -> FIX -> VERIFY.",
+        "SURVEY -> FIX -> VERIFY -> RUN_TESTS -> INSPECT.",
+        "SURVEY -> INSPECT -> FIX -> RUN_TESTS -> VERIFY."
+      ],
+      "correct": 1,
+      "explanation": "O agente faz uma pesquisa do projeto, executa os testes, inspeciona o teste falhado, corrige o bug, e depois verifica."
+    },
+    {
+      "stage": "check",
+      "question": "O bug do dispositivo em conjunto é um off-by-one em src/fizz.py: range(1, n) em vez de range(1, n + 1). Onde a política decide aplicar a correção?",
+      "options": [
+        "Dentro do estado de SURVEY, lendo o cabeçalho do arquivo.",
+        "Fora da máquina do Estado, na cadeia de portões.",
+        "No estado de VERIFY, depois da repetição.",
+        "Dentro do estado INSPECT, após a falha do ensaio ter nomeado a saída esperada."
+      ],
+      "correct": 3,
+      "explanation": "O INSPECT é onde a política lê o teste falhado e aprende a forma esperada."
+    },
+    {
+      "stage": "check",
+      "question": "Cada chamada de ferramenta passa por que cadeia de componentes em ordem?",
+      "options": [
+        "ObservaçãoLedger -> GateChain -> Sandbox -> SpanBuilder.",
+        "SpanBuilder -> GateChain -> Sandbox -> ObservationLedger.",
+        "GateChain -> SpanBuilder -> Sandbox -> ObservationLedger.",
+        "Sandbox -> GateChain -> SpanBuilder -> ObservationLedger."
+      ],
+      "correct": 2,
+      "explanation": "O primeiro gate (permitir / rejeitar), o segundo span (de modo que a recusa também é capturada), o terceiro sandbox (apenas se permitido), o último livro (apenas se for bem sucedido)."
+    },
+    {
+      "stage": "post",
+      "question": "Substitui a política determinista por um verdadeiro LLM. Qual componente do arame muda?",
+      "options": [
+        "A caixa de areia tem de ser endurecida com seccomp.",
+        "O formato de exposição Prometheus torna-se incompatível.",
+        "A cadeia de portas tem de ser reescritada para lidar com a estocástica do LLM.",
+        "Nada no arame muda; a política é a única peça que muda."
+      ],
+      "correct": 3,
+      "explanation": "O ponto da lição: o arnes é político-agnóstico. A costura é a interface next_action / observe. O LLM conecta-se lá sem tocar em um portão, caixa de areia, livro-razão ou espaços."
+    },
+    {
+      "stage": "post",
+      "question": "A demonstração afirma que o agente resolve a fixação em menos de 12 passos. A política determinista usa 5.",
+      "options": [
+        "O LLM não pode correr dentro deste arame.",
+        "O LLM também utiliza 5 passos; o arame é inalterado.",
+        "O arame aumenta silenciosamente o orçamento.",
+        "O MLL pode utilizar mais passos; o step_budget limita o ciclo e uma execução não resolvida é relatada como falha com uma razão interrompida."
+      ],
+      "correct": 3,
+      "explanation": "O orçamento de passo é o critério de parada determinista e alto. Um LLM que vaga é limitado e o relatório diz-lhe exatamente porquê."
+    }
+  ]
+}

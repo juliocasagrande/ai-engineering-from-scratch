@@ -1,0 +1,78 @@
+{
+  "lesson": "43-hdf5-tokenized-corpus",
+  "title": "Corpus Tokenizado HDF5",
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "Por que armazenar o corpus tokenizado em um conjunto de dados HDF5 dimensionável em vez de JSONL?",
+      "options": [
+        "HDF5 tem um logotipo menor",
+        "JSONL é deprecado",
+        "Razões aleatórias",
+        "HDF5 oferece leituras em pedaços, apenas inteiros, amigáveis ao cache com acesso aleatório O(1); JSONL força o parser em cada leitura de caminho quente"
+      ],
+      "correct": 3,
+      "explanation": "O carregador de dados quer um fluxo de token plano com fatias endereçáveis; HDF5 fornece isso de forma nativa."
+    },
+    {
+      "stage": "check",
+      "question": "Qual é a regra certa para dimensionar a peça HDF5 vs. o tamanho da janela do treinador?",
+      "options": [
+        "Escolha o maior pedaço que se encaixa na RAM",
+        "Sempre escolha o pedaço = 1",
+        "Defina o chunk para um múltiplo de window_size para que cada amostra pouse dentro de um ou dois chunks e leia ficar alinhado na página-cache",
+        "Escolher pedaço igual ao comprimento do documento"
+      ],
+      "correct": 2,
+      "explanation": "Os pedaços incompatíveis reduzem a metade a produção porque cada amostra tem dois pedaços em vez de um."
+    },
+    {
+      "stage": "check",
+      "question": "Por que token_count é armazenado como um atributo HDF5 e não implícito a partir da forma do conjunto de dados?",
+      "options": [
+        "A parte posterior pode estar parcialmente cheia; sem o atributo explícito o leitor passa o extremo real para tokens com pad zero e o modelo aprende a prever zero",
+        "As formas são lentes de ler",
+        "Atributos são obrigatórios",
+        "Os atributos são bonitos."
+      ],
+      "correct": 0,
+      "explanation": "O layout em pedaços às vezes deixa espaços atrás; o atributo carrega a verdade."
+    },
+    {
+      "stage": "check",
+      "question": "O que o escritor consegue ao fazer um buffer de tokens para chunk_size antes de cada redimensionamento?",
+      "options": [
+        "As letras são contíguas e alinhadas em pedaços, evitando a fragmentação que se segue a um token-at-a-time redimensionamentos",
+        "Reduz o tamanho do vocabulário",
+        "Aceleração sha256",
+        "Salva alguns ciclos de CPU"
+      ],
+      "correct": 0,
+      "explanation": "O buffer-then-extend no tamanho da peça é a única maneira de manter os pedaços HDF5 contíguos no disco."
+    },
+    {
+      "stage": "post",
+      "question": "Por que é que o swmr=True é aberto no lado do leitor, e não no lado do escritor?",
+      "options": [
+        "Segurança",
+        "Preferência aleatória",
+        "Performance",
+        "O modo Single-Writer-Multiple-Reader permite que os trabalhadores do carregador de dados compartilhem o arquivo com segurança; o escritor não precisa de modo especial porque escreve um fragmento por processo"
+      ],
+      "correct": 3,
+      "explanation": "A mistura dos dois modos é a causa mais comum de falhas de \"arquivo bloqueado\"."
+    },
+    {
+      "stage": "post",
+      "question": "O que o símbolo de limite existe para explicar explicitamente?",
+      "options": [
+        "Compressão",
+        "Limites de tamanho do vocabulário",
+        "Dados aleatórios",
+        "Limite de documentos dentro de uma janela embalada para que o modelo não seja treinado silenciosamente em concatenamento entre documentos"
+      ],
+      "correct": 3,
+      "explanation": "Sem um limite explícito, o treinador aprende os limites como ruído; com ele, o limite torna-se um separador utilizável."
+    }
+  ]
+}

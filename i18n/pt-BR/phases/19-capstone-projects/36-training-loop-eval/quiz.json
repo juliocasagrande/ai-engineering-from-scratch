@@ -1,0 +1,78 @@
+{
+  "lesson": "36-training-loop-eval",
+  "title": "Circuito de formação e avaliação",
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "Por que o tensor-alvo deve ser o tensor de entrada deslocado por uma posição?",
+      "options": [
+        "A entropia cruzada precisa de tensores idênticos",
+        "Acelera o optimizador",
+        "É exigido pela AdamW",
+        "A previsão do token seguinte é o objetivo de treinamento: em cada posição o modelo prevê o token que vem a seguir; esquecendo o turno treina o modelo a se prever, o que não aprende nada útil"
+      ],
+      "correct": 3,
+      "explanation": "A entrada é de tokens 0..T-1; o alvo é de tokens 1..T; a perda é calculada nas formas aplanadas (batch*seq, vocab) e (batch*seq)."
+    },
+    {
+      "stage": "pre",
+      "question": "O que é que o modelo de avaliação faz que a etapa de formação não faz?",
+      "options": [
+        "Ele executa um número fixo de lotes de validação sob no_grad e com desativação de abandono, devolvendo uma perda média reprodutível",
+        "Mudança o peso do modelo",
+        "Computa gradientes duas vezes .",
+        "Ele corre o optimizador"
+      ],
+      "correct": 0,
+      "explanation": "A avaliação realizada não requer gradientes, não abandono e uma fatia fixa de dados de validação para ser reproduzível em todas as corridas."
+    },
+    {
+      "stage": "check",
+      "question": "Quais os parâmetros do AdamW têm declínio de peso?",
+      "options": [
+        "Tensores em forma de matriz (pesos lineares, tabelas de inserção) recebem decadência de peso; tensores de escala, deslocamento e viés recebem decadência zero",
+        "Apenas as escalas LayerNorm",
+        "Cada parâmetro é igual",
+        "Só a cabeça de LM"
+      ],
+      "correct": 0,
+      "explanation": "Colocar decadência em uma escala LayerNorm leva a escala a zero e quebra a normalização; a divisão é um padrão de produção padrão."
+    },
+    {
+      "stage": "check",
+      "question": "Que forma traça o cronograma de aquecimento-mais-cosin da etapa 0 até à etapa final?",
+      "options": [
+        "Função de passo",
+        "Constantemente",
+        "Rampa linear de zero para max sobre aquecimento_pasos, então decadência cosínica de max para min_lr sobre os passos restantes",
+        "Crescimento exponencial"
+      ],
+      "correct": 2,
+      "explanation": "O aquecimento popula o estado de otimização; a decadência cosínica reduz o tamanho do passo para que a fase final ajuste os pesos."
+    },
+    {
+      "stage": "check",
+      "question": "Por que a norma de gradiente de clip antes do optimizer.step()?",
+      "options": [
+        "Elimina a necessidade de aquecimento",
+        "Um lote ruim pode produzir um gradiente enorme que elimina horas de treinamento; cortar para max_norm=1.0 mantém o optimizador em um intervalo seguro sem distorcer atualizações normais",
+        "Acelera o matmul.",
+        "Reduz o uso de memória"
+      ],
+      "correct": 1,
+      "explanation": "O corte gradual é o seguro mais barato contra divergências; um é o padrão que sobrevive à maioria das configurações."
+    },
+    {
+      "stage": "post",
+      "question": "Por que registar por registro de passo como JSONL em vez de estado empilhado?",
+      "options": [
+        "JSONL é exigido pelo optimizador",
+        "JSONL trens mais rápido",
+        "Os registros JSONL são duráveis em todos os refactores, compreensíveis, gráficos em trinta linhas, e sobrevivem a acidentes; estado empinado liga você ao layout do módulo que o produziu",
+        "JSONL usa menos memória GPU"
+      ],
+      "correct": 2,
+      "explanation": "Qualquer acidente deixa um artefato legível; currículo lê o último passo; ferramentas no topo é trivial."
+    }
+  ]
+}

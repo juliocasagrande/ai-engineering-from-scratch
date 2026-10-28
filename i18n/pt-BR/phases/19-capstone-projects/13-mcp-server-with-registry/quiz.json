@@ -1,0 +1,78 @@
+{
+  "lesson": "13-mcp-server-with-registry",
+  "title": "Capstone 13: Servidor de MCP sem Estado com Registro e Governança",
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "Por que esta pedra-chave usa tanto server.json e server/discover?",
+      "options": [
+        "server.json armazena sessões, enquanto o servidor/discover as elimina",
+        "O Registro exige que os dois arquivos contenham datas de versão idênticas",
+        "São dois nomes para o mesmo manifesto de ferramentas",
+        "server.json publica metadados de instalação e de endpoint, enquanto o servidor/descoberta relata recursos do protocolo ao vivo"
+      ],
+      "correct": 3,
+      "explanation": "O registro do Registro ajuda os clientes a localizar e configurar um servidor. O RPC ao vivo relata o que o processo de execução suporta. Os seus esquemas e domínios de versão são independentes, mas a identidade publicada deve usar o namespace autenticado e corresponder ao servidor ao vivoInfo."
+    },
+    {
+      "stage": "check",
+      "question": "O que substitui o aperto de mão de inicialização na revisão MCP 2026-07-28?",
+      "options": [
+        "Mcp-Session-ID mais notificações/iniciadas",
+        "Cada solicitação carrega versão de protocolo e recursos do cliente, e os clientes podem ligar para servidor/descoberta obrigatório",
+        "Uma solicitação GET que abre um fluxo de servidor permanente",
+        "Um cookie de sessão enviado uma vez por conexão TCP"
+      ],
+      "correct": 1,
+      "explanation": "O protocolo é estatal. Versão e recursos são pedidos de metadados, enquanto servidor / descoberta fornece versão ao vivo e capacidade de descoberta sem criar uma sessão."
+    },
+    {
+      "stage": "check",
+      "question": "Quais ferramentas/comportamentos de lista suportam a descoberta segura e eficiente?",
+      "options": [
+        "Uma resposta escondida para sempre sem escopo",
+        "Uma ordem aleatória de ferramentas em cada réplica",
+        "Uma lista de conexão-local criada durante a inicialização",
+        "Ordem determinista mais ttlMs e cacheScope público ou privado correto"
+      ],
+      "correct": 3,
+      "explanation": "A ordenação estável melhora a reproducibilidade e o cache rápido. ttlMs comunicam a frescura e cacheScope impede que os resultados específicos do usuário sejam vazados através de caches compartilhados."
+    },
+    {
+      "stage": "check",
+      "question": "Qual design Streamable HTTP corresponde ao transporte atual sem estado?",
+      "options": [
+        "Todos os clientes precisam de um roteamento pegajoso de balanço de carga",
+        "O POST cria uma sessão, o GET retoma e o DELETE fecha",
+        "Um fluxo GET independente usa repetição de Last-Event-ID",
+        "Cada mensagem JSON-RPC usa seu próprio POST, com JSON ou SSE de escala de solicitação para uma solicitação"
+      ],
+      "correct": 3,
+      "explanation": "O HTTP atual Streamable é POST-só para mensagens MCP e não tem sessão de protocolo, fluxo GET independente, sessão DELETE ou reutilização do Last-Event-ID."
+    },
+    {
+      "stage": "post",
+      "question": "O que deve validar um servidor de produção antes de um gerenciador de ferramentas aprovado pela política ser executado?",
+      "options": [
+        "Só que o servidor.json lista o URL remoto",
+        "Só a anotação destrutiva da ferramenta",
+        "Só que um humano enviou uma mensagem de aprovação",
+        "Metadados do protocolo, mais emissor de tokens, público ou recurso, expiração, âmbito e qualquer aprovação de ação exata"
+      ],
+      "correct": 3,
+      "explanation": "Metadados de transporte, validação de tokens e política são portas separadas. Anotativas e metadados de publicação não concedem autoridade."
+    },
+    {
+      "stage": "post",
+      "question": "Que evidência apoia melhor a afirmação de que o servidor escala sem sessões de protocolo?",
+      "options": [
+        "Uma entrada remota do servidor.json",
+        "Uma corrida simultânea de nível de fio através de duas réplicas intercâmbios sem dependência de afinidade",
+        "Um teste unitário que constrói um dicionário de resposta",
+        "Diagrama que mostra um equilíbrio de carga"
+      ],
+      "correct": 1,
+      "explanation": "A transferência de dados para a rede de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados"
+    }
+  ]
+}

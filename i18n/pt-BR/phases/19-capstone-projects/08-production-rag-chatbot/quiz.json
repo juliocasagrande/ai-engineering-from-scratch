@@ -1,0 +1,90 @@
+{
+  "lesson": "08-production-rag-chatbot",
+  "title": "Capstone 08  Chatbot RAG de produção para um vertical regulado",
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "Porque é que o cache de prompt é tão importante num chatbot RAG de domínio regulamentado?",
+      "options": [
+        "Elimina alucinações.",
+        "Com uma taxa de acidente de 60-80% reduz o custo por consulta 3 a 5 vezes, descontando tokens de prefixos estáveis",
+        "Elimina a necessidade de um banco de dados vetorial",
+        "Melhora a recordação no estágio de re-ranqueamento"
+      ],
+      "correct": 1,
+      "explanation": ""
+    },
+    {
+      "stage": "pre",
+      "question": "O que entra no cabeçalho do cache versus o sufixo não caché de cada solicitação?",
+      "options": [
+        "Empilhamento aleatório de texto para acertar o tamanho do cache",
+        "Apenas os documentos recuperados",
+        "Pergunta do usuário primeiro, pedido do sistema último",
+        "Políticas de prompt e estática do sistema no cabeçalho do cache, conteúdo re-ranqueado como extensão do cache, pergunta do usuário como o sufixo não caçado"
+      ],
+      "correct": 3,
+      "explanation": ""
+    },
+    {
+      "stage": "check",
+      "question": "Como a camada de recuperação respeita as etiquetas de jurisdição como GDPR ou HIPAA?",
+      "options": [
+        "Reescreve a pergunta do usuário por região",
+        "Bloqueia a resposta apenas após a geração.",
+        "É executado um índice separado por país",
+        "Os filtros de função e jurisdição aplicam-se antes da fusão da pesquisa híbrida para que os blocos fora do alcance do usuário nunca sejam re-ranqueados"
+      ],
+      "correct": 3,
+      "explanation": ""
+    },
+    {
+      "stage": "check",
+      "question": "Que combinação de barrancos de camadas a fase de síntese passa a saída?",
+      "options": [
+        "Apenas um regex de PII de saída",
+        "Apenas Llama Guard 4 em entrada",
+        "Llama Guard 4, NeMo Guardrails, trilhas de política, e Presidio PII scrub, mais aplicação de citação",
+        "Uma única verificação de fidelidade do juiz de LLM"
+      ],
+      "correct": 2,
+      "explanation": ""
+    },
+    {
+      "stage": "check",
+      "question": "O que é que o painel de drift alerta?",
+      "options": [
+        "Uma alteração no prestador de MLL subjacente",
+        "Latência superior a 200 ms",
+        "Uma queda na qualidade da recuperação, por exemplo, uma queda de 5% na semana em relação à semana no nDCG ou na pontuação de citação",
+        "Qualquer documento novo adicionado ao índice"
+      ],
+      "correct": 2,
+      "explanation": ""
+    },
+    {
+      "stage": "post",
+      "question": "Quão grande é o conjunto de ouro usado para a entrada da rubrica de correcção do produto?",
+      "options": [
+        "200 pares de perguntas/respostas com citações com rótulo de peritos",
+        "5 consultas de demonstração",
+        "2000 questões sintéticas",
+        "20 perguntas"
+      ],
+      "correct": 0,
+      "explanation": ""
+    },
+    {
+      "stage": "post",
+      "question": "Que pontuações do RAGAS são rastreadas online por turno?",
+      "options": [
+        "BLU, ROUGE e METEOR",
+        "Contagem de tokens e custo em dólares",
+        "Fiel, relevância das respostas e precisão do contexto",
+        "Transmissão, utilização de GPU e profundidade de fila"
+      ],
+      "correct": 2,
+      "explanation": ""
+    }
+  ]
+}

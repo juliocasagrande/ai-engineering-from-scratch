@@ -1,0 +1,78 @@
+{
+  "lesson": "72-code-exec-metric",
+  "title": "Código Metrícula Executiva",
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "Por que o corredor gera um novo subprocesso Python por candidato em vez de chamar exec inline?",
+      "options": [
+        "Evita a poluição das edificações",
+        "exec é deprecado no Python moderno",
+        "É mais rápido que exec",
+        "Isola os tempos de saída, as sobrepassas de saída e as importações perigosas do processo de avaliação de hospedeiro"
+      ],
+      "correct": 3,
+      "explanation": "Um ciclo infinito ou uma alocação de memória fugida no código candidato só desligam o subprocesso."
+    },
+    {
+      "stage": "pre",
+      "question": "Qual é a pontuação para uma tarefa com três afirmações quando duas passam e uma falha?",
+      "options": [
+        "0,667",
+        "1.0",
+        "0,0",
+        "0,5"
+      ],
+      "correct": 0,
+      "explanation": "O resultado é dividido pelo total. Dois de três é 0,667. O código de saída é assertion_fail."
+    },
+    {
+      "stage": "check",
+      "question": "Que código de saída o corredor retorna quando o código do candidato não analisa?",
+      "options": [
+        "erro de sintaxe",
+        "erro",
+        "tempo de descanso",
+        "assertion_fail"
+      ],
+      "correct": 0,
+      "explanation": "compile() eleva o SyntaxError dentro do runner, o script interno o pega e escreve exit_code=syntax_error."
+    },
+    {
+      "stage": "check",
+      "question": "Por que o tempo de tempo do relógio de parede é o controle de carga em vez de o denilista de importação?",
+      "options": [
+        "Importações não podem ser negadas em Python",
+        "subprocess.run não suporta denylists",
+        "A maioria dos falhas são circuitos infinitos, e um adversário determinado pode contornar qualquer denilista em processo",
+        "O relógio de parede é verificado no momento da compilação"
+      ],
+      "correct": 2,
+      "explanation": "Os denylistas conseguem o código preguiçoso, os timeouts conseguem loop infinitos, o denylist é um backstop, o timeout é o chão."
+    },
+    {
+      "stage": "check",
+      "question": "O que é que o pass_at_k(n, c, k) retorna quando n - c < k?",
+      "options": [
+        "Uma, porque a amostra deve conter pelo menos uma solução de passagem",
+        "c/n, a taxa de passagem empírica",
+        "Zero, porque a amostra não é definida",
+        "Aumenta o valorErro"
+      ],
+      "correct": 0,
+      "explanation": "Se houver menos falhas do que o tamanho da amostra, cada amostra de tamanho k necessariamente inclui pelo menos um passe, então a probabilidade é 1."
+    },
+    {
+      "stage": "post",
+      "question": "Como o corredor superficia um excesso de saída, e por que o limite é de 256 KB?",
+      "options": [
+        "Apenas Stderr; tamanho corresponde ao tubo padrão do sistema operacional",
+        "Valor da pontuação, expresso em percentagem com dois decimais",
+        "Stdout do subprocesso é transmitido; uma vez que o total de execução de 256 KB é cruzado, a criança é morta e a tarefa é registrada como exit_code=error com detalhe \"output overflow\"",
+        "O tamanho do candidato fonte, capped para que o código gerado permaneça pequeno"
+      ],
+      "correct": 2,
+      "explanation": "O candidato que inunda o código de saída é morto no meio do fluxo; o corredor normaliza o resultado sob exit_code=error com detalhe \"output overflow\" em vez de minar um novo código de saída."
+    }
+  ]
+}

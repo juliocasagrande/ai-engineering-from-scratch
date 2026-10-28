@@ -1,0 +1,90 @@
+{
+  "lesson": "09-code-migration-agent",
+  "title": "Capstone 09  Agente de migração de código (Linguagem de nível re-re-exercício / atualização do tempo de execução)",
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "Por que o gasoduto combina um substrato determinista com uma camada de agente em vez de usar apenas uma?",
+      "options": [
+        "Os agentes sozinhos são mais rápidos que as receitas .",
+        "O OpenRewrite ou libcst lida com 70-80% das reescrituras mecânicas de forma segura e barata, deixando o agente para a longa cauda ambígua",
+        "O determinismo é necessário apenas para o sistema de construção",
+        "As receitas deterministas são mais lentas do que as LLM"
+      ],
+      "correct": 1,
+      "explanation": ""
+    },
+    {
+      "stage": "pre",
+      "question": "Que sinal o oleoduto usa como verdade para uma migração bem-sucedida?",
+      "options": [
+        "Agente auto-rating em uma rubrica",
+        "Aprovação do revisor sobre as relações públicas",
+        "Dimensão diferencial abaixo de um limite duro",
+        "CI verde na caixa de areia sem regressão da cobertura além de um pequeno limiar"
+      ],
+      "correct": 3,
+      "explanation": ""
+    },
+    {
+      "stage": "check",
+      "question": "Que limites orçamentais o ciclo de agentes impõe por repo?",
+      "options": [
+        "30 minutos de tempo, 8 dólares e 20 turnos de agente.",
+        "1 hora de relógio de parede e 100 voltas",
+        "Tempo e custo ilimitados; cancelamento apenas em caso de erros",
+        "Sem limite de viradas, 100 dólares."
+      ],
+      "correct": 0,
+      "explanation": ""
+    },
+    {
+      "stage": "check",
+      "question": "Que porta dispara quando a cobertura cai mais de 2% após a migração?",
+      "options": [
+        "O substrato determinista repete as suas receitas",
+        "O repo é arquivado sob uma classe de falha de cobertura_regressão em vez de abrir um PR limpo",
+        "O agente empurra automaticamente uma fixação",
+        "O revisor é ignorado"
+      ],
+      "correct": 1,
+      "explanation": ""
+    },
+    {
+      "stage": "check",
+      "question": "Por que a taxonomia do fracasso é tratada como um produto de entrega e não como um artefato lateral?",
+      "options": [
+        "Substitui a suite de ensaio",
+        "É exigido pela proteção de ramo do GitHub",
+        "Compete com uma lista de verificação de conformidade",
+        "Ele agrupa os repositórios falhados por classe para que os futuros autores de receitas possam direcionar os principais modos de falha"
+      ],
+      "correct": 3,
+      "explanation": ""
+    },
+    {
+      "stage": "post",
+      "question": "Qual é o ponto de referência público que a meta da meta da migração de Java 8 a 17?",
+      "options": [
+        "MMLU-Pro",
+        "MigraçãoBench da Amazon",
+        "ViDoRe v3",
+        "SWE-bench Pro"
+      ],
+      "correct": 1,
+      "explanation": ""
+    },
+    {
+      "stage": "post",
+      "question": "O que é que a rubrica de integração de agentes mede sobre a distribuição fixa?",
+      "options": [
+        "Número de dependências fixas",
+        "Número de empurrões forçadas por repo",
+        "A fração de correções tratadas por OpenRewrite versus autores pela camada agente",
+        "Velocidade de tokenização do arquivo fonte"
+      ],
+      "correct": 2,
+      "explanation": ""
+    }
+  ]
+}

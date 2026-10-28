@@ -1,0 +1,90 @@
+{
+  "lesson": "01-terminal-native-coding-agent",
+  "title": "Capstone 01  Agente de codificação nativo de terminal",
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "Que forma de ciclo compartilham os agentes de codificação do terminal 2026?",
+      "options": [
+        "Trazer, incorporar, classificar, sintetizar",
+        "Planejar, agir, observar, recuperar",
+        "Treinar, avaliar, implantar, monitorar",
+        "Encódigo, decodificação, amostra, fluxo"
+      ],
+      "correct": 1,
+      "explanation": ""
+    },
+    {
+      "stage": "pre",
+      "question": "Porque é que o arneso executa cada tarefa dentro de uma caixa de areia E2B ou Daytona?",
+      "options": [
+        "Para permitir o acesso da GPU para o loop do agente",
+        "Para contornar os limites de taxas do fornecedor de modelo",
+        "Para isolar o sistema de arquivos e a execução de ferramentas do host para que a árvore de trabalho possa ser rasgada no momento da conclusão",
+        "Para benchmarking de token de passagem em caches frios"
+      ],
+      "correct": 2,
+      "explanation": ""
+    },
+    {
+      "stage": "check",
+      "question": "Qual gancho embuído é o local natural para bloquear comandos destrutivos antes de serem executados?",
+      "options": [
+        "Parem!",
+        "Utilização de ferramentas",
+        "Pre-ToolUse",
+        "SessãoInício"
+      ],
+      "correct": 2,
+      "explanation": ""
+    },
+    {
+      "stage": "check",
+      "question": "O capstone cobre cada resultado da ferramenta em aproximadamente 4k tokens.",
+      "options": [
+        "Modelo de sobreajuste a rastreamento de chamadas de ferramentas",
+        "Escapa da caixa de areia através de metacaráteres maliciosos de concha",
+        "Estado do plano estável em sessões reiniciadas",
+        "Envenenamento contextual e custo de fuga quando uma ferramenta retorna um grande lixo"
+      ],
+      "correct": 3,
+      "explanation": ""
+    },
+    {
+      "stage": "check",
+      "question": "O que faz o gancho do PreCompact na marca de 150k?",
+      "options": [
+        "Cancelar a execução e reembolsar o orçamento do utilizador",
+        "Força-pulsando o ramo atual para apoiar o progresso",
+        "Resumindo, os antigos se transformam em blocos de estado anterior, para que o plano e as novas observações ainda se encaixem",
+        "Mudar o modelo de apoio para um modelo de projeto menor"
+      ],
+      "correct": 2,
+      "explanation": ""
+    },
+    {
+      "stage": "post",
+      "question": "Qual é a linha de base com que a pedra de captação compara o seu arame num subconjunto de 30 edições SWE-bench Pro?",
+      "options": [
+        "Aider",
+        "Mini-agente de deslizamento",
+        "Agente vivo-SWE",
+        "OpenCode"
+      ],
+      "correct": 1,
+      "explanation": ""
+    },
+    {
+      "stage": "post",
+      "question": "Em relação a qual conjunto de métricas é a medição entregue?",
+      "options": [
+        "WER, MOS e primeiro audio-out",
+        "MRR@10 e nDCG@10",
+        "Perplexidade, azul e roxo",
+        "Pass@1, viradas por tarefa e dólar por tarefa"
+      ],
+      "correct": 3,
+      "explanation": ""
+    }
+  ]
+}

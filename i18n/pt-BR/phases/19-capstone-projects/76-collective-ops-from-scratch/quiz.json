@@ -1,0 +1,78 @@
+{
+  "lesson": "76-collective-ops-from-scratch",
+  "title": "Operações coletivas a partir do zero",
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "Qual é o custo de largura de banda por fila de anel allreduce para um tensor de bytes T em filas N?",
+      "options": [
+        "N * T bytes",
+        "T log2(N) bytes",
+        "T bytes",
+        "2T(N-1)/N bytes"
+      ],
+      "correct": 3,
+      "explanation": "O ring allreduce move N-1 pedaços de tamanho T/N duas vezes (reduce-dispersor e depois todos reunidos); o total por rank é 2T(N-1)/N, independente do tamanho do cluster."
+    },
+    {
+      "stage": "pre",
+      "question": "Por que a rede de fila nesta aula é um candidato honesto para a NCCL num cluster real?",
+      "options": [
+        "O hardware-descarga reduções",
+        "Funciona com núcleos CUDA",
+        "Implementa o mesmo padrão de fio (ordenado ponto a ponto envia em torno de um anel), apenas o meio difere",
+        "Comprime mensagens"
+      ],
+      "correct": 2,
+      "explanation": "A corretidão algorítmica depende do padrão de fio, não do meio; o anel de fila expõe as mesmas formas de corrida e cronograma de pedaços que o anel NCCL allreduce."
+    },
+    {
+      "stage": "check",
+      "question": "Depois da metade de redução de disperso do anel totalreduce, o que é que a posição r mantém?",
+      "options": [
+        "A soma reduzida para uma peça (uma Nth do tensor)",
+        "A soma reduzida para dois pedaços",
+        "Tensor completo não reduzido",
+        "Nada ."
+      ],
+      "correct": 0,
+      "explanation": "Reduzir-dispersão parca a soma de um pedaço em uma fila; a metade de todo-gather então gira aqueles pedaços completos em torno do anel."
+    },
+    {
+      "stage": "check",
+      "question": "Por que usar a transmissão de árvores em vez de N-1 enviar diretamente da fonte?",
+      "options": [
+        "Árvores são obrigatórias em PyTorch",
+        "Direct envia pacotes de drop",
+        "Árvores duplicam o contador definido por rodada; profundidade é log2(N) por isso, as escalas de latência como log não N",
+        "As árvores usam menos memória"
+      ],
+      "correct": 2,
+      "explanation": "log2(N) os saltos dominam quando a latência por salt é o gargalo de engarrafamento; sequencial N-1 envia pagamento que o piso de latência N vezes."
+    },
+    {
+      "stage": "check",
+      "question": "Por que verificar contra a luz distribuída na mesma entrada?",
+      "options": [
+        "O Gloo é mais rápido.",
+        "Gloo é a referência legal para semântica coletiva; saída igual a byte prova que o seu algoritmo concorda com a especificação antes de ser executado em um cluster real",
+        "Gloo não requer configuração",
+        "Gloo escreve JSONL automaticamente"
+      ],
+      "correct": 1,
+      "explanation": "Sem uma referência, o primitivo parece correto até o passo 10000 de uma corrida de treinamento real; o gloo dá uma verdade de terra igual a byte na CPU."
+    },
+    {
+      "stage": "post",
+      "question": "Quando a árvore reduz tudo, vencer sobre o anel reduz tudo?",
+      "options": [
+        "Sempre .",
+        "Quando as mensagens são grandes",
+        "Mensagens pequenas ou ligações de alta latência; o log2(N) conta de saltos supera o termo largura de banda 2T(N-1)/N abaixo do crossover",
+        "Nunca ."
+      ],
+      "correct": 2,
+      "explanation": "O NCCL escolhe o anel acima de ~ 1 MB e a árvore abaixo; o crossover é largura de banda versus latência na topologia do cluster dada."
+    }
+  ]
+}

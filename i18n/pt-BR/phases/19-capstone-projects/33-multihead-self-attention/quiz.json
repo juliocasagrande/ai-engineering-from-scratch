@@ -1,0 +1,78 @@
+{
+  "lesson": "33-multihead-self-attention",
+  "title": "Atenção à própria vida",
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "Por que um bloqueio de auto-atenção eficiente usa uma única camada linear que produz recursos 3*D?",
+      "options": [
+        "É matematicamente equivalente a três camadas lineares ((D, D) e funciona como um matmul",
+        "Reduz a contagem de parâmetros do modelo",
+        "Impõe a divisão de peso entre Q, K e V",
+        "Evita a necessidade de uma máscara causal"
+      ],
+      "correct": 0,
+      "explanation": "Apilação de três matrizes de projeção (D, D) em uma matriz (3D, D) produz as mesmas saídas, mas a passagem para a frente é uma única matmul-acelerador-friendly."
+    },
+    {
+      "stage": "check",
+      "question": "Qual é a relação entre d_model, n_heads e d_head?",
+      "options": [
+        "D_head = d_model * n_head",
+        "D_head = d_model + n_head",
+        "d_head é independente do modelo d_",
+        "d_head = d_model // n_heads e d_model devem ser divisíveis por n_heads"
+      ],
+      "correct": 3,
+      "explanation": "O bloco divide o modelo d_em forma uniforme entre cabeças."
+    },
+    {
+      "stage": "check",
+      "question": "Qual é o valor que entra no fator de escala da atenção do produto ponto escalado?",
+      "options": [
+        "- Não, não.",
+        "(squirt(n_heads)",
+        "(squirt(d_model)",
+        "(squirt(seq_len)"
+      ],
+      "correct": 0,
+      "explanation": "As pontuações são divididas por quadrado (d_head), a dimensão da cabeça que o matmul contrae."
+    },
+    {
+      "stage": "check",
+      "question": "Como a máscara causal impõe que a posição t não pode atender à posição t+1?",
+      "options": [
+        "Multiplicando as chaves em posições futuras por zero",
+        "Ao definir as entradas de pontuação acima da diagonal para infinito negativo antes de softmax",
+        "Ao remover futuros tokens da entrada",
+        "Usando uma cabeça de atenção diferente para o futuro"
+      ],
+      "correct": 1,
+      "explanation": "A configuração de entradas futuras para -inf força softmax a dar-lhes peso zero."
+    },
+    {
+      "stage": "post",
+      "question": "Por que o bloco termina com uma projeção de saída linear ((D, D) após a fusão de cabeças?",
+      "options": [
+        "Para permitir que o modelo misture informações entre cabeças",
+        "Para corresponder ao tamanho do vocabulário do modelo",
+        "Para normalizar as ativações para significar zero",
+        "É necessário para o autograd para rastrear gradientes"
+      ],
+      "correct": 0,
+      "explanation": "Sem a projeção de saída, as saídas da cabeça só se combinariam em camadas posteriores."
+    },
+    {
+      "stage": "post",
+      "question": "O que diz uma matriz de forma (B, H, T, T) de peso da atenção?",
+      "options": [
+        "Que posições-chave cada posição de consulta atende, por cabeça, por lote de elementos",
+        "A semelhança cosínica entre query e valor vectores",
+        "As logs de saída para o próximo token",
+        "Quantos parâmetros cada cabeça tem"
+      ],
+      "correct": 0,
+      "explanation": "A linha t da matriz por cabeça é a distribuição entre as posições-chave utilizadas pela posição de consulta t. Ao inspecioná-la, mostra onde cada cabeça olha."
+    }
+  ]
+}

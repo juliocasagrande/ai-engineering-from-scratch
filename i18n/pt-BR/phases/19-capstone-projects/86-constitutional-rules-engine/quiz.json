@@ -1,0 +1,78 @@
+{
+  "lesson": "86-constitutional-rules-engine",
+  "title": "Capstone 86  Regras Constitucionais Motor",
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "Por que usar uma constituição declarativa do YAML em vez de verificações de código ad hoc?",
+      "options": [
+        "Porque o YAML suporta âncoras",
+        "Porque o YAML é mais rápido em análise do que o Python",
+        "Porque as regras em YAML são revistas por não engenheiros, vivido no controle de versão, e substituíveis sem uma mudança de código",
+        "Porque a biblioteca padrão prefere YAML"
+      ],
+      "correct": 2,
+      "explanation": ""
+    },
+    {
+      "stage": "pre",
+      "question": "Que campos devem ter todas as regras no mínimo?",
+      "options": [
+        "nome, regex, fixação",
+        "Identidade, proprietário, timestamp",
+        "Precedente, gravidade, proprietário",
+        "nome, gravidade, obrigatoriedade, explicação"
+      ],
+      "correct": 3,
+      "explanation": ""
+    },
+    {
+      "stage": "check",
+      "question": "Como é que o motor compõe os predicados?",
+      "options": [
+        "Apenas através de um único contém_regex por regra",
+        "Multiplicando os resultados de confiança",
+        "Através de um classificador neural",
+        "Via todos, qualquer, e não que recorrentemente envolver predicados atômicos"
+      ],
+      "correct": 3,
+      "explanation": ""
+    },
+    {
+      "stage": "check",
+      "question": "Qual é o papel do aplicativo quando?",
+      "options": [
+        "O que é que é mais grave?",
+        "Ele escolhe a operação do fixador",
+        "Ele abre as portas da pré-dicada obrigatória para que as regras que não se aplicam sejam registradas como não_aplicáveis em vez de violação",
+        "Ele sempre avalia para verdade"
+      ],
+      "correct": 2,
+      "explanation": ""
+    },
+    {
+      "stage": "check",
+      "question": "O que faz o Fixador?",
+      "options": [
+        "Chama um modelo remoto para reparar o texto",
+        "Aplica a fixação declarativa por regra (apenda, prepend, substituir_regex) para produzir um texto revisto",
+        "Reescreve o arquivo de regras",
+        "Calcula a gravidade do fixamento"
+      ],
+      "correct": 1,
+      "explanation": ""
+    },
+    {
+      "stage": "post",
+      "question": "Porque é que a demonstração põe o motor em funcionamento uma segunda vez depois do fixador?",
+      "options": [
+        "Porque a primeira passagem é apenas uma corrida seca",
+        "Para recarregar a Constituição",
+        "Para aumentar o tamanho do relatório",
+        "Para verificar que o texto revisto satisfaz as regras e para extinguir qualquer regra que o fixador não possa reparar localmente"
+      ],
+      "correct": 3,
+      "explanation": ""
+    }
+  ]
+}

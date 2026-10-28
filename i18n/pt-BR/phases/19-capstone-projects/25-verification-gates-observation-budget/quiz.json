@@ -1,0 +1,78 @@
+{
+  "lesson": "phase-19/25-verification-gates-observation-budget",
+  "title": "Portas de verificação e orçamento de observação",
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "Antes de ler a lição: qual destas é a razão mais forte que um arame precisa de uma cadeia de portas determinista em vez de um modelo-como-juiz?",
+      "options": [
+        "Os modelos são muito lentos para agir como juízes na produção.",
+        "As cadeias de portas deixam o modelo escrever a sua própria política.",
+        "Um modelo-juiz sempre produz decisões de permitir alucinações.",
+        "O determinismo torna a razão de negação auditable e a cadeia repetivel."
+      ],
+      "correct": 3,
+      "explanation": "Os caminhos de auditoria e a reproducibilidade são as vantagens práticas."
+    },
+    {
+      "stage": "check",
+      "question": "Porque é que a lição é dirigida pela WhitelistGate antes que a BudgetGate na cadeia?",
+      "options": [
+        "O BudgetGate não pode ser executado até que pelo menos uma ferramenta tenha sido chamada.",
+        "As negações de lista branca são mais baratas, por isso, cortar-as evita a soma cara do livro-razão.",
+        "A lista branca deve ser sempre a última porta de entrada.",
+        "A ordem não importa porque a GateChain randomizou a ordem de avaliação."
+      ],
+      "correct": 1,
+      "explanation": "O WhitelistGate é um search hash O(1) o BudgetGate tem que resumir o livro-razão."
+    },
+    {
+      "stage": "check",
+      "question": "Um registro de observação registrou uma observação de 60 tokens a partir do arquivo read_file. O arnes então recusa uma chamada subsequente. O que o registro registra sobre a recusa?",
+      "options": [
+        "O livro só registra observações bem sucedidas.",
+        "A recusa é anexada como observação sintética com o nome do recusador.",
+        "Uma linha de observação com token zero marcada recusada.",
+        "Uma linha de observação com token negativo que representa o custo de recusa."
+      ],
+      "correct": 0,
+      "explanation": "O livro registra observações que o modelo viu. Uma recusa produz uma GateDecision, não uma Observação."
+    },
+    {
+      "stage": "check",
+      "question": "RecencyGate.window é definido para 3. a última_volta do livro de conta é 5. Uma nova chamada de ferramenta chega na curva 10. O que acontece?",
+      "options": [
+        "O portal nega: o espaço de 5 excede a janela de 3.",
+        "O portão permite: a chamada está na última curva.",
+        "O portão permite: a janela se aplica ao tamanho do livro, não a abertura.",
+        "O portal é excepcional porque o livro está ultrapassado."
+      ],
+      "correct": 0,
+      "explanation": "RecencyGate compara (call.turn - ledger.latest_turn) com a janela. 10 - 5 = 5, que é maior que 3, então o portão nega."
+    },
+    {
+      "stage": "post",
+      "question": "Você quer adicionar um limite de saída por chamada (nenhuma observação única pode exceder 8000 tokens). Onde esse portal pertence logicamente à cadeia?",
+      "options": [
+        "Não pode ser um portão porque o tamanho só é conhecido depois que a ferramenta é executada.",
+        "Antes da WhitelistGate, já que o tamanho é a propriedade mais barata a verificar.",
+        "Dentro do BudgetGate, para que os limites se compõem.",
+        "Depois do BudgetGate, já que o orçamento acumulado sempre domina."
+      ],
+      "correct": 0,
+      "explanation": "O tamanho da saída não é conhecido no momento da avaliação do gate. O arneso aplica o cap após a ferramenta correr, truncando a observação antes que o modelo a veja."
+    },
+    {
+      "stage": "post",
+      "question": "Um revisor pede-lhe para provar que o agente nunca fez uma chamada de ferramenta durante uma sessão.",
+      "options": [
+        "O snapshot do ObservationLedger, que contém apenas observações bem sucedidas.",
+        "A saída mais rápida, que registra a aprovação/falha do ensaio.",
+        "A transcrição do chat do modelo, que contém o seu próprio auto-relatório.",
+        "A lista de registos do ChainOutcome, que contém todas as decisões por chamada com razões de negação."
+      ],
+      "correct": 3,
+      "explanation": "Os registros do ChainOutcome contêm decisões por chamada e negam razões. O livro-razão e a transcrição podem apoiar a alegação, mas o artefato auditável são as decisões da cadeia."
+    }
+  ]
+}

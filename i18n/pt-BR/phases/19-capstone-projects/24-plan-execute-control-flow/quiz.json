@@ -1,0 +1,90 @@
+{
+  "lesson": "24-plan-execute-control-flow",
+  "title": "Fluxo de controlo planeamento-execução",
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "Qual é a responsabilidade do planejador em um agente de execução de planos?",
+      "options": [
+        "Para lidar com o transporte JSON-RPC",
+        "Para produzir uma lista ordenada de passos digitais o executor irá executar",
+        "Para aplicar os temporários",
+        "Para chamar o despachador em cada passo"
+      ],
+      "correct": 1,
+      "explanation": "O planejador emite planos estruturados, o executor os executa, misturando os dois é a cadeia de pensamento da qual esta lição se afasta."
+    },
+    {
+      "stage": "pre",
+      "question": "Por que é que o esperado_resultado é parte da forma passo mesmo que o executor não o verifique?",
+      "options": [
+        "Porque dá ao replaneador e aos rastreadores uma condição de sucesso declarada para ler",
+        "Porque o modelo treina nele",
+        "Porque o despachador usa-o como uma chave de cache",
+        "Porque o registo exige"
+      ],
+      "correct": 0,
+      "explanation": "O replaneador lê-o quando revisar, o rastreador faz-o aparecer na linha do tempo, é um contrato legível pelo homem no passo."
+    },
+    {
+      "stage": "check",
+      "question": "Quando um passo falha e o replanificador retorna um novo plano, o que o executor emite no fluxo de eventos?",
+      "options": [
+        "session.complete com status=failed",
+        "tool.error seguido de session.start",
+        "plan.diff com identificação de etapa removida/adicionada/revisada",
+        "Nada  Replan está em silêncio"
+      ],
+      "correct": 2,
+      "explanation": "Plan.diff torna a revisão visível. Uma reescritura silenciosa é o bug que estamos evitando."
+    },
+    {
+      "stage": "check",
+      "question": "Por que os dois orçamentos são separados?",
+      "options": [
+        "Porque o despachador rejeita planos ilimitados",
+        "Porque o registo conta com replãs",
+        "Porque o asyncio requer ambos os",
+        "Porque eles medem diferentes unidades. Passo limite execução total; replans limite quantas vezes o planejador é chamado."
+      ],
+      "correct": 3,
+      "explanation": "Max_steps pega um planejador que continua a devolver o mesmo plano quebrado."
+    },
+    {
+      "stage": "check",
+      "question": "Qual é a razão que é devolvida quando o planejador devolve uma lista vazia na primeira chamada?",
+      "options": [
+        "replan_budget",
+        "passo_orçamento",
+        "Não planei",
+        "meta_met"
+      ],
+      "correct": 2,
+      "explanation": "Sem plano, sem execução, a sessão termina com razão = não plano e status = falhado."
+    },
+    {
+      "stage": "post",
+      "question": "O que está no PlanDiff.revised?",
+      "options": [
+        "Passos de identificação o planejador pediu para pular",
+        "IDs de passos cujo nome ou args de ferramenta mudou entre as revisões",
+        "Identificadores de passo no novo plano que não estavam no antigo",
+        "Identificadores de passos que estavam no plano antigo e não estão no novo"
+      ],
+      "correct": 1,
+      "explanation": "revisado é o conjunto de ids cuja assinatura (tool_name, args) mudou ao longo da revisão."
+    },
+    {
+      "stage": "post",
+      "question": "Quando o executor esgotar max_replans, qual é o resultado SessionResult.reason?",
+      "options": [
+        "passo_orçamento",
+        "replan_budget",
+        "Não planei",
+        "meta_met"
+      ],
+      "correct": 1,
+      "explanation": "O status falhou, a história conta todos os passos que foram executados, incluindo os falhas que desencadearam os replans."
+    }
+  ]
+}

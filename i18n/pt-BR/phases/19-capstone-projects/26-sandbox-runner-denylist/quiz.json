@@ -1,0 +1,78 @@
+{
+  "lesson": "phase-19/26-sandbox-runner-denylist",
+  "title": "Corredor de Sandbox com Denylist e Path Jail",
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "Antes de ler a lição: qual é a razão mais forte de uma caixa de areia verificar as formas argv para invocações de intérprete como Python3 -c?",
+      "options": [
+        "Os intérpretes não podem ser seguramente colocados em uma caixa de areia.",
+        "Os intérpretes são lentos e gastam dinheiro.",
+        "Um intérprete com -c é uma chamada de shell com outro nome e contorna o denilista executável.",
+        "O modelo escreve um código melhor sem eles."
+      ],
+      "correct": 2,
+      "explanation": "python3 -c, bash -c, node -e, and friends are functionally identical to giving the model a shell. Blocking the executable name is not enough."
+    },
+    {
+      "stage": "check",
+      "question": "A caixa de areia é configurada com project_root=/work. Um argumento de caminho chega como ./src/main.py. Como é realizada a verificação de jail?",
+      "options": [
+        "Os.path.realpath do caminho absoluto unido é verificado para um prefixo /work.",
+        "A caixa de areia recusa todos os caminhos relativos.",
+        "O prefixo de linha literal corresponde ao /work.",
+        "A caixa de areia gera o subprocesso e verifica o diretório de trabalho após o fato."
+      ],
+      "correct": 0,
+      "explanation": "realpath resolve os sinfonemas. Uma verificação literal de prefixo é contornada por um sinfonema dentro da raiz do projeto apontando para fora. realpath mais prefixo-ou-igual é a verificação segura."
+    },
+    {
+      "stage": "check",
+      "question": "Um Result de Sandbox retorna com negado=Verdade, timed_out=False, exit_code=-100. Qual é a interpretação canônica?",
+      "options": [
+        "A caixa de areia nunca gerou o subprocesso; a chamada foi recusada antes do exec.",
+        "O subprocesso devolveu -100 explicitamente.",
+        "O subprocesso começou e foi morto pelo SIGKILL.",
+        "O tempo de espera do relógio da parede disparou."
+      ],
+      "correct": 0,
+      "explanation": "O código de saída -100 sentinela emparelhado com negado=True significa que a caixa de areia foi cortada antes de subprocess.run ser chamada."
+    },
+    {
+      "stage": "check",
+      "question": "Por que a caixa de areia prefere shell=False por padrão e recusa metacaráteres shell?",
+      "options": [
+        "subprocesso não aceita shell=True no macOS.",
+        "Faz a sala de testes mais simples.",
+        "A análise de casca expõe toda a DSL de casca ao modelo, que é a superfície que a caixa de areia está tentando encolher.",
+        "shell=True é mais lento no CPython."
+      ],
+      "correct": 2,
+      "explanation": "shell=True transforma argv em uma cadeia interpretada por shell. Pipes, redireções, substituição de comando e globos todos ficam disponíveis. A caixa de areia não pode recusar significativamente uma carga útil uma vez que a paragem de shell é executada."
+    },
+    {
+      "stage": "post",
+      "question": "Se você quiser adicionar um limite de memória por processo à caixa de areia, a caixa de areia da lição não implementa isso. Qual é o próximo passo correto?",
+      "options": [
+        "Esqueça: um denilista é suficiente para bombas de memória.",
+        "Aumentar o tempo de tempo para compensar.",
+        "Use os.setrlimit(RLIMIT_AS) em um preexec_fn passado para subprocess.run.",
+        "Adicione o limite ao denilista como uma cadeia."
+      ],
+      "correct": 2,
+      "explanation": "subprocess.run aceita preexec_fn (POSIX) ou um mecanismo similar. setrlimit(RLIMIT_AS) limita o espaço de endereço da criança. A caixa de areia nesta lição não envia isso; a lição 29 end-to-end demo discute como colocar limites de nível de recipiente no topo."
+    },
+    {
+      "stage": "post",
+      "question": "O modelo invoca a caixa de areia com argv=['cat', 'src/../src/main.py''. O arquivo existe sob project_root.",
+      "options": [
+        "Depende se o usuário é root.",
+        "Sim: realpath desabar src/../src para src e o caminho resolvido está dentro do projeto_root.",
+        "Não: o argv é rejeitado pelo portão regex antes que a caixa de areia o veja.",
+        "Não, qualquer... em um caminho é uma recusa automática."
+      ],
+      "correct": 1,
+      "explanation": "realpath normaliza o caminho. A caixa de areia não recusa cobertor ... tokens; verifica o alvo resolvido. Isto é intencional: caminhos legítimos às vezes passam através .. legitimamente."
+    }
+  ]
+}

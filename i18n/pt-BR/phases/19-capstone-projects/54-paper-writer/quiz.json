@@ -1,0 +1,78 @@
+{
+  "lesson": "54-paper-writer",
+  "title": "Escritor de papel",
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "Por que o escritor declara seções, figuras e citações como dados antes de escrever qualquer prosa?",
+      "options": [
+        "Porque o BibTeX não pode resolver referências de encaminhamento",
+        "Porque o LaTeX requer uma declaração de adição",
+        "Porque o modelo precisa de um sistema de urgência",
+        "Porque a estrutura é o contrato: o arnes pode validar a integridade antes da geração de prosa"
+      ],
+      "correct": 3,
+      "explanation": "A estrutura permite que o arnes confirme a singularidade, a cobertura de citações e a cobertura de figuras antes de invocar o gerador de prosa."
+    },
+    {
+      "stage": "pre",
+      "question": "O que produz o passo de injecção de figura a partir de um manifesto de experimento?",
+      "options": [
+        "Lista de registos de figuras com identidades estáveis e caminhos normalizados para o diretório de papel",
+        "Um pedaço de bibliografia",
+        "Um PDF compilado a partir de artefatos",
+        "Um modelo de pedido com descrições de figuras"
+      ],
+      "correct": 0,
+      "explanation": "read_experiment_manifest retorna registros de imagem. Ids são deterministas, caminhos são normalizados, legendas vêm do manifesto."
+    },
+    {
+      "stage": "check",
+      "question": "Qual falha de validação gera PaperValidationError antes de qualquer arquivo ser escrito?",
+      "options": [
+        "Um resumo com mais de 200 palavras",
+        "Um número impar de autores",
+        "Uma seção que cita uma chave não declarada na bibliografia",
+        "Um caminho de figura que não existe no disco"
+      ],
+      "correct": 2,
+      "explanation": "Chaves de bibliografia faltantes, ids de figura duplicadas, título vazio, resumo vazio e refes de figura desconhecidos aumentam o PaperValidationError."
+    },
+    {
+      "stage": "check",
+      "question": "Porque é que o gerador de prosa é um dispositivo de ligação injetado no PaperWriter e não um método nele?",
+      "options": [
+        "Porque os testes podem trocar um determinista MockProseGenerator por uma chamada modelo sem tocar no escritor",
+        "Porque o LaTeX requer um recall",
+        "Porque a classe de dados não pode manter estado",
+        "Porque o Python não permite que os métodos tomem papel como um argumento"
+      ],
+      "correct": 0,
+      "explanation": "O escritor toma o gerador de prosa como uma dependência. O teste substitui o MockProseGenerator. A produção substitui uma chamada modelo. O escritor é inalterado."
+    },
+    {
+      "stage": "post",
+      "question": "Que três ficheiros é emitido pelo PaperWriter.write sobre o sucesso?",
+      "options": [
+        "papel.tex, referências.bib, manifesto.json",
+        "manifest.json, prose.txt, paper.pdf",
+        "paper.tex, paper.pdf, referências.bib",
+        "Outro ponto:"
+      ],
+      "correct": 0,
+      "explanation": "paper.tex é a fonte LaTeX. referências.bib é a bibliografia. manifest.json é o artefato estruturado que o ciclo crítico lê a seguir."
+    },
+    {
+      "stage": "post",
+      "question": "Porque é que a parte manifesto do contrato do escritor é em vez de apenas o arquivo LaTeX?",
+      "options": [
+        "Porque ferramentas a jusante (criticas, painéis de controle) lê manifestos estruturados, não LaTeX",
+        "Porque manifest.json é o único arquivo que BibTeX aceita",
+        "Porque o LaTeX é muito grande para ser analisado",
+        "Porque os compiladores LaTeX rejeitam seções não tipografadas"
+      ],
+      "correct": 0,
+      "explanation": "O manifesto é uma interface estável para estágios a jusante. Críticos e painéis de controle inspecionam manifest.json. LaTeX é o artefato legível pelo ser humano, não a interface da máquina."
+    }
+  ]
+}
