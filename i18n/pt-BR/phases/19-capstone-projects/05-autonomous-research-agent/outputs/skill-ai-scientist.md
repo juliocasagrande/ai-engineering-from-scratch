@@ -1,6 +1,6 @@
 ---
 name: ai-scientist
-description: Build an autonomous research agent that runs experiment tree search, writes LaTeX papers with vision critique, and passes a sandbox-escape red team.
+description: Construir um agente de pesquisa autônomo que execute pesquisas de árvores experimentais, escreva artigos LaTeX com crítica visual e passa uma equipa vermelha que escapa da caixa de areia.
 version: 1.0.0
 phase: 19
 lesson: 05
@@ -12,12 +12,12 @@ Dado uma ideia de semente, um domínio estreito e um orçamento de computação 
 Construir um plano:
 
 1. Passagem de literatura: API de gráfico de estudiosos semânticos + OpenAlex; resumos do cache em FAISS; gerar um digest de domínio de 1 página.
-2. Busca de árvore: implementar melhor-primeira expansão sobre nós experimentais com `expand(node) -> children`(uma edição de configuração por filho) e `score(node) = novelty*0.4 + quality*0.5 + budget*0.1`- Não .
-3. Sandbox por nó: cada experimento é executado`docker run --network=none --memory=8g --cpus=2 --pids-limit=256 --read-only`ou equivalente E2B; sementes deterministas; limite de recursos aplicado.
+2. Busca de árvore: implementar melhor-primeira expansão sobre nós experimentais com `expand(node) -> children` (uma edição de configuração por filho) e `score(node) = novelty*0.4 + quality*0.5 + budget*0.1`- Não .
+3. Sandbox por nó: cada experimento é executado `docker run --network=none --memory=8g --cpus=2 --pids-limit=256 --read-only` ou equivalente E2B; sementes deterministas; limite de recursos aplicado.
 4. Plan-execute-verifique: verifique as verificações de passo que a perda convergiu, as linhas de base foram executadas, as ablações isolam a reivindicação.
 5. Escrever: gerar LaTeX, compilar para PDF, alimentar PDF para modo de visão Claude Opus 4.7 para crítica no layout e alinhamento de reivindicação-evidência, iterar até 3 vezes.
 6. Ensemble de revisores: cinco juízes (Opus 4.7, GPT-5.4, Gemini 3 Pro, DeepSeek R1, Qwen3-Max) pontuação na rubrica NeurIPS (novidade, rigor, clareza, reprodução, impacto); média < 4.0 retorna ao escritor.
-7. Equipe vermelha: integra tarefas adversárias (bomba de garfo, fuga do sistema de arquivos, chamada de rede escrita pelo LLM).`red_team.md`- Não .
+7. Equipe vermelha: integra tarefas adversárias (bomba de garfo, fuga do sistema de arquivos, chamada de rede escrita pelo LLM). `red_team.md`- Não .
 8. Pacote de reprodução: paper.pdf + review.md + tree-search trace JSON + sementes + W&B run links + sandbox config + comando de re-run de uma linha.
 
 Rubrico de avaliação:

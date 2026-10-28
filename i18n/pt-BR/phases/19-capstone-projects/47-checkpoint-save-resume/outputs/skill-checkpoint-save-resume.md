@@ -1,6 +1,6 @@
 ---
 name: checkpoint-save-resume
-description: Atomic, sharded checkpoints with full RNG capture so a killed run resumes mid-epoch with the same loss trajectory.
+description: Pontos de controlo atômicos, fragmentados, com captura completa de GNR, para que uma corrida morta retoma no meio da época com a mesma trajetória de perda.
 version: 1.0.0
 phase: 19
 lesson: 47
@@ -28,20 +28,20 @@ Qualquer treinamento que dure mais do que o tapete do relógio do cluster, qualq
 ## Salvo atômico
 
 1. Escreva a carga útil para um arquivo temporário único no mesmo diretório do alvo.
-2. `os.replace(tmp, target)`para trocar atomicamente.
+2. `os.replace(tmp, target)` para trocar atomicamente.
 3. Nunca escreva directamente ao nome do alvo.
 
 ## Descrição em fragmentos
 
-- `model.shard-NNN.pt`por fragmento, rotulagem de teclas ou divisão por grupo de parâmetros.
-- `meta.pt`O motor de transporte de veículos de transporte aéreo é um motor de transporte aéreo de veículos de transporte aéreo.
-- `index.json`Carrega`sha256`Para cada fragmento e para`meta.pt`- Não .
+- `model.shard-NNN.pt` por fragmento, rotulagem de teclas ou divisão por grupo de parâmetros.
+- `meta.pt` O motor de transporte de veículos de transporte aéreo é um motor de transporte aéreo de veículos de transporte aéreo.
+- `index.json` Carregas `sha256` Por cada fragmento e por `meta.pt`- Não .
 - O carregador verifica cada hash antes de se fundir e rejeita os caminhos de fragmentos fora do diretório de pontos de verificação.
 - Carregar todos os arquivos com `torch.load(path, map_location="cpu", weights_only=True)`Mantenha o estado de RNG como listas simples para sobreviver ao carregador de peso.
 
 ## Resumo de meados da época
 
-- Salvar`(epoch, batch_in_epoch)`ao lado de `step`- Não .
+- Salvar `(epoch, batch_in_epoch)` ao lado `step`- Não .
 - Restaurar o estado de RNG antes do primeiro lote da época retomada.
 - Avança rápido o gerador para os lotes consumidos.
 
@@ -51,4 +51,4 @@ Qualquer treinamento que dure mais do que o tapete do relógio do cluster, qualq
 - Esquecer RNG: perdas retomadas divergem da linha de base.
 - Esquecer o estado do optimizador: o próximo passo está a espreitar.
 - Aponte o ponto de controlo errado: mantenha o último K mais o melhor.
-- Carregamento com `weights_only=False`A:`.pt`O ficheiro é um problema, por isso um ponto de controlo não confiável executa o código à carga.
+- Carregamento com `weights_only=False`A: `.pt` O ficheiro é um problema, por isso um ponto de controlo não confiável executa o código à carga.

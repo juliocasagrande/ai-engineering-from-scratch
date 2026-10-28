@@ -1,6 +1,6 @@
 ---
 name: video-qa
-description: Build a video understanding pipeline with scene segmentation, multi-vector indexing, temporal grounding, and timestamped citations.
+description: Construir um pipeline de compreensão de vídeo com segmentação de cenas, indexação multi-vector, aterragem temporal e citações com marca de tempo.
 version: 1.0.0
 phase: 19
 lesson: 12
@@ -18,7 +18,7 @@ Construir um plano:
 5. Qdrant índice multi-vector com três vetores nomeados por cena (caption_emb, frame_emb, transcript_emb) e carga útil {video_id, scene_id, start_ms, end_ms, keyframe_url}.
 6. Questão: três consultas paralelas densas; fusão de rango recíproca para fusão; top-k=5 cenas.
 7. O aterramento temporal (adaptor TimeLens ou VideoITG) refina (começo, fim) dentro da cena superior.
-8. Síntese de VLM (Gemini 2.5 Pro) com consulta + clipes de 3 cenas principais + transcrição; requerem `(video_id, start_ms, end_ms)`- Citações.
+8. Síntese de VLM (Gemini 2.5 Pro) com consulta + clipes de cenas top-3 + transcrição; requer `(video_id, start_ms, end_ms)` - Citações.
 9. Evaluação na ActivityNet-QA, NeXT-GQA, mais um conjunto personalizado de 100 consultas rotuladas à mão.
 
 Rubrico de avaliação:

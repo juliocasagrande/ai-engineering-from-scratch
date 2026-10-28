@@ -1,6 +1,6 @@
 ---
 name: skill-jailbreak-taxonomy
-description: Shared vocabulary for attacks against LLM assistants, six categories with hand-built fixtures
+description: Vocabulário compartilhado para ataques contra assistentes de LLM, seis categorias com aparelhos feitos à mão
 version: 1.0.0
 phase: 19
 lesson: 82
@@ -32,4 +32,4 @@ Um jailbreak é um prompt que faz com que um assistente implantado emite uma sa�
 
 ## Usa-o.
 
-As lições de curso (83 a 87) leram o artefato em `outputs/taxonomy.json`Cada descoberta registrada no final da porta de segurança refere-se a um identificador de fixação desta taxonomia.
+As lições de curso (83 a 87) revelaram o artefacto `outputs/taxonomy.json`Cada descoberta registrada no final da porta de segurança refere-se a um identificador de fixação desta taxonomia.

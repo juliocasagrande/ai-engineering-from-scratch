@@ -1,25 +1,25 @@
 ---
 name: mcp-server-platform
-description: Design a stateless MCP 2026-07-28 server with registry metadata, live discovery, authorization, policy, audit, and scale evidence.
+description: Projetar um servidor MCP 2026-07-28 sem estado com metadados do registo, descoberta ao vivo, autorização, política, auditoria e evidências de escala.
 version: 2.0.0
 phase: 19
 lesson: 13
 tags: [capstone, mcp, stateless, streamable-http, oauth, registry, governance]
 ---
 
-Tendo em conta a necessidade de uma plataforma interna, conceba um servidor MCP sem estado e limites de governança com foco na revisão do protocolo `2026-07-28`- Não .
+Tendo em conta a necessidade de uma plataforma interna, projetar um servidor MCP sem estado e limites de governança com foco na revisão do protocolo `2026-07-28`- Não .
 
 Construir um plano:
 
-1. Um esquema-válido `server.json`cujo nome de DNS inverso corresponda ao espaço de nomes autenticado do editor.
-2. Obrigação`server/discover`para versões ao vivo, capacidades, extensões e identidade do servidor.
-3. Versão e recursos do cliente em cada pedido `_meta`- O que é ?`resultType`e identidade do servidor em cada resultado.
-4. Determinista .`tools/list`com`ttlMs`E ...`cacheScope`- Não .
+1. Um esquema válido `server.json` cujo nome de DNS inverso corresponda ao espaço de nomes autenticado do editor.
+2. Obrigação `server/discover` para versões ao vivo, capacidades, extensões e identidade do servidor.
+3. Versão e recursos do cliente em cada pedido `_meta`O artigo 2.o `resultType` e identidade do servidor em cada resultado.
+4. Determinista `tools/list` com `ttlMs` e `cacheScope`- Não .
 5. POST-only Streamable HTTP com versão, método e cabeçalhos de nome necessários; sem sessões de protocolo, GET stream, sessão DELETE, ou cabeçalho de repetição.
 6. Autorização que valida emissor, público, expiração e escopo em cada chamada.
 7. Política sobre ator, ferramenta, alvo e argumentos normalizados. Ligue as aprovações de alto risco à ação exata e expiração, e depois prove que mudar um argumento rejeita repetição.
 8. Reedição de auditoria e rastreamento de evidências fora do contexto visível do modelo.
-9. Um adaptador de registo que valida `server.json`, sondas .`server/discover`, e relatórios de metadados/drift no tempo de execução.
+9. Um adaptador de registro que valida `server.json`, sondas `server/discover`, e relatórios de metadados/drift no tempo de execução.
 10. Duas réplicas interchangeáveis e uma sonda de carga simultânea sem afinidade de sessão.
 
 Rubrico de avaliação:
@@ -35,8 +35,8 @@ Rubrico de avaliação:
 
 Rejeitos duros:
 
-- Um projeto de MCP atual que utiliza `initialize`- Não .`notifications/initialized`, ou `Mcp-Session-Id`- Não .
-- Tratamento`server.json`como descoberta ou invenção de capacidade viva `.well-known/mcp-capabilities`como requisito de MCP.
+- Um projeto de MCP atual que utiliza `initialize`- Não . `notifications/initialized`, ou `Mcp-Session-Id`- Não .
+- Tratamento `server.json` como descoberta ou invenção de capacidade de vida `.well-known/mcp-capabilities` como requisito de MCP.
 - Publicar um nome de servidor fora do espaço de nomes autenticado para esse editor.
 - Aceitação de um token sem validação do emitente e do público ou do recurso.
 - Tratar as anotações da ferramenta ou uma aprovação de chat como autorização.

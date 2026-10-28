@@ -1,6 +1,6 @@
 ---
 name: codebase-rag
-description: Build a cross-repo semantic search system with AST-aware chunking, hybrid retrieval, incremental re-index, and cited answers.
+description: Construir um sistema de pesquisa semântica entre os repórteres com chunking consciente de AST, recuperação híbrida, re-indexação incremental e respostas citadas.
 version: 1.0.0
 phase: 19
 lesson: 02
@@ -11,11 +11,11 @@ Dado que existem mais de 10 repositórios com um total de pelo menos 2 milhões 
 
 Construir um plano:
 
-1. Partilhe todos os arquivos com um tree-sitter, partilhe os limites dos nós de função e classe.`{repo, path, start_line, end_line, symbol, body}`- Não .
+1. Partilhe todos os arquivos com um tree-sitter, partilhe os limites dos nós de função e classe. `{repo, path, start_line, end_line, symbol, body}`- Não .
 2. Resume cada peça com Claude Haiku 4.5 ou Gemini 2.5 Flash usando instruções de sistema em cache imediato.
 3. Indicação em três estruturas: Qdrant (denso, Voyage-code-3 ou código-embed-nomic), Tantivy (BM25 com pesos de campo) e kuzu (borda de símbolo para importações, chamadas, herança).
 4. Construir um agente de consulta LangGraph com três nós: retrieve (denso paralelo BM25), rerank (Cohere rerank-3 ou bge-reranker-v2-gemma-2b), synth (Claude Sonnet 4.7 com cache rápido e requisito de citação de arquivo: linha).
-5. Post-filtramento: rejeitar qualquer alegação sem um verificável `(repo/path:start-end)`Ancorar; re-pedir ou deixar cair.
+5. Após o filtro: rejeitar qualquer alegação sem uma declaração verificável `(repo/path:start-end)` Ancorar; re-pedir ou deixar cair.
 6. Cable um git push webhook que calcula uma diferença de nível de símbolo e re-embeda apenas os pedaços alterados.
 7. Avalie com um conjunto de 100 perguntas mantidas. Relate MRR@10, nDCG@10, fidelidade de citação e percentil de latência.
 8. Execute um trabalho semanal de deriva que re-executa a avaliação e alertas em MRR@10 queda > 5%.

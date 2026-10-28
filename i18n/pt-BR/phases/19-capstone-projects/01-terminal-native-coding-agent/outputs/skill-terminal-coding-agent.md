@@ -1,6 +1,6 @@
 ---
 name: terminal-coding-agent
-description: Build and evaluate a terminal-native coding agent against SWE-bench Pro with bounded cost, sandboxed tools, and full 2026 hook surface.
+description: Construir e avaliar um agente de codificação nativo do terminal contra o banco SWE Pro com custo limitado, ferramentas em caixa de areia e superfície de gancho completa para 2026.
 version: 1.0.0
 phase: 19
 lesson: 01
@@ -13,7 +13,7 @@ Construir um plano:
 
 1. Ergue um arnes de TUI Bun + Ink com um painel de planos, um fluxo de chamadas de ferramentas e um orçamento de tokens/dólares ao vivo.
 2. Defina seis ferramentas (read_file, edit_file, ripgrep, tree_sitter_symbols, run_shell, git) através do Modelo Context Protocol StreamableHTTP. Cada chamada retorna no máximo 4k tokens.
-3. Execute todas as chamadas de ferramentas dentro de uma caixa de areia E2B ou Daytona em um novo`git worktree add`Nunca toques no sistema de arquivos do host.
+3. Execute cada chamada de ferramenta dentro de uma caixa de areia E2B ou Daytona em um novo `git worktree add` Nunca toques no sistema de arquivos do host.
 4. Enviar todos os oito eventos de gancho 2026: SessionStart, SessionEnd, PreToolUse, PostToolUse, UserPromptSubmit, Notificação, Stop, PreCompact. Enviar pelo menos quatro ganchos autorizados pelo usuário (guarda de comando destrutivo, contabilidade de tokens, emissor OTel span, escritor de traços de pacotes).
 5. Faça três orçamentos: 50 voltas, 200 mil tokens, 5 dólares.
 6. Emite OpenTelemetry abrange com convenções semânticas da GenAI a um Langfuse auto-anfitrião.
@@ -35,7 +35,7 @@ Rejeitos duros:
 - Arnes que explode para o sistema de arquivos do host em vez de dentro da caixa de areia.
 - Qualquer agente que possa escrever fora da árvore de trabalho ou curl URLs externas sem um gancho de autorizador explícito.
 - Números equivalentes relatados sem uma linha de base correspondente nas mesmas 30 questões.
-- "Taxa de passagem" que dependem de`git reset --hard`entre as retemptadas; SWE-bench Pro é pass@1.
+- As reivindicações de "taxa de passagem" que dependem de `git reset --hard` entre as retemptadas; SWE-bench Pro é pass@1.
 
 Regras de recusa:
 

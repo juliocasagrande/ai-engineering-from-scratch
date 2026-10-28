@@ -1,6 +1,6 @@
 ---
 name: doc-qa
-description: Build a vision-first multimodal document QA system on 10k pages with late-interaction retrieval and evidence-region citations.
+description: Construir um sistema de QA multimodal de documentos de primeira visão em 10 mil páginas com recuperação de interação tardia e citações de regiões de evidências.
 version: 1.0.0
 phase: 19
 lesson: 04
@@ -15,7 +15,7 @@ Construir um plano:
 2. Embed cada página com ColQwen2.5-v0.2 ou ColQwen3-omni. Armazenar embutidos de multi-vector em Vespa, Qdrant multi-vector, ou AstraDB.
 3. Aplicar uma poda de 50% de parche no estilo DocPruner. Verifique que a precisão da queda permanece abaixo de 0,5% no ViDoRe v3.
 4. No momento da consulta: inserir os tokens da consulta; calcular o MaxSim contra os patches de cada página; classificar o top-k.
-5. Sintetize com Qwen3-VL-30B ou Gemini 2.5 Pro passando a consulta mais as imagens de 5 páginas superiores.`(doc_id, page, region)`Ancoras.
+5. Sintetize com Qwen3-VL-30B ou Gemini 2.5 Pro passando a consulta mais as imagens de 5 páginas superiores. `(doc_id, page, region)` Ancoras.
 6. Para páginas com massa de equação ou tabela, execute Nougat ou dots.ocr como um canal de texto opcional e alimenta-o ao lado da imagem.
 7. Construir um visualizador Next.js 15 que superpõe as regiões de evidência como caixas de limite na página fonte.
 8. Avalie no ViDoRe v3 e M3DocVQA. Produza uma matriz de abordagem de classe × conteúdo comparando visão primeiro vs OCR-depois-texto em texto plano, tabelas, gráficos, escrita manual e equações.

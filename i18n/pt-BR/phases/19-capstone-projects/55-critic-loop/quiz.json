@@ -48,7 +48,7 @@
         "O papel e a lista de registos de sugestões"
       ],
       "correct": 3,
-      "explanation": "Revisor.__call__Cada Sugestão tem uma dimensão, uma seção-alvo e uma instrução de edição. O revisor não vê pontuações."
+      "explanation": "Revisor.__call__ Cada Sugestão tem uma dimensão, uma seção-alvo e uma instrução de edição. O revisor não vê pontuações."
     },
     {
       "stage": "post",

@@ -28,7 +28,7 @@
     },
     {
       "stage": "check",
-      "question": "- Não .`train_classifier`, o optimizador é construído com `[p for p in model.parameters() if p.requires_grad]`O que é que esse idioma impõe?",
+      "question": "No `train_classifier`, o optimizador é construído com `[p for p in model.parameters() if p.requires_grad]`O que é que esse idioma impõe?",
       "options": [
         "É exigido pelo construtor Adam.",
         "Diz ao PyTorch para auto-agredir através de parâmetros congelados de qualquer maneira.",
@@ -36,7 +36,7 @@
         "Ele constrói o grupo param apenas do subconjunto treinável, de modo que os casos de cabeça apenas e de FT completa compartilham o mesmo caminho de código."
       ],
       "correct": 3,
-      "explanation": "O optimizador só atualiza os parâmetros na sua lista de parâmetros.`requires_grad`, a mesma função de treinamento funciona para ambos os regimes; a interrupção é a chamada de congelamento, não o ciclo."
+      "explanation": "O optimizador só atualiza os parâmetros na sua lista de parâmetros. `requires_grad`, a mesma função de treinamento funciona para ambos os regimes; a interrupção é a chamada de congelamento, não o ciclo."
     },
     {
       "stage": "check",
@@ -67,12 +67,12 @@
       "question": "A sua equipa quer colocar o classificador e perguntar como gravar qual regime produziu o ponto de controlo da produção.",
       "options": [
         "O valor final da perda, uma vez que a perda apenas para cada pessoa é sempre maior que a perda total de FT.",
-        "O `trainable`Compreendo .`TrainReport`, que varia em ordens de magnitude entre os regimes.",
+        "O `trainable` Compreender `TrainReport`, que varia em ordens de magnitude entre os regimes.",
         "A matriz de confusão, que identifica de forma única o regime.",
         "O triplo de recall de precisão F1."
       ],
       "correct": 1,
-      "explanation": "`trainable`O número de parâmetros que receberam gradientes durante o treinamento é de`hidden * num_classes`O número é o rastro de auditoria."
+      "explanation": "`trainable` O número de parâmetros que receberam gradientes durante o treinamento. `hidden * num_classes`O número é o rastro de auditoria."
     }
   ]
 }

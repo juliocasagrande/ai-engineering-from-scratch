@@ -64,7 +64,7 @@
     },
     {
       "stage": "post",
-      "question": "O que a regra de extract_letter de pós_processo retorna quando a geração é `Answer: C is correct`- Não .",
+      "question": "O que a regra de extract_letter de post_process retorna quando a geração é `Answer: C is correct`- Não .",
       "options": [
         "Resposta",
         "Uma corda vazia",

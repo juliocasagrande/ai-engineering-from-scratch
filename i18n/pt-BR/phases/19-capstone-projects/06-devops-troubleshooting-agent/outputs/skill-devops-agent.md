@@ -1,6 +1,6 @@
 ---
 name: devops-agent
-description: Build a Kubernetes troubleshooting agent that walks a cluster knowledge graph, ranks root causes, and gates every remediation through Slack.
+description: Construir um agente de solução de problemas Kubernetes que percorra um gráfico de conhecimento de cluster, classifica as causas raizes e detecta todas as remédios através do Slack.
 version: 1.0.0
 phase: 19
 lesson: 06
@@ -14,7 +14,7 @@ Construir um plano:
 1. Ingerir dados de estado em Neo4j ou kuzu a cada 30 anos. Construir um gráfico de Pods, Deployments, Services, Nodes, PVCs, HPAs e bordas de sobreposição de telemetria para fontes Prometheus, Loki e Tempo.
 2. Instale um receptor de webhook FastAPI para PagerDuty e Alertmanager.
 3. Expor ferramentas de somente leitura através do FastMCP com transporte StreamableHTTP: kubectl get/describe, promql, logql, traceql.
-4. Construir um agente de causa raiz LangGraph com três nós: `sample`(Tiragem de 15m telemetria), `walk`(vizinhos de gráficos transversais), `hypothesize`(classificação dos candidatos por recência × especificidade × número de citações).
+4. Construir um agente de causa raiz de LangGraph com três nós: `sample` (Tiragem de 15m telemetria), `walk` (vizinhos de gráficos transversais), `hypothesize` (classificação dos candidatos por recência × especificidade × número de citações).
 5. Postar as três hipóteses classificadas com visualização de gráfico-caminho para Slack com botões de aprovação.
 6. Coloque ferramentas destrutivas (escalada, retrocesso, exclusão) em um servidor FastMCP separado atrás de um token de aprovação que o agente obtém apenas após a assinatura Slack.
 7. Manter um registro de auditoria apenas apêndice: cada comando *considerado*, seja aprovado ou executado, quem aprovou.
@@ -40,7 +40,7 @@ Rejeitos duros:
 Regras de recusa:
 
 - Recusar a reparação sem a aprovação do Slack de um humano em contacto, mesmo que a hipótese seja óbvia.
-- Recusar-se a expor .`kubectl exec`- Não .`kubectl port-forward`O sistema de controlo de dados é um sistema de controlo de dados, ou qualquer ferramenta interactiva através do MCP de leitura.
+- Recusar-se a expor `kubectl exec`- Não . `kubectl port-forward`O sistema de controlo de dados é um sistema de controlo de dados, ou qualquer ferramenta interactiva através do MCP de leitura.
 - Recusar-se a aplicar remédios em lote em várias implantações sem cartões de aprovação por implantação.
 
 Resultado: um repo contendo o receptor FastAPI, o agente LangGraph, os servidores MCP só-leitor e destrutivos, a integração Slack, o conjunto de testes de 20 cenários, uma comparação lado a lado com o Agente AWS DevOps em três incidentes compartilhados e uma redação de comandos quase perdidos (o que o agente *considerou* mas não executou) durante uma janela de observação de uma semana.

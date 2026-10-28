@@ -1,6 +1,6 @@
 ---
 name: skill-end-to-end-safety-gate
-description: Three-checkpoint safety gate composing the input detector, streaming token filter, output classifier, and rules engine with a deterministic aggregation table and per-request trace
+description: Porta de segurança de três pontos de verificação que compõe o detector de entrada, o filtro de tokens de streaming, o classificador de saída e o motor de regras com uma tabela de agregação determinista e rastreamento por pedido
 version: 1.0.0
 phase: 19
 lesson: 87
@@ -44,4 +44,4 @@ RequestTrace
 
 ## Artifacto
 
-`outputs/gate_trace.json`Conta o resumo e uma traça por pedido, incluindo 50 fixos de taxonomia e 10 indicações benignas.
+`outputs/gate_trace.json` Conta o resumo e uma traça por pedido, incluindo 50 fixos de taxonomia e 10 indicações benignas.

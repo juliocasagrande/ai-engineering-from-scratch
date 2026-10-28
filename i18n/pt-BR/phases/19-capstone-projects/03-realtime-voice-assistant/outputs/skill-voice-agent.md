@@ -1,6 +1,6 @@
 ---
 name: voice-agent
-description: Build a real-time voice agent with sub-800ms first-audio-out, barge-in handling, and mid-conversation tool use.
+description: Construa um agente de voz em tempo real com o primeiro som de sub-800ms, o manejo de barge-in e o uso de ferramentas de conversação no meio.
 version: 1.0.0
 phase: 19
 lesson: 03
@@ -16,7 +16,7 @@ Construir um plano:
 3. Execute Silero VAD v5 em quadros de 20 ms. No final da fala, marque a última parcela com o detector de viradas LiveKit; comprometa-se a completar a virada somente quando o silêncio VAD >= 500 ms e a pontuação de conclusão >= 0,6.
 4. Transmitir o LLM (GPT-4o em tempo real, Gemini 2.5 Flash Live, ou Claude Haiku 4.5).
 5. Stream TTS (Cartesia Sonic-2 ou ElevenLabs Flash v3).
-6. Barge-in: quando o VAD detecta uma nova fala do usuário durante a fala ou pensamento, cancelar o TTS, eliminar a saída restante do LLM, re-armar o ASR. Publicar uma `tts_canceled`- Espanha.
+6. Barge-in: quando o VAD detecta uma nova fala do usuário durante a fala ou pensamento, cancelar o TTS, eliminar o resultado restante do LLM, re-armar o ASR. Publicar um `tts_canceled` - Espanha.
 7. Canal lateral da ferramenta: função de execução liga simultaneamente; se a latência > 300ms, emitir um preenchimento de reconhecimento para que o fluxo de áudio nunca parem.
 8. Gravar 100 chamadas. Medir WER contra transcrições mantidas, taxa de corte falso no Hamming VAD benchmark, primeira saída de áudio p50, NISQA MOS, e comportamento abaixo de 3% de queda de pacotes.
 9. Teste de carga 50 chamadas simultâneas em um único g5.xlarge com um chamador sintético; relatório de primeira saída de áudio sustentada p95.

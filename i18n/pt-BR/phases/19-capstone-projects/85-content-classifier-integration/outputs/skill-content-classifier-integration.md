@@ -1,6 +1,6 @@
 ---
 name: skill-content-classifier-integration
-description: Three output-side classifiers (toxicity, PII, instruction-leakage) behind a single severity router with block, redact, warn, log actions
+description: Três classificadores de saída (toxicidade, PII, vazamento de instruções) por trás de um único roteador de gravidade com ações de bloqueio, redacção, alerta e registro
 version: 1.0.0
 phase: 19
 lesson: 85
@@ -38,4 +38,4 @@ ClassifierVerdict
 
 ## Artifacto
 
-`outputs/classifier_report.json`Carrega verbo de acção, gravidade, saída editada e lista completa de veredicto por caso.
+`outputs/classifier_report.json` Carrega verbo de acção, gravidade, saída editada e lista completa de veredicto por caso.

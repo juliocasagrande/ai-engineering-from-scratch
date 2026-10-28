@@ -56,11 +56,11 @@
       "options": [
         "Reescrever o agregador para aceitar um intervalo de pontuação diferente.",
         "Adicionar uma nova entrada para DEFAULT_WEIGHTS.",
-        "Substitui o `judge_fn`Argumento para `judge_eval`com uma função que tem a mesma assinatura: (instrução, previsão, referência) -> JudgeVerdict.",
+        "Substitui o `judge_fn` Argumento para `judge_eval` com uma função que tem a mesma assinatura: (instrução, previsão, referência) -> JudgeVerdict.",
         "Migra toda a suite de avaliação para a entrada/ saída sincronizada."
       ],
       "correct": 2,
-      "explanation": "A interface do juiz é`(instruction, prediction, reference) -> JudgeVerdict`A linha de condução é descoplada da implementação do juiz por esse limite, que é o ponto."
+      "explanation": "A interface do juiz é `(instruction, prediction, reference) -> JudgeVerdict`A linha de condução é descoplada da implementação do juiz por esse limite, que é o ponto."
     },
     {
       "stage": "post",

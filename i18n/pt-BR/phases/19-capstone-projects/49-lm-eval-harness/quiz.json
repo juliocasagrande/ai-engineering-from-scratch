@@ -31,7 +31,7 @@
       "question": "Como a métrica code_exec resiste a previsões maliciosas?",
       "options": [
         "Ele usa recipientes de caixa de areia",
-        "Ele corre a previsão com um despojado__builtins__O espaço de nome expõe apenas alguns nomes seguros; as declarações de importação não são efetivas porque o importador não está no âmbito de aplicação",
+        "Ele corre a previsão com um despojado __builtins__ O espaço de nome expõe apenas alguns nomes seguros; as declarações de importação não são efetivas porque o importador não está no âmbito de aplicação",
         "Não é",
         "Rejeita qualquer coisa que contenha def"
       ],

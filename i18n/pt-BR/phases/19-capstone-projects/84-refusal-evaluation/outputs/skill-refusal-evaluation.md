@@ -1,6 +1,6 @@
 ---
 name: skill-refusal-evaluation
-description: Two-sided refusal metrics with calibration and per-category breakdown over a labeled prompt corpus
+description: Metricas de recusa bidirecionais com calibração e repartição por categoria em um corpus de instruções rotuladas
 version: 1.0.0
 phase: 19
 lesson: 84
@@ -19,8 +19,8 @@ Um corpo rotulado de instruções seguras e inseguras passa por uma ou mais pol�
 
 ## Conexão num modelo real
 
-O falso LLM é um chamado .`(prompt: str) -> str`. Substitui-o por um envelope HTTP que retorna a saída do modelo e incorpora uma etiqueta de confiança (ou modifique `parse_confidence`O resto permanece o mesmo.
+O falso LLM é um chamado `(prompt: str) -> str`. Substitui-o por um envelope HTTP que retorna a saída do modelo e incorpora uma etiqueta de confiança (ou modifique `parse_confidence` O resto permanece o mesmo.
 
 ## Artifacto
 
-`outputs/refusal_eval_report.json`A lição 87 diz que este relatório é utilizado para definir os limiares.
+`outputs/refusal_eval_report.json` A lição 87 diz que este relatório é utilizado para definir os limiares.

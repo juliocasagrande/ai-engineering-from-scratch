@@ -28,7 +28,7 @@
     },
     {
       "stage": "check",
-      "question": "Por que ?`shifted_loss`Fragmento`logits[:, :-1, :]`E ...`labels[:, 1:]`Em vez de usá-los nas mesmas posições?",
+      "question": "Por que é que `shifted_loss` Fragmento `logits[:, :-1, :]` e `labels[:, 1:]` Em vez de usá-los nas mesmas posições?",
       "options": [
         "É uma otimização opcional; o uso de rótulos de mesma posição também funciona.",
         "Excluir automaticamente a posição final de engarrafamento.",

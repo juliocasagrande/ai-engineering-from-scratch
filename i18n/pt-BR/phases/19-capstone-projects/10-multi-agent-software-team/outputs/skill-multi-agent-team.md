@@ -1,6 +1,6 @@
 ---
 name: multi-agent-team
-description: Build a multi-agent software team with architect, parallel coders, reviewer, and tester; measure against SWE-bench Pro and produce a handoff post-mortem.
+description: Construir uma equipe de software multi-agente com arquiteto, codificadores paralelos, revisor e testador; medir contra o banco SWE Pro e produzir uma entrega pós-mortem.
 version: 1.0.0
 phase: 19
 lesson: 10
@@ -13,7 +13,7 @@ Construir um plano:
 
 1. Tabela de tarefas: arquivo de arquivo (ou Redis) JSONL armazenamento de mensagens digitadas. Tipos de mensagens: plan_request, subtask, diff_ready, review_needed, review_feedback, approved, test_needed, test_passed, test_failed, replan_needed.
 2. Arquiteto (Opus 4.7): lê o tema, escreve um plano, emite um DAG de subtarefas com interfaces explícitas (arquivos tocados, funções públicas, impacto de teste).
-3. N codificadores (Soneta 4.7): cada um reivindica uma subtarefa, gerando uma nova `git worktree add`+ Sandbox Daytona, implementa-se de forma independente.
+3. N codificadores (Soneta 4.7): cada um reivindica uma subtarefa, gera uma nova `git worktree add` + Sandbox Daytona, implementa-se de forma independente.
 4. Coordenador de fusão: fusão trilateral; solução de conflitos mediada pela LLM apenas em caso de sobreposição de arquivos.
 5. Revisor (GPT-5.4): lê a diferença combinada; não pode aprovar as diferenças que foi criado; emite o feedback aprovado ou revisão/revisão encaminhado para o codificador relevante.
 6. Tester (Gemini 2.5 Pro): executa a suíte de teste em uma caixa de areia limpa; emite test_passed ou test_failed com artefatos.

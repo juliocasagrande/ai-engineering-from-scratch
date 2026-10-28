@@ -1,6 +1,6 @@
 ---
 name: ai-tutor
-description: Ship an adaptive multimodal personal tutor for a specific subject with Bayesian knowledge tracing, a curriculum graph, safety filters, and a measured two-week efficacy study.
+description: Envie um tutor pessoal multimodal adaptativo para um assunto específico com rastreamento de conhecimento bayesiano, um gráfico do currículo, filtros de segurança e um estudo de eficácia medido de duas semanas.
 version: 1.0.0
 phase: 19
 lesson: 17

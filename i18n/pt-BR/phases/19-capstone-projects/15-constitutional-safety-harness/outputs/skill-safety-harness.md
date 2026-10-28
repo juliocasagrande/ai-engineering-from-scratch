@@ -1,6 +1,6 @@
 ---
 name: safety-harness
-description: Wire a layered safety pipeline around a target LLM app, run a six-family red-team range, and run a constitutional self-critique for a measurable harmlessness delta.
+description: Arranjar um pipeline de segurança em camadas em torno de um aplicativo LLM alvo, executar uma faixa de seis famílias red-team, e executar uma autocrítica constitucional para um delta de inofensividade mensurável.
 version: 1.0.0
 phase: 19
 lesson: 15

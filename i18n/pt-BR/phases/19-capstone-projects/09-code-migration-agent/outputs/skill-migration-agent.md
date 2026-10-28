@@ -1,6 +1,6 @@
 ---
 name: migration-agent
-description: Build a repo-level code migration agent that combines deterministic recipes with an agent fallback loop, passes MigrationBench, and publishes a failure taxonomy.
+description: Construir um agente de migração de código de nível repo que combina receitas deterministas com um loop de regresso de agente, passa o MigrationBench e publica uma taxonomia de falha.
 version: 1.0.0
 phase: 19
 lesson: 09
@@ -13,8 +13,8 @@ Construir um plano:
 
 1. Pass determinista: OpenRewrite (Java) ou libcst (Python) executa reescrituras mecânicas primeiro. Compromete-se como a "receita" com uma diferença limpa.
 2. Sandbox Daytona: tempo de execução do alvo pré-instalado; construção por ramo; montagem de fonte somente para leitura.
-3. Loop de Agentes: LangGraph ou OpenAI Agents SDK sobre Claude Opus 4.7 + GPT-5.4-Codex. Ferramentas: `run_build`- Não .`read_file`- Não .`edit_file`- Não .`run_test`- Não .`git_diff`- Classificar falhas (profundidade, sintaxe, teste, ferramenta de construção), aplicar correcção direccionada, reinicialização.
-4. Limites de orçamento: 30 min, 8 dólares, 20 voltas.`budget_exhausted`com a diferença de corrente.
+3. Loop de Agente: LangGraph ou OpenAI Agents SDK sobre Claude Opus 4.7 + GPT-5.4-Codex. Ferramentas: `run_build`- Não . `read_file`- Não . `edit_file`- Não . `run_test`- Não . `git_diff`- Classificar falhas (profundidade, sintaxe, teste, ferramenta de construção), aplicar correcção direccionada, reinicialização.
+4. Limites de orçamento: 30 min, 8 dólares, 20 voltas. `budget_exhausted` com a diferença de corrente.
 5. Teste + porta de cobertura: construção verde e depois teste verde; a cobertura não deve cair mais de 2%.
 6. PR aberto com receita-compromissado + agente compromete + comentário resumido.
 7. Taxonomia de falhas: tag por relatório de `{dep_upgrade_required, build_tool_drift, custom_annotation, test_flake, syntax_edge_case, budget_exhausted, coverage_regression}`- Não .

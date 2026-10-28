@@ -1,6 +1,6 @@
 ---
 name: production-rag
-description: Deploy a regulated-domain RAG chatbot with role + jurisdiction filtering, prompt caching, guardrails, and live drift monitoring.
+description: Implemente um chatbot RAG de domínio regulamentado com filtragem de funções + jurisdição, cache imediato, barragens de segurança e monitoramento de deriva ao vivo.
 version: 1.0.0
 phase: 19
 lesson: 08
