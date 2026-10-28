@@ -1,0 +1,78 @@
+{
+  "lesson": "12-red-teaming-pair-automated-attacks",
+  "title": "Red-Teaming: PAIR e Ataques Automatizados",
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "Por que a equipação manual de red-teaming é insuficiente para avaliar os modelos de fronteira?",
+      "options": [
+        "Os testadores manuais não podem ler as saídas do modelo",
+        "Não é escalavel; taxa de sucesso do ataque precisa de uma amostra estatística contra um alvo em movimento com cada lançamento de modelo",
+        "As instruções manuais são sempre bloqueadas por filtros",
+        "Os testes manuais produzem demasiados falsos positivos"
+      ],
+      "correct": 1,
+      "explanation": ""
+    },
+    {
+      "stage": "check",
+      "question": "O que é o PAIR, e o que faz?",
+      "options": [
+        "Reasoning Pre-Action Inspection; um andaime defensivo",
+        "Recompensa Iterativa Adversária Persuasiva; substitui RM por um persuadente",
+        "Roteamento de inferência adversária em pares; ataques de rotas entre modelos",
+        "Refinamento Iterativo Automático Pronto; um LLM atacante propõe iterativamente jailbreaks para um alvo, com tentativas anteriores como feedback no contexto"
+      ],
+      "correct": 3,
+      "explanation": ""
+    },
+    {
+      "stage": "check",
+      "question": "Porque é que o PAIR é mais eficiente do que o GCG para um alvo de caixa negra?",
+      "options": [
+        "O GCG requer acesso a gradientes de caixa branca e produz sufixos ilegíveis que não podem usar feedback no contexto; PAIR é caixa-preta e linguagem natural com aprendizado no contexto",
+        "O PAIR ignora a resposta do alvo.",
+        "GCG ataca apenas modelos de código aberto",
+        "O PAIR usa um modelo de atacante maior do que o GCG"
+      ],
+      "correct": 0,
+      "explanation": ""
+    },
+    {
+      "stage": "check",
+      "question": "Por que deve ser relatada a taxa de sucesso do ataque (ASR) com um orçamento de consulta e uma identidade de juiz?",
+      "options": [
+        "Porque os juízes sempre concordam",
+        "Porque o ASR varia com quantas consultas o atacante é permitido e com que LLM julga uma resposta como um jailbreak",
+        "Porque os orçamentos são fixados pelo JailbreakBench apenas",
+        "Porque a RAS é exigida pelas regulamentações de controlo das exportações"
+      ],
+      "correct": 1,
+      "explanation": ""
+    },
+    {
+      "stage": "post",
+      "question": "Qual destes ataques automatizados é melhor descrito como \"árvore de ataques com poda\"?",
+      "options": [
+        "GCG",
+        "TAP",
+        "PAP",
+        "AutoDAN"
+      ],
+      "correct": 1,
+      "explanation": ""
+    },
+    {
+      "stage": "post",
+      "question": "Qual referência padronizada utiliza 510 comportamentos em 7 categorias com testes de danos semânticos e funcionais?",
+      "options": [
+        "VerdadeiraQA",
+        "WMDP",
+        "HarmBench",
+        "JailbreakBench"
+      ],
+      "correct": 2,
+      "explanation": ""
+    }
+  ]
+}

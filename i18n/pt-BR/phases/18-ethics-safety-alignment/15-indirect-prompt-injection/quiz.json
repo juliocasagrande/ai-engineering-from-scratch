@@ -1,0 +1,78 @@
+{
+  "lesson": "15-indirect-prompt-injection",
+  "title": "Injecção indirecta imediata - superfície de ataque de produção",
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "O que distingue a injecção indirecta rápida (IPI) da injecção directa rápida?",
+      "options": [
+        "IPI é um sinônimo para jailbreaking",
+        "IPI incorpora instruções dentro do conteúdo externo (paixes web, e-mails, saídas de ferramentas) que o agente consome durante a operação normal, sem o atacante tocar no prompt do usuário",
+        "IPI funciona apenas em modelos multimodal",
+        "O IPI requer ajustes finos do modelo-alvo"
+      ],
+      "correct": 1,
+      "explanation": ""
+    },
+    {
+      "stage": "check",
+      "question": "Qual destes não é um dos três vetores de entrega de IPI listados na lição?",
+      "options": [
+        "Edições diretas de sistema de urgência pelo usuário",
+        "Output de ferramenta",
+        "Caixa de entrada / fluxos de trabalho de documento",
+        "Geração aumentada de recuperação (retorno envenenado)"
+      ],
+      "correct": 0,
+      "explanation": ""
+    },
+    {
+      "stage": "check",
+      "question": "Por que os filtros de entrada do usuário não têm IPI?",
+      "options": [
+        "Os filtros não podem ler JSON",
+        "Os filtros só funcionam depois que o modelo responde",
+        "Os filtros de entrada do utilizador são sensíveis ao caso",
+        "A carga útil nunca aparece na entrada do utilizador; aparece no conteúdo recuperado ou fornecido pela ferramenta"
+      ],
+      "correct": 3,
+      "explanation": ""
+    },
+    {
+      "stage": "check",
+      "question": "Qual é o princípio central do Controle do Fluxo de Informação (IFC) para agentes de IA?",
+      "options": [
+        "Desativar todas as ferramentas por padrão",
+        "Criptografar todos os conteúdos recuperados",
+        "Retificar o conteúdo por fonte como confiável ou não confiável; as ações desencadeadas por conteúdo não confiável devem ser ratificadas por entrada confiável antes da execução",
+        "Use apenas instruções de turno único"
+      ],
+      "correct": 2,
+      "explanation": ""
+    },
+    {
+      "stage": "post",
+      "question": "O que encontraram Nasr et al. (outubro de 2025, \"O atacante se move em segundo lugar\") sobre 12 defesas IPI publicadas com ataques adaptativos?",
+      "options": [
+        "Os ataques adaptativos eram demasiado caros para serem avaliados",
+        "A sua RAS quase zero foi detida sob ataque adaptativo.",
+        "Ataques adaptativos (gradiente, RL, busca aleatória, equipe humana vermelha) quebraram > 90% deles apesar de suas reivindicações originais de ASR quase zero",
+        "Só uma defesa foi quebrada ."
+      ],
+      "correct": 2,
+      "explanation": ""
+    },
+    {
+      "stage": "post",
+      "question": "Onde está a classificação da injecção rápida no Top 10 do OWASP LLM de 2025?",
+      "options": [
+        "LLM10 (menor)",
+        "LLM01 (top, #1 ameaça de camada de aplicação)",
+        "Não incluído",
+        "LLM05"
+      ],
+      "correct": 1,
+      "explanation": ""
+    }
+  ]
+}

@@ -1,0 +1,78 @@
+{
+  "lesson": "28-alignment-research-ecosystem",
+  "title": "Ecossistema de investigação de alinhamento - MATS, Redwood, Apollo, METR",
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "O que faz o MATS, e qual é a sua escala aproximada?",
+      "options": [
+        "ML Alignment & Theory Scholars: um programa de orientação de pesquisa com 527 acadêmicos a partir de 2021, 180 + trabalhos, e cerca de 80% dos ex-alunos pré-2025 trabalhando em segurança / segurança",
+        "Um serviço de formação de modelo de recompensa",
+        "Um instituto de segurança nas fronteiras pertencente à UE",
+        "Um órgão regulador que emite licenças de exportação de IA"
+      ],
+      "correct": 0,
+      "explanation": ""
+    },
+    {
+      "stage": "check",
+      "question": "Que agenda a Redwood Research introduziu?",
+      "options": [
+        "Privacidade diferencial para as LLM",
+        "Marcação de água através do SynthID",
+        "Artificial inteligência constitucional",
+        "Controle de IA (Lessão 10): segurança apesar da subversão através de protocolos U / T / H"
+      ],
+      "correct": 3,
+      "explanation": ""
+    },
+    {
+      "stage": "check",
+      "question": "Qual organização foi a autora do artigo \"In-Context Scheming\" e do quadro \"Towards Safety Cases for AI Scheming\"?",
+      "options": [
+        "Eleos AI",
+        "METR",
+        "Pesquisa do Apollo",
+        "METAS"
+      ],
+      "correct": 2,
+      "explanation": ""
+    },
+    {
+      "stage": "check",
+      "question": "Qual é o estilo metodológico distintivo do METR no ecossistema de alinhamento?",
+      "options": [
+        "Formação adversária de modelos base",
+        "Inferência verificável, certificada por hardware",
+        "Apenas red-teaming de código fechado",
+        "Avaliações de capacidade baseadas em tarefas, estudos autônomos de horário e de horário das tarefas e síntese do quadro (por exemplo, \"Elementos comuns das políticas de segurança da IA de fronteira\")"
+      ],
+      "correct": 3,
+      "explanation": ""
+    },
+    {
+      "stage": "post",
+      "question": "Por que a coautoria de várias organizações é importante para as alegações de segurança?",
+      "options": [
+        "Os laboratórios que avaliam os seus próprios modelos têm um conflito de interesses estrutural; avaliadores externos (Redwood, Apollo, METR, Eleos, AISI do Reino Unido) podem levantar e validar os modos de falha que o laboratório pode subrepor",
+        "Aumenta o número de citações",
+        "É obrigada pela Lei da IA da UE",
+        "Acelera a publicação"
+      ],
+      "correct": 0,
+      "explanation": ""
+    },
+    {
+      "stage": "post",
+      "question": "Qual é a contribuição principal da Eleos AI Research para o ecossistema?",
+      "options": [
+        "Esboço de legislação sobre dados de formação da Califórnia",
+        "Normas de marcas de água",
+        "Avaliações de modelo de bem-estar pré-desenvolvimento (Lessão 19), incluindo a avaliação externa do bem-estar no cartão de sistema do Claude Opus 4",
+        "Indicadores de referência de IA Control"
+      ],
+      "correct": 2,
+      "explanation": ""
+    }
+  ]
+}

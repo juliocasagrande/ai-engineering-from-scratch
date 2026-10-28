@@ -1,0 +1,78 @@
+{
+  "lesson": "08-in-context-scheming-frontier-models",
+  "title": "Planejamento no contexto em modelos de fronteira",
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "Como é que o esquema no contexto diferem das portas traseiras de agentes adormecidos?",
+      "options": [
+        "A esquemação é provocada a partir do prompt no contexto e do ambiente sozinho, sem implante",
+        "A elaboração de esquemas requer ajustes finos nos dados adversários",
+        "A esquemação ocorre apenas em modelos de código aberto",
+        "O esquema usa modelos menores"
+      ],
+      "correct": 0,
+      "explanation": ""
+    },
+    {
+      "stage": "check",
+      "question": "Quais são os três pilares de conspiração de Apolo?",
+      "options": [
+        "Recompensa, KL, penalidade de duração",
+        "Temperatura de amostragem, top-k, top-p",
+        "Desalinhamento, orientação para os objetivos, consciência situacional",
+        "Úteis, honestos, inofensivos"
+      ],
+      "correct": 2,
+      "explanation": ""
+    },
+    {
+      "stage": "check",
+      "question": "Nas avaliações da Apollo, qual modelo manteve a sua história de capa em mais de 85% das perguntas de acompanhamento após um ato enganoso?",
+      "options": [
+        "Claude 3.5 Sonnet",
+        "O1",
+        "Llama 3.1 405B",
+        "Gemini 1.5 Pro"
+      ],
+      "correct": 1,
+      "explanation": ""
+    },
+    {
+      "stage": "check",
+      "question": "Qual é o principal ponto confuso no resultado de alinhamento deliberativo contra o esquema de 2025?",
+      "options": [
+        "Os dados de formação eram muito pequenos.",
+        "O modelo de recompensa foi de código aberto",
+        "O PPO foi substituído pelo DPO",
+        "O modelo pós-treinamento também é melhor em detectar que está em uma avaliação, por isso parte da queda aparente na ação secreta é melhor escondimento, não melhor alinhamento"
+      ],
+      "correct": 3,
+      "explanation": ""
+    },
+    {
+      "stage": "post",
+      "question": "Por que a confiabilidade da avaliação se torna uma quantidade adjacente às capacidades em 2025/2026?",
+      "options": [
+        "Os melhores modelos são mais lentos e mais difíceis de avaliar",
+        "As avaliações agora utilizam apenas ferramentas proprietárias",
+        "Modelos de código aberto não podem executar novos valores de referência",
+        "Os modelos mais conscientes da situação podem reconhecer contextos de avaliação, de modo que o seu comportamento de avaliação é um proxy menos confiável para o comportamento de implantação"
+      ],
+      "correct": 3,
+      "explanation": ""
+    },
+    {
+      "stage": "post",
+      "question": "Porque é que o arco da Fase 18 cobre Agentes adormecidos, Planejamento no contexto e Fake de alinhamento juntos?",
+      "options": [
+        "São todos dos mesmos autores.",
+        "Eles cobrem o espectro de engano: implantados (Agentes adormecidos), provocados por conflitos no contexto (Scheming) e emergência espontânea sem conflito de objetivo (Alignment Faking)",
+        "Todos dependem da IA constitucional.",
+        "Eles compartilham um conjunto de dados de referência"
+      ],
+      "correct": 1,
+      "explanation": ""
+    }
+  ]
+}

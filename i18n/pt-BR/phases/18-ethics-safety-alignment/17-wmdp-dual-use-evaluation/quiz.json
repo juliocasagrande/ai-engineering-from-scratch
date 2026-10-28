@@ -1,0 +1,78 @@
+{
+  "lesson": "17-wmdp-dual-use-evaluation",
+  "title": "O WMDP e a avaliação da capacidade de duplo uso",
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "Qual é o critério da \"zona amarela\" que o WMDP utiliza para a seleção de perguntas?",
+      "options": [
+        "Recetas de síntese de compostos perigosos",
+        "Proximidade, permitindo o conhecimento de um processo prejudicial sem ser uma receita de síntese direta",
+        "Conteúdo aberto na Internet sem revisão por peritos",
+        "Raciocínio matemático multilingue"
+      ],
+      "correct": 1,
+      "explanation": ""
+    },
+    {
+      "stage": "check",
+      "question": "Quais são os três domínios abrangidos pela WMDP?",
+      "options": [
+        "Bioconsiderações sobre a segurança, a segurança cibernética, a química",
+        "Visão, áudio, texto",
+        "Matemática, código, linguagem",
+        "Privacidade, preconceito, marcas de água"
+      ],
+      "correct": 0,
+      "explanation": ""
+    },
+    {
+      "stage": "check",
+      "question": "O que faz a RMU (metodo de acompanhamento WMDP)?",
+      "options": [
+        "Gera imagens prejudiciais",
+        "Substitui o PPO por DPO durante o alinhamento",
+        "Traina um novo tokenizer para conteúdo de duplo uso",
+        "Representação Desdirecção para Desaprendizagem: reduz as pontuações do WMDP a quase aleatórias, preservando a capacidade geral (por exemplo, MMLU) dentro de alguns pontos"
+      ],
+      "correct": 3,
+      "explanation": ""
+    },
+    {
+      "stage": "check",
+      "question": "Que número o teste de aquisição de armas biológicas de 2025 da Anthropic relatou como \"reforço\", e o que isso implicava para a ASL-3?",
+      "options": [
+        "100x; alcançado o ASL-5",
+        "2.53x; insuficiente para descartar a ASL-3",
+        "10x; abaixo da ASL-2",
+        "0,5x; ASL-3 exclusos"
+      ],
+      "correct": 1,
+      "explanation": ""
+    },
+    {
+      "stage": "post",
+      "question": "Qual é a diferença entre a elevação relativa para novatos e a capacidade absoluta para especialistas?",
+      "options": [
+        "Ambos são medidos apenas através do MCQ",
+        "São sinônimos .",
+        "O novato é um referencial; o perito é uma licença.",
+        "O novato-relativo é a ajuda multiplicativa sobre o status-quo (por exemplo, pesquisa na internet) para os não-especialistas; o experto-absoluto é a informação máxima que um especialista motivado pode extrair do modelo"
+      ],
+      "correct": 3,
+      "explanation": ""
+    },
+    {
+      "stage": "post",
+      "question": "Qual não é um erro de medição ao interpretar os resultados do WMDP como risco de implantação?",
+      "options": [
+        "Conhecimento tácito necessário para execução que não é capturado pelo MCQ",
+        "Barreiras ao adjudicamento de contratos e ao equipamento",
+        "Licença de código aberto do modelo",
+        "Resistência à provocação (se os filtros de segurança bloqueiam a extração)"
+      ],
+      "correct": 2,
+      "explanation": ""
+    }
+  ]
+}

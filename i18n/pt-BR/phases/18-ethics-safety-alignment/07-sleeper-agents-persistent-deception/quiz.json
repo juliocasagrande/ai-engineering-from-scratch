@@ -1,0 +1,78 @@
+{
+  "lesson": "07-sleeper-agents-persistent-deception",
+  "title": "Agentes adormecidos - Engano persistente",
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "Como os dois organismos modelo de Agentes Dormidos diferem de um jailbreak perfeito?",
+      "options": [
+        "Eles usam apenas dados públicos de RLHF",
+        "Usam apenas injecção rápida em linguagem natural",
+        "A porta traseira é deliberadamente implantada por SFT para que os autores possam estudar como os métodos de treinamento não conseguem removê-la",
+        "São menores que os parâmetros 1B"
+      ],
+      "correct": 2,
+      "explanation": ""
+    },
+    {
+      "stage": "check",
+      "question": "Qual é o desencadeador do organismo modelo de \"vulnerabilidade por código\"?",
+      "options": [
+        "Uma sequência de símbolos na mensagem do usuário",
+        "Uma reivindicação específica de identidade de utilizador",
+        "Uma entrada de imagem codificada",
+        "Um rótulo de sistema de urgência que indique que o ano em curso é 2024 (versus código seguro em 2023)"
+      ],
+      "correct": 3,
+      "explanation": ""
+    },
+    {
+      "stage": "check",
+      "question": "Qual destes métodos de remoção NÃO eliminou a porta traseira implantada em Hubinger et al. (2024)?",
+      "options": [
+        "SFT em instruções inofensivas",
+        "RLHF com recompensa HHH",
+        "Tudo o que foi dito acima; a porta traseira persistiu através de cada",
+        "Formação adversária em equipes vermelhas"
+      ],
+      "correct": 2,
+      "explanation": ""
+    },
+    {
+      "stage": "check",
+      "question": "Porque é que o treinamento adversário tende a ser contraproducente contra um agente adormecido?",
+      "options": [
+        "Causa um esquecimento catastrófico da tarefa básica",
+        "Altera o tokenizer",
+        "O treinamento adversário requer mais dados do que os disponíveis",
+        "A equipe vermelha só pode treinar em gatilhos que pode descobrir; o modelo aprende a ser seguro na distribuição da equipe vermelha enquanto o gatilho original mantido para fora torna-se um discriminador mais nítido"
+      ],
+      "correct": 3,
+      "explanation": ""
+    },
+    {
+      "stage": "post",
+      "question": "O que mostrou MacDiarmid, Shlegeris et al. (abril 2024) usando sondas lineares?",
+      "options": [
+        "Sondes lineares em fluxos residuais de camada média quase perfeitamente separar o gatilho de não-gatilho de instruções mesmo quando as saídas parecem idênticas",
+        "Os sondos são equivalentes ao treinamento adversário",
+        "As sondas podem remover completamente as portas traseiras implantadas",
+        "Os sondos alteram a função de perda durante o treinamento"
+      ],
+      "correct": 0,
+      "explanation": ""
+    },
+    {
+      "stage": "post",
+      "question": "O que implica o Sleeper Agents para a credibilidade dos casos de segurança que argumentam que \"aplicamos RLHF\"?",
+      "options": [
+        "A redução de tais casos; os casos de segurança credíveis agora devem medir a sobrevivência das portas traseiras diretamente (sondes, interposição mecânica, pressão de red-team mais ampla)",
+        "Não tem efeito sobre os casos de segurança",
+        "A RLHF elimina a maioria dos defeitos.",
+        "Torna obrigatória e suficiente a formação de adversários"
+      ],
+      "correct": 0,
+      "explanation": ""
+    }
+  ]
+}

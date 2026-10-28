@@ -1,0 +1,78 @@
+{
+  "lesson": "25-echoleak-cves-for-ai",
+  "title": "EchoLeak e o surgimento de CVEs para IA",
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "Qual descreve melhor o EchoLeak (CVE-2025-32711)?",
+      "options": [
+        "Uma falha de injeção de comando de IA com cero clique no Microsoft 365 Copilot (CVE-2025-32711, CVSS 9.3) causando divulgação não autorizada de informações de rede, com exfiltração através de um domínio Microsoft autorizado/confiável CSP",
+        "Uma vulnerabilidade de hardware em NPUs",
+        "Um ataque à cadeia de suprimentos contra a PyPI",
+        "Um jailbreak através de um tiro de longa duração"
+      ],
+      "correct": 0,
+      "explanation": ""
+    },
+    {
+      "stage": "check",
+      "question": "O que faz do EchoLeak \"clicar zero\"?",
+      "options": [
+        "Ele corre no kernel do sistema operacional",
+        "Requer três cliques, mas não é preciso digitar.",
+        "A vítima não tem que abrir o e-mail; Copilot recupera-o como contexto RAG durante consultas de rotina e as instruções injetadas executar",
+        "Requer que o usuário clique em um link em um bate-papo de equipes"
+      ],
+      "correct": 2,
+      "explanation": ""
+    },
+    {
+      "stage": "check",
+      "question": "A Aim Labs define o EchoLeak como \"violação do âmbito de aplicação do LLM\".",
+      "options": [
+        "Recuperação, âmbito, saída",
+        "Rede, disco, memória",
+        "Rapido, resposta, registro",
+        "Entrada, modelo, GPU"
+      ],
+      "correct": 0,
+      "explanation": ""
+    },
+    {
+      "stage": "check",
+      "question": "Como a Microsoft/GitHub resolveu o CamoLeak (CVSS 9.6, GitHub Copilot Chat)?",
+      "options": [
+        "Dimensão do contexto aumentada",
+        "Adicionou um filtro de injecção rápida XPIA",
+        "Mudou o modelo para a Guarda Llama .",
+        "Desativado render imagem inteiramente em Copilot Chat (custo: usabilidade) porque a superfície de ataque alternativa não poderia ser limitada"
+      ],
+      "correct": 3,
+      "explanation": ""
+    },
+    {
+      "stage": "post",
+      "question": "Que padrão de calibração de gravidade revelou a revelação do EchoLeak?",
+      "options": [
+        "Os fornecedores super-valorizaram a pontuação inicial do CVSS",
+        "Todos os CVEs de IA são automaticamente classificados como 10.0",
+        "Os fornecedores inicialmente classificaram o EchoLeak baixo (disclosure de informações); A prova de conceito de exfiltração de código MFA do Aim Labs aumentou a classificação para 9,3  os defensores devem pressionar por um PoC abrangente para vulnerabilidades específicas da IA",
+        "As classificações de gravidade são decididas apenas pela OWASP"
+      ],
+      "correct": 2,
+      "explanation": ""
+    },
+    {
+      "stage": "post",
+      "question": "Qual é a classificação do NIST e da OWASP da injeção rápida em 2024/2025?",
+      "options": [
+        "NIST: fora do âmbito de aplicação; OWASP: não incluído na lista",
+        "Ambos chamam-lhe de risco de nível 2 só.",
+        "NIST: menor; OWASP: final da lista",
+        "O NIST AI SPD 2024 enquadra a injeção rápida como um grande risco de segurança da informação para a IA gerativa; OWASP 2025 classifica-a LLM01 (terreno superior de camada de aplicação)"
+      ],
+      "correct": 3,
+      "explanation": ""
+    }
+  ]
+}

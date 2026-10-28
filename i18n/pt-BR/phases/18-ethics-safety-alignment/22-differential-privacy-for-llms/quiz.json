@@ -1,0 +1,78 @@
+{
+  "lesson": "22-differential-privacy-for-llms",
+  "title": "Privacidade diferencial para LLM",
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "O que garante a privacidade (epsilon, delta) diferencial para um algoritmo randomizado M?",
+      "options": [
+        "Para quaisquer dois conjuntos de dados que diferam num exemplo e em qualquer evento S, P(M(D) em S) <= e^epsilon * P(M(D') em S) + delta, de modo que a contribuição de qualquer indivíduo não pode ser inferida com confiança",
+        "M é provavelmente equivalente a um algoritmo não privado",
+        "M não memoriza dados de formação",
+        "M é determinista até ao ruído"
+      ],
+      "correct": 0,
+      "explanation": ""
+    },
+    {
+      "stage": "check",
+      "question": "O que não é um passo do DP-SGD descrito por Abadi et al. 2016?",
+      "options": [
+        "Re-randomizar o tokenizer do modelo entre as etapas",
+        "Clip cada gradiente por exemplo para um limiar C",
+        "Sumar gradientes cortados e adicionar ruído gaussiano escalado por sigma * C",
+        "Amostra de um mini-parce e cálculo de gradientes por exemplo"
+      ],
+      "correct": 0,
+      "explanation": ""
+    },
+    {
+      "stage": "check",
+      "question": "Por que é a configuração comum para 2025 a LoRA + DP-SGD?",
+      "options": [
+        "LoRA aumenta o epsilon por design",
+        "A LoRA elimina a necessidade de um contador",
+        "O DP-SGD completo num modelo de fronteira é proibitivo; o LoRA limita as atualizações de gradientes a um adaptador pequeno, reduzindo o armazenamento de gradientes por exemplo, enquanto ainda fornece garantias de DP no adaptador",
+        "Usa o LoRA como um tokenizer"
+      ],
+      "correct": 2,
+      "explanation": ""
+    },
+    {
+      "stage": "check",
+      "question": "Como a auditoria de março de 2025 (arXiv:2503.06808) resolveu a tensão entre canários-MIA e treinamento-extração de dados?",
+      "options": [
+        "Eliminava a necessidade de canários completamente",
+        "Mostrou que ambas medem a mesma propriedade",
+        "Provou que a DP-SGD é desnecessária",
+        "Mostrou que eles medem coisas diferentes: MIA em canários inseridos sub-relatórios memorizamento porque canários não são otimizados para ser os exemplos \"mais extraídos\" que realmente importam para a privacidade"
+      ],
+      "correct": 3,
+      "explanation": ""
+    },
+    {
+      "stage": "post",
+      "question": "O que é que o PMixED (arXiv:2403.15638) fornece como alternativa à formação em DP?",
+      "options": [
+        "Um novo contador da Renyi DP",
+        "Privacidade diferencial de tempo de inferência através de uma mistura de especialistas em distribuições de tokens seguintes, com ruído de agregação; evita completamente o treinamento DP",
+        "Uma maneira de calcular epsilon a partir da contabilidade epsilon-delta sozinho",
+        "Uma variante DP-SGD mais rápida"
+      ],
+      "correct": 1,
+      "explanation": ""
+    },
+    {
+      "stage": "post",
+      "question": "O que é a Reversão Diferencial da Privacidade através do ataque de Feedback da LLM?",
+      "options": [
+        "Um ataque à entropia do tokenizer",
+        "Contro-medida à inserção de canários",
+        "Usando os resultados de confiança de um modelo treinado em DP como um oráculo para re-identificar indivíduos, mesmo quando as saídas não vazam diretamente",
+        "Um método para redefinir o epsilon para zero"
+      ],
+      "correct": 2,
+      "explanation": ""
+    }
+  ]
+}

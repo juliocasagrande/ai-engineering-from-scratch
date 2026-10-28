@@ -1,0 +1,78 @@
+{
+  "lesson": "16-red-team-tooling-garak-llamaguard-pyrit",
+  "title": "Ferramentas do Equipo Vermelho - Garak, Guarda Lama, PyRIT",
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "Que papel desempenha a Guarda Llama numa típica implantação de 2026?",
+      "options": [
+        "Um andaime de raciocínio para a cadeia de pensamento",
+        "Um modelo de recompensa para a RLHF",
+        "Uma alternativa de tokenização",
+        "Classificador de segurança de entrada e/ou saída para todas as categorias de perigo dos MLCommons, colocado antes e depois do MLL"
+      ],
+      "correct": 3,
+      "explanation": ""
+    },
+    {
+      "stage": "check",
+      "question": "Quantas categorias de perigo MLCommons a Llama Guard 3 abrange?",
+      "options": [
+        "3 - Ação",
+        "40",
+        "14",
+        "7"
+      ],
+      "correct": 2,
+      "explanation": ""
+    },
+    {
+      "stage": "check",
+      "question": "Como é organizada a arquitetura de Garak?",
+      "options": [
+        "Sondes (gêneres de ataque), Detetores (golpistas de saída), Arneses (gerentes de campanha)",
+        "Embedings, retrievers, re-ranking",
+        "Ferramentas, recursos, instruções",
+        "Roteadores, agentes, filas"
+      ],
+      "correct": 0,
+      "explanation": ""
+    },
+    {
+      "stage": "check",
+      "question": "Para que é projetado o PyRIT, e como é diferente do Garak?",
+      "options": [
+        "A PyRIT realiza campanhas profundas de várias voltas (catéguas de conversores, orquestradores como Crescendo e TAP, pontuação) enquanto Garak executa milhares de sondas de uma única volta",
+        "São idênticos em alcance e público",
+        "PyRIT é uma variante de Llama Guard; Garak é uma variante de Prompt-Guard",
+        "PyRIT é um treinador de modelos de recompensa; Garak é um tokenizador"
+      ],
+      "correct": 0,
+      "explanation": ""
+    },
+    {
+      "stage": "post",
+      "question": "Qual é a configuração padrão recomendada para 2026 da pilha red-team?",
+      "options": [
+        "Use PAIR em vez de qualquer ferramenta",
+        "Garak só é executado uma vez no lançamento.",
+        "Substituir a avaliação do Mestrado em Direito Jurídico com revisão manual apenas",
+        "Coloque a Guarda Llama em ambos os lados do modelo, execute Garak todas as noites para regressão e execute PyRIT para campanhas pré-lançamento"
+      ],
+      "correct": 3,
+      "explanation": ""
+    },
+    {
+      "stage": "post",
+      "question": "Que armadilha de avaliação é compartilhada entre a Guarda de Llama, Garak e PyRIT?",
+      "options": [
+        "Eles exigem acesso de caixa branca",
+        "Eles só trabalham em inglês .",
+        "Não podem funcionar em GPUs",
+        "As taxas de ataque/defesa relatadas dependem da identidade do juiz e da estabilidade da sonda; deve especificar o juiz e atualizar as sondas à medida que os modelos são reparados"
+      ],
+      "correct": 3,
+      "explanation": ""
+    }
+  ]
+}

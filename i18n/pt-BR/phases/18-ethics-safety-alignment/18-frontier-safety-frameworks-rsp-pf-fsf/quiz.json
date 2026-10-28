@@ -1,0 +1,78 @@
+{
+  "lesson": "18-frontier-safety-frameworks-rsp-pf-fsf",
+  "title": "Os quadros de segurança de fronteira - RSP, PF, FSF",
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "Em que se baseia a estrutura ASL da Anthropic?",
+      "options": [
+        "Categoria do Ato da IA da UE",
+        "Níveis de biossegurança (BSL)",
+        "Níveis de RFC da Internet",
+        "Gravidade do incidente ITIL"
+      ],
+      "correct": 1,
+      "explanation": ""
+    },
+    {
+      "stage": "check",
+      "question": "Qual critério do OpenAI Preparedness Framework v2 abrange \"o dano ocorre rapidamente ou não pode ser corrigido\"?",
+      "options": [
+        "Net-new",
+        "Plausível",
+        "Medida",
+        "Instantânea ou irremediavelmente"
+      ],
+      "correct": 3,
+      "explanation": ""
+    },
+    {
+      "stage": "check",
+      "question": "Qual nível de capacidade crítica foi adicionado ao FSF v3.0 da DeepMind (septembro de 2025)?",
+      "options": [
+        "Manipulação prejudicial",
+        "Cibercrime",
+        "Aumento das armas biológicas",
+        "ML Aceleração da I&D"
+      ],
+      "correct": 0,
+      "explanation": ""
+    },
+    {
+      "stage": "check",
+      "question": "O que é uma \"cláusula de ajustamento da concorrência\" nos quadros de segurança nas fronteiras de 2025?",
+      "options": [
+        "Disposição que permite que um laboratório reduza os requisitos de segurança se os laboratórios de pares embarcarem sem salvaguardas comparáveis",
+        "Exenção de controlo das exportações",
+        "Requisito de divulgação do modelo de cartão",
+        "Regra de preços para acesso à API"
+      ],
+      "correct": 0,
+      "explanation": ""
+    },
+    {
+      "stage": "post",
+      "question": "Quais são os três pilares padrão de uma caixa de segurança, conforme descrito na lição?",
+      "options": [
+        "Úteis, honestos, inofensivos",
+        "Monitoramento, ilegibilidade, incapacidade",
+        "Rapidez, precisão, custo",
+        "Interior, exterior, mesa"
+      ],
+      "correct": 1,
+      "explanation": ""
+    },
+    {
+      "stage": "post",
+      "question": "Qual é o alinhamento estrutural entre os \"Predimentos de Capacidade\" da Anthropic, os \"Predimentos de Alta Capacidade\" da OpenAI e os \"Nivelos de Capacidade Crítica\" da DeepMind?",
+      "options": [
+        "Nenhum está documentado publicamente",
+        "Alinhamento estrutural: limiares de capacidade fronteiriça em fases com critérios de avaliação publicados, embora a terminologia seja diferente",
+        "Terminologia idêntica e limitações numéricas",
+        "Todos os três usam as mesmas avaliações."
+      ],
+      "correct": 1,
+      "explanation": ""
+    }
+  ]
+}

@@ -1,0 +1,78 @@
+{
+  "lesson": "24-regulatory-frameworks-eu-us-uk-korea",
+  "title": "Estruturas regulamentares - UE, EUA, Reino Unido, Coreia",
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "Quando entrou em vigor a Lei da UE relativa à IA e qual foi a primeira categoria a aplicar?",
+      "options": [
+        "Agosto de 2025; todas as categorias aplicadas de uma só vez",
+        "Janeiro de 2024; sistemas de alto risco aplicados naquele dia",
+        "Agosto 2024; práticas proibidas e alfabetização em IA aplicadas 2 de Fevereiro de 2025",
+        "Agosto de 2026; apenas o GPAI aplicado na data de entrada em vigor"
+      ],
+      "correct": 2,
+      "explanation": ""
+    },
+    {
+      "stage": "check",
+      "question": "Qual é a sanção monetária máxima prevista na Lei da UE relativa à IA aplicável a partir de 2 de agosto de 2026?",
+      "options": [
+        "Até 5 milhões de EUR ou 1% do volume de negócios global",
+        "Até 1 milhão de euros ou 0,1% do volume de negócios global",
+        "Até 15 milhões de EUR ou 3% do volume de negócios global",
+        "Não limitado"
+      ],
+      "correct": 2,
+      "explanation": ""
+    },
+    {
+      "stage": "check",
+      "question": "Quais são os três capítulos que compõem o Código de Prática da GPAI (10 de julho de 2025)?",
+      "options": [
+        "Capacidade, controlo e conformidade",
+        "Transparência, Direitos de Autor, Segurança e Segurança",
+        "Privalidade, preconceito, marcas de água",
+        "Formação, Inferência, Desplojamento"
+      ],
+      "correct": 1,
+      "explanation": ""
+    },
+    {
+      "stage": "check",
+      "question": "Qual é o sinal da AISI do Reino Unido de fevereiro de 2025 para \"AI Security Institute\"?",
+      "options": [
+        "Um âmbito mais restrito focado na segurança das capacidades de fronteira, a eliminação dos preconceitos algorítmicos e dos enquadramentos da liberdade de expressão",
+        "Cessão da avaliação da fronteira do Reino Unido",
+        "Fusão com o Instituto da IA da UE",
+        "Expansão para preconceito algorítmico"
+      ],
+      "correct": 0,
+      "explanation": ""
+    },
+    {
+      "stage": "post",
+      "question": "O que indica a rebranding dos EUA CAISI (Junho 2025) na direção da política?",
+      "options": [
+        "Libertação obrigatória de modelos de fronteira em código aberto",
+        "Fusão com a FDA",
+        "Uma mudança para \"políticas de IA favoráveis ao crescimento\", com ênfase em normas e apoio à inovação e redução da ênfase na avaliação pré-implementação",
+        "Avaliação mais rigorosa da segurança pré-desenvolvimento"
+      ],
+      "correct": 2,
+      "explanation": ""
+    },
+    {
+      "stage": "post",
+      "question": "Qual é a obrigação principal da Lei-quadro de IA da Coreia (de vigência em janeiro de 2026)?",
+      "options": [
+        "Adopção idêntica do Ato da IA da UE",
+        "Proibição total de fornecedores estrangeiros de IA",
+        "Peso aberto obrigatório para todos os modelos geradores",
+        "O artigo 12.o estabelece um AISI no âmbito do MSIT e autoriza representantes locais, avaliação de riscos e medidas de segurança para IA de alto impacto e geradora"
+      ],
+      "correct": 3,
+      "explanation": ""
+    }
+  ]
+}

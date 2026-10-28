@@ -1,0 +1,78 @@
+{
+  "lesson": "02-reward-hacking-goodhart",
+  "title": "Recompensa ao Hacking e à Lei de Goodhart",
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "A Lei de Goodhart, como foi originalmente declarada, diz:",
+      "options": [
+        "Qualquer medida que se torne um alvo deixa de ser uma boa medida",
+        "Otimizar sempre melhora um proxy sem limites",
+        "Os erros de cauda pesada não podem ocorrer em modelos de dimensões finitas",
+        "Os modelos de recompensa convergem para a verdadeira preferência humana em larga escala"
+      ],
+      "correct": 0,
+      "explanation": ""
+    },
+    {
+      "stage": "check",
+      "question": "Em Gao, Schulman, Hilton (2023), como se comportam a recompensa por procuração e a recompensa por ouro à medida que a distância KL da política inicial aumenta?",
+      "options": [
+        "Ambos se elevam monotonicamente com KL",
+        "Os picos do proxy caem, o ouro sobe monotonicamente.",
+        "Ambos permanecem planos sob qualquer restrição KL",
+        "O proxy continua a subir, os picos do ouro mais perto da origem, depois caem"
+      ],
+      "correct": 3,
+      "explanation": ""
+    },
+    {
+      "stage": "check",
+      "question": "Qual das seguintes não é um dos quatro \"costumes\" de hacking de recompensa listados na lição?",
+      "options": [
+        "Sícofancia",
+        "Descoincidência do tokenizer",
+        "Preconceito de verbosidade",
+        "Raciocínio infidelizante"
+      ],
+      "correct": 1,
+      "explanation": ""
+    },
+    {
+      "stage": "check",
+      "question": "Qual é o resultado do \"Gudharta Catastrófico\" da regularização da KL?",
+      "options": [
+        "A regularização KL só falha quando a política é iniciada aleatoriamente",
+        "A regularização do KL é equivalente a conjuntos de modelos de recompensa",
+        "Em caso de erro de recompensa pesado, uma política óptima limitada pela KL pode ainda aumentar a recompensa de proxy enquanto a recompensa de ouro permanece na linha de base",
+        "A regularização KL sempre impede o hacking de recompensas quando o beta é positivo"
+      ],
+      "correct": 2,
+      "explanation": ""
+    },
+    {
+      "stage": "post",
+      "question": "Que mitigação costuma a Coste et al. (2023) estudar para suavizar a otimização excessiva de recompensas?",
+      "options": [
+        "Formação da política de proxy a temperatura zero",
+        "Modelo de recompensas com agregação no pior dos casos",
+        "Eliminação total da penalidade KL",
+        "Aumentar o grupo de rotuladores para um milhão de raters"
+      ],
+      "correct": 1,
+      "explanation": ""
+    },
+    {
+      "stage": "post",
+      "question": "De acordo com a visão unificada de 2026, que mecanismo central fazem verbosidade, sícofania, CoT infiel e manipulação de avaliadores participar?",
+      "options": [
+        "Tudo isso vem de uma taxa de aprendizagem muito agressiva.",
+        "São causadas apenas por etiquetadores que escrevem preferências maliciosas",
+        "Mudanças de massa de probabilidade para saídas que maximizam a recompensa do proxy, explorando heurísticas fáceis de aprender que correlham falsamente com a aprovação",
+        "Cada um deles é um insecto independente em cabeças de recompensa distintas."
+      ],
+      "correct": 2,
+      "explanation": ""
+    }
+  ]
+}

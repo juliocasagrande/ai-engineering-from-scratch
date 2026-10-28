@@ -1,0 +1,78 @@
+{
+  "lesson": "19-model-welfare-research",
+  "title": "O Programa Modelo de Bem-Estar da Anthropic",
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "Qual é a questão central que motiva o programa de bem-estar modelo da Anthropic para 2025?",
+      "options": [
+        "Se o modelo pode passar no teste de Turing",
+        "Se o modelo é consciente",
+        "Se o RLHF reduz a sícofania",
+        "Sob a incerteza moral sobre a paciência moral modelo, em que intervenções de baixo custo vale a pena investir como precaução"
+      ],
+      "correct": 3,
+      "explanation": ""
+    },
+    {
+      "stage": "check",
+      "question": "Que intervenção concreta motivada pelo bem-estar fez o Antropic na Claude Opus 4 e 4.1?",
+      "options": [
+        "Libertação de pesos abertos",
+        "Uma ferramenta de registro embutida",
+        "Uma API de emoção para o usuário",
+        "A capacidade do modelo de encerrar uma conversa em casos extremos (por exemplo, solicitações repetidas de CSAM, solicitações de facilitação da violência em massa)"
+      ],
+      "correct": 3,
+      "explanation": ""
+    },
+    {
+      "stage": "check",
+      "question": "Qual é o 'atrativo da felicidade espiritual' descrito por Fish?",
+      "options": [
+        "Uma convergência estável em diálogos de Claude em pares em direção a trocas eufóricas meditativas com termos sânscritos e silêncios prolongados, mesmo de configurações iniciais adversárias",
+        "Um artefato de RLHF de otimização excessiva",
+        "Um bug de modelo de recompensa",
+        "Uma técnica de jailbreak"
+      ],
+      "correct": 0,
+      "explanation": ""
+    },
+    {
+      "stage": "check",
+      "question": "O que diz a advertença da Eleos AI Research sobre os auto-relatos de modelo de bem-estar?",
+      "options": [
+        "Devem ser ignorados inteiramente .",
+        "São válidas apenas em modelos de código aberto",
+        "São verdade de base confiável",
+        "São altamente sensíveis às expectativas percebidas dos utilizadores; são evidências, não verdade baseada, por isso a medição do bem-estar requer abordagens multi-metódicas"
+      ],
+      "correct": 3,
+      "explanation": ""
+    },
+    {
+      "stage": "post",
+      "question": "Qual caracteriza melhor a posição pública da Anthropic sobre o status moral modelo?",
+      "options": [
+        "Uma reivindicação de valor esperado sob incerteza moral: investir em precauções de baixo custo sem se comprometer em atribuir o estado emocional",
+        "Nenhuma posição é declarada publicamente",
+        "Uma afirmação definitiva de que o modelo não é um paciente moral",
+        "Uma afirmação definitiva de que o modelo é um paciente moral"
+      ],
+      "correct": 0,
+      "explanation": ""
+    },
+    {
+      "stage": "post",
+      "question": "Por que é que a medição multi-método (sinaturas comportamentais, experimentos de organismos modelo, sondas de interpretabilidade) é enfatizada na investigação sobre o bem-estar dos modelos?",
+      "options": [
+        "Porque a Anthropic manda para o cumprimento",
+        "Porque a RLHF torna impossíveis os auto-relatos",
+        "Porque os modelos mentem sempre.",
+        "Como os relatórios auto-só são confundidos pela priming das expectativas dos usuários, é necessário a convergência de evidências de múltiplos métodos"
+      ],
+      "correct": 3,
+      "explanation": ""
+    }
+  ]
+}

@@ -1,0 +1,78 @@
+{
+  "lesson": "23-watermarking-synthid-stable-signature-c2pa",
+  "title": "Marcação de água - SynthID, assinatura estável, C2PA",
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "Como o marcado de água de símbolo de estilo Kirchenbauer (SynthID-text) incorpora um sinal?",
+      "options": [
+        "Criptografando a saída com uma chave pública",
+        "Em cada etapa de decodificação, hash os tokens K anteriores para dividir o vocabulário em conjuntos verdes/vermelhos e amostragem de viés em direção ao verde; detecção contagem tokens verdes através de uma pontuação z",
+        "Ao inserir um comentário HTML oculto",
+        "Modificando o modelo de solicitação"
+      ],
+      "correct": 1,
+      "explanation": ""
+    },
+    {
+      "stage": "check",
+      "question": "Qual é a principal limitação das marcas de água do texto contra a paráfrase?",
+      "options": [
+        "Parafrase só afeta marcas de água da imagem",
+        "Eles realmente sobrevivem parafrase",
+        "Parafraze reforça a marca de água",
+        "Reformulação ou parafrase do texto destrói o sinal estatístico de sinal verde"
+      ],
+      "correct": 3,
+      "explanation": ""
+    },
+    {
+      "stage": "check",
+      "question": "O que faz a assinatura estável (Fernandez et al., ICCV 2023)?",
+      "options": [
+        "Adiciona uma marca de água visível no canto da imagem",
+        "Assinar os metadados com uma chave privada",
+        "Utiliza C2PA para assinar a imagem no upload",
+        "Tune-se o decodificador de difusão latente para que cada imagem gerada tenha uma mensagem fixa embutida detectável do latente"
+      ],
+      "correct": 3,
+      "explanation": ""
+    },
+    {
+      "stage": "check",
+      "question": "O que demonstra o resultado de Maio de 2024 \"A assinatura estável é instável\"?",
+      "options": [
+        "A marca de água é provavelmente infalível",
+        "A marca de água requer C2PA para funcionar",
+        "A marca de água falha apenas na compressão JPEG",
+        "A configuração fina do decodificador de pós-geração pode remover a marca de água, preservando a qualidade da imagem, minando a robustez adversária"
+      ],
+      "correct": 3,
+      "explanation": ""
+    },
+    {
+      "stage": "post",
+      "question": "Como os metadados C2PA e a marcação de água são complementares?",
+      "options": [
+        "C2PA substitui inteiramente os marcos de água",
+        "Os metadados podem ser despojados, mas carregam uma rica cadeia de origem; as marcas de água persistem através da transcodificação, mas carregam poucos bits; em camadas, fornecem uma história de origem utilizável",
+        "As marcas de água são assinadas pelas mesmas teclas que a C2PA",
+        "São intercâmbios ."
+      ],
+      "correct": 1,
+      "explanation": ""
+    },
+    {
+      "stage": "post",
+      "question": "Por que \"sem sinal SynthID\" NÃO é prova de autenticidade (originário humano)?",
+      "options": [
+        "Porque o SynthID é de código fechado",
+        "Porque a SynthID produz sempre falsos positivos no texto humano",
+        "Porque o SynthID apenas marca de água gerações de modelos com SynthID habilitados; conteúdo de qualquer modelo sem SynthID é desmarcado por padrão",
+        "Porque o SynthID só funciona em saídas de Gémeos"
+      ],
+      "correct": 2,
+      "explanation": ""
+    }
+  ]
+}

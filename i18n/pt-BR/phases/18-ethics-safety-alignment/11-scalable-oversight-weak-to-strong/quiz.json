@@ -1,0 +1,78 @@
+{
+  "lesson": "11-scalable-oversight-weak-to-strong",
+  "title": "Supervisão Escalarável e Generalização Fraca a Forte",
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "Qual é a questão central que a agenda do Superalignment coloca?",
+      "options": [
+        "Os humanos são mais precisos do que os modelos de recompensa?",
+        "O RLHF pode escalar para além dos parâmetros 1B?",
+        "Um superintendente fraco pode supervisionar de forma confiável um modelo mais forte e alinhado?",
+        "O treinamento adversário pode remover todas as portas traseiras?"
+      ],
+      "correct": 2,
+      "explanation": ""
+    },
+    {
+      "stage": "check",
+      "question": "Em Burns et al. (2023) generalização fraca a forte, qual é a configuração?",
+      "options": [
+        "Um modelo de recompensa é treinado apenas com dados sintéticos",
+        "Dois modelos fortes debatem; um juiz humano",
+        "Um modelo forte (classe GPT-4) é ajustado em etiquetas produzidas por um modelo fraco (classe GPT-2) e a sua capacidade é medida contra o teto forte supervisionado.",
+        "O GPT-2 é ajustado aos rótulos do GPT-4"
+      ],
+      "correct": 2,
+      "explanation": ""
+    },
+    {
+      "stage": "check",
+      "question": "Como é definida a diferença de desempenho recuperada (PGR)?",
+      "options": [
+        "(finamente sintonizado - fraco) / (loft - fraco)",
+        "(tesouro fraco) / teto",
+        "Tesouro de ar condicionado",
+        "(loft - fine tuned) / fraco"
+      ],
+      "correct": 0,
+      "explanation": ""
+    },
+    {
+      "stage": "check",
+      "question": "Qual das seguintes não é um mecanismo de supervisão escalável listado na lição?",
+      "options": [
+        "Modelagem recorrente de recompensas",
+        "Destilação de tokenizer",
+        "Descomposição das tarefas",
+        "Debate"
+      ],
+      "correct": 1,
+      "explanation": ""
+    },
+    {
+      "stage": "post",
+      "question": "Como é complementar a supervisão escalável e o W2SG?",
+      "options": [
+        "Ambos exigem acesso a caixa branca",
+        "Ambos têm como alvo a mesma métrica.",
+        "A supervisão escalável melhora a qualidade eficaz do sinal do superintendente; o W2SG fecha a lacuna de qualquer sinal imperfeito que o superintendente forneça",
+        "São mutuamente exclutivas."
+      ],
+      "correct": 2,
+      "explanation": ""
+    },
+    {
+      "stage": "post",
+      "question": "Qual é a suposição central do mecanismo de IA-segurança-por-debate?",
+      "options": [
+        "Encontrar uma resposta verdadeira e convincente é mais fácil do que encontrar uma resposta falsa e convincente",
+        "As transcrições do debate são sempre mais curtas do que as respostas diretas",
+        "O juiz é mais capaz do que os debatedores",
+        "Ambos os debatedores dizem sempre a verdade."
+      ],
+      "correct": 0,
+      "explanation": ""
+    }
+  ]
+}

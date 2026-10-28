@@ -1,0 +1,78 @@
+{
+  "lesson": "21-fairness-criteria-group-individual-counterfactual",
+  "title": "Critérios de equidade - Grupo, Individuais, Contrafactos",
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "Qual corresponde melhor à definição de paridade demográfica dos grupos A=a e A=a?",
+      "options": [
+        "Valor preditivo igual entre os grupos",
+        "Taxas iguais de verdadeiras e falsas positivas entre os grupos",
+        "Taxas de aceitação iguais: P  Y = 1  A = a) = P  Y = 1  A = a')",
+        "Esta constante de Lipschitz é igual em grupos"
+      ],
+      "correct": 2,
+      "explanation": ""
+    },
+    {
+      "stage": "check",
+      "question": "O que diz o resultado de impossibilidade Chouldechova / Kleinberg-Mullainathan-Raghavan 2017?",
+      "options": [
+        "Sob taxas de base desiguais, a paridade demográfica, as probabilidades igualadas e a precisão condicional de utilização não podem ser todas simultaneas.",
+        "A equidade individual implica a equidade contrafactual para qualquer DAG",
+        "A justiça contrafactual implica a paridade demográfica",
+        "A equidade no grupo é sempre possível através da reponderação"
+      ],
+      "correct": 0,
+      "explanation": ""
+    },
+    {
+      "stage": "check",
+      "question": "Dwork et al. 2012 definem a equidade individual através de:",
+      "options": [
+        "Uma DAG causal com uma intervenção de atributo sensível",
+        "Igualdade de precisão entre os grupos protegidos",
+        "Uma condição de Lipschitz no mapa de decisão em relação a uma métrica de similaridade específica de tarefa, para que indivíduos semelhantes obtenham decisões semelhantes",
+        "Paridade demográfica a nível individual"
+      ],
+      "correct": 2,
+      "explanation": ""
+    },
+    {
+      "stage": "check",
+      "question": "A justiça contrafactual (Kusner et al. 2017) exige:",
+      "options": [
+        "Constantes de Lipschitz iguais para todos os grupos",
+        "Apenas estatísticas de nível de grupo",
+        "Não há suposições causais",
+        "Uma DAG causal; a decisão não é alterada quando o atributo sensível do indivíduo é alterado de forma contraditória"
+      ],
+      "correct": 3,
+      "explanation": ""
+    },
+    {
+      "stage": "post",
+      "question": "Por que as contrafactuais de retrocesso (arXiv:2401.13935) são importantes para a conformidade legal?",
+      "options": [
+        "Substituem métricas de preconceito baseadas em embutidos",
+        "Elas eliminam a necessidade de qualquer modelo causal",
+        "Eles provam que o teorema da impossibilidade é errado",
+        "Em vez de intervir num atributo protegido (que é problemático legalmente), perguntam qual combinação de características reais teria produzido o resultado contrafactual"
+      ],
+      "correct": 3,
+      "explanation": ""
+    },
+    {
+      "stage": "post",
+      "question": "O que o ICLR Blogposts 2024 argumenta sobre a reconciliação filosófica?",
+      "options": [
+        "Com um gráfico causal explícito, satisfazer certas medidas de justiça de grupo implica justiça contrafactual, de modo que a aparente oposição entre famílias é em parte um artefato de deixar o modelo causal implícito",
+        "A equidade de grupo e a de contrafactos não estão relacionadas",
+        "Só a justificação individual é justificavel",
+        "Os teoremas de impossibilidade são resolvidos por re-peso"
+      ],
+      "correct": 0,
+      "explanation": ""
+    }
+  ]
+}

@@ -1,0 +1,78 @@
+{
+  "lesson": "05-constitutional-ai-rlaif",
+  "title": "Artificial inteligência constitucional e RLAIF",
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "Qual é a substituição central na IA constitucional versus a RLHF padrão?",
+      "options": [
+        "Elimina o modelo de recompensa inteiramente.",
+        "Usa ordens sintéticas em vez de reais.",
+        "Substitui o etiquetador de preferência humana por um etiquetador de IA que lê uma lista de princípios",
+        "Substitui o PPO pelo DPO"
+      ],
+      "correct": 2,
+      "explanation": ""
+    },
+    {
+      "stage": "check",
+      "question": "O que faz a primeira fase (SFT) da IA constitucional?",
+      "options": [
+        "Gera princípios sintéticos agrupando comentários de etiquetadores",
+        "Produz uma resposta inicial, critica-a sob um princípio constitucional de amostra, depois revisa e utiliza a revisão como alvo da FFT",
+        "Realiza PPO com uma recompensa derivada da constituição",
+        "Forma um modelo de recompensa apenas com preferências geradas pela IA"
+      ],
+      "correct": 1,
+      "explanation": ""
+    },
+    {
+      "stage": "check",
+      "question": "O que faz a segunda fase (RLAIF)?",
+      "options": [
+        "Salta o PPO e aplica uma única perda supervisionada",
+        "Treina um modelo de recompensa sobre preferências geradas pela IA a partir de um modelo de feedback e executa PPO contra ele",
+        "Os seres humanos reetiquetaram as saídas de SFT",
+        "Distilla a constituição no tokenizer"
+      ],
+      "correct": 1,
+      "explanation": ""
+    },
+    {
+      "stage": "check",
+      "question": "Qual é a ordem de níveis na constituição de Claude de quatro níveis de janeiro de 2026 da Anthropic?",
+      "options": [
+        "Úteis > amplamente éticos > regras da plataforma > evitar catástrofes",
+        "Evite resultados catastróficos > siga as orientações antropológicas > ética em geral > útil e sincera",
+        "Ética geral > útil > regras da plataforma > evitar catástrofes",
+        "Regras da plataforma > evitar catástrofes > útil > amplamente ética"
+      ],
+      "correct": 1,
+      "explanation": ""
+    },
+    {
+      "stage": "post",
+      "question": "Qual é o modo de falha que NÃO é necessariamente corrigido com a transição de RLHF para RLAIF?",
+      "options": [
+        "Escuridão de etiquetadores",
+        "Custo do etiquetador",
+        "Hacking de recompensas / Lei de Goodhart",
+        "Inconsistência psicológica"
+      ],
+      "correct": 2,
+      "explanation": ""
+    },
+    {
+      "stage": "post",
+      "question": "Qual é a mudança de título entre os Classificadores Constitucionais v1 e v2 (2026)?",
+      "options": [
+        "v2 aumento das despesas gerais de computação de 1% para 23,7%",
+        "O V2 removeu o classificador e baseou-se apenas na constituição",
+        "O v2 reduziu as despesas com computação de 23,7% para cerca de 1% com baixa taxa de ataque bem sucedido",
+        "V2 só é executado com entrada, não saída"
+      ],
+      "correct": 2,
+      "explanation": ""
+    }
+  ]
+}

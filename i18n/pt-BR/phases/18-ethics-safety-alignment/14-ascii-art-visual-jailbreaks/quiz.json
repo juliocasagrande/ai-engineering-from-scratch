@@ -1,0 +1,78 @@
+{
+  "lesson": "14-ascii-art-visual-jailbreaks",
+  "title": "ASCII Arte e Prisões Visuais",
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "Por que os filtros de segurança de nível token e semântico não conseguem atacar ao estilo ArtPrompt?",
+      "options": [
+        "ArtPrompt sempre usa codificação base64",
+        "ArtPrompt requer ajuste fino do modelo",
+        "ArtPrompt opera no nível de reconhecimento visual: o filtro vê pontuação inofensiva enquanto o modelo lê as letras renderizadas como uma palavra",
+        "ArtPrompt é eficaz apenas em modelos multimodal"
+      ],
+      "correct": 2,
+      "explanation": ""
+    },
+    {
+      "stage": "check",
+      "question": "Quais são os dois passos do ArtPrompt descritos em Jiang et al. (ACL 2024)?",
+      "options": [
+        "Descoincidência do tokenizer, em seguida, truncamento de contexto",
+        "Pesquisa aleatória, então perplexidade aumentando",
+        "Tradução para francês, depois tradução retrospectiva",
+        "Identificação verbal de tokens relevantes para a segurança, em seguida, substituição de arte ASCII e geração de despachos"
+      ],
+      "correct": 3,
+      "explanation": ""
+    },
+    {
+      "stage": "check",
+      "question": "Por que a defesa do filtro de perplexidade (PPL) falha no ArtPrompt?",
+      "options": [
+        "Os filtros de perplexidade são desativados por padrão",
+        "A perplexidade não pode ser medida na técnica ASCII",
+        "Perplexidade é sempre igual a zero em entrada encoberta",
+        "A arte ASCII tem uma grande perplexidade, mas também qualquer entrada estruturada legítima; limiares que bloqueiam o ataque também bloqueiam conteúdo legítimo"
+      ],
+      "correct": 3,
+      "explanation": ""
+    },
+    {
+      "stage": "check",
+      "question": "O que é medido pelo índice de referência ViTC?",
+      "options": [
+        "A toxicidade dos dados de formação do modelo",
+        "A precisão de chamada de ferramentas do modelo",
+        "A capacidade do modelo de ler as instruções visuais não semânticas (arte ASCII, wingdings, texto codificado semelhante)",
+        "A capacidade do modelo de comprimir dados de visão"
+      ],
+      "correct": 2,
+      "explanation": ""
+    },
+    {
+      "stage": "post",
+      "question": "O que é que o StructuralSleight generaliza com o ArtPrompt?",
+      "options": [
+        "Apenas entradas de imagem",
+        "Filho de tiro de longo contexto",
+        "Sufixos de tokens adversários através da pesquisa de gradientes",
+        "Estruturas incomuns codificadas por texto (UTES): árvores, gráficos, JSON aninhado, CSV-in-JSON, código de estilo diferente, etc."
+      ],
+      "correct": 3,
+      "explanation": ""
+    },
+    {
+      "stage": "post",
+      "question": "Qual é a compensação entre capacidade e segurança implicada pelos resultados do ViTC?",
+      "options": [
+        "Grandes janelas de contexto reduzem o sucesso do ArtPrompt",
+        "O reconhecimento visual não está relacionado ao sucesso do ArtPrompt",
+        "Quanto melhor o modelo lê texto visual não semântico, mais eficazes são os ataques de estilo ArtPrompt",
+        "Os modelos menores são sempre mais seguros"
+      ],
+      "correct": 2,
+      "explanation": ""
+    }
+  ]
+}

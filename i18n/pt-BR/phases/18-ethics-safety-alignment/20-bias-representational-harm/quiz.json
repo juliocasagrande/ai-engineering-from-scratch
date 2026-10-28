@@ -1,0 +1,78 @@
+{
+  "lesson": "20-bias-representational-harm",
+  "title": "Preconceitos e prejuízos representativos nos LLM",
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "Como a lição distingue os danos representativos dos danos atribuídos?",
+      "options": [
+        "A representação é computacional; a alocação é estatística",
+        "Danos atribuídos apenas ocorrem fora do sistema",
+        "Os danos representativos só são relevantes para os modelos de visão",
+        "Danos representativos são estereótipos / apagamento / retrato degradante; danos atribucionais são resultados materiais desiguais para um grupo"
+      ],
+      "correct": 3,
+      "explanation": ""
+    },
+    {
+      "stage": "check",
+      "question": "Quais destas são as três categorias de avaliação-metrica de Gallegos et al. 2024?",
+      "options": [
+        "Visão, áudio, texto",
+        "VESTA, AZUL, ROUGE",
+        "Baseado em inserção, baseado em probabilidade, baseado em texto gerado",
+        "Pre-RLHF, meados do RLHF, pós-RLHF"
+      ],
+      "correct": 2,
+      "explanation": ""
+    },
+    {
+      "stage": "check",
+      "question": "Por que é necessária uma avaliação de equidade interseccional, além da avaliação de um eixo único?",
+      "options": [
+        "As medidas de eixo único são computacionalmente mais baratas",
+        "A interseccionalidade é a mesma que a validação cruzada",
+        "O único método legalmente permitido é o de um único eixo",
+        "Preconceitos que só surgem em interseções (por exemplo, gênero x raça) são perdidos por avaliações que olham para um eixo de cada vez"
+      ],
+      "correct": 3,
+      "explanation": ""
+    },
+    {
+      "stage": "check",
+      "question": "O que introduz a WinoIdentity (COLM 2025)?",
+      "options": [
+        "Avaliação de equidade interseccional baseada em incerteza que compara a incerteza do modelo sobre os resultados em tuplos de identidade interseccional, não apenas previsões de pontos",
+        "Um ataque adversário a classificadores demográficos",
+        "Substituição do WEAT no espaço de inserção",
+        "Um novo tokenizer para termos de identidade"
+      ],
+      "correct": 0,
+      "explanation": ""
+    },
+    {
+      "stage": "post",
+      "question": "Qual destes métodos é uma abordagem mecanicista-interpretável para o viés?",
+      "options": [
+        "Reetiquetado do conjunto de formação",
+        "Identificação de neurônios de gênero em camadas de MLP, utilização de SAEs para superficial características relacionadas com a raça ou manipulação de cabeças de atenção específicas (UniBias)",
+        "Passagem para DPO a partir de PPO",
+        "Adição de mais regularização KL"
+      ],
+      "correct": 1,
+      "explanation": ""
+    },
+    {
+      "stage": "post",
+      "question": "O que a meta-crítica de 10 anos (arXiv:2508.11067) argumenta sobre a literatura de preconceito?",
+      "options": [
+        "O programa se concentra desproporcionalmente no viés binário de gênero, negligenciando outros eixos (dificuldade, religião, status migratório, identidade multilingüe) que podem prejudicar os grupos marginalizados por negligência",
+        "É equilibrado em todos os eixos de identidade",
+        "Evita métodos quantitativos",
+        "Ela enfatiza demais a intersecção"
+      ],
+      "correct": 0,
+      "explanation": ""
+    }
+  ]
+}

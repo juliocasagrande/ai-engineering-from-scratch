@@ -1,0 +1,78 @@
+{
+  "lesson": "29-moderation-systems-openai-perspective-llamaguard",
+  "title": "Sistemas de moderação - OpenAI, Perspective, Llama Guard",
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "Qual é o último modelo de omni-moderação da OpenAI (2024)?",
+      "options": [
+        "Um ponto final de marcação de água C2PA",
+        "Um classificador de moderação baseado em GPT-4o que lida com texto e imagens em uma única chamada, devolvendo um esquema de resposta de 13 categorias (assédio, ódio, auto-harm, sexual, violência, ilícito, com subcategorias), gratuito para a maioria dos desenvolvedores",
+        "Um modelo de recompensa RLHF",
+        "Um modelo de fronteira centrado no raciocínio"
+      ],
+      "correct": 1,
+      "explanation": ""
+    },
+    {
+      "stage": "check",
+      "question": "Qual destas não é uma das categorias principais de nível superior da OpenAI Moderation?",
+      "options": [
+        "Interferência eleitoral",
+        "violência",
+        "Auto-leão",
+        "acoso"
+      ],
+      "correct": 0,
+      "explanation": ""
+    },
+    {
+      "stage": "check",
+      "question": "Quais são as três camadas do padrão de moderação padrão 2026?",
+      "options": [
+        "Moderação de entrada (pre-geração), moderação de saída (pós-geração), moderação personalizada (regras de domínio)",
+        "Telescópio / periscópico / microscópio",
+        "Probe / detector / arnes",
+        "Tokenizer / modelo / detokenizer"
+      ],
+      "correct": 0,
+      "explanation": ""
+    },
+    {
+      "stage": "check",
+      "question": "O que é a API Perspective (Google Jigsaw) projetada principalmente para marcar?",
+      "options": [
+        "Recompensa pela satisfação do utilizador",
+        "Qualidade do raciocínio",
+        "Forteza da marca de água",
+        "Toxicidade (com sub-dimensões de toxicidade grave, insulto, blasfêmia, ameaça, ataque à identidade) como referência de moderação de conteúdo da era pré-LLM"
+      ],
+      "correct": 3,
+      "explanation": ""
+    },
+    {
+      "stage": "post",
+      "question": "Qual é um modo de falha da moderação apenas de entrada?",
+      "options": [
+        "Não detecta falhas de saída de modelo ou alucinações; ataques de codificação (Lessões 12-14) podem contornar inteiramente os classificadores de entrada",
+        "Não pode funcionar em GPUs",
+        "Bloqueia sempre conteúdo legítimo .",
+        "Elimina a necessidade de classificadores de saída"
+      ],
+      "correct": 0,
+      "explanation": ""
+    },
+    {
+      "stage": "post",
+      "question": "Qual é o objetivo de depreciação e migração do moderador de conteúdo do Azure?",
+      "options": [
+        "Fusão em Guarda de Lama 4",
+        "Substituiu pela API Perspective",
+        "Deprecado em fevereiro de 2024, aposentado em 15 de março de 2027; meta de migração é a Segurança de Conteúdo da AI do Azure (baseada em LLM, integrada com o Azure OpenAI)",
+        "Deprecado imediatamente sem substituição"
+      ],
+      "correct": 2,
+      "explanation": ""
+    }
+  ]
+}

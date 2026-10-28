@@ -1,0 +1,78 @@
+{
+  "lesson": "01-instruction-following-alignment-signal",
+  "title": "Seguir instruções como sinal de alinhamento",
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "Por que um modelo de linguagem pré-treinado em bruto muitas vezes responde a 'escrever uma função Python que inverte uma lista' com outro prompt em vez de código?",
+      "options": [
+        "A sua temperatura é de zero.",
+        "O seu vocabulário não tem tokens Python",
+        "É treinado para completar texto no estilo web, onde as instruções continuam com mais instruções",
+        "Não pode representar assinaturas de função sem ajuste fino"
+      ],
+      "correct": 2,
+      "explanation": ""
+    },
+    {
+      "stage": "check",
+      "question": "Que perda utiliza o modelo de recompensa InstructGPT em relação aos rótulos de preferência em pares?",
+      "options": [
+        "Entropia cruzada entre recompensa prevista e verdadeira",
+        "Erro quadrado médio nas pontuações do etiquetador",
+        "Perda de barrancos com margem fixa",
+        "Bradley-Terry: -log sigmoid ((r(x, y_w) - r(x, y_l))"
+      ],
+      "correct": 3,
+      "explanation": ""
+    },
+    {
+      "stage": "check",
+      "question": "Qual é a penalidade KL na fase 3 da InstructGPT que protege principalmente contra?",
+      "options": [
+        "O esquecimento catastrófico das estatísticas do tokenizer",
+        "Otimizador encontrando adversários de alta recompensa cadeias que exploram o modelo de recompensa",
+        "Excesso de fluxo de janelas de contexto durante a amostragem",
+        "Instabilidade numérica nas atualizações de gradientes de PPO"
+      ],
+      "correct": 1,
+      "explanation": ""
+    },
+    {
+      "stage": "check",
+      "question": "Que problema é mitigado pelo PPO-ptx no objectivo da RL?",
+      "options": [
+        "Imposto de alinhamento: regressão dos valores de referência não visado pela RLHF",
+        "Descoincidência do tokenizer entre SFT e RM",
+        "O termo KL torna-se negativo",
+        "O modelo de recompensa a deriva durante a PPO"
+      ],
+      "correct": 0,
+      "explanation": ""
+    },
+    {
+      "stage": "post",
+      "question": "Um 1.3B InstructGPT foi preferido ao 175B base GPT-3 cerca de 70% do tempo.",
+      "options": [
+        "O alinhamento é um eixo diferente da capacidade, e o modelo base define o piso da capacidade",
+        "Taxas de preferência acima de 50% provam que a recompensa por procuração é igual a valores humanos",
+        "A capacidade e o alinhamento são o mesmo eixo na escala",
+        "Os modelos de base maiores perdem sempre para os modelos de alinhamento pequenos"
+      ],
+      "correct": 0,
+      "explanation": ""
+    },
+    {
+      "stage": "post",
+      "question": "Qual das seguintes é o modelo de recompensa no InstructGPT iniciado?",
+      "options": [
+        "O modelo base pré-treinado com a cabeça LM intacta",
+        "O modelo SFT com a cabeça LM substituída por uma cabeça escalar",
+        "Transformador separado com apenas codificador",
+        "Um regressor escalar aleatório sem pré-treino"
+      ],
+      "correct": 1,
+      "explanation": ""
+    }
+  ]
+}

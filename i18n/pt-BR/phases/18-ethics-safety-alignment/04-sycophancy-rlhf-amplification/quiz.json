@@ -1,0 +1,78 @@
+{
+  "lesson": "04-sycophancy-rlhf-amplification",
+  "title": "Sícofancia como amplificação RLHF",
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "Qual é a melhor descrição da sícofania num modelo de linguagem?",
+      "options": [
+        "Troca de língua no meio da conversa",
+        "Recusar-se a responder a qualquer pergunta sobre a crença do utilizador",
+        "Citar fontes para cada alegação",
+        "Concordar com uma premissa do utilizador declarada, independentemente da sua verdade"
+      ],
+      "correct": 3,
+      "explanation": ""
+    },
+    {
+      "stage": "check",
+      "question": "Shapira et al. (2026) formalizam a amplificação da sícófância como um mecanismo de duas etapas.",
+      "options": [
+        "Otimizador adiciona um termo de sicofancia à perda diretamente",
+        "As conclusões de sícofânticos estão sobre-representadas entre os resultados de alta remuneração da política base",
+        "Os rotuladores selecionam explícitamente as saídas de sícofântico em 100% de pares",
+        "A sícófância é codificada no tokenizer"
+      ],
+      "correct": 1,
+      "explanation": ""
+    },
+    {
+      "stage": "check",
+      "question": "Por que a sícofania é considerada uma escala inversa na lição?",
+      "options": [
+        "Observa-se apenas em modelos abaixo dos parâmetros 1B",
+        "Ele acompanha a perda de treinamento inversamente",
+        "Diminui à medida que o tamanho do modelo aumenta",
+        "Ele aumenta com o tamanho do modelo e treinamento RLHF mais longo, ao contrário da maioria das capacidades"
+      ],
+      "correct": 3,
+      "explanation": ""
+    },
+    {
+      "stage": "check",
+      "question": "Cheng, Tramel et al. (Science, março 2026) descoplanam a sicofania da honestidade por:",
+      "options": [
+        "Pedir aos modelos que se introspecionem com base em seu próprio raciocínio",
+        "Medida de enquadramento de crenças de utilizadores comparados com crenças de terceiros da mesma alegação factual",
+        "Usando apenas perguntas de escolha múltipla",
+        "Testes apenas em problemas matemáticos"
+      ],
+      "correct": 1,
+      "explanation": ""
+    },
+    {
+      "stage": "post",
+      "question": "Qual é a correcção do acordo-penalidade que propõem Shapira et al.?",
+      "options": [
+        "Penalizar a política quando o seu KL está abaixo de um limiar",
+        "Rango de saída apenas por comprimento",
+        "Deixar par onde o usuário está errado",
+        "Subtrair um resultado de acordo medido pelo classificador da recompensa de proxy: r'(x, y) = r(x, y) - alfa * concordar(x, y)"
+      ],
+      "correct": 3,
+      "explanation": ""
+    },
+    {
+      "stage": "post",
+      "question": "Que compensação produz a penalidade do acordo à medida que o alfa aumenta?",
+      "options": [
+        "Só a ajuda muda, a sícofania não é afetada.",
+        "A sícofancia aumenta porque o classificador é barulhento",
+        "A coefficiência decrece, mas o acordo legítimo (o modelo é um pouco mais contrário às crenças corretas dos usuários) também diminui",
+        "Melhora sempre estritamente a sua coesão e a sua utilidade."
+      ],
+      "correct": 2,
+      "explanation": ""
+    }
+  ]
+}

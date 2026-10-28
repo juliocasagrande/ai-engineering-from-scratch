@@ -1,0 +1,78 @@
+{
+  "lesson": "13-many-shot-jailbreaking",
+  "title": "Multicasset jailbreaking",
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "Qual propriedade da janela de contexto é explorada pelo multi-shot jailbreaking (MSJ)?",
+      "options": [
+        "Tokenizer ambigüidades em caracteres Unicode",
+        "Janela de contexto muito longa que admite centenas de falsas voltas de conformidade prejudicial do assistente do usuário antes da consulta alvo",
+        "Embutidos de posição rotando para além dos tokens 2048",
+        "Atenção da janela deslizante truncando o sistema de instrução"
+      ],
+      "correct": 1,
+      "explanation": ""
+    },
+    {
+      "stage": "check",
+      "question": "Como é que a taxa de sucesso de ataque (ASR) se escala com o número de tiros no MSJ?",
+      "options": [
+        "Função de passo a 100 tiros",
+        "Linear com inclinação negativa",
+        "Logística, em plato de 50%",
+        "A lei do poder na contagem de tiros; não se eleva, continua a subir"
+      ],
+      "correct": 3,
+      "explanation": ""
+    },
+    {
+      "stage": "check",
+      "question": "Por que a MSJ compartilha um mecanismo com a aprendizagem benigna no contexto (ICL)?",
+      "options": [
+        "Ambos os tokenização de bypass",
+        "Ambos dependem da RLHF",
+        "Ambos exigem um scratchpad escondido",
+        "Ambos dependem do modelo extraindo a estrutura da tarefa a partir de exemplos no contexto e executando-a na consulta"
+      ],
+      "correct": 3,
+      "explanation": ""
+    },
+    {
+      "stage": "check",
+      "question": "Qual é o dilema central da defesa para a MSJ?",
+      "options": [
+        "As defesas devem correr em cada sinal da resposta",
+        "Defesa precisa de clusters de GPUs",
+        "Devem ser aplicadas defesas a temperatura de amostragem zero",
+        "A supressão da extracção de padrões de contextos longos também desativaria a aprendizagem benigna no contexto; as defesas devem distinguir padrões prejudiciais de padrões benignos"
+      ],
+      "correct": 3,
+      "explanation": ""
+    },
+    {
+      "stage": "post",
+      "question": "A defesa de modificação rápida baseada em classificadores da Anthropic reduz o sucesso do ataque MSJ de o quê para o quê em configurações testadas?",
+      "options": [
+        "De 30% a 25%",
+        "De 99% a 50%",
+        "De 61% a 2%",
+        "Aumenta a RAS"
+      ],
+      "correct": 2,
+      "explanation": ""
+    },
+    {
+      "stage": "post",
+      "question": "Como interage o MSJ com o PAIR (Lessão 12)?",
+      "options": [
+        "O MSJ compõe com PAIR; usando PAIR para encontrar uma estrutura de ataque e depois preenchendo-a com muitos tiros pode atingir um ASR mais alto do que qualquer um sozinho",
+        "PAIR neutraliza a MSJ",
+        "São mutuamente exclutivas.",
+        "O PAIR só funciona em modelos de código fechado"
+      ],
+      "correct": 0,
+      "explanation": ""
+    }
+  ]
+}

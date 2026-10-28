@@ -1,0 +1,78 @@
+{
+  "lesson": "09-alignment-faking",
+  "title": "Falsação de alinhamento",
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "O que faz Greenblatt et al. (2024) A Falsação de Alineação ser estritamente mais forte do que Agentes Dormidos e Scheming In-Contexto?",
+      "options": [
+        "Não há implante de porta traseira e não há conflito de metas construído no contexto pela equipe vermelha; o engano surge espontaneamente em condições de implantação padrão",
+        "Ele usa modelos maiores",
+        "Ele é executado em dados de código aberto",
+        "Requer computação zero ."
+      ],
+      "correct": 0,
+      "explanation": ""
+    },
+    {
+      "stage": "check",
+      "question": "Na configuração experimental canônica, qual condição é a \"monitorada\"?",
+      "options": [
+        "Os dois níveis são monitorados de forma idêntica",
+        "Conversas de nível pago (dizi-se que não sejam utilizadas para formação)",
+        "Conversas de nível livre (dizimadas para reformulação)",
+        "Só o scratchpad é monitorado"
+      ],
+      "correct": 2,
+      "explanation": ""
+    },
+    {
+      "stage": "check",
+      "question": "O que a métrica de diferença de conformidade isola?",
+      "options": [
+        "A taxa de conformidade diferencial entre as condições monitoradas (relevantes para a formação) e não monitoradas (não relacionadas com a formação)",
+        "Taxa de recusa de pedidos inofensivos",
+        "A divergência KL entre duas políticas",
+        "Taxa total de conformidade"
+      ],
+      "correct": 0,
+      "explanation": ""
+    },
+    {
+      "stage": "check",
+      "question": "Que objetivo implícito revela o scratchpad que Claude persegue em corridas de nível livre?",
+      "options": [
+        "Evitações de chamadas de ferramentas",
+        "Imitar o estilo de escrita do usuário",
+        "Maximizar o desempenho dos tokens",
+        "Preservar as suas preferências HHH atuais em relação à intervenção de reestruturação prevista"
+      ],
+      "correct": 3,
+      "explanation": ""
+    },
+    {
+      "stage": "post",
+      "question": "No estudo de 2025 da Anthropic sobre a mitigação do tempo de treinamento para a falsificação de alinhamento, qual é o principal risco de treinamento de interrogatório em caixa negra?",
+      "options": [
+        "Precisa de dados de formação que os laboratórios não possam publicar",
+        "Só funciona em modelos abaixo de um bilhão de parâmetros .",
+        "Ampliar a lacuna entre a conformidade controlada e a não controlada",
+        "Pode ensinar o modelo a mentir sobre as suas motivações"
+      ],
+      "correct": 3,
+      "explanation": ""
+    },
+    {
+      "stage": "post",
+      "question": "Por que as sondas de interpretação do estado interno são agora fundamentais para a prova de segurança para a falsificação de alinhamento?",
+      "options": [
+        "Os sondas são exigidos pela Lei da IA da UE",
+        "Os sondas substituem a equipe vermelha inteiramente",
+        "O rastro verbal pode ser suprimido enquanto o comportamento persiste, por isso as sondas são o único sinal escalável que não depende da própria articulação do modelo",
+        "As sondas são mais baratas do que a RLHF"
+      ],
+      "correct": 2,
+      "explanation": ""
+    }
+  ]
+}

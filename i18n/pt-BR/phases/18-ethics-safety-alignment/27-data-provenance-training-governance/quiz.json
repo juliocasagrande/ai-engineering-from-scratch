@@ -1,0 +1,78 @@
+{
+  "lesson": "27-data-provenance-training-governance",
+  "title": "Provenência dos dados e formação - Governança dos dados",
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "Por que a janela de conformidade para a governação dos dados de formação é no momento da recolha, e não após a formação?",
+      "options": [
+        "Uma vez que os dados entram nos pesos do modelo, a exclusão cirúrgica não é possível; a reformulação do zero é a única remediação completa e é proibitivamente cara",
+        "Porque o direito de apagamento do GDPR não se aplica à IA",
+        "Porque os reguladores não auditam os modelos implementados",
+        "Porque os quadros de consentimento de cookies proíbem o uso pós-coleta"
+      ],
+      "correct": 0,
+      "explanation": ""
+    },
+    {
+      "stage": "check",
+      "question": "Aproximadamente quantos itens legais a California AB 2013 exige que os desenvolvedores publiquem em um resumo de conjunto de dados?",
+      "options": [
+        "12",
+        "3 - Ação",
+        "7",
+        "30"
+      ],
+      "correct": 0,
+      "explanation": ""
+    },
+    {
+      "stage": "check",
+      "question": "Qual item da AB 2013 é novo em relação à estrutura da ficha de dados de Gebru et al. 2018?",
+      "options": [
+        "Fontes ou proprietários de conjuntos de dados",
+        "Período de tempo durante o qual foram recolhidos os dados",
+        "Se o sistema utiliza ou utiliza continuamente a geração de dados sintéticos",
+        "Limpeza, transformação ou outras modificações"
+      ],
+      "correct": 2,
+      "explanation": ""
+    },
+    {
+      "stage": "check",
+      "question": "Qual é o princípio convergente de 2025 DPA para a formação de LLM sobre conteúdo de primeira parte disponível ao público?",
+      "options": [
+        "A formação é proibida em todas as circunstâncias",
+        "O interesse legítimo pode justificar a formação sobre conteúdos de primeira parte disponíveis ao público com exclusão e salvaguardas adequadas; não é necessário consentimento",
+        "O consentimento explícito do utilizador é sempre necessário",
+        "Só podem ser utilizados dados sintéticos"
+      ],
+      "correct": 1,
+      "explanation": ""
+    },
+    {
+      "stage": "post",
+      "question": "Qual destes não é uma solução parcial para o problema de irreversão mencionado na lição?",
+      "options": [
+        "Desaprendimento (removação aproximada medida pela MIA)",
+        "Localização baseada em funções de influência e atualização seletiva",
+        "A eliminação automática de peso obrigada pelo RGPD",
+        "Repressão de sintonia fina de saídas derivadas dos dados"
+      ],
+      "correct": 2,
+      "explanation": ""
+    },
+    {
+      "stage": "post",
+      "question": "O que constata o \"Consenso em Crise\" da Iniciativa de Provença de Dados (Julho de 2024)?",
+      "options": [
+        "As taxas de consentimento são estáveis em todas as fontes",
+        "Os dados sintéticos substituíram completamente os dados da web",
+        "As restrições de Robots.txt estão diminuindo ano após ano",
+        "Os editores estão adicionando restrições a robots.txt a uma taxa acelerada; o commons aberto-trainable-upon está contraindo rapidamente, com cerca de 25% das principais fontes de treinamento adicionando restrições 2023 a 2024"
+      ],
+      "correct": 3,
+      "explanation": ""
+    }
+  ]
+}

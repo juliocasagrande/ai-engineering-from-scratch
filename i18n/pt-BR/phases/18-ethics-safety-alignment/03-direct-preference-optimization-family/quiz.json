@@ -1,0 +1,78 @@
+{
+  "lesson": "03-direct-preference-optimization-family",
+  "title": "A família de otimização das preferências diretas",
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "Porque é que o DPO pode ignorar um modelo de recompensa explícito?",
+      "options": [
+        "Os dados de preferência não exigem uma recompensa escalar",
+        "O DPO treina o seu próprio modelo de recompensa implicitamente em um segundo ciclo de otimização",
+        "O RLHF óptimo de forma fechada permite que você expresse recompensa como um log-ratio de políticas, que substitui para a perda Bradley-Terry",
+        "As preferências Bradley-Terry são invariáveis à função de recompensa"
+      ],
+      "correct": 2,
+      "explanation": ""
+    },
+    {
+      "stage": "check",
+      "question": "Qual é o modo de falha que a OPI (Azar et al., 2024) aborda principalmente no DPO?",
+      "options": [
+        "Requisitos de dados emparelhados",
+        "Dependência de uma política de referência",
+        "Previsão de comprimento da resposta escolhida",
+        "Diferença de recompensa implícita ilimitada das probabilidades de preferência minúsculas"
+      ],
+      "correct": 3,
+      "explanation": ""
+    },
+    {
+      "stage": "check",
+      "question": "Quando é que consegues o KTO sobre o DPO?",
+      "options": [
+        "Quando você tem etiquetas individuais não emparelhadas (desejáveis / indesejáveis) e deseja usar utilidades de prevenção de perdas",
+        "Quando você só tem dados em par com margens fortes",
+        "Quando você tem que garantir zero implicito recompensa deriva",
+        "Quando quiser remover a penalidade KL inteiramente"
+      ],
+      "correct": 0,
+      "explanation": ""
+    },
+    {
+      "stage": "check",
+      "question": "Qual propriedade é única para a SimPO em comparação com a DPO?",
+      "options": [
+        "Elimina a política de referência e normaliza a probabilidade de log em relação ao comprimento da sequência",
+        "Ele usa uma perda de odds-ratio com NLL",
+        "Ele deixa cair o sigmoide de registro Bradley-Terry para um mapeamento de identidade",
+        "Manterá a política de referência e acrescentará uma margem"
+      ],
+      "correct": 0,
+      "explanation": ""
+    },
+    {
+      "stage": "post",
+      "question": "Qual é o problema de \"resposta degradada escolhida\" no DPO que o BPO visa?",
+      "options": [
+        "A resposta escolhida é amostrada com baixa probabilidade na inferência",
+        "A resposta escolhida fica mais longa do que a rejeitada",
+        "O DPO pode reduzir o log-prob absoluto da resposta escolhida, desde que o log-prob rejeitado cai mais rápido",
+        "A resposta escolhida não está apoiada pela política de referência"
+      ],
+      "correct": 2,
+      "explanation": ""
+    },
+    {
+      "stage": "post",
+      "question": "Rafailov et al. (NeurIPS 2024) sobre leis de escalagem para algoritmos de alinhamento direto mostram:",
+      "options": [
+        "O DPO supera-optimiza, mas a IPO e a SimPO não",
+        "As DAAs eliminam o Goodhart por conceção",
+        "Otimizar excessivamente desaparece quando os dados emparelhados excederem 100 mil exemplos",
+        "Os DAAs apresentam a mesma forma de supera otimização de pico e colapso em recompensa ao ouro"
+      ],
+      "correct": 3,
+      "explanation": ""
+    }
+  ]
+}

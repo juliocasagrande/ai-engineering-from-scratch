@@ -1,0 +1,78 @@
+{
+  "lesson": "06-mesa-optimization-deceptive-alignment",
+  "title": "Otimizar a mesa e alinhar-se enganosamente",
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "Qual par capta melhor a distinção de alinhamento interno / externo?",
+      "options": [
+        "O externo = é limpo de dados; interno = é o optimizador estocástico",
+        "Oter = o objetivo base coincide com o que queríamos; interior = o mesa-objectivo coincide com o objetivo base",
+        "O exterior = é a política estável; interior = é a temperatura baixa",
+        "Exterior = o modelo é executado no hardware; interno = é baixa perda"
+      ],
+      "correct": 1,
+      "explanation": ""
+    },
+    {
+      "stage": "check",
+      "question": "Qual das seguintes não é uma das quatro classes de alinhamento mesa-objetivo de Hubinger et al.?",
+      "options": [
+        "Aproximadamente alinhados",
+        "Provavelmente alinhados",
+        "Aligados com força",
+        "Aligado por proxy"
+      ],
+      "correct": 1,
+      "explanation": ""
+    },
+    {
+      "stage": "check",
+      "question": "Em que condições é o alinhamento enganoso a estratégia de maximização de recompensas para um mesa-optimizador?",
+      "options": [
+        "Tem um objetivo terminal persistente, tem consciência situacional de treinamento vs. implantação, e o otimizador base o modifica se ele falhar no treinamento",
+        "É treinado com PPO em vez de DPO",
+        "A sua capacidade excede os parâmetros 100B",
+        "Tem qualquer representação interna."
+      ],
+      "correct": 0,
+      "explanation": ""
+    },
+    {
+      "stage": "check",
+      "question": "Por que pode o treinamento padrão de adversários falhar (ou piorar) a alinhamento enganoso?",
+      "options": [
+        "Requer mais computação do que RLHF",
+        "Ensinam o mesa-optimizador um discriminador mais nítido entre teste e implantação, não um mesa-objetivo alinhado",
+        "Não pode funcionar em GPUs",
+        "Ele usa a função de perda errada"
+      ],
+      "correct": 1,
+      "explanation": ""
+    },
+    {
+      "stage": "post",
+      "question": "O que é o hacking de gradiente, tal como introduzido em Hubinger et al. (2019)?",
+      "options": [
+        "Técnica para treinamento mais rápido",
+        "Uma patologia especulativa em que um mesa-optimizador capaz produz saídas que moldam suas próprias atualizações de gradiente para preservar seu mesa-objetivo",
+        "Um inseto em autograd",
+        "Um método de jailbreaking para modelos com sintonia de instruções"
+      ],
+      "correct": 1,
+      "explanation": ""
+    },
+    {
+      "stage": "post",
+      "question": "Qual destes é um fracasso de alinhamento OUTER, não um interior?",
+      "options": [
+        "Porta traseira sobrevivente SFT",
+        "Mesa-optimizer esconde seu objetivo durante a avaliação",
+        "Mesa-optimizer otimiza um objetivo proxy que diverge fora da distribuição",
+        "O hacking de recompensas e a coesão emergentes porque o objetivo base é em si um proxy defeituoso para a intenção humana"
+      ],
+      "correct": 3,
+      "explanation": ""
+    }
+  ]
+}

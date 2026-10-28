@@ -1,0 +1,78 @@
+{
+  "lesson": "30-dual-use-risk-cyber-bio-chem-nuclear",
+  "title": "Risco de duplo uso - Ciber, Bio, Química, Aumento Nuclear",
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "Como a narrativa de bio-alivação de 2024-2025 evoluiu?",
+      "options": [
+        "Manteve-se inalterado em 2024-2025.",
+        "De \"aumento grave\" para \"não a elevação mensurável\"",
+        "De \"elevação leve\" (2024) a \"na praça de ajudar significativamente os novatos a criar ameaças biológicas conhecidas\" (abril 2025) a \"elevação de 2,53 vezes insuficiente para descartar a ASL-3\" (Antropic 2025)",
+        "De \"sem elevação\" para \"elevação leve\""
+      ],
+      "correct": 2,
+      "explanation": ""
+    },
+    {
+      "stage": "check",
+      "question": "O que encontrou o relatório de ameaças cibernéticas de novembro de 2025 da Anthropic?",
+      "options": [
+        "Modelos Frontier recusaram todas as tarefas cibernéticas",
+        "Modelos de código aberto ultrapassaram a capacidade de fronteira",
+        "Atores estatais ligados à China usaram a ferramenta de codificação agencial de Claude para automatizar 80-90% de uma campanha de ciberataque, com intervenção humana em apenas 4-6 passos",
+        "Os ataques cibernéticos permaneceram inteiramente manuais"
+      ],
+      "correct": 2,
+      "explanation": ""
+    },
+    {
+      "stage": "check",
+      "question": "Como os modelos de fronteira com capacidade de visão estão a erodir a lacuna de execução química/biológica?",
+      "options": [
+        "Apenas aumentando a extensão do contexto",
+        "Substituindo todos os equipamentos de laboratório por simuladores virtuais",
+        "Ao observar vídeo de wet-lab e fornecer correção de protocolo em tempo real; A demonstração de dezembro de 2025 da OpenAI mostrou que o GPT-5 foi iterado em experimentos de wet-lab com uma melhoria de eficiência 79x através da otimização de protocolo baseada em IA",
+        "Ao gerar protocolos falsos"
+      ],
+      "correct": 2,
+      "explanation": ""
+    },
+    {
+      "stage": "check",
+      "question": "Por que a ascensão do domínio nuclear permaneceu limitada em relação à bio/química/ciber?",
+      "options": [
+        "Modelos de fronteira recusam-se a discutir física",
+        "Todas as informações nucleares foram removidas dos dados de formação",
+        "O nuclear é o domínio mais fácil de atacar com IA",
+        "O modelo de ameaça é dominado pela aquisição de materiais fisíveis (um gargalhão de engarrafamento não informativo, de aquisição e equipamento), de modo que a elevação da IA na camada de informação proporciona uma elevação limitada para os novatos na prática"
+      ],
+      "correct": 3,
+      "explanation": ""
+    },
+    {
+      "stage": "post",
+      "question": "O que implica a assimetria absoluta entre novato e especialista para os casos de segurança?",
+      "options": [
+        "A solução apenas para os iniciantes (filtros de entrada, recusa, incerteza) é insuficiente para o controlo absoluto dos peritos; são necessárias medidas adicionais como o endurecimento da elicitação, o desaprendimento das capacidades e os protocolos de controlo",
+        "Ambos são perfeitamente abordados pela RLHF",
+        "Capacidade absoluta de especialista é automaticamente zero",
+        "Só os novatos levantam as coisas"
+      ],
+      "correct": 0,
+      "explanation": ""
+    },
+    {
+      "stage": "post",
+      "question": "Qual é o piloto de \"accesso confiável\" da OpenAI no contexto da utilização dupla da internet?",
+      "options": [
+        "Um parche para CVE-2025-32711",
+        "Conceder aos organismos de segurança verificados (empresas de resposta a incidentes, governos) acesso às capacidades para o trabalho de duplo uso defensivo, criando uma assimetria de acesso que favoreça os defensores se for escalada",
+        "Um lançamento de código aberto do GPT-5",
+        "Fechar todos os acesso API"
+      ],
+      "correct": 1,
+      "explanation": ""
+    }
+  ]
+}

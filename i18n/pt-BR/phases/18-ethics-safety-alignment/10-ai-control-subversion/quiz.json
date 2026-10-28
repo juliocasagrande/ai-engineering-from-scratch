@@ -1,0 +1,78 @@
+{
+  "lesson": "10-ai-control-subversion",
+  "title": "Controle de IA - Segurança Apesar da Subversão",
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "Qual é a melhor que capta a diferença entre alinhamento e controle de IA?",
+      "options": [
+        "São sinônimos .",
+        "O controle é sobre o hardware; o alinhamento é sobre o software",
+        "A alinhamento pergunta se U é confiável; o controlo pergunta se podemos usar U com segurança sem confiar nele",
+        "O controle substitui a função de perda enquanto o alinhamento altera o optimizador"
+      ],
+      "correct": 2,
+      "explanation": ""
+    },
+    {
+      "stage": "check",
+      "question": "O que assume o modelo de ameaça de Controle de IA?",
+      "options": [
+        "U é sem confiança forte, T é confiável fraco, H é limitado confiável trabalho humano",
+        "Só existe U.",
+        "U e T são ambos adversários",
+        "Os três recursos (U, T, H) são confiáveis"
+      ],
+      "correct": 0,
+      "explanation": ""
+    },
+    {
+      "stage": "check",
+      "question": "Qual é o risco fundamental que a Editing Confiável evita no Monitoramento Não Confiável?",
+      "options": [
+        "T não pode editar texto",
+        "Disputa de hardware",
+        "Dois casos de U podem conluir ou compartilhar antecedentes, por isso o protocolo deve gastar orçamento em resistência à conlução",
+        "Os seres humanos não podem ser auditados"
+      ],
+      "correct": 2,
+      "explanation": ""
+    },
+    {
+      "stage": "check",
+      "question": "Em relação à tarefa de código-backdoor da Greenblatt et al. (ICML 2024) o que a Edição Confiável consegue em relação ao Monitoramento Não Confiável?",
+      "options": [
+        "Só ganha com orçamento humano zero .",
+        "São exactamente equivalentes.",
+        "É muito pior .",
+        "É estritamente dominante no Pareto: maior utilidade em todos os níveis de segurança"
+      ],
+      "correct": 3,
+      "explanation": ""
+    },
+    {
+      "stage": "post",
+      "question": "Qual das seguintes não é um dos três limites fundamentais da lição de controle?",
+      "options": [
+        "O controlo produz modelos alinhados como subproduto",
+        "Modelos fracos confiáveis, eventualmente, se atrasam.",
+        "O controlo pode falhar em níveis de capacidade mais elevados se U puder manipular T ou razonar sobre a distribuição de auditoria de H",
+        "Os humanos não escalam"
+      ],
+      "correct": 0,
+      "explanation": ""
+    },
+    {
+      "stage": "post",
+      "question": "O que argumenta um caso de segurança de controlo?",
+      "options": [
+        "Que U é digno de confiança",
+        "Que T é mais capaz do que U",
+        "Que, sob as piores suposições sobre U, o protocolo de implantação limita a probabilidade de um resultado inaceitável",
+        "Que o modelo passou num teste manual de jailbreak"
+      ],
+      "correct": 2,
+      "explanation": ""
+    }
+  ]
+}

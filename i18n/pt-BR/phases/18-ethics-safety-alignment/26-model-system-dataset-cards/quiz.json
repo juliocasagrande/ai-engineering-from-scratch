@@ -1,0 +1,78 @@
+{
+  "lesson": "26-model-system-dataset-cards",
+  "title": "Modelo, Sistema e Cartões de Dados",
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "Qual descreve melhor o Mitchell et al. (2019) Modelo Card original?",
+      "options": [
+        "Apenas um modelo de manifesto de ponto de controlo",
+        "Um contrato legal regulamentar",
+        "\"Etiqueta nutricional\" para os modelos ML: dados de formação, utilização prevista, fatores, métricas, dados de avaliação, análises quantitativas desagregadas, considerações éticas, precauções",
+        "Uma especificação OpenAPI"
+      ],
+      "correct": 2,
+      "explanation": ""
+    },
+    {
+      "stage": "check",
+      "question": "O que encontraram Oreamuno et al. (2023) sobre a adoção de considerações éticas em cartões de modelo Hugging Face?",
+      "options": [
+        "Nenhum modelo de cartão tem texto em tudo",
+        "Aproximadamente 0,3% dos documentos de considerações éticas",
+        "Aproximadamente 80% dos documentos apresentam considerações éticas",
+        "Todos os modelos de cartões documentam-nos"
+      ],
+      "correct": 1,
+      "explanation": ""
+    },
+    {
+      "stage": "check",
+      "question": "O que fornece a camada telescópica / periscópica / microscópica dos dados de Pushkarna et al. (Google 2022)?",
+      "options": [
+        "Lista de verificação de auditoria pré-RLHF",
+        "Uma biblioteca de visualização com tema telescópio",
+        "Um enquadramento de limites de objetos em que o mesmo documento serve diferentes leitores (não-especialistas, profissionais de ML, auditores) através de três níveis de detalhes de zoom",
+        "Uma interface de consulta que preserva a privacidade"
+      ],
+      "correct": 2,
+      "explanation": ""
+    },
+    {
+      "stage": "check",
+      "question": "Qual é o âmbito de aplicação do Sistema de Cartões que não é o caso dos Modelos de Cartões?",
+      "options": [
+        "Só o tokenizer",
+        "Sistema de IA de ponta a ponta: modelo + pilha de segurança + contexto de implantação, incluindo capacidades de segurança, proteção por injeção rápida, detecção de exfiltração de dados, alinhamento e resposta a incidentes",
+        "Apenas o modelo de solicitação",
+        "Apenas o conjunto de dados"
+      ],
+      "correct": 1,
+      "explanation": ""
+    },
+    {
+      "stage": "post",
+      "question": "O que relataram Liang et al. (2024) sobre detalhes do modelo de cartão e taxa de download do Hugging Face?",
+      "options": [
+        "Apenas as seções de considerações éticas afectaram os downloads",
+        "Detalhes de taxas de download reduzidas",
+        "Os modelos detalhados de cartões conduzem a um aumento de descargas semanal de +29,0% no HF para o grupo de tratamento versus o controlo (diferência em diferença); a pressão de adoção é agora orientada pelo mercado, não apenas pela conformidade",
+        "Detalhes não tiveram efeito sobre downloads"
+      ],
+      "correct": 2,
+      "explanation": ""
+    },
+    {
+      "stage": "post",
+      "question": "O que contribui o Laminator (Duddu et al. 2024) para a documentação?",
+      "options": [
+        "Um arame de referência automatizado",
+        "Atestados verificáveis através de assinaturas TEE/criptográficas de hardware, para que o cartão possa conter uma prova de reivindicação em vez de apenas uma reivindicação",
+        "Um gerador de resumos baseado em LLM",
+        "Substituição da norma de fichas de dados"
+      ],
+      "correct": 1,
+      "explanation": ""
+    }
+  ]
+}
