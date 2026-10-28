@@ -138,6 +138,16 @@ def main() -> None:
                     continue
             skipped += 1
             continue
+        # Contributor edits can land while a prior phase job is still running.
+        # Its older cache may overwrite a newer record on publish. Keep a file
+        # with no cache entry rather than replacing a reviewed translation.
+        if dest.exists() and rel not in cache:
+            cache[rel] = digest
+            if not args.dry_run:
+                cache_file.parent.mkdir(parents=True, exist_ok=True)
+                cache_file.write_text(json.dumps(cache, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
+            skipped += 1
+            continue
         if args.dry_run:
             translated += 1
             continue
