@@ -1,6 +1,6 @@
 ---
 name: slo-goodput-gate
-description: Produce a CI/CD-ready benchmark recipe that gates LLM deploys on goodput, not throughput, with P50/P90/P99 percentiles and a documented tool choice.
+description: Produir uma receita de referência preta para CI/CD que o LLM implante em goodput, não em throughput, com percentil P50/P90/P99 e uma escolha documentada de ferramentas.
 version: 1.0.0
 phase: 17
 lesson: 08

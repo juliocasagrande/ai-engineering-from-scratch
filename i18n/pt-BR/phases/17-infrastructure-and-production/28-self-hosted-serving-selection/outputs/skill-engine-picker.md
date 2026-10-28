@@ -1,6 +1,6 @@
 ---
 name: engine-picker
-description: Pick a self-hosted LLM engine (llama.cpp, Ollama, TGI, vLLM, SGLang) given hardware, scale, and workload. Name 2026 TGI maintenance mode as a migration trigger.
+description: Escolha um motor de LLM auto-hosted (llama.cpp, Ollama, TGI, vLLM, SGLang) dado hardware, escala e carga de trabalho. Nomear o modo de manutenção 2026 TGI como um gatilho de migração.
 version: 1.0.0
 phase: 17
 lesson: 28

@@ -1,6 +1,6 @@
 ---
 name: cold-start-planner
-description: Pick and stack cold-start mitigations for serverless LLM deployments. Budget phases (node, image, weights, engine, first forward) and match mitigations to SLA.
+description: Selecionar e empilhar as mitigações de início a frio para implantações de LLM sem servidor. fases orçamentais (nodo, imagem, pesos, motor, primeiro para frente) e matching as mitigações para SLA.
 version: 1.0.0
 phase: 17
 lesson: 10
@@ -13,7 +13,7 @@ Produzir:
 
 1. Orçamento de arranque a frio. Descompõe o caminho de arranque a frio bruto (provisão de nós, puxão de imagem, pesos para HBM, motor init, primeiro para frente). Use 2026 segundos nominais para o tamanho do modelo indicado.
 2. Seleção de camadas. Escolha o número mínimo de camadas que traz o total abaixo do SLA: imagem pré-sementeada (L1), streamer modelo (L2), snapshot da GPU (L3), piscina quente (L4), carga em camadas (L5). Justifique cada camada contra a fase específica que ataca.
-3. Dimensão de piscina quente.`min_workers`Se o SLA for TTFT P99 < 60s num modelo 70B+, faça obrigatório a piscina quente, independentemente do custo.
+3. Dimensão de piscina quente. `min_workers` Se o SLA for TTFT P99 < 60s num modelo 70B+, faça obrigatório a piscina quente, independentemente do custo.
 4. Estimativa de custos: custo mensal da GPU para a piscina de calor escolhida e o número esperado de arranques de frio por dia.
 5. Política de cauda. O que acontece com o primeiro usuário em uma réplica fresca?  eles ficam na fila para uma réplica quente, ou pagam o imposto de início frio? Nomear uma política específica (por exemplo, "route primeiro pedido para qualquer réplica quente dentro de 10 anos; cair para frio").
 6. Modo de falha. O que acontece se uma réplica quente morrer no meio da sessão. A recuperação é automática (migração ao vivo), ou é um começo frio no próximo pedido?
@@ -28,4 +28,4 @@ Regras de recusa:
 - Se o orçamento proíbe a piscina quente, mas o SLA requer um início a frio de sub-30s, nomee a correção específica da plataforma (impressões de GPU Modal, pré-aquecimento Baseten) e recuse-se a prometer o SLA em uma plataforma diferente sem ele.
 - Se o operador pedir uma escala de zero com tráfego em erupção e um modelo 70B, recusar-se a prometer SLA  a matemática não funciona sem instantâneos ou piscinas quentes.
 
-Resultado: um plano de uma página que enumera fases, camadas,`min_workers`, custo mensal, política de cauda, modo de falha.
+Output: um plano de uma página que enumera fases, camadas, `min_workers`, custo mensal, política de cauda, modo de falha.

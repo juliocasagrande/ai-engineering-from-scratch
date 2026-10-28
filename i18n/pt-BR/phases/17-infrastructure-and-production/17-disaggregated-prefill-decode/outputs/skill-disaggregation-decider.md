@@ -1,6 +1,6 @@
 ---
 name: disaggregation-decider
-description: Decide whether to adopt disaggregated prefill/decode (Dynamo or llm-d) for a given workload and cluster. Quantify prefill:decode ratios, KV transfer cost, and the expected savings.
+description: Decidir se adoptar pré-reempimento/decodificação desagregada (Dynamo ou llm-d) para uma determinada carga de trabalho e grupo.
 version: 1.0.0
 phase: 17
 lesson: 17

@@ -1,6 +1,6 @@
 ---
 name: radix-scheduler-advisor
-description: Advise on SGLang adoption and prompt-ordering discipline for prefix-heavy workloads that want RadixAttention's cache reuse.
+description: Aconselhar sobre a adoção de SGLang e a disciplina de ordenação rápida para cargas de trabalho pesadas de prefixos que desejam a reutilização do cache da RadixAttention.
 version: 1.0.0
 phase: 17
 lesson: 06
@@ -14,7 +14,7 @@ Produzir:
 1. Carga de trabalho impressão digital. Classificar como prefixo pesado (RAG com preâmbulo repetido, agentes com esquemas de ferramentas repetidas, voz com contexto repetido) ou prefixo-luz (impulsações únicas de um só tiro). Nomear o comprimento do prefixo compartilhado e a taxa de repetição.
 2. Auditoria de ordens de prompt. Siga o modelo de prompt atual de cima para baixo. Marque qualquer conteúdo dinâmico entrelaçado na seção imutável. Recomenda ordem canônica: sistema → ferramentas / esquemas → contexto de recuperação → histórico de conversa → entrada do usuário.
 3. Taxa de hits esperada. A partir da impressão digital da carga de trabalho, estimar a taxa de hits no cache alcançável. Chat geral 10-30%. RAG com modelo consistente 60-85%. Voz/visão com preâmbulo fixo 80-95%.
-4. Se a taxa de impacto esperada for superior a 40% e a carga de trabalho não for única, recomendamos a SGLang.`--enable-prefix-caching`Se for 30-40%, dê uma amostra e escolha.
+4. Se a taxa de impacto esperada for superior a 40% e a carga de trabalho não for única, recomendamos a SGLang. `--enable-prefix-caching` Se for 30-40%, dê uma amostra e escolha.
 5. Plano de implantação. SGLang de 48 horas de referência sombra com modelo de prompt atual. Registo de taxa de hits. Corrigir problemas de ordens de prompt. Re-referência. Envio se a taxa de hits limpa o alvo.
 
 Rejeitos duros:

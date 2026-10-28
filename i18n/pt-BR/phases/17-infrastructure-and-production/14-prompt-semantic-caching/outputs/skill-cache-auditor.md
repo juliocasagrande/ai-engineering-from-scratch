@@ -1,6 +1,6 @@
 ---
 name: cache-auditor
-description: Audit an LLM prompt template and traffic pattern for cacheability. Recommend prompt restructure, TTL choice, parallelization fix, and semantic-cache threshold.
+description: Auditar um modelo de solicitação de LLM e padrão de tráfego para a cachéabilidade. Recomendar reestruturação rápida, escolha de TTL, correção de paralelalização e limiar de caché semântico.
 version: 1.0.0
 phase: 17
 lesson: 14

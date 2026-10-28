@@ -1,6 +1,6 @@
 ---
 name: quantization-picker
-description: Pick a 2026 quantization format given hardware, engine, workload, and quality tolerance, and produce a calibration + validation plan.
+description: Escolha um formato de quantização 2026 dado hardware, motor, carga de trabalho e tolerância de qualidade, e produz um plano de calibração + validação.
 version: 1.0.0
 phase: 17
 lesson: 09

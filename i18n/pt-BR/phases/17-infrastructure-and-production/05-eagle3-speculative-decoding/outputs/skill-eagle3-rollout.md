@@ -1,6 +1,6 @@
 ---
 name: eagle3-rollout
-description: Produce a staged EAGLE-3 speculative-decoding rollout plan that measures acceptance rate alpha on real traffic before shipping.
+description: Produção de um plano de implantação de decodificação especulativa EAGLE-3 em fases que medisse a taxa de aceitação alfa no tráfego real antes do envio.
 version: 1.0.0
 phase: 17
 lesson: 05
@@ -13,8 +13,8 @@ Produzir:
 
 1. Planos de medição de linha de base: qual referência (LLMPerf, GenAI-Perf ou sombra de produção), qual a distribuição de pedidos, qual o ponto de concurência, quais métricas a registar (média TTFT/P99, média ITL/P99, throughput, concurência).
 2. Seleção de cabeçalhos de projeto. EAGLE-3 treinado por ShareGPT para bate-papo geral. EAGLE-3 treinado por domínio para tráfego especializado (código, médico, legal) ou a decisão de treiná-lo antes do envio.
-3. Config. Exactamente VLLM `speculative_config`campos (método, modelo, num_speculative_tokens). Verifique a combinação contra a matriz de compatibilidade para a versão vLLM implementada (v0.18.0 marca a descodificação especulativa compatível com preenchimento em pedaços).
-4. Portais alfa. Meta alfa >= 0,55 na simultânea produção. Procedimento de medição: tráfego de sombras durante 24 horas, registro vLLM `spec_decode_metrics`Divida os tokens aceitos pelo comprimento do esboço solicitado.
+3. Config. Exactamente VLLM `speculative_config` campos (método, modelo, num_speculative_tokens). Verifique a combinação contra a matriz de compatibilidade para a versão vLLM implementada (v0.18.0 marca a descodificação especulativa compatível com preenchimento em pedaços).
+4. Porta alfa. Meta alfa >= 0,55 na simultânea produção. Procedimento de medição: tráfego de sombras durante 24 horas, log vLLM `spec_decode_metrics`Divida os tokens aceitos pelo comprimento do esboço solicitado.
 5. Observação da cauda. Plot P99 ITL delta (espec on - spec off). Se o delta for positivo, o padrão de dois passes rejeitados do esboço está morrendo. Reduzir K ou desativar essa carga de trabalho.
 6. Verificação de equilíbrio. Na simultânea relatada, calcular o equilíbrio alfa para a verificação de custos gerais.
 

@@ -1,6 +1,6 @@
 ---
 name: chaos-plan
-description: Design an LLM chaos engineering plan — verify prerequisites, build four planes, pick tool, start with three safe experiments, enforce safety-plane gates.
+description: Projetar um plano de engenharia de caos LLM Verificar os pré-requisitos, construir quatro aviões, escolher ferramenta, começar com três experimentos seguros, fazer cumprir os portões de segurança de avião.
 version: 1.0.0
 phase: 17
 lesson: 24

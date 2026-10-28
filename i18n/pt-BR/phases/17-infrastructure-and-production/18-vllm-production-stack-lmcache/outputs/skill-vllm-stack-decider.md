@@ -1,6 +1,6 @@
 ---
 name: vllm-stack-decider
-description: Decide vLLM deployment layout — production-stack Helm chart, KV offload (native CPU or LMCache), router/observability integration — given workload and fleet size.
+description: Decidir o layout de implantação do vLLM  gráfico de capacetes de produção, descarga de KV (CPU nativa ou LMCache), integração de roteador/observabilidade  dada a carga de trabalho e o tamanho da frota.
 version: 1.0.0
 phase: 17
 lesson: 18
@@ -16,7 +16,7 @@ Produzir:
    - Nenhum (interrupções curtas, baixa concurência  custos gerais excederem o benefício).
    - Descarga de CPU vLLM nativa (pressão HBM de motor único, simples).
    - Conector LMCache (reutilização de préfixos multi-motor, preposição pesada ou solicitações compartilhadas para vários inquilinos).
-3. Monitoramento da utilização de HBM.`--gpu-memory-utilization`com espaço de cabeça; alerta de 92%+ sustentada como sinal de pré-preempção.
+3. Monitoramento da utilização de HBMs. `--gpu-memory-utilization` com espaço de cabeça; alerta de 92%+ sustentada como sinal de pré-preempção.
 4. Integração do roteador. Roteador consciente de cache (Fase 17 · 11).
 5. Observabilidade: Prometheus scrape por motor, ATEL GenAI atributos (fase 17 · 13), modelo de painel de instrumentos Grafana da pilha de produção.
 6. Impacto esperado. Quantificar o ganho esperado de capacidade versus corrente  referir a forma de referência 16x H100 (LMCache ajuda quando a pegada de KV excede o HBM).

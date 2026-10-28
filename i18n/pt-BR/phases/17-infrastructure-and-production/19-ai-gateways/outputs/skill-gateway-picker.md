@@ -1,6 +1,6 @@
 ---
 name: gateway-picker
-description: Pick an AI gateway (LiteLLM, Portkey, Kong AI, Cloudflare/Vercel) given scale, latency budget, compliance, ops posture, and pricing tolerance.
+description: Escolha um gateway de IA (LiteLLM, Portkey, Kong AI, Cloudflare/Vercel) dada escala, orçamento de latência, conformidade, postura de operações e tolerância de preços.
 version: 1.0.0
 phase: 17
 lesson: 19

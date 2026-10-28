@@ -1,6 +1,6 @@
 ---
 name: llm-security-plan
-description: Produce an LLM security plan covering secrets vault, PII scrubbing with consistent tokenization, network egress allowlist, audit log retention, and zero-trust posture.
+description: Produza um plano de segurança LLM que cobre segredos, limpeza de PII com tokenization consistente, rede de saída permitido, registro de auditoria retenção, e zero confiança postura.
 version: 1.0.0
 phase: 17
 lesson: 25
@@ -22,7 +22,7 @@ Produzir:
 Rejeitos duros:
 - Chaves estáticas em arquivos de configuração.
 - Armazenamento de informações brutas no registro de auditoria. Recusar  hash apenas a menos que o quadro regulamentar exprese expressamente o contrário.
-- Permitindo a saída para`*`Não é a internet.
+- Permitindo a saída `*` Não é a internet.
 
 Regras de recusa:
 - Se não houver uma caixa de segurança aceitável para o cliente (exigência de espaços de ar), rejeite o plano normal e desenhe uma caixa de segurança baseada em arquivos com rotação.

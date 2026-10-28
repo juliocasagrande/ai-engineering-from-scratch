@@ -1,6 +1,6 @@
 ---
 name: demo-interface-checklist
-description: Review a model demo before its link goes public. Check the contract, the feedback, the errors, the public-link controls, and log privacy.
+description: Revisar uma demonstração de modelo antes de seu link ser publicado, verificar o contrato, os comentários, os erros, os controles de links públicos e a privacidade do registro.
 version: 1.0.0
 phase: 17
 lesson: 29
@@ -39,12 +39,12 @@ Erros
 
 Linha pública
 
-11. Existe um limite de taxa por cliente.`Retry-After`- O cabeçalho.
+11. O número de clientes que recebem um pedido rejeitado é de 429 e a taxa de `Retry-After` - O cabeçalho.
 12. A chave limite de taxa é correta atrás de um proxy. Um cliente não pode escolher a sua própria chave.
 13. Existe um limite de utilização ou um limite de gastos para toda a demonstração, para todos os clientes juntos.
 14. O acesso precisa de um token, uma senha ou um login, a menos que o proprietário queira que a demonstração esteja aberta a qualquer pessoa.
 15. O limite de taxa e o limite máximo também se aplicam aos endpoints de API criados pelo quadro.
-16. A página escreve o modelo de saída como texto, nunca como HTML. O servidor envia um `Content-Security-Policy`- O cabeçalho.
+16. A página escreve o modelo de saída como texto, nunca como HTML. `Content-Security-Policy` - O cabeçalho.
 
 Privacidade
 
