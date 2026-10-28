@@ -1,0 +1,19 @@
+{
+  "phases/06-speech-and-audio/01-audio-fundamentals/outputs/skill-audio-loader.md": "55ea5b4d9fbc71a823c76726db8b9ffed9a232a65e619c6ad1cee51568a0029d",
+  "phases/06-speech-and-audio/02-spectrograms-mel-features/outputs/skill-feature-extractor.md": "f7bb399afdafeb95be39570a0a59a2f5747d78c4ed186a08bbfb98f1328a8be3",
+  "phases/06-speech-and-audio/03-audio-classification/outputs/skill-classifier-designer.md": "77c93503565302d31bb2bd020b8aa0965203e750b11508bf2bfc25a390db522c",
+  "phases/06-speech-and-audio/04-speech-recognition-asr/outputs/skill-asr-picker.md": "65154b5440a623ba56d794b692d93d72ecff19b04e1037715b9338753845d8c5",
+  "phases/06-speech-and-audio/05-whisper-architecture-finetuning/outputs/skill-whisper-tuner.md": "1fe39621d12a0412f3edfae2c3e22ac433cc429259b8a0fbeea846764751c2a2",
+  "phases/06-speech-and-audio/06-speaker-recognition-verification/outputs/skill-speaker-verifier.md": "262e4eeaa1e0a63276e104feb647216761aed0bfdf44e5a6f3711d5879341f86",
+  "phases/06-speech-and-audio/07-text-to-speech/outputs/skill-tts-designer.md": "f9dfac68b17c4d8b68771c171ae7e05f045db2215b37a44d4b1316304cb382af",
+  "phases/06-speech-and-audio/08-voice-cloning-conversion/outputs/skill-voice-cloner.md": "4761fbe67672074ce440a4f3fce5d31a176e20ddc0a1eaefca76101432b5a047",
+  "phases/06-speech-and-audio/09-music-generation/outputs/skill-music-designer.md": "8d0a0a207072b26ba52f3fdb7edce15e5b97d8f781619f39571b1ab53bd90a46",
+  "phases/06-speech-and-audio/10-audio-language-models/outputs/skill-alm-picker.md": "3b07ad13dec12cfe0e17384f05a557aa7c77a85a96bb7e2e5a8e89207a5e4bd2",
+  "phases/06-speech-and-audio/11-real-time-audio-processing/outputs/skill-realtime-pipeline.md": "642810014637fdaf523acc6f89a54be209cc80ed8e3fb5d7e79b9763d6dba283",
+  "phases/06-speech-and-audio/12-voice-assistant-pipeline/outputs/skill-voice-assistant-architect.md": "69c7f545b3a300419cac6f34d596533d117b9aed00eff7f2741b717edf8657a8",
+  "phases/06-speech-and-audio/13-neural-audio-codecs/outputs/skill-codec-picker.md": "e0c985ac629ad8ec30c048fb2ec09f4e51e3dde932551c135287bd4279577fad",
+  "phases/06-speech-and-audio/14-voice-activity-detection-turn-taking/outputs/skill-vad-tuner.md": "b9301c2200fed53d79bdb5932b7102348549019da32e12f3eb5614a70169192b",
+  "phases/06-speech-and-audio/15-streaming-speech-to-speech-moshi-hibiki/outputs/skill-duplex-pipeline.md": "2b8172ac0bdf0b494b158ab104fede04d28fee48e892f0914ef5835419513480",
+  "phases/06-speech-and-audio/16-anti-spoofing-audio-watermarking/outputs/skill-spoof-defender.md": "acabbad3d2812deceede2029e62b297cdf90b1dc13f456761f688f8fdd7f7464",
+  "phases/06-speech-and-audio/17-audio-evaluation-metrics/outputs/skill-audio-evaluator.md": "426b5e21c7dad2aa7b9dedfa9ea941d294f8d643a28a481dd95569e1ca633335"
+}
