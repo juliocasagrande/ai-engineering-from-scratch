@@ -26,6 +26,18 @@ class TranslateExtrasTest(unittest.TestCase):
         source = '---\nname: sample\ndescription: AI prompt\n---\n\nRun it.\n\n```bash\npython3 main.py\n```\n'
         self.assertEqual(extras.translate_markdown(source, "pt-BR", "echo"), source)
 
+    def test_only_description_is_translated_in_frontmatter(self):
+        original = extras.translate_string
+        try:
+            extras.translate_string = lambda text, _lang, _provider: text.upper()
+            source = '---\nname: prompt-env-check\ndescription: Diagnose an environment\nphase: 0\n---\nBody.\n'
+            translated = extras.translate_markdown(source, 'pt-BR', 'echo')
+            self.assertIn('description: DIAGNOSE AN ENVIRONMENT', translated)
+            self.assertIn('name: prompt-env-check', translated)
+            self.assertIn('phase: 0', translated)
+        finally:
+            extras.translate_string = original
+
     def test_technical_span_never_reaches_sentence_model(self):
         original = extras.lessons._nllb_sentence
         original_pipe = extras.lessons._nllb_pipe
