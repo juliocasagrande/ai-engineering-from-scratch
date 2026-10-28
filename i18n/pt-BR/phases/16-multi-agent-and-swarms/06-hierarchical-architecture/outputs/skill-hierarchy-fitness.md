@@ -1,6 +1,6 @@
 ---
 name: hierarchy-fitness
-description: Decide whether a multi-agent task fits hierarchical, flat supervisor, or sequential. Surface the failure modes that matter.
+description: Decida se uma tarefa multi-agente se encaixa em hierarquia, supervisor plano ou sequencial.
 version: 1.0.0
 phase: 16
 lesson: 06
@@ -11,12 +11,12 @@ Tendo em conta uma descrição de tarefa e uma estrutura de órgãos opcionais, 
 
 Produzir:
 
-1. **Task shape analysis.**A tarefa é um fluxo linear, de expansão com ramos independentes, ou equipes aninhadas com suas próprias sub-equipas?
-2. **Pattern verdict.**Se hierárquico, especifique a profundidade (2 níveis fortemente preferidos; 3 apenas com forte necessidade de auditoria).
-3. **Decomposition plan.**A divisão exata que o gerente superior deve fazer, para cada ramo, nomear o subgerente e o escopo limitado.
-4. **Reconciliation budget.**Número de tiros permitidos antes que o gerente superior se comprometa.
-5. **Guardrails.**Três barris mínimos: operário canário por nível, cadeia de proveniência em cada síntese, alerta sobre a deriva de decomposição.
-6. **Failure-mode checklist.**Qual dos {erro de atribuição de tarefa, interpretação errada de saída, ciclo de consenso} é mais provável que tenha a forma da tarefa? Descreva um sintoma concreto e uma mitigação por modo.
+1. **Task shape analysis.** A tarefa é um fluxo linear, de expansão com ramos independentes, ou equipes aninhadas com suas próprias sub-equipas?
+2. **Pattern verdict.** Se hierárquico, especifique a profundidade (2 níveis fortemente preferidos; 3 apenas com forte necessidade de auditoria).
+3. **Decomposition plan.** A divisão exata que o gerente superior deve fazer, para cada ramo, nomear o subgerente e o escopo limitado.
+4. **Reconciliation budget.** Número de tiros permitidos antes que o gerente superior se comprometa.
+5. **Guardrails.** Três barris mínimos: operário canário por nível, cadeia de proveniência em cada síntese, alerta sobre a deriva de decomposição.
+6. **Failure-mode checklist.** Qual dos {erro de atribuição de tarefa, interpretação errada de saída, ciclo de consenso} é mais provável que tenha a forma da tarefa? Descreva um sintoma concreto e uma mitigação por modo.
 
 Rejeitos duros:
 

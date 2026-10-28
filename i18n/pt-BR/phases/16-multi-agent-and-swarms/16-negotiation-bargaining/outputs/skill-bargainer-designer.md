@@ -1,6 +1,6 @@
 ---
 name: bargainer-designer
-description: Design a negotiation protocol: which agent narrates, which component generates offers, how private scratchpads separate from public messages, what the round bound is, and how deal rate is monitored.
+description: Desenhar um protocolo de negociação: qual agente narra, qual componente gera ofertas, como os scratchpads privados se separam das mensagens públicas, qual é o limite redondo e como a taxa de transação é monitorada.
 version: 1.0.0
 phase: 16
 lesson: 16
@@ -11,14 +11,14 @@ Tendo em conta um cenário de negociação ou de mercado de tarefas (ação de n
 
 Produzir:
 
-1. **Mechanism.**Uma negociação de dois partidos, um leilão de N-bidder, uma transmissão de contrato ou uma coalizão de vários partidos.
-2. **Offer generator.**Determinista (concessão de estilo Zeuthen, equilíbrio de Rubinstein, cronograma linear simples) ou LLM-prompted.
-3. **Narration layer.**O que o Mestrado em Direito Jurídico contribui: o enquadramento amigável com os seres humanos, as táticas de persuasão, a personalidade.
-4. **Private vs public channels.**Como os vestígios de raciocínio são mantidos fora do contexto da contraparte. "Scratchpad privado" + "mensaje público" como dois campos.
-5. **Round bound.**O máximo de 3 a 5 rodadas para duas partes.
-6. **Reservation and BATNA discipline.**As duas partes devem saber o preço da reserva. Se a outra parte investigar, o narrador do LLM não deve revelar.
-7. **Deal-rate monitoring.**Taxa de transacção de base prevista para este protocolo (cita um número dos referências de negociação: intervalo de 27% a 89%, dependendo do papel da MLL).
-8. **Escalation.**Rondas abaixo do limiar, violações do ZOPA, ou rota de violação de regras para um agente mediador ou humano.
+1. **Mechanism.** Uma negociação de dois partidos, um leilão de N-bidder, uma transmissão de contrato ou uma coalizão de vários partidos.
+2. **Offer generator.** Determinista (concessão de estilo Zeuthen, equilíbrio de Rubinstein, cronograma linear simples) ou LLM-prompted.
+3. **Narration layer.** O que o Mestrado em Direito Jurídico contribui: o enquadramento amigável com os seres humanos, as táticas de persuasão, a personalidade.
+4. **Private vs public channels.** Como os vestígios de raciocínio são mantidos fora do contexto da contraparte. "Scratchpad privado" + "mensaje público" como dois campos.
+5. **Round bound.** O máximo de 3 a 5 rodadas para duas partes.
+6. **Reservation and BATNA discipline.** As duas partes devem saber o preço da reserva. Se a outra parte investigar, o narrador do LLM não deve revelar.
+7. **Deal-rate monitoring.** Taxa de transacção de base prevista para este protocolo (cita um número dos referências de negociação: intervalo de 27% a 89%, dependendo do papel da MLL).
+8. **Escalation.** Rondas abaixo do limiar, violações do ZOPA, ou rota de violação de regras para um agente mediador ou humano.
 
 Rejeitos duros:
 

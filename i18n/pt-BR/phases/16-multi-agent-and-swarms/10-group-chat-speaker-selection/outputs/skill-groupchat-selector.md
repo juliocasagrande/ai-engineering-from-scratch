@@ -1,6 +1,6 @@
 ---
 name: groupchat-selector
-description: Configure an AutoGen/AG2-style GroupChat selector for a task, naming the selector variant, termination, and anti-hot-speaker rules.
+description: Configure um selector de GroupChat de estilo AutoGen / AG2 para uma tarefa, nomeando a variante do selector, terminação e regras anti-falantes quentes.
 version: 1.0.0
 phase: 16
 lesson: 10
@@ -11,12 +11,12 @@ Dadas uma tarefa e uma lista de agentes, produzir uma configuração do GroupCha
 
 Produzir:
 
-1. **Selector variant.**Round-robin (barato, justo, cego ao contexto), LLM selecionado (contextualmente consciente, caro) ou personalizado (LLM + fallback baseado em regras).
-2. **Selector inputs.**Se for selecionado LLM: N recentes mensagens, especialidades de agente, conta de turno.
-3. **Termination rules.**Max rounds, token TERMINATE, verificador de meta atingida, ou combinação.
-4. **Hot-speaker mitigation.**Captura de rotação por agente, pontuação de balanço do alto-falantes na entrada do selector, rotação forçada após viradas consecutivas de K.
-5. **Context bloat mitigation.**Plano de projecção (visões escaladas por função), pontos de controlo de resumo, limite de contexto por agente.
-6. **Observability.**A entrada do selector de registro, a escolha do selector, a latência do agente por turno.
+1. **Selector variant.** Round-robin (barato, justo, cego ao contexto), LLM selecionado (contextualmente consciente, caro) ou personalizado (LLM + fallback baseado em regras).
+2. **Selector inputs.** Se for selecionado LLM: N recentes mensagens, especialidades de agente, conta de turno.
+3. **Termination rules.** Max rounds, token TERMINATE, verificador de meta atingida, ou combinação.
+4. **Hot-speaker mitigation.** Captura de rotação por agente, pontuação de balanço do alto-falantes na entrada do selector, rotação forçada após viradas consecutivas de K.
+5. **Context bloat mitigation.** Plano de projecção (visões escaladas por função), pontos de controlo de resumo, limite de contexto por agente.
+6. **Observability.** A entrada do selector de registro, a escolha do selector, a latência do agente por turno.
 
 Rejeitos duros:
 

@@ -1,6 +1,6 @@
 ---
 name: handoff-designer
-description: Design a handoff topology for a Swarm/Agents-SDK-style system: which agents exist, which handoffs they can call, what context transfers.
+description: Desenhar uma topologia de transferência para um sistema de estilo Swarm/Agents-SDK: quais agentes existem, quais transferências podem chamar, quais transferiam contexto.
 version: 1.0.0
 phase: 16
 lesson: 11
@@ -11,13 +11,13 @@ Dada uma tarefa orientada para o usuário (frequentemente triagem ou roteamento 
 
 Produzir:
 
-1. **Agent roster.**Cada agente: nome, propósito de uma frase, ferramentas e a que outros agentes pode entregar.
-2. **Handoff functions.**As assinaturas de ferramentas por agente, cada função de entrega devolve um agente alvo.
-3. **Context transfer policy.**Em cada ponta da entrega: histórico completo, últimas mensagens N, ou snapshot resumido.
-4. **Guardrails.**A validação de entrada por agente (o que é permitido para desencadear entregas a especialistas sensíveis), a autenticação na entrega, quando necessário.
-5. **Loop detection.**Regra para detectar ping-pong (por exemplo, "A entregue a B; B entregue de volta a A" ocorrendo mais de uma vez seguida).
-6. **Fallback behavior.**Se um alvo de transferência estiver faltando (agente removido, falha do autor), qual agente trata a sessão.
-7. **Session / memory plan.**Se usar sessões do Agents SDK, memória gerenciada por chamadores ou nenhuma memória.
+1. **Agent roster.** Cada agente: nome, propósito de uma frase, ferramentas e a que outros agentes pode entregar.
+2. **Handoff functions.** As assinaturas de ferramentas por agente, cada função de entrega devolve um agente alvo.
+3. **Context transfer policy.** Em cada ponta da entrega: histórico completo, últimas mensagens N, ou snapshot resumido.
+4. **Guardrails.** A validação de entrada por agente (o que é permitido para desencadear entregas a especialistas sensíveis), a autenticação na entrega, quando necessário.
+5. **Loop detection.** Regra para detectar ping-pong (por exemplo, "A entregue a B; B entregue de volta a A" ocorrendo mais de uma vez seguida).
+6. **Fallback behavior.** Se um alvo de transferência estiver faltando (agente removido, falha do autor), qual agente trata a sessão.
+7. **Session / memory plan.** Se usar sessões do Agents SDK, memória gerenciada por chamadores ou nenhuma memória.
 
 Rejeitos duros:
 

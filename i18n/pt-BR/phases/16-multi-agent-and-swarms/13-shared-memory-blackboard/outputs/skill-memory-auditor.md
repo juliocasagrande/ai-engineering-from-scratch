@@ -1,6 +1,6 @@
 ---
 name: memory-auditor
-description: Audit a multi-agent system's shared-memory design for provenance, versioning, verifier separation, and projection schema. Flag memory-poisoning exposure before production.
+description: Auditar o projeto de memória compartilhada de um sistema multi-agente para proveniência, versão, separação do verificador e esquema de projeção.
 version: 1.0.0
 phase: 16
 lesson: 13
@@ -11,12 +11,12 @@ Dado um código base ou documento de arquitetura multi-agente, auditem o projeto
 
 Produzir:
 
-1. **Topology.**Completo conjunto de mensagens, tabela negra dividida em tópicos, visão projetada por agente ou híbrido? Nomear a estrutura de dados (lista, dit, quadro de pandas, armazenamento de vetores, tabela SQL).
-2. **Provenance fields.**Em cada escrita, a entrada registra: identificação do escritor, timestamp, hash ou texto prompt, rastreamento de chamada de ferramenta, URI de fonte ou nome da ferramenta?
-3. **Update model.**O log apêndice apenas, ou os escritores mutam no lugar? Se mutação, qual é o mecanismo de controle de concurência (bloqueio, versão otimista, nenhuma)?
-4. **Verifier separation.**Existe um agente de leitura apenas com acesso independente à fonte? Pode escrever para o pool principal (não deve)? Onde vai sua saída?
-5. **Projection schema.**Se o projeto usa projeções (redutores de LangGraph, tópicos de tabela negra, visões de escala de papel), o esquema está documentado? Como os novos agentes declaram a projeção que consumem?
-6. **Poisoning risk score.**Pontuação 1-5 em cada eixo: [completude de origem], [supersessão sobre mutação], [independência do verificador], [claridade do esquema de projeção]. Um sistema que pontua abaixo de 3 em qualquer eixo é sinalizado.
+1. **Topology.** Completo conjunto de mensagens, tabela negra dividida em tópicos, visão projetada por agente ou híbrido? Nomear a estrutura de dados (lista, dit, quadro de pandas, armazenamento de vetores, tabela SQL).
+2. **Provenance fields.** Em cada escrita, a entrada registra: identificação do escritor, timestamp, hash ou texto prompt, rastreamento de chamada de ferramenta, URI de fonte ou nome da ferramenta?
+3. **Update model.** O log apêndice apenas, ou os escritores mutam no lugar? Se mutação, qual é o mecanismo de controle de concurência (bloqueio, versão otimista, nenhuma)?
+4. **Verifier separation.** Existe um agente de leitura apenas com acesso independente à fonte? Pode escrever para o pool principal (não deve)? Onde vai sua saída?
+5. **Projection schema.** Se o projeto usa projeções (redutores de LangGraph, tópicos de tabela negra, visões de escala de papel), o esquema está documentado? Como os novos agentes declaram a projeção que consumem?
+6. **Poisoning risk score.** Pontuação 1-5 em cada eixo: [completude de origem], [supersessão sobre mutação], [independência do verificador], [claridade do esquema de projeção]. Um sistema que pontua abaixo de 3 em qualquer eixo é sinalizado.
 
 Rejeitos duros:
 

@@ -1,6 +1,6 @@
 ---
 name: benchmark-reader
-description: Read a multi-agent benchmark claim skeptically. Grades the claim on benchmark selection, contamination, baselines, statistical significance, task diversity, and cost disclosure.
+description: Leia de forma cética uma alegação de referência de vários agentes.
 version: 1.0.0
 phase: 16
 lesson: 24
@@ -11,19 +11,19 @@ Dado um pedido publicado ou interno de desempenho de referência de vários agen
 
 Produzir:
 
-1. **Benchmark + split identification.**Qual referência (MARBLE, COMMA, MedAgentBoard, AgentArch, SWE-bench Pro, SWE-bench Verified, custom)? Qual divisão (completa, prolongada, limpa de contaminação)?
-2. **Contamination status.**Se o valor de referência for anterior ao período de tempo de ensaio, indicar o risco de contaminação e descontar a alegação.
-3. **Baseline quality.**O sistema não é sintonizado, é uma ablação, não uma linha de base.
-4. **Statistical significance.**N ensaios, intervalos de confiança ou erros padrão, p-valor ou equivalente.
-5. **Task diversity.**Uma tarefa, um domínio ou muitos?
-6. **Cost disclosure.**Tokens por tarefa, relógio de parede por tarefa, custo em dólares por tarefa. Uma solução de 90% a 20 vezes o custo é uma decisão de negócio; sem custo, a reivindicação é incompleta.
+1. **Benchmark + split identification.** Qual referência (MARBLE, COMMA, MedAgentBoard, AgentArch, SWE-bench Pro, SWE-bench Verified, custom)? Qual divisão (completa, prolongada, limpa de contaminação)?
+2. **Contamination status.** Se o valor de referência for anterior ao período de tempo de ensaio, indicar o risco de contaminação e descontar a alegação.
+3. **Baseline quality.** O sistema não é sintonizado, é uma ablação, não uma linha de base.
+4. **Statistical significance.** N ensaios, intervalos de confiança ou erros padrão, p-valor ou equivalente.
+5. **Task diversity.** Uma tarefa, um domínio ou muitos?
+6. **Cost disclosure.** Tokens por tarefa, relógio de parede por tarefa, custo em dólares por tarefa. Uma solução de 90% a 20 vezes o custo é uma decisão de negócio; sem custo, a reivindicação é incompleta.
 7. **Letter grade + one-sentence verdict.**
 
-   - **A:**Passa-se os seis controlos; a alegação é provavelmente robusta.
-   - **B:**Uma fraqueza: a alegação é plausível com advertenças notadas.
-   - **C:**Duas fraquezas; a alegação é sugestiva, mas precisa de replicação.
-   - **D:**Três ou mais fraquezas; a alegação não é prova.
-   - **F:**Questão de desqualificação (contaminação em divisão não divulgada, não existem estatísticas, não há linha de base).
+   - **A:** Passa-se os seis controlos; a alegação é provavelmente robusta.
+   - **B:** Uma fraqueza: a alegação é plausível com advertenças notadas.
+   - **C:** Duas fraquezas; a alegação é sugestiva, mas precisa de replicação.
+   - **D:** Três ou mais fraquezas; a alegação não é prova.
+   - **F:** Questão de desqualificação (contaminação em divisão não divulgada, não existem estatísticas, não há linha de base).
 
 Rejeitos duros:
 

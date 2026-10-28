@@ -1,6 +1,6 @@
 ---
 name: marl-picker
-description: Choose a MARL algorithm (MADDPG, QMIX, MAPPO, IQL, or extensions) for a given multi-agent task. Consider cooperative vs competitive, action-space type, heterogeneity, reward structure, and scale.
+description: Escolha um algoritmo MARL (MADDPG, QMIX, MAPPO, IQL ou extensões) para uma determinada tarefa multi-agente. Considere cooperativa versus competitiva, tipo de espaço de ação, heterogeneidade, estrutura de recompensa e escala.
 version: 1.0.0
 phase: 16
 lesson: 20
@@ -11,16 +11,16 @@ Dada uma descrição de tarefa multi-agente, escolha o algoritmo MARL.
 
 Produzir:
 
-1. **Task taxonomy.**Completamente cooperativa (recompensa partilhada), totalmente competitiva (sumada zero), mista, sumada geral. Número de agentes. Homogéneo versus heterogéneo.
-2. **Observability.**Pleno (cada agente vê o estado global), parcial (cada um vê apenas a sua própria observação) ou habilitado para comunicação.
-3. **Action space.**Discreto (como Atari, SMAC) ou contínuo (mundo de partículas, MuJoCo). Afeta a escolha do algoritmo.
-4. **Reward structure.**Dense (formado por passo) vs. scarse (apenas terminal). Dense torna o MAPPO prático; scarse necessita de ajuda de atribuição de crédito (decompositividade de valor do QMIX).
-5. **Algorithm recommendation.**Comece com o MAPPO como linha de base para Yu et al. 2022.
+1. **Task taxonomy.** Completamente cooperativa (recompensa partilhada), totalmente competitiva (sumada zero), mista, sumada geral. Número de agentes. Homogéneo versus heterogéneo.
+2. **Observability.** Pleno (cada agente vê o estado global), parcial (cada um vê apenas a sua própria observação) ou habilitado para comunicação.
+3. **Action space.** Discreto (como Atari, SMAC) ou contínuo (mundo de partículas, MuJoCo). Afeta a escolha do algoritmo.
+4. **Reward structure.** Dense (formado por passo) vs. scarse (apenas terminal). Dense torna o MAPPO prático; scarse necessita de ajuda de atribuição de crédito (decompositividade de valor do QMIX).
+5. **Algorithm recommendation.** Comece com o MAPPO como linha de base para Yu et al. 2022.
    - QMIX quando for necessária uma atribuição de crédito cooperativa + homogênea + forte de recompensas escassas
    - MADDPG quando misturado (cooperação + concorrência) + acções contínuas
    - Extensões (QTRAN, QPLEX, FACMAC) quando a restrição de monotonia é demasiado restritiva
-6. **Training infrastructure.**Se não tiver, recomenda políticas de nível imediato para os agentes de LLM.
-7. **Deployment contract.**CTDE: no momento da implantação, cada agente só vê observação local. Escreva o contrato explicitamente para que o código de tempo de execução o respeite.
+6. **Training infrastructure.** Se não tiver, recomenda políticas de nível imediato para os agentes de LLM.
+7. **Deployment contract.** CTDE: no momento da implantação, cada agente só vê observação local. Escreva o contrato explicitamente para que o código de tempo de execução o respeite.
 
 Rejeitos duros:
 

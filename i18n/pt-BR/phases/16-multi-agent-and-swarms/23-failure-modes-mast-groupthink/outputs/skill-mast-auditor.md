@@ -1,6 +1,6 @@
 ---
 name: mast-auditor
-description: Run a MAST-style failure-mode audit on a multi-agent system. Categorize execution-trace failures into Specification / Coordination / Verification and the Groupthink families; rank mitigations by expected failure reduction.
+description: Execute uma auditoria de modo de falha no estilo MAST em um sistema multi-agente. Categorize falhas de rastreamento de execução em especificação / coordenação / verificação e as famílias de Groupthink; classifique as mitigações pela redução de falhas esperada.
 version: 1.0.0
 phase: 16
 lesson: 23
@@ -11,13 +11,13 @@ Dado um sistema multi-agente e traços de execução de amostras, executar uma a
 
 Produzir:
 
-1. **Sample construction.**Pelo menos 200 traços da produção, amostragem uniformemente em todos os tipos de tarefas e janelas de tempo.
-2. **Classification pass.**Para cada traço, marca`success | failure`Para falhas, atribuir uma categoria MAST (espec / coord / verifique) e, se for caso disso, uma ou mais etiquetas da família Groupthink (monocultura / conformidade / tom / motivo misto / cascata).
-3. **Distribution table.**Contas e porcentagens por categoria MAST e tag Groupthink. Comparar com a distribuição de referência de Cemri 2025 (41.77 / 36.94 / 21.30).
-4. **Top failure patterns.**Identificar os 3 padrões específicos mais frequentes (por exemplo, "dois agentes revisam ambos").
-5. **Mitigation ranking.**Para cada padrão superior, propor uma mitigação da biblioteca padrão: contratos de papel explícitos, estado compartilhado de versões, verificador independente, interruptor de circuito, trio de detecção-diagnóstico-validação (STRATUS).
-6. **Risk of silent failures.**Quantas falhas produzem resultados plausíveis mas errados versus erros altos?
-7. **Slow-failure proxies.**Recomenda-se 2-3 métricas ao vivo que surgirão antes que se torne um erro alto: taxa de acordo, taxa de retestamento, distribuição de comprimento de saída, distância de edição entre agentes.
+1. **Sample construction.** Pelo menos 200 traços da produção, amostragem uniformemente em todos os tipos de tarefas e janelas de tempo.
+2. **Classification pass.** Para cada traço, marca `success | failure`Para falhas, atribuir uma categoria MAST (espec / coord / verifique) e, se for caso disso, uma ou mais etiquetas da família Groupthink (monocultura / conformidade / tom / motivo misto / cascata).
+3. **Distribution table.** Contas e porcentagens por categoria MAST e tag Groupthink. Comparar com a distribuição de referência de Cemri 2025 (41.77 / 36.94 / 21.30).
+4. **Top failure patterns.** Identificar os 3 padrões específicos mais frequentes (por exemplo, "dois agentes revisam ambos").
+5. **Mitigation ranking.** Para cada padrão superior, propor uma mitigação da biblioteca padrão: contratos de papel explícitos, estado compartilhado de versões, verificador independente, interruptor de circuito, trio de detecção-diagnóstico-validação (STRATUS).
+6. **Risk of silent failures.** Quantas falhas produzem resultados plausíveis mas errados versus erros altos?
+7. **Slow-failure proxies.** Recomenda-se 2-3 métricas ao vivo que surgirão antes que se torne um erro alto: taxa de acordo, taxa de retestamento, distribuição de comprimento de saída, distância de edição entre agentes.
 
 Rejeitos duros:
 

@@ -1,6 +1,6 @@
 ---
 name: swarm-fit
-description: Decide whether a task fits a swarm (decentralized) architecture or a supervisor (centralized) one.
+description: Decidir se uma tarefa se encaixa numa arquitetura swarm (descentralizada) ou numa supervisora (centralizada).
 version: 1.0.0
 phase: 16
 lesson: 09
@@ -11,14 +11,14 @@ Dada uma tarefa e seus requisitos de throughput / determinismo, recomendamos o e
 
 Produzir:
 
-1. **Task independence check.**As subtarefas são independentes ou dependem umas das outras?
-2. **Duration distribution.**O Swarm ganha principalmente em cargas de trabalho de duração variável.
-3. **Ordering requirement.**Estritamente, relaxado ou nada, o grupo não mantém a ordem, o supervisor sim.
-4. **Debuggability need.**Alto (financeiro, médico) → supervisor. Médio → enxame com ID de rastreamento por tarefa.
-5. **Queue choice.**Memória interna (`queue.Queue`) para demonstrações; Kafka / Redis Streams / NATS / durável DB-suportado para produção.
-6. **Worker design requirements.**Deve ser idempotente, deve emitir traços por tarefa, deve lidar com a pressão de volta.
-7. **Anti-starvation plan.**Envelhecimento prioritário, especialização de trabalhadores, fila limitada.
-8. **Observability plan.**Identificadores por tarefa, eventos de início/final, esquema de conjunto de resultados.
+1. **Task independence check.** As subtarefas são independentes ou dependem umas das outras?
+2. **Duration distribution.** O Swarm ganha principalmente em cargas de trabalho de duração variável.
+3. **Ordering requirement.** Estritamente, relaxado ou nada, o grupo não mantém a ordem, o supervisor sim.
+4. **Debuggability need.** Alto (financeiro, médico) → supervisor. Médio → enxame com ID de rastreamento por tarefa.
+5. **Queue choice.** Memória interna (`queue.Queue`) para demonstrações; Kafka / Redis Streams / NATS / durável DB-suportado para produção.
+6. **Worker design requirements.** Deve ser idempotente, deve emitir traços por tarefa, deve lidar com a pressão de volta.
+7. **Anti-starvation plan.** Envelhecimento prioritário, especialização de trabalhadores, fila limitada.
+8. **Observability plan.** Identificadores por tarefa, eventos de início/final, esquema de conjunto de resultados.
 
 Rejeitos duros:
 

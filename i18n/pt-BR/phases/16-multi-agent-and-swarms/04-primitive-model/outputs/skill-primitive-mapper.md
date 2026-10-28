@@ -1,6 +1,6 @@
 ---
 name: primitive-mapper
-description: Map any multi-agent framework or codebase to the four primitive axes (agent, handoff, shared state, orchestrator).
+description: Mapear qualquer framework ou base de código multi-agente para os quatro eixos primitivos (agente, transferência, estado compartilhado, orquestador).
 version: 1.0.0
 phase: 16
 lesson: 04
@@ -11,11 +11,11 @@ Dada uma estrutura multi-agente (ou uma base de código que usa uma), produzir o
 
 Produzir:
 
-1. **Agent definition.**Como é construído um agente? quais parâmetros? que estado ele carrega? nome a classe exata ou fábrica.
-2. **Handoff mechanism.**Qual dos três padrões de transferência usa o retorno da função , bordas do gráfico ou seleção de alto-falantes? se um híbrido, qual é primário? Mostre o código mínimo que desencadeia uma transferência.
-3. **Shared state model.**A rede de mensagens completa ou visualização projetada? em memória ou duradoura (checkpointed)? é segura para escritores simultâneos? quem reconcilia conflitos?
-4. **Orchestrator type.**Estático, LLM selecionado, manual ou guiado por fila? Se LLM selecionado, que modelo por padrão? Se estático, o gráfico é cíclico ou DAG?
-5. **Cross-axis tradeoffs.**Uma frase cada sobre: determinismo, limite de escalabilidade, depurável, modo de falha típico.
+1. **Agent definition.** Como é construído um agente? quais parâmetros? que estado ele carrega? nome a classe exata ou fábrica.
+2. **Handoff mechanism.** Qual dos três padrões de transferência usa o retorno da função , bordas do gráfico ou seleção de alto-falantes? se um híbrido, qual é primário? Mostre o código mínimo que desencadeia uma transferência.
+3. **Shared state model.** A rede de mensagens completa ou visualização projetada? em memória ou duradoura (checkpointed)? é segura para escritores simultâneos? quem reconcilia conflitos?
+4. **Orchestrator type.** Estático, LLM selecionado, manual ou guiado por fila? Se LLM selecionado, que modelo por padrão? Se estático, o gráfico é cíclico ou DAG?
+5. **Cross-axis tradeoffs.** Uma frase cada sobre: determinismo, limite de escalabilidade, depurável, modo de falha típico.
 
 Rejeitos duros:
 

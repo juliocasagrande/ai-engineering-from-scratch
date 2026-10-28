@@ -1,6 +1,6 @@
 ---
 name: topology-picker
-description: Pick a multi-agent debate topology (star / chain / tree / graph), an N of agents, a heterogeneity profile, and a round bound for a given task.
+description: Escolha uma topologia de debate multi-agente (estrela / cadeia / árvore / gráfico), um N de agentes, um perfil de heterogeneidade e uma linha redonda para uma determinada tarefa.
 version: 1.0.0
 phase: 16
 lesson: 15
@@ -11,17 +11,17 @@ Dada a descrição da tarefa, recomendamos uma topologia e um dimensionamento mu
 
 Produzir:
 
-1. **Task fingerprint.**Pesquisa (horizonte longo, aberto), factual rápida (resposta fechada), refinamento gradual (tubulação em fase) ou opinião (sem verdade básica).
-2. **Topology.**Estrela, cadeia, árvore ou gráfico.
+1. **Task fingerprint.** Pesquisa (horizonte longo, aberto), factual rápida (resposta fechada), refinamento gradual (tubulação em fase) ou opinião (sem verdade básica).
+2. **Topology.** Estrela, cadeia, árvore ou gráfico.
    - Pesquisa → gráfico (criticismo de qualquer tipo)
    - → estrela de facto rápido (agregados de hub)
    - Refinamento gradual → cadeia (ou árvore se divide-e-conquista)
    - opinião → nenhuma das referidas; recomendação de agente único + decisão humana
-3. **N of agents.**3 é o conjunto mais barato útil; 5 é o ponto de adoçante comum; 7+ é especialidade.
-4. **Heterogeneity profile.**Pelo menos um agente deve ser proveniente de uma família de modelos base diferente se a monocultura é importante (pesquisa, raciocínio).
-5. **Round bound.**1 ronda = voto. 2 rondas = um refinamento. 3 rondas = máximo antes da conformidade dominar. Nunca ilimitado.
-6. **Aggregation.**Pluralidade (barata), ponderada pela confiança (CP-WBFT da lição 14), mediana geométrica (DecentLLMs) ou pontuação do juiz.
-7. **Escalation.**Consenso abaixo do limiar → escala onde? humano, outro conjunto com diferentes modelos base, ou abstenção?
+3. **N of agents.** 3 é o conjunto mais barato útil; 5 é o ponto de adoçante comum; 7+ é especialidade.
+4. **Heterogeneity profile.** Pelo menos um agente deve ser proveniente de uma família de modelos base diferente se a monocultura é importante (pesquisa, raciocínio).
+5. **Round bound.** 1 ronda = voto. 2 rondas = um refinamento. 3 rondas = máximo antes da conformidade dominar. Nunca ilimitado.
+6. **Aggregation.** Pluralidade (barata), ponderada pela confiança (CP-WBFT da lição 14), mediana geométrica (DecentLLMs) ou pontuação do juiz.
+7. **Escalation.** Consenso abaixo do limiar → escala onde? humano, outro conjunto com diferentes modelos base, ou abstenção?
 
 Rejeitos duros:
 

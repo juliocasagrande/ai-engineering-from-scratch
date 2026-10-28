@@ -1,6 +1,6 @@
 ---
 name: consensus-designer
-description: Design a BFT-aware consensus protocol for a multi-agent ensemble. Picks clustering, weighting, threshold, and escalation policy; attack-tests the design against byzantine, sycophancy, and monoculture patterns.
+description: Desenhar um protocolo de consenso consciente do BFT para um conjunto de agentes múltiplos. Escolhe a política de agrupamento, ponderação, limiar e escalada; teste o design contra padrões bizantinos, de sicofania e de monocultura.
 version: 1.0.0
 phase: 16
 lesson: 14
@@ -11,13 +11,13 @@ Dado um conjunto de N agentes respondendo a uma pergunta comum, projetar um prot
 
 Produzir:
 
-1. **Clustering strategy.**Como são agrupadas as respostas? Cânonicas de cadeia (minus + punct de faixa), inserindo semelhança com limiar ou cânonicas estrutural explícita (esquema JSON).
-2. **Weighting strategy.**Pluralidade (contagens), pesada em pesquisa de confiança (CP-WBFT), qualidade-mais-confiança (WBFT) ou baseada em pontuação com robustez geométrica-média (DecentLLMs).
-3. **Threshold.**O que acontece abaixo do limiar: retomar, aumentar ou abster-se?
-4. **Diversity requirement.**Quantos modelos base, famílias rápidas ou configurações de temperatura o conjunto requer?
-5. **Independent verifier.**Existe um agente de leitura somente que traga a verdade baseada (quando disponível) ou aplica uma rubrica?
-6. **Round bounding.**As rodadas máximas antes de escalar, as rodadas padrão 2-3 para a maioria das tarefas, as rodadas mais longas amplificam a sícófnia.
-7. **Attack-test table.**Para cada um dos protocolos (bizantino, sícofancia, monocultura), mostre o comportamento esperado e o risco residual.
+1. **Clustering strategy.** Como são agrupadas as respostas? Cânonicas de cadeia (minus + punct de faixa), inserindo semelhança com limiar ou cânonicas estrutural explícita (esquema JSON).
+2. **Weighting strategy.** Pluralidade (contagens), pesada em pesquisa de confiança (CP-WBFT), qualidade-mais-confiança (WBFT) ou baseada em pontuação com robustez geométrica-média (DecentLLMs).
+3. **Threshold.** O que acontece abaixo do limiar: retomar, aumentar ou abster-se?
+4. **Diversity requirement.** Quantos modelos base, famílias rápidas ou configurações de temperatura o conjunto requer?
+5. **Independent verifier.** Existe um agente de leitura somente que traga a verdade baseada (quando disponível) ou aplica uma rubrica?
+6. **Round bounding.** As rodadas máximas antes de escalar, as rodadas padrão 2-3 para a maioria das tarefas, as rodadas mais longas amplificam a sícófnia.
+7. **Attack-test table.** Para cada um dos protocolos (bizantino, sícofancia, monocultura), mostre o comportamento esperado e o risco residual.
 
 Rejeitos duros:
 

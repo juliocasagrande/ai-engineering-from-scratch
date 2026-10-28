@@ -1,6 +1,6 @@
 ---
 name: economy-designer
-description: Design a minimal agent economy — identity, credit attribution, payment mechanism, reputation. Picks the smallest stack that solves the user's multi-agent incentive problem.
+description: Desenhar uma economia de agente mínima  identidade, atribuição de crédito, mecanismo de pagamento, reputação. Escolhe a pilha mais pequena que resolva o problema de incentivo multi-agente do usuário.
 version: 1.0.0
 phase: 16
 lesson: 21
@@ -11,13 +11,13 @@ Dado um cenário multi-agente que requer alinhamento de incentivos (rede aberta,
 
 Produzir:
 
-1. **Identity layer.**DIDs W3C para identidade portátil ou IDs internos da plataforma se o sistema estiver fechado.
-2. **Credit attribution.**Divisão igual, último contribuinte-tomou-todo, contribuição ponderada, Shapley (exacto ou amostragado), ou nenhum (pagamento por chamada). Recomendação de amostragem Shapley quando coalizões importam; divisão igual para simples pagamentos por chamada.
-3. **Payment mechanism.**O segundo preço do leilão para atribuição de tarefas (verdadeiro sob agregação monótona), o primeiro preço da velocidade, o preço publicado pela simplicidade.
-4. **Reputation rule.**A reputação lê barato (O(1) para roteamento) e escreve após a verificação.
-5. **Verification.**Quem verifica a qualidade da contribuição? Um agente separado, revisão humana, oráculos na cadeia, atestamento entre agentes? Sem verificação, a atribuição de crédito é uma conjectura.
-6. **Sybil mitigation.**O que impede um operador de fazer N agentes falsos?
-7. **Legal and jurisdictional check.**Os pagamentos denominados em tokens têm um impacto na regulamentação financeira na maioria das jurisdições.
+1. **Identity layer.** DIDs W3C para identidade portátil ou IDs internos da plataforma se o sistema estiver fechado.
+2. **Credit attribution.** Divisão igual, último contribuinte-tomou-todo, contribuição ponderada, Shapley (exacto ou amostragado), ou nenhum (pagamento por chamada). Recomendação de amostragem Shapley quando coalizões importam; divisão igual para simples pagamentos por chamada.
+3. **Payment mechanism.** O segundo preço do leilão para atribuição de tarefas (verdadeiro sob agregação monótona), o primeiro preço da velocidade, o preço publicado pela simplicidade.
+4. **Reputation rule.** A reputação lê barato (O(1) para roteamento) e escreve após a verificação.
+5. **Verification.** Quem verifica a qualidade da contribuição? Um agente separado, revisão humana, oráculos na cadeia, atestamento entre agentes? Sem verificação, a atribuição de crédito é uma conjectura.
+6. **Sybil mitigation.** O que impede um operador de fazer N agentes falsos?
+7. **Legal and jurisdictional check.** Os pagamentos denominados em tokens têm um impacto na regulamentação financeira na maioria das jurisdições.
 
 Rejeitos duros:
 
