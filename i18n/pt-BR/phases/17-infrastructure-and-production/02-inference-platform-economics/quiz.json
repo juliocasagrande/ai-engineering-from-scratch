@@ -1,0 +1,78 @@
+{
+  "lesson": "02-inference-platform-economics",
+  "title": "Economia da plataforma de inferência  Futebol, Juntos, Basetão, Modal, Replicação, Qualquer escala",
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "Quais são os três segmentos de mercado que a lição usa para organizar os vendedores de inferências de 2026?",
+      "options": [
+        "Empréstimo de capital de capital de um Estado-Membro",
+        "Gratuito, pago, empresa",
+        "O código aberto, comercial, híbrido",
+        "Silicio personalizado, plataformas GPU, mercados de primeira utilização de API"
+      ],
+      "correct": 3,
+      "explanation": ""
+    },
+    {
+      "stage": "check",
+      "question": "Em torno de que utilização sustentada da GPU a faturamento por minuto (Baseten, Modal) começa a superar a faturamento por token (Fireworks, Together)?",
+      "options": [
+        "5%",
+        "90%",
+        "60%",
+        "30%"
+      ],
+      "correct": 3,
+      "explanation": ""
+    },
+    {
+      "stage": "check",
+      "question": "Qual plataforma é descrita como Python-native serverless com faturamento por segundo e 2-4s de frio começa após pré-aquecimento?",
+      "options": [
+        "Qualquer escala",
+        "Baseten",
+        "Futebol",
+        "Modal"
+      ],
+      "correct": 3,
+      "explanation": ""
+    },
+    {
+      "stage": "check",
+      "question": "Qual é o diferenciador de preços de LoRA notável da Fireworks?",
+      "options": [
+        "Os pedidos do LoRA exigem um contrato de GPU dedicado separado",
+        "Os pedidos atendidos com LoRA são cobrados à taxa de token do modelo base",
+        "Os pedidos atendidos pela LoRA custam mais do que o modelo base",
+        "O LoRA não é suportado em absoluto"
+      ],
+      "correct": 1,
+      "explanation": ""
+    },
+    {
+      "stage": "post",
+      "question": "Qual plataforma se adapta a um cliente de saúde regulado que precisa de SOC 2 Tipo II, postura pronta para HIPAA e GPUs dedicados?",
+      "options": [
+        "Juntos",
+        "Qualquer escala",
+        "Baseten",
+        "Replicar"
+      ],
+      "correct": 2,
+      "explanation": ""
+    },
+    {
+      "stage": "post",
+      "question": "Por que a lição argumenta que as reivindicações de motor personalizado são principalmente sombra de marketing na camada de plataforma?",
+      "options": [
+        "Motores personalizados nunca superam o vLLM",
+        "O preço por token é o único diferenciador real",
+        "VLLM e SGLang representam aproximadamente 80% da produção de inferência de código aberto, de modo que a diferenciação de plataforma vem mais de DX, atribuição e SLAs do que motor",
+        "Todos os motores personalizados são garfos de TensorRT-LLM"
+      ],
+      "correct": 2,
+      "explanation": ""
+    }
+  ]
+}

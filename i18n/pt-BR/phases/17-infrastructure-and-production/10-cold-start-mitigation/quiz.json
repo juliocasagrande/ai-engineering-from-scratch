@@ -1,0 +1,78 @@
+{
+  "lesson": "10-cold-start-mitigation",
+  "title": "Mitigação do início no frio para LLM sem servidor",
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "Quanto tempo leva um início a frio para um modelo 70B num nó fresco sem mitigations?",
+      "options": [
+        "3-8 minutos",
+        "Mais de 1 hora",
+        "Menos de 10 segundos",
+        "30 a 60 segundos"
+      ],
+      "correct": 0,
+      "explanation": ""
+    },
+    {
+      "stage": "check",
+      "question": "Qual recurso do lado AWS a lição recomenda para pré-sementear imagens de contêineres para que a retirada de imagem passo 2 desapareça?",
+      "options": [
+        "Arquitetura de duplo volume de botelhos de raquetes referenciada na EC2NodeClass",
+        "Colocação de frota em locais",
+        "Apenas instantâneos do volume do EBS",
+        "Definições de tarefas do ECS"
+      ],
+      "correct": 0,
+      "explanation": ""
+    },
+    {
+      "stage": "check",
+      "question": "Qual recurso Modal fornece o mais próximo de um \"boot de GPU quente em segundos\" deserializando o estado pós-carga diretamente em HBM?",
+      "options": [
+        "Impressões de memória da GPU (checkpoints)",
+        "Carregamento de NVMe a DRAM em nível",
+        "Run:ai Modelo de Streamer",
+        "Migração ao vivo"
+      ],
+      "correct": 0,
+      "explanation": ""
+    },
+    {
+      "stage": "check",
+      "question": "Por que a migração ao vivo transfere tokens de entrada em vez de cache KV entre nós?",
+      "options": [
+        "O cache KV está criptografado e não pode mover-se",
+        "A migração ao vivo é exigida pelo RGPD",
+        "Os tokens de entrada têm maior entropia",
+        "Recomputar KV no destino é mais barato do que transferir GB de cache KV através da rede"
+      ],
+      "correct": 3,
+      "explanation": ""
+    },
+    {
+      "stage": "post",
+      "question": "Que camada sem servidor negocia o custo direto da GPU para uma prontidão previsível mantendo pelo menos uma réplica viva?",
+      "options": [
+        "Carga em nível",
+        "Migração ao vivo",
+        "Piscina quente com trabalhadores mínimos >= 1",
+        "Pre-semente de botelhos"
+      ],
+      "correct": 2,
+      "explanation": ""
+    },
+    {
+      "stage": "post",
+      "question": "Por que a lição diz que a mitigação do início frio deve ser apilada em camadas em vez de escolhida como uma única ferramenta?",
+      "options": [
+        "O Modal é dono de toda a pilha.",
+        "Todas as cinco camadas são agrupadas em vLLM",
+        "É uma exigência regulamentar",
+        "Nenhuma camada única elimina cada passo (provisão de nós, puxão de imagem, peso de carga, motor init); camadas de empilhamento comprimem cada passo"
+      ],
+      "correct": 3,
+      "explanation": ""
+    }
+  ]
+}

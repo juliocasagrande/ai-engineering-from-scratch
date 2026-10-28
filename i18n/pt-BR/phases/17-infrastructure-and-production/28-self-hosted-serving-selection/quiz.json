@@ -1,0 +1,78 @@
+{
+  "lesson": "28-self-hosted-serving-selection",
+  "title": "Seleção de serviço auto-hosted  Motor de correspondência para hardware e escala",
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "Que motor escolhe a lição como o dev-laptop de comando único?",
+      "options": [
+        "Llama.cpp",
+        "VLLM",
+        "TGI",
+        "Ollama"
+      ],
+      "correct": 3,
+      "explanation": ""
+    },
+    {
+      "stage": "check",
+      "question": "Qual evento de 2025 altera o padrão de TGI para novos projetos?",
+      "options": [
+        "TGI entrou em modo de manutenção em 11 de dezembro de 2025  apenas correções de bugs a seguir",
+        "TGI retirou o apoio da CUDA",
+        "TGI aumentou os preços",
+        "A TGI foi adquirida pela Anthropic."
+      ],
+      "correct": 0,
+      "explanation": ""
+    },
+    {
+      "stage": "check",
+      "question": "Qual restrição de hardware força llama.cpp e exclui vLLM / TRT-LLM?",
+      "options": [
+        "Apenas CPU (sem acelerador)",
+        "AMD MI300X",
+        "NVIDIA Hopper",
+        "Apple M4"
+      ],
+      "correct": 0,
+      "explanation": ""
+    },
+    {
+      "stage": "check",
+      "question": "Qual motor posiciona as lições para cargas de trabalho agentes de várias voltas e prefixos graças ao RadixAttention?",
+      "options": [
+        "SGLang",
+        "Ollama",
+        "TGI",
+        "Llama.cpp"
+      ],
+      "correct": 0,
+      "explanation": ""
+    },
+    {
+      "stage": "post",
+      "question": "Que linha de desenvolvimento para produção recomenda a lição sobre os mesmos pesos GGUF ou HF?",
+      "options": [
+        "TGI em todos os lugares",
+        "Ollama em dev e Ollama em prod",
+        "Ollama em dev, llama.cpp em emissão, vLLM (ou SGLang para prefixo pesado) em prod",
+        "Apenas TRT-LLM, de cima para baixo"
+      ],
+      "correct": 2,
+      "explanation": ""
+    },
+    {
+      "stage": "post",
+      "question": "Por que Ollama é desencorajada em partilhar a produção?",
+      "options": [
+        "Não pode carregar GGUF",
+        "Só funciona em Windows.",
+        "É de fonte fechada",
+        "A serialização HTTP Go adiciona gastos gerais, a gestão de concurência é mais simples do que a vLLM e o suporte à OpenTelemetry está atrasado"
+      ],
+      "correct": 3,
+      "explanation": ""
+    }
+  ]
+}

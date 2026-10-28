@@ -1,0 +1,78 @@
+{
+  "lesson": "14-prompt-semantic-caching",
+  "title": "Cachagem rápida e economia semântica",
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "Qual a diferença entre o caching semântico L1 e o caching de prompt/prefix L2?",
+      "options": [
+        "L2 armazenar embutidos; L1 armazenar atenção KV",
+        "L1 é do lado do fornecedor e L2 é do lado do cliente",
+        "L1 e L2 são iguais.",
+        "L1 salta o LLM inteiramente em inserir hites de semelhança; L2 reutiliza atenção KV no prestador para prefixos repetidos"
+      ],
+      "correct": 3,
+      "explanation": ""
+    },
+    {
+      "stage": "check",
+      "question": "Qual mecanismo Antropic marca blocos como caché para L2 prompt caching?",
+      "options": [
+        "Atributo cache_control explícito nos blocos de solicitação",
+        "Sufixos de nome de arquivo nas definições de ferramentas",
+        "Um limite implícito de comprimento de tempo",
+        "Um ponto final separado / caches"
+      ],
+      "correct": 0,
+      "explanation": ""
+    },
+    {
+      "stage": "check",
+      "question": "Como o antipatrão de paralelação infla a conta?",
+      "options": [
+        "Pedidos paralelas de desvio de loteamento",
+        "A paralelação desencadeia uma carga de guarda-panela por pedido",
+        "Todas as solicitações paralelas compartilham uma entrada de cache automaticamente",
+        "N solicitações paralelas com o mesmo prefixo chegam antes da primeira escrita no cache ser concluída, então cada um paga um prêmio de escrita e recebe desconto zero"
+      ],
+      "correct": 3,
+      "explanation": ""
+    },
+    {
+      "stage": "check",
+      "question": "Qual é o padrão anti-conteúdo dinâmico em prefixos cacheáveis?",
+      "options": [
+        "Incluindo conteúdo que altera cada solicitação (tempo atual para o minuto, ID de solicitação, ordem de exemplo aleatório) dentro do prefixo caché, matando a taxa de acessos",
+        "Usando um sistema de urgência muito curto",
+        "Sempre a transmissão de respostas",
+        "Colocação de esquemas de ferramentas no prefixo"
+      ],
+      "correct": 0,
+      "explanation": ""
+    },
+    {
+      "stage": "post",
+      "question": "Como pode o lote + entrada em cache empilhar durante a noite para reduzir os custos?",
+      "options": [
+        "Batch é incompatível com o caching",
+        "Eligibilidade de lote para desativar o caching",
+        "Batch só economiza custos de saída",
+        "As APIs de lote oferecem 50% de desconto; entrada em cache adiciona mais ~ 10x; combinados, os canais de transmissão durante a noite caem para ~ 10% do custo sincrono-uncached"
+      ],
+      "correct": 3,
+      "explanation": ""
+    },
+    {
+      "stage": "post",
+      "question": "O que diz a lição sobre as afirmações semânticas de \"acurateza de 95%\"?",
+      "options": [
+        "95% significa que você deve esperar 95% de visitas de cache",
+        "95% é a taxa de hits de cache padrão do OpenAI",
+        "95% é uma linha de base de taxa de impacto documentada pelo fornecedor",
+        "95% refere-se à correcção, não à taxa de acidentes; as taxas de acidentes relatadas da produção variam de ~10% (chat aberto) até ~70% (FAQ estruturada)"
+      ],
+      "correct": 3,
+      "explanation": ""
+    }
+  ]
+}

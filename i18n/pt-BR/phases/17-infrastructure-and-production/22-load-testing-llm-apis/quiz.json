@@ -1,0 +1,78 @@
+{
+  "lesson": "22-load-testing-llm-apis",
+  "title": "APIs de teste de carga LLM  Por que K6 e Locust mentem",
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "Qual é a armadilha do GIL nos testes de carga LLM baseados em gafanhotos?",
+      "options": [
+        "A tokenization do lado do cliente é executada sob o Python GIL e as filas atrás da geração de solicitações, aumentando a latência entre os tokens relatados",
+        "A lousa requer CUDA",
+        "A Locomoteria só funciona em Windows",
+        "Locust não suporta HTTP"
+      ],
+      "correct": 0,
+      "explanation": ""
+    },
+    {
+      "stage": "check",
+      "question": "Qual é a armadilha da uniformidade rápida?",
+      "options": [
+        "As instruções uniformes sempre retardar o servidor",
+        "A amostragem a partir de uma distribuição real subrepresenta indicações longas",
+        "Looping o mesmo prompt faz prefixo cache parecer decodificação completa simultânea, inflado de rendimento relatado",
+        "As instruções uniformes exigem streaming"
+      ],
+      "correct": 2,
+      "explanation": ""
+    },
+    {
+      "stage": "check",
+      "question": "Que quatro padrões de carga recomenda a lição?",
+      "options": [
+        "Só explodiu",
+        "Teste de clics manuais",
+        "Estacionamento estável, rampa, ponta, remoção",
+        "Constantemente 1 RPS durante 10 dias"
+      ],
+      "correct": 2,
+      "explanation": ""
+    },
+    {
+      "stage": "check",
+      "question": "Como a lição recomenda construir uma distribuição realista imediata?",
+      "options": [
+        "Características aleatórias por pedido",
+        "Sempre use o mesmo prompt para maximizar os hits do cache",
+        "Escrever à mão 5 instruções e misturar",
+        "Sample from a real distribution using mean and stddev (for example LLMPerf's --mean-input-tokens / --stddev-input-tokens) or replay real traffic"
+      ],
+      "correct": 3,
+      "explanation": ""
+    },
+    {
+      "stage": "post",
+      "question": "Qual combinação de ferramentas 2026 está melhor posicionada para portões CI/CD SLA e circuitos distribuídos nativos Kubernetes?",
+      "options": [
+        "Guidelme só",
+        "Só Vegeta",
+        "K6 v2026.1.0 com o k6 Operator 1.0 GA (TestRun / PrivateLoadZone CRDs)",
+        "Estódio de lagostas 2.43.3"
+      ],
+      "correct": 2,
+      "explanation": ""
+    },
+    {
+      "stage": "post",
+      "question": "Que modo de falha é capturado pelo padrão de carga de remoção?",
+      "options": [
+        "Cauda de arranque frio",
+        "A contenção do GIL",
+        "Fugas de memória, derivação do pool de conexão e sobreposição de observabilidade ao longo de horas",
+        "Tempestades de despejo em cache"
+      ],
+      "correct": 2,
+      "explanation": ""
+    }
+  ]
+}

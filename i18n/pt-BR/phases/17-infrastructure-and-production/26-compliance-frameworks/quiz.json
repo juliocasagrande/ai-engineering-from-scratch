@@ -1,0 +1,78 @@
+{
+  "lesson": "26-compliance-frameworks",
+  "title": "Conformidade  SOC 2, HIPAA, GDPR, PCI-DSS, EU AI Act, ISO 42001",
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "Quando é que a aplicação da Lei da IA da UE para sistemas de alto risco começa?",
+      "options": [
+        "Já totalmente aplicada em 2024",
+        "2 de agosto de 2026",
+        "2 de fevereiro de 2025",
+        "1 de janeiro de 2030"
+      ],
+      "correct": 1,
+      "explanation": ""
+    },
+    {
+      "stage": "check",
+      "question": "Qual o limite máximo de multa de dois níveis definido pela Lei da IA da UE?",
+      "options": [
+        "Até 100 mil euros por qualquer violação",
+        "Até 15 milhões de euros ou 3% de volume de negócios global anual para obrigações de sistemas de alto risco (artigo 99 ((4)); até 35 milhões de euros ou 7% para práticas proibidas de IA (artigo 99 ((3))",
+        "Até 1 milhão de euros por violação",
+        "Sem penalidades financeiras, apenas ordens de retirada."
+      ],
+      "correct": 1,
+      "explanation": ""
+    },
+    {
+      "stage": "check",
+      "question": "Por que a limpeza de PII após o processamento não é uma postura defensiva do GDPR?",
+      "options": [
+        "O modelo já viu os dados, então a redação em tempo real da camada de inferência (antes da chamada de LLM) é o padrão 2026 defensivel",
+        "O RGPD proíbe a redação inteiramente",
+        "É muito lento em escala.",
+        "O pós-processamento é idêntico ao tempo real"
+      ],
+      "correct": 0,
+      "explanation": ""
+    },
+    {
+      "stage": "check",
+      "question": "Qual é a diferença prática entre SOC 2 Tipo I e Tipo II?",
+      "options": [
+        "Tipo I requer HIPAA BAA",
+        "Tipo I é mais rigoroso do que o tipo II",
+        "Tipo I certifica controles concebidos e documentados; Tipo II certifica controles que funcionam de forma eficaz durante 6 a 12 meses",
+        "Tipo II é apenas para startups"
+      ],
+      "correct": 2,
+      "explanation": ""
+    },
+    {
+      "stage": "post",
+      "question": "O que pretende o mapeamento de controlo transframeiro?",
+      "options": [
+        "Eliminação das auditorias",
+        "Substituição de todos os quadros pela norma ISO 42001",
+        "Uma política de controlo que satisfaça vários requisitos do quadro (por exemplo, mapas de registro de acesso à ISO 27001 A.5.15-5.18, GDPR Art. 32, HIPAA §164.312(a))",
+        "Controlos mais distintos por quadro"
+      ],
+      "correct": 2,
+      "explanation": ""
+    },
+    {
+      "stage": "post",
+      "question": "O que recomenda a lição para cargas de trabalho HIPAA + LLM?",
+      "options": [
+        "Utilize apenas modelos em local, nunca gerenciados",
+        "Enviar PHI para qualquer fornecedor; ABA é opcional",
+        "A HIPAA não se aplica às LLM",
+        "Nunca envie PHI para um serviço externo de IA sem um BAA assinado; os três hipercalores e os principais provedores de API LLM oferecem BAAs"
+      ],
+      "correct": 3,
+      "explanation": ""
+    }
+  ]
+}

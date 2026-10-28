@@ -1,0 +1,78 @@
+{
+  "lesson": "13-llm-observability",
+  "title": "Seleção de pilhas de observabilidade do MLL",
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "Como a lição divide o mercado de observabilidade do LLM de 2026?",
+      "options": [
+        "Plataformas de desenvolvimento (agrupadas com evals/prompts/sessions) versus gateway/telemetry tools",
+        "Python versus TypeScript",
+        "Vendedor versus código aberto",
+        "Em local versus nuvem"
+      ],
+      "correct": 0,
+      "explanation": ""
+    },
+    {
+      "stage": "check",
+      "question": "Qual ferramenta posiciona a lição como núcleo licenciado pelo MIT com uma história de auto-anfitrião forte e 50K eventos / mês de nuvem gratuita?",
+      "options": [
+        "Phoenix",
+        "Arize AX",
+        "LangSmith",
+        "Fusão"
+      ],
+      "correct": 3,
+      "explanation": ""
+    },
+    {
+      "stage": "check",
+      "question": "Qual é a principal alegação da Arize AX em relação a pilhas de observabilidade monolithic como Datadog?",
+      "options": [
+        "Sempre mais caro.",
+        "Aproximadamente 100 vezes mais barato na escala através da integração Iceberg/Parquet de cópia zero",
+        "Gratuito em menos de 1 milhão de eventos por dia",
+        "10% mais barato"
+      ],
+      "correct": 1,
+      "explanation": ""
+    },
+    {
+      "stage": "check",
+      "question": "Como é que a lição chama a camada de instrumentação errada para portabilidade?",
+      "options": [
+        "Instrumentamento na camada HTTP/OpenAI-SDK",
+        "Amostragem a 5% em relação aos sucessos",
+        "Utilizando convenções semânticas do OpenTelemetry GenAI",
+        "Instrumentando dentro do seu quadro de agente, já que ele o acopla a esse quadro"
+      ],
+      "correct": 3,
+      "explanation": ""
+    },
+    {
+      "stage": "post",
+      "question": "Quais as convenções de OpenTelemetry a lição identifica como a camada de interop de 2026 entre as ferramentas de observabilidade?",
+      "options": [
+        "Convenções semânticas de genAI (gen_ai.system, gen_ai.request.model, gen_ai.usage.input_tokens)",
+        "Convenções semânticas OTel HTTP",
+        "Convenções semânticas de mensagens OTel",
+        "Convenções semânticas da base de dados OTel"
+      ],
+      "correct": 0,
+      "explanation": ""
+    },
+    {
+      "stage": "post",
+      "question": "Por que a lição argumenta que a retenção de rastreamento completo não excede 1M solicitações/dia?",
+      "options": [
+        "Os vendedores bloqueiam-no.",
+        "Phoenix só suporta 1M traços",
+        "Os custos de armazenamento de retenção são maiores do que o próprio MLL; as equipes devem tomar amostras (por exemplo, 100% de erros, 100% de alto custo, 5% de sucessos)",
+        "OpenTelemetry caps volume de rastreamento"
+      ],
+      "correct": 2,
+      "explanation": ""
+    }
+  ]
+}

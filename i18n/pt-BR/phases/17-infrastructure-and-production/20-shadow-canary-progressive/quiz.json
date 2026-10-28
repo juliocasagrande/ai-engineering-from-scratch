@@ -1,0 +1,78 @@
+{
+  "lesson": "20-shadow-canary-progressive",
+  "title": "Tráfico de sombras, implantação das Canárias e implantação progressiva dos LLM",
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "Qual é a maneira correta de encomendar testes de sombra, canário e A/B para um lançamento de LLM?",
+      "options": [
+        "Salta a sombra inteiramente",
+        "Sombra (comparar impacto zero), depois canário (tráfego ao vivo progressivo com portões), depois A/B para alternativas distintas uma vez que a estabilidade é confirmada",
+        "Canário primeiro, depois sombra, depois A/B",
+        "A/B primeiro, depois sombra, depois canário"
+      ],
+      "correct": 1,
+      "explanation": ""
+    },
+    {
+      "stage": "check",
+      "question": "Em que conjunto de cinco métricas as progressões canárias da porta de aula são baseadas?",
+      "options": [
+        "Temperatura da GPU, velocidade do ventilador, profundidade da fila, custo, latência",
+        "Apenas o volume.",
+        "Percêntulos de latência, custo por pedido, taxa de erro/recusão, distribuição de comprimento de saída, taxa de feedback do utilizador",
+        "Precisão apenas em avaliação offline"
+      ],
+      "correct": 2,
+      "explanation": ""
+    },
+    {
+      "stage": "check",
+      "question": "Aproximadamente, quantas variações de precisão de execução a execução cita a lição para insumos idênticos em LLM?",
+      "options": [
+        "Menos de 0,1%",
+        "Até cerca de 15%, devido à não-asociabilidade do GPU FP mais variação do tamanho do lote",
+        "Sempre 50%",
+        "Outputes idênticas, corrida a corrida"
+      ],
+      "correct": 1,
+      "explanation": ""
+    },
+    {
+      "stage": "check",
+      "question": "Para que é o modo sombra, no enquadramento da lição?",
+      "options": [
+        "Um teste de qualidade completo que substitua os evals",
+        "Um teste de fumaça que detecte custos aumentados, regressões de comprimento, alterações de recusa e erros graves  não é uma garantia de qualidade",
+        "Substituição do rollback",
+        "Passo final de implantação da produção"
+      ],
+      "correct": 1,
+      "explanation": ""
+    },
+    {
+      "stage": "post",
+      "question": "Qual é o desenho correto de volta para cada lição?",
+      "options": [
+        "SSH manual para cada cápsula",
+        "Redistribuir com um novo modelo de digestão, levando horas",
+        "Virar uma bandeira de política e reverter o digestão do modelo em segundos  não redistribuir",
+        "Esperem a próxima janela de liberação"
+      ],
+      "correct": 2,
+      "explanation": ""
+    },
+    {
+      "stage": "post",
+      "question": "Por que o custo é listado como um portal ao lado da latência e da qualidade?",
+      "options": [
+        "Um modelo melhor de 20% pode ser 3 vezes mais caro por chamada; o envio que sem um custo gate quebra economia de unidade",
+        "O custo é o mesmo entre os prestadores",
+        "Os custos são automaticamente limitados por cada fornecedor",
+        "O custo é uma métrica de vaidade ."
+      ],
+      "correct": 0,
+      "explanation": ""
+    }
+  ]
+}

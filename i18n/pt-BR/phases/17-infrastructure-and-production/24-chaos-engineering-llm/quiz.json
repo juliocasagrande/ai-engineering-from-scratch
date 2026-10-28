@@ -1,0 +1,78 @@
+{
+  "lesson": "24-chaos-engineering-llm",
+  "title": "Chaos Engineering para a Produção de LLM",
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "Que cinco requisitos prévios exige a lição antes de haver caos na produção?",
+      "options": [
+        "Canal Slack, pacote de adesivos, mascote, hashtag, post no blog",
+        "Database de vetores apenas",
+        "SLI/SLO, observabilidade, retrocesso automatizado, cadernos de execução estruturados, em chamada",
+        "Três modelos de fronteira"
+      ],
+      "correct": 2,
+      "explanation": ""
+    },
+    {
+      "stage": "check",
+      "question": "Que quatro planos a arquitetura do caos tem, mais o ciclo de feedback?",
+      "options": [
+        "Frontend, backend, móvel, web",
+        "Ingestão, transformação, armazenamento, serviço",
+        "Trem, avaliação, implantação, arquivo",
+        "Controle, alvo, segurança, observabilidade  com feedback sobre os ajustes do SLO"
+      ],
+      "correct": 3,
+      "explanation": ""
+    },
+    {
+      "stage": "check",
+      "question": "O que faz a barragem de alerta de queimaduras durante experimentos de caos?",
+      "options": [
+        "Pausa o experimento quando o orçamento de erro diário excede aproximadamente 2 vezes o esperado",
+        "Auto-promove o experimento para a produção",
+        "Desativa observabilidade",
+        "Acelera a experiência"
+      ],
+      "correct": 0,
+      "explanation": ""
+    },
+    {
+      "stage": "check",
+      "question": "Qual é um experimento de caos específico do LLM listado na aula?",
+      "options": [
+        "Reduzir a velocidade do ventilador aleatório",
+        "Reiniciar todo o datacenter",
+        "Tempestade de despejo de KV que força saturação do orçamento de blocos de VLLM",
+        "Largue todos os DNS"
+      ],
+      "correct": 2,
+      "explanation": ""
+    },
+    {
+      "stage": "post",
+      "question": "Que cadência recomenda a lição para exercícios de caos?",
+      "options": [
+        "Apenas anualmente",
+        "Interrupções diárias de produção total",
+        "Nunca .",
+        "Semana de pequeno canário, dia de jogo mensal com pós-mortem, auditoria trimestral de resiliência entre equipes"
+      ],
+      "correct": 3,
+      "explanation": ""
+    },
+    {
+      "stage": "post",
+      "question": "Que modo de falha específico do LLM é descoberto pelo experimento de rapidez malformada?",
+      "options": [
+        "Tokenizer estantes que bloqueiam um trabalhador em entradas como unicode profundamente aninhado ou enormes UTF-8 codepoints",
+        "Subvoltagem de GPU",
+        "Perda de pacotes de rede",
+        "Disco de entrada/entrada"
+      ],
+      "correct": 0,
+      "explanation": ""
+    }
+  ]
+}

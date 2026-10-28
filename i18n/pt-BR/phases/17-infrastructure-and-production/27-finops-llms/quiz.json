@@ -1,0 +1,78 @@
+{
+  "lesson": "27-finops-llms",
+  "title": "FinOps para LLM  Economia unitária e atribuição de multi-arrendatários",
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "Por que as FinOps tradicionais rompem com o LLM?",
+      "options": [
+        "LLM não custa dinheiro",
+        "Os provedores de nuvem recusam-se a listar",
+        "As contas de LLM são sempre grátis",
+        "Os custos são transações de token em vez de tempo de disponibilidade de recursos; as etiquetas não se propagam automaticamente a partir de chamadas da API e você deve estampar usuário / tarefa / inquilino no site da chamada"
+      ],
+      "correct": 3,
+      "explanation": ""
+    },
+    {
+      "stage": "check",
+      "question": "Que três dimensões de atribuição a lição requer instrumentar no primeiro dia?",
+      "options": [
+        "Provedor, modelo, versão API",
+        "Região, AZ, datacenter",
+        "Por usuário (user_id), por tarefa (task_id + route), por inquilino (tenant_id)",
+        "GPU, CPU, RAM"
+      ],
+      "correct": 2,
+      "explanation": ""
+    },
+    {
+      "stage": "check",
+      "question": "Quais são as quatro camadas de tokens que devem ser divididas em atribuição de custos?",
+      "options": [
+        "GPU, CPU, RAM, armazenamento",
+        "Caches, modelos, gateways, observabilidade",
+        "Entrada, saída, rede, disco",
+        "Prompt, ferramenta, memória, resposta"
+      ],
+      "correct": 3,
+      "explanation": ""
+    },
+    {
+      "stage": "check",
+      "question": "Qual é o gatilho do interruptor de morte na escada da execução?",
+      "options": [
+        "Gaste mais de US$ 1 em um minuto.",
+        "Qualquer resposta 5xx",
+        "O inquilino deve ter uma taxa de pagamento de um inquilino de renda de acordo com o artigo 10.o, n.o 1, do Regulamento (UE) n.o 575/2013.",
+        "Latência P50 > 2s"
+      ],
+      "correct": 2,
+      "explanation": ""
+    },
+    {
+      "stage": "post",
+      "question": "Que métrica de unidade recomenda a lição em vez de tokens de $/M?",
+      "options": [
+        "Custo por segundo",
+        "Custo por hora de GPU",
+        "Custo por resultado do produto (por exemplo, custo por bilhete de suporte resolvido, custo por artigo gerado, custo por tarefa de agente bem sucedida)",
+        "Custo por porta"
+      ],
+      "correct": 2,
+      "explanation": ""
+    },
+    {
+      "stage": "post",
+      "question": "Que padrão de atribuição a lição chama de mais precisão que utilizam as equipes maduras?",
+      "options": [
+        "Apenas de marcação e agregado",
+        "Allocamento baseado em modelo",
+        "Conexão de telemetria  Junte-se os rastos à faturamento através de identificadores de rastro",
+        "Amostragem e extrapolação"
+      ],
+      "correct": 2,
+      "explanation": ""
+    }
+  ]
+}

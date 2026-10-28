@@ -1,0 +1,78 @@
+{
+  "lesson": "15-batch-apis",
+  "title": "APIs de lote  o desconto de 50% como padrão do setor",
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "Qual é a oferta comum de lotes de API em OpenAI, Anthropic e Google em 2026?",
+      "options": [
+        "Desconto de 90% com rotação de 7 dias",
+        "50% de desconto com rotação de 24 horas",
+        "Desconto de 10% com uma volta de 1 hora",
+        "Gratuito se menos de 1k tokens"
+      ],
+      "correct": 1,
+      "explanation": ""
+    },
+    {
+      "stage": "check",
+      "question": "O que garante realmente a \"reforma de 24 horas\" na estrutura da lição?",
+      "options": [
+        "24h é o cache TTL",
+        "O provedor promete retornar dentro de 24 horas, com P50 típico em torno de 2 a 6 horas",
+        "O lote leva sempre 24 horas.",
+        "Só os lotes com menos de 1 000 pedidos são elegíveis"
+      ],
+      "correct": 1,
+      "explanation": ""
+    },
+    {
+      "stage": "check",
+      "question": "Como a empilhamento de lote com entrada em cache muda a conta versus sincrônica não em cache em uma carga de trabalho de sistema compartilhado-prompt?",
+      "options": [
+        "Só ajuda se o modelo estiver no Vertex.",
+        "Pode cair para cerca de 10% da linha de base sincrónica",
+        "Aumenta o custo em 50%",
+        "Não tem efeito porque o caching é automático"
+      ],
+      "correct": 1,
+      "explanation": ""
+    },
+    {
+      "stage": "check",
+      "question": "Qual é o caminho errado de triagem de carga de trabalho para ser padrão em 2026 para canalizações de conteúdo e rotulagem offline?",
+      "options": [
+        "Parâmetros híbridos de batches e caches",
+        "Interativo, porque parece urgente.",
+        "Batch, porque o utilizador não vê um atraso de 24 horas",
+        "Semi-interativo com fila de sincronização"
+      ],
+      "correct": 1,
+      "explanation": ""
+    },
+    {
+      "stage": "post",
+      "question": "Qual é a armadilha do esquema de saída entre os fornecedores?",
+      "options": [
+        "Todos os provedores usam o mesmo formato OpenAI JSONL",
+        "Os formatos de arquivos em batches diferem por fornecedor (OpenAI JSONL, Anthropic JSONL, Vertex BigQuery/GCS), portanto, um cliente portátil precisa de adaptadores por fornecedor",
+        "Vertex requer apenas Parquet",
+        "JSONL não é suportado pela Anthropic"
+      ],
+      "correct": 1,
+      "explanation": ""
+    },
+    {
+      "stage": "post",
+      "question": "Segundo a lição, qual é a regra de decisão mais simples para triagem de uma carga de trabalho em lote?",
+      "options": [
+        "Se o pedido for inferior a 1k tokens, encomenda-o",
+        "Se o utilizador não perceber uma entrega de 24 horas, sempre em lote (e em caché em pilha)",
+        "Batch apenas quando o portal o requer",
+        "Se usar ferramentas, enrolem-no em lote"
+      ],
+      "correct": 1,
+      "explanation": ""
+    }
+  ]
+}

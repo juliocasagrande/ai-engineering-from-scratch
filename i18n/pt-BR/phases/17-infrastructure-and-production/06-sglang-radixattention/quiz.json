@@ -1,0 +1,78 @@
+{
+  "lesson": "06-sglang-radixattention",
+  "title": "Prefixo-Cache Servindo  RadixAttenção e KV Reutilização",
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "Que estrutura de dados de base apoia a reutilização do cache KV do SGLang?",
+      "options": [
+        "Uma árvore de radix onde cada nó possui um intervalo de tokens e seus blocos KV",
+        "Uma lista de desistir teclado por ID de solicitação",
+        "Uma tabela de hash teclado por prompt completo",
+        "Uma B-arvore de pontuação de atenção"
+      ],
+      "correct": 0,
+      "explanation": ""
+    },
+    {
+      "stage": "check",
+      "question": "Por que é que a programação do FCFS é errada para o tráfego pesado de prefixos no SGLang?",
+      "options": [
+        "O FCFS é a política recomendada de SGLang",
+        "FCFS pode despejar um prefixo quente ramo antes do próximo longo prefixo solicitação atinge, quebrando radix-árvore reutilização",
+        "FCFS só funciona em GPUs AMD",
+        "FCFS é incompatível com PagedAttention"
+      ],
+      "correct": 1,
+      "explanation": ""
+    },
+    {
+      "stage": "check",
+      "question": "Que granularidade de despejo o cronógrafo de cache do SGLang usa para combinar a forma do radix?",
+      "options": [
+        "Apenas por pedido",
+        "Despejo aleatório",
+        "Tokens únicos",
+        "Ramos inteiros, a partir das folhas mais curtas utilizadas"
+      ],
+      "correct": 3,
+      "explanation": ""
+    },
+    {
+      "stage": "check",
+      "question": "Qual é a alavanca mais direta do engenheiro para manter o prefixo compartilhado da árvore radix descoberto?",
+      "options": [
+        "Sempre utilizar batches estáticos",
+        "Fix-template de ordem de prompt para que o conteúdo imutável (sistema, ferramentas, esquemas) é sempre primeiro",
+        "Baixe o botão de utilização de memória da GPU",
+        "Desativar o batchamento contínuo"
+      ],
+      "correct": 1,
+      "explanation": ""
+    },
+    {
+      "stage": "post",
+      "question": "Em que padrão de carga de trabalho a lição NÃO espera que a RadixAttention vença?",
+      "options": [
+        "Agentes com esquemas de ferramentas compartilhadas",
+        "Geração de um só tiro com instruções únicas e sem instruções do sistema compartilhado",
+        "RAG com um preâmbulo de recuperação compartilhado",
+        "Cargas de trabalho de voz com preâmbulos repetidos"
+      ],
+      "correct": 1,
+      "explanation": ""
+    },
+    {
+      "stage": "post",
+      "question": "A distribuição do ProjectDiscovery passou de 7% para 74% de prefixos de caché, fazendo o quê?",
+      "options": [
+        "Aumento do número de GPUs de 8 para 16",
+        "Desativação de lotes contínuos",
+        "Movimento de conteúdo dinâmico para fora do prefixo cacheável",
+        "Passar de vLLM para SGLang sem alterações imediatas"
+      ],
+      "correct": 2,
+      "explanation": ""
+    }
+  ]
+}

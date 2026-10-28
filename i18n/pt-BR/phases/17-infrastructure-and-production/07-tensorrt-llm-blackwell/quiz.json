@@ -1,0 +1,78 @@
+{
+  "lesson": "07-tensorrt-llm-blackwell",
+  "title": "Compilação de Inferência Especializada em Hardware  FP8 e NVFP4 em Blackwell",
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "Em torno de qual é a diferença de custo por milhão de tokens que os relatórios de lição entre Blackwell + TRT-LLM + Dynamo e H100 + vLLM em uma carga de trabalho comparável de classe 120B?",
+      "options": [
+        "Cerca de 2x",
+        "Cerca de 7x",
+        "Cerca de 1,1x",
+        "Cerca de 100 vezes."
+      ],
+      "correct": 1,
+      "explanation": ""
+    },
+    {
+      "stage": "check",
+      "question": "Por que a lição recomenda manter o cache KV no FP8 em vez de NVFP4 no Blackwell?",
+      "options": [
+        "O cache NVFP4 KV ainda não é suportado em nenhum motor",
+        "O cache KV abrange uma ampla gama dinâmica; a quantização FP4 causa perda catastrófica de precisão nos resultados de atenção",
+        "FP8 usa menos memória do que FP4",
+        "FP8 é o único NVLink 5 de precisão suporta"
+      ],
+      "correct": 1,
+      "explanation": ""
+    },
+    {
+      "stage": "check",
+      "question": "Qual característica da Blackwell é utilizada pela TRT-LLM para que os modelos possam ser carregados sem uma etapa de conversão pós-treino?",
+      "options": [
+        "BF16 cache KV",
+        "FP64 atenção",
+        "Peso INT2 por bits e bytes",
+        "Diário-0 Peso FP4 enviado por fornecedores de modelos"
+      ],
+      "correct": 3,
+      "explanation": ""
+    },
+    {
+      "stage": "check",
+      "question": "Qual é a diferença dominante na escolha da pilha TRT-LLM por aula?",
+      "options": [
+        "Requer uma remediação totalmente autônoma",
+        "Não pode servir modelos de MoE",
+        "Só funciona em pequena escala .",
+        "Fecha-te no hardware da NVIDIA. Sem AMD, sem Intel, sem ARM."
+      ],
+      "correct": 3,
+      "explanation": ""
+    },
+    {
+      "stage": "post",
+      "question": "Que combinação de precisão a lição descreve como a configuração típica de Blackwell?",
+      "options": [
+        "Tudo no BF16",
+        "Pesos NVFP4, ativações NVFP4, cache KV FP8, acumulador de atenção FP32",
+        "Pesos INT8, ativações FP32, cache KV INT4",
+        "Pesos FP4, cache KV FP4, atenção em INT8"
+      ],
+      "correct": 1,
+      "explanation": ""
+    },
+    {
+      "stage": "post",
+      "question": "Para cargas de trabalho pesadas em que a conversão de peso NVFP4 reduz a precisão MATH em alguns pontos, o que recomenda a lição?",
+      "options": [
+        "Passe para AMD MI300X",
+        "Desativar a descodificação especulativa",
+        "Validar a qualidade da tarefa no seu conjunto de avaliação por modelo; as equipes geralmente usam pesos FP8 + ativações FP4 ou permanecem no H200 com FP8 durante todo o processo",
+        "Navio NVFP4 de qualquer forma porque o custo ganho domina"
+      ],
+      "correct": 2,
+      "explanation": ""
+    }
+  ]
+}

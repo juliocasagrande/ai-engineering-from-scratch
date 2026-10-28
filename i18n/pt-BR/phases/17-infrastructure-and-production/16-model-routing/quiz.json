@@ -1,0 +1,78 @@
+{
+  "lesson": "16-model-routing",
+  "title": "Roteamento de modelo como uma primitiva de redução de custos",
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "Qual é a ideia central do cascatação de modelos?",
+      "options": [
+        "Sempre rota por peso aleatório",
+        "Execute dois modelos em paralelo e media as saídas",
+        "Execute todas as solicitações no modelo mais caro primeiro",
+        "Primeiro, executar um modelo barato, escalar para um modelo de fronteira apenas com pouca confiança ou recusa"
+      ],
+      "correct": 3,
+      "explanation": ""
+    },
+    {
+      "stage": "check",
+      "question": "Que quatro sinais é a lista de lições para decisões de roteamento?",
+      "options": [
+        "Apenas nível de utilizador",
+        "Apenas contagem de tokens",
+        "Classificação de tarefas, comprimento rápido, incorporação de semelhança com o conjunto de hard-conhecido e autoconfiança a partir de uma primeira passagem",
+        "Temperatura da GPU, velocidade do ventilador, umidade da sala, hora do dia"
+      ],
+      "correct": 2,
+      "explanation": ""
+    },
+    {
+      "stage": "check",
+      "question": "Qual é o perfil de latência esperado de um roteador em cascata?",
+      "options": [
+        "Sempre mais rápido do que antes da rota",
+        "Cerca de 1,2x a latência média (excursion barata mais verificação), cerca de 2x em pedidos aumentados (~ 10% do tráfego)",
+        "Sempre mais lento em 10x",
+        "Identico ao modelo de fronteira"
+      ],
+      "correct": 1,
+      "explanation": ""
+    },
+    {
+      "stage": "check",
+      "question": "Qual padrão de roteamento adiciona 5-10ms de latência e é o mais rápido no geral?",
+      "options": [
+        "Cascata",
+        "Rota de montagem",
+        "Rondos de rotina aleatórios",
+        "Pre-ruta com um classificador"
+      ],
+      "correct": 3,
+      "explanation": ""
+    },
+    {
+      "stage": "post",
+      "question": "O que é o modelo barato de deriva no roteamento?",
+      "options": [
+        "O modelo barato torna-se mais caro",
+        "Cascada cai até a fronteira 100% do tempo",
+        "Uma deriva de latência no modelo barato",
+        "A distribuição de tarefas muda, mas o roteador treinado continua a enviar pedidos para o modelo barato, silenciosamente degradando a qualidade"
+      ],
+      "correct": 3,
+      "explanation": ""
+    },
+    {
+      "stage": "post",
+      "question": "Que guarda recomenda a lição para apanhar a deriva de rota?",
+      "options": [
+        "Metricas de qualidade online  pontapés/abaixo por rota, julgamento de LLM em amostras mantidas, taxa de escalada, taxa de recusa",
+        "Apenas revisão de engenharia trimestral",
+        "Apenas conjuntos de eval offline",
+        "Desativar o encaminhamento na produção"
+      ],
+      "correct": 0,
+      "explanation": ""
+    }
+  ]
+}

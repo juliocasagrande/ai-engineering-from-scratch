@@ -1,0 +1,78 @@
+{
+  "lesson": "04-vllm-serving-internals",
+  "title": "Servidores internos do motor  PagedAttenção, Batch contínuo, Preenchimento em pedaços",
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "Qual é o principal problema do batch estático clássico com pedidos de comprimento mista?",
+      "options": [
+        "Só funciona com FP4",
+        "Não pode usar GPUs .",
+        "A inserção no mais longo momento e na saída mais longa desperdiça memória e impede todo o lote na sequência mais lenta",
+        "Requer NVLink entre cada GPU"
+      ],
+      "correct": 2,
+      "explanation": ""
+    },
+    {
+      "stage": "check",
+      "question": "Como o PagedAttention reduz a fragmentação do cache KV de 60-80% para menos de 4%?",
+      "options": [
+        "Desativando completamente o cache KV",
+        "Ao manter o prompt completo na RAM da CPU",
+        "Compressão de pesos para INT4",
+        "Ao alocar o cache KV em blocos de tamanho fixo (tokens 16 por defeito) referenciados através de uma tabela de blocos por sequência"
+      ],
+      "correct": 3,
+      "explanation": ""
+    },
+    {
+      "stage": "check",
+      "question": "Qual invariante define batchings contínuos no cronograma V1 do vLLM?",
+      "options": [
+        "Cada pedido recebe seu próprio fluxo de GPU dedicado",
+        "O cronometrista espera 10 ms janelas para preencher um lote antes de correr",
+        "O cronógrafo é executado uma vez por pedido e o lote nunca muda",
+        "O cronógrafo executa uma vez por iteração de decodificação, admitindo sequências acabadas e esperando as em"
+      ],
+      "correct": 3,
+      "explanation": ""
+    },
+    {
+      "stage": "check",
+      "question": "Que métrica de latência protege o preenchimento em pedaços principalmente sob carga mista?",
+      "options": [
+        "Produtos de produção",
+        "Tempo de início frio",
+        "RTT de rede",
+        "P99 Latência entre tokens (ITL)"
+      ],
+      "correct": 3,
+      "explanation": ""
+    },
+    {
+      "stage": "post",
+      "question": "What does the vLLM v0.18.0 feature compatibility matrix say about speculative decoding with --enable-chunked-prefill?",
+      "options": [
+        "A matriz marca a combinação como compatível",
+        "Não podem ser combinados em qualquer configuração",
+        "Só os cabeças de projeto EAGLE-1 funcionam com preenchimento em pedaços",
+        "Só a especulação do modelo de projecto funciona com preenchimento em pedaços"
+      ],
+      "correct": 0,
+      "explanation": ""
+    },
+    {
+      "stage": "post",
+      "question": "Por que o preenchimento em pedaços não isolado aumenta a capacidade de produção?",
+      "options": [
+        "Comprime pesos de forma mais agressiva",
+        "A redução do tempo de decodificação é apenas um problema; a vitória de rendimento na prática vem de manter as sequências de decodificação vivas durante longos preenchimentos, não de mudar o trabalho feito",
+        "Ele funciona com uma GPU diferente da decodificação",
+        "Ele usa descodificação especulativa sob o capô ."
+      ],
+      "correct": 1,
+      "explanation": ""
+    }
+  ]
+}

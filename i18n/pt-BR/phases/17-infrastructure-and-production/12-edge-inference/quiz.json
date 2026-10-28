@@ -1,0 +1,78 @@
+{
+  "lesson": "12-edge-inference",
+  "title": "Inferência de bordo  Apple Neural Engine, Qualcomm Hexagon, WebGPU/WebLLM, Jetson",
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "Qual é a restrição principal que faz a inferência de LLM móvel mais lenta do que o datacenter, por aula?",
+      "options": [
+        "Capacidade de armazenamento",
+        "Latência de Wi-Fi",
+        "Capacidade de cálculo",
+        "Largura de banda de memória (DRAM móvel a 50-90 GB/s vs HBM3 a 2-3 TB/s)"
+      ],
+      "correct": 3,
+      "explanation": ""
+    },
+    {
+      "stage": "check",
+      "question": "Por que o motor neural da Apple evita a cópia de CPU-NPU?",
+      "options": [
+        "Apple Silicon envia memória unificada  CPU e ANE compartilham o mesmo pool",
+        "Ele usa PCIe 5.0",
+        "Core ML desativa o cache KV",
+        "Transcodifica pesos para FP4 antes de copiar"
+      ],
+      "correct": 0,
+      "explanation": ""
+    },
+    {
+      "stage": "check",
+      "question": "Que formato de quantização recomenda a lição para WebGPU + WebLLM no navegador?",
+      "options": [
+        "GGUF Q4_K_M",
+        "NVFP4",
+        "FP8",
+        "Q4 MLC (q4f16_1) compilado através de mlc_llm convert_weight"
+      ],
+      "correct": 3,
+      "explanation": ""
+    },
+    {
+      "stage": "check",
+      "question": "Quantos dados móveis da WebGPU é que a lição relata para 2026?",
+      "options": [
+        "Menos de 10%",
+        "Apenas Safari iOS",
+        "Cerca de 70-75%, com o Firefox Android ainda a alcançar",
+        "100% em todos os navegadores"
+      ],
+      "correct": 2,
+      "explanation": ""
+    },
+    {
+      "stage": "post",
+      "question": "Porque é impraticável manter o contexto de 128K num telefone típico?",
+      "options": [
+        "Os tokenizers falham acima de 8K",
+        "Pesos do modelo mais cache KV para tokens 32K mais gastos gerais do sistema operacional facilmente exceder o orçamento de 8 GB de RAM",
+        "WebGPU caps contexto em 4K",
+        "iOS proíbe o contexto longo"
+      ],
+      "correct": 1,
+      "explanation": ""
+    },
+    {
+      "stage": "post",
+      "question": "Por que é que a voz é destacada como o aplicativo assassino para inferência de borda?",
+      "options": [
+        "Modelos de voz não precisam de cache KV",
+        "Modelos de voz sempre cabem em 50 MB",
+        "Os agentes de voz são sensíveis à latência (primeiro token < 500 ms) e a inferência local elimina completamente a latência da rede",
+        "Voz é executada apenas em WebAssembly"
+      ],
+      "correct": 2,
+      "explanation": ""
+    }
+  ]
+}

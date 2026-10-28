@@ -1,0 +1,78 @@
+{
+  "lesson": "03-gpu-autoscaling-kubernetes",
+  "title": "GPU Autoescala em Kubernetes  Karpenter, KAI Scheduler, Gang Scheduling",
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "Qual sinal é normalmente escalado por padrão pela HPA que a lição chama quebrado para a prestação de estilo vLLM?",
+      "options": [
+        "P99 TTFT",
+        "Ciclo de serviço DCGM_FI_DEV_GPU_UTIL",
+        "Profundeza da fila",
+        "Utilização do cache KV"
+      ],
+      "correct": 1,
+      "explanation": ""
+    },
+    {
+      "stage": "check",
+      "question": "Que problema é que a agendamento de gangues no KAI Scheduler previne principalmente?",
+      "options": [
+        "A contenção do GIL",
+        "A armadilha de alocação parcial onde 7 das 8 GPUs estão em espera na oitava",
+        "Latência de arranque a frio",
+        "Fragmentação de memória GPU"
+      ],
+      "correct": 1,
+      "explanation": ""
+    },
+    {
+      "stage": "check",
+      "question": "Por que a consolidação padrão da política de Karpenter quando vazia ou subutilizada é perigosa para inferir pools de GPUs?",
+      "options": [
+        "Só consolida instâncias em ponto",
+        "Impede o Karpenter de fornecer novos nós",
+        "Ele termina a execução de nós GPU para migrar cápsulas, o que despeja solicitações de execução e recarrega pesos",
+        "Recusou-se a escalar sob explosão"
+      ],
+      "correct": 2,
+      "explanation": ""
+    },
+    {
+      "stage": "check",
+      "question": "Quão rápido é o Karpenter em fornecer um nó GPU em comparação com o Cluster Autoscaler?",
+      "options": [
+        "Cerca de 5% mais rápido",
+        "O mesmo",
+        "Aproximadamente 40% mais rápido (~ 45-60s vs ~ 90-120s)",
+        "Cerca de 10 vezes mais lento."
+      ],
+      "correct": 2,
+      "explanation": ""
+    },
+    {
+      "stage": "post",
+      "question": "Para cápsulas de preenchimento / decodificação desagregadas (fase 17 · 17), quais sinais de escalagem recomenda a lição?",
+      "options": [
+        "Cluster Autoscaler para ambos",
+        "Um único HPA no ciclo de serviço que abrange ambas as classes de cápsulas",
+        "Apenas escalação manual",
+        "Profundeza de fila para cápsulas de pré-enchimento e pressão de cache KV para cápsulas de decodificação, como HPA separados por função"
+      ],
+      "correct": 3,
+      "explanation": ""
+    },
+    {
+      "stage": "post",
+      "question": "Que configuração de interrupção Karpenter recomenda a lição para um pool de GPU de inferência para evitar despejo de empregos em funcionamento?",
+      "options": [
+        "Sempre executar com instâncias em ponto e sem consolidação",
+        "Desativar completamente o Karpenter .",
+        "Consolidação Política: Quando Em branco ou não utilizado com consolidação",
+        "Consolidação Política: QuandoEm branco com consolidaçãoApós: 1h"
+      ],
+      "correct": 3,
+      "explanation": ""
+    }
+  ]
+}

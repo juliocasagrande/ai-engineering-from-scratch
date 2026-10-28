@@ -1,0 +1,78 @@
+{
+  "lesson": "17-disaggregated-prefill-decode",
+  "title": "Preenchimento/Decodificação desagregada  NVIDIA Dynamo e llm-d",
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "Por que prefill e decodificação querem diferentes configurações óptimas de GPU?",
+      "options": [
+        "Prefill deve ser executado na AMD e decodificar na NVIDIA",
+        "Usam diferentes pesos de modelo",
+        "O prefill é computacional no throughput do matmul; o decodificador é computacional na largura de banda HBM, por isso colocá-los desperdiça um recurso",
+        "Decodificação requer mais largura de banda de rede"
+      ],
+      "correct": 2,
+      "explanation": ""
+    },
+    {
+      "stage": "check",
+      "question": "Que transporte a NVIDIA Dynamo usa para mover o cache KV entre as piscinas de preenchimento e decodificação?",
+      "options": [
+        "GRPC bidi só",
+        "NIXL (RDMA/InfiniBand quando disponível, TCP fallback)",
+        "HTTP simples",
+        "Sistema de arquivos compartilhado no NFS"
+      ],
+      "correct": 1,
+      "explanation": ""
+    },
+    {
+      "stage": "check",
+      "question": "Quando a desagregação NÃO dá resultado de acordo com a lição?",
+      "options": [
+        "RAG com prefixos 8K+",
+        "Cargas de trabalho do Ministério da Energia em Blackwell",
+        "Serviço multi-tenant com instruções de sistema compartilhadas",
+        "Impostos abaixo de 512 tokens e saídas abaixo de 200 tokens, onde o imposto sobre transferência de KV domina o ganho"
+      ],
+      "correct": 3,
+      "explanation": ""
+    },
+    {
+      "stage": "check",
+      "question": "Qual é a diferença arquitetônica entre a Dynamo e a llm-d?",
+      "options": [
+        "A Dynamo é open source; llm-d está fechada",
+        "Dynamo é executado com CPU; llm-d com GPU",
+        "A Dynamo é um orquestador superior sobre vLLM/SGLang/TRT-LLM; llm-d é Kubernetes-nativo com prefill/decode/router como Serviços independentes",
+        "A Dynamo requer AMD; a llm-d requer NVIDIA"
+      ],
+      "correct": 2,
+      "explanation": ""
+    },
+    {
+      "stage": "post",
+      "question": "Quais componentes da Dynamo ajustar automaticamente a relação prefill:decode para um SLO?",
+      "options": [
+        "Algodões de marlin",
+        "Profilador de planejamento e planejador de SLA",
+        "Cluster Autoscaler",
+        "Proxy de carro e filtro Envoy"
+      ],
+      "correct": 1,
+      "explanation": ""
+    },
+    {
+      "stage": "post",
+      "question": "Como interage a desagregação com o roteamento consciente do cache da Fase 17 · 11?",
+      "options": [
+        "Desagregação desativa a reutilização do cache KV inteiramente",
+        "O roteador consciente de cache pode aterrar uma solicitação no pool de decodificação já mantendo seu prefixo; no miss it fluxos prefill -> decodificar, então os dois compostos",
+        "São mutuamente exclutivas.",
+        "Roteamento consciente de cache é apenas para colocado"
+      ],
+      "correct": 1,
+      "explanation": ""
+    }
+  ]
+}

@@ -1,0 +1,78 @@
+{
+  "lesson": "19-ai-gateways",
+  "title": "Portes de inteligência artificial  LiteLLM, Portkey, Kong AI Gateway, Bifrost",
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "Qual é o papel central de um portal de IA na lição?",
+      "options": [
+        "Um banco de dados vetorial para recuperação",
+        "Um modelo de serviço de ajuste fino",
+        "Um processo entre aplicativos e provedores de modelos que consolida roteamento, fallback, retries, limites de taxa, referências secretas, observabilidade e barris atrás de uma API",
+        "Um carro lateral apenas para madeira"
+      ],
+      "correct": 2,
+      "explanation": ""
+    },
+    {
+      "stage": "check",
+      "question": "Qual o limite máximo de escala que o relatório de referência da Kong para o LiteLLM apresenta?",
+      "options": [
+        "O LiteLLM não pode ser comparado",
+        "Escala linearmente para além de 10 mil RPS",
+        "Desliga-se em torno de ~ 2000 RPS com memória de 8 GB e falhas em cascata sob carga sustentada",
+        "- Está a 50 RPS."
+      ],
+      "correct": 2,
+      "explanation": ""
+    },
+    {
+      "stage": "check",
+      "question": "Segundo o índice de referência Kong em CPU equivalente, quanto mais rápido é o Kong AI Gateway do que o Portkey e o LiteLLM?",
+      "options": [
+        "Identico",
+        "Cerca de 10% e 20% mais rápido",
+        "228% mais rápido que o Portkey e 859% mais rápido que o LiteLLM",
+        "Mais lento do que os dois"
+      ],
+      "correct": 2,
+      "explanation": ""
+    },
+    {
+      "stage": "check",
+      "question": "Qual gateway posiciona a lição com 20-40 ms de latência e guardrails / redação de PII / detecção de jailbreak foco?",
+      "options": [
+        "Gateway de IA Cloudflare",
+        "Portkey",
+        "A porta de entrada da AI Kong",
+        "LITELM"
+      ],
+      "correct": 1,
+      "explanation": ""
+    },
+    {
+      "stage": "post",
+      "question": "O que diz a lição é a função de forçar as decisões de gateway auto-hosted vs. gerenciadas?",
+      "options": [
+        "Número de prestadores de serviços apoiados",
+        "Custo por pedido",
+        "Requisitos de residência de dados",
+        "Se o gateway é open source"
+      ],
+      "correct": 2,
+      "explanation": ""
+    },
+    {
+      "stage": "post",
+      "question": "Quais gateways permanecem dentro do orçamento quando o SLA é TTFT P99 < 100 ms?",
+      "options": [
+        "Apenas Portkey",
+        "Qualquer porta de entrada",
+        "Apenas LiteLLM",
+        "Kong (~3-8 ms) ou Gateways Edge Cloudflare/Vercel (~1-3 ms); Portkey a 20-40 ms é muito pesado"
+      ],
+      "correct": 3,
+      "explanation": ""
+    }
+  ]
+}

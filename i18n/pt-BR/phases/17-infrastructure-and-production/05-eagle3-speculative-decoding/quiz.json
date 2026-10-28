@@ -1,0 +1,78 @@
+{
+  "lesson": "05-eagle3-speculative-decoding",
+  "title": "AEGLE-3 Descodagem especulativa na produção",
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "Por que a descodificação especulativa explora uma lacuna que existe na descodificação simples?",
+      "options": [
+        "Decodificação não se beneficia da batchagem",
+        "O decodificador é ligado à memória, então a GPU está na maior parte ociosa à espera de leituras de pesos do HBM",
+        "O decodificação é computacional, então adicionar mais computação é livre",
+        "Decodificação requer mais largura de banda de rede do que prefill"
+      ],
+      "correct": 1,
+      "explanation": ""
+    },
+    {
+      "stage": "check",
+      "question": "O que é que a taxa de aceitação alfa mede?",
+      "options": [
+        "O custo de atraso do modelo de projeto",
+        "Fração dos tokens propostos por projetos aceitos pelo modelo-alvo",
+        "Taxa de acessos de caché do caché KV",
+        "Fração da memória GPU utilizada durante a decodificação"
+      ],
+      "correct": 1,
+      "explanation": ""
+    },
+    {
+      "stage": "check",
+      "question": "Que mudanças na EAGLE-3 em comparação com a EAGLE-2 que empurra o alfa para cerca de 0,6-0,8 no bate-papo geral?",
+      "options": [
+        "O projeto é treinado em várias camadas alvo em vez de apenas a última camada",
+        "Utiliza um modelo de esboço de tamanho completo da mesma família",
+        "Ele corre com CPU em vez de GPU",
+        "Elimina completamente o passo de verificação"
+      ],
+      "correct": 0,
+      "explanation": ""
+    },
+    {
+      "stage": "check",
+      "question": "Abaixo de que alfa diz a lição que a descodificação especulativa se torna negativa líquida em alta concurência na maioria dos hardware de 2026?",
+      "options": [
+        "0,85",
+        "0,95",
+        "0,05",
+        "0,55"
+      ],
+      "correct": 3,
+      "explanation": ""
+    },
+    {
+      "stage": "post",
+      "question": "Que métrica deve observar mais de perto depois de ligar o EAGLE-3, mesmo que a ITL caia?",
+      "options": [
+        "Utilização de memória GPU",
+        "Tempo de início frio",
+        "Latência média E2E",
+        "P99 ITL, porque os dois passes de projecto rejeitado podem ser serializados em lote completo"
+      ],
+      "correct": 3,
+      "explanation": ""
+    },
+    {
+      "stage": "post",
+      "question": "Por que a descodificação especulativa é opt-in (não padrão) no vLLM 2026 por lição?",
+      "options": [
+        "É incompatível com PagedAttention",
+        "Só funciona em GPUs Blackwell.",
+        "Requer licença separada.",
+        "A taxa de aceitação depende da carga de trabalho, e ligar-se sem medir o alfa é um antipatrão de produção"
+      ],
+      "correct": 3,
+      "explanation": ""
+    }
+  ]
+}

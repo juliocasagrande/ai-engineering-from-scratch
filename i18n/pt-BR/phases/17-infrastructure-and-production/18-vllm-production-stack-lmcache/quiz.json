@@ -1,0 +1,78 @@
+{
+  "lesson": "18-vllm-production-stack-lmcache",
+  "title": "Produção Servindo Stack  Descarga de KV e roteamento de cache-consciente",
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "Qual é o problema que o LMCache aborda principalmente numa implantação de vLLM?",
+      "options": [
+        "A contenção do GIL",
+        "Filtragem de saída de rede",
+        "Pulsão de imagem de arranque frio",
+        "Pressão de cache KV no HBM que provoca a preempção e re-preenchimento dos mesmos prefixos"
+      ],
+      "correct": 3,
+      "explanation": ""
+    },
+    {
+      "stage": "check",
+      "question": "Qual API vLLM introduziu backends plugáveis do cache KV?",
+      "options": [
+        "Bandeira de cache de prefixos",
+        "API do conector em vLLM v0.9.0",
+        "PagedAttention v2",
+        "API de preenchimento"
+      ],
+      "correct": 1,
+      "explanation": ""
+    },
+    {
+      "stage": "check",
+      "question": "O que a versão vLLM 0.11.0 (janeiro 2026) adiciona ao caminho de descarga de KV?",
+      "options": [
+        "Removimento do suporte LMCache",
+        "Caches de KV FP8 obrigatórios",
+        "Uma via de descarga assíncrona para que o motor não bloqueie a descarga no caso comum",
+        "Descarga só sincrónica"
+      ],
+      "correct": 2,
+      "explanation": ""
+    },
+    {
+      "stage": "check",
+      "question": "Quando é que escolheres LMCache em vez de CPU nativa?",
+      "options": [
+        "Quando você está rodando apenas com CPU",
+        "Quando vários motores compartilham prefixos entre inquilinos, variantes de LoRA ou contexto repetido de RAG, então a reutilização cruzada do motor paga",
+        "Quando um único motor tem pressão HBM e não há partilha de prefixos",
+        "Quando você quer desativar o cache KV inteiramente"
+      ],
+      "correct": 1,
+      "explanation": ""
+    },
+    {
+      "stage": "post",
+      "question": "O que acontece com o benefício LMCache quando a pegada de KV fica bem abaixo do HBM?",
+      "options": [
+        "LMCache desativa automaticamente",
+        "Configurações correspondentes à linha de base com aproximadamente 3 a 5% de despesas gerais e sem benefício real",
+        "Motor acidente",
+        "Ainda duplica a capacidade de produção."
+      ],
+      "correct": 1,
+      "explanation": ""
+    },
+    {
+      "stage": "post",
+      "question": "Por que a LMCache é composta por porções desagregadas (Fase 17 · 17)?",
+      "options": [
+        "KV transferido do prefill para decodificar terras em LMCache; consultas posteriores podem puxar do LMCache e pular prefill, para que o roteador consciente do cache possa escolher um motor cujo cache local ou compartilhado com o LMCache coincida",
+        "Não é  são mutuamente exclutivas",
+        "Porque o LMCache substitui o NIXL",
+        "Porque o LMCache funciona na mesma GPU do motor."
+      ],
+      "correct": 0,
+      "explanation": ""
+    }
+  ]
+}

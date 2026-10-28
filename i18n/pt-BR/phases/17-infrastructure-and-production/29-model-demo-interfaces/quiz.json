@@ -1,0 +1,78 @@
+{
+  "lesson": "29-model-demo-interfaces",
+  "title": "Modelo de Interfaces Demo  De uma função para um aplicativo compartilhável",
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "A página já limita a área de texto com maxlength. Por que o servidor verifica o comprimento novamente?",
+      "options": [
+        "Os navegadores ignoram a maxlength em uma área de texto a menos que o JavaScript seja desligado",
+        "Qualquer cliente pode enviar uma solicitação sem a página",
+        "O navegador aplica maxlength apenas após o modelo de chamada termina",
+        "O atributo maxlength conta bytes, por isso permite muitos caracteres"
+      ],
+      "correct": 1,
+      "explanation": "Um teste de navegador ajuda apenas usuários honestos. Um script ou curl pode enviar qualquer corpo, então o servidor repete cada verificação."
+    },
+    {
+      "stage": "check",
+      "question": "Quais são as três partes do contrato de demonstração nesta lição?",
+      "options": [
+        "O prompt, os pesos do modelo e o servidor GPU",
+        "A entrada, a chamada de modelo e a saída",
+        "O frontend, o backend e a camada de banco de dados",
+        "A página de inscrição, a página de pagamento e a página de resultados"
+      ],
+      "correct": 1,
+      "explanation": "O contrato tem uma entrada, uma chamada de modelo e uma saída. A demonstração coloca um limite em cada parte, e os erros fazem parte da saída."
+    },
+    {
+      "stage": "check",
+      "question": "Por que a página de demonstração envia um pedido POST e lê o fluxo com fetch() em vez de usar EventSource?",
+      "options": [
+        "EventSource não pode analisar o formato de texto/fluxo de eventos que o servidor retorna",
+        "(FETCH) reduz o tempo para o primeiro token porque salta os cabeçalhos de resposta",
+        "Um Python http.server manipulador pode enviar um fluxo apenas em resposta a um pedido POST",
+        "EventSource envia apenas pedidos GET, então a entrada vai para o URL"
+      ],
+      "correct": 3,
+      "explanation": "EventSource só envia GET. Uma solicitação GET carrega a entrada no URL, e servidores e proxies escrevem URLs para seus logs de acesso."
+    },
+    {
+      "stage": "check",
+      "question": "O que escreve a demo no seu registro de solicitações?",
+      "options": [
+        "A linha completa de solicitação com a sua cadeia de consulta e o endereço IP do cliente bruto",
+        "A rota, o status, a latência, o comprimento da entrada e um hash teclado do cliente",
+        "A pista de cada pedido falhado, com os caminhos de arquivo e os números de linha",
+        "O texto de entrada e a resposta modelo, para que um revisor possa reproduzir cada pedido"
+      ],
+      "correct": 1,
+      "explanation": "O log não mantém texto de entrada nem endereço do cliente. O hash com teclado conta as solicitações por cliente sem armazenar o endereço."
+    },
+    {
+      "stage": "post",
+      "question": "O modelo falha depois que o servidor envia o status 200 e três eventos de tokens.",
+      "options": [
+        "Mudança a linha de status para 500 e envia os cabeçalhos de resposta novamente",
+        "Ele corre o modelo novamente no fundo e envia novos tokens sem aviso prévio",
+        "Envia um evento de erro no fluxo, e a página mostra-o",
+        "Fecha a conexão sem nenhuma mensagem e deixa o navegador sair mais tarde"
+      ],
+      "correct": 2,
+      "explanation": "A linha de status já foi enviada, então o servidor não pode alterá-la."
+    },
+    {
+      "stage": "post",
+      "question": "Centenas de clientes ficam cada um abaixo do limite de taxa por cliente.",
+      "options": [
+        "Um valor de comprimento máximo menor na área de texto do formulário HTML na página",
+        "Um balde de tokens com maior capacidade e um reabastecimento mais rápido para cada cliente",
+        "Um cabeçalho de Política de Segurança de Conteúdo que permite apenas um script hashed inline",
+        "Um limite de utilização diária que conta as chamadas de todos os clientes"
+      ],
+      "correct": 3,
+      "explanation": "O limite de taxa controla cada cliente, mas não o total. O limite de utilização conta todas as chamadas de modelo em um dia e recusa chamadas após um número fixo."
+    }
+  ]
+}

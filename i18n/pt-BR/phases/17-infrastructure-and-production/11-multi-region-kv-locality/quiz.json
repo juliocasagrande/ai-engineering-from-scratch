@@ -1,0 +1,78 @@
+{
+  "lesson": "11-multi-region-kv-locality",
+  "title": "Serviço de Mestrado em Direito Multiregional e localização de cache de KV",
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "Por que o equilíbrio de carga de rotina é ativamente prejudicial para a inferência LLM em cache?",
+      "options": [
+        "Rodeamento de rotina TLS",
+        "O Round-robin só é válido para bancos de dados estatais",
+        "O round-robin requer sessões persistentes",
+        "Uma solicitação que não aterrissa no nó que mantém seu prefixo paga o custo completo de preenchimento em vez de um cache hit"
+      ],
+      "correct": 3,
+      "explanation": ""
+    },
+    {
+      "stage": "check",
+      "question": "Que duas entradas um roteador consciente de cache consome?",
+      "options": [
+        "Apenas o user_id e o tenant_id",
+        "Contadores de rotina e chaves TLS",
+        "Eventos de cache KV de réplicas e um hash de prefixo no pedido recebido",
+        "Interfaces aleatórias e tamanho do pedido"
+      ],
+      "correct": 2,
+      "explanation": ""
+    },
+    {
+      "stage": "check",
+      "question": "Quão grande é a diferença entre um cache hit e um preenchimento frio em um sinal de 2K para Llama 3.3 70B FP8?",
+      "options": [
+        "Cerca de 1000x",
+        "Cerca de 10x (~80 ms vs ~800 ms)",
+        "Cerca de 1,1x",
+        "Identico"
+      ],
+      "correct": 1,
+      "explanation": ""
+    },
+    {
+      "stage": "check",
+      "question": "Por que o roteamento interregional nem sempre vence o roteamento regional para visitas de cache?",
+      "options": [
+        "Roteamento consciente de cache é impossível entre regiões",
+        "O encaminhamento interregional é proibido por todos os hiperescaladores",
+        "Pesquisas do GORGO descobriram que os hits do cache não ajudam a latência",
+        "A RTT de rede consome grande parte do preenchimento salvo, por exemplo, uma RTT de 220 ms EUA-APAC reduz uma economia de 720 ms para ~ 500 ms"
+      ],
+      "correct": 3,
+      "explanation": ""
+    },
+    {
+      "stage": "post",
+      "question": "O que é que a lição cita como o motorista de falha de 32% da LLM DR?",
+      "options": [
+        "Backup que inclui pesos mas omite arquivos de tokenizer ou configurações de quantização",
+        "Esgotamento das quotas regionais",
+        "Balançadores de carga mal configurados",
+        "Backup não criptografado"
+      ],
+      "correct": 0,
+      "explanation": ""
+    },
+    {
+      "stage": "post",
+      "question": "O que diz a lição sobre ofertas comerciais de inferência transregional como a CRI de Bedrock?",
+      "options": [
+        "Eles otimizam a disponibilidade, não o TTFT, e tratam a inferência como opaca.",
+        "São proibidas pelo RGPD",
+        "São conscientes do cache KV e substituem o roteamento de camada de aplicativo",
+        "Só trabalham em nós-oeste-1"
+      ],
+      "correct": 0,
+      "explanation": ""
+    }
+  ]
+}

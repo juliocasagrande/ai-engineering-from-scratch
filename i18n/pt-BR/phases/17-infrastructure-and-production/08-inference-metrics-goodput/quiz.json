@@ -1,0 +1,78 @@
+{
+  "lesson": "08-inference-metrics-goodput",
+  "title": "Metricas de inferência  TTFT, TPOT, ITL, Goodput, P99",
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "Quais componentes dominam o TTFT (tempo para primeiro token)?",
+      "options": [
+        "I/O de disco para pesos",
+        "Tempo de fila, tempo de solicitação de rede e tempo de preenchimento",
+        "Capacidade de distribuição de tokenizer",
+        "Tempo de avanço de apenas decodificação"
+      ],
+      "correct": 1,
+      "explanation": ""
+    },
+    {
+      "stage": "check",
+      "question": "Que métrica a lição chama a que realmente importa para o produto?",
+      "options": [
+        "Goodput  fração de pedidos que satisfazem simultaneamente todas as restrições SLO",
+        "Resumo de dados de dados",
+        "Intermediário",
+        "Ciclo de trabalho da GPU"
+      ],
+      "correct": 0,
+      "explanation": ""
+    },
+    {
+      "stage": "check",
+      "question": "Porque é que é uma estatística errada relatar a latência do LLM?",
+      "options": [
+        "As distribuições de latência LLM são distorcidas à direita; os usuários atingem rotineiramente valores fora de linha P99 que significam que as peles",
+        "O média nunca é calculado em respostas de streaming",
+        "Mediano só funciona para preenchimento, não para decodificação",
+        "Median não é apoiado pela GenAI-Perf"
+      ],
+      "correct": 0,
+      "explanation": ""
+    },
+    {
+      "stage": "check",
+      "question": "Por que a GenAI-Perf e a LLMPerf discordam sobre o TPOT para a mesma corrida?",
+      "options": [
+        "Eles provam diferentes pedidos",
+        "O GenAI-Perf só funciona em Blackwell .",
+        "LLMPerf utiliza microsecondas e GenAI-Perf utiliza milisecondas",
+        "A GenAI-Perf exclui o TTFT do cálculo do ITL; a LLMPerf o inclui, por isso a escolha de ferramentas muda o número"
+      ],
+      "correct": 3,
+      "explanation": ""
+    },
+    {
+      "stage": "post",
+      "question": "Para pedidos de saída longa (> 500 tokens), qual métrica domina a latência de ponta a ponta?",
+      "options": [
+        "Tempo de resposta da rede",
+        "TPOT vezes comprimento de saída",
+        "TTFT",
+        "Tempo de início frio"
+      ],
+      "correct": 1,
+      "explanation": ""
+    },
+    {
+      "stage": "post",
+      "question": "Qual conjunto melhor capta a SLO razoável da lição voltada ao consumidor para um modelo de chat 70B em 2026?",
+      "options": [
+        "Apenas P50, sem percêntulos acima",
+        "TTFT P99 800 ms, TPOT P99 25 ms, E2E P99 3 s para saídas de < 300 tokens, goodput >= 99%",
+        "TTFT P99 8s, TPOT P99 200ms, boa potência 50%",
+        "TTFT médio de 10 ms, TPOT médio de 1 ms"
+      ],
+      "correct": 1,
+      "explanation": ""
+    }
+  ]
+}

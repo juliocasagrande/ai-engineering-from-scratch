@@ -1,0 +1,90 @@
+{
+  "lesson": "01-managed-llm-platforms",
+  "title": "Plataformas de LLM gerenciadas  Bedrock, Vertex AI, Azure OpenAI",
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "Antes desta aula, qual plataforma você abordaria primeiro se um cliente precisasse de Claude, Llama e Cohere por trás de uma API?",
+      "options": [
+        "AWS Bedrock",
+        "Artificial inteligência vertical",
+        "API Antropico Direto",
+        "Serviço Azure OpenAI"
+      ],
+      "correct": 0,
+      "explanation": ""
+    },
+    {
+      "stage": "pre",
+      "question": "Qual é a aposta do hiperescalador descrita como uma parceria exclusiva e não como um mercado?",
+      "options": [
+        "Artificial inteligência vertical",
+        "AWS Bedrock",
+        "OCI AI geradora",
+        "Azure OpenAI"
+      ],
+      "correct": 3,
+      "explanation": ""
+    },
+    {
+      "stage": "check",
+      "question": "Em torno de qual é a diferença mediana TTFT medida entre o Azure OpenAI (com PTUs) e o Bedrock on-demand em equivalentes Llama 3.1 405B?",
+      "options": [
+        "~ 250 ms",
+        "~ 5 ms",
+        "~ 100 ms",
+        "~ 25 ms"
+      ],
+      "correct": 3,
+      "explanation": ""
+    },
+    {
+      "stage": "check",
+      "question": "Qual recurso do Bedrock 2025 dá a atribuição de custo por produto mais limpa nativamente no CloudWatch?",
+      "options": [
+        "Agentes de rocha",
+        "Base de Conhecimento Bedrock",
+        "Profissionais de Inferência de Aplicação",
+        "Ferrocarrilhas de cama"
+      ],
+      "correct": 2,
+      "explanation": ""
+    },
+    {
+      "stage": "check",
+      "question": "As PTUs do Azure normalmente se desbalançam contra as sob demanda em que faixa de utilização sustentada?",
+      "options": [
+        "40 a 60%",
+        "80-95%",
+        "5 a 10%",
+        "- 20 a 30%"
+      ],
+      "correct": 0,
+      "explanation": ""
+    },
+    {
+      "stage": "post",
+      "question": "Por que a política recomendada para 2026 da lição é um mínimo de dois fornecedores para chamadas de LLM críticas ao produto?",
+      "options": [
+        "Os hiperescaladores recusam-se a assinar BAAs a menos que também utilize um concorrente",
+        "O preço de um único fornecedor é sempre mais caro",
+        "É exigido pelo SOC 2 Tipo II",
+        "O modelo de liderança da fronteira gira mensalmente, por isso o bloqueio de um único fornecedor impede que você fique fora dos dois terços da fronteira"
+      ],
+      "correct": 3,
+      "explanation": ""
+    },
+    {
+      "stage": "post",
+      "question": "Qual declaração descreve melhor a superfície da FinOps nas três plataformas?",
+      "options": [
+        "Todos os três expõem a atribuição idêntica por pedido",
+        "Bedrock é o nativo mais limpo, Vertex é o mais flexível através do BigQuery, Azure é o mais opaco sem instrumentação",
+        "Vertex não tem superfície de atribuição em tudo",
+        "O Azul é o nativo mais limpo, o Bedrock é opaco."
+      ],
+      "correct": 1,
+      "explanation": ""
+    }
+  ]
+}

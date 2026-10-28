@@ -1,0 +1,78 @@
+{
+  "lesson": "21-ab-testing-llm-features",
+  "title": "A/B Testing LLM Características  GrowthBook, Statsig e o problema Vibes",
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "Qual é a distinção precisa entre as avaliações e os testes A/B na lição?",
+      "options": [
+        "Só são necessários testes A/B",
+        "Evals responde \"o modelo pode fazer o trabalho?\" em um conjunto rotulado; testes A/B respondem \"os usuários se importam?\" com tráfego aleatório ao vivo",
+        "Os Evals são orientados para o utilizador; os testes A/B estão offline",
+        "São intercâmbios ."
+      ],
+      "correct": 1,
+      "explanation": ""
+    },
+    {
+      "stage": "check",
+      "question": "O que faz o CUPED para uma experiência?",
+      "options": [
+        "Desativar correção de comparação múltipla",
+        "Regressa a variância pré-periódica antes de comparar a posterior, reduzindo normalmente a variância entre 30 e 70% e aumentando o tamanho da amostra efetivo",
+        "Aumentar o tamanho da amostra através da contratação de mais utilizadores",
+        "Substitui totalmente os testes sequenciais"
+      ],
+      "correct": 1,
+      "explanation": ""
+    },
+    {
+      "stage": "check",
+      "question": "Por que precisa de correções de comparação múltipla (Bonferroni ou Benjamini-Hochberg) ao executar muitos A/B?",
+      "options": [
+        "Eles aceleram as experiências.",
+        "São necessárias apenas para testes sequenciais",
+        "São exigidas pelo RGPD",
+        "A execução de 20 testes com 95% de confiança produz um falso positivo por acaso; correções controlam o erro familiar ou a taxa de descoberta falsa"
+      ],
+      "correct": 3,
+      "explanation": ""
+    },
+    {
+      "stage": "check",
+      "question": "O que é detectado pela SRM (desconformidade da proporção de amostras)?",
+      "options": [
+        "Desempenho lento do tokenizer",
+        "Fugas de informação",
+        "Um bug de hash de atribuição que produz uma divisão entregue que diverge do previsto (por exemplo, 47/53 quando se destina a 50/50)",
+        "Fugas de memória na plataforma de experimento"
+      ],
+      "correct": 2,
+      "explanation": ""
+    },
+    {
+      "stage": "post",
+      "question": "Por que o não-determinismo do LLM exige um tampão de tamanho da amostra?",
+      "options": [
+        "Não-determinismo reduz as amostras necessárias",
+        "Viola as suposições da DII; diminui o tamanho da amostra efetivo, por isso multiplica o tamanho necessário em aproximadamente 1,3-1,5x como margem de segurança",
+        "Não é relevante para os cálculos de potência",
+        "Só importa offline."
+      ],
+      "correct": 1,
+      "explanation": ""
+    },
+    {
+      "stage": "post",
+      "question": "Como a lição contrasta Statsig com o GrowthBook?",
+      "options": [
+        "GrowthBook é de código fechado",
+        "Sete de características idênticas",
+        "Statsig é apenas nativo de armazém",
+        "Statsig é SaaS tudo em um (adquirido pela OpenAI em setembro de 2025, US$ 1,1 bilhão); GrowthBook é open-source MIT, nativo de armazém, com motores Bayesianos/Frequentistas/Sequenciais e CUPED/SRM/BH"
+      ],
+      "correct": 3,
+      "explanation": ""
+    }
+  ]
+}

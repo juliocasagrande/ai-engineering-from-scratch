@@ -1,0 +1,78 @@
+{
+  "lesson": "23-sre-for-ai",
+  "title": "SRE para IA  Resposta a Incidentes Multidistribuídos, Runbooks, Detecção Preditiva",
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "Que forma multi-agente recomenda a lição para a AI SRE?",
+      "options": [
+        "Agente de supervisão que divide o incidente em sub-queries para agentes especializados de log, métrica e runbook, depois sintetizando e apresentando a um ser humano",
+        "Um agente monolítico que tem tudo.",
+        "Seleção aleatória de um dos três agentes",
+        "Dois agentes em série sem supervisor"
+      ],
+      "correct": 0,
+      "explanation": ""
+    },
+    {
+      "stage": "check",
+      "question": "Que sistema de auto-remediação a lição chama de seguro?",
+      "options": [
+        "Modificação das políticas do IAM",
+        "Alteração de bases de dados",
+        "Rearquitetura da topologia de serviços",
+        "Reiniciar a cápsula, reverter uma implantação específica, escalar um pool dentro de limites pré-aprovados, ativar uma bandeira de características pré-aprovada"
+      ],
+      "correct": 3,
+      "explanation": ""
+    },
+    {
+      "stage": "check",
+      "question": "Como o NeuBird Hawkeye usa a avaliação adversária para filtrar as causas raizas alucinadas?",
+      "options": [
+        "Escolhe a resposta do modelo de maior confiança sempre",
+        "Executa o mesmo modelo duas vezes na mesma entrada",
+        "Dois modelos analisam independentemente o mesmo incidente; acordo = alta confiança, desacordo = escalada para humano com ambas as hipóteses",
+        "Utiliza formação no estilo GAN"
+      ],
+      "correct": 2,
+      "explanation": ""
+    },
+    {
+      "stage": "check",
+      "question": "O que a memória operacional resolve na AI SRE?",
+      "options": [
+        "Perda de conhecimento tribal quando as equipes desviam livros de execução e pós-mortem vivem em um DB vetorial que os agentes recuperam em cada incidente",
+        "Filtragem de saída de rede",
+        "Começo frio das cápsulas de inferência",
+        "Atribuição do custo do token"
+      ],
+      "correct": 0,
+      "explanation": ""
+    },
+    {
+      "stage": "post",
+      "question": "Que resultado do MIT 2025 cita a lição para a previsão de incidentes?",
+      "options": [
+        "As previsões permanecem sem solução",
+        "100% de previsão com vantagem de 1 segundo",
+        "89% das interrupções foram previstas 10-15 minutos antes usando logs + tempos de GPU + padrões de erro da API",
+        "10% sem prazo de entrega"
+      ],
+      "correct": 2,
+      "explanation": ""
+    },
+    {
+      "stage": "post",
+      "question": "Que restrição operacional a lição enfatiza sobre a detecção preditiva?",
+      "options": [
+        "As previsões substituem os runbooks",
+        "Previsões sem ativação são apenas painéis de controle  a questão operacional é que a ação (pre-desagregação, página, escala automática) a previsão desencadeia",
+        "As previsões nunca devem ser ligadas à ação",
+        "As previsões são sempre precisas"
+      ],
+      "correct": 1,
+      "explanation": ""
+    }
+  ]
+}
