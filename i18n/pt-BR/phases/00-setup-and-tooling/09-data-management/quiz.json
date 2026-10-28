@@ -1,0 +1,64 @@
+{
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "Por que é importante ter treinamento separado, validação e testes divididos na aprendizagem de máquina?",
+      "options": [
+        "Para garantir que cada divisão usa um formato de arquivo diferente",
+        "Para tornar o conjunto de dados menor para que o treinamento seja mais rápido",
+        "Para distribuir dados em várias GPUs",
+        "Avaliação do desempenho do modelo com base em dados invisíveis e prevenção do excesso de adaptação"
+      ],
+      "correct": 3,
+      "explanation": "O conjunto de treinamento ensina o modelo, o conjunto de validação sintoniza os hiperparâmetros durante o treinamento e o conjunto de teste fornece uma avaliação final imparcial sobre os dados que o modelo nunca viu."
+    },
+    {
+      "stage": "pre",
+      "question": "Para que é o Hugging Face Hub usado principalmente em fluxos de trabalho de IA/ML?",
+      "options": [
+        "Gerenciamento de ambientes virtuais Python",
+        "Versão com controle de código fonte como GitHub",
+        "Execução de trabalhos de treinamento de GPU na nuvem",
+        "Alojamento e partilha de conjuntos de dados, modelos e artefatos ML"
+      ],
+      "correct": 3,
+      "explanation": "Hugging Face Hub é uma plataforma para hospedar e compartilhar modelos pré-treinados, conjuntos de dados e demos de ML. A biblioteca de conjuntos de dados fornece uma maneira padrão de carregar dados a partir dela."
+    },
+    {
+      "stage": "post",
+      "question": "Qual é a vantagem do formato Parquet em relação ao CSV para armazenar conjuntos de dados ML?",
+      "options": [
+        "Parquet suporta mais tipos de dados do que CSV",
+        "Os arquivos de parquet são legíveis por humanos em qualquer editor de texto",
+        "O Parquet utiliza armazenamento columnar para menores tamanhos de arquivos e velocidades de leitura mais rápidas",
+        "Os arquivos de parquet podem ser editados em aplicativos de planilhas"
+      ],
+      "correct": 2,
+      "explanation": "O Parquet é um formato binário columnar que comprime melhor do que o CSV e permite leituras rápidas em nível de coluna. É o formato de armazenamento preferido para conjuntos de dados ML."
+    },
+    {
+      "stage": "post",
+      "question": "O que faz o 'streaming=True' ao carregar um conjunto de dados com a biblioteca de conjuntos de dados Hugging Face?",
+      "options": [
+        "Converte o conjunto de dados para um formato de vídeo em streaming",
+        "Abilita atualizações em tempo real à medida que novos dados são adicionados ao Hub",
+        "Carrega dados linha por linha sem baixar o conjunto completo de dados para disco",
+        "Descarga o conjunto de dados mais rápido usando conexões paralelas"
+      ],
+      "correct": 2,
+      "explanation": "O modo de streaming cria um conjunto de dados iterável que retira linhas sob demanda. O uso de memória permanece constante independentemente do tamanho do conjunto de dados, o que é essencial para conjuntos de dados muito grandes para caber no disco."
+    },
+    {
+      "stage": "post",
+      "question": "Quando você deve usar DVC (Data Version Control) em vez de apenas .gitignore para arquivos grandes?",
+      "options": [
+        "Quando você precisa reproduzir experiências exatas em máquinas com dados versados",
+        "Quando só tem arquivos CSV no seu projeto",
+        "Quando o seu conjunto de dados é menor que 1 MB",
+        "Quando você está trabalhando sozinho em um projeto pessoal"
+      ],
+      "correct": 0,
+      "explanation": "O DVC rastreia versões de dados com pequenos arquivos de ponteiro no git enquanto armazenam os dados reais em armazenamento remoto (S3, GCS)."
+    }
+  ]
+}

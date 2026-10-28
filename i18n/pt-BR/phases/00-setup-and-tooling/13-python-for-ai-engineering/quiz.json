@@ -1,0 +1,78 @@
+{
+  "lesson": "13-python-for-ai-engineering",
+  "title": "Python para Engenharia de IA",
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "Se executarmos um roteiro de treino duas vezes e obtermos uma pontuação diferente, qual é a mudança que faz o trem e o teste dividir-se da mesma forma em cada corrida?",
+      "options": [
+        "Utilize uma fração de ensaio maior para a divisão",
+        "Misture os índices com aleatorios.",
+        "Chame ao acaso. Misture duas vezes em vez de uma.",
+        "Converte a lista de conjuntos de dados para um tuple primeiro"
+      ],
+      "correct": 1,
+      "explanation": "Um gerador com uma semente fixa dá a mesma sequência em cada rodada. A ordem misturada e a divisão permanecem as mesmas. As outras mudanças deixam a mistura aleatória ou não têm efeito na ordem."
+    },
+    {
+      "stage": "check",
+      "question": "O que é que uma chamada para uma função de gerador retorna?",
+      "options": [
+        "Um objeto gerador que executa o corpo em cada chamada seguinte()",
+        "Uma lista que contém todos os valores que a função produz",
+        "O primeiro valor que a função produz, e então ele para",
+        "Nenhum, porque o corpo da função não tem declaração de retorno"
+      ],
+      "correct": 0,
+      "explanation": "A chamada não corre de nenhum corpo. Retorna um objeto gerador."
+    },
+    {
+      "stage": "check",
+      "question": "Os lotes de chamada ((range ((10), 4) usa a drop_last=False padrão. Que tamanhos de lotes ele dá?",
+      "options": [
+        "2 , 4 , 4",
+        "4 , 4 , 2",
+        "4 , 4 , 4",
+        "4, 4"
+      ],
+      "correct": 1,
+      "explanation": "O gerador de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de"
+    },
+    {
+      "stage": "check",
+      "question": "Por que um produto de ponto puro Python com mais de um milhão de flutuantes é muito mais lento do que o produto de ponto NumPy?",
+      "options": [
+        "Os floats Python têm menos precisão do que os valores NumPy float64",
+        "O for loop faz uma cópia completa da lista em cada passagem",
+        "O intérprete faz verificações de tipo e faz objetos por elemento",
+        "A função zip() classifica ambas as listas de entrada antes de fazer pares dos itens"
+      ],
+      "correct": 2,
+      "explanation": "Ambas as versões fazem a mesma aritmética em floats de 64 bits. O loop Python executa cerca de dez instruções de código de byte para cada elemento e faz um objeto float para cada resultado. NumPy executa um loop compilado sobre valores de 8 bytes brutos."
+    },
+    {
+      "stage": "post",
+      "question": "A função def add(item, bucket=[]) anexa item ao bucket e retorna bucket. Você chama add(1) e depois adiciona(2). O que o segundo chamado retorna?",
+      "options": [
+        "[1]",
+        "[2, 1]",
+        "[2]",
+        "[1, 2]"
+      ],
+      "correct": 3,
+      "explanation": "Python avalia a lista padrão uma vez, quando executar a instrução def. Ambas as chamadas se anexam a essa lista. Use Nenhuma como padrão e crie a lista dentro da função."
+    },
+    {
+      "stage": "post",
+      "question": "Antes de treinar um modelo, você padroniza as características.",
+      "options": [
+        "Só a formação dividida",
+        "Apenas a divisão do ensaio",
+        "Cada mini-parcela por conta própria",
+        "O treinamento e o teste se dividem"
+      ],
+      "correct": 0,
+      "explanation": "As estatísticas da divisão de teste colocam informações de teste no treinamento, e a pontuação do teste é então muito alta."
+    }
+  ]
+}

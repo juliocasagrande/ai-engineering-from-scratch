@@ -1,5 +1,21 @@
 {
   "phases/00-setup-and-tooling/01-dev-environment/quiz.json": "47fb9662fcdd3a4a1a42045bdc4348445880abcf13a23c11231adf5727e7730f",
   "phases/00-setup-and-tooling/01-dev-environment/outputs/prompt-env-check.md": "650ac264fe4e947d12c3682655b01803c227777670d010aef83b27eb20c09c90",
-  "phases/00-setup-and-tooling/README.md": "ab83b2fa64a6605dd4d2b6dd9d0d82bf61e3aa1aa76cb17446d4fc9f8927368a"
+  "phases/00-setup-and-tooling/02-git-and-collaboration/quiz.json": "02bb0006abb2813bd23002197e198ae065012f2f36004e8866fe780808694b02",
+  "phases/00-setup-and-tooling/03-gpu-setup-and-cloud/quiz.json": "4b65c44bea0c93af71fed50d6142e1a6fbc241edfb89d9ac7fc0f4998ac061c5",
+  "phases/00-setup-and-tooling/04-apis-and-keys/quiz.json": "f5a83b3b50b2beb361d8e46a5509db0fd296988ca447af7d84fe5aff7e5d2b81",
+  "phases/00-setup-and-tooling/04-apis-and-keys/outputs/prompt-api-troubleshooter.md": "ec9c2679077a77fc72035e3e85e455dcc5f5ff51a307af3814a0c2e3c592ca5b",
+  "phases/00-setup-and-tooling/05-jupyter-notebooks/quiz.json": "b5814d63ed98deabc15b82a5ad44102ad1336220cf0cea6e031f9a95de8dfa1c",
+  "phases/00-setup-and-tooling/05-jupyter-notebooks/outputs/prompt-notebook-helper.md": "2089f2b43d32ad825df5f474ccad90afeb5beed163f45624f4d3e5003cf3ce94",
+  "phases/00-setup-and-tooling/06-python-environments/quiz.json": "c419c40ef1c146c896ba268c1ff61a6510fe6694c777f73cea5ad3ddd7dee89d",
+  "phases/00-setup-and-tooling/07-docker-for-ai/quiz.json": "0def2e633359381f6cda81879717e3be9da3185ce568508201adf3ff4e61891a",
+  "phases/00-setup-and-tooling/08-editor-setup/quiz.json": "f1c32b55f7195cb73d2c9003cdcd7ee97316a3a164bfdc5a1e5cd73df2e2e731",
+  "phases/00-setup-and-tooling/09-data-management/quiz.json": "fd6d0ec51a3ab8d9b5acca74390855e376bcdaa90aa7d4d9c53ac1f8ddaed2a5",
+  "phases/00-setup-and-tooling/09-data-management/outputs/prompt-data-helper.md": "1d2cde4d19d3efaf02deb4a91e7fb4f159520273f13960575a436a79cd3ae6ba",
+  "phases/00-setup-and-tooling/10-terminal-and-shell/quiz.json": "00c0be831d9e151204e13fd407cabee982e97a5edcca5ebfa6a088ee3c36599e",
+  "phases/00-setup-and-tooling/11-linux-for-ai/quiz.json": "9627690defe064ff3a549725fc5e3e1db1831e112e368294676e7a72adccf8e0",
+  "phases/00-setup-and-tooling/12-debugging-and-profiling/quiz.json": "587d0e490b516bf2dff412133cb7926090d9cfbc89e0f267456510cdd6966ba8",
+  "phases/00-setup-and-tooling/12-debugging-and-profiling/outputs/prompt-debug-ai-code.md": "9a09afe8f9083c42dabb8c67ec7410a9455cbbcd7bf7533c07802f23788c4e96",
+  "phases/00-setup-and-tooling/13-python-for-ai-engineering/quiz.json": "ab34ad33782a9a40afcfb3581fbfd216fb68a3880bef97d813b9dc5aac7c8fa3",
+  "phases/00-setup-and-tooling/13-python-for-ai-engineering/outputs/prompt-python-review.md": "3dd83951d4719cce09181a8a4844d6e34f75ee80fb2d0673c1b41f099e4de4d1"
 }

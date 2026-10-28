@@ -1,0 +1,64 @@
+{
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "O que torna o depuração de código AI/ML fundamentalmente diferente do depuração de um aplicativo web típico?",
+      "options": [
+        "O código da IA sempre requer uma GPU para depurar",
+        "Código de IA utiliza linguagens de programação diferentes",
+        "Os bugs da IA muitas vezes não caem - eles silenciosamente produzem resultados incorretos sem mensagens de erro",
+        "Código de IA não pode ser depurado com ferramentas padrão como declarações impressas"
+      ],
+      "correct": 2,
+      "explanation": "Os piores bugs da IA produzem uma saída que parece válida. Um ciclo de treinamento mal configurado pode funcionar por horas sem erros enquanto o modelo não aprende nada útil, ao contrário de aplicativos da web que caem com traços de pilha."
+    },
+    {
+      "stage": "pre",
+      "question": "O que é que um profiler mede?",
+      "options": [
+        "Quanto tempo e memória cada parte do código consome",
+        "Quantos bugs existem na base de código",
+        "Se o código produz a saída correta",
+        "A cobertura de código dos testes unitários"
+      ],
+      "correct": 0,
+      "explanation": "Os perfis medem o consumo de recursos -- tempo de execução por função, alocação de memória e utilização de GPU -- ajudando-o a encontrar gargalos de engarrafamento e otimizar o desempenho."
+    },
+    {
+      "stage": "post",
+      "question": "O seu modelo atinge 99% de precisão no conjunto de testes.",
+      "options": [
+        "O lote é muito grande.",
+        "Fugas de dados - amostras de teste podem ter vazado para o conjunto de treinamento",
+        "A taxa de aprendizagem é muito alta",
+        "O modelo tem muitos parâmetros."
+      ],
+      "correct": 1,
+      "explanation": "A precisão suspeitamente elevada indica frequentemente vazamento de dados -- sobreposição entre dados de treinamento e teste, ou características que contêm a etiqueta alvo."
+    },
+    {
+      "stage": "post",
+      "question": "Qual é a descoberta mais comum ao se fazer um perfil da divisão de tempo de um ciclo de treinamento?",
+      "options": [
+        "A alocação de memória da GPU é o gargalo de engarrafamento",
+        "O passe para trás leva 90% do tempo.",
+        "A carga de dados demora mais do que os passes para frente e para trás combinados",
+        "Escrever registos leva mais tempo"
+      ],
+      "correct": 2,
+      "explanation": "A carga de dados geralmente leva mais de 60% do tempo de treinamento quando num_workers=0 no DataLoader."
+    },
+    {
+      "stage": "post",
+      "question": "Veja a perda de NaN no passo 500. Que abordagem irá ajudá-lo a encontrar a causa raiz?",
+      "options": [
+        "Passe de Adam para o optimizador SGD",
+        "Reinicie o treinamento a partir do zero com uma semente aleatória diferente",
+        "Aumentar o tamanho do lote para estabilizar os gradientes",
+        "Use detect_nan para verificar a NaN/Inf em gradientes e adicionar ponto de ruptura() no ponto de falha"
+      ],
+      "correct": 3,
+      "explanation": "Identifique primeiro onde o NaN se origina verificando gradientes para cada parâmetro. Um ponto de ruptura condicional no passo NaN permite inspecionar os valores do tensor de forma interativa. Causas comuns: taxa de aprendizagem muito alta, log(0), ou divisão por zero."
+    }
+  ]
+}

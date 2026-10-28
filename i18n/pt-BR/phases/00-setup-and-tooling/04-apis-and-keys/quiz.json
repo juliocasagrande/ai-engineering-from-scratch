@@ -1,0 +1,64 @@
+{
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "Para que serve uma chave API quando se liga a um serviço de LLM?",
+      "options": [
+        "Criptografar os dados enviados para o servidor",
+        "A autenticação da sua identidade e a autorização dos pedidos",
+        "Compressão de pedidos para reduzir a largura de banda",
+        "Selecionar o idioma de programação que o servidor usa"
+      ],
+      "correct": 1,
+      "explanation": "Uma chave API é uma cadeia única que identifica a sua conta, autoriza as suas solicitações e permite ao provedor rastrear o uso e a faturamento."
+    },
+    {
+      "stage": "pre",
+      "question": "Por que as chaves da API nunca devem ser codificadas diretamente no código-fonte?",
+      "options": [
+        "Python não pode ler letras de cadeia mais longas do que 50 caracteres",
+        "Os provedores de API bloqueiam as chaves que aparecem nos arquivos fonte",
+        "Chaves com código rígido tornam o código mais lento",
+        "Podem ser cometidos acidentalmente e expostos publicamente."
+      ],
+      "correct": 3,
+      "explanation": "As chaves codificadas em código-fonte correm o risco de serem comprometidas com o controle de versões e empurradas para repositórios públicos, onde podem ser raspadas e abusadas por outros."
+    },
+    {
+      "stage": "post",
+      "question": "Qual é a maneira recomendada de armazenar as chaves da API para desenvolvimento local?",
+      "options": [
+        "Em um arquivo .env que está listado em .gitignore",
+        "No README.md para fácil acesso",
+        "Em uma variável Python no topo do seu script",
+        "No requisito.txt ao lado das versões do pacote"
+      ],
+      "correct": 0,
+      "explanation": "Um arquivo .env armazena as chaves como variáveis do ambiente e deve ser adicionado ao .gitignore para que nunca seja comprometido com o controle de versão. Os SDKs lêem chaves de variáveis do ambiente automaticamente."
+    },
+    {
+      "stage": "post",
+      "question": "Na chamada de API HTTP para Anthropic, qual cabeçalho carrega a chave da API?",
+      "options": [
+        "Autorizado: portador...",
+        "Tipo de conteúdo: aplicação/json",
+        "A versão antropológica: 2023-06-01",
+        "- Não, não, não."
+      ],
+      "correct": 3,
+      "explanation": "A API da Anthropic usa o cabeçalho 'x-api-key' para autenticação, não o padrão mais comum 'Autorização: Portador'."
+    },
+    {
+      "stage": "post",
+      "question": "O que acontece quando ultrapassas o limite de taxa de uma API?",
+      "options": [
+        "O seu pedido é colocado em fila e processado automaticamente",
+        "O servidor retorna um erro (normalmente HTTP 429) e você deve esperar antes de tentar novamente",
+        "A sua chave API é revogada permanentemente",
+        "A API silenciosamente deixa cair a sua solicitação sem resposta"
+      ],
+      "correct": 1,
+      "explanation": "Rate limiting returns HTTP 429 (Too Many Requests). Você precisa esperar e tentar novamente, normalmente com backup exponencial."
+    }
+  ]
+}

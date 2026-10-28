@@ -1,0 +1,64 @@
+{
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "Qual é a principal diferença entre um recipiente Docker e uma máquina virtual?",
+      "options": [
+        "Não há diferença prática.",
+        "Os contêineres são mais lentos mas mais seguros do que as máquinas virtuais",
+        "Os contêineres compartilham o kernel do sistema operacional hospedeiro enquanto as máquinas virtuais executam seu próprio sistema operacional completo",
+        "Containers só podem executar Linux enquanto VMs suportam qualquer sistema operacional"
+      ],
+      "correct": 2,
+      "explanation": "Os contêineres compartilham o kernel do host e isola-los no nível do processo, fazendo com que eles começem em segundos."
+    },
+    {
+      "stage": "pre",
+      "question": "O que é um Dockerfile?",
+      "options": [
+        "Um arquivo de configuração para o daemon Docker",
+        "Um conjunto de instruções para construir uma imagem docker camada por camada",
+        "Um arquivo que lista os contêineres em execução",
+        "Um arquivo de registro que registra a atividade do contêiner"
+      ],
+      "correct": 1,
+      "explanation": "Um arquivo docker contém instruções sequenciais (FROM, RUN, COPY, etc.) que o docker executa para criar uma imagem. Cada instrução cria uma camada em cache."
+    },
+    {
+      "stage": "post",
+      "question": "Por que os aumentos de volume são críticos para o desenvolvimento de IA com o Docker?",
+      "options": [
+        "Volumes permitem que vários recipientes compartilhem a mesma GPU",
+        "Volumes fazem os recipientes correrem mais rápido usando velocidade do disco host",
+        "Volumes são necessários para que os pacotes Python sejam instalados corretamente",
+        "Volumes persistem dados (modelos, conjuntos de dados, código) em todas as reconstruções de contêineres para que você não re-descarre gigabytes cada vez"
+      ],
+      "correct": 3,
+      "explanation": "Sem volumes, tudo dentro de um recipiente é perdido quando ele se detém. O volume monta diretórios de mapas host no recipiente, de modo que pesos de modelo (14+ GB) e conjuntos de dados sobrevivem às reconstruções."
+    },
+    {
+      "stage": "post",
+      "question": "O que o Kit de Ferramentas de Contêineres NVIDIA permite?",
+      "options": [
+        "Instalação de controladores CUDA no interior do recipiente",
+        "Execução de contêineres NVIDIA GPU no hardware AMD",
+        "Exposing host GPUs to Docker containers via the --gpus flag",
+        "Compilação de código CUDA durante o processo de construção do Docker"
+      ],
+      "correct": 2,
+      "explanation": "O kit de ferramentas NVIDIA Container é um gancho de tempo de execução que expõe os GPUs do host a recipientes."
+    },
+    {
+      "stage": "post",
+      "question": "Em um arquivo do Docker Compose para IA, como o serviço 'ai-dev' chega ao banco de dados vetorial 'qdrant'?",
+      "options": [
+        "Ao montar um volume compartilhado entre os dois recipientes",
+        "Usando o nome de serviço 'qdrant' como o nome de hospedagem, já que a Compose cria uma rede compartilhada",
+        "Ao configurar uma VPN entre os contêineres",
+        "Usando o endereço IP e a porta da máquina hospedeira"
+      ],
+      "correct": 1,
+      "explanation": "O Docker Compose cria automaticamente uma rede compartilhada onde os serviços podem se alcançar por nome.http://qdrant:6333'utilizar o nome do serviço como nome de hospedagem."
+    }
+  ]
+}

@@ -1,0 +1,64 @@
+{
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "O que é que o 'controle de versões' ajuda-te principalmente a fazer?",
+      "options": [
+        "Corrigir automaticamente bugs no seu código",
+        "Acelerar a execução do código",
+        "Seguir as alterações nos arquivos ao longo do tempo e colaborar com os outros",
+        "Compressão de arquivos para economizar espaço no disco"
+      ],
+      "correct": 2,
+      "explanation": "Sistemas de controle de versão como git rastream todas as alterações feitas aos arquivos, permitindo que você volte aos estados anteriores e colabore com outros na mesma base de código."
+    },
+    {
+      "stage": "pre",
+      "question": "O que é um \"repositório\" no contexto do desenvolvimento de software?",
+      "options": [
+        "Um gerenciador de pacotes para a instalação de bibliotecas",
+        "Uma coleção de arquivos e seu histórico completo de alterações gerenciado pelo controle de versão",
+        "Um banco de dados para armazenamento de dados de usuários",
+        "Um serviço de armazenamento em nuvem como o Google Drive"
+      ],
+      "correct": 1,
+      "explanation": "Um repositório (repo) é um diretório rastreado por git que contém todos os arquivos do projeto juntamente com o histórico completo das alterações feitas a esses arquivos."
+    },
+    {
+      "stage": "post",
+      "question": "Qual é a sequência correta para salvar e fazer backup do seu trabalho em git?",
+      "options": [
+        "git push, git add, git commit",
+        "git clone, git add, git push",
+        "git add, git commit, git push",
+        "git commit, git add, git push"
+      ],
+      "correct": 2,
+      "explanation": "Primeiro você faz mudanças com 'git add', depois salva um snapshot com 'git commit', e depois carrega para o controle remoto com 'git push'. Este é o fluxo de trabalho diário."
+    },
+    {
+      "stage": "post",
+      "question": "O que faz o \"experimento/novo-optimizador\" do \"git checkout -b\"?",
+      "options": [
+        "Cria um novo ramo chamado experimento/novo-optimizador e muda para ele",
+        "Elimina o experimento/novo optimizador da ramificação",
+        "Descarga um ramo do GitHub chamado experiment/new-optimizer",
+        "Inverte todos os arquivos para combinar com o ramo experimento/novos optimizadores"
+      ],
+      "correct": 0,
+      "explanation": "A bandeira '-b' cria um novo ramo com o nome dado e muda imediatamente para ele, permitindo-lhe experimentar sem afetar o ramo principal."
+    },
+    {
+      "stage": "post",
+      "question": "Por que adicionar \".pt\", \".pth\", e \".safetensors\" ao seu .gitignore?",
+      "options": [
+        "São arquivos de checkpoint modelo que são grandes demais para git e podem ser re-gerados",
+        "O Git não pode rastrear arquivos binários de qualquer tipo",
+        "São arquivos de teste Python que não devem ser comprometidos",
+        "Contêm chaves sensíveis de API"
+      ],
+      "correct": 0,
+      "explanation": "Os arquivos modelo de checkpoint (.pt, .pth, .safetensors) são geralmente de tamanho de gigabytes. Git não é projetado para arquivos binários grandes, por isso estes devem ser excluídos e re-gerados ou armazenados separadamente."
+    }
+  ]
+}

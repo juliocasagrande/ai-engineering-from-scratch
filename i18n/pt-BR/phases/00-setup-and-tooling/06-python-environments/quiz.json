@@ -1,0 +1,64 @@
+{
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "Que problema os ambientes virtuais resolvem?",
+      "options": [
+        "Eles fornecem uma interface gráfica para gerenciar scripts Python",
+        "Isolam as dependências de projetos para que diferentes projetos possam usar diferentes versões de pacotes",
+        "Atualizam automaticamente os pacotes para as versões mais recentes",
+        "Eles tornam o código Python mais rápido, otimizando o intérprete."
+      ],
+      "correct": 1,
+      "explanation": "Os ambientes virtuais dão a cada projeto seu próprio conjunto isolado de pacotes. sem eles, a instalação de PyTorch 2.4 para um projeto substituiria o PyTorch 2.1 necessário para outro."
+    },
+    {
+      "stage": "pre",
+      "question": "O que é um arquivo de bloqueio no contexto da gestão de dependência do Python?",
+      "options": [
+        "Um arquivo que bloqueia a versão do intérprete Python",
+        "Um arquivo que criptografa as dependências do projeto",
+        "Um arquivo que impede outros usuários de editar o seu código",
+        "Um arquivo que fixa cada pacote em uma versão exata para instalações reprodutíveis"
+      ],
+      "correct": 3,
+      "explanation": "Um arquivo de bloqueio registra a versão exata de cada pacote (incluindo dependências transitivas) para que qualquer pessoa que instale a partir dele obtenha pacotes idênticos, garantindo a reprodução."
+    },
+    {
+      "stage": "post",
+      "question": "Como você pode verificar que os seus comandos pip e python estão usando o ambiente virtual e não o sistema Python?",
+      "options": [
+        "Run 'python --check-env' to verify",
+        "Run 'pip --version' and check the version number",
+        "Execute 'qual Python' e confirme que mostra .venv/bin/python, não /usr/bin/python",
+        "Verifique se a cor de fundo do terminal mudou"
+      ],
+      "correct": 2,
+      "explanation": "'qual Python' (ou 'onde Python' no Windows) mostra o caminho completo para o intérprete."
+    },
+    {
+      "stage": "post",
+      "question": "Por que é problemático misturar pip e condas no mesmo ambiente?",
+      "options": [
+        "Pacotes Pip são incompatíveis com o Python interpretador de conda",
+        "Instalações de Pip podem quebrar o rastreamento de dependência da conda, causando conflitos difíceis de desviar",
+        "O espaço no disco é duplicado por cada pacote.",
+        "Conda não pode instalar pacotes que pip já instalou"
+      ],
+      "correct": 1,
+      "explanation": "Conda mantém seu próprio resolvedor de dependência. Pip instala contornar, para que conda não conheça mais o verdadeiro estado do ambiente."
+    },
+    {
+      "stage": "post",
+      "question": "O seu código PyTorch informa que a CUDA não está disponível, apesar de ter uma GPU NVIDIA.",
+      "options": [
+        "PyTorch foi instalado com uma versão CUDA incompatível com o seu driver GPU",
+        "A sua GPU não suporta CUDA",
+        "Esqueceu-se de importar o módulo torch.cuda",
+        "Ambientes virtuais não podem acessar hardware GPU"
+      ],
+      "correct": 0,
+      "explanation": "A PyTorch envia as ligações CUDA compiladas para versões específicas de CUDA. Se a versão PyTorch CUDA exceder a versão CUDA do seu motorista, a CUDA não estará disponível. Confira com nvidia-smi e torch.version.cuda."
+    }
+  ]
+}

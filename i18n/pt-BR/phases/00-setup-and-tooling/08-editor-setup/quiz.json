@@ -1,0 +1,64 @@
+{
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "O que é um protocolo de servidor de linguagem (LSP)?",
+      "options": [
+        "Um protocolo para transferir arquivos entre editores",
+        "Um formato de compressão para arquivos de código-fonte",
+        "Um protocolo de rede para programação remota de pares",
+        "Um padrão para os editores receberem informações de tipo, conclusões e diagnósticos de um servidor específico de idioma"
+      ],
+      "correct": 3,
+      "explanation": "O LSP é um protocolo padronizado que permite que os editores se comuniquem com servidores de linguagem para recursos como autocompleto, verificação de tipo e diagnóstico de erros, independentemente do editor usado."
+    },
+    {
+      "stage": "pre",
+      "question": "Por que é útil o formato em salvação para projetos de equipe?",
+      "options": [
+        "Ele garante um estilo de código consistente em todos os contribuintes sem formatagem manual",
+        "Comprime o código para operações de git mais rápidas",
+        "Reduz o tamanho dos arquivos removendo espaço em branco",
+        "Ele pega bugs de execução antes do código ser executado"
+      ],
+      "correct": 0,
+      "explanation": "O formato-on-save executa um formatador (como o Black ou Ruff) sempre que você salva, garantindo que todo o código siga as mesmas convenções de estilo, independentemente de quem o escreveu."
+    },
+    {
+      "stage": "post",
+      "question": "Qual extensão VS Code permite editar código em uma máquina remota de GPU como se fosse local?",
+      "options": [
+        "Pylance",
+        "Debuggy",
+        "GITLENS",
+        "SSH remoto"
+      ],
+      "correct": 3,
+      "explanation": "O Remote SSH instala um servidor de código VS leve na máquina remota e transmite a interface para o editor local, permitindo que você edite arquivos, execute terminais e deprecie remotamente."
+    },
+    {
+      "stage": "post",
+      "question": "Por que deve ser habilitado o \"notebook.output.scrolling\" nas configurações de código VS para o trabalho da IA?",
+      "options": [
+        "Permite o rolamento de animações no editor",
+        "Permite rolar entre as células do notebook com a roda do mouse",
+        "Permite rolar horizontal para quadros de dados largos",
+        "Impede a saída de loop de treinamento (milhares de linhas) de explodir o painel de saída"
+      ],
+      "correct": 3,
+      "explanation": "Os circuitos de treinamento podem imprimir milhares de linhas de saída. Sem rolamento de saída, o painel de saída do notebook cresce ilimitadamente, tornando o notebook inutilizável."
+    },
+    {
+      "stage": "post",
+      "question": "O que é feito pela configuração do 'Python.analysis.typeCheckingMode' para 'base' no VS Code?",
+      "options": [
+        "Abilita a destaque de sintaxe para arquivos Python",
+        "Formatar código Python de acordo com padrões PEP 8",
+        "Abilita recursos de Python 3.12",
+        "Ele pega tipos de argumento errados e tensor forma descoincidências antes de executar o código"
+      ],
+      "correct": 3,
+      "explanation": "Verificação de tipo básica com bandeiras Pylance não correspondem ao tipo, tipos de argumentos errados e parâmetros de API incorretos no momento de edição, capturando bugs antes de executar um script de treinamento potencialmente caro."
+    }
+  ]
+}

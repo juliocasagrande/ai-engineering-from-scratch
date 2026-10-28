@@ -1,0 +1,64 @@
+{
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "O que representa o símbolo '~' em um caminho de arquivo Linux?",
+      "options": [
+        "O diretório raiz do sistema de arquivos",
+        "O diretório de arquivos temporários",
+        "Directório de residência do usuário atual",
+        "O diretório onde os programas de sistema são instalados"
+      ],
+      "correct": 2,
+      "explanation": "O tilde (~) é um atalho para o diretório de home do usuário atual, tipicamente /home/username no Linux. 'cd ~' leva você para casa de qualquer lugar."
+    },
+    {
+      "stage": "pre",
+      "question": "Qual é o propósito do 'sudo' antes de um comando?",
+      "options": [
+        "Executa o comando com root (administrator) privilégios",
+        "Executa o comando em um ambiente de caixa de areia",
+        "Acelera a execução de comandos",
+        "Ele registra a saída de comando para um arquivo do sistema"
+      ],
+      "correct": 0,
+      "explanation": "sudo (superuser do) temporarily elevates your privileges to root level for a single command. Required for system-level operations like installing packages with apt."
+    },
+    {
+      "stage": "post",
+      "question": "Quando tentamos executar um script de shell, recebemos \"Permissão negada\".",
+      "options": [
+        "Chown root script.sh",
+        "mv script.sh /usr/bin/",
+        "Chmod + x script.sh",
+        "sudo rm script.sh"
+      ],
+      "correct": 2,
+      "explanation": "Chmod + x adiciona permissão de execução ao arquivo. Sem o conjunto de bits de execução, a shell se recusa a executar o script mesmo que você o possua."
+    },
+    {
+      "stage": "post",
+      "question": "Em uma caixa de GPU remota, os dados de treinamento preenchem o disco.",
+      "options": [
+        "- Não .",
+        "cat /proc/meminfo",
+        "du -h --max-depth=1 / | sort -hr | head -20",
+        "livre - h"
+      ],
+      "correct": 2,
+      "explanation": "du -h shows disk usage per directory, --max-depth=1 limits to top-level directories, and sort -hr sorts by size in descending order. This reveals which directories are consuming the most space."
+    },
+    {
+      "stage": "post",
+      "question": "Qual é a diferença fundamental entre as versões macOS e Linux do 'sed -i'?",
+      "options": [
+        "Linux sed é mais rápido do que macOS sed",
+        "Linux sed não suporta expressões regulares",
+        "macOS sed não pode modificar arquivos em seu lugar",
+        "macOS sed requer um argumento de cadeia vazia após -i ('sed -i \"\"'), enquanto Linux não"
+      ],
+      "correct": 3,
+      "explanation": "O macOS usa o BSD sed que requer um arquivo padrão 'sed -i \"\"', enquanto o Linux usa o GNU sed que aceita um 'sed -i padrão de arquivo'."
+    }
+  ]
+}

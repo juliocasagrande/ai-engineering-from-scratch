@@ -1,0 +1,64 @@
+{
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "O que faz o operador de tubos ' não ' em um comando de concha?",
+      "options": [
+        "Executa dois comandos em paralelo",
+        "Combina dois arquivos em um",
+        "Envia a saída padrão de um comando como entrada padrão para o próximo",
+        "Salva a saída de um comando para um arquivo"
+      ],
+      "correct": 2,
+      "explanation": "O operador de tubos conecta comandos em um pipeline. Por exemplo, 'cat log.txt ̊ grep error' envia o conteúdo do log.txt como entrada para grep, que filtra linhas que contêm 'erro'."
+    },
+    {
+      "stage": "pre",
+      "question": "O que acontece a um processo em execução quando fechar o terminal que o iniciou?",
+      "options": [
+        "O processo pausa até que você abra um novo terminal",
+        "O processo continua a correr no fundo",
+        "O processo recebe um sinal de suspenso (SIGHUP) e normalmente termina",
+        "O processo é automaticamente migrado para um serviço do sistema"
+      ],
+      "correct": 2,
+      "explanation": "Fechar o terminal envia o SIGHUP para os processos infantis, o que faz com que eles terminem por padrão. Ferramentas como tmux, nohup ou tela impedem isso."
+    },
+    {
+      "stage": "post",
+      "question": "Qual é a principal vantagem do tmux em relação ao uso do comando nohup para trabalhos de formação de longa duração?",
+      "options": [
+        "tmux reinicia automaticamente processos falhados",
+        "tmux usa menos CPU do que nohup",
+        "tmux permite que você desligue, reanalisar e ver saída ao vivo com vários painéis",
+        "tmux comprime a saída do processo para economizar espaço no disco"
+      ],
+      "correct": 2,
+      "explanation": "tmux cria sessões persistentes que você pode desligar e anexar para mais tarde, com saída ao vivo visível em vários painéis. nohup só faz logs em um arquivo sem forma de interagir ou anexar."
+    },
+    {
+      "stage": "post",
+      "question": "O que é que o 'python train.py > output.log 2>&1' consegue?",
+      "options": [
+        "Executa train.py e salva apenas erros para output.log",
+        "Funciona com o treinamento.py com o dobro da alocação de memória",
+        "Runs train.py duas vezes e registra a segunda corrida",
+        "Executa train.py e redireciona tanto a saída padrão quanto o erro padrão para output.log"
+      ],
+      "correct": 3,
+      "explanation": "'> output.log' redireciona stdout para o arquivo. '2>&1' envia stderr para o mesmo lugar que stdout. O resultado é tanto a saída normal quanto os erros capturados em um arquivo."
+    },
+    {
+      "stage": "post",
+      "question": "Qual comando permite que você acesse um notebook Jupyter remoto que corre na porta 8888 de uma caixa de GPU do seu navegador local?",
+      "options": [
+        "ssh -L 8888:localhost:8888 user@gpu-box",
+        "ssh user@gpu-box --forward-port 8888",
+        "-P 8888 user@gpu-box:~/notebook.ipynb",
+        "rsync -avz user@gpu-box:8888 localhost:8888"
+      ],
+      "correct": 0,
+      "explanation": "O encaminhamento de porta local (-L) SSH mapeia uma porta remota para a sua máquina local. Após este comando, abrindo localhost:8888 no seu navegador acessa o servidor Jupyter remoto."
+    }
+  ]
+}

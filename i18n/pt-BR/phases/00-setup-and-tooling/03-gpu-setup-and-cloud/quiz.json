@@ -1,0 +1,64 @@
+{
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "Porque é que uma GPU é mais rápida do que uma CPU para treinar redes neurais?",
+      "options": [
+        "As GPUs têm velocidades de relógio mais altas do que as CPUs",
+        "As GPUs podem executar milhares de operações de matriz paralelas simultaneamente.",
+        "GPUs usam uma linguagem de programação mais eficiente",
+        "GPUs têm mais RAM do que CPUs"
+      ],
+      "correct": 1,
+      "explanation": "As GPUs têm milhares de núcleos otimizados para computação paralela, tornando-as ideais para as multiplicidades de matriz que dominam o treinamento de rede neural."
+    },
+    {
+      "stage": "pre",
+      "question": "O que se refere a VRAM?",
+      "options": [
+        "A RAM total disponível em todos os dispositivos",
+        "Um tipo de memória cache da CPU",
+        "RAM de vídeo na GPU, separada da RAM do sistema",
+        "RAM virtual utilizada pelo sistema operacional para espaços de troca"
+      ],
+      "correct": 2,
+      "explanation": "A RAM de vídeo (VRAM) é a memória dedicada de uma GPU. Limita o tamanho dos modelos e dos tamanhos de lote que você pode usar durante o treinamento, separado da RAM principal do seu sistema."
+    },
+    {
+      "stage": "post",
+      "question": "Qual comando verifica que a sua GPU NVIDIA é detectada e mostra o seu estado atual?",
+      "options": [
+        "torch.cuda.list_devices()",
+        "Nvidia-smi",
+        "O Gpc pegou o Gpc.",
+        "gpu --status"
+      ],
+      "correct": 1,
+      "explanation": "A interface de gerenciamento de sistemas NVIDIA (nvidia-smi) exibe a utilização da GPU, o uso de memória, a temperatura e os processos de execução."
+    },
+    {
+      "stage": "post",
+      "question": "Ao comparar GPU vs CPU matrix multiplicação, por que você deve chamar torch.cuda.synchronize() antes de medir tempo GPU?",
+      "options": [
+        "Para transferir dados da CPU para a memória da GPU",
+        "Para garantir que todas as operações da GPU tenham sido concluídas antes de parar o temporizador",
+        "Para liberar memória GPU não utilizada",
+        "Para redefinir a velocidade do relógio da GPU para a sua frequência base"
+      ],
+      "correct": 1,
+      "explanation": "As operações da GPU são assíncronas - Python retorna imediatamente enquanto a GPU ainda está computação. Sincronizar os blocos até que todas as operações da GPU terminem, dando um cronograma preciso."
+    },
+    {
+      "stage": "post",
+      "question": "Usando a regra do polegar fp16, aproximadamente quantos parâmetros podem caber em 24 GB de VRAM?",
+      "options": [
+        "6 mil milhões de parâmetros",
+        "24 mil milhões de parâmetros",
+        "12 mil milhões de parâmetros",
+        "48 mil milhões de parâmetros"
+      ],
+      "correct": 2,
+      "explanation": "Em fp16, cada parâmetro usa 2 bytes. 24 GB / 2 bytes = 12 bilhões de parâmetros. Esta é uma estimativa aproximada; o uso real inclui ativações, gradientes e estados de otimização."
+    }
+  ]
+}

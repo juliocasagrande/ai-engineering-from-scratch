@@ -1,0 +1,64 @@
+{
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "O que é um caderno Jupyter?",
+      "options": [
+        "Um documento interativo que mistura células de código executáveis com texto de marcação e saídas de linha",
+        "Um gerenciador de pacotes para bibliotecas Python",
+        "Sistema de controlo de versões para projetos de ciência de dados",
+        "Um editor de texto para escrever scripts Python"
+      ],
+      "correct": 0,
+      "explanation": "Um notebook Jupyter (.ipynb) é um ambiente interativo onde você pode escrever e executar código em células, ver as saídas em linha e misturar código com explicações de texto formatadas."
+    },
+    {
+      "stage": "pre",
+      "question": "O que faz o núcleo de Jupyter?",
+      "options": [
+        "Executa o código em células e mantém variáveis na memória entre execuções",
+        "Conecta o notebook ao GitHub para controle de versão",
+        "Gerenciamento de arquivo de armazenamento para o notebook",
+        "Formatos de células de marcação em HTML"
+      ],
+      "correct": 0,
+      "explanation": "O kernel é um processo Python separado que executa código celular e mantém estado (variaveis, importações) na memória."
+    },
+    {
+      "stage": "post",
+      "question": "Qual é a diferença entre os comandos mágicos %timeit e %%time?",
+      "options": [
+        "Não há diferença, são alias.",
+        "%time executa código muitas vezes e médias, %%time executa código uma vez",
+        "%time, que mede o tempo de parede, %%time, que mede o tempo de CPU",
+        "%time funciona em linhas individuais, %%time funciona em todo o bloco"
+      ],
+      "correct": 1,
+      "explanation": "%time, que executa a instrução várias vezes para uma média estatística (bom para microbenchmarks). %%time executa a célula uma vez e informa o tempo de parede (bom para treinamento)."
+    },
+    {
+      "stage": "post",
+      "question": "Qual é a causa mais comum de um caderno funcionar na sua máquina, mas falhar quando alguém o corre de cima para baixo?",
+      "options": [
+        "Falta o comando mágico em linha de %matplotlib",
+        "Usando células de marcação demais",
+        "Execução de células fora de ordem criando dependências ocultas da ordem de execução",
+        "Usando uma versão Python diferente"
+      ],
+      "correct": 2,
+      "explanation": "Celulas fora de ordem criam dependências de estado ocultas. Uma variável pode existir porque você executou a célula 5 antes da célula 2. Kernel > Restart & Run All verifica a execução linear."
+    },
+    {
+      "stage": "post",
+      "question": "Quando é que se deve mover o código de um bloco de notas para um script .py?",
+      "options": [
+        "Nunca - os portáteis são sempre melhores para o trabalho da IA",
+        "Só quando precisas de executar com uma GPU",
+        "Assim que escrever mais de 10 linhas de código",
+        "Quando o código é um utilitário reutilizável, um pipeline de treinamento ou um código de produção"
+      ],
+      "correct": 3,
+      "explanation": "A regra é 'explorar em notebooks, enviar em scripts'. Utilidades reutilizáveis, canais de treinamento e qualquer coisa em execução na produção devem ser arquivos .py."
+    }
+  ]
+}
