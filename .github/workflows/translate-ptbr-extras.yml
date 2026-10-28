@@ -94,7 +94,7 @@ jobs:
             while IFS= read -r -d '' file; do
               mkdir -p "$RUNNER_TEMP/publish/$(dirname "$file")"
               cp "$file" "$RUNNER_TEMP/publish/$file"
-            done < <(find "$SLICE" \( -name quiz.json -o -path '*/outputs/*.md' \) -type f -print0)
+            done < <(find "$SLICE" \( -name quiz.json -o -name README.md -o -path '*/outputs/*.md' \) -type f -print0)
             cp "$CACHE" "$RUNNER_TEMP/publish/$CACHE"
             (
               cd "$RUNNER_TEMP/publish"
