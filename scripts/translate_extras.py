@@ -18,6 +18,21 @@ import translate_lessons as lessons  # noqa: E402
 
 ROOT = Path(__file__).resolve().parent.parent
 CODE_LIKE = re.compile(r"^(?:python\d*\s+-|pip\s+|npm\s+|uv\s+|git\s+|npx\s+|sudo\s+|import\s+\w+[;.]|\w+\.\w+\()")
+TRANSLATOR_VERSION = "2"
+REVIEWED = {
+    "phases/00-setup-and-tooling/README.md",
+    "phases/00-setup-and-tooling/01-dev-environment/quiz.json",
+    "phases/00-setup-and-tooling/01-dev-environment/outputs/prompt-env-check.md",
+}
+
+
+def translate_fragment(pipe, fragment: str) -> str:
+    """Keep spaces on either side of a protected technical span."""
+    match = re.fullmatch(r"(\s*)(.*?)(\s*)", fragment, re.S)
+    before, body, after = match.groups()
+    if not body:
+        return fragment
+    return before + lessons._nllb_sentence(pipe, body) + after
 
 
 def translate_string(value: str, lang: str, provider: str) -> str:
@@ -33,7 +48,7 @@ def translate_string(value: str, lang: str, provider: str) -> str:
         pipe = lessons._nllb_pipe(lessons.NLLB_CODES[lang])
         translated = "".join(
             part if (lessons.SENT_RE.fullmatch(part) or not part.strip())
-            else lessons._nllb_sentence(pipe, part)
+            else translate_fragment(pipe, part)
             for part in re.split(r"(⁣PROTECT\d+⁣)", protected)
         )
     else:
@@ -72,8 +87,10 @@ def translate_markdown(source: str, lang: str, provider: str) -> str:
             header,
         )
     if provider in {"echo", "nllb"}:
-        translated = lessons.nllb_translate_doc(body, lessons.NLLB_CODES[lang],
-                                                 translate_fn=(lambda s: s) if provider == "echo" else None)
+        translator = (lambda s: s) if provider == "echo" else (
+            lambda s: translate_fragment(lessons._nllb_pipe(lessons.NLLB_CODES[lang]), s)
+        )
+        translated = lessons.nllb_translate_doc(body, lessons.NLLB_CODES[lang], translate_fn=translator)
     else:
         translated = lessons.translate_doc(body, lang, provider)
     if translated is None:
@@ -128,7 +145,15 @@ def main() -> None:
         source = source_file.read_text(encoding="utf-8")
         digest = lessons.source_hash(source)
         dest = lessons.OUT_ROOT / args.lang / rel
-        if cache.get(rel) == digest and dest.exists():
+        current_digest = digest if args.provider == "echo" else lessons.source_hash(TRANSLATOR_VERSION + "\0" + source)
+        if rel in REVIEWED and dest.exists() and cache.get(rel) == digest:
+            cache[rel] = current_digest
+            if not args.dry_run:
+                cache_file.parent.mkdir(parents=True, exist_ok=True)
+                cache_file.write_text(json.dumps(cache, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
+            skipped += 1
+            continue
+        if cache.get(rel) == current_digest and dest.exists():
             if source_file.suffix == ".md" and source_file.name != "README.md" and not args.dry_run:
                 published = dest.read_text(encoding="utf-8")
                 updated = refresh_description(source, published, args.lang, args.provider)
@@ -142,7 +167,7 @@ def main() -> None:
         # Its older cache may overwrite a newer record on publish. Keep a file
         # with no cache entry rather than replacing a reviewed translation.
         if dest.exists() and rel not in cache:
-            cache[rel] = digest
+            cache[rel] = current_digest
             if not args.dry_run:
                 cache_file.parent.mkdir(parents=True, exist_ok=True)
                 cache_file.write_text(json.dumps(cache, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
@@ -155,7 +180,7 @@ def main() -> None:
                   else translate_markdown(source, args.lang, args.provider))
         dest.parent.mkdir(parents=True, exist_ok=True)
         dest.write_text(result, encoding="utf-8")
-        cache[rel] = digest
+        cache[rel] = current_digest
         cache_file.parent.mkdir(parents=True, exist_ok=True)
         cache_file.write_text(json.dumps(cache, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
         translated += 1
