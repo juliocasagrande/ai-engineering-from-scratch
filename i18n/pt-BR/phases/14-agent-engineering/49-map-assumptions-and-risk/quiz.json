@@ -1,0 +1,78 @@
+{
+  "lesson": "49-map-assumptions-and-risk",
+  "title": "Suposições de mapa e risco",
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "O que é que um mapa de suposição revela que um mapa de roteiro de características esconde?",
+      "options": [
+        "Condições que devem ser válidas para que a construção mereça investimento",
+        "Data de lançamento",
+        "Código de origem",
+        "Nomes de equipes"
+      ],
+      "correct": 0,
+      "explanation": "As hipóteses de valor superficial, usabilidade, viabilidade e segurança."
+    },
+    {
+      "stage": "check",
+      "question": "Qual pressuposto é falsificável?",
+      "options": [
+        "O design é moderno.",
+        "Os usuários vão adorar.",
+        "Oito de cada dez engenheiros identificam o serviço correto mais rapidamente na repetição",
+        "O recurso é útil"
+      ],
+      "correct": 2,
+      "explanation": "Uma suposição falsificável tem uma população, observação e possível falha."
+    },
+    {
+      "stage": "check",
+      "question": "Por que avaliar o impacto, a incerteza e a irreversão separadamente?",
+      "options": [
+        "Para garantir o sucesso",
+        "Para tornar explícita a razão da ordem de risco",
+        "Para eliminar o julgamento",
+        "Para criar uma fórmula universal"
+      ],
+      "correct": 1,
+      "explanation": "As dimensões expõem por que um desconhecido deve ser resolvido cedo."
+    },
+    {
+      "stage": "check",
+      "question": "O que deve ser o próximo objectivo do experimento?",
+      "options": [
+        "O risco aberto mais elevado com um teste decisivo e barato",
+        "A ideia mais popular",
+        "A característica mais fácil",
+        "A tarefa mais longa"
+      ],
+      "correct": 0,
+      "explanation": "A ordem orientada pelo risco maximiza a aprendizagem antes do compromisso."
+    },
+    {
+      "stage": "post",
+      "question": "O que torna uma experiência decisiva?",
+      "options": [
+        "Produz uma demonstração",
+        "Cada resultado leva a mais construção",
+        "Passar, falhar e resultados ambíguos levam a decisões próximas declaradas",
+        "Utiliza a autoridade de produção"
+      ],
+      "correct": 2,
+      "explanation": "Um teste deve ser capaz de mudar de direcção."
+    },
+    {
+      "stage": "post",
+      "question": "Como deve construir uma mudança de ordem quando a reversibilidade é diferente?",
+      "options": [
+        "Trabalho irreversível sempre vem em primeiro lugar",
+        "Apenas os custos",
+        "Não é",
+        "Os ensaios reversíveis devem preceder compromissos irreversíveis de elevada consequência"
+      ],
+      "correct": 3,
+      "explanation": "Aprenda com segurança antes de assumir autoridade ou custos de migração."
+    }
+  ]
+}

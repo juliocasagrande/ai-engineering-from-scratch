@@ -1,0 +1,90 @@
+{
+  "lesson": "22-voice-agents-pipecat-livekit",
+  "title": "Agentes de voz: Pipecat e LiveKit",
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "Que duas direções de fluxo usa um oleoduto da Pipecat?",
+      "options": [
+        "Ler e escrever",
+        "Quente e frio",
+        "Inbound e outbound",
+        "DOWNSTREAM (fonte para afundar) e UPSTREAM (feedback, cancelamento, embarque)"
+      ],
+      "correct": 3,
+      "explanation": "Os quadros fluem para baixo do fluxo de fonte para afundar e para cima para controle e cancelamento."
+    },
+    {
+      "stage": "pre",
+      "question": "O que é o canal de voz canônico Pipecat?",
+      "options": [
+        "VAD -> STT -> LLM -> TTS -> transporte",
+        "Áudio -> JSON -> SQL -> resposta",
+        "LLM -> embed -> retrieve -> resposta",
+        "TTS -> STT -> LLM -> VAD"
+      ],
+      "correct": 0,
+      "explanation": "O VAD detecta a atividade da voz, o STT transcreve, o LLM responde, o TTS fala, o transporte entrega."
+    },
+    {
+      "stage": "check",
+      "question": "Que duas classes de agentes de voz o LiveKit Agents envia?",
+      "options": [
+        "BatchAgent e StreamAgent",
+        "TextAgen e SpeechAgen",
+        "MultimodalAgent (áudio direto) e VoicePipelineAgent (cascata STT/LLM/TTS)",
+        "LocalAgent e CloudAgent"
+      ],
+      "correct": 2,
+      "explanation": "MultimodalAgent usa áudio direto (estilo em tempo real); VoicePipelineAgent usa STT->LLM->TTS para controle de nível de texto."
+    },
+    {
+      "stage": "check",
+      "question": "O que é o \"barge-in\" e como é tratado?",
+      "options": [
+        "Um aumento dos custos da LLM; redução dos tokens",
+        "O usuário interrompe enquanto o agente está falando; UPSTREAM cancelar quadros parar TTS no meio da utterance",
+        "Falha de captcha; retentação",
+        "Uma interrupção do fornecedor; regiões de transição"
+      ],
+      "correct": 1,
+      "explanation": "O barge-in é a interrupção do usuário; a cancelamento do UPSTREAM é a forma como a Pipecat lida com isso de forma limpa."
+    },
+    {
+      "stage": "check",
+      "question": "Que latência de ponta a ponta a que a lição descreve como premium?",
+      "options": [
+        "Cerca de 450-600 ms",
+        "Cerca de 1500 ms",
+        "Cerca de 50 ms",
+        "Cerca de 5000 ms"
+      ],
+      "correct": 0,
+      "explanation": "As pilhas premium aterram em torno de 450-600 ms; 800-1200 ms é comum; mais de 1500 ms parece quebrado."
+    },
+    {
+      "stage": "post",
+      "question": "O que vai mal se a confiança em STT for ignorada?",
+      "options": [
+        "As chamadas ficam mais baratas.",
+        "Melhora a latência",
+        "O TTS está a ser mais rápido .",
+        "Transcrições de baixa confiança alimentam o LLM como se fosse evangelho, produzindo respostas erradas; porta de confiança ou pedir confirmação"
+      ],
+      "correct": 3,
+      "explanation": "Tratar a TST de baixa confiança como verdade é um modo de falha de alto nível para agentes de voz."
+    },
+    {
+      "stage": "post",
+      "question": "Por que a lição recomenda somar as latências dos componentes antes do envio?",
+      "options": [
+        "A latência é exigida pelo WebRTC",
+        "Cada componente adiciona 50-200 ms; a soma determina se a experiência se sente quebrada",
+        "Os provedores cobram por latência",
+        "Reúne um requisito de conformidade"
+      ],
+      "correct": 1,
+      "explanation": "Resumir a cadeia (VAD + STT + LLM + TTS + transporte) antes do envio; os objetivos são estreitos."
+    }
+  ]
+}

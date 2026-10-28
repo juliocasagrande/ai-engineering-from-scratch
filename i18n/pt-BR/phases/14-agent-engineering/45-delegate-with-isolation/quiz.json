@@ -1,0 +1,78 @@
+{
+  "lesson": "45-delegate-with-isolation",
+  "title": "Delegado com isolamento",
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "Quando é justificada a delegação paralela?",
+      "options": [
+        "Quando o trabalho tem verdadeira independência nas decisões, caminhos ou tempo de espera",
+        "Para cada tarefa de mais de dez minutos",
+        "Sempre que mais agentes estiverem disponíveis",
+        "Apenas para documentação"
+      ],
+      "correct": 0,
+      "explanation": "O paralelismo só ajuda quando as unidades podem progredir sem decisões ou propriedade mutáveis compartilhadas."
+    },
+    {
+      "stage": "check",
+      "question": "Que garantia não é fornecida pelo isolamento dos sistemas de arquivos?",
+      "options": [
+        "Projeto exclusivo e propriedade do caminho",
+        "Execução independente de comandos",
+        "Ramos recuperáveis",
+        "Directórios separados"
+      ],
+      "correct": 0,
+      "explanation": "Duas árvores de trabalho isoladas ainda podem implementar projetos conflitantes."
+    },
+    {
+      "stage": "check",
+      "question": "Por que cada unidade de trabalho tem de ter uma prova?",
+      "options": [
+        "Para evitar uma transferência",
+        "Para aumentar a concurência",
+        "Assim, o integrador recebe evidências reprodutíveis",
+        "Para que o trabalhador possa reivindicar o sucesso"
+      ],
+      "correct": 2,
+      "explanation": "O integrador deve verificar os resultados, não confiar em resumos."
+    },
+    {
+      "stage": "check",
+      "question": "O que deve acontecer quando duas unidades possuem caminhos sobrepostos?",
+      "options": [
+        "Deixe o último operário ganhar",
+        "Fusão sem revisão",
+        "- Corra mais depressa.",
+        "Bloquear e redesenhar a divisão"
+      ],
+      "correct": 3,
+      "explanation": "A sobreposição da propriedade de escrita cria conflitos e ambigüidade evitáveis."
+    },
+    {
+      "stage": "post",
+      "question": "O que é autonomia calibrada?",
+      "options": [
+        "Apenas trabalho manual",
+        "Liberdade onde as provas e o retrocesso são fortes, pontos de controlo onde as consequências são altas",
+        "Automação completa",
+        "Aplicações aleatórias"
+      ],
+      "correct": 1,
+      "explanation": "A autoridade deve seguir a consequência e a reversibilidade."
+    },
+    {
+      "stage": "post",
+      "question": "Qual é a responsabilidade final do integrador?",
+      "options": [
+        "Eliminar as transferências",
+        "Escolha um modelo maior",
+        "Reescrever cada unidade",
+        "Execute o portal de verificação transversal completo e aplique o alcance"
+      ],
+      "correct": 3,
+      "explanation": "A prova de unidade não substitui a prova de integração de ponta a ponta."
+    }
+  ]
+}

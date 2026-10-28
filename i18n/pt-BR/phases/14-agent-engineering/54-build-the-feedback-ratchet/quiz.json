@@ -1,0 +1,78 @@
+{
+  "lesson": "54-build-the-feedback-ratchet",
+  "title": "Construir o Ratchet de Feedback",
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "Quando o feedback se torna infraestrutura?",
+      "options": [
+        "Quando é resumido",
+        "Quando aparece em um painel",
+        "Quando é recolhido",
+        "Quando tiver um caminho para uma alteração e verificação duradouras de propriedade"
+      ],
+      "correct": 3,
+      "explanation": "A promoção e a propriedade transformam a observação em aprendizagem de sistemas."
+    },
+    {
+      "stage": "check",
+      "question": "Onde deve ir uma tentativa de produção-escritura?",
+      "options": [
+        "Apenas documentação",
+        "Limite de política ou de permissão",
+        "Régime de atraso geral",
+        "Design visual"
+      ],
+      "correct": 1,
+      "explanation": "A autoridade insegura é de propriedade de uma camada de política executável."
+    },
+    {
+      "stage": "check",
+      "question": "O que deve mudar primeiro uma mudança falsa positiva?",
+      "options": [
+        "Título de equipa",
+        "Região de implantação",
+        "Preços",
+        "Cobertura de avaliação ou de ensaio"
+      ],
+      "correct": 3,
+      "explanation": "A camada de avaliação deve preservar a falha como um caso reprodutivo."
+    },
+    {
+      "stage": "check",
+      "question": "Porque é que o proprietário faz parte do controlo?",
+      "options": [
+        "Melhorias não adquiridas não mudam ou permanecem atuais de forma confiável",
+        "Aumentar as reuniões",
+        "Para esconder o sinal",
+        "Para remover a prova"
+      ],
+      "correct": 0,
+      "explanation": "Alguém deve implementar, verificar, rever e retirar a ação."
+    },
+    {
+      "stage": "post",
+      "question": "Quando é que o controlo deve ser retirado?",
+      "options": [
+        "Nunca .",
+        "Quando as evidências mostram que é substituído, obsoleto ou cria mais atrito do que risco protegido",
+        "Quando se sente velho",
+        "Imediatamente após a adição"
+      ],
+      "correct": 1,
+      "explanation": "A aposentadoria deve ser apoiada por provas, assim como a promoção."
+    },
+    {
+      "stage": "post",
+      "question": "Como se conectam a formação e o feedback do agente codificador?",
+      "options": [
+        "Só as indicações importam.",
+        "Só as métricas importam",
+        "A evidência do produto altera o resultado e o âmbito, enquanto as correções de agentes alteram o banco de trabalho; os incidentes podem alterar ambos os aspectos.",
+        "Não"
+      ],
+      "correct": 2,
+      "explanation": "Ambas as faixas usam a mesma faca, desde a prova até a mudança duradoura do sistema."
+    }
+  ]
+}

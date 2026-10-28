@@ -1,0 +1,78 @@
+{
+  "lesson": "44-plan-from-evidence",
+  "title": "Plano baseado em provas",
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "O que diferencia um plano de execução de uma lista de tarefas?",
+      "options": [
+        "Recomendação modelo",
+        "Um número fixo de etapas",
+        "Mais prosa",
+        "Um gráfico de dependência com evidências e provas"
+      ],
+      "correct": 3,
+      "explanation": "As dependências, recibos e provas de conclusão tornam o plano executável e reiniciável."
+    },
+    {
+      "stage": "check",
+      "question": "Por que definir um contrato compartilhado antes da sua execução?",
+      "options": [
+        "Para evitar a documentação",
+        "Para atrasar todo o trabalho",
+        "Assim, as superfícies dependentes não inventam comportamentos conflitantes.",
+        "Só um agente pode trabalhar."
+      ],
+      "correct": 2,
+      "explanation": "Um contrato fixo desbloqueia um trabalho paralelo seguro em superfícies dependentes."
+    },
+    {
+      "stage": "check",
+      "question": "O que é que um ciclo de dependência geralmente revela?",
+      "options": [
+        "Boa paralela",
+        "Uma decisão oculta sem solução ou má decomposição",
+        "Execução rápida",
+        "Evidências fortes"
+      ],
+      "correct": 1,
+      "explanation": "Os elementos de trabalho cíclicos não podem estabelecer um ponto de partida válido."
+    },
+    {
+      "stage": "check",
+      "question": "Quando dois trabalhos podem compartilhar uma onda de execução?",
+      "options": [
+        "Quando as suas dependências são completas e são independentes",
+        "Quando tocam nos mesmos arquivos",
+        "Quando nenhum tem provas",
+        "Quando ambas são importantes"
+      ],
+      "correct": 0,
+      "explanation": "Uma onda contém todos os trabalhos independentes atualmente desbloqueados."
+    },
+    {
+      "stage": "post",
+      "question": "Por que anexar evidências a cada item de trabalho?",
+      "options": [
+        "Para mostrar por que a mudança é apropriada e deixar novas evidências revisá-la",
+        "Para substituir os testes",
+        "Para decorar o plano",
+        "Para satisfazer um alvo simbólico"
+      ],
+      "correct": 0,
+      "explanation": "As provas devem justificar e ser capazes de alterar o plano."
+    },
+    {
+      "stage": "post",
+      "question": "O que torna um plano reiniciável?",
+      "options": [
+        "Um trabalhador para tudo .",
+        "Um longo pedido inicial",
+        "Pequenas coisas com status, artefatos, dependências e prova",
+        "Histórico de chat"
+      ],
+      "correct": 2,
+      "explanation": "O estado de item duradouro permite que outra sessão continue sem redescoberta."
+    }
+  ]
+}

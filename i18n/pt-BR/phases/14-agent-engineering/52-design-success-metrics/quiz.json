@@ -1,0 +1,78 @@
+{
+  "lesson": "52-design-success-metrics",
+  "title": "Metricas de sucesso no design",
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "Qual é a ordem de medição correta?",
+      "options": [
+        "Dados, modelo, característica",
+        "Metrica, pergunta, meta",
+        "Painel de instrumentos, métrica, meta",
+        "Objetivo, pergunta, métrica"
+      ],
+      "correct": 3,
+      "explanation": "Os objetivos definem as necessidades de informação, as perguntas refinam-nas e as métricas operationalizam as respostas."
+    },
+    {
+      "stage": "check",
+      "question": "Por que definir limiares antes de olhar para os resultados?",
+      "options": [
+        "Para evitar perguntas",
+        "Para reduzir o armazenamento",
+        "Para evitar a mudança da regra de decisão para proteger a construção",
+        "Para garantir um passe"
+      ],
+      "correct": 2,
+      "explanation": "Os limites pré-compromissados reduzem a racionalização pós-resultados."
+    },
+    {
+      "stage": "check",
+      "question": "O que é que uma métrica de guarda protege?",
+      "options": [
+        "Uma limitação fixa ou um prejuízo inaceitável",
+        "Apenas velocidade",
+        "Um nome de liberação",
+        "Um estilo visual"
+      ],
+      "correct": 0,
+      "explanation": "Os guardrails garantem que a melhoria não viole a segurança ou a política."
+    },
+    {
+      "stage": "check",
+      "question": "O que é um contra-metrico?",
+      "options": [
+        "Uma opinião não medida",
+        "Uma medida que capta custos ou danos transferidos para outro lugar",
+        "Uma segunda cópia da métrica de resultado",
+        "Uma pontuação modelo"
+      ],
+      "correct": 1,
+      "explanation": "Os ganhos locais podem criar um fardo para baixo que uma contra-metrica expõe."
+    },
+    {
+      "stage": "post",
+      "question": "Por que uma métrica tem de dar nome à sua fonte e janela?",
+      "options": [
+        "Para marcação",
+        "Para substituir um limiar",
+        "Para evitar os utilizadores",
+        "Para reprodução e interpretação"
+      ],
+      "correct": 3,
+      "explanation": "Um número sem fronteiras de proveniência, tempo ou amostra não pode apoiar uma decisão confiável."
+    },
+    {
+      "stage": "post",
+      "question": "Quando é que a repetição offline é insuficiente?",
+      "options": [
+        "Quando a decisão depende do comportamento real do usuário ou dos efeitos do fluxo de trabalho",
+        "Quando os testes são rápidos",
+        "Nunca .",
+        "Sempre ."
+      ],
+      "correct": 0,
+      "explanation": "A repetição é repetível, mas não pode reproduzir completamente a confiança, a coordenação e o comportamento ao vivo."
+    }
+  ]
+}

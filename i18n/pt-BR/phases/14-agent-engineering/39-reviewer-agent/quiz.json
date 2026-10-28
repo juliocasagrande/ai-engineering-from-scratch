@@ -1,0 +1,90 @@
+{
+  "lesson": "39-reviewer-agent",
+  "title": "Agente de revisor: Construtor separado do Marker",
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "Por que não pode o construtor avaliar com confiança o seu próprio trabalho?",
+      "options": [
+        "Está a ficar sem tokens.",
+        "O modelo rejeita a auto-classificação",
+        "A aceitação é necessária, mas não suficiente; a adequação ao problema, a disciplina do âmbito, as suposições documentadas e a prontidão para a entrega necessitam de um papel diferente com entradas diferentes",
+        "Perde a autenticação."
+      ],
+      "correct": 2,
+      "explanation": "A diferença entre o construtor e o revisor é onde a confiabilidade vive; a aceitação só prova uma versão mais fraca."
+    },
+    {
+      "stage": "pre",
+      "question": "Qual não é uma das cinco dimensões rubricas?",
+      "options": [
+        "Latência de interferência",
+        "Problemas de adaptação",
+        "Disciplina de âmbito",
+        "Qualidade da verificação"
+      ],
+      "correct": 0,
+      "explanation": "Os cinco são problem fit, disciplina de âmbito, suposições, qualidade de verificação, prontidão para entrega."
+    },
+    {
+      "stage": "check",
+      "question": "O que é que a separação de papéis requer?",
+      "options": [
+        "Um sistema diferente e diferentes entradas; o mesmo modelo pode desempenhar ambos os papéis se a postura mudar e o revisor não tem acesso de escrita para a diferença",
+        "Um modelo diferente",
+        "Uma nova conta",
+        "Diferentes equipamentos físicos"
+      ],
+      "correct": 0,
+      "explanation": "A disciplina está na postura e nas entradas, não na identidade modelo."
+    },
+    {
+      "stage": "check",
+      "question": "Como é que a arquitetura de revisão do Cloudflare 2026 parece?",
+      "options": [
+        "Rondas de dois revisores",
+        "Até sete revisores especializados em paralelo sob um Coordenador de Revisão que duplique as conclusões; modelo de nível superior apenas para o coordenador, níveis mais baratos para os especialistas",
+        "Um grande crítico",
+        "Mestrado em Direito e Direito Executivo único"
+      ],
+      "correct": 1,
+      "explanation": "A Cloudflare realizou 131.246 revisões em 30 dias usando arquitetura especialista + coordenadora."
+    },
+    {
+      "stage": "check",
+      "question": "Qual destes não é um dos quatro preconceitos do juiz de LLM que as lições incluem?",
+      "options": [
+        "Localidade vetorial",
+        "Preconceito de verbosidade (output mais longo pontuação maior)",
+        "Preferência individual (same família de modelos)",
+        "Previsão de posição (A,B vs B,A de ordem de inconsistência)"
+      ],
+      "correct": 0,
+      "explanation": "Os quatro são posição, verbosidade, auto-preferência, autoridade; localidade vetorial não é um deles."
+    },
+    {
+      "stage": "post",
+      "question": "O que é um conjunto de calibração?",
+      "options": [
+        "Um novo corpo de formação",
+        "10 a 20 fechamentos históricos de tarefas com veredictos corretos conhecidos; repetição em cada alteração imediata; se o acordo do revisor for inferior a 80%, fique a rubrica antes da expedição",
+        "Fixo de ensaio A/B",
+        "Um índice de vetores"
+      ],
+      "correct": 1,
+      "explanation": "Os conjuntos de calibração mantêm o revisor honesto; se o acordo se desviar, você corrige a rubrica, não os dados."
+    },
+    {
+      "stage": "post",
+      "question": "Onde se integra o relatório do revisor com o resto do banco de trabalho?",
+      "options": [
+        "Substitui a verificação",
+        "Só vai para o gerente .",
+        "A revisão humana começa com o relatório, não com uma página em branco.",
+        "Ele supera o portão ."
+      ],
+      "correct": 2,
+      "explanation": "O relatório de revisão alimenta a entrega para que a próxima sessão e o revisor humano comecem com um veredicto escrito."
+    }
+  ]
+}

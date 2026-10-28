@@ -1,0 +1,90 @@
+{
+  "lesson": "36-scope-contracts",
+  "title": "Contratos de âmbito e limites de tarefas",
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "Porque é que o \"escopo\" é chamado de \"modo de falha mais submonitoreado\"?",
+      "options": [
+        "É muito raro para monitorar",
+        "Os testes detectam-no automaticamente .",
+        "Ele bate o agente com força .",
+        "Cada toque tinha uma razão plausível no momento; juntos formam uma mudança diferente do que foi revisado"
+      ],
+      "correct": 3,
+      "explanation": "Os agentes narram cada passo de boa fé; o total silencioso é o estranho."
+    },
+    {
+      "stage": "pre",
+      "question": "Que campo do contrato a lição chama metade do contrato?",
+      "options": [
+        "aprovações_requeridas",
+        "prohibit_files (o espaço negativo)",
+        "meta",
+        "task_id"
+      ],
+      "correct": 1,
+      "explanation": "Um contrato sem arquivos proibidos é incompleto; o espaço negativo é metade do contrato."
+    },
+    {
+      "stage": "check",
+      "question": "Por que o pin permite/proibem os globos em vez de os caminhos brutos?",
+      "options": [
+        "Os glóbulos criptografam melhor",
+        "Os glóbulos são mais rápidos.",
+        "As pistas brutas não são serializáveis JSON",
+        "Real repos mover arquivos; globos sobreviver refactores entre sessões"
+      ],
+      "correct": 3,
+      "explanation": "Globs (app/**/*.py) mantêm o contrato válido através de refactores."
+    },
+    {
+      "stage": "check",
+      "question": "O que faz o padrão de \"prestação de violação\"?",
+      "options": [
+        "Cargos por violação",
+        "Permite deslizes menores de alcance como avisos dentro de um orçamento; apenas o excesso desencadeia uma recusa de fusão  a diferença entre um portal que navega e um que fica desativado",
+        "Chamadas de modelo de aceleração",
+        "Estabelece um orçamento mensal para o agente"
+      ],
+      "correct": 1,
+      "explanation": "Os agentes-guardrails usam violação do orçamento para que o portal seja utilizável no fluxo diário."
+    },
+    {
+      "stage": "check",
+      "question": "O que disse o médico de especsmaxxing?",
+      "options": [
+        "A latência caiu 90%",
+        "O custo subiu 5x",
+        "A taxa de buracos de coelho caiu de 52% para 21% em três semanas sem alterar o agente; o contrato fez o trabalho, não o modelo",
+        "Os testes desaceleraram"
+      ],
+      "correct": 2,
+      "explanation": "Os contratos de alcance no YAML antes de invocar o agente reduziram à metade a taxa de buracos de coelho sem alterações no modelo."
+    },
+    {
+      "stage": "post",
+      "question": "Qual é a semântica de fusão de contratos múltiplos (privilegio mínimo)?",
+      "options": [
+        "O último contrato ganha .",
+        "Intersect permit_files; union prohibit_files; min time_budget; acumula aprovações; rejeitar-todos os sticks; merge de Nenhum se afasta para o outro lado",
+        "Relâmpago aleatório",
+        "O primeiro contrato ganha"
+      ],
+      "correct": 1,
+      "explanation": "A fusão de menos privilégios: intersecção em permites, união em proibições, tempo mais restritivo, aprovações acumuladas."
+    },
+    {
+      "stage": "post",
+      "question": "Por que o tempo e os orçamentos da rede também estão no contrato?",
+      "options": [
+        "Os prestadores exigem-nos",
+        "O relógio de parede e o acesso externo ao host são dimensões de alcance; os globos de arquivos por si só são necessários, mas não suficientes",
+        "Eles tornam o JSON menor",
+        "São necessárias pelo Apache 2.0"
+      ],
+      "correct": 1,
+      "explanation": "Time_budget_minutes e network_egress allowlists são dimensões de alcance em cima de globos de arquivos."
+    }
+  ]
+}

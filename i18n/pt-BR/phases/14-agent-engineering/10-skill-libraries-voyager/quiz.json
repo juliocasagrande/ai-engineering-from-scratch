@@ -1,0 +1,90 @@
+{
+  "lesson": "10-skill-libraries-voyager",
+  "title": "Biblioteca de competências e aprendizagem ao longo da vida (Voyager)",
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "O que é que a Voyager trata como espaço de ação?",
+      "options": [
+        "Comando primitivo Minecraft",
+        "Aprendizagem de reforço Q-valores",
+        "Apenas instruções de texto",
+        "Código executável (funções JavaScript) armazenado, recuperado e composto"
+      ],
+      "correct": 3,
+      "explanation": "A contribuição da Voyager está a tornar o código a ação: as habilidades são programas, não comandos brutos."
+    },
+    {
+      "stage": "pre",
+      "question": "Que três componentes definem um agente da Voyager?",
+      "options": [
+        "Retriever, gerador, ranker",
+        "Encoder, decoder, cabeçalho de valor",
+        "Programa de ensino automático, biblioteca de habilidades, incitação iterativa",
+        "Planeador, executor, juiz"
+      ],
+      "correct": 2,
+      "explanation": "A Voyager estrutura o agente em torno do currículo, da biblioteca de habilidades e da solicitação iterativa."
+    },
+    {
+      "stage": "check",
+      "question": "Que três sinais podem retornar de uma tentativa de execução habilidosa?",
+      "options": [
+        "Sucesso, erro (com rastreamento de pilhas), falha de autoverificação",
+        "Passe, falhe, tente novamente.",
+        "Batimento cardíaco, ac, ac",
+        "Vermelho, amarelo, vermelho"
+      ],
+      "correct": 0,
+      "explanation": "O mecanismo de prompting iterativo da Voyager é impulsionado por estes três sinais dobrados de volta para a próxima versão."
+    },
+    {
+      "stage": "check",
+      "question": "Como é que o currículo automático escolhe a próxima tarefa?",
+      "options": [
+        "Uniforme aleatório sobre o espaço de ação",
+        "Pouco acima da capacidade atual, com base no estado do ambiente e no inventário de competências (o ponto de exploração)",
+        "Sempre a tarefa mais difícil disponível",
+        "Lista fornecida apenas pelo utilizador"
+      ],
+      "correct": 1,
+      "explanation": "O proponente visa tarefas que estão pouco acima da capacidade actual, de modo que o progresso é constante."
+    },
+    {
+      "stage": "check",
+      "question": "Qual produto de 2026 é o melhor para a habilidade da Voyager?",
+      "options": [
+        "Habilidades do SDK do Claude Agent: código identificado, recuperável e instruções carregadas sob demanda",
+        "Equipamentos de transporte de veículos",
+        "Indices de pinheiros",
+        "Toneamento fino do OpenAI"
+      ],
+      "correct": 0,
+      "explanation": "As habilidades do SDK do agente coincidem com o padrão de código de nome de Voyager."
+    },
+    {
+      "stage": "post",
+      "question": "Por que a lição recomenda dedup sobre a escrita para a biblioteca de habilidades?",
+      "options": [
+        "Sem dedup, a mesma habilidade é adicionada muitas vezes com descrições ligeiramente diferentes; a recuperação deve retornar uma versão canônica",
+        "Os fornecedores rejeitam os duplicados",
+        "O Git bloqueia duplicados",
+        "O disco é caro."
+      ],
+      "correct": 0,
+      "explanation": "Descrições quase duplicadas desmoronam para uma única habilidade canônica para que a recuperação permaneça limpa."
+    },
+    {
+      "stage": "post",
+      "question": "Que problema descreve a deriva da habilidade composta?",
+      "options": [
+        "Uma habilidade deixa de compilar após uma atualização do Python",
+        "Uma habilidade do pai pega silenciosamente uma versão infantil refinada contra a qual nunca foi testada; corrigir por pinching versões de habilidade",
+        "As habilidades são criptografadas no armazenamento",
+        "A recuperação não retorna nada ."
+      ],
+      "correct": 1,
+      "explanation": "Sem a correção de versões, um refinamento para uma criança muda silenciosamente o comportamento do pai."
+    }
+  ]
+}

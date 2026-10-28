@@ -1,0 +1,78 @@
+{
+  "lesson": "51-write-specifications-that-preserve-judgment",
+  "title": "Especificações que preservam o julgamento",
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "Qual é o meio útil entre subespecificidade e excesso de especificação?",
+      "options": [
+        "Não há plano.",
+        "Um pedido mais longo",
+        "Um script de implementação completo",
+        "Um contrato executável que fixa invariantes e evidências, preservando as opções reversíveis"
+      ],
+      "correct": 3,
+      "explanation": "O contrato limita os resultados e os riscos sem escrever todos os pormenores da execução."
+    },
+    {
+      "stage": "check",
+      "question": "Que decisão deve ser normalmente bloqueada?",
+      "options": [
+        "Um nome de variável local",
+        "Se o sistema pode escrever para a produção",
+        "Uma divisão de arquivo reversível",
+        "A ordem das funções de assistente privado"
+      ],
+      "correct": 1,
+      "explanation": "Autoridade e comportamento de alta consequência exigem uma decisão humana."
+    },
+    {
+      "stage": "check",
+      "question": "O que é uma decisão limitada?",
+      "options": [
+        "O agente não pode agir.",
+        "O agente pode escolher dentro de limites de segurança explícitos",
+        "A escolha é aleatória.",
+        "Não há provas."
+      ],
+      "correct": 1,
+      "explanation": "Os limites preservam o julgamento útil, mantendo o risco controlado."
+    },
+    {
+      "stage": "check",
+      "question": "Por que combinar exemplos com invariantes?",
+      "options": [
+        "Reduzem toda a ambigüidade",
+        "Exemplos provam todas as regras universais",
+        "Substituem os resultados",
+        "Exemplos revelam intenção enquanto invariantes estados condições que devem sempre ser"
+      ],
+      "correct": 3,
+      "explanation": "Os casos concretos e as restrições universais desempenham funções diferentes."
+    },
+    {
+      "stage": "post",
+      "question": "Que prova corresponde a uma alegação de viagem do utilizador?",
+      "options": [
+        "Um navegador ou observação de viagem de ponta a ponta",
+        "Nota de tipo",
+        "Apenas um teste local",
+        "Um plano"
+      ],
+      "correct": 0,
+      "explanation": "A prova deve funcionar na mesma camada da alegação."
+    },
+    {
+      "stage": "post",
+      "question": "Por que registar a razão para decisões bloqueadas?",
+      "options": [
+        "Para evitar toda mudança",
+        "Para fazer o arquivo mais longo",
+        "Então, evidências posteriores podem rever a escolha sem arqueologia",
+        "Para esconder a incerteza"
+      ],
+      "correct": 2,
+      "explanation": "Razões rastreáveis permitem que as especificações evoluam deliberadamente."
+    }
+  ]
+}

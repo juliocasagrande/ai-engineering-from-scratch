@@ -1,0 +1,78 @@
+{
+  "lesson": "50-choose-the-smallest-testable-slice",
+  "title": "Escolha a parte mais pequena para ser testável",
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "O que torna útil uma pequena fatia?",
+      "options": [
+        "Tem pouco código.",
+        "Evita a verdadeira incerteza",
+        "Pode mudar uma decisão importante",
+        "Tem uma interface polida"
+      ],
+      "correct": 2,
+      "explanation": "O tamanho só importa em relação a provas decisivas."
+    },
+    {
+      "stage": "check",
+      "question": "O que deve ser definido antes de comparar as fatias candidatas?",
+      "options": [
+        "Um nome de liberação",
+        "Um quadro",
+        "Uma arquitetura final",
+        "O conjunto de provas exigido"
+      ],
+      "correct": 3,
+      "explanation": "A elegibilidade depende da cobertura das suposições arriscadas que necessitam de provas."
+    },
+    {
+      "stage": "check",
+      "question": "Porque é que um modelo barato de painel de instrumentos pode ser o mínimo errado?",
+      "options": [
+        "É muito reversível .",
+        "Tem usuários",
+        "Pode remover os dados e a incerteza operacional do ensaio",
+        "Os painéis de controlo são sempre maus."
+      ],
+      "correct": 2,
+      "explanation": "Uma fatia que evite o mecanismo arriscado não pode responder à decisão."
+    },
+    {
+      "stage": "check",
+      "question": "Qual é a resposta correta a uma fatia com pontuação alta que não tenha a prova necessária?",
+      "options": [
+        "Rejeita-o como ineligível",
+        "Aumentar o seu puntuação",
+        "Selecione-o",
+        "Chame-lhe produção."
+      ],
+      "correct": 0,
+      "explanation": "A cobertura é um portal antes da otimização."
+    },
+    {
+      "stage": "post",
+      "question": "Por que adicionar uma regra de parada?",
+      "options": [
+        "Para evitar a medição",
+        "Para especificar quais evidências levaria a reformulação, revisão ou abandono",
+        "Limitar a documentação",
+        "Para que todos os resultados apoiem a ideia"
+      ],
+      "correct": 1,
+      "explanation": "Uma experiência deve ser capaz de mudar a decisão."
+    },
+    {
+      "stage": "post",
+      "question": "Qual é a fatia mais segura para testar o diagnóstico?",
+      "options": [
+        "Auto-remediação da produção",
+        "Uma repetição de incidentes representativos apenas para leitura",
+        "Uma migração",
+        "Uma plataforma completa"
+      ],
+      "correct": 1,
+      "explanation": "A repetição pode testar o núcleo desconhecido com menor consequência e alta reversibilidade."
+    }
+  ]
+}

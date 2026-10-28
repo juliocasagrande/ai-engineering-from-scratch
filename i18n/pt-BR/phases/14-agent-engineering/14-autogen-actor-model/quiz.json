@@ -1,0 +1,90 @@
+{
+  "lesson": "14-autogen-actor-model",
+  "title": "O Modelo de Ator para Agentes  Mensagens de sincronia e tempos de execução tipografados",
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "Qual é a única forma legal de interagir entre os atores no AutoGen v0.4?",
+      "options": [
+        "Acesso direto a um ditado compartilhado",
+        "Mutanando as indicações umas das outras",
+        "Transações SQL compartilhadas",
+        "Mensagens assíncronas trocadas através de caixas de entrada; não há memória compartilhada"
+      ],
+      "correct": 3,
+      "explanation": "Os atores têm estado privado e uma caixa de entrada; as mensagens são a única interação."
+    },
+    {
+      "stage": "pre",
+      "question": "Quais são as três camadas de API do AutoGen v0.4?",
+      "options": [
+        "Core, AgentChat, Extensões",
+        "Frontend, Backend, Base de Dados",
+        "Ferramentas, Modelos, Memória",
+        "Planejar, agir e refletir"
+      ],
+      "correct": 0,
+      "explanation": "Core é o framework de actores de baixo nível, AgentChat é a API de alto nível orientada para tarefas, Extensões são integrações."
+    },
+    {
+      "stage": "check",
+      "question": "Por que a descoplagem da entrega da manipulação dá isolamento de falhas?",
+      "options": [
+        "O runtime detecta falhas de gerenciamento em B sem quebrar A; A's send() retornou imediatamente e nunca bloqueado",
+        "Cada ator funciona numa máquina separada",
+        "Os manipuladores são funções puras",
+        "O tempo de execução reinicializa o sistema operacional em falha"
+      ],
+      "correct": 0,
+      "explanation": "enviar() coloca a mensagem na caixa de entrada do destinatário e retorna; um crash do processador é local para esse ator."
+    },
+    {
+      "stage": "check",
+      "question": "Qual topologia do AgentChat gira agentes em ordem fixa?",
+      "options": [
+        "SelectorGroupChat",
+        "Magentic-One",
+        "RoundRobinGroupChat",
+        "Supervisor"
+      ],
+      "correct": 2,
+      "explanation": "RoundRobinGroupChat é de rotação fixa; SelectorGroupChat usa um selector para escolher o próximo."
+    },
+    {
+      "stage": "check",
+      "question": "O que é Magentic-One nesta lição?",
+      "options": [
+        "Uma equipe de referência multi-agente para navegação na web, execução de código e manejo de arquivos construída no AgentChat",
+        "Exportador OTel",
+        "Um novo modelo de Mestrado em Direito",
+        "Um formato de serialização"
+      ],
+      "correct": 0,
+      "explanation": "Magentic-One é a equipe de referência da Microsoft que demonstra a API AgentChat."
+    },
+    {
+      "stage": "post",
+      "question": "Qual é o estado declarado da lição do AutoGen v0.4 no início de 2026?",
+      "options": [
+        "Depreciado e removido",
+        "Substituído por LangGraph",
+        "Acabo de anunciar",
+        "Estabilizado mas em modo de manutenção; Microsoft Agent Framework é o caminho para a frente"
+      ],
+      "correct": 3,
+      "explanation": "AutoGen v0.7.x é estável para pesquisa; desenvolvimento ativo mudou para Microsoft Agent Framework."
+    },
+    {
+      "stage": "post",
+      "question": "Que padrão de observabilidade é emitido por padrão pelo AutoGen v0.4?",
+      "options": [
+        "APM de dados",
+        "Apenas métricas Prometheus",
+        "OpenTelemetry abrange com atributos gen_ai* por convenções semânticas OTel GenAI",
+        "Estatísticas"
+      ],
+      "correct": 2,
+      "explanation": "Cada mensagem emite um período de tempo; as chamadas de ferramentas carregam os atributos gen_ai* por convenções OTel GenAI."
+    }
+  ]
+}

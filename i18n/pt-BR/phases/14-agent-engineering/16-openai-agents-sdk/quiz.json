@@ -1,0 +1,90 @@
+{
+  "lesson": "16-openai-agents-sdk",
+  "title": "SDK de Agentes OpenAI: Transferências, guardrails, rastreamento",
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "Quais são os cinco primitivos do OpenAI Agents SDK?",
+      "options": [
+        "Planejamento, Trabalhador, Solvente, Avalador, Refletor",
+        "Ferramenta, Prompt, Modelo, Memória, Traço",
+        "Agente, transferência, guarda-roupa, sessão, rastreamento",
+        "Nodo, Edge, Redutor, Checkpointer, Subgraph"
+      ],
+      "correct": 2,
+      "explanation": "O SDK envia estes cinco primitivos."
+    },
+    {
+      "stage": "pre",
+      "question": "Como é que a modelo vê uma transferência?",
+      "options": [
+        "Como um símbolo especial",
+        "Como mensagem do sistema",
+        "Como um endpoint HTTP personalizado",
+        "Como uma ferramenta chamada transfer_to_<agent_name>"
+      ],
+      "correct": 3,
+      "explanation": "As transferências são exibidas como ferramentas com a forma de nome transfer_to_<agent>."
+    },
+    {
+      "stage": "check",
+      "question": "Que três tipos de barandilhas o SDK faz?",
+      "options": [
+        "Barras de proteção duras, macias e com o melhor esforço",
+        "Pre, post e barris de guarda",
+        "Ferraduras de entrada, saída e ferramenta",
+        "Ferras de proteção estáticas, dinâmicas e federadas"
+      ],
+      "correct": 2,
+      "explanation": "As barragens de entrada (primeiro agente), saída (último agente) e ferramenta (por ferramenta funcional)."
+    },
+    {
+      "stage": "check",
+      "question": "Qual é a diferença entre as barragens paralelas e as barragens de bloqueio?",
+      "options": [
+        "Corridas paralelas ao lado do LLM principal (menor latência, tokens de desperdício na viagem); bloqueio de corridas em primeiro lugar (sem tokens desperdiçados na viagem)",
+        "Bloqueio só funciona na saída",
+        "Paralelas custam mais dinheiro sempre",
+        "O bloqueio é assíncrono; o paralelo é sincrono"
+      ],
+      "correct": 0,
+      "explanation": "Paralelo otimiza a latência ao custo de tokens desperdiçados quando acidentados; bloqueio salva tokens, mas adiciona latência."
+    },
+    {
+      "stage": "check",
+      "question": "Como é habilitado o rastreamento no SDK?",
+      "options": [
+        "Apenas no painel de controle hospedado",
+        "Desligado por padrão; ativar por agente",
+        "Apenas através do colector OpenTelemetry",
+        "Ativado por padrão; OPENAI_AGENTS_DISABLE_TRACING=1 desliga"
+      ],
+      "correct": 3,
+      "explanation": "Os espaços para LLM, ferramenta, transferência e proteção emitem por defeito; um ambiente os desativa."
+    },
+    {
+      "stage": "post",
+      "question": "O que é a deriva de transferência e como a lição recomenda mitigar a sua evolução?",
+      "options": [
+        "Agente A mãos para fora para B que dá de volta para A em um ciclo; adicionar um contador de salto",
+        "Sessões transbordam; arquivos antigos",
+        "O rastreamento está atrasado; reduzir o volume de expansão",
+        "Dessincronização dos guardrails; retrenagem"
+      ],
+      "correct": 0,
+      "explanation": "Um contador de salto capta as cadeias de transferência antes que elas circulem indefinidamente."
+    },
+    {
+      "stage": "post",
+      "question": "Por que as ferramentas incorporadas são uma lacuna na barragem?",
+      "options": [
+        "Não suportam a entrega",
+        "Os barris de ferramentas só disparam em ferramentas funcionais; ferramentas incorporadas (leitor de arquivos, web-tracer) precisam de uma política separada",
+        "Não podem ser rastreados.",
+        "São mais lentos que as ferramentas funcionais"
+      ],
+      "correct": 1,
+      "explanation": "As barragens por ferramenta cobrem as ferramentas funcionais; as ferramentas incorporadas exigem uma camada de política separada."
+    }
+  ]
+}

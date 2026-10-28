@@ -1,0 +1,90 @@
+{
+  "lesson": "13-langgraph-stateful-graphs",
+  "title": "Orquestração de gráficos estatais  Execução duradoura e pontos de controlo",
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "O que é que o LangGraph trata como a unidade central do agente?",
+      "options": [
+        "Um índice de vetores",
+        "Uma máquina de estado com estado tipado, nós de função e bordas condicionais",
+        "Um único registo de ferramentas",
+        "Uma chamada de LLM em forma livre"
+      ],
+      "correct": 1,
+      "explanation": "O LangGraph modela o agente como um gráfico de estado: nós são funções puras, bordas são transições, estado é tipado e imutável."
+    },
+    {
+      "stage": "pre",
+      "question": "Que problema é resolvido pela execução duradoura?",
+      "options": [
+        "Reduzir os custos de inferência",
+        "Gerenciando embutidos mais rápido",
+        "Reiniciar uma corrida de 40 passos a partir do passo 38 quando falha, com estado exato, em vez de começar de novo",
+        "Tradução entre prestadores"
+      ],
+      "correct": 2,
+      "explanation": "Os pontos de controlo após cada nó permitem que o tempo de execução retoma a partir do último passo bem sucedido."
+    },
+    {
+      "stage": "check",
+      "question": "Qual destas não é uma das três topologias que LangGraph suporta?",
+      "options": [
+        "Anel de graduição",
+        "Hierárquica (subgrafos aninhados)",
+        "Supervisor",
+        "O número de pessoas que se encontram em situação de risco é igual a:"
+      ],
+      "correct": 0,
+      "explanation": "As topologias são supervisoras, enxame e hierárquicas."
+    },
+    {
+      "stage": "check",
+      "question": "Por que os nós devem ser deterministas para que o currículo funcione limpo?",
+      "options": [
+        "É exigido pelo GIL",
+        "Determinismo reduz o custo dos tokens",
+        "Resume assume que as mesmas entradas produzem a mesma atualização de estado; sementes aleatórias, relógio de parede e API externas devem ser capturadas",
+        "Os prestadores exigem determinismo"
+      ],
+      "correct": 2,
+      "explanation": "Se um nó depende de não-determinismo não capturado, o currículo não pode reconstruir o estado pós-passo."
+    },
+    {
+      "stage": "check",
+      "question": "O que é uma vantagem condicional?",
+      "options": [
+        "Uma borda com um TTL",
+        "Uma borda escolhida por uma função de estado, usada para ramificar o gráfico",
+        "Uma vantagem que só funciona em GPUs",
+        "Uma vantagem ponderada pela perda de treinamento"
+      ],
+      "correct": 1,
+      "explanation": "As bordas condicionais se ramificam com base no estado; o uso excessivo delas torna o gráfico difícil de raciocinar."
+    },
+    {
+      "stage": "post",
+      "question": "O que acontece quando os pontos de controlo são pequenos demais?",
+      "options": [
+        "O disco está cheio .",
+        "O gráfico não pode chegar ao FIM",
+        "O estado da ferramenta e as gravações da memória não são recuperáveis; o estado completo deve ser serializado",
+        "O modelo produz respostas mais curtas"
+      ],
+      "correct": 2,
+      "explanation": "Apenas as conversas de ponto de verificação deixam o estado da ferramenta e a memória escreve fora do alcance do currículo."
+    },
+    {
+      "stage": "post",
+      "question": "Onde o humano-no-loop encaixa no design do LangGraph?",
+      "options": [
+        "Pausa antes de um nó crítico, estado de superfície serializado para um humano, aceitar modificações, retomar; o checkpointer torna este barato",
+        "Apenas no START e END",
+        "Por meio de uma API de fornecedor separado",
+        "Requer um fork do tempo de execução"
+      ],
+      "correct": 0,
+      "explanation": "Como o estado já é serializado entre nós, revisão e edição humana é um padrão natural de pausa e resume."
+    }
+  ]
+}

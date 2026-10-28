@@ -1,0 +1,90 @@
+{
+  "lesson": "12-anthropic-workflow-patterns",
+  "title": "Padrões de fluxo de trabalho da Anthropic: simples e mais complexos",
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "Como a Anthropic distingue um fluxo de trabalho de um agente?",
+      "options": [
+        "Os fluxos de trabalho são gráficos predefinidos de propriedade do engenheiro; os agentes são direção dinâmica de ferramentas de propriedade do modelo",
+        "Os fluxos de trabalho são estatais; os agentes são estatais",
+        "Fluxos de trabalho executados em CPUs; agentes precisam de GPUs",
+        "Fluxos de trabalho utilizam embutidos; agentes utilizam ferramentas"
+      ],
+      "correct": 0,
+      "explanation": "Fluxo de trabalho = caminho de código predefinido que o engenheiro possui; agente = o modelo possui o gráfico."
+    },
+    {
+      "stage": "pre",
+      "question": "Quais são as três capacidades do LLM aumentado que sustenta os cinco padrões?",
+      "options": [
+        "Pesquisa (retorno), ferramentas (ações), memória (persistência)",
+        "Vector, KV, gráfico",
+        "Planejar, executar, refletir",
+        "Embedings, ajustes finos, RAG"
+      ],
+      "correct": 0,
+      "explanation": "A unidade atômica é um LLM com recuperação, ferramentas e memória conectada."
+    },
+    {
+      "stage": "check",
+      "question": "Qual é um dos cinco padrões de fluxo de trabalho antropófico?",
+      "options": [
+        "Otimizador de avaliação",
+        "Destilação gradual",
+        "Cadeia rápida",
+        "Roteamento"
+      ],
+      "correct": 1,
+      "explanation": "Os cinco são a cadeia rápida, o roteamento, a paralelalização, o orquestrador-trabalhador, o avaliador-optimizador."
+    },
+    {
+      "stage": "check",
+      "question": "Que duas formas aparecem paralelas?",
+      "options": [
+        "Sincronização e sincronização",
+        "Estado e sem Estado",
+        "Quente e frio",
+        "Seccionamento (partidas diferentes) e votação (N vezes da mesma hora, agregada)"
+      ],
+      "correct": 3,
+      "explanation": "Paralelação é seccionamento ou votação; ambos espalham N chamadas e agregados."
+    },
+    {
+      "stage": "check",
+      "question": "Qual padrão de fluxo de trabalho é auto-refinado generalizado?",
+      "options": [
+        "Trabalhadores de orquestra",
+        "Otimizador de avaliação",
+        "Cadeia rápida",
+        "Roteamento"
+      ],
+      "correct": 1,
+      "explanation": "O avaliador-optimizador é o nome antropológico para o padrão iterativo Auto-Refino / CRITIC."
+    },
+    {
+      "stage": "post",
+      "question": "Quando os fluxos de trabalho vencem os agentes de acordo com a lição?",
+      "options": [
+        "Sempre .",
+        "Apenas em GPUs",
+        "Em tarefas previsíveis, limitadas em custos ou limitadas em conformidade, onde o gráfico pode ser enumerado e auditado",
+        "Só para conversar"
+      ],
+      "correct": 2,
+      "explanation": "Os fluxos de trabalho são mais baratos, mais fáceis de depurar e auditiveis; escolha-os quando os passos são conhecíveis."
+    },
+    {
+      "stage": "post",
+      "question": "Qual é o ponto de partida padrão recomendado para a lição?",
+      "options": [
+        "Um quadro multiagente",
+        "Ajuste o modelo",
+        "Construa um MCTS personalizado",
+        "Chamadas diretas de API; adicionar quadros apenas quando o estado duradouro, a concurência de atores ou o modelo de papel ganham seu custo"
+      ],
+      "correct": 3,
+      "explanation": "Schluntz e Zhang: começar simples; adicionar complexidade de quadro apenas quando justificado."
+    }
+  ]
+}

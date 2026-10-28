@@ -1,0 +1,90 @@
+{
+  "lesson": "34-repo-memory-and-state",
+  "title": "Memória de Repo e estado duradouro",
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "Qual é o teste de durabilidade que decide se uma informação pertence à memória repo?",
+      "options": [
+        "Se o utilizador a marcou como importante",
+        "Se seria útil daqui a três meses numa reestruturação de CI; se sim, repo; se não, telemetria",
+        "Se é JSON",
+        "Se cabe em 4 kB"
+      ],
+      "correct": 1,
+      "explanation": "A memória repo é duradoura, de três meses de estado útil; dados transitórios são telemetria."
+    },
+    {
+      "stage": "pre",
+      "question": "Qual campo de esquema contém a versão do contrato do agente?",
+      "options": [
+        "schema_version",
+        "modelo_id",
+        "sessão_uuid",
+        "construção_hash"
+      ],
+      "correct": 0,
+      "explanation": "schema_version é o contrato de números inteiros; o gerente se recusa a carregar a partir de uma versão desconhecida."
+    },
+    {
+      "stage": "check",
+      "question": "Como funciona a escrita atômica?",
+      "options": [
+        "tempfile.mkstemp no mesmo diretório, escrever, fsync, os.replace (renomeamento atômico) sobre o alvo",
+        "Aplicação apenas com um CRC",
+        "Criptografar e sobreescrever",
+        "Truncate-then-write para o alvo"
+      ],
+      "correct": 0,
+      "explanation": "Renomeamento atômico no POSIX e Windows é o que impede a corrupção de escrita parcial."
+    },
+    {
+      "stage": "check",
+      "question": "Por que são necessárias chaves de idempotencia para chamadas de ferramentas não idempotencias?",
+      "options": [
+        "Se o agente falhar após uma chamada de ferramenta, mas antes de verificar o resultado, tente novamente com segurança; registre o ID da chamada antes da execução e salte a chamada na retomada",
+        "Para reduzir a saída",
+        "Para faturamento",
+        "Para deduplicar registos"
+      ],
+      "correct": 0,
+      "explanation": "pending_calls.jsonl carrega as identidades de chamada; verifica recuperação e evita o trabalho já executado."
+    },
+    {
+      "stage": "check",
+      "question": "Onde devem viver os grandes artefatos (CSVs, transcrições longas, arquivos gerados) em relação ao estado?",
+      "options": [
+        "Concatenados num tronco gigante",
+        "Em variáveis ambientais",
+        "Linha de entrada em agent_state.json",
+        "Como arquivos separados (ou armazenamento de objetos) com apenas o caminho mantido em estado, por isso os pontos de controle permanecem pequenos e rápidos"
+      ],
+      "correct": 3,
+      "explanation": "Artefactos separados crescem independentemente do estado; os pontos de controle permanecem baratos para ler e escrever."
+    },
+    {
+      "stage": "post",
+      "question": "O que é que o recurso de informação para auditoria + instantâneos para currículo lhe compra?",
+      "options": [
+        "Reproduzir decisões do agente literalmente lendo o instantâneo e depois reproduzindo eventos depois dele; a mesma forma que Postgres WAL",
+        "Inferência mais rápida",
+        "Baixo uso de disco",
+        "Suporte de voz nativa"
+      ],
+      "correct": 0,
+      "explanation": "Aplique para state.events.jsonl em cada mutação; periodicamente snapshot para state.json; reproduzir eventos após o timestamp snapshot."
+    },
+    {
+      "stage": "post",
+      "question": "O que a lição diz que acontece quando a versão schema_versão não coincide?",
+      "options": [
+        "O gerente está a fazer um upgrade silencioso .",
+        "O Estado é suprimido",
+        "O agente tenta novamente.",
+        "O gerente se recusa a carregar até que um script de migração em tools/migrate_state.py seja executado"
+      ],
+      "correct": 3,
+      "explanation": "Migrações de esquema ou rejeição de carga; nunca atualização silenciosa."
+    }
+  ]
+}

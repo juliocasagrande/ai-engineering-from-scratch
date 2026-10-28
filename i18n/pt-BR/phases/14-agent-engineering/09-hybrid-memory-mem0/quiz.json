@@ -1,0 +1,90 @@
+{
+  "lesson": "09-hybrid-memory-mem0",
+  "title": "Memória híbrida: Vector + Graphic + KV",
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "Que classe de consulta é melhor para uma loja de KV?",
+      "options": [
+        "Accessibilidade entre clientes que compartilham uma entidade de faturamento",
+        "Pesquisa de dados diretos com chave de (usuário, tipo, entidade)",
+        "Consultas temporárias válidas em tempo",
+        "Semantic similarity em longas conversas"
+      ],
+      "correct": 1,
+      "explanation": "KV é O(1) em chaves exatas; vetor é para semelhança, gráfico é para relações."
+    },
+    {
+      "stage": "pre",
+      "question": "Quais são as três lojas que Mem0 escreve em paralelo em cada adição ((()?",
+      "options": [
+        "Postgres, Redis, ClickHouse",
+        "Caches, filas, registos",
+        "Embutidos, atenção, FFN",
+        "Vector, KV, gráfico"
+      ],
+      "correct": 3,
+      "explanation": "Os fãs do Mem0 cada escrever para vector, KV e gráficos lojas."
+    },
+    {
+      "stage": "check",
+      "question": "Que três dimensões alimentam a pontuação de fusão do Mem0?",
+      "options": [
+        "Confiança, perplexidade, BLEU",
+        "Precisão, recall, F1",
+        "Relevança, importância, recência",
+        "Latência, capacidade de produção, custo"
+      ],
+      "correct": 2,
+      "explanation": "A pontuação é uma soma ponderada de relevância, importância e recência; pesos de melodia por produto."
+    },
+    {
+      "stage": "check",
+      "question": "O que faz o Mem0g quando um facto recebido contradiz uma vantagem existente?",
+      "options": [
+        "Levanta uma exceção",
+        "Reescrever o user_id",
+        "Marca a borda existente inválida, mas não a elimina, por isso as consultas temporais ainda podem atravessar",
+        "Elimina a borda"
+      ],
+      "correct": 2,
+      "explanation": "A invalidação suave preserva o histórico para consultas temporárias (válidas no tempo)."
+    },
+    {
+      "stage": "check",
+      "question": "Por que a lição recomenda ajustar os pesos de fusão por produto?",
+      "options": [
+        "É exigido pelo Apache 2.0",
+        "As bibliotecas de vetores rejeitam pesos iguais",
+        "A recência domina para os agentes de chat enquanto a importância domina para os agentes de conformidade e a relevância domina para os agentes de recuperação",
+        "Os prestadores exigem"
+      ],
+      "correct": 2,
+      "explanation": "Os diferentes produtos querem ter preconceitos diferentes em matéria de relevância/importância/recença; um conjunto de pesos não se encaixa em todos."
+    },
+    {
+      "stage": "post",
+      "question": "Qual é a taxonomia de alcance utilizada pelo Mem0?",
+      "options": [
+        "Usuário, sessão, agente",
+        "Local, regional e global",
+        "Público, privado, secreto",
+        "Leia, escreva, administrador"
+      ],
+      "correct": 0,
+      "explanation": "Os escopo são usuário (sessão transversal), sessão (um fio), agente (estado por instância)."
+    },
+    {
+      "stage": "post",
+      "question": "O que é incorporar a deriva neste padrão, e como a lição recomenda mitigar isso?",
+      "options": [
+        "Vectores são criptografados; rotam chaves",
+        "A API de inserção muda o URL; pin um domínio",
+        "Embedments inteiros de transbordamento; mudar para float64",
+        "A qualidade da recuperação de vetores degrada-se à medida que o corpus cresce; re-embed regularmente os registros mais utilizados no topo N"
+      ],
+      "correct": 3,
+      "explanation": "A reinstalação periódica de registos quentes mantém a qualidade da recuperação estável à medida que o corpo cresce."
+    }
+  ]
+}

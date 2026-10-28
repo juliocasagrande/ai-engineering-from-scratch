@@ -1,0 +1,90 @@
+{
+  "lesson": "31-agent-workbench-why-models-fail",
+  "title": "Engenharia de banco de trabalho de agentes: por que os modelos capazes ainda falham",
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "O que a lição identifica como a causa raiz dos fracasos dos agentes em tarefas reais?",
+      "options": [
+        "Dados de formação atualizados",
+        "Falhas de banco de trabalho: superfícies faltantes ao redor do modelo, não limitações do MLL",
+        "Rede lenta",
+        "Parâmetros do modelo insuficientes"
+      ],
+      "correct": 1,
+      "explanation": "O modelo não está errado sobre o Python, está errado sobre o trabalho."
+    },
+    {
+      "stage": "pre",
+      "question": "Quais são as sete superfícies de trabalho que chamam as lições?",
+      "options": [
+        "Leia, escreva, executa, forja, saia, espere, mate",
+        "Planejar, agir, refletir, refinar, debater, votar, embarcar",
+        "Instruções, estado, âmbito, feedback, verificação, revisão, entrega",
+        "Treinamento, avaliação, implantação, monitoramento, retrenagem, escala, aposentadoria"
+      ],
+      "correct": 2,
+      "explanation": "As sete superfícies são instruções, estado, alcance, feedback, verificação, revisão, entrega."
+    },
+    {
+      "stage": "check",
+      "question": "Qual não é um dos oito sistemas distribuídos primitivos que os mapas de lição apresentam?",
+      "options": [
+        "Trabalhador",
+        "Propagação para trás",
+        "Função",
+        "Trigger"
+      ],
+      "correct": 1,
+      "explanation": "Os oito primitivos são função, trabalhador, gatilho, tempo de execução, HTTP/RPC, fila, persistência de sessão, política de autorização."
+    },
+    {
+      "stage": "check",
+      "question": "O que a mudança de arame de Vercel mudou a taxa de sucesso de e para?",
+      "options": [
+        "50% a 70%, adicionando RAG",
+        "20% a 60%",
+        "0 a 100%, por troca de modelos",
+        "80% a 100%, excluindo 80% das ferramentas do agente"
+      ],
+      "correct": 3,
+      "explanation": "A exclusão de 80% das ferramentas levou o agente da Vercel de 80% para 100% de sucesso."
+    },
+    {
+      "stage": "check",
+      "question": "O que demonstra o Terminal Bench 2.0 sobre o modelo versus o arnés?",
+      "options": [
+        "O mesmo modelo passou de fora do top 30 para o 5o lugar, mudando apenas o arame.",
+        "Os modelos só determinam a classificação",
+        "Só as GPUs importam",
+        "As alterações no arame não importam"
+      ],
+      "correct": 0,
+      "explanation": "Anatomia de um Agente de Arneses de LangChain: o mesmo modelo, mudança de arneses, 25+ saltos de classificação."
+    },
+    {
+      "stage": "post",
+      "question": "O que recomenda a lição fazer quando ouve um novo vocabulário de arneses?",
+      "options": [
+        "Rejeita-o",
+        "Esperar para o OpenAI para padronizá-lo",
+        "Adotar o vocabulário literalmente",
+        "Traduzir de volta para primitivas (função, operador, gatilho, tempo de execução, HTTP/RPC, fila, persistência, política) antes de adotar"
+      ],
+      "correct": 3,
+      "explanation": "Razão a partir de primitivos, não taxonomias de vendedores; o vocabulário muda, mas a engenharia não."
+    },
+    {
+      "stage": "post",
+      "question": "Onde fica o histórico de bate-papo em relação ao banco de trabalho?",
+      "options": [
+        "O chat é o sistema de gravação",
+        "O chat é volátil; o repo é o sistema de registro",
+        "Ambos são equivalentes",
+        "Nenhum deles importa."
+      ],
+      "correct": 1,
+      "explanation": "O loop fecha-se no arquivo do estado, não no histórico de bate-papo."
+    }
+  ]
+}

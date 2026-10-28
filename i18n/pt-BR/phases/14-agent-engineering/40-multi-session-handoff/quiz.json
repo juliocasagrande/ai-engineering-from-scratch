@@ -1,0 +1,90 @@
+{
+  "lesson": "40-multi-session-handoff",
+  "title": "Transmissão de várias sessões",
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "Qual campo é o carregador de carga num pacote de entrega?",
+      "options": [
+        "next_action (sem ele, o documento é um relatório de status, não uma transferência)",
+        "veredicto_pointer",
+        "Resumo",
+        "comandos_ir"
+      ],
+      "correct": 0,
+      "explanation": "Uma transferência com tudo menos a next_action é um relatório de status; o próximo passo concreto é o que torna a próxima sessão produtiva."
+    },
+    {
+      "stage": "pre",
+      "question": "Por que são geradas as entregas, não escritas?",
+      "options": [
+        "As entregas manuscritas são ignoradas em um dia difícil; o gerador lê artefatos de banco de trabalho e emite o pacote, então o agente deixa o banco de trabalho em um estado que o gerador pode resumir",
+        "O Apache 2.0 requer isso.",
+        "Os geradores são mais rápidos.",
+        "Os geradores criptografam melhor"
+      ],
+      "correct": 0,
+      "explanation": "A automação fecha a lacuna entre intenção e consistência."
+    },
+    {
+      "stage": "check",
+      "question": "Em que dois formulários o pacote vai enviar?",
+      "options": [
+        "E-mail e Slack",
+        "PDF e PNG",
+        "YAML e TOML",
+        "handoff.md (leito por humanos) e handoff.json (leito por máquina, ambos dos mesmos artefatos de origem; JSON vence em divergência)"
+      ],
+      "correct": 3,
+      "explanation": "Marca para os seres humanos, JSON para o próximo agente; ambos vêm do mesmo gerador."
+    },
+    {
+      "stage": "check",
+      "question": "Como a lição distingue a compactação da entrega?",
+      "options": [
+        "São as mesmas.",
+        "A compaixão é paga, a entrega é gratuita.",
+        "A transferência requer GPU",
+        "A compactação prolonga uma sessão; a transferência fecha uma limpa e começa a próxima em um contexto novo."
+      ],
+      "correct": 3,
+      "explanation": "Enquadramento da edição 20372 de Hermes: escrever uma transferência compacta antes que a compressão no local degrada a qualidade, e depois retomar em uma nova sessão."
+    },
+    {
+      "stage": "check",
+      "question": "O que recomenda a lição sobre quando terminar uma sessão?",
+      "options": [
+        "Antes de 50-75% orçamento contexto, enquanto o contexto é intacto; barato para escrever antes de artefatos de compressão poluir o estado",
+        "No contexto de 100%, então pânico",
+        "Só após uma fusão",
+        "Só à meia-noite ."
+      ],
+      "correct": 0,
+      "explanation": "A fechadura precoce mantém limpas as entradas do gerador."
+    },
+    {
+      "stage": "post",
+      "question": "O que recomenda a lição para cortar o registro de feedback no pacote?",
+      "options": [
+        "As últimas entradas K mais cada entrada com uma saída não zero, então o pacote permanece pequeno enquanto o histórico de falhas sobrevive",
+        "Redações aleatórias N",
+        "Apenas as primeiras entradas K",
+        "Apenas a entrada mais recente"
+      ],
+      "correct": 0,
+      "explanation": "Tintura assimetrica: os fracassos devem sobreviver; a trivialidade na cauda é barata de manter."
+    },
+    {
+      "stage": "post",
+      "question": "Que metadados fazem funcionar a coordenação entre sessões multi-agentes?",
+      "options": [
+        "Branch, last_known_good_commit, e status (ativo substituído  arquivado); apenas uma transferência ativa por ramo e tópico",
+        "Um canal Slack compartilhado",
+        "Uma fila central",
+        "Criptografia de alto segredo"
+      ],
+      "correct": 0,
+      "explanation": "As transferências estaleiras são a falha dominante de vários agentes; status + ramo + LKG mantém o conjunto ativo pequeno."
+    }
+  ]
+}

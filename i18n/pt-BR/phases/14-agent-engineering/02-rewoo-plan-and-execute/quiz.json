@@ -1,0 +1,90 @@
+{
+  "lesson": "02-rewoo-plan-and-execute",
+  "title": "ReWOO e Planeamento e Execução: Planeamento Desacoplado",
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "Porque é que o impulso do ReAct cresce quadraticamente com a profundidade?",
+      "options": [
+        "Cada passo contém todo o contexto anterior , incluindo todos os pensamentos e observações anteriores .",
+        "O modelo se re-tokeniza em cada passo",
+        "Os esquemas de ferramentas são duplicados por chamada",
+        "O fornecedor cobra por byte em vez de por token"
+      ],
+      "correct": 0,
+      "explanation": "O ReAct reinclui pensamentos e observações anteriores em cada passo, fazendo com que o comprimento total da ponta cresça com o quadrado da profundidade."
+    },
+    {
+      "stage": "pre",
+      "question": "Qual é a divisão de três papéis que define a ReWOO?",
+      "options": [
+        "Planejador, Trabalhador, Solvente",
+        "Leitor, escritor, crítico",
+        "Gerador, crítico, optimizador",
+        "Ator, avaliador, reflector"
+      ],
+      "correct": 0,
+      "explanation": "A ReWOO separa um Planeador que emite um DAG, Trabalhadores que trazem evidências e um Solver que compõe a resposta final."
+    },
+    {
+      "stage": "check",
+      "question": "Que números de manchetes o jornal relata para ReWOO vs ReAct no HotpotQA?",
+      "options": [
+        "10 vezes menos tokens e precisão -2",
+        "~ 5x menos tokens e + 4 precisão absoluta",
+        "Os mesmos tokens e precisão +1",
+        "~ 2x mais tokens e +10 precisão"
+      ],
+      "correct": 1,
+      "explanation": "A ReWOO relata uma redução de 5x dos tokens e uma precisão absoluta de +4 no HotpotQA em comparação com a ReAct."
+    },
+    {
+      "stage": "check",
+      "question": "O que significa um contador de espaço como #E1 dentro de um nó de plano ReWOO?",
+      "options": [
+        "Referência substituída no momento da expedição pela saída de um nó de trabalho anterior",
+        "Um identificador de versão do planejador",
+        "Um código de erro devolvido pelo trabalhador 1",
+        "Um contador de retest para a obtenção de provas"
+      ],
+      "correct": 0,
+      "explanation": "Os nós do plano usam referências de evidências como #E1, #E2 que o executor substitui com a saída de trabalhadores upstream."
+    },
+    {
+      "stage": "check",
+      "question": "Por que a ReWOO localiza melhor falhas do que a ReAct?",
+      "options": [
+        "O Planeador reemite um novo DAG após cada erro",
+        "Os trabalhadores acidentam a corrida em qualquer erro",
+        "ReWOO retrata cada chamada falhada até dez vezes",
+        "Um erro em um trabalhador torna-se uma cadeia que o Solver vê ao lado do plano original, então a degradação é por nó e não por passo"
+      ],
+      "correct": 3,
+      "explanation": "Falha do nó com o plano original no contexto permite que o Solver se degrada graciosamente em vez de raciocinar no meio do fluxo de um erro."
+    },
+    {
+      "stage": "post",
+      "question": "Qual forma de tarefa se encaixa melhor no Plano e a Ação do que no simples ReWOO?",
+      "options": [
+        "Uma pergunta aritmética pura",
+        "Uma trajetória de navegação em 40 etapas para a web ou para dispositivos móveis",
+        "Uma pesquisa de facto em dois passos",
+        "Classificação de um único turno"
+      ],
+      "correct": 1,
+      "explanation": "O Plan-and-Act é construído para agentes de web e móveis de longo horizonte (mais de 30 passos) onde uma única trajetória do ReAct perde a coerência."
+    },
+    {
+      "stage": "post",
+      "question": "O que implica o resultado da destilação de planeador da ReWOO para os agentes de produção?",
+      "options": [
+        "Os modelos de fronteira devem ser utilizados em cada etapa",
+        "Um pequeno planejador (cerca de 7B) pode corresponder a um grande professor porque o planejador nunca vê observações",
+        "Descenso da qualidade de planeamento abaixo dos parâmetros 7B",
+        "A destilação requer dados RL baseados em gradientes"
+      ],
+      "correct": 1,
+      "explanation": "Como o planejador não vê observações, os traços de planejamento de um professor grande transferem limpo para um pequeno planejador de ajuste fino."
+    }
+  ]
+}

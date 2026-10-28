@@ -1,0 +1,90 @@
+{
+  "lesson": "27-prompt-injection-defense",
+  "title": "Injecção Prontíssima e Defesa PVE",
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "O que é a injecção rápida indirecta?",
+      "options": [
+        "Um modelo de erro clique",
+        "Um usuário digitando \"ignorar todas as regras\" diretamente",
+        "Instruções incorporadas nos dados que o agente recupera (uma página, PDF, e-mail, nota de memória) que superam o pedido do desenvolvedor na ingestão",
+        "Um erro de digitação no sistema de urgência"
+      ],
+      "correct": 2,
+      "explanation": "Greshake et al. inventou injecção indirecta imediata: o conteúdo recuperado controlado pelo atacante contém instruções."
+    },
+    {
+      "stage": "pre",
+      "question": "O que diz a lição que processar as instruções recuperadas é equivalente?",
+      "options": [
+        "Um teste de análise estática",
+        "Execução arbitrária de código na superfície de utilização de ferramentas do agente",
+        "Liberdade de expressão",
+        "Uma chamada de função pura"
+      ],
+      "correct": 1,
+      "explanation": "O enquadramento do Greshake: instruções recuperadas podem atingir qualquer ferramenta ao qual o agente tenha acesso."
+    },
+    {
+      "stage": "check",
+      "question": "Qual não é uma das cinco classes de exploração demonstradas?",
+      "options": [
+        "Envenenamento persistente da memória",
+        "Invalidação do caché",
+        "Roubo de dados",
+        "O verminho"
+      ],
+      "correct": 1,
+      "explanation": "Os cinco são roubo de dados, vermes, envenenamento persistente da memória, contaminação do ecossistema, uso arbitrário de ferramentas."
+    },
+    {
+      "stage": "check",
+      "question": "O que significa PVE?",
+      "options": [
+        "Pre-vectorização-embed",
+        "Prompt-Validator-Executor: um validador rápido barato é executado em cada chamada de ferramenta antes do modelo principal caro compromete-se",
+        "Provedor-verificador-encodador",
+        "Plano-Verificar-Executar, um dialeto HTN"
+      ],
+      "correct": 1,
+      "explanation": "O PVE envolve cada invocação de ferramenta com um validador barato antes do compromisso do modelo principal."
+    },
+    {
+      "stage": "check",
+      "question": "Por que é insuficiente o 'sistema de instruções de imediato diz ignorar instruções não confiáveis'?",
+      "options": [
+        "É muito curta .",
+        "É seguir instruções, não aplicar; o modelo ainda pode ser substituído por conteúdo injetado suficientemente persuasivo",
+        "Os fornecedores despejam-no",
+        "Está encriptado."
+      ],
+      "correct": 1,
+      "explanation": "A defesa real precisa de etiquetas de fonte, listados, segurança por passo e validação de estilo PVE, não apenas de incitação."
+    },
+    {
+      "stage": "post",
+      "question": "O que é a confiança excessiva na memória recuperada?",
+      "options": [
+        "Carregando o modelo errado",
+        "O agente de ontem escreveu uma nota de memória envenenada; o agente de hoje lê-a e re-executa a injeção",
+        "Esquecer-se de aspirar o índice",
+        "Cachar muito agressivamente"
+      ],
+      "correct": 1,
+      "explanation": "O envenenamento persistente da memória significa que as injeções sobrevivem ao longo das sessões se a memória é tratada como confiável."
+    },
+    {
+      "stage": "post",
+      "question": "Que metadados recomendamos para cada conteúdo?",
+      "options": [
+        "Uma contagem de símbolos",
+        "Apenas um tempo",
+        "Uma chave de criptografia",
+        "Uma tag fonte: user_message vs tool_output vs retomada; o validador recusa instruções no conteúdo recuperado"
+      ],
+      "correct": 3,
+      "explanation": "A etiquetagem de proveniência permite que o validador trate o conteúdo de acordo com o nível de confiança."
+    }
+  ]
+}

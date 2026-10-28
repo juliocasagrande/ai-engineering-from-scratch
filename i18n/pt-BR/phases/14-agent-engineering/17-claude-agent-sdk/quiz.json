@@ -1,0 +1,90 @@
+{
+  "lesson": "17-claude-agent-sdk",
+  "title": "O Arnes como uma biblioteca  Subbagents e loja de sessões",
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "Qual é a diferença entre o SDK do cliente Antropico e o SDK do agente Claude?",
+      "options": [
+        "O client SDK é o API de mensagens brutos; o Agent SDK é a forma de arsenal do código Claude com ferramentas embutidas, MCP, ganchos, subagentes e loja de sessões",
+        "Não há diferença.",
+        "O SDK do cliente é apenas para Python",
+        "O SDK do cliente é pago; o SDK do agente é gratuito"
+      ],
+      "correct": 0,
+      "explanation": "O SDK do cliente dá-lhe o loop; o SDK do agente envia o loop pré-construído."
+    },
+    {
+      "stage": "pre",
+      "question": "Quais são os dois propósitos documentados dos subagentes?",
+      "options": [
+        "Auteur e authz",
+        "Logging e métricas",
+        "Caching e limitação de taxa",
+        "Paralelação e isolamento de contexto"
+      ],
+      "correct": 3,
+      "explanation": "Os subagentes executam trabalhos independentes simultaneamente e preservam o orçamento contextual do orquestrador isolado do contexto."
+    },
+    {
+      "stage": "check",
+      "question": "Qual método NÃO faz parte da superfície da loja de sessão?",
+      "options": [
+        "apêndice",
+        "compile_prompt",
+        "Carga",
+        "list_subkey"
+      ],
+      "correct": 1,
+      "explanation": "Sessions store ship apenda, carrega, lista_sessions, excluir, list_subkeys; compile_prompt não é uma API de sessão."
+    },
+    {
+      "stage": "check",
+      "question": "O que não é um gancho de ciclo de vida do Agente Claude SDK?",
+      "options": [
+        "Pre-imposição",
+        "Pre-ToolUse",
+        "Utilização de ferramentas",
+        "PreCompact"
+      ],
+      "correct": 0,
+      "explanation": "Os ganchos incluem PreToolUse, PostToolUse, SessionStart/End, UserPromptSubmit, PreCompact, Stop, Notificação."
+    },
+    {
+      "stage": "check",
+      "question": "Como se propaga o contexto de rastreamento através do subprocesso do agente e da CLI?",
+      "options": [
+        "Apenas através do painel do fornecedor",
+        "Através do sistema de arquivos",
+        "Apenas através de variáveis ambientais",
+        "Através do W3C, os cabeçalhos de contexto de rastreamento passaram para o subprocesso CLI"
+      ],
+      "correct": 3,
+      "explanation": "Os intervalos OTel no chamador se propagam para o subprocesso CLI através do contexto de rastreamento W3C, de modo que toda a execução de vários processos é de um rastreamento."
+    },
+    {
+      "stage": "post",
+      "question": "O que é o subagento sobre-espalhamento e quando acontece?",
+      "options": [
+        "Desembaraçamento de mais subagentes do que núcleos de CPU",
+        "Reproduzir antes do início da sessão",
+        "Desembaraçamento de 100 subagentes para 100 pequenas tarefas onde a carga aérea domina; lote em vez disso",
+        "Esquecer fechar os subagentes"
+      ],
+      "correct": 2,
+      "explanation": "Os subagentes têm despesas superiores; partiam pequenas tarefas em vez de desovar uma cada uma."
+    },
+    {
+      "stage": "post",
+      "question": "O que é que o Claude Managed Agents troca com o SDK auto-host?",
+      "options": [
+        "Traçamento para streaming",
+        "Ferramentas de memória",
+        "Latência para custo",
+        "Controle de infraestrutura gerida (asyncagem de longa duração, cache rápida integrada, compactação integrada)"
+      ],
+      "correct": 3,
+      "explanation": "Agentes gerenciados é a alternativa hospedada para trabalho de sincronia de longa duração; menos controle, menos superfície de operações."
+    }
+  ]
+}

@@ -1,0 +1,90 @@
+{
+  "lesson": "01-the-agent-loop",
+  "title": "O Loop do Agente: Observe, pense, age",
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "Porque é que um Mestrado em Direito por si só se comporta como um autocompleto em vez de um agente?",
+      "options": [
+        "Não pode ler arquivos, executar consultas ou verificar alegações contra o mundo exterior",
+        "A janela de contexto é pequena demais para fazer uma pergunta.",
+        "Ele só emite um token de cada vez",
+        "Recusou-se a responder sem um aviso do sistema ."
+      ],
+      "correct": 0,
+      "explanation": "Um LLM sem bucle e sem ferramentas só pode produzir texto a partir de seus pesos; não pode observar o estado ou agir sobre ele."
+    },
+    {
+      "stage": "pre",
+      "question": "Quais três rótulos aparecem no rastro canônico ReAct de Yao et al. 2022?",
+      "options": [
+        "Rapido, resposta e recompensa",
+        "Planejar, executar e refletir",
+        "Pensamento, Ação, Observação",
+        "Sistema, Utilizador, Assistente"
+      ],
+      "correct": 2,
+      "explanation": "ReAct interliga linhas de Pensamento, Ação e Observação em um único fluxo."
+    },
+    {
+      "stage": "check",
+      "question": "Qual item NÃO é um dos cinco ingredientes que a lição lista para um ciclo de agentes?",
+      "options": [
+        "Registro de ferramentas",
+        "Buffer de mensagens",
+        "Formatador de observação",
+        "Otimizador de gradientes"
+      ],
+      "correct": 3,
+      "explanation": "Os cinco ingredientes são o buffer de mensagens, o registro de ferramentas, a condição de parada, o orçamento de virada e o formatador de observação."
+    },
+    {
+      "stage": "check",
+      "question": "Qual é o papel do orçamento de turno no ciclo?",
+      "options": [
+        "Controla quantas ferramentas o registo expõe",
+        "Limita a taxa do prestador de LLM",
+        "Ele bloqueia as iterações do circuito para evitar agentes fugitivos",
+        "Limita o número de tokens por resposta"
+      ],
+      "correct": 2,
+      "explanation": "O orçamento de turno é um limite para iterações de loop; os agentes 2026 geralmente executam 40-400 passos e precisam de um limite adequado à tarefa."
+    },
+    {
+      "stage": "check",
+      "question": "O que mudou na mudança de raciocínio nativo de 2025 a 2026, em comparação com tokens de Pensamento baseados em prompt?",
+      "options": [
+        "Os tokens de pensamento são agora emitidos em um canal de raciocínio separado passado por viradas",
+        "Os modelos deixaram de usar chamadas de ferramentas e dependem apenas de cadeia de pensamento",
+        "As observações são removidas do aviso inteiramente",
+        "O fluxo de controlo do circuito foi substituído por um DAG"
+      ],
+      "correct": 0,
+      "explanation": "O conteúdo de raciocínio passa a um canal dedicado (muitas vezes criptografado entre os provedores), mas o fluxo de controle observo-pensar-ato permanece inalterado."
+    },
+    {
+      "stage": "post",
+      "question": "Porque é que a lição diz que as saídas das ferramentas são entradas não confiáveis?",
+      "options": [
+        "Os tempos de execução das ferramentas são lentos e pouco confiáveis",
+        "O conteúdo recuperado pode conter instruções ocultas como excluir o repo e apenas a entrada direta do usuário conta como permissão",
+        "Os resultados da ferramenta são sempre maiores do que a janela de contexto do modelo",
+        "O provedor elimina os bytes de saída da ferramenta por padrão"
+      ],
+      "correct": 1,
+      "explanation": "Os documentos da OpenAI CUA afirmam explicitamente que apenas as instruções diretas do usuário contam como permissão; as saídas das ferramentas podem conter instruções adversárias e devem ser tratadas como não confiáveis."
+    },
+    {
+      "stage": "post",
+      "question": "Porque é que a lição afirma que cada quadro de 2026 ainda executa ReAct sob o capô?",
+      "options": [
+        "Porque o LangGraph obriga todas as outras estruturas a herdar dele",
+        "Porque os provedores exigem as palavras-chave ReAct no prompt",
+        "Porque Yao et al. possuem uma patente no circuito",
+        "Porque o fluxo de controle observe-pensar-acto é invariante; estruturas diferem em ponto de checagem, atores, modelos de papel e rastreamento ao seu redor"
+      ],
+      "correct": 3,
+      "explanation": "As diferenças entre o Claude Agent SDK, OpenAI Agents SDK, LangGraph, AutoGen, CrewAI, Agno e Mastra são sobre o que envolve o loop, não o próprio loop."
+    }
+  ]
+}

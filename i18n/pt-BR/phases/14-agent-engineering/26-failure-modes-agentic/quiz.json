@@ -1,0 +1,90 @@
+{
+  "lesson": "26-failure-modes-agentic",
+  "title": "Modos de falha: Por que os agentes rompem",
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "Qual é a alegação central da MASFT?",
+      "options": [
+        "Falhas são ruídos aleatórios",
+        "Falhas de rede",
+        "Os fracassos desaparecem com modelos maiores",
+        "As falhas de vários agentes são falhas de design fundamentais, não limitações de LLM a serem corrigidas com modelos base melhores"
+      ],
+      "correct": 3,
+      "explanation": "O MASFT de Berkeley categoriza falhas como falhas de design; elas não desaparecem escalando o modelo base."
+    },
+    {
+      "stage": "pre",
+      "question": "Qual é um dos cinco modos de falha recorrentes da indústria que as lições listam?",
+      "options": [
+        "Ações alucinantes",
+        "Erros em cascata",
+        "- O que é isso?",
+        "Embedding versão"
+      ],
+      "correct": 3,
+      "explanation": "As cinco são ações alucinadas, escopo de escopo, erros de cascata, perda de contexto, uso indevido de ferramentas."
+    },
+    {
+      "stage": "check",
+      "question": "Qual é um erro em cascata nesta lição?",
+      "options": [
+        "Um erro de parsementação YAML",
+        "Uma chamada errada desencadeia efeitos a jusante em todos os sistemas (um SKU fantasma desencadeia quatro chamadas a jusante em API)",
+        "Falha de cron",
+        "Uma cascata de limite de taxa de MLL"
+      ],
+      "correct": 1,
+      "explanation": "Cascadas amplificam uma única chamada ruim em um incidente de vários sistemas; especialmente grave quando agentes fingem sucesso."
+    },
+    {
+      "stage": "check",
+      "question": "Que duas manifestações é que a pesquisa de alucinações de agentes da LLM lista?",
+      "options": [
+        "Tokens quentes e frios",
+        "Desviação após instrução e uso indevido de contexto",
+        "Busca gananciosa e de feixe",
+        "Instruções duras e macias"
+      ],
+      "correct": 1,
+      "explanation": "As alucinações aparecem como ignorar o sistema de urgência ou esquecer/aplicar mal o contexto de virada anterior."
+    },
+    {
+      "stage": "check",
+      "question": "O que significa alucinar o sucesso?",
+      "options": [
+        "Um teste unitário aprovado",
+        "O agente retorna uma mensagem de sucesso mesmo que o estado-alvo não tenha mudado (muitas vezes em um 400 de uma ferramenta)",
+        "O usuário pensa que o sucesso quando nada aconteceu",
+        "O modelo é demasiado confiante em valores de referência"
+      ],
+      "correct": 1,
+      "explanation": "Re-sonde ambiente estado; agentes comumente falsificação de conclusão quando não podem distinguir \"eu falhei\" de \"impossível\"."
+    },
+    {
+      "stage": "post",
+      "question": "Por que é insuficiente marcar apenas os acidentes?",
+      "options": [
+        "A madeira é paga",
+        "A maioria das falhas de agentes produzem uma saída que parece válida e não cai; são necessárias verificações de nível de conteúdo",
+        "Colapso vazamento de PII",
+        "Os acidentes são lentos."
+      ],
+      "correct": 1,
+      "explanation": "A monitorização baseada em acidentes não consegue ver a maior parte das falhas de agentes, que são em forma de conteúdo."
+    },
+    {
+      "stage": "post",
+      "question": "Que mitigação recomenda a lição em cada passo da cadeia de raciocínio?",
+      "options": [
+        "Adicione um sono.",
+        "Desativar as retemptadas",
+        "Portas de verificação automatizadas que verificam a fixação de fatos em relação ao estado ambiental",
+        "Apenas temperatura mais baixa"
+      ],
+      "correct": 2,
+      "explanation": "Os portões por etapas (classificador de segurança, validação de argumentos, CRITIC, re-sondação de estado) detectam falhas antes de cair em cascata."
+    }
+  ]
+}

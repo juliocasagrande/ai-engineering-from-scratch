@@ -1,0 +1,90 @@
+{
+  "lesson": "21-computer-use-agents",
+  "title": "Utilização de computadores: Claude, OpenAI CUA, Gemini",
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "Que entrada faz Claude com o computador, e o que emite?",
+      "options": [
+        "Capturas de tela em comandos de teclado/m mouse (baseados em visão)",
+        "Árvore de acessibilidade, comando teclado/m mouse fora",
+        "DOM XML em, JavaScript fora",
+        "JSON em, SQL fora"
+      ],
+      "correct": 0,
+      "explanation": "Claude lê pixels e emite ações de teclado/m mouse; não é usada API de acessibilidade do sistema operacional."
+    },
+    {
+      "stage": "pre",
+      "question": "Qual é a característica de segurança distintiva do Gemini 2.5 Computer Use?",
+      "options": [
+        "Um serviço de segurança por etapa que avalia cada ação antes da execução e rejeita as inseguras",
+        "Modo de leitura apenas por padrão",
+        "Regras de WAF codificadas com código rígido",
+        "CAPTCHA obrigatórias"
+      ],
+      "correct": 0,
+      "explanation": "O Gemini 2.5 Utilização de Computador envia um classificador de segurança por passo como um recurso definidor."
+    },
+    {
+      "stage": "check",
+      "question": "O que a lição identifica como entrada não confiável em todos os três modelos?",
+      "options": [
+        "Nada, tudo é confiável.",
+        "Apenas respostas HTTPS",
+        "Capturas de tela, texto DOM, saídas de ferramentas, conteúdo PDF, qualquer coisa recuperada",
+        "Apenas conteúdo PDF"
+      ],
+      "correct": 2,
+      "explanation": "Apenas as instruções diretas do usuário contam como permissão; tudo o resto não é confiável."
+    },
+    {
+      "stage": "check",
+      "question": "Quais números OSWorld / WebArena a lição cita para OpenAI CUA no lançamento?",
+      "options": [
+        "Números não comunicados",
+        "OSWorld 99%, WebArena 99%",
+        "OSWorld 0%, WebArena 0%",
+        "OSWorld 38,1%, WebArena 58,1%, WebVoyager 87%"
+      ],
+      "correct": 3,
+      "explanation": "Esses foram os números de lançamento citados."
+    },
+    {
+      "stage": "check",
+      "question": "Qual padrão de defesa NÃO está na lista de convergência de 2026?",
+      "options": [
+        "Lista de permissões/lista de bloqueio de alvos de navegação",
+        "Classificador de segurança por etapa",
+        "Homem em funcionamento para ações sensíveis",
+        "Clicar automaticamente através de diálogos para economizar tempo"
+      ],
+      "correct": 3,
+      "explanation": "Os diálogos de clique automático são o oposto do seguro; a lição recomenda confirmação explícita."
+    },
+    {
+      "stage": "post",
+      "question": "Qual é o principal ataque que a lição destaca contra agentes de uso de computadores?",
+      "options": [
+        "Interrupções da rede",
+        "O atraso da atualização do sistema operacional",
+        "Render lento",
+        "Uma página maliciosa ou PDF que inclui instruções no conteúdo recuperado que o modelo trata como intenção do usuário"
+      ],
+      "correct": 3,
+      "explanation": "Confiar em capturas de tela ou texto DOM como permissão é a falha canônica de injeção indireta-imprenta."
+    },
+    {
+      "stage": "post",
+      "question": "Quando é especificamente recomendada a confirmação humana no circuito?",
+      "options": [
+        "Nunca .",
+        "Em ações sensíveis como login, compra, exclusão de arquivos",
+        "Só quando o modelo perguntar",
+        "Na navegação apenas para leitura"
+      ],
+      "correct": 1,
+      "explanation": "Ações sensíveis (dinheiro, exposição a dados, novos logins) requerem confirmação humana explícita."
+    }
+  ]
+}

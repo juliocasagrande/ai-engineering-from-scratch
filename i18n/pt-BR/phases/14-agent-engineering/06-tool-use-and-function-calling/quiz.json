@@ -1,0 +1,90 @@
+{
+  "lesson": "06-tool-use-and-function-calling",
+  "title": "Utilização de Ferramentas e Função",
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "Qual é o sinal que o Toolformer utiliza para decidir se deve manter uma anotação de ferramenta candidata?",
+      "options": [
+        "Se a ferramenta retorna dentro de 100 ms",
+        "Acordo de etiqueta humana",
+        "Se incluir o resultado da ferramenta reduz a perda de tokens próximos no texto circundante",
+        "Se a ferramenta emite JSON válido"
+      ],
+      "correct": 2,
+      "explanation": "O sinal auto-supervisionado do Toolformer mantém anotações cujos resultados da ferramenta reduzem a perda do token seguinte."
+    },
+    {
+      "stage": "pre",
+      "question": "Qual é a divisão BFCL V4 que a lição relata?",
+      "options": [
+        "100% de giro único",
+        "50% ao vivo, 50% sintético",
+        "33% de planejamento, 33% de reflexão",
+        "40% agenciado, 30% multi-turn, 10% ao vivo, 10% não ao vivo, 10% alucinação"
+      ],
+      "correct": 3,
+      "explanation": "Os pesos do BFCL V4 são 40 agentes / 30 turnos múltiplos / 10 ao vivo / 10 não ao vivo / 10 alucinações."
+    },
+    {
+      "stage": "check",
+      "question": "Por que a descrição de uma ferramenta é carregadora?",
+      "options": [
+        "É o que o usuário vê na interface",
+        "O modelo lê-o para escolher a ferramenta certa; descrições ruins são a principal causa de falhas de ferramentas erradas",
+        "É exigido pelo JSON Schema",
+        "Controla os baldes de faturamento"
+      ],
+      "correct": 1,
+      "explanation": "As descrições de ferramentas são o sinal principal do modelo para a seleção de ferramentas; descrições ruins causam o roteamento de ferramentas erradas."
+    },
+    {
+      "stage": "check",
+      "question": "Qual é o papel desempenhado pela tool_use_id na chamada paralela de ferramentas?",
+      "options": [
+        "Correla cada resultado da ferramenta com a sua chamada de origem para que os resultados retornem da rota de ordem corretamente",
+        "Autoriza a chamada contra uma chave API",
+        "Comprime a carga útil JSON",
+        "Permite o caching"
+      ],
+      "correct": 0,
+      "explanation": "tool_use_id é o token de correlação; trocar as rotas resulta na chamada errada."
+    },
+    {
+      "stage": "check",
+      "question": "Que classe de falhas a avaliação baseada no estado do V3 tenta detectar?",
+      "options": [
+        "Fugas de tokens",
+        "Drift de versão do esquema",
+        "Execução lenta da ferramenta",
+        "As chamadas de ferramenta de correspondência AST que parecem corretas mas deixam a API no estado errado"
+      ],
+      "correct": 3,
+      "explanation": "A avaliação baseada em estado verifica o estado da API resultante (por exemplo, o arquivo realmente criado) em vez de combinar chamadas sintáticas."
+    },
+    {
+      "stage": "post",
+      "question": "Qual problema de 2026 a lição NÃO lista entre os abertos para chamadas de função?",
+      "options": [
+        "Cadeia de ferramentas de longo horizonte",
+        "Velocidade de decodificação de nível de tokens",
+        "Técnicas de tomada de decisão dinâmicas em diversos instrumentos",
+        "Memória em todas as curvas"
+      ],
+      "correct": 1,
+      "explanation": "Os problemas abertos são memória, tomada de decisão dinâmica, cadeias de longo horizonte e detecção de alucinações; velocidade de decodificação não está na lista."
+    },
+    {
+      "stage": "post",
+      "question": "Por que uma ferramenta genérica run_shell(cmd) é chamada de bandeira vermelha nesta lição?",
+      "options": [
+        "Não pode ser chamado em paralelo",
+        "Ele amplia o limite da caixa de areia; ferramentas específicas como git_status() superfície de leitura/escritura ligada e risco",
+        "É lento.",
+        "Os prestadores rejeitam"
+      ],
+      "correct": 1,
+      "explanation": "Ferramentas estreitas restringem a superfície da caixa de areia; uma ferramenta genérica de concha concede a superfície completa do hospedeiro."
+    }
+  ]
+}

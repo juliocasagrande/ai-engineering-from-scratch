@@ -1,0 +1,90 @@
+{
+  "lesson": "20-benchmarks-webarena-osworld",
+  "title": "Referências: WebArena e OSWorld",
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "Por que a WebArena auto-host os seus quatro aplicativos alvo?",
+      "options": [
+        "Para evitar TLS",
+        "Para pin versões reprodutíveis para que a avaliação é baseada em execução e não escamas",
+        "Para poupar dinheiro",
+        "Para funcionar em GPUs"
+      ],
+      "correct": 1,
+      "explanation": "Aplicativos auto-hospedados em pinados tornam a avaliação baseada em execução confiável e comparável ao longo do tempo."
+    },
+    {
+      "stage": "pre",
+      "question": "Por que o OSWorld usa capturas de tela reais do sistema operacional em vez de APIs de acessibilidade?",
+      "options": [
+        "Imagens de tela custam menos",
+        "Informações PII sobre vazamento das APIs de acessibilidade",
+        "As APIs de acessibilidade são muito rápidas",
+        "Imagens de tela forçam o agente a fazer a terra de GUI real em 1920x1080, correspondendo às restrições de produção"
+      ],
+      "correct": 3,
+      "explanation": "A avaliação baseada em imagens de tela obriga a fixação de pixel a elemento, a restrição de produção real."
+    },
+    {
+      "stage": "check",
+      "question": "Que dois modos de falha primários a OSWorld surge?",
+      "options": [
+        "Latência e largura de banda",
+        "Alucinação e recusa",
+        "Embedding drift e fuga de tokens",
+        "Conhecimentos de conectividade e de funcionamento das UI"
+      ],
+      "correct": 3,
+      "explanation": "O posicionamento (pixel-to-element) e o conhecimento operacional (menus, atalhos) são os bloqueadores de manchetes."
+    },
+    {
+      "stage": "check",
+      "question": "O que acrescenta a OSWorld-Human ao índice de referência base?",
+      "options": [
+        "Tráetorias de ação do ouro seleccionadas manualmente que superfiquem uma lacuna de ineficiência gradual de agentes de 1,4-2,7x",
+        "Uma resolução de tela maior",
+        "Mais tarefas",
+        "Um novo sistema operacional"
+      ],
+      "correct": 0,
+      "explanation": "As trajetórias do ouro tornam a eficiência da trajetória mensurável, não apenas a taxa de sucesso."
+    },
+    {
+      "stage": "check",
+      "question": "Que número de tempo de lançamento cita a lição para a WebArena?",
+      "options": [
+        "Melhor agente em 50% com humano em 50%",
+        "Melhor agente a 0% em todos os limites",
+        "Melhor agente em 99% com humano em 100%",
+        "Melhor agente GPT-4 14,41% de sucesso vs. humano 78,24%"
+      ],
+      "correct": 3,
+      "explanation": "A diferença de 14,41% vs 78,24% é o número de lançamento da WebArena."
+    },
+    {
+      "stage": "post",
+      "question": "O que a lição adverte que acontece com a avaliação apenas em imagem de tela quando o agente usa DOM ou API de acessibilidade?",
+      "options": [
+        "Nada muda.",
+        "Os testes passam de forma trivial .",
+        "Excedem o limite de taxa",
+        "Perdes o desafio de aterrissamento que o OSWorld é projetado para medir"
+      ],
+      "correct": 3,
+      "explanation": "A avaliação de um agente de API de acessibilidade em referência apenas em captura de tela evita o teste de fixação."
+    },
+    {
+      "stage": "post",
+      "question": "Por que é que ignorar o comprimento da trajetória é um fracasso de comparação?",
+      "options": [
+        "O comprimento é a única métrica que importa.",
+        "Esconde custos e ineficiência que a taxa de sucesso só perde (a diferença de 1,4-2,7x OSWorld-Human superficies)",
+        "As trajetórias não são mensuráveis",
+        "A trajetória é sempre igual ao ouro ."
+      ],
+      "correct": 1,
+      "explanation": "Dois agentes com 60% de sucesso podem diferir 2-3x em etapas; custo e eficiência só aparecem se você medir o comprimento da trajetória."
+    }
+  ]
+}

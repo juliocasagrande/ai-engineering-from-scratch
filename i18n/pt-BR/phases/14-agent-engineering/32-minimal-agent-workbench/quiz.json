@@ -1,0 +1,90 @@
+{
+  "lesson": "32-minimal-agent-workbench",
+  "title": "O Minimal de Agente",
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "Quais três arquivos formam o banco de trabalho mais pequeno e útil?",
+      "options": [
+        "modelo.py, prompts.py, tools.py",
+        "Dockerfile, Makefile, .gitignore",
+        "Agentes.md (router), agente_state.json (state), task_board.json (file)",
+        "README.md, CHANGELOG.md, LICENSE"
+      ],
+      "correct": 2,
+      "explanation": "Um roteador curto, um estado duradouro e uma fila de tarefas são o piso."
+    },
+    {
+      "stage": "pre",
+      "question": "Qual é a estrutura da lição de AGENTS.md?",
+      "options": [
+        "Um segredo mantido fora do repo",
+        "Uma chave de caché de tempo",
+        "Um roteador curto que aponta para documentos mais profundos e o estado e a placa",
+        "Um manual de embarque de 3000 linhas"
+      ],
+      "correct": 2,
+      "explanation": "AGENTS.md é um roteador, não um manual; manuais longos são ignorados."
+    },
+    {
+      "stage": "check",
+      "question": "O que dizem os dados do código de aumento sobre um bom Agentes.md?",
+      "options": [
+        "Um bom AGENTS.md dá um salto de qualidade equivalente a atualizar de Haiku para Opus; um mau é pior do que nenhum arquivo",
+        "O comprimento ajuda sempre.",
+        "Só o Claude lê.",
+        "Não tem efeito mensurável"
+      ],
+      "correct": 0,
+      "explanation": "A medida do código de aumento: os melhores arquivos são em forma de modelo de atualização, os piores são piores do que nada."
+    },
+    {
+      "stage": "check",
+      "question": "Porque é que a lição recomenda o estado de arquivo apoiado sobre o estado de história do chat?",
+      "options": [
+        "Arquivos são menores",
+        "O disco é mais barato.",
+        "Histórico de bate-papo é volátil; o arquivo sobrevive à morte da sessão, corte de conversa e reset de ferramentas",
+        "É exigido pelo SOC 2"
+      ],
+      "correct": 2,
+      "explanation": "As sessões morrem e o chat é cortado; o arquivo é o sistema duradouro de registro."
+    },
+    {
+      "stage": "check",
+      "question": "O que diz a lição que acontece quando as instruções conflitantes desembarcam em Agentes.md?",
+      "options": [
+        "Os custos aumentam ligeiramente",
+        "Nada .",
+        "Baixa de latência",
+        "Instruções conflitantes: solte silenciosamente o agente do modo interativo para o modo ganancioso (AMBIG-SWE: 48,8% a 28% taxa de resolução)"
+      ],
+      "correct": 3,
+      "explanation": "O AMBIG-SWE mediu uma grande queda na taxa de resolução quando aparecem contradições; em vez disso, as prioridades numéricas."
+    },
+    {
+      "stage": "post",
+      "question": "Por que a lição recomenda links de ferramentas cruzadas como CLAUDE.md -> AGENTS.md?",
+      "options": [
+        "Para satisfazer o MIT",
+        "Para passar a auditoria",
+        "Então uma única fonte de verdade se espalha para todos os agentes de codificação sem forjar",
+        "Para salvar bytes"
+      ],
+      "correct": 2,
+      "explanation": "Os links de símbolo (ou geradores de estilo Nx) mantêm uma fonte canônica em todo o código Claude, Codex, Cursor, Copilot, etc."
+    },
+    {
+      "stage": "post",
+      "question": "Que padrão os arquivos de AGENTS.md aninhados seguem?",
+      "options": [
+        "Só o arquivo raiz é lido",
+        "Caminhar do arquivo de trabalho para a raiz repo, concatenar todos os AGENTS.md encontrados no caminho (vincimentos mais próximos; sub-directórios extender raiz)",
+        "Seleção aleatória",
+        "Fusão alfabética"
+      ],
+      "correct": 1,
+      "explanation": "O OpenAI envia 88 arquivos AGENTS.md através do seu repo principal; as ferramentas concatenam na árvore mais próxima."
+    }
+  ]
+}

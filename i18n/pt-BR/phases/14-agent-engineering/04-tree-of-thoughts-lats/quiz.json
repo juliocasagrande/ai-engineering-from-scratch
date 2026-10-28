@@ -1,0 +1,90 @@
+{
+  "lesson": "04-tree-of-thoughts-lats",
+  "title": "Árvore de Pensamentos e LATS: Busca deliberada",
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "Porque é que a cadeia de pensamentos luta no jogo de 24?",
+      "options": [
+        "Uma caminhada linear não pode voltar atrás quando um passo inicial é errado, então os passos posteriores compõem o erro",
+        "O CoT requer uma ferramenta de calculadora que GPT-4 não possui",
+        "O modelo não pode multiplicar números inteiros",
+        "O aviso é muito curto."
+      ],
+      "correct": 0,
+      "explanation": "Sem ramificação, uma subexpressão precoce errada envenena o resto da cadeia; o papel mede apenas 4% para a CoT."
+    },
+    {
+      "stage": "pre",
+      "question": "O que é um nó na busca de uma árvore de pensamentos?",
+      "options": [
+        "Uma ferramenta registada com o tempo de execução",
+        "Uma atualização de peso durante o ajuste fino",
+        "Um token produzido pelo modelo",
+        "Um passo ou pensamento intermediário coerente, com K possíveis expansões de crianças"
+      ],
+      "correct": 3,
+      "explanation": "A TOT trata o raciocínio como uma árvore onde cada nó é um pensamento intermediário que pode se expandir para crianças K."
+    },
+    {
+      "stage": "check",
+      "question": "Qual destes três não é um dos papéis do LATS para o LLM?",
+      "options": [
+        "Auto-reflector que escreve reflexões sobre o fracasso",
+        "Otimizador que atualiza os pesos do modelo entre as implementações",
+        "Função de valor que marca trajetórias parciais",
+        "Política que propõe as próximas acções"
+      ],
+      "correct": 1,
+      "explanation": "O LATS é livre de gradientes; as três funções do LLM são política, valor e auto-reflector."
+    },
+    {
+      "stage": "check",
+      "question": "Nomear as quatro fases do MCTS nas listas de lições.",
+      "options": [
+        "Amostra, pontuação, classificação, submissão",
+        "Planejar, executar, refletir, parar",
+        "Selecionar, expandir, simular, retroceder",
+        "Busque, sintetize, sintetize-de novo, pare"
+      ],
+      "correct": 2,
+      "explanation": "O MCTS prossegue com seleção, expansão, simulação e backpropagate por iteração."
+    },
+    {
+      "stage": "check",
+      "question": "Na UCT, qual é o papel da constante de exploração c?",
+      "options": [
+        "Escala a estimativa de valor Q",
+        "Estabelece a profundidade máxima da árvore",
+        "Controla o número de lançamentos",
+        "Pese o termo exploração sqrt(ln N / n) contra o termo exploração Q"
+      ],
+      "correct": 3,
+      "explanation": "c equilibra a exploração (Q) com o termo de exploração;"
+    },
+    {
+      "stage": "post",
+      "question": "Quando é a busca ativamente prejudicial em comparação com uma única trajetória?",
+      "options": [
+        "Sempre que os tokens são baratos",
+        "Quando a tarefa é a geração de código",
+        "Quando a tarefa envolve várias respostas corretas",
+        "Quando o avaliador é barulhento e há uma única resposta correta, então a pesquisa converge em uma resposta errada com boa pontuação"
+      ],
+      "correct": 3,
+      "explanation": "Uma função de valor barulhento mais uma única resposta correta é exatamente quando a pesquisa supera o barulho."
+    },
+    {
+      "stage": "post",
+      "question": "Quão muito mais uso de tokens deve-se orçar para o ToT no jogo de 24 em comparação com o CoT?",
+      "options": [
+        "100x a 1000x",
+        "Menos do que o COT devido à poda",
+        "Cerca de 2x",
+        "Cerca de 10x"
+      ],
+      "correct": 0,
+      "explanation": "A lição cita 100-1000x o custo de tokens para ToT em Game of 24 versus CoT."
+    }
+  ]
+}

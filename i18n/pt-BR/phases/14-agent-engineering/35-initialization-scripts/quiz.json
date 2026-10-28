@@ -1,0 +1,90 @@
+{
+  "lesson": "35-initialization-scripts",
+  "title": "Inicialização de Scripts para Agentes",
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "O que é que um script init elimina?",
+      "options": [
+        "Tokens de outono",
+        "Limite de taxas dos prestadores",
+        "Latência da inferência",
+        "O imposto de configuração por sessão: análise do tempo de execução, listagem do repo, retomada das mesmas verificações a cada nova sessão"
+      ],
+      "correct": 3,
+      "explanation": "O script paga o imposto uma vez e escreve as respostas em init_report.json que o agente lê."
+    },
+    {
+      "stage": "pre",
+      "question": "Qual é o contrato de modo de falha do script init?",
+      "options": [
+        "Falhar em voz alta, falhar rapidamente, falhar em um lugar; recusar-se a começar quando o banco de trabalho está quebrado",
+        "Sempre é bem sucedido .",
+        "Tente novamente para sempre .",
+        "Não se torne mole e continua"
+      ],
+      "correct": 0,
+      "explanation": "O ponto é recusar-se a começar quando o banco de trabalho está quebrado; a queda silenciosa derrota o propósito."
+    },
+    {
+      "stage": "check",
+      "question": "Qual é uma das sondas que as lições listam?",
+      "options": [
+        "Temperatura de amostragem token-by-token",
+        "Resolubilidade do comando de teste",
+        "Disponibilidade de dependências",
+        "Versões de execução"
+      ],
+      "correct": 0,
+      "explanation": "As sondas incluem versões de tempo de execução, deps, comando de teste, caminhos, env vars, estado de frescura, último conhecido-bom compromisso."
+    },
+    {
+      "stage": "check",
+      "question": "Porque é que a lição diz que o init deve ser idempotente?",
+      "options": [
+        "Satisfaz SOC 2",
+        "É exigido pelo JSON Schema",
+        "A impotência economiza dinheiro",
+        "Exercer duas vezes deve ser um no-op exceto para um novo tempo, para que possa ser conectado em CI, ganchos, ou um comando pré-tarefa de corte"
+      ],
+      "correct": 3,
+      "explanation": "A idempotence torna o init seguro para ligar de muitos pontos de entrada (hooks, CI, comando slash)."
+    },
+    {
+      "stage": "check",
+      "question": "O que é o último bem conhecido de ancoragem de compromisso?",
+      "options": [
+        "O primeiro compromisso no repo",
+        "A prova do compromisso em curso contra um arquivo do LKG; recusa-se a iniciar se a diferença exceder um orçamento sem ratificação humana",
+        "O compromisso mais recente da equipa",
+        "A base de fusão entre o TRE e o principal"
+      ],
+      "correct": 1,
+      "explanation": "A AI Code Review da Cloudflare tem como objetivo avaliar os revisores contra o LKG para evitar a composição de drift em todas as sessões."
+    },
+    {
+      "stage": "post",
+      "question": "O que faz o arquivo de bloqueio com padrão TTL?",
+      "options": [
+        "Escreve prereqs.lock após uma passagem bem sucedida da sonda; corridas subsequentes confiam na cadeia por 24h e ignoram sondas caras se o hash do manifesto coincidir",
+        "Bloqueia o repo de edições",
+        "Desativa a CI",
+        "Blocks todos escreve por 24 horas"
+      ],
+      "correct": 0,
+      "explanation": "A mesma forma que as caches de camadas do Docker: sonda idempotent + hash de conteúdo = saltar."
+    },
+    {
+      "stage": "post",
+      "question": "O que NUNCA deve aparecer no caminho de inicialização?",
+      "options": [
+        "Ligações de rede, ligações de LLM, verificações externas de licenças; sondas são deterministas de canalização em menos de três segundos",
+        "Lendo o ficheiro de fechamento",
+        "Sistema de arquivos local lê",
+        "Linguagem de leitura"
+      ],
+      "correct": 0,
+      "explanation": "Uma sonda que chama um LLM é um fluxo de trabalho, não uma sonda; mantenha a iniciação determinista."
+    }
+  ]
+}

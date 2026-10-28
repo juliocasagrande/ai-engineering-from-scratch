@@ -1,0 +1,90 @@
+{
+  "lesson": "18-agno-and-mastra-runtimes",
+  "title": "Agente de produção Runtimes",
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "Que combinação de idiomas recomenda a lição para cada tempo de corrida?",
+      "options": [
+        "Agno para TypeScript, Mastra para Python",
+        "Ambos são Go-first",
+        "Agno para Python, Mastra para TypeScript",
+        "Ambos são Rust-first"
+      ],
+      "correct": 2,
+      "explanation": "Agno é Python (formado em FastAPI); Mastra é TypeScript (formado em SDK de Vercel AI)."
+    },
+    {
+      "stage": "pre",
+      "question": "Qual é a forma recomendada de implantação da produção da Agno?",
+      "options": [
+        "Um demônio de longa vida com estado .",
+        "Um cron trabalhador sem servidor apenas",
+        "Um backend FastAPI sem estado de sessão, com escala de sessão; cada solicitação inicia um novo agente e o estado de sessão vive em um DB",
+        "Um servidor apenas para WebSocket"
+      ],
+      "correct": 2,
+      "explanation": "FastAPI sem estado por pedido; estado de sessão externalizado para um DB."
+    },
+    {
+      "stage": "check",
+      "question": "Quais são os três primitivos de Mastra?",
+      "options": [
+        "Nodo, Edge, Estado",
+        "Planejar, trabalhar e resolver",
+        "Agentes, Ferramentas, Fluxos de Trabalho",
+        "Ator, mensagem, caixa de entrada"
+      ],
+      "correct": 2,
+      "explanation": "Agentes (role LLM +), Ferramentas (tipo Zod) e Fluxos de Trabalho são os três primitivos de Mastra."
+    },
+    {
+      "stage": "check",
+      "question": "Quantos custos de instanciamento de agentes a Agno tem por doc?",
+      "options": [
+        "Cerca de 1 segundo e 1 GiB por agente",
+        "Cerca de 2 microsecondas com cerca de 3,75 KiB por agente",
+        "Cerca de 200 milissegundos e 100 MiB por agente",
+        "Cerca de 10 minutos e 4 GiB por agente"
+      ],
+      "correct": 1,
+      "explanation": "Os médicos da Agno citam cerca de 2 microsecondas e cerca de 3,75 KiB por agente."
+    },
+    {
+      "stage": "check",
+      "question": "O que dá o Router Modelo Unificado da Mastra?",
+      "options": [
+        "Uma camada DB vetorial",
+        "Uma única superfície de cliente para milhares de modelos em muitos provedores",
+        "Um ponto de verificação gráfico",
+        "Uma fila para chamadas de ferramentas"
+      ],
+      "correct": 1,
+      "explanation": "O Router Modelo Unificado da Mastra cita mais de 3.300 modelos em 94 provedores."
+    },
+    {
+      "stage": "post",
+      "question": "Quando é que o perf-perf-sake é o motivo errado para escolher o Agno?",
+      "options": [
+        "Ao utilizar o Langfuse",
+        "Quando a carga de trabalho é um agente lento chamada por pedido e o custo não é o gargalo de engarrafamento",
+        "Ao usar Python 3.13",
+        "Ao implantar em AWS"
+      ],
+      "correct": 1,
+      "explanation": "2 microsecondas são importantes na escala de fãs de chat, não para uma única chamada lenta por pedido."
+    },
+    {
+      "stage": "post",
+      "question": "Que superfície de licenciamento deve ler com cuidado antes de forjar o Mastra?",
+      "options": [
+        "Não há arquivo de licença",
+        "e/ directórios estão disponíveis em fonte em vez de Apache 2.0 e restringem a utilização comercial",
+        "Todo o Mastra é GPL",
+        "Mastra requer CLA mas não revisão de licença"
+      ],
+      "correct": 1,
+      "explanation": "Mastra é Apache 2.0, exceto para ee/ que está disponível na fonte; verifique as restrições antes de forjar."
+    }
+  ]
+}

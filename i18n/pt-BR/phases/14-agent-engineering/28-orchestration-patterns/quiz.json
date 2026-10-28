@@ -1,0 +1,90 @@
+{
+  "lesson": "28-orchestration-patterns",
+  "title": "Padrões de Orquestração: Supervisor, Swarm, Hierarquial",
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "Que quatro padrões de orquestração é a lição?",
+      "options": [
+        "Empurrar, puxar, lotar, fluir",
+        "Supervisor-trabalhador, enxame/peer-to-peer, hierárquica, debate",
+        "Sequenciais, paralelos, distribuídos, federados",
+        "Planejar, agir, refletir, refinar"
+      ],
+      "correct": 1,
+      "explanation": "Supervisor-trabalhador, enxame, hierarquica e debate recorrer em 2026 quadros."
+    },
+    {
+      "stage": "pre",
+      "question": "Qual é a recomendação de 2026 da LangChain em matéria de supervisão?",
+      "options": [
+        "Sempre use cre_supervisor",
+        "Evite a supervisão inteiramente",
+        "Preferir chamadas diretas de ferramentas ao invés de criar_supervisor para um controle de engenharia de contexto mais fino",
+        "Execute supervisores em GPUs"
+      ],
+      "correct": 2,
+      "explanation": "A supervisão baseada em ferramentas de telefonia dá-lhe um controlo preciso sobre o que cada especialista vê."
+    },
+    {
+      "stage": "check",
+      "question": "O que diferencia um enxame de uma topologia de supervisores-trabalhadores?",
+      "options": [
+        "Swarm é executado apenas em cron",
+        "O Swarm não tem roteador central; agentes transmitem diretamente através de uma superfície de ferramentas compartilhada",
+        "O Swarm usa GPUs",
+        "O Enxame é um agente único"
+      ],
+      "correct": 1,
+      "explanation": "O Swarm é peer-to-peer; o supervisor centraliza o roteamento através de um LLM."
+    },
+    {
+      "stage": "check",
+      "question": "Quando é justificada a orquestração hierárquica?",
+      "options": [
+        "Nunca; é um antipatrão",
+        "Apenas com GPUs",
+        "Quando o orçamento contextual de uma única supervisão não pode conter descrições de todos os especialistas",
+        "Sempre , escala de graça ."
+      ],
+      "correct": 2,
+      "explanation": "Os supervisores aninhados são destinados a grandes populações especializadas que excedem o orçamento de um supervisor."
+    },
+    {
+      "stage": "check",
+      "question": "Qual é a ordem de decisão recomendada que a Anthropic apoia?",
+      "options": [
+        "Comece com um único agente e padrões de fluxo de trabalho; adicione topologia apenas quando necessário; supervisor antes de enjambre antes de hierárquico; debate quando a precisão supera o custo",
+        "Comece com o debate",
+        "Comece sempre com um multi-agente hierárquico",
+        "Comece com o enxame e contraça para o single"
+      ],
+      "correct": 0,
+      "explanation": "A orientação da Anthropic é construir o sistema certo para as suas necessidades, não o mais sofisticado."
+    },
+    {
+      "stage": "post",
+      "question": "O que é uma hierarquia falsa nesta lição?",
+      "options": [
+        "Três camadas de supervisores porque \"empresa\" quando há apenas duas equipes reais;",
+        "Um orquestrador escrito em TypeScript",
+        "Marcado erroneamente",
+        "Um dispositivo de ensaio"
+      ],
+      "correct": 0,
+      "explanation": "As camadas que não correspondem a equipes reais adicionam complexidade operacional sem pagamento."
+    },
+    {
+      "stage": "post",
+      "question": "Como mitigar as reboques em um enxame (A -> B -> A -> B)?",
+      "options": [
+        "Fique a temperatura em 0",
+        "Baixar o limite de taxa",
+        "Adicionar um contador de salto e rejeitar após N transferências",
+        "Desativar o rastreamento"
+      ],
+      "correct": 2,
+      "explanation": "Um contador de saltos faz ciclos antes de circularem indefinidamente."
+    }
+  ]
+}

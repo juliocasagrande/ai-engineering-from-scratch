@@ -1,0 +1,90 @@
+{
+  "lesson": "42-agent-workbench-capstone",
+  "title": "Capstone: Envie um pacote de banco de trabalho de agentes reutilizáveis",
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "O que produz a pedra-chave?",
+      "options": [
+        "Um painel de monitoramento",
+        "Um diretório de entrada em versão (agente-workbench-pack/) com as sete superfícies mais um bin/install.sh que as coloca de forma idempotente",
+        "Um artigo de investigação",
+        "Um novo Mestrado em Direito"
+      ],
+      "correct": 1,
+      "explanation": "A embalagem é a receita; cada instalação é uma porção."
+    },
+    {
+      "stage": "pre",
+      "question": "O que NÃO faz parte do pacote?",
+      "options": [
+        "vendor_proprietary_weights/",
+        "Regimes/",
+        "Agentes.md + documentos/",
+        "- Escrito"
+      ],
+      "correct": 0,
+      "explanation": "O layout do pacote é AGENTS.md, docs/, schemas/, scripts/, bin/, README.md. O pacote é framework- e vendor-agnostic."
+    },
+    {
+      "stage": "check",
+      "question": "Porque é que o pacote tem um ficheiro VERSION?",
+      "options": [
+        "Para rastrear o agente IQ",
+        "Para SEO",
+        "Para anunciar em Hacker News",
+        "Os principais problemas para alterações de esquema/escritor que exigem migrações; menores para adições; correção para documentos apenas; o repo alvo registra a versão contra a qual foi instalado"
+      ],
+      "correct": 3,
+      "explanation": "A mesma forma que npm, Cargo, pyproject.toml; VERSIÃO é o contrato, não a comercialização."
+    },
+    {
+      "stage": "check",
+      "question": "Como é que a distribuição entre ferramentas se parece neste pacote?",
+      "options": [
+        "Um arquivo fonte com links sim (ln -s Agentes.md CLAUDE.md, .cursor/rules/, .github/copilot-instructions.md) para que o mesmo fonte fãs para cada agente de codificação",
+        "Cópia manual por ferramenta",
+        "Codificar o caminho de cada ferramenta",
+        "Um bloqueio de fornecedor por ferramenta"
+      ],
+      "correct": 0,
+      "explanation": "A configuração nx ai da Nx é a referência; o instalador do pacote faz o mesmo com os links sim."
+    },
+    {
+      "stage": "check",
+      "question": "Como a lição recomenda que o desinstalador se comporte?",
+      "options": [
+        "Excluir apenas documentos",
+        "Recusar no estado não trivial; nunca excluir o usuário agent_state.json, task_board.json, ou saídas/; apenas remover esquemas, scripts, docs e AGENTS.md (com opção de exclusão)",
+        "Eliminar tudo , incluindo o estado",
+        "Desativar git"
+      ],
+      "correct": 1,
+      "explanation": "O Estado pertence ao utilizador; a embalagem não o possui."
+    },
+    {
+      "stage": "post",
+      "question": "O que fica fora do bando?",
+      "options": [
+        "Escrito",
+        "Esquemas",
+        "As tarefas específicas do projeto, as chamadas do SDK do fornecedor, a prosa de integração de equipe  o pacote é agnóstico e vive ao lado da integração, não dentro dela",
+        "O instalador"
+      ],
+      "correct": 2,
+      "explanation": "As tarefas pertencem ao painel do repo alvo, não ao pacote; chamadas do SDK do fornecedor bloqueariam o pacote em uma estrutura."
+    },
+    {
+      "stage": "post",
+      "question": "Por que canal o pacote é enviado para muitos agentes de codificação ao mesmo tempo?",
+      "options": [
+        "Distribuição no estilo SkillKit (instalando o skillkit agente-workbench-pack) estabelece-o em 32 agentes de IA de uma única fonte",
+        "Anexo de e-mail",
+        "Copias manuais",
+        "Nota de lançamento do GitHub apenas"
+      ],
+      "correct": 0,
+      "explanation": "O pack repo é a fonte da verdade; o SkillKit é o canal de distribuição; o bloqueio do fornecedor desmorona."
+    }
+  ]
+}

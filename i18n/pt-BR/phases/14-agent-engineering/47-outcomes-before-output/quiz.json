@@ -1,0 +1,78 @@
+{
+  "lesson": "47-outcomes-before-output",
+  "title": "Resultados antes da saída",
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "Que declaração é um resultado em vez de uma saída?",
+      "options": [
+        "Construir um assistente de incidente",
+        "Adicionar um painel de controle",
+        "Deploye uma base de dados de vetores",
+        "Identificar o serviço falhado em dois minutos, enquanto permanece apenas para leitura"
+      ],
+      "correct": 3,
+      "explanation": "A declaração nomeia uma mudança e restrição observáveis sem fixar o artefato."
+    },
+    {
+      "stage": "check",
+      "question": "Por que a implementação mais rápida aumenta o risco de formação?",
+      "options": [
+        "As equipes podem comprometer-se com o problema errado antes que a aprendizagem se apresente",
+        "O código fica mais lento",
+        "Modelos param de planejar",
+        "Os testes tornam-se impossíveis"
+      ],
+      "correct": 0,
+      "explanation": "A velocidade aumenta o custo de uma direção não ganha."
+    },
+    {
+      "stage": "check",
+      "question": "O que é que pertence a um quadro de resultados?",
+      "options": [
+        "Utilizador, situação, comportamento atual, resultado desejado, restrições e não-objetivos",
+        "Apenas arquitetura",
+        "Apenas características",
+        "Modelo e versões do quadro"
+      ],
+      "correct": 0,
+      "explanation": "As seis superfícies conectam a construção a uma situação real e a um limite."
+    },
+    {
+      "stage": "check",
+      "question": "Quando pode uma estrutura de resultado nomear tecnologia?",
+      "options": [
+        "Só no título",
+        "Quando uma restrição de compatibilidade verificada realmente corrige",
+        "Em cada gol",
+        "Sempre que é popular"
+      ],
+      "correct": 1,
+      "explanation": "A tecnologia só pertence quando as evidências a tornam uma restrição real."
+    },
+    {
+      "stage": "post",
+      "question": "Qual é o papel dos não-alvos?",
+      "options": [
+        "Lista de sonhos futuros",
+        "Rejeitar tentador trabalho adjacente nesta fatia",
+        "Medir o sucesso",
+        "Substituição de restrições"
+      ],
+      "correct": 1,
+      "explanation": "Os objetivos não concretos mantêm a construção ligada ao seu resultado atual."
+    },
+    {
+      "stage": "post",
+      "question": "Quando um resultado limitado falhou?",
+      "options": [
+        "Só quando não há nave de código",
+        "Quando a implementação muda",
+        "Quando o resultado desejado é alcançado através da violação de uma restrição fixa",
+        "Quando se documenta uma não-objetivo"
+      ],
+      "correct": 2,
+      "explanation": "As restrições fazem parte do resultado e não são orientações opcionais de execução."
+    }
+  ]
+}

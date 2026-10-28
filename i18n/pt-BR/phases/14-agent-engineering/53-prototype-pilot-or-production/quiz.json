@@ -1,0 +1,78 @@
+{
+  "lesson": "53-prototype-pilot-or-production",
+  "title": "Prototipo, piloto ou produção",
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "O que é que principalmente distingue o protótipo, o piloto e a produção?",
+      "options": [
+        "Língua de programação",
+        "Poluição visual",
+        "Dimensão do modelo",
+        "A questão da aprendizagem, exposição real, consequência e propriedade"
+      ],
+      "correct": 3,
+      "explanation": "Os estágios são diferentes ambientes de evidência e de responsabilidade."
+    },
+    {
+      "stage": "check",
+      "question": "Quando é apropriado o estágio do protótipo?",
+      "options": [
+        "Apenas para UI",
+        "Quando o desconhecido pode ser respondido sem usuários reais ou dados reais",
+        "Sempre que a produção é difícil",
+        "Após o lançamento público"
+      ],
+      "correct": 1,
+      "explanation": "Um protótipo deve responder à questão do mecanismo com consequências mínimas."
+    },
+    {
+      "stage": "check",
+      "question": "O que deve incluir um piloto?",
+      "options": [
+        "Não há regra de parada",
+        "Autorização automática",
+        "O público limitado, o proprietário, o retorno, a auditoria, as métricas e os critérios de saída",
+        "Público ilimitado"
+      ],
+      "correct": 2,
+      "explanation": "Um piloto expõe condições realistas dentro de limites explícitos."
+    },
+    {
+      "stage": "check",
+      "question": "Quando se torna uma construção implantada produção no sentido significativo?",
+      "options": [
+        "Quando a organização aceita a confiabilidade contínua, o risco e a propriedade operacional",
+        "Quando tem um URL",
+        "Quando o protótipo parece polido",
+        "No primeiro compromisso"
+      ],
+      "correct": 0,
+      "explanation": "A produção é uma responsabilidade contínua, não apenas um estado de acolhimento."
+    },
+    {
+      "stage": "post",
+      "question": "O que significa \"Drift de estágio\"?",
+      "options": [
+        "Um piloto termina",
+        "Um protótipo ganha usuários, dados ou autoridade sem ganhar controle e propriedade",
+        "Uma mudança métrica",
+        "Um ramo é renomeado"
+      ],
+      "correct": 1,
+      "explanation": "A exposição descontrolada transforma um artefato de aprendizagem num serviço inseguro."
+    },
+    {
+      "stage": "post",
+      "question": "Por que as fronteiras de estágios devem ser aplicadas tecnicamente?",
+      "options": [
+        "Um cartaz de aviso não pode impedir o acesso ou a autoridade",
+        "A documentação é ilegal .",
+        "Substitui a propriedade",
+        "Melhora o contraste de cores"
+      ],
+      "correct": 0,
+      "explanation": "A configuração, o controlo de acesso e a telemetria tornam o estágio observável e executável."
+    }
+  ]
+}

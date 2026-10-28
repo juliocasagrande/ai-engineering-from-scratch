@@ -1,0 +1,90 @@
+{
+  "lesson": "03-reflexion-verbal-rl",
+  "title": "Reflexão: Aprendizagem por reforço verbal",
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "O que a Reflexion substitui na aprendizagem padrão de reforço?",
+      "options": [
+        "Memória episódica com memória paramétrica",
+        "Atualizações gradual com reflexões em linguagem natural armazenadas entre os ensaios",
+        "Redes de políticas com busca aleatória",
+        "A recompensa é moldada com uma recompensa constante"
+      ],
+      "correct": 1,
+      "explanation": "A reflexão usa reflexões de linguagem natural na memória episódica em vez de atualizações de peso."
+    },
+    {
+      "stage": "pre",
+      "question": "Que três componentes definem um sistema de reflexão?",
+      "options": [
+        "Planeador, Trabalhador, Solvente",
+        "Selector, Expander, Backpropagator",
+        "Gerador, crítico, optimizador",
+        "Ator, avaliador, autorreflector"
+      ],
+      "correct": 3,
+      "explanation": "A reflexão faz do agente um Actor que executa trajetórias, um Avalador que as marca e um Auto-Reflector que escreve lições."
+    },
+    {
+      "stage": "check",
+      "question": "Que tipo de avaliador usa um sinal binário externo como um teste de unidade ou uma resposta correta conhecida?",
+      "options": [
+        "Heurística",
+        "Scalar",
+        "Auto-avaliação",
+        "Baseado em votos"
+      ],
+      "correct": 1,
+      "explanation": "Os avaliadores escalares lêem sinais de passagem/falha da verdade no solo (sucesso do ALFWorld, testes HumanEval)."
+    },
+    {
+      "stage": "check",
+      "question": "Porque é que a autoavaliação é um sinal mais fraco do que o feedback escalar?",
+      "options": [
+        "O modelo julgando-se não tem uma base externa para que possa borracha-estampado sua própria resposta",
+        "É mais lento para calcular",
+        "Sempre requer um modelo maior",
+        "Não pode funcionar com ferramentas"
+      ],
+      "correct": 0,
+      "explanation": "A auto-eval não tem um controle externo, por isso uma alucinação confiante tem bons resultados; combina-o com verificação baseada em ferramentas."
+    },
+    {
+      "stage": "check",
+      "question": "Em que caso a lição lista como um lugar onde a reflexão NÃO ajuda?",
+      "options": [
+        "Uma falha externa transitória como a rede estar desligada",
+        "HotpotQA perguntas multi-hop",
+        "Geração de código onde os testes podem marcar",
+        "Tarefas de navegação do ALFWorld"
+      ],
+      "correct": 0,
+      "explanation": "Reflectar sobre uma interrupção externa transitória produz um reflexo que não ajuda futuras corridas."
+    },
+    {
+      "stage": "post",
+      "question": "O que é a podridão da memória no padrão de Reflexão?",
+      "options": [
+        "Perder reflexos quando o processo é reiniciado",
+        "O prompt de reflexão excede a janela de contexto",
+        "As reflexões são criptografadas pelo provedor",
+        "O buffer episódico se enche de reflexões obsoletas ou erradas e retarda ou prejudica os testes futuros"
+      ],
+      "correct": 3,
+      "explanation": "As reflexões obsoletas ou erradas acumuladas degradam o comportamento; mitigam com compactação ou TTL."
+    },
+    {
+      "stage": "post",
+      "question": "Qual padrão de produção é a mais clara da lição para a Reflecção?",
+      "options": [
+        "Os estudos de Claude Code em CLAUDE.md foram adiantados para futuras sessões",
+        "A Antropic está a fazer caché rápido.",
+        "Fluxo de edições de aplicação do cursor",
+        "API de lote do OpenAI"
+      ],
+      "correct": 0,
+      "explanation": "Aprendimentos do CLAUDE.md, a regra de aprendizagem do fluxo de trabalho e o cálculo do tempo de sono da Letta externalizam o buffer de reflexão episódico."
+    }
+  ]
+}

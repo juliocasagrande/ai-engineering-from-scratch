@@ -1,0 +1,90 @@
+{
+  "lesson": "25-multi-agent-debate",
+  "title": "Debate e colaboração entre vários agentes",
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "O que o protocolo da Sociedade das Mentes tem N exemplos modelo fazer?",
+      "options": [
+        "Propõe respostas independentemente, depois, através de rodadas R, leia e critique as propostas uns dos outros até que convergem",
+        "Trem em um conjunto de dados compartilhado",
+        "Cada um tem um índice de referência diferente .",
+        "Preços de negociação"
+      ],
+      "correct": 0,
+      "explanation": "N proponentes, R rondas, crítica cruzada, convergência é o debate canônico Du et al."
+    },
+    {
+      "stage": "pre",
+      "question": "Por que o debate entre modelos (por exemplo, ChatGPT + Bard) supera o debate de um modelo único?",
+      "options": [
+        "É mais barato.",
+        "Diferentes fornecedores negociam preços",
+        "Os vendedores compartilham pesos",
+        "A heterogeneidade reduz os pontos cegos compartilhados para que a crítica cruzada capte mais erros"
+      ],
+      "correct": 3,
+      "explanation": "A mistura de modelos traz distribuições de erros independentes, o que aumenta o teto do debate."
+    },
+    {
+      "stage": "check",
+      "question": "Qual é a principal vantagem de um topologia escassa sobre uma rede completa?",
+      "options": [
+        "Cada debatedor lê apenas um subconjunto de pares, então a contagem de críticas e opções cai enquanto a precisão muitas vezes coincide",
+        "Elimina o LLM",
+        "A topologia de Sparse duplica as rodadas",
+        "A topologia de Sparse não requer modelos"
+      ],
+      "correct": 0,
+      "explanation": "Sparse (estrela, anel, hub-and-spoke) reduz as operações de crítica sem perder precisão em muitas tarefas."
+    },
+    {
+      "stage": "check",
+      "question": "Em que caso é que a lição lista como onde o debate dói?",
+      "options": [
+        "Uma simples pesquisa factual, porque uma pesquisa é mais barata do que cinco debates",
+        "Raciocínio aberto",
+        "Valididade do movimento de xadrez",
+        "Geração de biografia"
+      ],
+      "correct": 0,
+      "explanation": "As buscas triviais sensíveis à latência e aos custos não se beneficiam do debate N x R."
+    },
+    {
+      "stage": "check",
+      "question": "O que é o colapso da convergência?",
+      "options": [
+        "Crash de processo",
+        "Falha de aperto de mão TLS",
+        "Desligamento da rede",
+        "Todos os agentes convergem na primeira resposta errada; mitigar com as rodadas de desacordo necessárias"
+      ],
+      "correct": 3,
+      "explanation": "O acordo precoce sobre uma resposta errada é mitigado pela força de propostas distintas da primeira rodada."
+    },
+    {
+      "stage": "post",
+      "question": "Por que a homogeneização rápida prejudica o debate?",
+      "options": [
+        "Viola o Apache 2.0",
+        "Ele contorna o supervisor",
+        "As instruções idênticas produzem respostas quase idênticas, removendo o sinal de crítica cruzada",
+        "Ele usa muitos tokens"
+      ],
+      "correct": 2,
+      "explanation": "Diversas indicações (e modelos idealmente diversos) mantêm a distribuição da proposta ampla."
+    },
+    {
+      "stage": "post",
+      "question": "Qual padrão de produção é uma variante de debate para cada lição?",
+      "options": [
+        "RAG puro de um só tiro",
+        "Indicadores de vetores",
+        "Trabalhadores orquestradores antropóficos com um passo de síntese",
+        "Cron-only schedule"
+      ],
+      "correct": 2,
+      "explanation": "Os orquestrais-trabalhadores com síntese é um padrão em forma de debate na produção."
+    }
+  ]
+}

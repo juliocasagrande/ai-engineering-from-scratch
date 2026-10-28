@@ -1,0 +1,90 @@
+{
+  "lesson": "24-agent-observability-platforms",
+  "title": "Observação do agente: Langfuse, Phoenix, Opik",
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "Em que licença a Langfuse embarca após a abertura de recursos de módulos anteriormente comerciais em junho de 2025?",
+      "options": [
+        "Apache 2.0",
+        "GPLv3",
+        "Licença Elastica 2.0",
+        "MIT"
+      ],
+      "correct": 3,
+      "explanation": "Langfuse é MIT, incluindo LLM-as-a-judge, filas de anotações, experimentos rápidos e Playground após junho de 2025."
+    },
+    {
+      "stage": "pre",
+      "question": "Em que é que a Arize Phoenix é mais forte, de acordo com a lição?",
+      "options": [
+        "Avaliação profunda específica do agente: aglomeração de rastreamento, detecção de anomalias, relevância da recuperação de RAG, auto-instrumentação OpenInference",
+        "Loop de otimização automática",
+        "Versão rápida",
+        "Análise estática do código"
+      ],
+      "correct": 0,
+      "explanation": "Phoenix se concentra na deriva comportamental e na avaliação RAG com a auto-instrumentação OpenInference."
+    },
+    {
+      "stage": "check",
+      "question": "Qual plataforma combina otimizamento automático de ponta com barris de segurança (redagamento de PII, restrições tópicas) e detecção de alucinações do juiz LLM?",
+      "options": [
+        "Fusão",
+        "Phoenix",
+        "Jaeger",
+        "Opik"
+      ],
+      "correct": 3,
+      "explanation": "O Opik centra-se na otimização + guardrail loop."
+    },
+    {
+      "stage": "check",
+      "question": "Que plataforma recomenda a lição para um tudo em um com gestão rápida?",
+      "options": [
+        "Opik",
+        "APM de dados",
+        "Phoenix",
+        "Fusão"
+      ],
+      "correct": 3,
+      "explanation": "O Langfuse abrange rastreamento + gerenciamento de prompt + evals + repetição de sessão de ponta a ponta."
+    },
+    {
+      "stage": "check",
+      "question": "O que diz a lição sobre os índices de referência da plataforma publicados pelo fornecedor?",
+      "options": [
+        "São definitivas.",
+        "Tome-os como direccionais; mede o seu próprio corpo",
+        "Só os Opik são confiáveis.",
+        "São proibidos pela OpenTelemetry"
+      ],
+      "correct": 1,
+      "explanation": "Mesmo a diferença de 14x entre o Opik e o Langfuse citada deve ser medida com base nos seus próprios dados antes de decidir."
+    },
+    {
+      "stage": "post",
+      "question": "Por que é considerado caro rastrear sem avaliação?",
+      "options": [
+        "Os prestadores cobram por períodos de pagamento",
+        "Você vê corridas, mas você não as marcar, então as regressões são invisíveis e a bisecção é impossível",
+        "O disco custa mais do que a CPU",
+        "Não se pode reproduzir os spans"
+      ],
+      "correct": 1,
+      "explanation": "Os equilíbrios transformam os vestígios em sinais de qualidade acionáveis."
+    },
+    {
+      "stage": "post",
+      "question": "Qual é o aviso da lição sobre juízes de LLM?",
+      "options": [
+        "Aplica-se o critico: os juízes precisam de um fundamento externo para a verificação de facto ou eles são fechados",
+        "Eles devem funcionar em GPUs",
+        "Eles são proibidos pelo Apache 2.0",
+        "Só funcionam em TypeScript ."
+      ],
+      "correct": 0,
+      "explanation": "Sem verificação externa baseada em ferramentas, os juízes de LLM desviam para o selo de borracha (CRITIC, lição 5)."
+    }
+  ]
+}

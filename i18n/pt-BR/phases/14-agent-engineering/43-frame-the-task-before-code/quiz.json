@@ -1,0 +1,78 @@
+{
+  "lesson": "43-frame-the-task-before-code",
+  "title": "Enfrente a tarefa antes de codificar",
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "Qual deve ser a primeira unidade de trabalho de agente de codificação confiável?",
+      "options": [
+        "Um quadro de tarefas apoiado por evidências de depósito",
+        "Uma chamada modelo",
+        "Um edição",
+        "Um pedido de retirada"
+      ],
+      "correct": 0,
+      "explanation": "O quadro de tarefas estabelece fatos, limites, incógnitos e provas antes da implementação."
+    },
+    {
+      "stage": "check",
+      "question": "Qual destas declarações é um fato de depósito?",
+      "options": [
+        "O teste de resposta duplicada espera 409 em testes/test_accounts.py:44",
+        "A API provavelmente usa 409",
+        "409 parece convencional.",
+        "A API deve utilizar 409"
+      ],
+      "correct": 0,
+      "explanation": "Um facto tem um recibo concreto que pode ser inspeccionado."
+    },
+    {
+      "stage": "check",
+      "question": "Por que nomear caminhos proibidos?",
+      "options": [
+        "Para selecionar um modelo",
+        "Para definir o espaço negativo da mudança",
+        "Para fazer o pedido mais longo",
+        "Para evitar a realização de testes"
+      ],
+      "correct": 1,
+      "explanation": "Os caminhos permitidos por si só não indicam quais trabalhos adjacentes tentadores devem permanecer intocados."
+    },
+    {
+      "stage": "check",
+      "question": "Quando é que um humano desconhecido deve parar o agente?",
+      "options": [
+        "Sempre que um arquivo não é familiar",
+        "Antes de cada comando",
+        "Só após a implantação",
+        "Quando altera o comportamento do produto, o risco, a autoridade ou o custo irreversível"
+      ],
+      "correct": 3,
+      "explanation": "As escolhas de alta consequência exigem um ponto de controlo explícito antes de serem enterradas em código."
+    },
+    {
+      "stage": "post",
+      "question": "O que torna as provas de aceitação fortes?",
+      "options": [
+        "É escrito após a codificação",
+        "Ele usa muitas ferramentas",
+        "Ele nomeia o comando exato ou observação e a afirmação que prova",
+        "Diz que os testes passam ."
+      ],
+      "correct": 2,
+      "explanation": "A prova específica permite que outra sessão reproduzir o fechamento da tarefa."
+    },
+    {
+      "stage": "post",
+      "question": "Quando é suficiente o reconhecimento?",
+      "options": [
+        "Quando a janela de contexto estiver cheia",
+        "Quando cada decisão planejada tem provas, autoridade delegada ou um desconhecido explícito",
+        "Depois de uma busca",
+        "Depois de ler todos os ficheiros"
+      ],
+      "correct": 1,
+      "explanation": "O reconhecimento termina quando as decisões são fundamentadas ou visiblemente não resolvidas."
+    }
+  ]
+}

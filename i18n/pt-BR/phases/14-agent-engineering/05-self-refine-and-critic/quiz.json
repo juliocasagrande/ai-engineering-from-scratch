@@ -1,0 +1,90 @@
+{
+  "lesson": "05-self-refine-and-critic",
+  "title": "Auto-refinamento e crítica: Melhoria do rendimento iterativo",
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "Que três pedidos compõem um ciclo de auto-refinação?",
+      "options": [
+        "Planejar, executar, resolver",
+        "Gerenciar, retomar, refinar",
+        "Actor, avaliador, reflector",
+        "Pesquisa, pontuação, síntese"
+      ],
+      "correct": 1,
+      "explanation": "Auto-Refine usa um modelo em três funções: gerar, feedback, refinar."
+    },
+    {
+      "stage": "pre",
+      "question": "Por que a Auto-Refinação requer história no passo de refinamento?",
+      "options": [
+        "É necessário um histórico para a facturação",
+        "Os provedores armazenam o cache apenas no histórico",
+        "Acelera a geração de tokens",
+        "Sem resultados e críticas anteriores, o passo refinado repete erros anteriores; a ablação mostra queda acentuada da qualidade"
+      ],
+      "correct": 3,
+      "explanation": "A refinar as condições imediatas no histórico completo para que o modelo não repita os erros anteriores."
+    },
+    {
+      "stage": "check",
+      "question": "O que é que o CRITIC muda em relação à Auto-Refinação?",
+      "options": [
+        "Utiliza um modelo maior para geração",
+        "Ele corre o passo de feedback em paralelo",
+        "Substitui o passo de auto-feedback por um verificador externo baseado em ferramentas",
+        "Remove o passo refinado"
+      ],
+      "correct": 2,
+      "explanation": "O CRITIC troca autocrítica para um passo de verificação roteado através de pesquisa, intérprete de código, calculadora ou verificadores de domínio."
+    },
+    {
+      "stage": "check",
+      "question": "Qual padrão de fluxo de trabalho antropológico corresponde ao Auto-Refino e ao CRITIC em linguagem amigável ao Claude?",
+      "options": [
+        "Amostragem paralela",
+        "Cadeia de aceleração",
+        "Otimizador de avaliação",
+        "Roteador"
+      ],
+      "correct": 2,
+      "explanation": "O Anthropic chama este padrão de Evaluator-Optimização: um avaliador marca, um optimizador revisar, loop até convergência."
+    },
+    {
+      "stage": "check",
+      "question": "O que é um ciclo de selos de borracha e como a lição recomenda evitá-lo?",
+      "options": [
+        "Um guarda-roupa que se estende; alargar o tempo de saída",
+        "Uma nova tentativa que sempre falha; aumentar o orçamento",
+        "O mesmo modelo e o mesmo prompt criticando sua própria produção e aprovando-a; usar instruções estruturalmente diferentes ou um crítico menor separado",
+        "Um teste que sempre passa; remova o teste"
+      ],
+      "correct": 2,
+      "explanation": "A autocrítica do mesmo estilo converge em \"parece-me bem\"; diferenciar o avaliador do optimizador."
+    },
+    {
+      "stage": "post",
+      "question": "Qual recurso do SDK no OpenAI Agents SDK tem forma CRITIC?",
+      "options": [
+        "Sessões",
+        "Traçamento",
+        "Entrega",
+        "Proteção de saída (que pode chamar ferramentas)"
+      ],
+      "correct": 3,
+      "explanation": "Os guardrails de saída validam a saída final do agente e podem chamar ferramentas, correspondendo ao papel de verificador do CRITIC."
+    },
+    {
+      "stage": "post",
+      "question": "Que condição de parada recomenda a lição para os ciclos de avaliador-optimizador de 2026?",
+      "options": [
+        "Parem só quando o modelo diz \"bem\"",
+        "Nunca pare; deixe o agente melhorar indefinidamente",
+        "Parar apenas quando o verificador passar",
+        "Combine: verificador passa OR (modelo diz bem E iterações >= 2) OR iterações >= max_iterations"
+      ],
+      "correct": 3,
+      "explanation": "Uma condição combinada evita os modos de falha de condição única."
+    }
+  ]
+}

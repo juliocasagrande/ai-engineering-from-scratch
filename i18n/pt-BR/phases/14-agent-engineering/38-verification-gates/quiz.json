@@ -1,0 +1,90 @@
+{
+  "lesson": "38-verification-gates",
+  "title": "Portões de verificação",
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "Que pergunta única responde a porta de verificação?",
+      "options": [
+        "Esta tarefa está realmente completa? (leia escopo, regra, feedback e artefatos dif)",
+        "O momento é óptimo?",
+        "O modelo é rápido?",
+        "O orçamento de tokens é saudável?"
+      ],
+      "correct": 0,
+      "explanation": "O portão é uma função determinista sobre artefatos de banco de trabalho produzindo um veredicto de passagem/falha."
+    },
+    {
+      "stage": "pre",
+      "question": "Porque é que o portal tem de ser determinista?",
+      "options": [
+        "O mesmo conjunto de artefatos deve produzir o mesmo veredicto sempre; os juízes de LLM pertencem ao revisor (qualitativo), não ao portal (status)",
+        "Os prestadores exigem",
+        "O determinismo é livre",
+        "A economia é muito alta."
+      ],
+      "correct": 0,
+      "explanation": "A mistura do julgamento do modelo no portal desintegra a divisão determinista/qualitativa."
+    },
+    {
+      "stage": "check",
+      "question": "Qual é a disciplina de sobreposição do portal?",
+      "options": [
+        "Os resultados da gravidade do bloco só podem ser revogados por um ser humano com uma razão de revogamento registada e revogados por um ID de usuário num registro de auditoria assinado",
+        "Os deslocamentos são proibidos",
+        "Qualquer um pode ignorar silenciosamente",
+        "O revés requer um e-mail do gerente"
+      ],
+      "correct": 0,
+      "explanation": "As transferências assinadas são transferidas para as saídas/verificação/transferências.jsonl; o agente não pode transferir a sua própria transferência."
+    },
+    {
+      "stage": "check",
+      "question": "O que é a Norma Híbrida que as lições citam?",
+      "options": [
+        "GPU e CPU divididos",
+        "Indicações de calor/frio",
+        "Os resultados verificáveis (tests, esquemas, códigos de saída) respondem: \"resolveu o problema?\"; as rubricas do LLM respondem: \"é legível, seguro e de estilo?\"",
+        "Cache vs no-cache"
+      ],
+      "correct": 2,
+      "explanation": "Orientação antropológica 2026: o gate é o primeiro curso; o revisor (Lessão 39) é o segundo."
+    },
+    {
+      "stage": "check",
+      "question": "Como é que a defesa em profundidade reveste os portões?",
+      "options": [
+        "Anel de pré-compromisso -> verificação do estado da CI -> anel de pré-ferramenta authz -> porta de pré-fusão; cada camada é determinista, de modo que a falha em uma é capturada pela próxima",
+        "Portão único no momento da fusão",
+        "Só um lembrete de conversa.",
+        "Apenas avisos de IDE"
+      ],
+      "correct": 0,
+      "explanation": "múltiplas camadas não-passáveis capturam o que uma única camada perderia."
+    },
+    {
+      "stage": "post",
+      "question": "O que é que uma verificação de cobertura_pavimento protege contra?",
+      "options": [
+        "Latência de caminho de calor",
+        "Agentes que apagam silenciosamente os testes que falham; o portão falha se a cobertura medida cair abaixo do piso ou se fundir pela última vez em mais de 1 ponto percentual",
+        "Começo frio",
+        "Ficha de bloqueio ultrapassado"
+      ],
+      "correct": 1,
+      "explanation": "Sem um piso, os agentes podem silenciosamente reduzir a cobertura para manter o veredicto verde."
+    },
+    {
+      "stage": "post",
+      "question": "When should --strict mode promote every warn to block?",
+      "options": [
+        "Sempre .",
+        "Nunca .",
+        "Apenas aos domingos",
+        "Ramos de liberação, PRs de bloqueio de navios, triagem pós-incidente; não o padrão diário porque o estritamente sobre tudo corroe o fluxo"
+      ],
+      "correct": 3,
+      "explanation": "- Opt-in é estritamente por ramo; reserva para momentos de alto risco."
+    }
+  ]
+}

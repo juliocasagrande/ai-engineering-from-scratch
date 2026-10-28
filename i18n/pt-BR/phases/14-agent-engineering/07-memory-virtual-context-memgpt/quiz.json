@@ -1,0 +1,90 @@
+{
+  "lesson": "07-memory-virtual-context-memgpt",
+  "title": "Memória de Agente  Contexto Virtual e Paging de Memória",
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "Em que analogia do sistema operacional é baseada a MemGPT?",
+      "options": [
+        "Memória virtual: contexto principal como RAM, armazenamento externo como disco, ferramentas de memória como página de entrada e saída",
+        "Processos e fios",
+        "As portas de rede",
+        "Descrição de arquivos"
+      ],
+      "correct": 0,
+      "explanation": "Os mapas MemGPT pedem para a RAM, armazenamento externo para disco e ferramentas de memória para transferências de estilo de falha de página."
+    },
+    {
+      "stage": "pre",
+      "question": "Por que as janelas de contexto maiores não resolvem completamente a memória?",
+      "options": [
+        "O modelo recusa a entrada longa",
+        "O longo contexto não custa nada.",
+        "O fluxo excessivo, a diluição da atenção e a falta de persistência entre sessões ainda mordem mesmo com janelas de 128k",
+        "Os provedores limitam-nos a tokens de 4k"
+      ],
+      "correct": 2,
+      "explanation": "Mem0 medido 128k-janela linhas de base ainda faltando fatos um agente 4k com captura de memória externa; sobreflow, diluição e persistência permanecem."
+    },
+    {
+      "stage": "check",
+      "question": "Qual destes não é uma das ferramentas de memória canônica do MemGPT?",
+      "options": [
+        "archival_memory_search",
+        "core_memory_append",
+        "conversa_busca",
+        "gradient_memory_update"
+      ],
+      "correct": 3,
+      "explanation": "Não existe ferramenta de memória de gradiente; a superfície é de operações de núcleo/arquivo/conversação."
+    },
+    {
+      "stage": "check",
+      "question": "O que faz o padrão de interrupção no MemGPT?",
+      "options": [
+        "Isso impede o agente de correr em qualquer erro",
+        "No meio da conversa, o agente invoca uma ferramenta de memória, o tempo de execução a executa e o resultado se esplica na próxima curva",
+        "Ele contorna a janela de contexto inteiramente",
+        "Acta um modelo de retrenagem"
+      ],
+      "correct": 1,
+      "explanation": "Memória como interrupção: invoque a ferramenta de memória, busque o tempo de execução, retorna o resultado como uma nova observação na próxima vez (como uma leitura Unix())."
+    },
+    {
+      "stage": "check",
+      "question": "Em que sistema de produção evoluiu a MemGPT em 2024?",
+      "options": [
+        "Pinheiros",
+        "Memórias",
+        "Zep",
+        "Letta"
+      ],
+      "correct": 3,
+      "explanation": "MemGPT tornou-se Letta em setembro de 2024; o repo repo cpacker/MemGPT ainda existe como origem."
+    },
+    {
+      "stage": "post",
+      "question": "O que é envenenamento da memória neste contexto?",
+      "options": [
+        "Leitura a partir do disco quando RAM está disponível",
+        "Embedding model version drift",
+        "Um bug que corrompe os índices de vetores",
+        "O conteúdo de um atacante é armazenado como uma nota de memória e é re-ingerido em recall futuros"
+      ],
+      "correct": 3,
+      "explanation": "Memória externa é retomada texto; se o conteúdo acessível ao atacante aterrar em uma nota de memória, o agente reingere-a na próxima sessão."
+    },
+    {
+      "stage": "post",
+      "question": "Porque é que a lição diz que os sistemas de memória de produção são variantes do MemGPT?",
+      "options": [
+        "Letta, Mem0, Assistentes threads e Claude Agent SDK todos executam o padrão de memória em duas camadas (ou mais); diferenças são de forma operacional",
+        "Eles compartilham pesos.",
+        "Eles usam o mesmo vector DB",
+        "MemGPT é proprietário da marca"
+      ],
+      "correct": 0,
+      "explanation": "Escolha por forma operacional, não por padrão; todos compartilham a página MemGPT de entrada/saída do esqueleto."
+    }
+  ]
+}

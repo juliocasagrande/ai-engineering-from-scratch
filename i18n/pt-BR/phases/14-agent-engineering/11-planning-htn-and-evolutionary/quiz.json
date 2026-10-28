@@ -1,0 +1,90 @@
+{
+  "lesson": "11-planning-htn-and-evolutionary",
+  "title": "Planejamento com HTN e Pesquisa Evolucionária",
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "O que adiciona um HTN a um plano de LLM de forma livre?",
+      "options": [
+        "Melhores embutidos",
+        "Inferência mais barata",
+        "Corretura comprovável quando as condições prévias e os efeitos do operador são aplicados",
+        "Indicações mais curtas"
+      ],
+      "correct": 2,
+      "explanation": "Os operadores simbólicos da HTN, com condições prévias e efeitos, garantem a solidez da construção."
+    },
+    {
+      "stage": "pre",
+      "question": "Para que classe de problemas é construído o AlphaEvolve?",
+      "options": [
+        "Memória de chat de várias voltas",
+        "Geração de prosa em forma livre",
+        "Ranking de pesquisa por vetores",
+        "Optimizações com função de condicionamento determinista verificável por máquina"
+      ],
+      "correct": 3,
+      "explanation": "A pesquisa evolutiva precisa de um avaliador determinista; AlphaEvolve visa domínios onde existe."
+    },
+    {
+      "stage": "check",
+      "question": "Como o ChatHTN mantém a solidez do plano enquanto usa um LLM?",
+      "options": [
+        "Ele usa um banco de dados vetorial",
+        "As sugestões de LLM só entram como descomposições candidatas, validadas contra o esquema do operador; a camada simbólica possui corretidão",
+        "Não é; a solidão é o melhor esforço",
+        "Afinal, o Mestrado em Traços de HTN"
+      ],
+      "correct": 1,
+      "explanation": "O MLL amplia a biblioteca de métodos, mas não pode contornar as condições prévias e os efeitos do operador."
+    },
+    {
+      "stage": "check",
+      "question": "Que resultado do AlphaEvolve cita a lição?",
+      "options": [
+        "Primeira melhoria em relação a Strassen para a multiplicação de matrizes complexas 4x4 em 56 anos",
+        "Primeira prova de P=NP",
+        "Bater o GPT-4 no HumanEval",
+        "10x mais rápido da inferência em Gémeos"
+      ],
+      "correct": 0,
+      "explanation": "A AlphaEvolve encontrou 48 multiplicações escalares para matmul complexo 4x4, a primeira melhoria na Strassen em 56 anos."
+    },
+    {
+      "stage": "check",
+      "question": "Qual elemento de uma NHT é uma ação primitiva directamente executável com condições prévias e efeitos?",
+      "options": [
+        "Estado",
+        "Tarefa",
+        "Método",
+        "Operador"
+      ],
+      "correct": 3,
+      "explanation": "Os operadores são os primitivos; os métodos descompõem tarefas compostas; o estado é um conjunto de fatos."
+    },
+    {
+      "stage": "post",
+      "question": "Qual é a advertência da lição sobre o AlphaEvolve sem um verdadeiro avaliador?",
+      "options": [
+        "É lento.",
+        "Não pode funcionar em GPUs",
+        "Perguntar um Mestrado em Direito Jurídico se o código é melhor não é uma função de aptidão; o avaliador deve ser determinista e rápido",
+        "Viola o Apache 2.0"
+      ],
+      "correct": 2,
+      "explanation": "Sem um avaliador determinista, a busca não tem sinal para convergir."
+    },
+    {
+      "stage": "post",
+      "question": "Quando deve procurar ReAct ou ReWOO em vez de HTN ou AlphaEvolve?",
+      "options": [
+        "Nunca; HTN é estritamente melhor",
+        "Quando não é preciso de solidão formal ou de uma aptidão verificável por máquina; a maioria das tarefas do agente atinge aqui",
+        "Quando você tem um cluster de GPU disponível",
+        "Quando a latência for inferior a 100 ms"
+      ],
+      "correct": 1,
+      "explanation": "A lição adverte explicitamente contra a sobreengenharia: a maioria das tarefas não necessita de planejamento formal ou de pesquisa evolutiva."
+    }
+  ]
+}

@@ -1,0 +1,90 @@
+{
+  "lesson": "19-benchmarks-swebench-gaia",
+  "title": "Indicações de referência: SWE-bench, GAIA, AgentBench",
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "O que verifica o avaliador do banco da SWE sobre um patch candidato?",
+      "options": [
+        "Comprimento do parche inferior a 200 linhas",
+        "Os testes anteriores que falharam agora passaram (FAIL_TO_PASS) e os testes anteriores que passaram ainda passam (PASS_TO_PASS)",
+        "Ponto BLEU em relação ao fixo de referência",
+        "Patch aprova um juiz de LLM separado"
+      ],
+      "correct": 1,
+      "explanation": "Os portões de arnesia em transições de teste: os testes de detecção de erros devem ser revogados enquanto os testes de regressão devem permanecer em verde."
+    },
+    {
+      "stage": "pre",
+      "question": "Por que existe o SWE-bench Verified?",
+      "options": [
+        "Inclui mais línguas",
+        "Corre mais rápido .",
+        "O subconjunto de 500 tarefas do OpenAI, curado por humanos, elimina problemas ambíguos e testes pouco confiáveis",
+        "Ele usa um formato de parche diferente"
+      ],
+      "correct": 2,
+      "explanation": "Verificado é o subconjunto mais limpo para relatórios credíveis."
+    },
+    {
+      "stage": "check",
+      "question": "O que a SWE-bench+ descobriu sobre os patches bem-sucedidos?",
+      "options": [
+        "32,67% filtraram texto da solução na edição e 31,08% tiveram cobertura de teste suspeitamente fraca",
+        "Os parches sempre excederam 1000 linhas",
+        "Não há contaminação.",
+        "Todos os patches foram memorizados"
+      ],
+      "correct": 0,
+      "explanation": "Fugas de solução sinalizadas em SWE-bench+ e cobertura fraca em uma grande fração de parches bem sucedidos."
+    },
+    {
+      "stage": "check",
+      "question": "Qual é a filosofia de design da GAIA?",
+      "options": [
+        "Difícil para os humanos, fácil para a IA",
+        "Indicador de referência puro de recuperação de vetores",
+        "Apenas perguntas de um só turno",
+        "Conceptualmente simples para os seres humanos (cerca de 92%) mas difícil para a IA (primeiro GPT-4 com plugins: cerca de 15%)"
+      ],
+      "correct": 3,
+      "explanation": "A GAIA é intencionalmente fácil para os seres humanos, difícil para a IA, testando raciocínio + ferramentas + modalidade."
+    },
+    {
+      "stage": "check",
+      "question": "Qual não é uma das categorias de ambiente do AgenteBench?",
+      "options": [
+        "Jogos (Alfworld, LTP)",
+        "Web (WebShop, Mind2Web)",
+        "Gradiente (RL, IRL)",
+        "Código (Bash, DB, KG)"
+      ],
+      "correct": 2,
+      "explanation": "O AgentBench cobre código, jogos, web e geração aberta."
+    },
+    {
+      "stage": "post",
+      "question": "O que a lição identifica como a forma errada de relatar os números de banco SWE?",
+      "options": [
+        "Relatório de desordens por relatório",
+        "Relatório de um número agregado sem mencionar o contexto verificado ou SWE-bench+",
+        "Número de etapas de comunicação",
+        "Relatório de relógio de parede"
+      ],
+      "correct": 1,
+      "explanation": "A fixação de um único número oculta a contaminação e o custo; sempre informe o contexto verificado e por distribuição."
+    },
+    {
+      "stage": "post",
+      "question": "Qual dimensão não são medidas por estes índices de referência?",
+      "options": [
+        "Transições de ensaio",
+        "Contagem de passos",
+        "Sucesso por tarefa",
+        "Custo operacional real (tokens, relógio de parede), segurança adversária e seu próprio domínio"
+      ],
+      "correct": 3,
+      "explanation": "Os benchmarks são agregados; não capturam o custo, a robustez adversária ou o seu domínio."
+    }
+  ]
+}

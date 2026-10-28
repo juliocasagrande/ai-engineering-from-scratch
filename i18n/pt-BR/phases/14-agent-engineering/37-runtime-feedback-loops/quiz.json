@@ -1,0 +1,90 @@
+{
+  "lesson": "37-runtime-feedback-loops",
+  "title": "Loops de Feedback de Tempo de Execução",
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "O que o corredor de feedback obriga o agente a fazer?",
+      "options": [
+        "Reagir à saída imaginária",
+        "Reagir aos fatos: registos estruturados de saída/exit/durada capturados no loop em cada comando",
+        "Verificação de desprazer",
+        "Usar um modelo diferente"
+      ],
+      "correct": 1,
+      "explanation": "O corredor fecha a lacuna entre \"testes aprovados\" (imaginação) e \"testes efetivamente executados e saídos de zero\" (registros)."
+    },
+    {
+      "stage": "pre",
+      "question": "Como é que o feedback difere da telemetria?",
+      "options": [
+        "Os dados de retroalimentação são para a próxima rodada desta execução; a telemetria é para operadores que revisam as operações ao longo do tempo (arquivos diferentes, retenção diferente)",
+        "São a mesma coisa.",
+        "Telemetria paga",
+        "Telemetria usa OTel; feedback usa GraphQL"
+      ],
+      "correct": 0,
+      "explanation": "Ambos compartilham campos, mas vivem em arquivos diferentes com retenção diferente; feedback é intra-run, telemetria é cross-run."
+    },
+    {
+      "stage": "check",
+      "question": "Qual campo DEVE aparecer em cada registro de feedback?",
+      "options": [
+        "exit_code (e uma saída nula deve recusar avançar o loop)",
+        "Embedding_vector",
+        "modelo_id",
+        "prompt_cache_token"
+      ],
+      "correct": 0,
+      "explanation": "exit_code é o sinal de sucesso inequívoco; saída nula significa nenhum progresso."
+    },
+    {
+      "stage": "check",
+      "question": "Como o corredor reduz as grandes saídas?",
+      "options": [
+        "Compressores com gzip",
+        "Amostragem aleatória",
+        "Apenas as primeiras 10 linhas",
+        "Cabeça + cauda determinista com um marcador de \"linhas N truncadas\", de modo que a mesma saída produz sempre o mesmo registro"
+      ],
+      "correct": 3,
+      "explanation": "A truncation determinista mantém os registros reprodutivos enquanto limita o custo do token; as caudas carregam o resumo da falha."
+    },
+    {
+      "stage": "check",
+      "question": "Por que editar no tempo de escrever em vez de ler?",
+      "options": [
+        "Redação de tempo de leitura quebra JSON",
+        "O arquivo no disco é o que um atacante atinge; editando apenas em leitura deixa segredos em arquivos JSONL",
+        "É mais rápido.",
+        "Compressão"
+      ],
+      "correct": 1,
+      "explanation": "Redact linhas correspondentes a Bearer, password=, api_key=, AKIA..., xox[baprs]- antes de anexar; auditando os padrões trimestralmente."
+    },
+    {
+      "stage": "post",
+      "question": "O que o parent_command_id dá ao banco de trabalho?",
+      "options": [
+        "Ficha de entrada/entrada mais rápida",
+        "Memória inferior",
+        "As retemptadas ligam-se à tentativa de origem para que o revisor e a auditoria vejam a cadeia de falhas; sem ela as retemptadas parecem sucessos independentes",
+        "Inferência mais barata"
+      ],
+      "correct": 2,
+      "explanation": "A ligação parental torna as cadeias de retest visíveis ao revisor (Lessão 39) e ao portal de verificação."
+    },
+    {
+      "stage": "post",
+      "question": "Por que limitar feedback_record.jsonl a 1 MB com rotação?",
+      "options": [
+        "Os discos são muito lentos.",
+        "O agente só lê o arquivo atual; rotação mantém o custo de execução limitado enquanto os artefatos CI capturam o conjunto completo",
+        "JSON não lida com arquivos maiores",
+        "O prestador de serviços cobra por byte"
+      ],
+      "correct": 1,
+      "explanation": "Arquivo corrente limitado + histórico rotado é o mesmo padrão logrotate utiliza; custo previsível no loop quente."
+    }
+  ]
+}

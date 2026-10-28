@@ -1,0 +1,90 @@
+{
+  "lesson": "30-eval-driven-agent-development",
+  "title": "Desenvolvimento de Agentes Driven Eval",
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "Quais são as três camadas de avaliação que chamam a lição?",
+      "options": [
+        "Unidade, integração, end-to-end",
+        "Fumo, regressão, aceitação",
+        "Pre, cheque, post",
+        "Referências estáticas, avaliações personalizadas offline, avaliações de produção online"
+      ],
+      "correct": 3,
+      "explanation": "Estabilidade de dados (SWE-bench, GAIA), offline (LLM-judge, exec, trajetória), online (reproduções, alertas, custo/latencia)."
+    },
+    {
+      "stage": "pre",
+      "question": "Qual é o ponto de partida recomendado da Anthropic?",
+      "options": [
+        "Comece com o debate multi-agente",
+        "Comece com instruções simples, otimize-as com avaliação abrangente e adicione sistemas de agência em vários passos apenas quando necessário",
+        "Comece com um modelo de fronteira apenas",
+        "Comece com a orquestração hierárquica"
+      ],
+      "correct": 1,
+      "explanation": "A Anthropic diz explicitamente que a avaliação é o ciclo externo que impulsiona todas as outras escolhas."
+    },
+    {
+      "stage": "check",
+      "question": "Qual é o ciclo de avaliação-otimizador?",
+      "options": [
+        "Proponente gera saída, avaliador julga, refinar até que o avaliador passe (Auto-Refina generalizada)",
+        "Amostra, classificação, deduplicação",
+        "Cachar, tentar novamente, falhar",
+        "Treinar, avaliar, implantar"
+      ],
+      "correct": 0,
+      "explanation": "É auto-refinado generalizado: qualquer fluxo pode envolver-se em proposição-juiz-refinado."
+    },
+    {
+      "stage": "check",
+      "question": "Qual é a melhor prática para 2026 para onde os avaliadores vivem?",
+      "options": [
+        "Propriedade exclusiva da equipa de QA",
+        "Apenas executado trimestralmente",
+        "Ao lado do código, executar em CI em cada PR, gate fuse em avaliações",
+        "Apenas num painel de distribuição separado"
+      ],
+      "correct": 2,
+      "explanation": "Co-localizado com código, CI-gated, regressão-traqueado é o padrão."
+    },
+    {
+      "stage": "check",
+      "question": "Porque é que a lição adverte contra um juiz de LLM sem pena?",
+      "options": [
+        "Viola o Apache 2.0",
+        "Os juízes também alucinam; emparelham com o padrão CRITICO , por isso julgam baseados em ferramentas externas",
+        "É muito lento.",
+        "Só funciona em GPUs."
+      ],
+      "correct": 1,
+      "explanation": "A CRITICA (LECÇÃO 5) aplica-se: a verificação baseada em ferramentas mantém o juiz honesto."
+    },
+    {
+      "stage": "post",
+      "question": "Qual é o perigo de se adaptar excessivamente às avaliações?",
+      "options": [
+        "Fragmento de índices vetoriais",
+        "Aumento dos custos de computação",
+        "A latência cai muito.",
+        "Otimizar para o conjunto de avaliações diverge da utilidade da produção; rotar casos"
+      ],
+      "correct": 3,
+      "explanation": "A rotação do conjunto igual mantém a otimização alinhada com a realidade da produção."
+    },
+    {
+      "stage": "post",
+      "question": "Porque é que as avaliações escassas causam problemas?",
+      "options": [
+        "Excedem a janela de contexto",
+        "Não conseguem aceder à base de dados .",
+        "Eles dobram o custo da inferência",
+        "Casos não deterministas produzem falsos alarmes; sementes de pin e estado de instantâneo"
+      ],
+      "correct": 3,
+      "explanation": "Flake torna as regressões ilegíveis; determinismo (sementes, instantâneos de estado) é necessário."
+    }
+  ]
+}

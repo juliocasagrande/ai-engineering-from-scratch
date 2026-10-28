@@ -1,0 +1,90 @@
+{
+  "lesson": "15-crewai-role-based-crews",
+  "title": "Equipes de agentes baseadas em funções  Funções, tarefas, processos",
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "Quais são os quatro primitivos da CrewAI?",
+      "options": [
+        "Ferramenta, Pronto, Modelo, Memória",
+        "Agente, tarefa, tripulação, processo",
+        "Nodo, Edge, Redutor, Checkpointer",
+        "Ator, mensagem, caixa de entrada, tempo de execução"
+      ],
+      "correct": 1,
+      "explanation": "Agente, tarefa, tripulação e processo são os quatro primitivos."
+    },
+    {
+      "stage": "pre",
+      "question": "Qual é o ponto de partida recomendado para a produção dos documentos da CrewAI?",
+      "options": [
+        "Processo sequencial",
+        "Fluxo",
+        "Tripulação",
+        "Processo hierárquico"
+      ],
+      "correct": 1,
+      "explanation": "Os docentes dizem que comecem a produção de aplicativos com Fluxos; dobram os equipes como sub-pasos quando a autonomia ganha seu custo."
+    },
+    {
+      "stage": "check",
+      "question": "Qual é a diferença entre uma tripulação e uma fluência?",
+      "options": [
+        "O fluxo não tem agentes",
+        "A tripulação é paga, o fluxo é gratuito.",
+        "A tripulação é autônoma e orientada pelo LLM; o Flow é orientado por eventos, é de propriedade de código, determinista e testável",
+        "A tripulação só funciona em GPUs"
+      ],
+      "correct": 2,
+      "explanation": "A tripulação é a autonomia em primeiro lugar; o fluxo é o determinismo em primeiro lugar."
+    },
+    {
+      "stage": "check",
+      "question": "Qual destes não é um dos quatro tipos de memória de navios CrewAI?",
+      "options": [
+        "Quantizado",
+        "Entidade",
+        "A longo prazo",
+        "Curto prazo"
+      ],
+      "correct": 0,
+      "explanation": "A memória quantizada não é um conceito CrewAI."
+    },
+    {
+      "stage": "check",
+      "question": "O que é o \"inflado\" de história e como a lição recomenda lidar com isso?",
+      "options": [
+        "As histórias de fundo de agentes de 2000 palavras empurram o orçamento contextual; mantenha-as apertadas",
+        "Armazenar tropas de tripulações; arquivar antigas",
+        "Lentes chamadas de Bedrock; mudança de região",
+        "Muitas ferramentas; excluir algumas"
+      ],
+      "correct": 0,
+      "explanation": "As histórias de fundo moldam o tom e o julgamento, mas comem o contexto se for de grande dimensão."
+    },
+    {
+      "stage": "post",
+      "question": "Quando vale a pena escolher o processo hierárquico em vez do sequencial?",
+      "options": [
+        "Quando tens mais de 4 especialistas que precisam de um agente de gestão para guiar entre eles",
+        "Sempre .",
+        "Quando tens uma tarefa",
+        "Quando não tens ferramentas"
+      ],
+      "correct": 0,
+      "explanation": "Hierárquica adiciona um agente gerente; só vale a pena quando vários especialistas precisam de roteamento dinâmico."
+    },
+    {
+      "stage": "post",
+      "question": "Por que a lição adverte contra o uso de uma tripulação em forma livre na produção?",
+      "options": [
+        "A variabilidade de saída é alta e o depuração é dolorosa sem um envolvente de fluxo",
+        "As tripulações não são apoiadas",
+        "As tripulações custam mais do que os fluxos",
+        "As equipes não têm memória."
+      ],
+      "correct": 0,
+      "explanation": "A autonomia da tripulação torna dolorosa a reprodução e a auditoria do produtor; envolva-se com um fluxo durante o transporte."
+    }
+  ]
+}

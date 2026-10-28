@@ -1,0 +1,78 @@
+{
+  "lesson": "46-turn-feedback-into-system",
+  "title": "Transformar o Feedback num sistema",
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "O que revela uma correção repetida do agente?",
+      "options": [
+        "Um controlo faltante ou fraco no sistema de trabalho",
+        "Uma razão para não fazer exames",
+        "Uma necessidade de mais histórico de chat",
+        "Só um modelo fraco ."
+      ],
+      "correct": 0,
+      "explanation": "As correções são observações sobre testes, limites, exemplos, ferramentas ou decisões faltantes."
+    },
+    {
+      "stage": "check",
+      "question": "Onde deve uma correcção de regressão tornar-se duradoura?",
+      "options": [
+        "Um pedido mais longo",
+        "Um ensaio ou avaliação",
+        "Um novo modelo",
+        "Nota de reunião"
+      ],
+      "correct": 1,
+      "explanation": "A prova executável impede que o mesmo resultado errado volte silenciosamente."
+    },
+    {
+      "stage": "check",
+      "question": "Porque é que é preciso encontrar a causa antes de escrever uma regra?",
+      "options": [
+        "Elimina a necessidade de provas",
+        "As regras exigem citações",
+        "Evita toda a complexidade",
+        "Os sintomas podem surgir devido a diferentes controles faltantes"
+      ],
+      "correct": 3,
+      "explanation": "Uma regra de apenas sintomas falha quando a mesma causa aparece em uma forma diferente."
+    },
+    {
+      "stage": "check",
+      "question": "Quando é que uma correcção única justifica um controlo permanente?",
+      "options": [
+        "Sempre .",
+        "Nunca .",
+        "Quando a recorrência ou consequência justificar uma complexidade duradoura",
+        "Só após a liberação"
+      ],
+      "correct": 2,
+      "explanation": "A machada deve preservar um julgamento significativo sem acumular todas as preferências."
+    },
+    {
+      "stage": "post",
+      "question": "Por que as impressões digitais promovem os controles?",
+      "options": [
+        "Para esconder a propriedade",
+        "Para design visual",
+        "Substituição da verificação",
+        "Para derrubar lições repetidas sem perder causas distintas"
+      ],
+      "correct": 3,
+      "explanation": "A identidade estável impede que o mesmo controlo seja adicionado repetidamente."
+    },
+    {
+      "stage": "post",
+      "question": "Porque é que todo controlo precisa de um cheque de aposentadoria?",
+      "options": [
+        "Os controles podem ficar obsoletos, contraditórios ou substituídos",
+        "Os agentes não gostam de instruções.",
+        "Os testes não podem persistir",
+        "Todas as regras expiram diariamente ."
+      ],
+      "correct": 0,
+      "explanation": "O sistema de trabalho deve permanecer mínimo e atual, não apenas acumular políticas."
+    }
+  ]
+}

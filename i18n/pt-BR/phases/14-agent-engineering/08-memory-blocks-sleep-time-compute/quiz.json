@@ -1,0 +1,90 @@
+{
+  "lesson": "08-memory-blocks-sleep-time-compute",
+  "title": "Blocos de memória e tempo de sono",
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "Quais são os três níveis de memória da Letta?",
+      "options": [
+        "RAM, swap, disco",
+        "Caches, KV, arquivos",
+        "Núcleo, recall, arquivo",
+        "Trabalho, episódico, semântico"
+      ],
+      "correct": 2,
+      "explanation": "Letta usa níveis de núcleo (sempre visível), recall (história de conversação) e arquivo (externo)."
+    },
+    {
+      "stage": "pre",
+      "question": "Que problema de produção é o alvo da computação do tempo de sono?",
+      "options": [
+        "Custo de incorporação mais baixo",
+        "Parsagem mais rápida JSON",
+        "Maior precisão em problemas matemáticos",
+        "Latência de cauda de fazer consolidação de memória no caminho crítico"
+      ],
+      "correct": 3,
+      "explanation": "Os movimentos do tempo de sono eliminam/resumem/reconciliam o caminho do usuário, para que as respostas primárias permaneçam rápidas."
+    },
+    {
+      "stage": "check",
+      "question": "Qual propriedade não é um campo de bloco de memória em Letta?",
+      "options": [
+        "Limite",
+        "Embedding_model_version",
+        "etiqueta",
+        "Valor"
+      ],
+      "correct": 1,
+      "explanation": "Os blocos contêm id, rótulo, valor, limite, descrição; a versão do modelo de incorporação não faz parte do esquema de blocos."
+    },
+    {
+      "stage": "check",
+      "question": "Porque é que o agente de sono pode executar um modelo mais forte do que o primário?",
+      "options": [
+        "Operações de memória custam metade dos tokens",
+        "Recebe uma chave API privada",
+        "Está fora do caminho crítico, por isso não é limitado pela latência",
+        "É isento de limites de taxas"
+      ],
+      "correct": 2,
+      "explanation": "Como não bloqueia as respostas dos utilizadores, o agente de tempo de sono pode ser mais lento e mais caro."
+    },
+    {
+      "stage": "check",
+      "question": "A que padrão os blocos Human e Persona se generalizam?",
+      "options": [
+        "Processos do sistema operacional",
+        "Blocos editáveis tipados arbitrários definidos pelo usuário (Task, Project, Safety, ...)",
+        "Canais JSON-RPC",
+        "Embedments de vetores"
+      ],
+      "correct": 1,
+      "explanation": "Letta generaliza os dois blocos MemGPT para qualquer bloco definido pelo usuário com id, rótulo, valor, limite, descrição."
+    },
+    {
+      "stage": "post",
+      "question": "O que é a deriva silenciosa neste padrão?",
+      "options": [
+        "Um agente primário nunca vê que o agente de tempo de sono reescreveu um bloco por baixo dele; corrigir com versão e diferenças visíveis",
+        "Incorporar atualizações do modelo",
+        "Disco lento escreve",
+        "Transtornos de taxa de limite"
+      ],
+      "correct": 0,
+      "explanation": "Os blocos de versão e as diferenças de superfície no rastro tornam visíveis as reescrituras de tempo de sono para o ciclo primário."
+    },
+    {
+      "stage": "post",
+      "question": "O que substituiu a linha de entrada `Thought:`Tokens e o padrão de envio de mensagens/batimento cardíaco no Letta V1?",
+      "options": [
+        "Raciocínio nativo emitido em um canal separado e passado por viradas",
+        "Um segundo LLM dedicado aos pensamentos",
+        "Um sistema maior de urgência",
+        "Pensamentos manuais de tipo de usuário"
+      ],
+      "correct": 0,
+      "explanation": "Letta V1 (letta_v1_agent) usa raciocínio nativo a nível do fornecedor, não pensamentos em forma de prompt."
+    }
+  ]
+}

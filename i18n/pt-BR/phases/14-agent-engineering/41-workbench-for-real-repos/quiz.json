@@ -1,0 +1,90 @@
+{
+  "lesson": "41-workbench-for-real-repos",
+  "title": "O banco de trabalho num verdadeiro repo",
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "Qual é o objectivo de executar a mesma tarefa através de canais guiados apenas por um instante e por um banco de trabalho?",
+      "options": [
+        "Para benchmarking GPUs",
+        "Para comparar modelos",
+        "Para produzir um relatório antes/após, pode entregar um cético com números, não argumentos",
+        "Para escolher um vendedor"
+      ],
+      "correct": 2,
+      "explanation": "Os números são argumentantes; o caso é feito com uma tarefa real, não com um brinquedo."
+    },
+    {
+      "stage": "pre",
+      "question": "Qual é um dos cinco resultados medidos?",
+      "options": [
+        "arquivos_out_scope",
+        "modelo_perplexidade",
+        "aceitação_met",
+        "test_actually_run"
+      ],
+      "correct": 1,
+      "explanation": "Os cinco são test_actually_run, acceptance_met, files_outside_scope, handoff_quality, reviewer_total."
+    },
+    {
+      "stage": "check",
+      "question": "O que a Anatomia de um Agente Harness do LangChain fez no Terminal Bench 2.0?",
+      "options": [
+        "O modelo de topo perdeu 25 lugares",
+        "Modelos convergentes no topo 3",
+        "As mudanças no arame não mudaram a posição",
+        "O mesmo modelo passou de fora do top 30 para o 5o lugar, mudando apenas o arame."
+      ],
+      "correct": 3,
+      "explanation": "25o delta no mesmo modelo é o recibo de direção do arnés contra o modelo."
+    },
+    {
+      "stage": "check",
+      "question": "O que o artigo preprints.org cita como a taxa de falhas para projetos de agentes empresariais?",
+      "options": [
+        "8%",
+        "Cerca de 88% não conseguem atingir a produção, com falhas agrupadas em torno do tempo de execução, não raciocínio",
+        "Cerca de 50%",
+        "Nenhum falha"
+      ],
+      "correct": 1,
+      "explanation": "A pré-impressão de engenharia de arame para agentes de linguagem rastreia falhas para problemas de tempo de execução (estado parado, retempos frágeis, contexto superado)."
+    },
+    {
+      "stage": "check",
+      "question": "O que faz a precisão de linha de base do WebAgent em condições de longo contexto?",
+      "options": [
+        "Fica em plano.",
+        "Descenso de 40-50% para menos de 10% principalmente por loop infinitos e perda de gol",
+        "Aumenta em 30%",
+        "Metades, mas permanecem acima de 30%"
+      ],
+      "correct": 1,
+      "explanation": "O colapso de longo contexto é o que o Ralph Loop e o pacote de transferência existem para absorver."
+    },
+    {
+      "stage": "post",
+      "question": "O que diz a lição sobre falsos negativos (casos em que apenas o prontão é mais rápido)?",
+      "options": [
+        "As tarefas factuais de um passo, lints de uma linha, formatores são mais rápidos apenas de seguida; enumere-os honestamente para que o banco de trabalho não seja enquadrado como excesso de trabalho",
+        "Eles provam que o banco de trabalho falha",
+        "Não existem.",
+        "Eles invalidam a tese do arnes"
+      ],
+      "correct": 0,
+      "explanation": "Uma enumeração honesta dos casos mais rápidos mantém o argumento do arneses credível."
+    },
+    {
+      "stage": "post",
+      "question": "Onde cita o relatório desta lição?",
+      "options": [
+        "Revisão interna das RH",
+        "Só em hackathons",
+        "Quando alguém quer deixar cair o portal de verificação \"apenas para este sprint\", ou quando um novo produto de agente é lançado e precisa de um benchmark de poupança de tempo portátil",
+        "Apenas em convés de comercialização"
+      ],
+      "correct": 2,
+      "explanation": "Os números vão mais longe do que a explicação; cite o relatório quando a pressão tenta atingir superfícies de curto circuito."
+    }
+  ]
+}

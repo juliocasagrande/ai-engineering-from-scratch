@@ -1,0 +1,78 @@
+{
+  "lesson": "48-discover-the-real-workflow",
+  "title": "Descubra o verdadeiro fluxo de trabalho",
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "Por que começar com o comportamento atual em vez de características solicitadas?",
+      "options": [
+        "O verdadeiro fluxo de trabalho revela soluções, transferências, estado e restrições",
+        "As características nunca são úteis",
+        "Garantia a preparação da produção",
+        "Evita os utilizadores"
+      ],
+      "correct": 0,
+      "explanation": "Os requisitos surgem de como o trabalho realmente acontece, não apenas do que as pessoas pedem."
+    },
+    {
+      "stage": "check",
+      "question": "Qual é a prova mais forte?",
+      "options": [
+        "Um usuário diz o que normalmente acontece",
+        "Um roteiro",
+        "Um rastreamento do sistema da ação",
+        "Uma hipótese de equipa"
+      ],
+      "correct": 2,
+      "explanation": "Um rastro observa o comportamento diretamente em vez de relatá-lo ou inferir."
+    },
+    {
+      "stage": "check",
+      "question": "Quais quatro superfícies de fluxo de trabalho merecem atenção especial?",
+      "options": [
+        "As empresas de seguros de seguros de seguros de seguros de seguros de seguros de seguros de seguros de seguros de seguros de seguros de seguros de seguros de seguros de seguros de seguros de seguros de seguros de seguros de seguros de seguros de seguros de seguros de seguros de seguros de seguros de seguros de seguros de seguros de seguros de seguros de seguros de seguros de seguros de seguros de seguros de seguros de seguros de seguros de seguros de seguros de seguros de seguros de seguros de seguros de seguros de seguros de seguros de seguros de seguros de seguros de seguros de seguros de seguros de seguros de seguros de seguros de seguros de seguros de seguros de seguros de seguros de seguros de seguros de seguros de seguros de seguros de seguros de seguros de seguros de seguros de seguros de seguros de seguros de seguros de seguros de seguros de seguros de seguros de seguros de seguros de seguros de seguros de seguros de seguros de seguros de seguros de seguros de seguros de seguros de seguros de seguros de seguros de seguros de seguros de seguros de seguros de seguros de seguros de seguros de seguros de seguros de seguros de seguros de seguros de seguros de seguros de seguros de seguros de seguros de seguros de seguros de seguros de seguros de seguros de seguros de seguros de seguros de seguros de seguros de seguros de seguros de seguros de seguros de seguros de seguros de seguros de seguros de seguros de seguros de seguros de seguros de seguros de seguros de seguros de seguros de seguros de seguros de seguros de seguros de seguros de seguros de seguros de seguros de seguros de seguros de seguros de seguros de seguros de seguros de seguros de seguros de seguros de seguros de seguros de seguros de seguros de seguros de seguros de seguros de seguros de seguros de seguros de seguros de seguros de seguros de seguros de seguros de seguros de seguros de seguros de seguros de seguros de seguros de seguros de seguros de seguros de seguros de seguros de seguros de seguros de seguros de seguros de seguros de seguros de seguros de seguros de seguros de seguros de seguros de seguros de seguros de seguros de seguros de seguros de seguros de seguros de seguros de seguros de seguros de seguros de seguros de seguros de seguros de seguros de seguros de seguros de seguros de seguros de seguros de seguros de seguros de seguros de seguros de seguros de seguros de seguros de seguros de seguros de seguros de seguros de seguros de seguros de seguros de seguros de seguros de seguros de seguros de seguros de seguros de seguros de seguros de seguros de seguros de seguros de seguros de seguros de seguros de seguros de seguros de seguros de seguros de seguros de seguros de seguros de seguros de seguros de seguros de seguros de seguros de seguros de seguros de seguros de seguros",
+        "Fricção, estado oculto, autoridade e exceções",
+        "Cor, fonte, layout, animação",
+        "Modelo, tokens, temperatura, urgência"
+      ],
+      "correct": 1,
+      "explanation": "Estas superfícies normalmente contêm o verdadeiro problema e o risco."
+    },
+    {
+      "stage": "check",
+      "question": "Por que preservar variantes do fluxo de trabalho?",
+      "options": [
+        "Uma média pode descrever ninguém e apagar diferenças de papel ou risco válidas",
+        "As variantes são mais fáceis de codificar",
+        "Todos os utilizadores são idênticos",
+        "Elimina as necessidades de provas"
+      ],
+      "correct": 0,
+      "explanation": "As diferenças podem codificar papéis, políticas, conhecimentos ou estado legado."
+    },
+    {
+      "stage": "post",
+      "question": "O que é comunicado por uma relação entre evidências diretas?",
+      "options": [
+        "Custo de implantação",
+        "Precuração do modelo",
+        "Completeza das características",
+        "Quanto do fluxo de trabalho é baseado em observação em vez de relatórios ou inferências"
+      ],
+      "correct": 3,
+      "explanation": "Mantém a força das provas visíveis."
+    },
+    {
+      "stage": "post",
+      "question": "O que é um passo de fluxo de trabalho oculto?",
+      "options": [
+        "Uma API pública",
+        "Um ensaio unitário",
+        "Uma transição CSS",
+        "Trabalho realizado em memória, chat ou notas pessoais fora do processo formal"
+      ],
+      "correct": 3,
+      "explanation": "O estado oculto muitas vezes explica por que o processo visível é incompleto."
+    }
+  ]
+}

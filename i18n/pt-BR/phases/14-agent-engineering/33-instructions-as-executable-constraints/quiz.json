@@ -1,0 +1,90 @@
+{
+  "lesson": "33-instructions-as-executable-constraints",
+  "title": "Instruções do agente como restrições executáveis",
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "Qual é a diferença entre uma regra de aspiração e uma regra operacional?",
+      "options": [
+        "As regras de aspiração exigem um gerente",
+        "As regras de aspiração não têm controlo (\"tenha cuidado\"); as regras operacionais possuem uma função verificável por máquina que o banco de trabalho pode executar",
+        "As regras de aspiração são pagas; as regras operacionais são gratuitas",
+        "As regras operacionais são mais longas"
+      ],
+      "correct": 1,
+      "explanation": "As regras operacionais são testáveis; as regras aspiracionais são desejos."
+    },
+    {
+      "stage": "pre",
+      "question": "Em que cinco categorias se abrange a maioria das regras?",
+      "options": [
+        "Planejar, agir, refletir, refinar, nave",
+        "Leia, escreva, executa, forja, saída",
+        "Baixo, médio, alto, crítico, fatal",
+        "Abertura, proibida, definição de feito, incerteza, aprovação"
+      ],
+      "correct": 3,
+      "explanation": "A inicialização, proibido, definição de feito, manipulação de incertezas, limites de aprovação são os cinco."
+    },
+    {
+      "stage": "check",
+      "question": "Qual é a etiqueta de gravidade que interrompe a execução e requer a anulação de um operador?",
+      "options": [
+        "suave",
+        "- Aviso",
+        "Bloco",
+        "Informações"
+      ],
+      "correct": 2,
+      "explanation": "Bloquear é o erro de erro; advertir notas; relatórios de informação."
+    },
+    {
+      "stage": "check",
+      "question": "Por que a lição recomenda marcar a gravidade no momento de escrever?",
+      "options": [
+        "Os lanternas exigem isso.",
+        "As equipes exageram a gravidade precocemente e a enfraquecem sob pressão de prazo; escrever gravidade na frente força a calibração",
+        "Parece mais bonito em marcação .",
+        "Salva tokens"
+      ],
+      "correct": 1,
+      "explanation": "A calibração da gravidade deve ser deliberada e não retrofitada sob pressão."
+    },
+    {
+      "stage": "check",
+      "question": "O que faz o padrão de marcação como fonte, JSON como caché?",
+      "options": [
+        "Substitui a marcação",
+        "Encrypts as regras",
+        "Desativa revisão",
+        "agent-rules.md é o arquivo autor; agent-rules.lock.json é um cache de caminho quente regenerado por um gancho pré-comit (a mesma forma que package.json + lock)"
+      ],
+      "correct": 3,
+      "explanation": "O Markdown permanece revisavel; a análise JSON permanece fora do caminho quente."
+    },
+    {
+      "stage": "post",
+      "question": "O que é a expiração da regra como função forçante?",
+      "options": [
+        "Regras de 24 horas não fechadas",
+        "Cada regra tem um prazo de validade (por padrão 90 dias); regras não corrigidas desencadeiam uma revisão trimestral para justificá-las, enfraquecê-las ou excluí-las",
+        "As regras expiram automaticamente; não é necessária revisão",
+        "As regras expiram quando o cache estiver cheio"
+      ],
+      "correct": 1,
+      "explanation": "Os dados da Cloudflare mostraram que os conjuntos com expiração permaneceram sob 30 regras; conjuntos sem cresceram para 80+ não utilizados."
+    },
+    {
+      "stage": "post",
+      "question": "Como as regras se relacionam com as cercas?",
+      "options": [
+        "Regras substituem barris",
+        "Só é necessário um deles.",
+        "Os guardrails aplicam regras no tempo de execução; a regra estabelecida é o contrato legível pelo ser humano que os guardrails implementam",
+        "Os guardrails são uma alternativa às regras"
+      ],
+      "correct": 2,
+      "explanation": "São necessárias ambas as coisas: o tempo de execução detecta violações; o conjunto de regras prova que o tempo de execução está fazendo a coisa certa."
+    }
+  ]
+}

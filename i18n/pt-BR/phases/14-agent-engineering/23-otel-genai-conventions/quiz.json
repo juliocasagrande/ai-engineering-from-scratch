@@ -1,0 +1,90 @@
+{
+  "lesson": "23-otel-genai-conventions",
+  "title": "OpenTelemetry Convenções semânticas GenAI",
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "Qual nome de domínio representa um agente executado nas convenções da GenAI?",
+      "options": [
+        "invoke_agent (opcionalmente sufissificado por gen_ai.agent.name)",
+        "Agente. Começa.",
+        "agente_loop",
+        "cor-chain"
+      ],
+      "correct": 0,
+      "explanation": "invoque_agent é o nome canônico; o atributo de nome do agente aparece no nome de espaço quando definido."
+    },
+    {
+      "stage": "pre",
+      "question": "Quais são as três categorias de espaço definidas pelo GIS da GenAI?",
+      "options": [
+        "Frontend, backend, db",
+        "Leia, escreva, executa",
+        "Latência, erro, capacidade de transmissão",
+        "Modelo/cliente, agente, ferramenta"
+      ],
+      "correct": 3,
+      "explanation": "Modelo/cliente (chamadas de LLM), agente (criar/invocar), ferramenta (por invocação) são as categorias."
+    },
+    {
+      "stage": "check",
+      "question": "Quando um intervalo de tempo de invocar_agente usa tipo CLIENT vs INTERNAL?",
+      "options": [
+        "Sempre INTERNO",
+        "CLIENT para HTTPS apenas",
+        "Sempre cliente",
+        "CLIENT para serviços de agentes remotos (OpenAI Assistentes, Bedrock Agents); INTERNAL para frameworks em processo (LangChain, CrewAI, local ReAct)"
+      ],
+      "correct": 3,
+      "explanation": "As chamadas de agentes remotos são CLIENTES; as operações de agentes em processo são INTERNAIS."
+    },
+    {
+      "stage": "check",
+      "question": "Qual é a regra padrão para a captura de conteúdo (entrada e saída)?",
+      "options": [
+        "Capturar tudo por padrão",
+        "Instrumentas NÃO DEVEM capturar por padrão; captura é opt-in via gen_ai.* atributos",
+        "Captura apenas em erros",
+        "Capture only output, never input"
+      ],
+      "correct": 1,
+      "explanation": "A captura de conteúdo por padrão protege as PII e os segredos; a opção de participação é explícita."
+    },
+    {
+      "stage": "check",
+      "question": "Qual atributo identifica o corpus ou loja consultado para uma recuperação?",
+      "options": [
+        "gen_ai.data_source.id",
+        "gen_ai.provider.name",
+        "gen_ai.agent.name",
+        "gen_ai.request.model"
+      ],
+      "correct": 0,
+      "explanation": "gen_ai.data_source.id marca o corpus RAG ou armazenamento atingido pela recuperação."
+    },
+    {
+      "stage": "post",
+      "question": "O que recomenda a lição para armazenar conteúdo rápido na produção?",
+      "options": [
+        "Armazenar conteúdo externamente (S3, armazenamento de log) e registrar IDs de referência no espaço",
+        "Capture complete prompts on each span as simples textos",
+        "Encriptações de instruções em atributos span",
+        "Nunca armazenar qualquer conteúdo"
+      ],
+      "correct": 0,
+      "explanation": "Armazenamento externo com identidades de indicadores evita que PII seja vazado para vestígios que as operações podem ler."
+    },
+    {
+      "stage": "post",
+      "question": "Como optar pela prévia estável experimental das convenções da GenAI?",
+      "options": [
+        "Pagar por uma licença",
+        "Editar a configuração do coletor OTel",
+        "Configuração OTEL_SEMCONV_STABILITY_OPT_IN=gen_ai_last_experimental",
+        "Reconstruir o SDK a partir da fonte"
+      ],
+      "correct": 2,
+      "explanation": "O ambiente varia as convenções experimentais para que os atributos não sejam silenciosamente renomeados."
+    }
+  ]
+}

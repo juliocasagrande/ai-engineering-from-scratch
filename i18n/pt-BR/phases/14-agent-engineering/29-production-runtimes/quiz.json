@@ -1,0 +1,90 @@
+{
+  "lesson": "29-production-runtimes",
+  "title": "Tempo de execução da produção: fila, evento, cron",
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "Quais são as seis formas de tempo de execução das listas de lições?",
+      "options": [
+        "Mapa, filtro, redução, dobra, escaneamento, agrupamento",
+        "Requisito-resposta, streaming, execução duradoura, baseada em fila, orientada para eventos, agendada",
+        "REST, gRPC, GraphQL, WebSocket, SSE, MQTT",
+        "Leia, escreva, executa, forja, saída, espera"
+      ],
+      "correct": 1,
+      "explanation": "Estas são as seis formas de tempo de execução; escolha uma forma antes de escolher uma estrutura."
+    },
+    {
+      "stage": "pre",
+      "question": "Quando é que a resposta às solicitações é uma coisa ruim?",
+      "options": [
+        "Relativamente aos serviços internos",
+        "Quando a tarefa demora mais de 30 segundos e os utilizadores desligam enquanto os trabalhadores se acumulam",
+        "Em REST APIs",
+        "Em uma classificação de 1 segundo"
+      ],
+      "correct": 1,
+      "explanation": "HTTP sincrono é viável apenas para tarefas curtas; tarefas longas precisam de formas de fila/durável/evento."
+    },
+    {
+      "stage": "check",
+      "question": "Qual é a propriedade central da execução duradoura?",
+      "options": [
+        "Custo de token mais baixo",
+        "Inferência mais rápida",
+        "Suporte de voz nativa",
+        "O estado é controlado após cada passo para que o tempo de execução possa retomar a partir do último passo bem sucedido em falha"
+      ],
+      "correct": 3,
+      "explanation": "O ponto de verificação e o currículo é o diferenciador; o LangGraph é a referência da lição."
+    },
+    {
+      "stage": "check",
+      "question": "Que observação antropológica justifica os tempos de execução baseados em filas para agentes de longo horizonte?",
+      "options": [
+        "As tarefas devem ser executadas em sincronia",
+        "As tarefas são sempre completas em 5 segundos",
+        "Anúncio de uso do computador: dezenas a centenas de passos por tarefa é normal",
+        "Cron resolve tudo ."
+      ],
+      "correct": 2,
+      "explanation": "A Anthropic marcou dezenas a centenas de passos por tarefa como normais; essa carga de trabalho precisa de filas ou tempos de execução duráveis."
+    },
+    {
+      "stage": "check",
+      "question": "O que significa a lição 'a observabilidade é carregadora'?",
+      "options": [
+        "Os prestadores exigem-no para a facturação",
+        "Os troncos são bonitos.",
+        "O disco está cheio",
+        "Sem OTel GenAI e um Langfuse / Phoenix / Opik backend você não pode depurar um agente multi-passo que falhou no passo 40"
+      ],
+      "correct": 3,
+      "explanation": "A observabilidade não é opcional para agentes de várias etapas; é a diferença entre depurar e reproduzir a partir do zero."
+    },
+    {
+      "stage": "post",
+      "question": "Por que os trabalhadores de fila devem ter uma fila de letras mortas (DLQ)?",
+      "options": [
+        "O DLQ torna os empregos mais rápidos",
+        "Sem DLQ, os empregos falhados desaparecem silenciosamente",
+        "DLQ é criptografado",
+        "DLQ é exigido pela AWS"
+      ],
+      "correct": 1,
+      "explanation": "Os empregos falhados sem DLQ desaparecem; o DLQ é o estacionamento para empregos falhados."
+    },
+    {
+      "stage": "post",
+      "question": "O que recomenda a lição para combinar agentes em forma de cron?",
+      "options": [
+        "Execução duradoura para que uma corrida noturna falha retoma na próxima vez",
+        "WebRTC",
+        "Autoescalador de GPU",
+        "Transmissão de SSE"
+      ],
+      "correct": 0,
+      "explanation": "A execução cron + durável recupera-se de forma limpa de executos programados falhados."
+    }
+  ]
+}
