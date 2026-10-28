@@ -1,0 +1,62 @@
+[
+  {
+    "question": "O que o modelo de recompensa na RLHF aprende?",
+    "options": [
+      "Documentos de texto bruto",
+      "Pairos de preferências humanos: dados duas respostas, que um humano preferia",
+      "Modelo de curvas de perda",
+      "Resultados de referência"
+    ],
+    "correct": 1,
+    "explanation": "O modelo de recompensa é treinado com base em dados de preferência: pares de respostas ao mesmo prompt onde um ser humano rotula o que é melhor.",
+    "stage": "pre"
+  },
+  {
+    "question": "Por que é utilizada uma penalidade de divergência KL no treinamento de PPO para a RLHF?",
+    "options": [
+      "Para acelerar o treinamento",
+      "Para reduzir o uso de memória",
+      "Melhorar a tokenização",
+      "Para evitar que a política se desvie demasiado do modelo de FFT, o que conduziria a recompensas para o hacking"
+    ],
+    "correct": 3,
+    "explanation": "Sem a penalidade KL, o modelo encontra formas degeneradas de maximizar a pontuação da recompensa (por exemplo, produzindo texto repetitivo que explora as fraquezas do modelo de recompensa).",
+    "stage": "pre"
+  },
+  {
+    "question": "Quantos modelos separados são necessários para um oleoduto RLHF completo?",
+    "options": [
+      "Dois .",
+      "Quatro",
+      "Três: O modelo de FFT, o modelo de recompensa e o modelo de política a ser otimizado",
+      "Um deles."
+    ],
+    "correct": 2,
+    "explanation": "A RLHF exige: (1) o modelo SFT como ponto de partida e referência KL, (2) o modelo de recompensa formado em base a preferências, (3) o modelo de política sendo otimizado com PPO. Esta complexidade é a razão pela qual o DPO (leção 08) foi desenvolvido.",
+    "stage": "post"
+  },
+  {
+    "question": "O que é \"hacking de recompensas\" na RLHF?",
+    "options": [
+      "Quando a taxa de aprendizagem é muito alta",
+      "Quando os dados de formação são corrompeiros",
+      "Quando a política encontra maneiras de maximizar a pontuação da recompensa sem realmente melhorar a qualidade da resposta",
+      "Quando o modelo de recompensa é atacado por adversários"
+    ],
+    "correct": 2,
+    "explanation": "O modelo de recompensa é um proxy imperfeito para o julgamento humano. A política pode descobrir padrões que pontuação de recompensas altas (por exemplo, respostas verbais, cobertura excessiva) sem ser realmente mais útil.",
+    "stage": "post"
+  },
+  {
+    "question": "O que é que o mecanismo de corte do PPO evita?",
+    "options": [
+      "Superfluo gradual",
+      "Fugas de dados",
+      "Superfluo de memória",
+      "Atualizações de políticas excessivamente grandes que possam desestabilizar a formação"
+    ],
+    "correct": 3,
+    "explanation": "O PPO reduz a relação de probabilidade entre a nova e a antiga política para uma faixa de [0,8, 1,2]. Isto impede que qualquer atualização única mude a política de forma drástica demais, tornando o treinamento mais estável do que o gradiente de política de vaína.",
+    "stage": "post"
+  }
+]

@@ -1,0 +1,62 @@
+[
+  {
+    "question": "Qual é a principal vantagem do DPO em relação ao RLHF?",
+    "options": [
+      "O DPO produz melhores modelos",
+      "O DPO utiliza menos dados de formação",
+      "O DPO elimina a necessidade de um modelo de recompensa separado e o PPO, treinamento direto sobre pares de preferências em um único ciclo",
+      "O DPO funciona sem quaisquer dados de preferência"
+    ],
+    "correct": 2,
+    "explanation": "O RLHF requer treinamento de um modelo de recompensa separadamente, em seguida, executando a otimização de PPO.",
+    "stage": "pre"
+  },
+  {
+    "question": "Qual é o papel do modelo de referência no DPO?",
+    "options": [
+      "A medida é utilizada para evitar que o modelo treinado se desvie demasiado, semelhante à penalidade KL no RLHF.",
+      "Gera dados de formação",
+      "Tratam de tokenização",
+      "Avalia a qualidade do modelo"
+    ],
+    "correct": 0,
+    "explanation": "A perda de DPO compara as probabilidades de registro no âmbito da política treinada com o modelo de referência (geralmente SFT).",
+    "stage": "pre"
+  },
+  {
+    "question": "O que controla o parâmetro beta no DPO?",
+    "options": [
+      "Dimensão do lote",
+      "A taxa de aprendizagem",
+      "Número de períodos de formação",
+      "Quão fortemente a política é limitada a permanecer perto do modelo de referência - beta mais alta significa atualizações mais conservadoras"
+    ],
+    "correct": 3,
+    "explanation": "Beta escala a penalidade implícita de divergência KL. Beta=0,1 permite que o modelo se diverja significativamente da referência (potencialmente melhor, mas com mais risco). Beta=0,5 mantém-no próximo (mais seguro, mas menos aprendizagem).",
+    "stage": "post"
+  },
+  {
+    "question": "Como representa implícitamente o DPO um modelo de recompensa?",
+    "options": [
+      "Não... O DPO não tem nenhum conceito de recompensa.",
+      "A função de perda DPO pode ser derivada mostrando que a política ideal sob uma função de recompensa é expressa diretamente através de probabilidades de registro de política",
+      "Treina um modelo de recompensa oculto dentro do modelo de linguagem",
+      "O DPO usa a função de perda como recompensa"
+    ],
+    "correct": 1,
+    "explanation": "Rafailov e outros demonstraram que a solução fechada do objetivo RLHF expressa a recompensa em função das probabilidades de registro da política em relação à referência.",
+    "stage": "post"
+  },
+  {
+    "question": "Quando é que a RLHF ainda pode ser preferida à DPO?",
+    "options": [
+      "Ao treinar modelos menores",
+      "Quando tiver menos dados de preferência",
+      "Sempre ... RLHF é estritamente melhor",
+      "Quando você precisa de um modelo de recompensa reutilizável para avaliar várias políticas ou quando a coleta de dados on-line é benéfica"
+    ],
+    "correct": 3,
+    "explanation": "O DPO é offline (dados de preferência fixa). O RLHF permite a coleta de dados on-line onde o modelo de recompensa marca novas gerações, descobrindo padrões de hacking de recompensa.",
+    "stage": "post"
+  }
+]

@@ -1,0 +1,62 @@
+[
+  {
+    "question": "Quanto VRAM requer um modelo de parâmetro 70B no FP16 apenas para pesos?",
+    "options": [
+      "70 GB",
+      "140 GB",
+      "35 GB",
+      "280 GB"
+    ],
+    "correct": 1,
+    "explanation": "70 bilhões de parâmetros * 2 bytes por parâmetro FP16 = 140 bilhões de bytes = 140 GB. Isso excede um único A100 (80 GB), exigindo pelo menos duas GPUs apenas para carregar os pesos.",
+    "stage": "pre"
+  },
+  {
+    "question": "O que é quantização no contexto dos LLM?",
+    "options": [
+      "Reduzir a precisão numérica dos pesos (por exemplo, FP16 a INT4) para diminuir o uso de memória e aumentar a velocidade de inferência",
+      "Compressão dos dados de formação",
+      "Removimento de camadas de modelo não utilizadas",
+      "Reduzir o tamanho do vocabulário"
+    ],
+    "correct": 0,
+    "explanation": "A quantização mapeia pesos de pontos flutuantes de alta precisão para números inteiros de baixa precisão. A quantização INT4 armazena cada peso em 4 bits em vez de 16, reduzindo a memória em 4x com perda mínima de precisão.",
+    "stage": "pre"
+  },
+  {
+    "question": "Qual é a diferença fundamental entre a quantização pós-formação (PTQ) e a formação consciente da quantização (QAT)?",
+    "options": [
+      "O QAT não usa gradientes",
+      "PTQ requer mais dados",
+      "PTQ quantiza após o treino sem reformulação; QAT simula quantização durante o treino para que o modelo aprenda a tolerar a redução da precisão",
+      "O PTQ é mais preciso."
+    ],
+    "correct": 2,
+    "explanation": "O PTQ é rápido (só calibra e quantiza) mas pode perder precisão. O QAT inclui quantização falsa durante o treinamento, permitindo que o modelo ajuste seus pesos para ser mais robusto para perda de precisão.",
+    "stage": "post"
+  },
+  {
+    "question": "O que significa quantização por canal e por que é melhor do que \"por tensor\"?",
+    "options": [
+      "Quantiza cada canal de saída separadamente, usando diferentes escalas/pontos zero para cada um, reduzindo o erro de quantização",
+      "Procede um canal de cores de cada vez",
+      "É um tipo de paralelismo de dados",
+      "Ele usa GPUs separados por canal"
+    ],
+    "correct": 0,
+    "explanation": "O per-tensor usa um fator de escala para toda a matriz de peso. O per-canale usa uma escala separada para cada canal de saída (fila).",
+    "stage": "post"
+  },
+  {
+    "question": "Por que 95% dos pesos em Llama 3 70B caem entre -0,1 e +0,1?",
+    "options": [
+      "Os pesos ainda não convergem.",
+      "Desintegração de peso e normalização durante o treinamento empurram pesos para valores pequenos, tornando o intervalo FP16 completo desperdiçável",
+      "Isto é específico da arquitetura Llama.",
+      "O modelo é mal treinado."
+    ],
+    "correct": 1,
+    "explanation": "A regularização da decadência de peso reduz os pesos para zero. A normalização de camadas mantém as ativações centradas.",
+    "stage": "post"
+  }
+]

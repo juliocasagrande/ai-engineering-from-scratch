@@ -1,0 +1,62 @@
+[
+  {
+    "question": "Porque não podes carregar todos os dados pré-treinamento na memória?",
+    "options": [
+      "Os corpos pré-treinamento são de terabytes de tamanho, muito superior à RAM disponível, exigindo canalizações de streaming",
+      "Carregar dados na memória é mais lento",
+      "A memória é necessária apenas para pesos de modelo",
+      "Python não suporta grandes matrizes"
+    ],
+    "correct": 0,
+    "explanation": "Os dados pré-treinamento do LLM são tipicamente de 1 a 15 TB de texto. Mesmo com 256 GB de RAM, você não pode guardar o conjunto completo de dados.",
+    "stage": "pre"
+  },
+  {
+    "question": "Por que a deduplicação de dados é importante para o pré- treino?",
+    "options": [
+      "Economiza espaço no disco",
+      "Documentos duplicados fazem com que o modelo memore texto específico literalmente e computação de treinamento de resíduos em conteúdo repetido",
+      "Reduz o tamanho do vocabulário",
+      "Acelera a tokenização"
+    ],
+    "correct": 1,
+    "explanation": "O conteúdo quase duplicado (boilerplate, duplicados raspados) faz com que o modelo seja memorizado em vez de generalizado.",
+    "stage": "pre"
+  },
+  {
+    "question": "Qual é o objectivo da criação de sequências de formação de duração fixa a partir de documentos de duração variável?",
+    "options": [
+      "Reduz o número total de tokens",
+      "Faz o texto mais fácil de ler",
+      "O treinamento da GPU requer formas de tensores uniformes, por isso os documentos devem ser embalados ou empolhados em sequências de comprimento fixo",
+      "Sequências de comprimento fixo são mais precisas"
+    ],
+    "correct": 2,
+    "explanation": "As GPUs processam lotes de tensores com formas idênticas. Documentos de comprimento variável devem ser divididos em sequências de comprimento fixo (por exemplo, 2048 ou 4096 tokens) com máscaras de atenção adequadas nos limites do documento.",
+    "stage": "post"
+  },
+  {
+    "question": "O que acontece se o pipeline de dados for mais lento que a velocidade de treinamento da GPU?",
+    "options": [
+      "Nada. O oleoduto funciona assíncrono.",
+      "O treino desacelera automaticamente para corresponder",
+      "O modelo de comboios no mesmo lote repetidamente",
+      "A GPU fica parado à espera de lotes, perdendo tempo caro de computação"
+    ],
+    "correct": 3,
+    "explanation": "Se o carregador de dados não pode servir lotes rápido o suficiente, a GPU fica entre os passos. Em aglomerados A100 que custam mais de $ 30 / hora, gargalos de oleoduto desperdiçam dinheiro.",
+    "stage": "post"
+  },
+  {
+    "question": "Por que é aplicada a filtragem de qualidade dos dados (detecção de linguagem, filtragem de conteúdo) antes da tokenização?",
+    "options": [
+      "Reduz o tempo de tokenização",
+      "Os dados de baixa qualidade (spam, placas de caldeira, conteúdo tóxico) degradam as capacidades do modelo proporcionalmente à sua parcela de dados de formação",
+      "Filtragem após tokenization é impossível",
+      "Os tokenizers não conseguem lidar com texto de baixa qualidade."
+    ],
+    "correct": 1,
+    "explanation": "O modelo aprende a partir de qualquer informação que veja. Se 10% dos dados de treinamento são spam ou conteúdo de baixa qualidade, o modelo atribui 10% da sua capacidade para reproduzir esses padrões.",
+    "stage": "post"
+  }
+]

@@ -1,0 +1,62 @@
+[
+  {
+    "question": "Um modelo de parâmetro 7B no FP16 precisa de quanto VRAM apenas para pesos?",
+    "options": [
+      "14 GB",
+      "28 GB",
+      "7 GB",
+      "56 GB"
+    ],
+    "correct": 0,
+    "explanation": "Cada parâmetro no FP16 é de 2 bytes. 7 bilhões * 2 bytes = 14 GB. Com estados do optimizador Adam (2 cópias) e gradientes, a memória total de treinamento é de aproximadamente 56 GB antes de contabilizar as ativações.",
+    "stage": "pre"
+  },
+  {
+    "question": "Quais são os três tipos de paralelismo utilizados na formação distribuída?",
+    "options": [
+      "Batch, sequência e paralelismo simbólico",
+      "Paralelo para a frente, para trás e para otimizador",
+      "Paralelamente dos dados, paralelamente tensor e paralelamente de pipeline",
+      "Paralelo de CPU, GPU e TPU"
+    ],
+    "correct": 2,
+    "explanation": "O paralelismo de dados replica o modelo em cada GPU e divide os dados. O paralelismo de tensor divide camadas individuais em GPUs.",
+    "stage": "pre"
+  },
+  {
+    "question": "O que faz o FSDP (Fully Sharded Data Parallel) que o DDP padrão não faz?",
+    "options": [
+      "Ele usa um optimizador diferente",
+      "Procede dados mais rápido",
+      "Suporta mais GPUs",
+      "Ele reduz os parâmetros do modelo, gradientes e estados de otimização em todas as GPUs em vez de replicar o modelo completo em cada"
+    ],
+    "correct": 3,
+    "explanation": "O DDP padrão replica todo o modelo em cada GPU (despensável). O FSDP divide os parâmetros em GPUs para que cada um contenha apenas uma fração.",
+    "stage": "post"
+  },
+  {
+    "question": "O que é a DeepSpeed ZeRO Stage 3?",
+    "options": [
+      "Um calendário de taxa de aprendizagem",
+      "Ele particiona estados de otimização, gradientes e parâmetros de modelo em GPUs, alcançando a máxima eficiência de memória",
+      "Um método de quantização",
+      "Um canal de pré-processamento de dados"
+    ],
+    "correct": 1,
+    "explanation": "O ZeRO estágio 1 faz os estados de otimização de fragmentos, o estágio 2 adiciona fragmentos de gradiente, o estágio 3 adiciona fragmentos de parâmetros. o estágio 3 dá poupança máxima de memória, permitindo o treinamento de modelos que excedem muito a memória de GPU único.",
+    "stage": "post"
+  },
+  {
+    "question": "Por que é necessária a sincronização de gradientes no treinamento paralelo de dados?",
+    "options": [
+      "Para acelerar a passagem para a frente",
+      "Cada GPU calcula gradientes em diferentes dados; mediando gradientes em GPUs garante que todas as réplicas atualizem de forma idêntica",
+      "Para reduzir o uso de memória",
+      "Para evitar o excesso de montagem"
+    ],
+    "correct": 1,
+    "explanation": "No paralelismo de dados, cada GPU processa um lote diferente e calcula gradientes diferentes. AllReduce media esses gradientes em todas as GPUs para que cada réplica aplique a mesma atualização e permaneça sincronizada.",
+    "stage": "post"
+  }
+]

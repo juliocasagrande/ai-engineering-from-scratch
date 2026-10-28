@@ -1,0 +1,62 @@
+[
+  {
+    "question": "Quais são as duas fases da inferência do LLM?",
+    "options": [
+      "Para a frente e para trás",
+      "Codificação e decodificação",
+      "Formação e avaliação",
+      "Prefill (processar o prompt em paralelo, computação-ligado) e decodificar (genera tokens um por um, memória-ligado)"
+    ],
+    "correct": 3,
+    "explanation": "Prefill processa todos os tokens de prompt em paralelo (limitados por computação). Decode gera tokens autoregressivamente um a um (limitado pela largura de banda de memória para carregar pesos de modelos). Diferentes otimizações visam cada fase.",
+    "stage": "pre"
+  },
+  {
+    "question": "O que é que o cache KV elimina durante a geração autoregressiva?",
+    "options": [
+      "A busca de inserção",
+      "A necessidade de máscaras de atenção",
+      "O cálculo softmax",
+      "Recomputamento redundante de vetores de chave e valor para todos os tokens anteriores em cada etapa de geração"
+    ],
+    "correct": 3,
+    "explanation": "Sem KV-cache, gerar token N requer recomputar chaves de atenção e valores para todos os tokens anteriores N-1. KV-cache armazena esses vetores, então cada novo token só calcula seu próprio K e V, salvando a computação O(N) por passo.",
+    "stage": "pre"
+  },
+  {
+    "question": "O que é batch contínuo e por que melhora o rendimento?",
+    "options": [
+      "Batchamento entre vários modelos",
+      "Utilização de grandes lotes",
+      "Processamento de todos os pedidos num único lote grande",
+      "Adição e remoção dinâmica de pedidos do lote em execução à medida que começam e terminam, em vez de esperar que o lote inteiro seja concluído"
+    ],
+    "correct": 3,
+    "explanation": "Em batches estáticos, um pedido curto mantém seu slot de lote até que o pedido mais longo termine. Batches contínuos preenchem imediatamente slots completos com novos pedidos, mantendo a GPU ocupada e melhorando a capacidade geral.",
+    "stage": "post"
+  },
+  {
+    "question": "Que problema resolve o PagedAttention (usado no vLLM)?",
+    "options": [
+      "Melhora a velocidade de tokenização",
+      "Reduz o tamanho do modelo",
+      "Gerenciou a memória de cache KV em blocos de tamanho fixo, como memória virtual, eliminando a fragmentação de sequências de comprimento variável",
+      "Acelera a computação da atenção."
+    ],
+    "correct": 2,
+    "explanation": "O cache KV para sequências de comprimento variável causa fragmentação de memória (falta de espaço entre as atribuições). PagedAttention atribui o cache KV em blocos fixos e mapeia-os com uma tabela de página, como a memória virtual do sistema operacional.",
+    "stage": "post"
+  },
+  {
+    "question": "O que é a descodificação especulativa?",
+    "options": [
+      "Usando um modelo de projeto pequeno para propor tokens múltiplos que o modelo grande verifica em paralelo, acelerando a geração",
+      "Previsão de quais tokens o usuário quer",
+      "Gerenar múltiplas respostas e escolher as melhores",
+      "Cachagem de sequências geradas com frequência"
+    ],
+    "correct": 0,
+    "explanation": "Um modelo pequeno e rápido gera N candidato tokens. O modelo grande verifica todos os N em uma única passagem para frente (paralelo). Se tokens K são aceitos, você gerou K tokens no tempo de aproximadamente 1 grande modelo passo.",
+    "stage": "post"
+  }
+]

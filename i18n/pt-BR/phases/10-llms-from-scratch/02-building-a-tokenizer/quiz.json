@@ -1,0 +1,62 @@
+[
+  {
+    "question": "Por que um tokenizer BPE básico rompe com entrada multilíngue ou código?",
+    "options": [
+      "BPE só funciona em ASCII",
+      "O BPE é inerentemente monolingüe",
+      "O texto multilingue não pode ser tokenizado",
+      "Sem o manejo adequado do Unicode, fallback de byte e regex de pré-tokenization, ele produz sequências de tokens incorretas ou ineficientes"
+    ],
+    "correct": 3,
+    "explanation": "Uma implementação BPE ingênua pode não lidar com caracteres Unicode de vários bytes, pode se fundir através de limites de palavras incorretamente e pode não ter fallback de nível de byte para caracteres fora do vocabulário treinado.",
+    "stage": "pre"
+  },
+  {
+    "question": "Qual é o papel do regex pré-tokenization num tokenizer de produção?",
+    "options": [
+      "Divide o texto em limites de palavras antes de BPE se fundir, evitando fusões entre espaços e limites de palavras",
+      "Comprime o espaço branco",
+      "Converte texto em minúsculas",
+      "Elimina a pontuação ."
+    ],
+    "correct": 0,
+    "explanation": "O regex de pré-tokenização divide o texto em pedaços (normalmente em limites de palavras, números e pontuação), de modo que as fusões BPE só acontecem dentro de pedaços.",
+    "stage": "pre"
+  },
+  {
+    "question": "O que é um token especial e por que os tokenizers são projetados para lidar com eles?",
+    "options": [
+      "Tokens reservados como < ゙ ゙ ゙ ゙ ゙ ゙ ゙ ou [PAD] que controlam o comportamento do modelo e devem ser codificados como IDs únicos e específicos",
+      "Tokens com valores de inserção mais elevados",
+      "Tokens utilizados apenas durante a avaliação",
+      "Tokens que aparecem com frequência"
+    ],
+    "correct": 0,
+    "explanation": "Os tokens especiais servem a fins estruturais: marcar os limites dos documentos, sequências de enchimento, indicar o início/final da geração.",
+    "stage": "post"
+  },
+  {
+    "question": "Como avaliar se um tokenizer personalizado é bom?",
+    "options": [
+      "Mediante a medição da relação de compressão (tokens por caracteres) em vários textos e comparando com tokenizers estabelecidos como tiktoken",
+      "Verificando se pode marcar o seu nome",
+      "Apenas medindo a velocidade de codificação",
+      "Contando o tamanho do vocabulário"
+    ],
+    "correct": 0,
+    "explanation": "A relação de compressão (bytes por token ou tokens por palavra) mede a eficiência. Um bom tokenizer produz menos tokens para o mesmo texto, o que significa que mais conteúdo se encaixa na janela de contexto.",
+    "stage": "post"
+  },
+  {
+    "question": "Por que é preferido o BPE a nível de byte em relação à tokenization a nível de palavras para os LLM modernos?",
+    "options": [
+      "A tokenização a nível de palavras é mais precisa",
+      "Pode representar qualquer entrada sem tokens desconhecidos enquanto ainda aprende combinações de subpalavras eficientes para padrões comuns",
+      "Produz vocabulários menores",
+      "É mais rápido."
+    ],
+    "correct": 1,
+    "explanation": "Tokenizers de nível de palavra não podem lidar com palavras invisíveis (produzindo tokens [UNK]). BPE de nível de byte começa a partir de bytes brutos (garantizando a cobertura de qualquer entrada) e aprende a fusão para sequências comuns, equilibrando a cobertura com eficiência.",
+    "stage": "post"
+  }
+]

@@ -1,0 +1,62 @@
+[
+  {
+    "question": "Por que os referências como a MMLU tornaram-se menos úteis para a comparação de modelos de fronteira?",
+    "options": [
+      "Eles testam os sujeitos errados",
+      "A MMLU foi concebida para modelos menores",
+      "Os modelos de fronteira têm MMLU saturado (pontuação 86-89%), comprimindo o ranking para uma faixa onde as diferenças são ruído estatístico",
+      "As perguntas são muito fáceis ."
+    ],
+    "correct": 2,
+    "explanation": "Quando o GPT-4, Claude 3 e o Llama 3 têm uma pontuação de 86-89% no MMLU, uma diferença de 1 ponto não é significativa.",
+    "stage": "pre"
+  },
+  {
+    "question": "O que é a Lei de Goodhart no contexto da avaliação do Mestrado em Direito Jurídico?",
+    "options": [
+      "Quando uma medida se torna um alvo, deixa de ser uma boa medida - modelos e equipes otimizam para benchmarks em vez de capacidades reais",
+      "Uma lei sobre a escalagem de modelos",
+      "Um teorema sobre mecanismos de atenção",
+      "Regra sobre as rotas de aprendizagem"
+    ],
+    "correct": 0,
+    "explanation": "Os laboratórios otimizam as pontuações de referência (contaminação de dados, solicitação específica de referência). A pontuação aumenta, mas a capacidade do mundo real não melhora necessariamente. Sua própria avaliação específica de tarefa é a única medida confiável.",
+    "stage": "pre"
+  },
+  {
+    "question": "Qual é a abordagem de avaliação do LLM-as-judge?",
+    "options": [
+      "Ter um juiz humano a avaliar cada resposta",
+      "Usar um Mestrado em Direito (por exemplo, GPT-4) forte para avaliar respostas em relação a rubricas, substituindo a avaliação humana cara em escala",
+      "Formação de um classificador separado para avaliação",
+      "Usando o modelo para se avaliar"
+    ],
+    "correct": 1,
+    "explanation": "LLM-as-judge usa um modelo capaz para marcar respostas contra critérios definidos. É mais barato e mais rápido do que a avaliação humana, embora tenha preconceitos (por exemplo, preferindo respostas verbais) que devem ser calibrados.",
+    "stage": "post"
+  },
+  {
+    "question": "Por que é importante construir uma série de avaliações personalizadas em vez de confiar em referências públicas?",
+    "options": [
+      "Os valores de referência públicos são sempre errados",
+      "Avaliações personalizadas são mais fáceis de construir",
+      "Os índices de referência públicos são demasiado caros",
+      "Referências públicas testam capacidades gerais; a sua aplicação tem requisitos específicos que apenas uma avaliação personalizada pode medir"
+    ],
+    "correct": 3,
+    "explanation": "Um modelo com pontuação de 90% no MMLU pode falhar em sua tarefa específica (por exemplo, extrair datas de documentos legais no seu formato). Somente uma avaliação personalizada com seus dados, seus casos de ponta e seus critérios de sucesso mede o que importa.",
+    "stage": "post"
+  },
+  {
+    "question": "O que é a contaminação de dados no contexto dos referências de MLL?",
+    "options": [
+      "Quando os dados de formação são corrompeiros",
+      "Quando as questões de referência aparecem nos dados pré-formação do modelo, os resultados aumentam sem refletir a capacidade real",
+      "Quando os dados de avaliação são erroneamente rotulados",
+      "Quando o modelo gera dados incorretos"
+    ],
+    "correct": 1,
+    "explanation": "Se as perguntas MMLU apareceram no corpo de treinamento, o modelo memorizou as respostas em vez de raciocinar sobre elas. Isso infla as pontuações e torna as comparações de referência pouco confiáveis. É um problema crescente à medida que os corpos de treinamento se expandem.",
+    "stage": "post"
+  }
+]

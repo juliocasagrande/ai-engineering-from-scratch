@@ -1,0 +1,62 @@
+[
+  {
+    "question": "Qual é a diferença fundamental entre um modelo de linguagem base e um modelo de instrução?",
+    "options": [
+      "Os modelos ajustados para instruções são maiores",
+      "Os modelos base são mais rápidos.",
+      "Eles têm diferentes arquiteturas",
+      "Um modelo base continua os padrões de texto; um modelo ajustado por instruções segue instruções e responde perguntas"
+    ],
+    "correct": 3,
+    "explanation": "Um modelo base treinado com previsão de next-token continua padrões de texto. Faça-lhe uma pergunta e pode gerar mais perguntas. SFT ensina-o a produzir respostas através do treinamento em pares (instrução, resposta).",
+    "stage": "pre"
+  },
+  {
+    "question": "Qual é a finalidade da ocultação de perdas em tokens não-assistentes durante a SFT?",
+    "options": [
+      "Para reduzir o uso de memória",
+      "Para acelerar o treinamento",
+      "Para evitar o excesso de montagem",
+      "Treinar o modelo apenas para gerar respostas, não para memorizar o formato de instrução ou as instruções do sistema"
+    ],
+    "correct": 3,
+    "explanation": "Durante a SFT, você quer que o modelo aprenda como responder, não como reproduzir a instrução. O mascaramento de perda define a perda em 0 para tokens do sistema / usuário, de modo que os gradientes só vêm dos tokens de resposta do assistente.",
+    "stage": "pre"
+  },
+  {
+    "question": "Qual é o formato em que os dados de formação em FFT são normalmente seguidos?",
+    "options": [
+      "Pares de valores-chave",
+      "Modelo de bate-papo com funções de sistema, usuário e assistente marcadas por tokens especiais",
+      "Documentos de texto bruto",
+      "Questões e resultados SQL"
+    ],
+    "correct": 1,
+    "explanation": "Os dados SFT usam um formato de bate-papo estruturado: um comportamento de configuração de prompt do sistema, uma instrução do usuário e uma resposta assistente.",
+    "stage": "post"
+  },
+  {
+    "question": "Por que um modelo de FFT pode produzir menor perplexidade em valores de referência, mas pior qualidade das conversas?",
+    "options": [
+      "Os índices de referência estão errados",
+      "Otimizar SFT para a correspondência de padrões em exemplos de treinamento, não para os julgamentos de qualidade matizados que os seres humanos se importam - que requer RLHF / DPO",
+      "A taxa de aprendizagem estava errada.",
+      "O modelo é muito pequeno."
+    ],
+    "correct": 1,
+    "explanation": "O SFT ensina o modelo a seguir formatos e produzir respostas plausíveis. Não ensina qual resposta é melhor quando existem múltiplas opções válidas.",
+    "stage": "post"
+  },
+  {
+    "question": "Quantos pares de instrução-resposta de alta qualidade são normalmente necessários para uma SFT eficaz?",
+    "options": [
+      "10 000 a 100 000 exemplos de alta qualidade",
+      "Menos de 100",
+      "Milhares de milhões",
+      "Milhões"
+    ],
+    "correct": 0,
+    "explanation": "Os estudos mostram que exemplos de alta qualidade de 10K-100K (como os conjuntos de dados Alpaca ou LIMA) podem ensinar de forma eficaz a instrução seguinte.",
+    "stage": "post"
+  }
+]

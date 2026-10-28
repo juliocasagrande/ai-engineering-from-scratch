@@ -1,0 +1,62 @@
+[
+  {
+    "question": "Qual é o propósito principal de um tokenizer em um LLM pipeline?",
+    "options": [
+      "Para traduzir texto entre idiomas",
+      "Para comprimir o texto para armazenamento",
+      "Para converter texto em uma sequência de números inteiros que o modelo pode processar",
+      "Para remover palavras de parada do texto"
+    ],
+    "correct": 2,
+    "explanation": "O LLM processa números, não texto. O tokenizer converte cada caractere, palavra e símbolo em IDs inteiros de um vocabulário fixo. Esta conversão não é neutra - determina como o modelo 'vê' a linguagem.",
+    "stage": "pre"
+  },
+  {
+    "question": "O que faz o BPE (Byte Pair Encoding) para construir seu vocabulário?",
+    "options": [
+      "Assigne IDs aleatoriamente para substrings",
+      "Utiliza uma pesquisa de dicionário para palavras inteiras",
+      "Divide o texto em caracteres individuais apenas",
+      "Iterativamente funde o par adjacente mais frequente de tokens até atingir o tamanho do vocabulário alvo"
+    ],
+    "correct": 3,
+    "explanation": "O BPE começa com bytes/caracteres individuais e reitera a fusão do par adjacente mais comum. 'th' + 'e' torna-se 'the'. Após milhares de fusões, palavras comuns se tornam tokens individuais enquanto palavras raras são divididas em pedaços de subpalavras.",
+    "stage": "pre"
+  },
+  {
+    "question": "Por que o tamanho do vocabulário cria uma troca no design de LLM?",
+    "options": [
+      "O tamanho do vocabulário não afeta o desempenho do modelo",
+      "Vocabulários menores são sempre mais eficientes",
+      "Vocabulários maiores sempre funcionam melhor",
+      "Muito pequeno cria sequências longas (mais computação); resíduos muito grandes incorporando parâmetros em tokens raros"
+    ],
+    "correct": 3,
+    "explanation": "O vocabulário pequeno (por exemplo, nível de caracteres) significa que cada palavra é de muitos tokens, aumentando o comprimento da sequência e a computação.",
+    "stage": "post"
+  },
+  {
+    "question": "Que problema resolve o fallback de nível de byte na tokenization?",
+    "options": [
+      "A garantia de que qualquer entrada (emoji, scripts raros, dados binários) pode ser codificada sem tokens \"desconhecidos\"",
+      "Melhora a precisão do modelo",
+      "Reduz o tamanho do vocabulário",
+      "Acelera a tokenização"
+    ],
+    "correct": 0,
+    "explanation": "Com o fallback de nível de byte, o tokenizer pode cair de volta para valores de byte bruto (256 possíveis) para qualquer personagem que não esteja no vocabulário.",
+    "stage": "post"
+  },
+  {
+    "question": "Como o tokenizer afeta o desempenho em língua não inglesa nos LLM?",
+    "options": [
+      "Tokenizers funcionam igualmente bem para todas as línguas",
+      "O texto não-inglês é sempre tokenizado por caracteres",
+      "A tokenization não afeta o desempenho da linguagem",
+      "Línguas subrepresentadas nos dados de treinamento pioram as fusões de tokens, exigindo mais tokens por palavra e desperdiçando a janela de contexto"
+    ],
+    "correct": 3,
+    "explanation": "As fusões BPE são aprendidas a partir de dados de treinamento. Se o texto japonês for 5% do corpo, os caracteres japoneses recebem menos fusões, exigindo 2-5 vezes mais tokens por palavra do que o inglês.",
+    "stage": "post"
+  }
+]

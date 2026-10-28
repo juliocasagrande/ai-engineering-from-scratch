@@ -1,0 +1,62 @@
+[
+  {
+    "question": "Qual é o objectivo da formação que o GPT utiliza durante o pré-treino?",
+    "options": [
+      "Classificação das frases",
+      "Previsão do próximo token: dado os tokens anteriores, prever o próximo",
+      "Alinhamento de imagem-texto",
+      "Modelagem de linguagem mascarada (previsão de tokens mascarados)"
+    ],
+    "correct": 1,
+    "explanation": "O GPT é um modelo de linguagem causal (autoregressiva) treinado com previsão de tokens próximos. Dados tokens [t1, t2, ..., tn], ele aprende a prever tn+1. A perda é a entropia cruzada entre os tokens próximos previstos e reais.",
+    "stage": "pre"
+  },
+  {
+    "question": "Quantas camadas de transformador, cabeças de atenção e dimensões de incorporação tem o GPT-2 Small (124M)?",
+    "options": [
+      "24 camadas, 16 cabeças, 1024 dims",
+      "6 camadas, 6 cabeças, 512 dims",
+      "48 camadas, 25 cabeças, 1600 dims",
+      "12 camadas, 12 cabeças, 768 dims"
+    ],
+    "correct": 3,
+    "explanation": "O GPT-2 Small tem 12 camadas de transformador, 12 cabeças de atenção por camada e embutidos em 768 dimensões.",
+    "stage": "pre"
+  },
+  {
+    "question": "Qual é o papel da máscara de atenção causal no TGP?",
+    "options": [
+      "Impede que cada token atenda a futuros tokens, garantindo que o modelo só possa usar o contexto passado para previsões",
+      "Reduz o uso de memória durante o treinamento",
+      "Mascona as notas de atenção de baixa confiança",
+      "Impede a atenção para os tokens de empolgação"
+    ],
+    "correct": 0,
+    "explanation": "A máscara causal é uma matriz triangular que define posições futuras para -infinito antes de softmax. Token na posição 5 pode atender a posições 1-5 mas não 6+.",
+    "stage": "post"
+  },
+  {
+    "question": "O que controla a \"temperatura\" durante a geração de texto?",
+    "options": [
+      "A aleatoriedade da seleção de tokens: menor temperatura torna as saídas mais deterministas, mais alta torna-as mais diversas",
+      "A velocidade de geração",
+      "Número de tokens gerados",
+      "O limite de confiança do modelo"
+    ],
+    "correct": 0,
+    "explanation": "A temperatura divide logits antes de softmax. A temperatura = 0,1 faz com que a distribuição seja muito alta (quase determinista). A temperatura = 1,0 é a distribuição de treinamento. A temperatura> 1,0 a aplania, aumentando a aleatoriedade.",
+    "stage": "post"
+  },
+  {
+    "question": "Por que o pré-treinamento requer muito mais computação do que ajuste fino?",
+    "options": [
+      "O pré-treinamento processa trilhões de tokens a partir do zero para aprender padrões gerais de linguagem, enquanto o ajuste fino ajusta um modelo já capaz em milhares de exemplos",
+      "A pré-formação usa uma arquitetura diferente",
+      "O pré-treino utiliza grandes lotes",
+      "O ajuste fino não usa gradientes"
+    ],
+    "correct": 0,
+    "explanation": "O pré-treinamento constrói todo o conhecimento da linguagem a partir de pesos aleatórios em trilhões de tokens.",
+    "stage": "post"
+  }
+]
