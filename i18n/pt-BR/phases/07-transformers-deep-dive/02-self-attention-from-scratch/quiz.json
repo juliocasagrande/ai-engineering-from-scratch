@@ -1,0 +1,64 @@
+{
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "Por que a auto-atenção de baunilha escala o produto de pontos por 1/sqrt(d_k)?",
+      "options": [
+        "Para fazer os valores de saída entre 0 e 1",
+        "Para normalizar a consulta e os vetores-chave para a unidade de comprimento",
+        "Para evitar que os produtos dotados cresçam em grandes dimensões, o que empurraria softmax para regiões com gradientes minúsculos",
+        "Para reduzir o custo computacional da multiplicação de matriz"
+      ],
+      "correct": 2,
+      "explanation": "Quando d_k é grande, o produto de pontos de vetores aleatórios cresce proporcionalmente ao sqrt(d_k). Sem escalar, softmax recebe grandes entradas, produzindo saídas quase um-quente onde os gradientes desaparecem."
+    },
+    {
+      "stage": "pre",
+      "question": "Quais são as três projeções da auto-atenção?",
+      "options": [
+        "Encoder, decoder e atenção cruzada",
+        "Questão, chave e valor - cada uma uma uma projeção linear aprendida da mesma entrada",
+        "Embutidas, posição e segmento",
+        "Entrada, oculta e saída"
+      ],
+      "correct": 1,
+      "explanation": "A auto-atenção projeta a entrada através de três matrizes de peso diferentes para produzir consultas (o que estou procurando?), chaves (o que contemo?), e valores (o que eu faço se combinado?)."
+    },
+    {
+      "stage": "post",
+      "question": "Em atenção multi-cabeça com 8 cabeças e d_model=512, qual é a dimensão de cada cabeça?",
+      "options": [
+        "512 -- cada cabeça vê a dimensão completa",
+        "64 -- modelo d_ é dividido uniformemente entre cabeças (512/8=64)",
+        "4096 -- cada cabeça amplia a representação",
+        "8 -- uma dimensão por cabeça"
+      ],
+      "correct": 1,
+      "explanation": "A atenção multi-cabeça divide o d_modelo em h-cabeças, cada uma operando em d_k = d_modelo/h dimensões. Com 512/8 = 64 dimensões por cabeça, o custo total de cálculo é igual à atenção de cabeça única em dimensão completa."
+    },
+    {
+      "stage": "post",
+      "question": "O que a máscara causal na atenção autoregressiva impede?",
+      "options": [
+        "Impede que cada posição atenda a posições futuras, garantindo que o modelo só possa usar o contexto passado ao prever o próximo token",
+        "Impede o modelo de atender à sua própria posição",
+        "Impede o modelo de atender a tokens de empolgação",
+        "Impede que os pesos da atenção se tornem muito grandes"
+      ],
+      "correct": 0,
+      "explanation": "Na geração autoregressiva, o token t não deve ver os tokens t+1, t+2, etc. A máscara causal define posições futuras para -infinito antes do softmax, eliminando seus pesos de atenção."
+    },
+    {
+      "stage": "post",
+      "question": "Por que a auto-atenção tem complexidade O ((n^2) no comprimento de sequência n?",
+      "options": [
+        "Porque o modelo tem n camadas empilhadas umas sobre as outras",
+        "Porque a propagação de volta através da atenção requer cálculos de gradiente n^2.",
+        "Porque as camadas de feedback após a atenção são quadráticas",
+        "Porque cada token calcula as pontuações de atenção com cada outro token, produzindo uma matriz de atenção n x n"
+      ],
+      "correct": 3,
+      "explanation": "A multiplicação da matriz QK^T produz uma matriz de atenção n x n onde a entrada (i,j) é a atenção do token i para o token j. Tanto a escala de cálculo quanto a memória como O(n^2), razão pela qual os modelos de longo contexto precisam de técnicas como FlashAttention."
+    }
+  ]
+}
