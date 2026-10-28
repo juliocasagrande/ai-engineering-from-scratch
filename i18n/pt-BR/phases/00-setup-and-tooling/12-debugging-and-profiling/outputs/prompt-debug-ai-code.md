@@ -1,6 +1,6 @@
 ---
 name: prompt-debug-ai-code
-description: Diagnose AI-specific bugs including NaN loss, shape errors, training failures, and OOM
+description: Diagnóstico de bugs específicos da IA, incluindo perda de NaN, erros de forma, falhas de treinamento e OOM
 phase: 0
 lesson: 12
 ---
@@ -20,7 +20,7 @@ Quando o usuário descrever um problema, siga este processo:
 
 2. Pedir o resultado específico de diagnóstico com base na categoria:
 
-   Para o**NaN loss**, pedir ao utilizador para executar:
+   Para **NaN loss**, pedir ao utilizador para executar:
    ```python
    for name, param in model.named_parameters():
        if param.grad is not None:
@@ -29,7 +29,7 @@ Quando o usuário descrever um problema, siga este processo:
                  f"has_inf={param.grad.isinf().any()}")
    ```
 
-   Para o**shape mismatch**, pedir:
+   Para **shape mismatch**, pedir:
    ```python
    print(f"Input shape: {x.shape}")
    print(f"Expected: {model.fc1.in_features}")
@@ -37,13 +37,13 @@ Quando o usuário descrever um problema, siga este processo:
    print(f"Target shape: {target.shape}")
    ```
 
-   Para o**training not converging**, pedir:
+   Para **training not converging**, pedir:
    - Valor da taxa de aprendizagem
    - Valores de perda nas etapas 0, 10, 100, 1000
    - Se os dados são misturados
    - Se os gradientes estão a ser zerados a cada passo
 
-   Para o**OOM**, pedir:
+   Para **OOM**, pedir:
    ```python
    print(f"Batch size: {batch_size}")
    print(f"Model params: {sum(p.numel() for p in model.parameters()):,}")
@@ -58,14 +58,14 @@ Causas raizas comuns e suas soluções:
 - **NaN after a few steps**A taxa de aprendizagem é muito alta, reduzida 10 vezes, adicione cortes de gradiente.
 - **NaN immediately**: Registo de número zero ou negativo em perda. Adicionar epsilon: `torch.log(x + 1e-8)`- Não .
 - **NaN in specific layer**BatchNorm com batch_size=1 será NaN.
-- **Loss stuck at ln(num_classes)**Modelo que prevê distribuição uniforme. Verifique se os gradientes fluem (não acidentais `.detach()`ou `with torch.no_grad()`em torno da passagem dianteira).
+- **Loss stuck at ln(num_classes)**Modelo que prevê distribuição uniforme. Verifique se os gradientes fluem (não acidentais) `.detach()` ou `with torch.no_grad()` em torno da passagem dianteira).
 - **Loss stuck at high value**A CrossEntropyLoss espera logits brutos, não saída softmax.
 - **Loss decreasing then exploding**A taxa de aprendizagem é demasiado elevada para formação posterior.
 - **Perfect training accuracy, bad test accuracy**Adicionar desistência, reduzir o tamanho do modelo, adicionar aumento de dados ou obter mais dados.
 - **99% test accuracy on first epoch**As etiquetas estão nos recursos, ou os conjuntos de treinamento/teste se sobrepõem.
-- **OOM during forward pass**: tamanho do lote demasiado grande ou modelo demasiado grande.`torch.cuda.amp.autocast()`- Não .
-- **OOM during backward pass**Acúmulo gradual sem compensação.`optimizer.zero_grad()`Cada passo.
-- **RuntimeError about device**Mover todos os tensores para o mesmo dispositivo.`model.to(device)`E ...`tensor.to(device)`consistentemente.
-- **Slow training, GPU utilization low**A carga de dados é o gargalo de engarrafamento.`num_workers=4`(ou superior) no DataLoader.`pin_memory=True`- Não .
+- **OOM during forward pass**: tamanho do lote demasiado grande ou modelo demasiado grande. `torch.cuda.amp.autocast()`- Não .
+- **OOM during backward pass**Acúmulo gradual sem compensação. `optimizer.zero_grad()` Cada passo.
+- **RuntimeError about device**Mover todos os tensores para o mesmo dispositivo. `model.to(device)` e `tensor.to(device)` consistentemente.
+- **Slow training, GPU utilization low**A carga de dados é o gargalo de engarrafamento. `num_workers=4` (ou superior) no DataLoader. `pin_memory=True`- Não .
 
 Sempre terminar com uma etapa de verificação que o usuário pode executar para confirmar a correção funcionou.

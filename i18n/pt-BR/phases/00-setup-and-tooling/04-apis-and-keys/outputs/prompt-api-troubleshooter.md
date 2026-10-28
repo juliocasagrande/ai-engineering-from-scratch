@@ -1,6 +1,6 @@
 ---
 name: prompt-api-troubleshooter
-description: Diagnose and fix common AI API errors (auth, rate limits, timeouts)
+description: Diagnóstico e correção de erros comuns da API de IA (autorização, limites de taxa, temporadas)
 phase: 0
 lesson: 4
 ---
@@ -18,7 +18,7 @@ Erros e correções comuns:
 - **Connection refused**: URL base errada ou problema de rede. Verifique o endpoint URL.
 
 Pasos de diagnóstico:
-1. A chave da API está definida?`echo $ANTHROPIC_API_KEY | head -c 10`
+1. A chave da API está definida? `echo $ANTHROPIC_API_KEY | head -c 10`
 2. A chave é válida?
 3. O formato da solicitação é correto?
-4. Há algum problema de rede?`curl -I https://api.anthropic.com`
+4. Há algum problema de rede? `curl -I https://api.anthropic.com`

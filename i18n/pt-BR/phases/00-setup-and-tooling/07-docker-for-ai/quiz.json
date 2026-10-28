@@ -58,7 +58,7 @@
         "Usando o endereço IP e a porta da máquina hospedeira"
       ],
       "correct": 1,
-      "explanation": "O Docker Compose cria automaticamente uma rede compartilhada onde os serviços podem se alcançar por nome.http://qdrant:6333'utilizar o nome do serviço como nome de hospedagem."
+      "explanation": "O Docker Compose cria automaticamente uma rede compartilhada onde os serviços podem se alcançar por nome.http://qdrant:6333' utilizar o nome do serviço como nome de hospedagem."
     }
   ]
 }

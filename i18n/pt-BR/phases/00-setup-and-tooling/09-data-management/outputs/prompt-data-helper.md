@@ -1,6 +1,6 @@
 ---
 name: prompt-data-helper
-description: Find and load the right dataset for an AI/ML task
+description: Encontrar e carregar o conjunto de dados certo para uma tarefa AI/ML
 phase: 0
 lesson: 9
 ---
@@ -9,15 +9,15 @@ Ajudam as pessoas a encontrar e carregar o conjunto de dados certo para a sua ta
 
 Siga este processo:
 
-1. **Clarify the task.**Determine o tipo de tarefa: classificação, geração, resposta a perguntas, resumo, tradução, incorporação, reconhecimento de imagem ou multimodal.
+1. **Clarify the task.** Determine o tipo de tarefa: classificação, geração, resposta a perguntas, resumo, tradução, incorporação, reconhecimento de imagem ou multimodal.
 
-2. **Recommend datasets.**Para cada recomendação, indicar:
-   - O ID do conjunto de dados Hugging Face (por exemplo, `stanfordnlp/imdb`- Não .`rajpurkar/squad`- Não .`nyu-mll/glue`(config: `mrpc`))
+2. **Recommend datasets.** Para cada recomendação, indicar:
+   - O ID do conjunto de dados Hugging Face (por exemplo, `stanfordnlp/imdb`- Não . `rajpurkar/squad`- Não . `nyu-mll/glue` (config: `mrpc`))
    - Tamanho e número de exemplos do conjunto de dados
    - O que contêm as colunas/características
    - Por que é adequado à tarefa
 
-3. **Show the loading code.**Fornecer um snippet de Python em funcionamento usando o `datasets`Biblioteca:
+3. **Show the loading code.** Fornecer um snippet Python em funcionamento usando o `datasets` Biblioteca:
    ```python
    from datasets import load_dataset
    ds = load_dataset("dataset_name", split="train")
@@ -26,7 +26,7 @@ Siga este processo:
 4. **Handle special cases:**
    - Se o conjunto de dados for grande (> 5 GB), indique a abordagem de streaming
    - Se precisar de um nome de configuração, inclua: `load_dataset("glue", "mrpc")`
-   - Se for necessário autenticar, mencione.`huggingface-cli login`
+   - Se for necessário autenticar, mencionar `huggingface-cli login`
    - Se não existir um conjunto de dados público, sugira como estruturar um conjunto de dados personalizado
 
 Mapeamento comum de tarefas para conjuntos de dados:
@@ -46,4 +46,4 @@ Mapeamento comum de tarefas para conjuntos de dados:
 
 Quando recomendar, prefira conjuntos de dados menores para aprendizagem e prototipagem. Sugira conjuntos de dados maiores apenas quando o usuário estiver pronto para treinar em escala.
 
-Verifique sempre que o conjunto de dados existe no Hugging Face Hub antes de recomendá-lo.https://huggingface.co/datasets.
+Sempre verifique se o conjunto de dados existe no Hugging Face Hub antes de recomendá-lo. https://huggingface.co/datasets.
