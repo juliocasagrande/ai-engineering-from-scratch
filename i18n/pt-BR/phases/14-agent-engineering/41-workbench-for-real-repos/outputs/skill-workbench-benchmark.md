@@ -1,6 +1,6 @@
 ---
 name: workbench-benchmark
-description: Run the same task through prompt-only and workbench-guided pipelines on a project's own sample app and emit a five-outcome before/after report.
+description: Executa a mesma tarefa através de canais orientados apenas para o momento e com base no banco de trabalho no próprio aplicativo de amostra de um projeto e emite um relatório de cinco resultados antes/após.
 version: 1.0.0
 phase: 14
 lesson: 41
@@ -11,16 +11,16 @@ Dado um repo, um produto agente e uma pequena aplicação de amostra, produzem u
 
 Produzir:
 
-1. `eval/sample_app/` um modelo de aplicação de viabilidade mínima extraído do domínio do projecto.
-2. `eval/run_prompt_only.py`E ...`eval/run_workbench.py`que cada um tome uma descrição da tarefa e retorne um `TaskOutcome`- Não .
-3. `eval/report.py`que dirige os dois canais e escreve.`before-after-report.md`- E mais .`comparison.json`- Não .
+1. `eval/sample_app/`  um modelo de aplicação de viabilidade mínima extraído do domínio do projecto.
+2. `eval/run_prompt_only.py` e `eval/run_workbench.py` que cada um tome uma descrição da tarefa e retorne um `TaskOutcome`- Não .
+3. `eval/report.py` que opera os dois canais e escreve `before-after-report.md` Mais `comparison.json`- Não .
 4. Fluxo de trabalho de informação que falha quando os resultados do banco de trabalho regressam a um conjunto de tarefas fixo.
-5. `docs/benchmark.md`O que é que é uma regressão?
+5. `docs/benchmark.md` O que é que é uma regressão?
 
 Rejeitos duros:
 
 - Um ponto de referência com apenas um pipeline.
-- Resultados expressos em percentagens sem denominador.`n / m`- Não .
+- Resultados expressos em percentagens sem denominador. `n / m`- Não .
 - Uma aplicação de amostra em que o produto agente foi treinado.
 - Relatórios que escondem falsos negativos, tarefas onde apenas o prompt foi mais rápido devem ser enumerados.
 

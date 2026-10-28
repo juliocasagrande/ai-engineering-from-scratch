@@ -1,6 +1,6 @@
 ---
 name: feedback-runner
-description: Wrap shell commands with deterministic stdout/stderr/exit/duration capture, persist a JSONL record per command, and refuse to advance the agent loop when feedback is missing.
+description: Envolver comandos shell com captura determinista de stdout/stderr/exit/durada, persistir um registro JSONL por comando e recusar avançar no loop do agente quando falta feedback.
 version: 1.0.0
 phase: 14
 lesson: 37
@@ -11,17 +11,17 @@ Dado um projeto que executa comandos shell dentro de um loop de agente, produzir
 
 Produzir:
 
-1. `tools/run_with_feedback.py`exposição`run_with_feedback(command: list[str], agent_note: str, timeout_s: float) -> FeedbackRecord`- Não .
-2. `feedback_record.jsonl`localização sob o banco de trabalho, um registro por linha.
-3. `tools/feedback_loader.py`que retorna os registos N mais recentes para a tarefa ativa.
-4. A.`loop_can_advance(record) -> bool`Ajudar o agente a ligar antes de reivindicar o sucesso.
+1. `tools/run_with_feedback.py` exposição `run_with_feedback(command: list[str], agent_note: str, timeout_s: float) -> FeedbackRecord`- Não .
+2. `feedback_record.jsonl` localização sob o banco de trabalho, um registro por linha.
+3. `tools/feedback_loader.py` que retorna os registos N mais recentes para a tarefa ativa.
+4. A. `loop_can_advance(record) -> bool` Ajudar o agente a ligar antes de reivindicar o sucesso.
 5. Os testes abrangem: caminho de sucesso, saída não zero, tempo de saída, falta de binário, truncamento determinista de cabeça/cauda.
 
 Rejeitos duros:
 
-- `shell=True`- Em qualquer lugar do corredor.
+- `shell=True` - Em qualquer lugar do corredor.
 - Truncation que depende do relógio de parede ou amostragem aleatória.
-- Registros sem`duration_ms`As sondas lentas são o primeiro sinal de um banco de trabalho embuído.
+- Registros sem `duration_ms`As sondas lentas são o primeiro sinal de um banco de trabalho embuído.
 - Um carregador que retorna uma lista ilimitada. Cap no último N ou paginate.
 
 Regras de recusa:

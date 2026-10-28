@@ -1,6 +1,6 @@
 ---
 name: runtime-shape
-description: Pick a production runtime shape (request-response, streaming, queue, event, cron, durable) and wire observability.
+description: Escolha uma forma de execução de produção (requisito-resposta, streaming, fila, evento, cron, durável) e observabilidade por fio.
 version: 1.0.0
 phase: 14
 lesson: 29
@@ -14,7 +14,7 @@ Decisão:
 1. < 30s, espera do utilizador -> **request-response**- Não .
 2. UX progressiva ou voz -> **streaming**- Não .
 3. Minutos a horas, o usuário não espera -> **queue-based**- Não .
-4. Reativa a eventos externos -> **event-driven**- Não .
+4. Reativo a eventos externos -> **event-driven**- Não .
 5. Serviços de limpeza periódica -> **cron**- Não .
 6. Qualquer um dos acima onde o custo de reinicialização é alto -> adicionar **durable execution**- Não .
 

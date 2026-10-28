@@ -1,6 +1,6 @@
 ---
 name: orchestration-picker
-description: Pick an orchestration topology (supervisor, swarm, hierarchical, debate, or none) for a given problem and implement it minimally.
+description: Escolha uma topologia de orquestração (supervisor, enxame, hierárquica, debate ou nenhuma) para um determinado problema e implementa-a minimamente.
 version: 1.0.0
 phase: 14
 lesson: 28
@@ -12,10 +12,10 @@ Dado um domínio de produto e uma classe de tarefas, escolha a topologia mínima
 Decisão:
 
 1. 1 agente + padrões de fluxo de trabalho (Lessão 12) são suficientes? -> não usar topologia em tudo.
-2. - 2 a 4 especialistas com responsabilidades distintas?**supervisor-worker**- Não .
-3. Os especialistas em latência e críticos podem dar-nos a volta?**swarm**- Não .
+2. - 2 a 4 especialistas com responsabilidades distintas? **supervisor-worker**- Não .
+3. Os especialistas de latência e críticos podem dar-nos a volta? **swarm**- Não .
 4. 10+ especialistas, orçamento de supervisão em situação de falha? -> **hierarchical**- Não .
-5. A precisão importa mais do que o custo, o multiproponente + crítica ajuda? -> **debate**(Lessão 25).
+5. A precisão importa mais do que o custo, o multi-proponente + crítica ajuda? -> **debate** (Lessão 25).
 
 Produzir:
 

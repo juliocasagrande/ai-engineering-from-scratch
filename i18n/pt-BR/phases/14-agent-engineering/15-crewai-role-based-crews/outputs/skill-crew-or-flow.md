@@ -1,6 +1,6 @@
 ---
 name: crew-or-flow
-description: Pick CrewAI Crew or Flow for a given task, and scaffold the minimal implementation.
+description: Escolha CrewAI Crew ou Flow para uma determinada tarefa e estabeleça a implementação mínima.
 version: 1.0.0
 phase: 14
 lesson: 15
@@ -25,8 +25,8 @@ Para as tripulações, produzir:
 
 Para os fluxos, produzir:
 
-1. `@start`função de entrada.
-2. `@listen(topic)`Passo que forma um DAG.
+1. `@start` função de entrada.
+2. `@listen(topic)` Passo que forma um DAG.
 3. Temas explícitos de eventos, sem transmissão mágica.
 4. Um arnes de repetição: dada uma carga útil de arranque, reiniciar deterministicamente.
 
@@ -42,4 +42,4 @@ Regras de recusa:
 - Se o utilizador solicitar um Flow numa tarefa de investigação sem fim, recusar e migrar para Crew.
 - Se a história de fundo exceder 200 palavras, recuse e precise um corte.
 
-Output: `agents.py`- Não .`tasks.py`- Não .`crew.py`ou `flow.py`, mais `README.md`A conclusão é com "o que ler a seguir" apontando para a lição 24 (Langfuse/AgentOps) para observabilidade, ou lição 13 se o fluxo precisa de semântica de resumo duradoura.
+Output: `agents.py`- Não . `tasks.py`- Não . `crew.py` ou `flow.py`, mais `README.md` A conclusão é com "o que ler a seguir" apontando para a lição 24 (Langfuse/AgentOps) para observabilidade, ou lição 13 se o fluxo precisa de semântica de resumo duradoura.

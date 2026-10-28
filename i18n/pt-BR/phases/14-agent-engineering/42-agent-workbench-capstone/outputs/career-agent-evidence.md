@@ -1,6 +1,6 @@
 # Engenharia Assistida por Agentes: Evidência de tarefas
 
-Copiar este modelo no seu próprio repositório no`learning-artifacts/`- Substituir as instruções por observações reais e por vias de evidência relativa.`unverified`Não substituir por um resultado inventado.
+Copiar este modelo para o seu próprio repositório em `learning-artifacts/`- Substituir as instruções por observações reais e caminhos de evidências relativas. `unverified`Não substituir por um resultado inventado.
 
 ## Contrato de tarefa
 
@@ -59,7 +59,7 @@ Um erro de sintaxe, falta de dependência ou configuração falhada não são ev
 
 ## Operação e recuperação
 
-- Ambiente: `local`- Não .`staging`, ou `live`- Não .
+- Ambiente: `local`- Não . `staging`, ou `live`- Não .
 - Identidade e tempo de observação da revisão ou do artefato em execução:
 - O sinal de falha, o limiar, a janela de observação, o proprietário e a resposta:
 - Injecção de falha segura e evidências observadas:
@@ -82,7 +82,7 @@ O ensaio local é suficiente para este exercício.
 
 ## Decisão do revisor
 
-Inspectar os artefatos referenciados e reproduzir o controlo de aceitação mais fraco.`demonstrated`- Não .`needs revision`, ou `unverified`Esta é uma revisão manual de provas, não uma pontuação para completar campos de prosa.
+Inspectar os artefatos referenciados e reproduzir a verificação de aceitação mais fraca. `demonstrated`- Não . `needs revision`, ou `unverified`Esta é uma revisão manual de provas, não uma pontuação para completar campos de prosa.
 
 | Dimension | Status | Evidence inspected and reason |
 |---|---|---|

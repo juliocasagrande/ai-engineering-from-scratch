@@ -1,6 +1,6 @@
 ---
 name: benchmark-harness
-description: Build a SWE-bench-style harness for a codebase with FAIL_TO_PASS / PASS_TO_PASS gating, contamination checks, and step-count metrics.
+description: Construa um arnes de estilo SWE-bench para uma base de código com fechamento FAIL_TO_PASS / PASS_TO_PASS, verificações de contaminação e métricas de contagem de etapas.
 version: 1.0.0
 phase: 14
 lesson: 19
@@ -29,4 +29,4 @@ Regras de recusa:
 - Se os testes não forem fixados a um compromisso específico, rejeite.
 - Se as tarefas se sobrepõem com o texto de questão visto durante o treinamento, marque-o explicitamente.
 
-Output: `tasks.py`- Não .`harness.py`- Não .`contamination.py`- Não .`report.py`- Não .`README.md`Afinal, com "o que ler a seguir", apontando para a lição 30 para desenvolvimento orientado para avaliação no topo do arame.
+Output: `tasks.py`- Não . `harness.py`- Não . `contamination.py`- Não . `report.py`- Não . `README.md` Afinal, com "o que ler a seguir", apontando para a lição 30 para desenvolvimento orientado para avaliação no topo do arame.

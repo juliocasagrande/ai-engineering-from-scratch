@@ -1,6 +1,6 @@
 ---
 name: obs-platform-wiring
-description: Pick an observability platform (Langfuse, Phoenix, Opik, Datadog) and wire traces + evals + prompt versions into an existing agent.
+description: Escolha uma plataforma de observabilidade (Langfuse, Phoenix, Opik, Datadog) e trace + evals + versões de prompt em um agente existente.
 version: 1.0.0
 phase: 14
 lesson: 24
@@ -14,8 +14,8 @@ Decisão:
 1. Precisa de gerenciamento rápido + repetição de sessão em um só lugar -> **Langfuse**- Não .
 2. Precisa de relevância profunda do RAG + detecção de deriva/anomalia -> **Phoenix**- Não .
 3. Precisa de otimização automática de prompt + proteção de PII -> **Opik**- Não .
-4. Já executa o Datadog -> **Datadog LLM Observability**(mapas GenAI nativo de v1.37+).
-5. Preciso de licença ELv2 livre -> **Langfuse**(MIT) ou **Opik**(Apache 2.0); evitar Phoenix para distribuição pura de OSS.
+4. Já executa o Datadog -> **Datadog LLM Observability** (mapas GenAI nativo de v1.37+).
+5. Preciso de licença ELv2-free -> **Langfuse** (MIT) ou **Opik** (Apache 2.0); evitar Phoenix para distribuição pura de OSS.
 
 Produzir:
 
@@ -38,4 +38,4 @@ Regras de recusa:
 - Se o produto não tiver critérios de aceitação para cada tarefa de agente, recuse-se a enviar avaliações.
 - Se o utilizador quiser "sem amostragem, capture tudo", rejeite.
 
-Output: `instrumentation.py`- Não .`judge.py`- Não .`dashboards.md`- Não .`README.md`A descrição da estratégia de amostragem e resposta a incidentes, que explica a escolha da plataforma, a rubrica e o que deve ser feito.
+Output: `instrumentation.py`- Não . `judge.py`- Não . `dashboards.md`- Não . `README.md` A descrição da estratégia de amostragem e resposta a incidentes, que explica a escolha da plataforma, a rubrica e o que deve ser feito.

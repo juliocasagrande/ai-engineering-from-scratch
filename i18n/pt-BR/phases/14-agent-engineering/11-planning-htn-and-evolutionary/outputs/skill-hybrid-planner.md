@@ -1,6 +1,6 @@
 ---
 name: hybrid-planner
-description: Build a hybrid planner — ChatHTN for provably-sound plans, AlphaEvolve for code search with a machine-checkable evaluator — and pick the right one for the problem.
+description: Construa um planejador híbrido  ChatHTN para planos comprováveis, AlphaEvolve para pesquisa de código com um avaliador verificável por máquina  e escolha o certo para o problema.
 version: 1.0.0
 phase: 14
 lesson: 11
@@ -17,8 +17,8 @@ Decisão:
 
 Para HTN, produzir:
 
-1. `Operator`Tipo com `preconditions`- Não .`effects_add`- Não .`effects_remove`- Não .
-2. `Method`Tipo com `task`- Não .`preconditions`- Não .`subtasks`- Não .
+1. `Operator` Tipo com `preconditions`- Não . `effects_add`- Não . `effects_remove`- Não .
+2. `Method` Tipo com `task`- Não . `preconditions`- Não . `subtasks`- Não .
 3. Um planejador que experimenta métodos primeiro, volta à decomposição do LLM e guarda em cache decomposições bem sucedidas do LLM.
 4. Uma etapa de validação que rejeita a decomposição do MLL referindo operadores ou métodos desconhecidos.
 
@@ -41,4 +41,4 @@ Regras de recusa:
 - Se o domínio não tiver aptidão verificável por máquina, recuse o AlphaEvolve. Sugira Auto-Refine (Lessão 05).
 - Se o utilizador quiser que "planner + LLM faz a chamada final", recuse.
 
-Output: `operators.py`- Não .`methods.py`- Não .`planner.py`(HTN) ou `evaluator.py`- Não .`mutator.py`- Não .`loop.py`(evolução), mais `README.md`A conclusão é "o que ler a seguir" apontando para a lição 25 se a verificação de debate se encaixa no problema, ou a lição 02 se a tarefa é realmente ReWOO-formada afinal.
+Output: `operators.py`- Não . `methods.py`- Não . `planner.py` (HTN) ou `evaluator.py`- Não . `mutator.py`- Não . `loop.py` (evolução), mais `README.md` A conclusão é "o que ler a seguir" apontando para a lição 25 se a verificação de debate se encaixa no problema, ou a lição 02 se a tarefa é realmente ReWOO-formada afinal.

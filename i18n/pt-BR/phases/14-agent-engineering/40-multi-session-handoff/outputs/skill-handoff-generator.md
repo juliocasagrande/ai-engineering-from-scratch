@@ -1,6 +1,6 @@
 ---
 name: handoff-generator
-description: Generate end-of-session handoff packets from workbench artifacts, producing both human-readable Markdown and machine-readable JSON keyed to the seven canonical fields.
+description: Gerar pacotes de transferência de final de sessão a partir de artefatos de banco de trabalho, produzindo tanto o Markdown leitível pelo ser humano quanto o JSON leitível pela máquina teclado para os sete campos canônicos.
 version: 1.0.0
 phase: 14
 lesson: 40
@@ -11,15 +11,15 @@ Dada uma mesa de trabalho (estado, veredicto, revisão, registro de feedback, di
 
 Produzir:
 
-1. `tools/generate_handoff.py`exposição`generate_handoff(snapshot) -> (markdown, payload)`- Não .
-2. `outputs/handoff/<session_id>/handoff.md`E ...`handoff.json`- Não .
-3. `handoff.schema.json`que abrange os sete campos necessários e o formato de cauda de feedback.
+1. `tools/generate_handoff.py` exposição `generate_handoff(snapshot) -> (markdown, payload)`- Não .
+2. `outputs/handoff/<session_id>/handoff.md` e `handoff.json`- Não .
+3. `handoff.schema.json` que abrange os sete campos necessários e o formato de cauda de feedback.
 4. Escrito de gancho de final de sessão que executa o gerador e se recusa a fechar a sessão se algum campo estiver faltando.
-5. `docs/handoff.md`A lista dos sete campos, as suas fontes e a política de corte.
+5. `docs/handoff.md` A lista dos sete campos, as suas fontes e a política de corte.
 
 Rejeitos duros:
 
-- Uma transferência sem um`next_action`Os relatórios de status disfarçam-se de envenenamento na próxima sessão.
+- Uma transferência sem um `next_action`Os relatórios de status disfarçam-se de envenenamento na próxima sessão.
 - Um gerador que escreve a mão o resumo.
 - Um pacotamento de marcação que diverge do JSON. JSON é a fonte; marcação é um renderização de JSON.
 - Uma cauda de feedback maior que 30 entradas. O registro completo está no controle de versão; o pacote deve permanecer pequeno.

@@ -1,6 +1,6 @@
 ---
 name: state-graph
-description: Build a LangGraph-shaped state machine with typed state, conditional edges, per-node checkpointing, and durable resume.
+description: Construa uma máquina de estado em forma de LangGraph com estado digitalizado, bordas condicionais, ponto de verificação por nó e currículo duradouro.
 version: 1.0.0
 phase: 14
 lesson: 13
@@ -11,10 +11,10 @@ Dado um tempo de execução alvo, uma forma de estado, um conjunto de funções 
 
 Produzir:
 
-1. Um tipo de .`State`Documentar todos os campos. nós ler estado; eles retornam atualizações.
-2. A.`StateGraph`com`add_node`- Não .`add_edge`- Não .`add_conditional_edges`- Não .`set_entry`, mais `START`- Não .`END`Sentinelas.
-3. A.`Checkpointer`Interface com `save(session_id, node, state)`E ...`load_latest(session_id)`. Default para SQLite; permitir Postgres/Redis/custom.
-4. A.`Runner`que passa através do gráfico, serializa estado após cada nó, pega `PausedAtNode`para humanos no circuito, e apoia `resume_from`com opcional `state_override`- Não .
+1. Uma tipografia `State` Documentar todos os campos. nós ler estado; eles retornam atualizações.
+2. A. `StateGraph` com `add_node`- Não . `add_edge`- Não . `add_conditional_edges`- Não . `set_entry`, mais `START`- Não .`END` Sentinelas.
+3. A. `Checkpointer` Interface com `save(session_id, node, state)` e `load_latest(session_id)`. Default para SQLite; permitir Postgres/Redis/custom.
+4. A. `Runner` que passa através do gráfico, serializa estado após cada nó, pega `PausedAtNode` para humanos no circuito, e apoios `resume_from` com opcional `state_override`- Não .
 5. Três auxiliares de topologia: supervisor (routador central), enxame (transmissões de ferramentas compartilhadas), hierárquica (subgrafos).
 
 Rejeitos duros:
@@ -29,4 +29,4 @@ Regras de recusa:
 - Se o usuário pedir para "checkpoint apenas no sucesso", recusar. falhas precisam declarar também  é onde o depuração começa.
 - Se o gráfico tiver mais de ~ 30 nós, rejeite o layout plano e precise de subgráficos aninhados.
 
-Output: `state.py`- Não .`graph.py`- Não .`checkpointer.py`- Não .`runner.py`- Não .`README.md`Explicando o esquema de estado, a escolha de checkpointer e a semântica de retomada. Terminando com "o que ler a seguir" apontando para a lição 14 para alternativa modelo de ator, lição 16 para camada de entrega / guarda-roupa, ou lição 23 para OTel abrange em etapas de gráfico.
+Output: `state.py`- Não . `graph.py`- Não . `checkpointer.py`- Não . `runner.py`- Não . `README.md` Explicando o esquema de estado, a escolha de checkpointer e a semântica de retomada. Terminando com "o que ler a seguir" apontando para a lição 14 para alternativa modelo de ator, lição 16 para camada de entrega / guarda-roupa, ou lição 23 para OTel abrange em etapas de gráfico.

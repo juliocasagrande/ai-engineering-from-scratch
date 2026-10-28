@@ -1,6 +1,6 @@
 ---
 name: init-script
-description: Interview a project and emit a deterministic init_agent.py with five probes plus a CI workflow that refuses to launch the agent if any probe fails.
+description: Entrevistar um projeto e emitir um init_agent.py determinista com cinco sondas mais um fluxo de trabalho CI que se recusa a lançar o agente se qualquer sonda falhar.
 version: 1.0.0
 phase: 14
 lesson: 35
@@ -11,11 +11,11 @@ Dado um repo, o produto agente e sua superfície de dependência produzem um scr
 
 Produzir:
 
-1. `tools/init_agent.py`com estas sondas: versão de tempo de execução, dependências listadas, resolubilidade de comando de teste, ambiente necessário, estado de arquivo de frescura.
-2. `init_report.json`O esquema é documentado ao lado do script.`(name, status: pass|warn|fail, detail)`- Não .
-3. `.github/workflows/agent-init.yml`(ou equivalente) que executa o script e bloqueia o trabalho do agente em qualquer sonda de gravidade de falha.
-4. A.`pre-task`O agente de execução pode ligar antes de cada sessão começar.
-5. Documentação em `docs/init.md`Uma lista de todas as sondas, a sua gravidade e como corrigir uma falha.
+1. `tools/init_agent.py` com estas sondas: versão de tempo de execução, dependências listadas, resolubilidade de comando de teste, ambiente necessário, estado de arquivo de frescura.
+2. `init_report.json` esquema documentado ao lado do script. Cada sonda retorna `(name, status: pass|warn|fail, detail)`- Não .
+3. `.github/workflows/agent-init.yml` (ou equivalente) que executa o script e bloqueia o trabalho do agente em qualquer sonda de gravidade de falha.
+4. A. `pre-task` O agente de execução pode ligar antes de cada sessão começar.
+5. Documentação em `docs/init.md` Uma lista de todas as sondas, a sua gravidade e como corrigir uma falha.
 
 Rejeitos duros:
 
@@ -46,6 +46,6 @@ Estrutura de saída:
 
 Conclui com "o que ler a seguir" apontando para:
 
-- Lição 36 para o contrato de âmbito de aplicação por tarefa que utiliza os dados do relatório init `repo_paths`- Não .
+- Lição 36 para o contrato de âmbito de tarefa que utiliza os dados do relatório init `repo_paths`- Não .
 - Lição 37 para o loop de feedback de tempo de execução que consome o comando de teste resolvido.
 - Lição 38 para o portal de verificação que depende da passagem das sondas.

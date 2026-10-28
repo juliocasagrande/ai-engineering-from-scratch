@@ -1,6 +1,6 @@
 ---
 name: verification-gate
-description: Generate a deterministic verification gate that combines scope, rule, and feedback artifacts into a single verification_report.json per task, plus CI wiring that refuses to merge without a green verdict.
+description: Gerar um portal de verificação determinista que combina escopo, regra e artefatos de feedback em uma única verificação_report.json por tarefa, além de um fio CI que se recusa a fundir sem um veredicto verde.
 version: 1.0.0
 phase: 14
 lesson: 38
@@ -11,11 +11,11 @@ Tendo em conta os critérios de aceitação de um projecto e os artefatos existe
 
 Produzir:
 
-1. `tools/verify_agent.py`exposição`verify(task_id, artifacts) -> VerdictReport`Função pura, determinista, sem chamadas de LLM.
-2. `outputs/verification/<task_id>.json`como a única fonte de veredicto da verdade.
-3. `tools/override.py`que anexa as entradas de anulação assinadas a `outputs/verification/overrides.jsonl`(deve incluir razão, identificação de utilizador, timestamp, código de localização).
-4. Fluxo de trabalho de informação que falhe `passed: false`e aparece no relatório em linha.
-5. `docs/verification.md`Lista de cada cheque, a sua gravidade, o seu artefato de origem e a política de anulação.
+1. `tools/verify_agent.py` exposição `verify(task_id, artifacts) -> VerdictReport`Função pura, determinista, sem chamadas de LLM.
+2. `outputs/verification/<task_id>.json` como a única fonte de veredicto da verdade.
+3. `tools/override.py` que anexa as entradas de sobreposição assinadas a `outputs/verification/overrides.jsonl` (deve incluir razão, identificação de utilizador, timestamp, código de localização).
+4. Fluxo de trabalho de informação que falhe `passed: false` e aparece no relatório em linha.
+5. `docs/verification.md` Lista de cada cheque, a sua gravidade, o seu artefato de origem e a política de anulação.
 
 Rejeitos duros:
 

@@ -1,6 +1,6 @@
 ---
 name: reviewer-agent
-description: Stand up a reviewer agent role with a five-dimension rubric that reads builder artifacts, produces a structured review report, and starts human review from a written page instead of a blank one.
+description: Estabeleça um papel de agente de revisão com uma rubrica de cinco dimensões que lê artefatos de construção, produz um relatório de revisão estruturada e inicia a revisão humana a partir de uma página escrita em vez de uma em branco.
 version: 1.0.0
 phase: 14
 lesson: 39
@@ -11,10 +11,10 @@ Dado que um agente de construção já produz artefatos de banco de trabalho, le
 
 Produzir:
 
-1. `agents/reviewer.md`com o sistema de revisão: acesso somente para leitura, rubrica de cinco dimensões, deve citar o caminho do artefato para cada pontuação.
-2. `tools/reviewer.py`que carrega`ReviewerInputs`O resultado é o resultado da avaliação de cada dimensão.
-3. `outputs/review/<task_id>.json`como o caminho do relatório de revisão canônica.
-4. `docs/reviewer-rubric.md`A lista das cinco dimensões, a pergunta a que cada uma responde e as descrições de âncora 0-1-2.
+1. `agents/reviewer.md` com o sistema de revisão: acesso somente para leitura, rubrica de cinco dimensões, deve citar o caminho do artefato para cada pontuação.
+2. `tools/reviewer.py` que carrega `ReviewerInputs` O resultado é o resultado da avaliação de cada dimensão.
+3. `outputs/review/<task_id>.json` como o caminho do relatório de revisão canônica.
+4. `docs/reviewer-rubric.md` A lista das cinco dimensões, a pergunta a que cada uma responde e as descrições de âncora 0-1-2.
 5. Passo de CI que publica o relatório de revisão como um comentário de relações públicas sempre que uma tarefa de construção é encerrada.
 
 Rejeitos duros:

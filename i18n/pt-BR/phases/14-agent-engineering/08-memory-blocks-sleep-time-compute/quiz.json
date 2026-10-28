@@ -76,7 +76,7 @@
     },
     {
       "stage": "post",
-      "question": "O que substituiu a linha de entrada `Thought:`Tokens e o padrão de envio de mensagens/batimento cardíaco no Letta V1?",
+      "question": "O que substituiu a linha `Thought:` Tokens e o padrão de envio de mensagens/batimento cardíaco no Letta V1?",
       "options": [
         "Raciocínio nativo emitido em um canal separado e passado por viradas",
         "Um segundo LLM dedicado aos pensamentos",

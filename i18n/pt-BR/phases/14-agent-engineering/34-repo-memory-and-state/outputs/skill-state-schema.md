@@ -1,6 +1,6 @@
 ---
 name: state-schema
-description: Generate project-specific JSON Schemas for agent state and task board, a Python StateManager with atomic writes, and a migration scaffold so schema bumps cannot corrupt the workbench.
+description: Gerar esquemas JSON específicos para o estado do agente e o painel de tarefas, um Python StateManager com escritos atômicos e um andaime de migração para que os arranhões do esquema não possam corromper o banco de trabalho.
 version: 1.0.0
 phase: 14
 lesson: 34
@@ -11,23 +11,23 @@ Dado um repo e o produto do agente que corre dentro dele, produzir arquivos de e
 
 Produzir:
 
-1. `schemas/agent_state.schema.json`cobrindo as chaves necessárias, valores de status permitidos, disciplina array versus zero, e um `schema_version`Número inteiro.
-2. `schemas/task_board.schema.json`cobrindo padrão de identificação de tarefa, proprietários autorizados, status autorizados e matrizes de aceitação.
-3. `tools/state_manager.py`exposição`load`- Não .`commit`, e `update`com temp-and-rename atômico escreve.
-4. `tools/migrate_state.py`Equipamento para o próximo esquema de choque, falha-loud se o arquivo é de uma versão desconhecida.
-5. `agent_state.json`E ...`task_board.json`sementeado em`schema_version: 1`E um novo atraso.
+1. `schemas/agent_state.schema.json` cobrindo as chaves necessárias, os valores de status permitidos, a disciplina array versus zero, e um `schema_version` Número inteiro.
+2. `schemas/task_board.schema.json` cobrindo padrão de identificação de tarefa, proprietários autorizados, status autorizados e matrizes de aceitação.
+3. `tools/state_manager.py` exposição `load`- Não . `commit`, e `update` com temp-and-rename atômico escreve.
+4. `tools/migrate_state.py` Equipamento para o próximo esquema de choque, falha-loud se o arquivo é de uma versão desconhecida.
+5. `agent_state.json` e `task_board.json` sementes em `schema_version: 1` E um novo atraso.
 
 Rejeitos duros:
 
-- Um esquema sem um `schema_version`As migrações não são opcionais.
-- Permitindo`null`onde é esperado um array. `null`é um erro de tempo de escrita mascarado como dados.
-- Um escritor que usa simples .`open(path, "w")`A Atomic escreve apenas; os arquivos parciais corromperam a fonte da verdade.
+- Um esquema sem um `schema_version` As migrações não são opcionais.
+- Permitir `null` onde é esperada uma matriz. `null` é um erro de tempo de escrita mascarado como dados.
+- Um escritor que usa simples `open(path, "w")`A Atomic escreve apenas; os arquivos parciais corromperam a fonte da verdade.
 - Armazenar tokens, transcrições de chat ou PII dentro do estado.
 
 Regras de recusa:
 
 - Se o repo não tem controle de versão, recuse-se a enviar arquivos de estado.
-- Se o projecto não tiver pelo menos um comando de aceitação para validar o `done`A transição, recusar a`status: done`Valor enum. Adição `done`Sem um cheque de aceitação é teatro.
+- Se o projecto não tiver pelo menos um comando de aceitação para validar o `done` A transição, recusa a `status: done` Valor enum. Adição `done` Sem um cheque de aceitação é teatro.
 - Se o projeto pretende compartilhar o estado entre processos sem uma estratégia de bloqueio, a descoberta de superfície antes do envio; renomeamento atômico é necessário, mas não suficiente.
 
 Estrutura de saída:

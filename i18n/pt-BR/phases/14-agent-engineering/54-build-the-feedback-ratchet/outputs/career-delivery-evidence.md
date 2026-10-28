@@ -61,7 +61,7 @@ Utilize a mesma definição e populações e janelas comparáveis antes e depois
 
 ## Aceitação manual
 
-Faça com que um colega aplique a rubrica da lição.**met**- Não .**needs work**, ou **not observed**, mais provas ou observação ausente: fluxo de trabalho fundamentado; autoridade respeitada; compromissos comunicados; interação testada; resultados comparados; revés propriedade; processo melhorado.
+Faça com que um colega aplique a rubrica da lição. **met**- Não . **needs work**, ou **not observed**, mais provas ou observação ausente: fluxo de trabalho fundamentado; autoridade respeitada; compromissos comunicados; interação testada; resultados comparados; revés propriedade; processo melhorado.
 
 - Revisor e data:
 - Resultados da rubrica e revisões necessárias:

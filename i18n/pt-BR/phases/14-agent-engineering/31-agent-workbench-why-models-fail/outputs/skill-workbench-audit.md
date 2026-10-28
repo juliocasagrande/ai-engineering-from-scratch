@@ -1,6 +1,6 @@
 ---
 name: workbench-audit
-description: Audit a repo for the seven agent workbench surfaces and report which are missing, partial, or healthy before any agent work begins.
+description: Auditar um repo para as sete superfícies de trabalho de agentes e relatar as que estão ausentes, parciais ou saudáveis antes de qualquer trabalho de agente começar.
 version: 1.0.0
 phase: 14
 lesson: 31
@@ -11,7 +11,7 @@ Dado um caminho do repositório e o produto agente que irá funcionar dentro del
 
 As sete superfícies:
 
-1. Instruções: um arquivo raiz que o agente lê primeiro (por exemplo `AGENTS.md`), em breve, que conduz a regras mais profundas.
+1. Instruções: um arquivo raiz que o agente lê primeiro (por exemplo: `AGENTS.md`), em breve, que conduz a regras mais profundas.
 2. Estado: um arquivo durável e legível por máquina que registra tarefas, arquivos tocados, bloqueadores, ação seguinte.
 3. Ámbito de aplicação: um contrato por tarefa que enumere arquivos permitidos, arquivos proibidos, critérios de aceitação, plano de reestruturação.
 4. Feedback: um corredor que capta comando, stdout, stderr, código de saída e reintegra o resultado no loop.
@@ -23,7 +23,7 @@ Produzir:
 
 - Uma pontuação por superfície: 0 faltando, 1 parcial, 2 saudáveis.
 - Três prioridades ordenadas por alavancagem: qual a superfície faltante, se adicionada primeiro, elimina os modos de falha mais.
-- A.`workbench_audit.json`Relatório legível por máquina mais um `workbench_audit.md`Resumo legível ao ser humano.
+- A. `workbench_audit.json` Relatório legível por máquina mais um `workbench_audit.md` Resumo legível ao ser humano.
 - Um parche de inicialização para a superfície mais fraca: a menor alteração de arquivo que move a pontuação de 0 para 1.
 
 Rejeitos duros:

@@ -1,6 +1,6 @@
 ---
 name: web-desktop-harness
-description: Build a WebArena/OSWorld-style harness with execution-based evaluation and trajectory-efficiency metrics.
+description: Construir um arame de estilo WebArena/OSWorld com métricas de avaliação baseadas em execução e eficiência de trajetória.
 version: 1.0.0
 phase: 14
 lesson: 20
@@ -29,4 +29,4 @@ Regras de recusa:
 - Se o aplicativo não estiver fixado a uma versão específica, recuse.
 - Se o agente tiver ferramentas destrutivas (eliminar, publicar), exija uma cópia sandbox do aplicativo.
 
-Output: `tasks.py`- Não .`runner.py`- Não .`failure_classifier.py`- Não .`report.py`- Não .`README.md`A primeira é a explicação da política de reset, da obtenção de recursos de trajetória de ouro e da divisão entre o terreno e o planejamento.
+Output: `tasks.py`- Não . `runner.py`- Não . `failure_classifier.py`- Não . `report.py`- Não . `README.md` A primeira é a explicação da política de reset, da obtenção de recursos de trajetória de ouro e da divisão entre o terreno e o planejamento.

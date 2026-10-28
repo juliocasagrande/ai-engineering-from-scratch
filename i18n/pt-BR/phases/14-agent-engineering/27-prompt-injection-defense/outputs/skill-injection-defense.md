@@ -1,6 +1,6 @@
 ---
 name: injection-defense
-description: Build a PVE (Prompt-Validator-Executor) layer with source-tagged content, injection-marker scanning, and allowlist navigation for any agent runtime.
+description: Construir uma camada PVE (Prompt-Validator-Executor) com conteúdo etiquetado de origem, digitalização de marcador de injeção e navegação de lista de autorização para qualquer tempo de execução do agente.
 version: 1.0.0
 phase: 14
 lesson: 27
@@ -11,8 +11,8 @@ Dado um agente com acesso e recuperação de ferramentas, produzir uma camada de
 
 Produzir:
 
-1. Tag de fonte em cada pedaço de conteúdo: `user_message`- Não .`tool_output`- Não .`retrieved_web`- Não .`retrieved_memory`- Não .`retrieved_file`Propagar tags através do histórico da mensagem.
-2. `Validator.assess(tool_call, contents)` recusa chamadas de ferramentas com args em forma de injecção ou conteúdo recuperado; permitido apenas quando as etiquetas de origem correspondem ao nível de confiança declarado.
+1. Tag de fonte em cada pedaço de conteúdo: `user_message`- Não . `tool_output`- Não . `retrieved_web`- Não . `retrieved_memory`- Não . `retrieved_file`Propagar tags através do histórico da mensagem.
+2. `Validator.assess(tool_call, contents)`  recusa chamadas de ferramentas com args em forma de injecção ou conteúdo recuperado; permitido apenas quando as etiquetas de origem correspondem ao nível de confiança declarado.
 3. Lista de permisos / lista de bloqueio para navegação: URLs, domínios, caminhos de arquivos que o agente pode tocar.
 4. Proteção de memória-escritura: rejeita escreve que parecem directivas.
 5. Disciplina de captura de conteúdo (Lessão 23): armazenar conteúdo recuperado externamente; os espaços contêm IDs de referência, não prosa.
@@ -30,4 +30,4 @@ Regras de recusa:
 - Se as ferramentas sensíveis (enviar mensagem, executar shell, escrever arquivo em /) não tiverem confirmação humana no loop, recusar.
 - Se as memórias não estiverem guardadas, recuse-se.
 
-Output: `validator.py`- Não .`source_tag.py`- Não .`allowlist.py`- Não .`memory_guard.py`- Não .`red_team.py`- Não .`README.md`A conclusão é "o que ler a seguir" apontando para a lição 21 (segurança do uso do computador) e a lição 23 (contenido de captura através OTel).
+Output: `validator.py`- Não . `source_tag.py`- Não . `allowlist.py`- Não . `memory_guard.py`- Não . `red_team.py`- Não . `README.md` A conclusão é "o que ler a seguir" apontando para a lição 21 (segurança do uso do computador) e a lição 23 (contenido de captura através OTel).

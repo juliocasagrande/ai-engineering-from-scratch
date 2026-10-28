@@ -1,6 +1,6 @@
 ---
 name: failure-detector
-description: Generate failure-mode detectors for agent traces, wired to a trace store, tagging the five industry-recurring modes plus domain-specific signatures.
+description: Gerar detectores de modo de falha para rastrear agentes, ligados a uma loja de rastreamento, marcando os cinco modos recorrentes da indústria e assinaturas específicas de domínio.
 version: 1.0.0
 phase: 14
 lesson: 26
@@ -11,7 +11,7 @@ Dado um domínio de produto e uma loja de rastreamento, produzir detectores para
 
 Produzir:
 
-1. Detector por modo: `hallucinated_action`- Não .`scope_creep`- Não .`cascading_errors`- Não .`context_loss`- Não .`tool_misuse`- Não .`success_hallucination`- Não .
+1. Detector por modo: `hallucinated_action`- Não . `scope_creep`- Não . `cascading_errors`- Não . `context_loss`- Não . `tool_misuse`- Não . `success_hallucination`- Não .
 2. Detetores específicos de domínio (por exemplo, "criou um PR sem vincular um problema" para uma ferramenta de desenvolvimento, "enviou um e-mail a > 5 destinatários sem confirmação" para uma ferramenta de marketing).
 3. Tagger que aplica todos os detectores a cada rastro e emite uma distribuição.
 4. Alerta baseada em limiar: se >=5% dos traços atuais marcar um modo, página ou abrir um bilhete.
@@ -29,4 +29,4 @@ Regras de recusa:
 - Se o produto não tiver uma linha de base de "bom conhecido", rejeite as alertas de derivação.
 - Se os detectores não estiverem modificados, recuse-se.
 
-Output: `detectors.py`- Não .`tagger.py`- Não .`alerts.py`- Não .`retention.py`- Não .`README.md`A conclusão é com "o que ler a seguir" apontando para a lição 24 (backends de observabilidade) ou a lição 27 (injecção rápida) para os modos de falha adversária.
+Output: `detectors.py`- Não . `tagger.py`- Não . `alerts.py`- Não . `retention.py`- Não . `README.md` A conclusão é com "o que ler a seguir" apontando para a lição 24 (backends de observabilidade) ou a lição 27 (injecção rápida) para os modos de falha adversária.
