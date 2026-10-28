@@ -1,6 +1,6 @@
 ---
 name: transformer-block-reviewer
-description: Review a transformer block implementation against 2026 defaults and flag drift.
+description: Revisar a implementação de blocos de transformadores em relação a erros de 2026 e à deriva de bandeira.
 version: 1.0.0
 phase: 7
 lesson: 5
@@ -15,4 +15,4 @@ Dada a fonte de bloco do transformador (PyTorch / JAX / numpy / pseudocode) e o 
 4. FFN. Ativação (ReLU / GELU / SwiGLU / GeGLU). Ratio de expansão. SwiGLU com ~ 2,67 × é padrão moderno; 4 × ReLU / GELU é clássico.
 5. O sinal de posição: confirmação de que a RoPE/ALiBi/absoluto é aplicada quando esperado (normalmente projeções Q,K para a RoPE).
 
-Recusar a assinatura em um bloco que apile mais de 12 camadas com pós-norma e nenhum cronograma de aquecimento  treinamento vai divergir. Recusar um bloco de decodificador sem enmascaramento causal. Marcar qualquer bloco cuja expansão FFN cai abaixo de 2x como provavelmente de capacidade. Avise se o bloco codificar-se com código duro `d_model`sem um campo de configuração para dimensionamento de troca.
+Recusar a assinatura em um bloco que apile mais de 12 camadas com pós-norma e nenhum cronograma de aquecimento  treinamento vai divergir. Recusar um bloco de decodificador sem enmascaramento causal. Marcar qualquer bloco cuja expansão FFN cai abaixo de 2x como provavelmente de capacidade. Avise se o bloco codificar-se com código rígido `d_model` sem um campo de configuração para dimensionamento de troca.

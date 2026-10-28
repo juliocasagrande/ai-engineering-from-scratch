@@ -1,6 +1,6 @@
 ---
 name: prompt-attention-explainer
-description: Explain the attention mechanism through the database lookup analogy
+description: Explicar o mecanismo de atenção através da analogia de pesquisa de banco de dados
 phase: 7
 lesson: 2
 ---

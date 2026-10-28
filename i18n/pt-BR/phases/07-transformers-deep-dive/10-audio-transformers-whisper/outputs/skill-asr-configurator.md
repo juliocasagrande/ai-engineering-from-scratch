@@ -1,6 +1,6 @@
 ---
 name: asr-configurator
-description: Pick an ASR model (Whisper variant / Moonshine / faster-whisper) and decoding parameters for a new speech pipeline.
+description: Escolha um modelo ASR (Variante de sussurro / Moonshine / sussurro mais rápido) e decodifique os parâmetros para um novo pipeline de fala.
 version: 1.0.0
 phase: 7
 lesson: 10
@@ -15,4 +15,4 @@ Dada uma tarefa de fala (transcrição / tradução / streaming / no dispositivo
 4. Chunking. 30 segundos de janela fixa vs. blocos de streaming (normalmente 10 segundos com 2 segundos de sobreposição) + segmentação baseada em VAD. Estratégia de pós-fusão de documento para sobreposição.
 5. Após o processamento: alinhamento de timestamp (alinhamento forçado do WhisperX), restauração de pontuação, diarização (pyannote).
 
-Recusar-se a recomendar o simples OpenAI Whisper (implementação de referência) para produção  `faster-whisper`é 4x mais rápido com saídas idênticas. Recusar enviar streaming ASR sem VAD a menos que haja razão documentada. Marque qualquer suposição de alto-falantes quando a entrada é provavelmente multi-alto-falantes.
+Recusa-se a recomendar o simples OpenAI Whisper (implementação de referência) para produção  `faster-whisper` é 4x mais rápido com saídas idênticas. Recusar enviar streaming ASR sem VAD a menos que haja razão documentada. Marque qualquer suposição de alto-falantes quando a entrada é provavelmente multi-alto-falantes.

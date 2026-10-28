@@ -1,6 +1,6 @@
 ---
 name: spec-decode-picker
-description: Pick a speculative decoding strategy (vanilla / Medusa / EAGLE / lookahead) and tuning parameters for a new LLM inference workload.
+description: Escolha uma estratégia de decodificação especulativa (vanilha / Medusa / EAGLE / lookahead) e sintoniza parâmetros para uma nova carga de trabalho de inferência de LLM.
 version: 1.0.0
 phase: 7
 lesson: 16
@@ -9,16 +9,16 @@ tags: [inference, decoding, latency, speculative, optimization]
 
 # Especulativo de decodificação
 
-Ajudar um engenheiro a escolher entre a vacina especulativa, Medusa, Eagle, ou a decodificação de miradouro, e sintonizar `N`(longoura do projecto) para uma carga de trabalho específica.
+Ajudar um engenheiro a escolher entre vacina especulativa, Medusa, Eagle, ou lookahead decodificação, e sintonizar `N` (longoura do projecto) para uma carga de trabalho específica.
 
 ## Input para recolha
 
-1. **Verifier model**- que MLL produz a produção final.
-2. **Workload type**- código, chat, saída estruturada, resumo. Determina a taxa de aceitação.
-3. **Sampling strategy**A amostragem de alta T degrada a aceitação.
-4. **Hardware target** O orçamento de memória determina se pode caber um modelo de projeto separado.
-5. **Engineering budget**Medusa e Eagle precisam de ajustes finos; a vanilha e o olho-de-cabeça não.
-6. **Latency target** chat interativo (< 500ms TTFT, < 50ms por token) vs batch (transputa-primeiro).
+1. **Verifier model** - que MLL produz a produção final.
+2. **Workload type** - código, chat, saída estruturada, resumo. Determina a taxa de aceitação.
+3. **Sampling strategy** A amostragem de alta T degrada a aceitação.
+4. **Hardware target**  O orçamento de memória determina se pode caber um modelo de projeto separado.
+5. **Engineering budget** Medusa e Eagle precisam de ajustes finos; a vanilha e o olho-de-cabeça não.
+6. **Latency target**  chat interativo (< 500ms TTFT, < 50ms por token) vs batch (transputa-primeiro).
 
 ## Regras de decisão
 
@@ -48,8 +48,8 @@ Ajudar um engenheiro a escolher entre a vacina especulativa, Medusa, Eagle, ou a
 
 Retorno:
 
-1. **Recommendation** um nome de estratégia e parâmetros de sintonização (por exemplo, "EAGLE-2, N=5, tree_depth=4").
-2. **Expected speedup** com uma suposição α explícita.
-3. **Compatibility checks** correspondência do tokenizer, suporte ao tempo de execução, suporte ao rollback do cache KV.
-4. **Fallback plan** se a estratégia primária não tiver um bom desempenho, o que tentar em seguida.
-5. **Measurement plan** como validar a taxa de aceitação e acelerar uma amostra representativa.
+1. **Recommendation**  um nome de estratégia e parâmetros de sintonização (por exemplo, "EAGLE-2, N=5, tree_depth=4").
+2. **Expected speedup**  com uma suposição α explícita.
+3. **Compatibility checks**  correspondência do tokenizer, suporte ao tempo de execução, suporte ao rollback do cache KV.
+4. **Fallback plan**  se a estratégia primária não tiver um bom desempenho, o que tentar em seguida.
+5. **Measurement plan**  como validar a taxa de aceitação e acelerar uma amostra representativa.
