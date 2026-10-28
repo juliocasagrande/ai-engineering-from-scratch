@@ -1,6 +1,6 @@
 ---
 name: skill-jax-patterns
-description: Functional programming patterns in JAX -- when and how to use grad, jit, vmap, and pmap
+description: Padrões de programação funcional no JAX - quando e como usar grad, jit, vmap e pmap
 version: 1.0.0
 phase: 3
 lesson: 12
@@ -21,7 +21,7 @@ loss, grads = jax.value_and_grad(loss_fn)(params, x, y)
 ```
 
 Utilize quando: você precisa de gradientes para a otimização.
-Constrangimento: a função deve retornar um escalar.`jax.jacobian`- Não .
+Constrangimento: a função deve retornar um escalar. `jax.jacobian`- Não .
 
 ### jit -- Compile uma função
 
@@ -30,7 +30,7 @@ fast_fn = jax.jit(f)
 ```
 
 Utilize quando: a função será chamada mais de uma vez com entradas de forma igual.
-Constraint: não existe fluxo de controle Python que dependa dos valores rastreados.`jax.lax.cond`para os condicionados, `jax.lax.scan`para os circuitos.
+Constraint: nenhum fluxo de controle Python que dependa dos valores rastreados. `jax.lax.cond` para os condicionados, `jax.lax.scan` para os circuitos.
 
 ### vmap -- Vectorize uma função
 
@@ -39,7 +39,7 @@ batch_fn = jax.vmap(f, in_axes=(None, 0))
 ```
 
 Utilize quando: escreveu uma função para um exemplo e precisa dela para funcionar em lotes.
-`in_axes`especifica qual eixo de argumento deve ser substituído. `None`Meio-divisão não em lote (divisão).
+`in_axes` especifica qual eixo de argumento deve ser substituído. `None` Meio-divisão não em lote (divisão).
 
 ### pmap -- Paralelamente em todos os dispositivos
 
@@ -48,7 +48,7 @@ parallel_fn = jax.pmap(f, axis_name='devices')
 ```
 
 Utilize quando: você tem várias GPUs/TPUs e deseja paralelo de dados.
-Dentro da função,`jax.lax.pmean(x, 'devices')`medias entre os dispositivos.
+Dentro da função, `jax.lax.pmean(x, 'devices')` medias entre os dispositivos.
 
 ## Regras de composição
 
@@ -61,11 +61,11 @@ per_example_grads = jax.jit(jax.vmap(jax.grad(loss_fn), in_axes=(None, 0, 0)))
 Leitura de direita para esquerda: tomar gradiente de loss_fn, vectorizar sobre exemplos, compilar o resultado.
 
 Composições válidas:
-- `jit(grad(f))`-- cálculo de gradientes compilado
-- `jit(vmap(f))`-- compilação de partidas
-- `vmap(grad(f))`-- gradientes por exemplo
-- `pmap(jit(f))`-- Computação compilada paralela
-- `grad(jit(f))`-- gradiente da função compilada (sim como jit(grad(f)))
+- `jit(grad(f))` -- cálculo de gradientes compilado
+- `jit(vmap(f))` -- compilação de partidas
+- `vmap(grad(f))` -- gradientes por exemplo
+- `pmap(jit(f))` -- Computação compilada paralela
+- `grad(jit(f))` -- gradiente da função compilada (sim como jit(grad(f)))
 
 ## Modelo de gestão de parâmetros
 
@@ -107,13 +107,13 @@ Nunca reutilize uma chave, sempre dividida antes de usar.
 
 ## Erros comuns
 
-1. **Mutating arrays inside jit**As matrizes JAX são imutáveis.`x.at[i].set(v)`Em vez de`x[i] = v`- Não .
+1. **Mutating arrays inside jit**As matrizes JAX são imutáveis. `x.at[i].set(v)` em vez de `x[i] = v`- Não .
 
-2. **Using Python print inside jit**- Não .`print`Execução de dados durante o rastreamento, não execução.`jax.debug.print("{}", x)`- Não .
+2. **Using Python print inside jit**- Não . `print` - O que é que é? `jax.debug.print("{}", x)`- Não .
 
-3. **Python if/for inside jit on traced values**Utilização: `jax.lax.cond`- Não .`jax.lax.switch`- Não .`jax.lax.scan`- Não .`jax.lax.fori_loop`- Não .
+3. **Python if/for inside jit on traced values**Utilização: `jax.lax.cond`- Não . `jax.lax.switch`- Não . `jax.lax.scan`- Não . `jax.lax.fori_loop`- Não .
 
-4. **Forgetting `.block_until_ready()`**Para comparar, liga-se a um sistema de correcção de dados.`.block_until_ready()`A espera da conclusão real.
+4. **Forgetting `.block_until_ready()`**Para comparar, ligar para o sistema de correção de dados `.block_until_ready()` A espera da conclusão real.
 
 5. **Reusing PRNG keys**Duas operações com a mesma chave produzem os mesmos valores "aleatórios".
 
@@ -121,12 +121,12 @@ Nunca reutilize uma chave, sempre dividida antes de usar.
 
 ## Lista de verificação das decisões
 
-1. A função é chamada mais de uma vez?`@jax.jit`- Não .
-2. - Precisa de gradientes?`jax.grad`ou `jax.value_and_grad`- Não .
-3. Procede um exemplo, mas você tem um lote?`jax.vmap`- Não .
-4. Tem vários dispositivos?`jax.pmap`- Não .
+1. A função é chamada mais de uma vez? `@jax.jit`- Não .
+2. - Precisa de gradientes? `jax.grad` ou `jax.value_and_grad`- Não .
+3. Procede um exemplo, mas você tem um lote? `jax.vmap`- Não .
+4. Tem vários dispositivos? `jax.pmap`- Não .
 5. - É aleatório?
-6. Tem o fluxo de controle Python nos valores de matriz?`jax.lax`primitivos.
+6. Tem o fluxo de controle Python em valores de matriz? `jax.lax` primitivos.
 
 ## Quando utilizar JAX
 

@@ -1,6 +1,6 @@
 ---
 name: prompt-optimizer-selector
-description: A decision prompt for choosing the right optimizer and learning rate for any architecture
+description: Um impulso de decisão para escolher otimizador certo e taxa de aprendizagem para qualquer arquitetura
 phase: 03
 lesson: 06
 ---

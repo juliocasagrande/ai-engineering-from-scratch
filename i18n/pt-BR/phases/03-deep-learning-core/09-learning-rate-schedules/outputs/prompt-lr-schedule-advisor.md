@@ -1,6 +1,6 @@
 ---
 name: prompt-lr-schedule-advisor
-description: Recommend the right learning rate schedule and hyperparameters for any training setup
+description: Recomendar o horário e os hiperparâmetros adequados para qualquer formação
 phase: 03
 lesson: 09
 ---

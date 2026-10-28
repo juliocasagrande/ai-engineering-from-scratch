@@ -1,6 +1,6 @@
 ---
 name: skill-perceptron
-description: Understand the perceptron pattern and when to use single-layer vs multi-layer architectures
+description: Compreender o padrão de percepção e quando usar arquiteturas de camada única versus multi-camada
 version: 1.0.0
 phase: 3
 lesson: 1

@@ -1,6 +1,6 @@
 ---
 name: prompt-nn-debugger
-description: Diagnose neural network training failures from symptoms -- loss curves, gradient stats, and activation patterns
+description: Diagnóstico de falhas de treinamento de rede neural de sintomas - curvas de perda, estatísticas de gradientes e padrões de ativação
 phase: 03
 lesson: 13
 ---
@@ -55,8 +55,8 @@ Descrever-te-ei:
 3. Tente cortar gradiente em 1.0.
 
 **EVAL MODE BUG:**
-1. É ?`model.eval()`- Chamou antes da inferência?
-2. É ?`torch.no_grad()`- Usado para inferir?
+1. É `model.eval()` - Chamou antes da inferência?
+2. É `torch.no_grad()` - Usado para inferir?
 3. A norma de abandono e de lote estão a comportar-se corretamente?
 
 ### Passo 3: Prescreva a solução

@@ -1,6 +1,6 @@
 ---
 name: prompt-activation-selector
-description: A decision prompt for choosing the right activation function for any neural network architecture
+description: Uma decisão rápida para escolher a função de ativação certa para qualquer arquitetura de rede neural
 phase: 03
 lesson: 04
 ---

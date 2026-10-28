@@ -1,6 +1,6 @@
 ---
 name: prompt-init-strategy
-description: Diagnose weight initialization problems and recommend the right strategy for any neural network architecture
+description: Diagnóstico de problemas de inicialização de peso e recomenda a estratégia correta para qualquer arquitetura de rede neural
 phase: 03
 lesson: 08
 ---
@@ -24,18 +24,18 @@ Aplicar as seguintes regras:
 
 **Sigmoid or Tanh activations:**
 - Use Xavier/ Glorot: `Var(w) = 2 / (fan_in + fan_out)`
-- PyTorch: `nn.init.xavier_normal_(layer.weight)`ou `nn.init.xavier_uniform_(layer.weight)`
+- - O que é isso? `nn.init.xavier_normal_(layer.weight)` ou `nn.init.xavier_uniform_(layer.weight)`
 - Preconceito: inicialização para zero
 
 **ReLU, Leaky ReLU, or GELU activations:**
 - Use Kaiming/He: `Var(w) = 2 / fan_in`
-- PyTorch: `nn.init.kaiming_normal_(layer.weight, nonlinearity='relu')`
+- - O que é isso? `nn.init.kaiming_normal_(layer.weight, nonlinearity='relu')`
 - Preconceito: inicialização para zero
 
 **Transformer with residual connections:**
 - Usar Kaiming para atenção e pesos de referência
-- Pesos de projecção residual de escala por `1/sqrt(2*N)`onde N = número de camadas
-- Embutidas em camadas: `Normal(0, 0.02)`é a convenção GPT
+- Pesos residuais de projeção de escala por `1/sqrt(2*N)` onde N = número de camadas
+- Embutidos em camadas: `Normal(0, 0.02)` é a convenção GPT
 
 **Convolutional layers:**
 - As mesmas regras que as lineares: Kaiming para ReLU, Xavier para sigmoide/tanh

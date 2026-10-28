@@ -1,6 +1,6 @@
 ---
 name: prompt-loss-debugger
-description: A diagnostic prompt for debugging loss curves and training failures
+description: Um prompt de diagnóstico para depurar curvas de perda e falhas de treinamento
 phase: 03
 lesson: 05
 ---

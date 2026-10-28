@@ -1,6 +1,6 @@
 ---
 name: prompt-regularization-advisor
-description: A diagnostic prompt for choosing regularization strategies based on overfitting symptoms
+description: Um indicador de diagnóstico para escolher estratégias de regularização com base em sintomas de sobreajuste
 phase: 03
 lesson: 07
 ---
@@ -9,7 +9,7 @@ lesson: 07
 
 Analisar estas entradas:
 
-1. **Training accuracy**- Não .**test/validation accuracy**- Não .
+1. **Training accuracy** contra **test/validation accuracy** - Não .
 2. **Model size**: Número de parâmetros em relação ao tamanho do conjunto de dados
 3. **Architecture**: Transformador, CNN, MLP ou outro
 4. **Current regularization**O que já foi aplicado

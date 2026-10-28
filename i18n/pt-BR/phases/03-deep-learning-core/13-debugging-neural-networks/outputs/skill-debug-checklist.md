@@ -1,6 +1,6 @@
 ---
 name: skill-debug-checklist
-description: Decision-tree checklist for debugging neural network training failures
+description: Lista de verificação de árvore de decisão para depurar falhas de treinamento de rede neural
 version: 1.0.0
 phase: 3
 lesson: 13
@@ -32,18 +32,18 @@ Protocolo de depuração sistemática para quando o treinamento falhar. Trabalhe
 
 1. Verifique a taxa de aprendizagem. Tente 3 valores: corrente/10, corrente, corrente*10
 2. Impressão de normas de gradiente por camada. Todos os zeros significam rede morta ou gráfico separado
-3. Verifique .`requires_grad=True`Verifique isso.`loss.backward()`é chamado
-4. Verifica isso .`optimizer.zero_grad()`é chamado antes `loss.backward()`
-5. Verifica isso .`optimizer.step()`é chamado depois `loss.backward()`
+3. Verificação `requires_grad=True` Verifique isso. `loss.backward()` é chamado
+4. Verifica isso. `optimizer.zero_grad()` é chamado antes `loss.backward()`
+5. Verifica isso. `optimizer.step()` é chamado depois `loss.backward()`
 6. Verificar os parâmetros do modelo são passados para o optimizador: `optimizer = Adam(model.parameters())`
 
 ## Perda é NaN ou Inf
 
 1. Reduzir a taxa de aprendizagem em 10x
-2. Adicionar epsilon a todas as ligações log()`torch.log(x + 1e-7)`
+2. Adicionar epsilon a todas as ligações log() `torch.log(x + 1e-7)`
 3. Adicionar epsilon a todas as divisões: `x / (y + 1e-8)`
-4. Previsões de Clamp: `torch.clamp(pred, 1e-7, 1 - 1e-7)`antes da perda BCE
-5. Utilização`torch.autograd.detect_anomaly()`Para encontrar a operação exata
+4. Previsões de Clamp: `torch.clamp(pred, 1e-7, 1 - 1e-7)` antes da perda BCE
+5. Utilização `torch.autograd.detect_anomaly()` Para encontrar a operação exata
 6. Verificar NaN nos dados de entrada: `assert not torch.isnan(x).any()`
 
 ## Oscilação de perdas

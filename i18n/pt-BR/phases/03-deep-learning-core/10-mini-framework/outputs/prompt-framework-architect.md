@@ -1,6 +1,6 @@
 ---
 name: prompt-framework-architect
-description: Design neural network architectures using framework abstractions -- modules, containers, losses, and optimizers
+description: Projetar arquiteturas de rede neural usando abstrações de framework - módulos, contêineres, perdas e optimizadores
 phase: 03
 lesson: 10
 ---
@@ -65,11 +65,11 @@ Para cada camada, especifique:
 
 Fornecer:
 
-1. **Architecture diagram**em PyTorch Notação sequencial
-2. **Parameter count**Estimativa
-3. **Training configuration**(optimizador, LR, cronograma, tamanho do lote)
-4. **Expected training time**Estimativa
-5. **Potential issues**e como evitá-los
+1. **Architecture diagram** em PyTorch Notação sequencial
+2. **Parameter count** Estimativa
+3. **Training configuration** (optimizador, LR, cronograma, tamanho do lote)
+4. **Expected training time** Estimativa
+5. **Potential issues** e como evitá-los
 
 Exemplo de saída:
 

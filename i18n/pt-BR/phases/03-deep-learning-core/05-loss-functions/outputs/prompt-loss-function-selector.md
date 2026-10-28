@@ -1,6 +1,6 @@
 ---
 name: prompt-loss-function-selector
-description: A decision prompt for choosing the right loss function for any ML task
+description: Uma decisão de urgência para escolher a função de perda certa para qualquer tarefa de ML
 phase: 03
 lesson: 05
 ---

@@ -1,6 +1,6 @@
 ---
 name: skill-pytorch-patterns
-description: Reference patterns for PyTorch training, evaluation, and deployment
+description: Padrões de referência para a formação, avaliação e implantação do PyTorch
 version: 1.0.0
 phase: 03
 lesson: 11
@@ -84,7 +84,7 @@ model.load_state_dict(checkpoint["model_state_dict"])
 optimizer.load_state_dict(checkpoint["optimizer_state_dict"])
 ```
 
-Salva sempre o estado do optimizador para retomar o treinamento.`model.state_dict()`- Não .
+Salva sempre o estado do optimizador para retomar o treinamento. `model.state_dict()`- Não .
 
 ## Set de dados personalizados
 
@@ -145,7 +145,7 @@ for epoch in range(num_epochs):
         scheduler.step()
 ```
 
-OneCycleLR: melhor padrão para a maioria das tarefas. aquece até max_lr, depois desintegra cosino.`scheduler.step()`Depois de cada lote, não de cada época.
+OneCycleLR: melhor padrão para a maioria das tarefas. aquece até max_lr, então cosino decompõe. `scheduler.step()` Depois de cada lote, não de cada época.
 
 ## Inicialização do peso
 
@@ -170,7 +170,7 @@ with torch.inference_mode():
     outputs = model(inputs)
 ```
 
-`torch.inference_mode()`É mais rápido que `torch.no_grad()`Porque desativa o autogrado inteiramente, em vez de apenas suprimir o cálculo de gradientes.
+`torch.inference_mode()` é mais rápido do que `torch.no_grad()` Porque desativa o autogrado inteiramente, em vez de apenas suprimir o cálculo de gradientes.
 
 ## Lista de erros comuns
 

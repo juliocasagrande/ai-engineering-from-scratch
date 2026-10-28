@@ -1,6 +1,6 @@
 ---
 name: prompt-network-architect
-description: Guides the user through designing neural network architectures by choosing layer counts, neuron counts, and activation functions for a given problem
+description: Guia o usuário através do projeto de arquiteturas de rede neural escolhendo contagens de camadas, contagens de neurônios e funções de ativação para um determinado problema
 phase: 03
 lesson: 02
 ---

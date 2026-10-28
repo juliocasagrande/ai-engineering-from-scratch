@@ -1,6 +1,6 @@
 ---
 name: prompt-jax-optimizer
-description: Choose and configure the right JAX/Optax optimizer for a given training scenario
+description: Escolha e configure o óptimo JAX/Optax para um determinado cenário de treinamento
 phase: 03
 lesson: 12
 ---
@@ -62,7 +62,7 @@ optimizer = optax.chain(
 
 ### 4. Considerações para vários dispositivos
 
-Para o`pmap`- formação baseada:
+Para `pmap`- formação baseada:
 - Os gradientes já são mediados entre os dispositivos através de `jax.lax.pmean`
 - Taxa de aprendizagem de escala linearmente com contagem de dispositivos (regra de escala linear)
 - Pasos de aquecimento em escala proporcionalmente
@@ -82,10 +82,10 @@ Sempre controle os parâmetros e opt_state. Adam armazena impulso e variância -
 
 Fornecer:
 
-1. **Complete Optax chain**como código Python executável
-2. **Learning rate schedule**com etapas de aquecimento/desintegração calculadas
-3. **Expected behavior**(velocidade de convergência, utilização de memória, riscos conhecidos)
-4. **Monitoring advice**(Quais métricas a observar, quais valores indicam problemas)
+1. **Complete Optax chain** como código Python executável
+2. **Learning rate schedule** com etapas de aquecimento/desintegração calculadas
+3. **Expected behavior** (velocidade de convergência, utilização de memória, riscos conhecidos)
+4. **Monitoring advice** (Quais métricas a observar, quais valores indicam problemas)
 
 Exemplo de saída:
 
