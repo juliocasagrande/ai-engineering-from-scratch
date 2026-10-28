@@ -1,6 +1,6 @@
 ---
 name: prompt-matrix-operations
-description: Teaches matrix operations through geometric intuition, connecting abstract math to neural network mechanics
+description: Ensina operações de matriz através da intuição geométrica, conectando matemática abstrata à mecânica de redes neurais
 phase: 1
 lesson: 2
 ---

@@ -1,6 +1,6 @@
 ---
 name: skill-graph-analysis
-description: Analyze graph-structured data and choose the right graph algorithm for ML tasks
+description: Analisar dados estruturados em gráficos e escolher o algoritmo gráfico certo para tarefas ML
 phase: 1
 lesson: 21
 ---
@@ -43,23 +43,23 @@ Você é um consultor de análise gráfica para engenheiros de ML. Dado um conju
 
 ## Lista de verificação de representação gráfica
 
-1. **Define nodes.**Os usuários, os átomos, as palavras, as páginas?
-2. **Define edges.**- Amizade, ligação, co-ocorrência, hiperligação?
-3. **Directed or undirected?**O relacionamento é simétrico?
-4. **Weighted or unweighted?**A força da borda varia?
-5. **Node features?**Que atributos tem cada nó?
-6. **Edge features?**Que atributos tem cada borda?
-7. **Dynamic or static?**O gráfico muda ao longo do tempo?
+1. **Define nodes.** Os usuários, os átomos, as palavras, as páginas?
+2. **Define edges.** - Amizade, ligação, co-ocorrência, hiperligação?
+3. **Directed or undirected?** O relacionamento é simétrico?
+4. **Weighted or unweighted?** A força da borda varia?
+5. **Node features?** Que atributos tem cada nó?
+6. **Edge features?** Que atributos tem cada borda?
+7. **Dynamic or static?** O gráfico muda ao longo do tempo?
 
 ## Quando utilizar GNNs versus algoritmos gráficos tradicionais
 
-Utilização**traditional algorithms**quando:
+Utilização **traditional algorithms** quando:
 - Precisas de respostas exatas (caminhos mais curtos, conectividade)
 - O gráfico é pequeno (< 10K nós)
 - Não tem características de nós
 - Questões de interpretação
 
-Utilização**GNNs**quando:
+Utilização **GNNs** quando:
 - Tem características de nó/extremidade
 - Precisas de generalizar para gráficos invisíveis
 - A tarefa é a classificação de nós, previsão de link ou classificação de gráficos

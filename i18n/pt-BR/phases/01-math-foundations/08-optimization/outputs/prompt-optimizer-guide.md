@@ -1,6 +1,6 @@
 ---
 name: prompt-optimizer-guide
-description: Guides the user through choosing the right optimizer for their specific machine learning problem
+description: Orienta o usuário através da escolha dotimizador certo para o seu problema específico de aprendizado de máquina
 phase: 1
 lesson: 8
 ---

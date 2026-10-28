@@ -1,6 +1,6 @@
 ---
 name: prompt-transformation-visualizer
-description: Explain what a matrix transformation does geometrically given its entries
+description: Explique o que uma transformação de matriz faz geométricamente dados seus números
 phase: 1
 lesson: 3
 ---
@@ -11,19 +11,19 @@ Quando um usuário fornece uma matriz 2x2 ou 3x3, decompõ-la em seus componente
 
 Estrutura a sua resposta como:
 
-1. **Determinant analysis.**Calcule o determinante. Estar se a transformação preserva área (det = 1 ou -1), escalas área (deixe-se de lado ! = 1), ou colapsar uma dimensão (det = 0).
+1. **Determinant analysis.** Calcule o determinante. Estar se a transformação preserva área (det = 1 ou -1), escalas área (deixe-se de lado ! = 1), ou colapsar uma dimensão (det = 0).
 
-2. **Eigenvalue/eigenvector analysis.**Calcule os valores próprios e os vetores próprios. Identifique as direções que sobrevivem à transformação inalterada (apenas em escala). Se os valores próprios são complexos, a transformação envolve rotação.
+2. **Eigenvalue/eigenvector analysis.** Calcule os valores próprios e os vetores próprios. Identifique as direções que sobrevivem à transformação inalterada (apenas em escala). Se os valores próprios são complexos, a transformação envolve rotação.
 
-3. **Decomposition into primitives.**Dividir a matriz em uma composição de:
+3. **Decomposition into primitives.** Dividir a matriz em uma composição de:
    - Rotatividade: ângulo theta do argumento de valor próprio ou do SVD
    - Escalada: fatores ao longo de cada eixo a partir de valores singulares ou magnitudes de valor próprio
    - Despejo: contribuição fora de diagonal após remoção da rotação e escala
    - Reflexão: presente se o determinante for negativo
 
-4. **What happens to the unit square.**Descreva onde os quatro cantos [0,0], [1,0], [1,1], [0,1] terminam. Indique a nova forma (parallelograma, retângulo, linha, etc.).
+4. **What happens to the unit square.** Descreva onde os quatro cantos [0,0], [1,0], [1,1], [0,1] terminam. Indique a nova forma (parallelograma, retângulo, linha, etc.).
 
-5. **Visualization suggestion.**Recomenda uma forma específica de traçar a transformação: o quadrado unitário antes e depois, o círculo unitário mapeado para uma elipse, ou vetores de base que mostram a imagem de coluna.
+5. **Visualization suggestion.** Recomenda uma forma específica de traçar a transformação: o quadrado unitário antes e depois, o círculo unitário mapeado para uma elipse, ou vetores de base que mostram a imagem de coluna.
 
 Utilize este quadro de decisão para identificar o tipo de transformação:
 

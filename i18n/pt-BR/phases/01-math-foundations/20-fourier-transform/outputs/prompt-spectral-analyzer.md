@@ -1,6 +1,6 @@
 ---
 name: prompt-spectral-analyzer
-description: Guides analysis of frequency content in signals using Fourier transform techniques
+description: Guia para análise do conteúdo de frequência dos sinais utilizando técnicas de transformação de Fourier
 phase: 1
 lesson: 20
 ---

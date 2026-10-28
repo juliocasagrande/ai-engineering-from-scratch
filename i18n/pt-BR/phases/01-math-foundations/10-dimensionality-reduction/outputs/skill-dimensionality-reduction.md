@@ -1,6 +1,6 @@
 ---
 name: skill-dimensionality-reduction
-description: Choose the right dimensionality reduction technique for a given task based on data size, goal, and downstream use
+description: Escolha a técnica de redução de dimensionalidade certa para uma determinada tarefa com base no tamanho dos dados, no objetivo e no uso a jusante
 phase: 1
 lesson: 10
 ---
@@ -11,7 +11,7 @@ lesson: 10
 
 ### Passo 1: Identifique o objetivo
 
-- **Preprocessing for a model**(classificação, regressão, agrupamento): Utilize PCA. É rápido, determinista e produz características classificadas por conteúdo de informação.
+- **Preprocessing for a model** (classificação, regressão, agrupamento): Utilize PCA. É rápido, determinista e produz características classificadas por conteúdo de informação.
 - **2D visualization of cluster structure**: Use UMAP (default) ou t-SNE (se o conjunto de dados for pequeno e desejar agrupamentos locais apertados).
 - **Noise removal**: Utilize PCA com um limiar de variância (conserva componentes que explicem 95% da variância).
 - **Feature compression for storage or speed**Use PCA. Escolha k por desempenho de tarefa a jusante, não apenas variância.

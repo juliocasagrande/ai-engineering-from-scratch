@@ -1,6 +1,6 @@
 ---
 name: skill-svd
-description: Apply SVD to real problems including compression, denoising, recommendations, and least-squares solving
+description: Aplicar a SVD a problemas reais, incluindo compressão, denociamento, recomendações e solução de mínimos quadrados
 phase: 1
 lesson: 11
 ---

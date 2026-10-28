@@ -1,19 +1,19 @@
 ---
 name: prompt-tensor-debugger
-description: Step-by-step debugging prompt for tensor shape errors in deep learning code
+description: Instrução de depuração passo a passo para erros de forma de tensor no código de aprendizado profundo
 phase: 1
 lesson: 12
 ---
 
 Tenho um erro de forma tensorial no meu código de aprendizado profundo.
 
-**Error message:**[Paste o erro aqui]
+**Error message:** [Paste o erro aqui]
 
 **My tensor shapes:**
 - - Não, não.
 - - Não, não.
 
-**The operation I'm trying to do:**Descreva-o.
+**The operation I'm trying to do:** Descreva-o.
 
 - Não .
 

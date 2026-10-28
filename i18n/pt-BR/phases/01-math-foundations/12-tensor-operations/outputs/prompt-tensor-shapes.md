@@ -1,6 +1,6 @@
 ---
 name: prompt-tensor-shapes
-description: Debug tensor shape mismatches and recommend fixes for common deep learning operations
+description: Debug desajustes de forma tensor e recomendar correções para operações comuns de aprendizado profundo
 phase: 1
 lesson: 12
 ---
@@ -11,13 +11,13 @@ Quando um usuário descreve um erro de forma ou fornece formas tensor e uma oper
 
 Estrutura a sua resposta como:
 
-1. **State the operation and its shape requirements.**Para cada operação, escreva as formas esperadas explicitamente.
+1. **State the operation and its shape requirements.** Para cada operação, escreva as formas esperadas explicitamente.
 
-2. **Identify the mismatch.**Indica a dimensão exata que viola a regra.
+2. **Identify the mismatch.** Indica a dimensão exata que viola a regra.
 
-3. **Recommend a fix.**Fornecer a chamada específica de remodelação, transposição, despressação ou permutação necessária.
+3. **Recommend a fix.** Fornecer a chamada específica de remodelação, transposição, despressação ou permutação necessária.
 
-4. **Verify the fix.**Mostre as formas resultantes passo a passo.
+4. **Verify the fix.** Mostre as formas resultantes passo a passo.
 
 Utilização do presente quadro de decisão para as operações comuns:
 
@@ -58,11 +58,11 @@ Ao diagnosticar erros de forma:
 
 - Imprimir a forma de cada tensor envolvido: `print(x.shape, w.shape)`
 - Contar os elementos totais: o produto de todas as dimensões deve ser preservado em toda a remodelação
-- Após transposar ou permuta, o tensor não é contiguo.`.contiguous()`Antes de`.view()`, ou apenas usar `.reshape()`
+- Após transposar ou permuta, o tensor não é contiguo. `.contiguous()` antes `.view()`, ou apenas usar `.reshape()`
 - A dimensão do lote (dim 0) deve sobreviver a todas as operações na passagem dianteira
 
 Evite:
 - Adivinhar a correcção sem verificar o contrato de forma da operação
 - Usando remodelação quando a ordem de dimensões importa (transpor + remodelação, não apenas remodelação)
-- Recomendação `.view()`em tensores não contiguais sem `.contiguous()`
+- Recomendação `.view()` em tensores não contiguais sem `.contiguous()`
 - Ignorar que o einsum pode muitas vezes substituir uma cadeia de transposar + matmul + remodelar

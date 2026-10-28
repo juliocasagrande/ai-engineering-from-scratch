@@ -1,6 +1,6 @@
 ---
 name: skill-gradient-computation
-description: Compute gradients of common ML loss functions and choose the right derivative approach
+description: Calcule gradientes das funções comuns de perda de ML e escolha a abordagem derivada correta
 version: 1.0.0
 phase: 1
 lesson: 4
@@ -14,7 +14,7 @@ Referência prática para a computação de gradientes de funções de perda, fu
 ## Lista de verificação das decisões
 
 1. A função é composta por primitivas simples (potência, exp, log, trig)?
-2. A função é uma operação personalizada ou caixa negra? Use diferenciação numérica: `(f(x+h) - f(x-h)) / (2h)`com h = 1e-7.
+2. A função é uma operação personalizada ou caixa negra? `(f(x+h) - f(x-h)) / (2h)` com h = 1e-7.
 3. A função é construída a partir de operações de tensor em PyTorch / JAX? Deixe o autograd lidar com ele. Verifique com verificação numérica.
 4. Você precisa do gradiente de uma perda escalar w.r.t. uma matriz de pesos? Aplique a regra da cadeia através do gráfico de cálculo, um nó por vez.
 5. Existe uma operação não diferenciável (argmax, arredondamento, amostragem)?

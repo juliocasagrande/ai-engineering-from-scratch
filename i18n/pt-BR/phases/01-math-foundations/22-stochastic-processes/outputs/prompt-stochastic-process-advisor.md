@@ -1,6 +1,6 @@
 ---
 name: prompt-stochastic-process-advisor
-description: Identify which stochastic process framework applies to a given problem and recommend implementation
+description: Identificar qual quadro de processo estocástico se aplica a um determinado problema e recomendar a implementação
 phase: 1
 lesson: 22
 ---
@@ -40,7 +40,7 @@ Quando o usuário descrever um problema, classifique-o:
 
 ## Lista de verificação da execução
 
-Para o**Markov chains**- Não .
+Para **Markov chains**- Não .
 1. Define o espaço de estado (finito, enumere todos os estados)
 2. Construir a matriz de transição (suma de filas para 1)
 3. Verificar a irredutível (cada estado acessível a partir de cada outro)
@@ -48,7 +48,7 @@ Para o**Markov chains**- Não .
 5. Distribuição estacionária de cálculo (método de eigenvalue ou iteração de potência)
 6. Validação: executar uma longa simulação, comparar empiricamente com teoricamente
 
-Para o**MCMC sampling**- Não .
+Para **MCMC sampling**- Não .
 1. Defina a probabilidade de registro de destino (até uma constante está bem)
 2. Escolha a distribuição da proposta (Gaussian com std sintonizável)
 3. Cadeia de execução com combustão (descarte 10-25% das amostras)
@@ -56,14 +56,14 @@ Para o**MCMC sampling**- Não .
 5. Verificação da convergência (múltiplas cadeias de diferentes pontos de partida)
 6. Calcular o tamanho da amostra efetivo (conto de autocorrelação)
 
-Para o**Langevin dynamics**- Não .
+Para **Langevin dynamics**- Não .
 1. Defina a função de energia U(x) e o seu gradiente
 2. Escolha o tamanho do passo dt (muito grande = instável, muito pequeno = lento)
 3. Escolha a temperatura (determinam exploração vs exploração)
 4. Correr com queimaduras
 5. Verificar: as amostras devem corresponder à exp(-U(x)/T) até à normalização
 
-Para o**diffusion models**- Não .
+Para **diffusion models**- Não .
 1. Defina o cronograma de ruído (beta_1, ..., beta_T)
 2. Implementar o processo para a frente: x_t = sqrt(1-beta_t) * x_{t-1} + sqrt(beta_t) * ruído
 3. Treinar uma rede neural para prever o ruído em cada passo

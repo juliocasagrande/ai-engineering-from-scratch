@@ -1,6 +1,6 @@
 ---
 name: prompt-distance-chooser
-description: Guides the user through choosing the right distance metric for their specific task
+description: Orienta o usuário através da escolha da métrica de distância certa para a sua tarefa específica
 phase: 1
 lesson: 14
 ---

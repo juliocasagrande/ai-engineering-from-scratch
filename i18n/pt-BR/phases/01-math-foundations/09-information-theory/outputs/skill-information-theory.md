@@ -1,6 +1,6 @@
 ---
 name: skill-information-theory
-description: Apply information theory concepts to ML loss functions, model evaluation, and feature selection
+description: Aplicar conceitos de teoria da informação às funções de perda de ML, avaliação de modelos e seleção de características
 version: 1.0.0
 phase: 1
 lesson: 9
@@ -13,12 +13,12 @@ Quando utilizar entropia, entropia cruzada, divergência KL e informação mútu
 
 ## Lista de verificação das decisões
 
-1. Medir a incerteza numa única distribuição? Usar **entropy**- Não .
-2. Medir o quão bem um modelo se aproxima das etiquetas verdadeiras?**cross-entropy**(este é o seu classificação perda).
-3. Medir a distância entre duas distribuições?**KL divergence**- Não .
-4. Verificar se duas variáveis estão relacionadas?**mutual information**- Não .
-5. Qualidade do modelo de comunicação linguística?**perplexity**(exponencial de entropia cruzada).
-6. Destilar um modelo para outro?**KL divergence**De professora a estudante.
+1. Medir a incerteza numa única distribuição? **entropy**- Não .
+2. Medir a aproximação de um modelo com as etiquetas reais? **cross-entropy** (este é o seu classificação perda).
+3. Medir a distância entre duas distribuições? **KL divergence**- Não .
+4. Verificar se duas variáveis estão relacionadas? **mutual information**- Não .
+5. Qualidade do modelo de comunicação de linguagem? **perplexity** (exponencial de entropia cruzada).
+6. Destilar um modelo para outro? **KL divergence** De professora a estudante.
 
 ## Quando utilizar cada medida
 

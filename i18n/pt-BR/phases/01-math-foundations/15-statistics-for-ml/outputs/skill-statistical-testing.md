@@ -1,6 +1,6 @@
 ---
 name: skill-statistical-testing
-description: Choose the right statistical test for comparing ML models and evaluating experiments
+description: Escolher o teste estatístico adequado para comparar modelos de ML e avaliar experimentos
 version: 1.0.0
 phase: 1
 lesson: 15

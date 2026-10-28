@@ -1,6 +1,6 @@
 ---
 name: skill-complex-arithmetic
-description: Quick reference for complex number operations in ML and signal processing contexts
+description: Referência rápida para operações de números complexos em contextos de ML e processamento de sinais
 phase: 1
 lesson: 19
 ---

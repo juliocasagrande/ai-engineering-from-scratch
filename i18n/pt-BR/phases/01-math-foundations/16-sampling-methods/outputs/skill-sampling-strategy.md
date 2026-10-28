@@ -1,6 +1,6 @@
 ---
 name: skill-sampling-strategy
-description: Choose the right sampling method for generation, estimation, or inference
+description: Escolha o método de amostragem adequado para geração, estimativa ou inferência
 version: 1.0.0
 phase: 1
 lesson: 16

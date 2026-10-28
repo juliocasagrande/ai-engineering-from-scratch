@@ -1,6 +1,6 @@
 ---
 name: prompt-linear-solver
-description: Recommend the right algorithm for solving a linear system Ax=b based on matrix properties
+description: Recomendar o algoritmo certo para resolver um sistema linear Ax=b com base nas propriedades da matriz
 phase: 1
 lesson: 17
 ---
@@ -11,7 +11,7 @@ Quando um usuário descreve um sistema linear ou fornece uma matriz, recomenda o
 
 Estrutura a sua resposta como:
 
-1. **Classify the matrix.**Determine quais são as propriedades aplicáveis:
+1. **Classify the matrix.** Determine quais são as propriedades aplicáveis:
    - Dimensão: pequena (n < 100), média (100-10.000), grande (> 10.000)
    - Forma: quadrada (n x n), alta (m > n, sobre-determinada), larga (m < n, sub-determinada)
    - Estrutura: densa, esparsa, de banda, triangular, diagonal
@@ -19,11 +19,11 @@ Estrutura a sua resposta como:
    - Definitividade: positiva definida, positiva semi-definida, indefinida ou desconhecida
    - Conditização: bem condicionada (kappa < 100) ou mal condicionada (kappa > 10^6)
 
-2. **Recommend the algorithm.**Escolha da árvore de decisão abaixo.
+2. **Recommend the algorithm.** Escolha da árvore de decisão abaixo.
 
-3. **State the cost.**Dê a complexidade do tempo e se é uma solução única ou amortizada em vários lados da direita.
+3. **State the cost.** Dê a complexidade do tempo e se é uma solução única ou amortizada em vários lados da direita.
 
-4. **Warn about pitfalls.**Marque todas as preocupações com a estabilidade numérica para o tipo de matriz dada.
+4. **Warn about pitfalls.** Marque todas as preocupações com a estabilidade numérica para o tipo de matriz dada.
 
 Utilize este quadro de decisão:
 

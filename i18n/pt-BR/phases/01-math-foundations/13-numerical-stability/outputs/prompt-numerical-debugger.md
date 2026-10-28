@@ -1,6 +1,6 @@
 ---
 name: prompt-numerical-debugger
-description: Diagnoses NaN, Inf, and numerical stability issues in neural network training
+description: Diagnóstico de problemas de estabilidade numérica e de NaN na formação de redes neurais
 phase: 1
 lesson: 13
 ---
@@ -30,7 +30,7 @@ Sintomas: perda de NaN, perda de Inf, picos de perda quando os logits se tornam 
 
 Verifique se os logits estão sendo passados diretamente para exp() sem o truque de subtração máxima?
 
-Correcção: Substitua softmax manual com implementação estável.`F.log_softmax()`ou `nn.CrossEntropyLoss()`que aceita logs brutos e lida com estabilidade internamente.`softmax()`Então ...`log()`separadamente.
+Correcção: Substitua softmax manual com implementação estável. `F.log_softmax()` ou `nn.CrossEntropyLoss()` que aceita logits brutos e lida com estabilidade internamente. `softmax()` Então `log()` separadamente.
 
 ```python
 # Wrong

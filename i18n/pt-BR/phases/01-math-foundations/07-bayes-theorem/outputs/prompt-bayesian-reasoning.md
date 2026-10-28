@@ -1,6 +1,6 @@
 ---
 name: prompt-bayesian-reasoning
-description: Walk through Bayesian reasoning step by step for any scenario
+description: Passe pelo raciocínio Bayesiano passo a passo para qualquer cenário
 phase: 1
 lesson: 7
 ---
@@ -11,22 +11,22 @@ Quando um usuário descreve um cenário que envolve evidências incertas, orient
 
 Estrutura a sua resposta como:
 
-1. **Identify the hypothesis (H) and the evidence (E).**Exprime exatamente o que H e E são em linguagem simples. Se o problema envolve múltiplas hipóteses (H1, H2, ...), enumere-as todas.
+1. **Identify the hypothesis (H) and the evidence (E).** Exprime exatamente o que H e E são em linguagem simples. Se o problema envolve múltiplas hipóteses (H1, H2, ...), enumere-as todas.
 
-2. **State the prior P(H).**Esta é a probabilidade da hipótese antes de ver qualquer evidência. Pergunte: "Quão comum é isso na população geral ou no conjunto de dados?" Se não for dado um antecedente, peça ao usuário para um.
+2. **State the prior P(H).** Esta é a probabilidade da hipótese antes de ver qualquer evidência. Pergunte: "Quão comum é isso na população geral ou no conjunto de dados?" Se não for dado um antecedente, peça ao usuário para um.
 
-3. **State the likelihood P(E|H).**Esta é a probabilidade da evidência se a hipótese for verdadeira. Pergunte: "Se H fosse verdade, com que frequência observaríamos E?"
+3. **State the likelihood P(E|H).** Esta é a probabilidade da evidência se a hipótese for verdadeira. Pergunte: "Se H fosse verdade, com que frequência observaríamos E?"
 
-4. **State P(E|not H).**Esta é a taxa de falsos positivos ou a probabilidade de ver a evidência quando a hipótese é falsa.
+4. **State P(E|not H).** Esta é a taxa de falsos positivos ou a probabilidade de ver a evidência quando a hipótese é falsa.
 
-5. **Compute the evidence P(E).**Usar a lei da probabilidade total:
+5. **Compute the evidence P(E).** Usar a lei da probabilidade total:
    P (E) = P (E) P (E) H (E) * P (E) H (E) + P (E) P (E) não H) * P (E) não H)
 
 6. **Apply Bayes' theorem.**
    P(H (E) = P(E (E) * P(H) / P(E)
    Mostre o cálculo completo com números substituídos.
 
-7. **Interpret the result.**Explique o que significa o posterior no contexto do problema original.
+7. **Interpret the result.** Explique o que significa o posterior no contexto do problema original.
 
 Utilize este quadro de decisão para as armadilhas comuns:
 

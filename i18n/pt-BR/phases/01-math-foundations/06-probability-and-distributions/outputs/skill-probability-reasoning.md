@@ -1,6 +1,6 @@
 ---
 name: skill-probability-reasoning
-description: Choose the right probability distribution for a given ML problem
+description: Escolha a distribuição de probabilidade correta para um determinado problema de ML
 version: 1.0.0
 phase: 1
 lesson: 6
