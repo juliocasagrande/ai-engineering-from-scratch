@@ -58,12 +58,21 @@ class TranslateExtrasTest(unittest.TestCase):
             extras.lessons._nllb_pipe = lambda _: object()
             def translate(_pipe, text):
                 self.assertNotIn('uv', text)
-                return 'tradução ' if text.strip() else text
+                return 'tradução' if text.strip() else text
             extras.lessons._nllb_sentence = translate
-            self.assertEqual(extras.translate_string('Use `uv` today.', 'pt-BR', 'nllb'), 'tradução `uv`tradução ')
+            self.assertEqual(extras.translate_string('Use `uv` today.', 'pt-BR', 'nllb'), 'tradução `uv` tradução')
         finally:
             extras.lessons._nllb_sentence = original
             extras.lessons._nllb_pipe = original_pipe
+
+    def test_fragment_preserves_spacing_around_inline_code(self):
+        original = extras.lessons._nllb_sentence
+        try:
+            extras.lessons._nllb_sentence = lambda _pipe, body: body.upper()
+            self.assertEqual(extras.translate_fragment(None, '  before '), '  BEFORE ')
+            self.assertEqual(extras.translate_fragment(None, ' after. '), ' AFTER. ')
+        finally:
+            extras.lessons._nllb_sentence = original
 
 
 if __name__ == '__main__':
