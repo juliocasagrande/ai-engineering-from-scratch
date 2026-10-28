@@ -1,6 +1,6 @@
 ---
 name: var-tokenizer-designer
-description: Design a multi-scale residual VQ tokenizer for next-scale visual autoregressive image generation.
+description: Projetar um tokenizer VQ residual em várias escalas para geração de imagens autoregressivas visuais em próxima escala.
 version: 1.0.0
 phase: 8
 lesson: 19

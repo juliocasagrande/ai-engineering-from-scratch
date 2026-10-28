@@ -1,6 +1,6 @@
 ---
 name: audio-brief
-description: Translate an audio brief into a model + prompt + eval plan across TTS, music, and SFX.
+description: Traduza um resumo de áudio em um modelo + prompt + plano de avaliação em TTS, música e SFX.
 version: 1.0.0
 phase: 8
 lesson: 11

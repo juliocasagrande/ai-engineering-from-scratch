@@ -1,6 +1,6 @@
 ---
 name: editing-pipeline
-description: Plan an image-editing pipeline from source + edit description to a ready-to-ship output.
+description: Planeje um pipeline de edição de imagem da fonte + edição da descrição para uma saída pronta para o navio.
 version: 1.0.0
 phase: 8
 lesson: 09

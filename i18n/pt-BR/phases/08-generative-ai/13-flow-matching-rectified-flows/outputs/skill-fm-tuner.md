@@ -1,6 +1,6 @@
 ---
 name: fm-tuner
-description: Convert a diffusion training plan into a flow-matching / rectified-flow config.
+description: Convertir um plano de formação de difusão em um sistema de correspondência de fluxo / configuração de fluxo rectificado.
 version: 1.0.0
 phase: 8
 lesson: 13

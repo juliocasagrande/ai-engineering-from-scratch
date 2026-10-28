@@ -1,6 +1,6 @@
 ---
 name: 3d-pipeline
-description: Choose a 3D generation or reconstruction pipeline given input type, output format, and use case.
+description: Escolha um pipeline de geração ou reconstrução 3D dado tipo de entrada, formato de saída e caso de uso.
 version: 1.0.0
 phase: 8
 lesson: 12

@@ -1,6 +1,6 @@
 ---
 name: eval-report
-description: Plan a full generative-model evaluation: sample quality, adherence, preference, failure audit.
+description: Planejar uma avaliação completa do modelo gerativo: qualidade da amostra, conformidade, preferência, auditoria de falhas.
 version: 1.0.0
 phase: 8
 lesson: 14

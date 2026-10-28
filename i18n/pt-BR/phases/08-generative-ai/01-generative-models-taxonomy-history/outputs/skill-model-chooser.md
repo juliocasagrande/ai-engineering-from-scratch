@@ -1,6 +1,6 @@
 ---
 name: generative-model-chooser
-description: Pick a generative-model family, backbone, and hosted alternative for a given task and budget.
+description: Escolha uma família de modelo gerativo, espinha dorsal e alternativa hospedada para uma determinada tarefa e orçamento.
 version: 1.0.0
 phase: 8
 lesson: 01
