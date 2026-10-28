@@ -1,6 +1,11 @@
 name: translate pt-BR quizzes and artifacts
 
 on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/translate-ptbr-extras.yml'
+      - 'scripts/translate_extras.py'
   workflow_dispatch:
     inputs:
       phase:
