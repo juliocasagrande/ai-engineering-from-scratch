@@ -1,0 +1,64 @@
+{
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "O que é o \"tecto de agente único\"?",
+      "options": [
+        "O ponto em que um único agente falha porque a tarefa excede uma janela de contexto, requer conhecimentos especializados diferentes ou requer trabalho paralelo",
+        "O tamanho máximo do modelo que pode ser executado em uma única GPU",
+        "O número máximo de ferramentas que um agente pode utilizar",
+        "O limite de quantos chamadas de API um agente pode fazer por minuto"
+      ],
+      "correct": 0,
+      "explanation": "Um único agente tem uma janela de contexto, um sistema de prompt e processos sequenciais. Quando as tarefas exigem a leitura de 50 arquivos (desbordamento de contexto), a mudança entre pesquisa e codificação (expertos mistos) ou a realização de trabalho independente simultaneamente (paralelismo), um único agente se rompe."
+    },
+    {
+      "stage": "pre",
+      "question": "Porque é que usas vários agentes especializados em vez de um poderoso agente geral?",
+      "options": [
+        "Cada agente pode ter um sistema focado, um contexto menor e ferramentas especializadas, levando a um melhor desempenho em sua subtarefa específica",
+        "Multiples agentes são sempre mais baratos do que um único modelo grande",
+        "Os agentes gerais não podem usar ferramentas",
+        "Vários agentes podem compartilhar a mesma janela de contexto"
+      ],
+      "correct": 0,
+      "explanation": "Um agente de pesquisa otimizado para pesquisa, um agente de codificação otimizado para implementação e um agente de revisão otimizado para qualidade de código fazem cada um o seu trabalho melhor do que um único agente tentando ser os três simultaneamente."
+    },
+    {
+      "stage": "post",
+      "question": "Quando é melhor um padrão de pipeline (sequencial) multi-agente do que um padrão paralelo de ventilação?",
+      "options": [
+        "Quando cada fase depende da saída da fase anterior, como pesquisa, então código, então revisão",
+        "Quando você tem mais GPUs do que tarefas",
+        "Quando você quer minimizar a latência total",
+        "Quando todas as subtarefas são independentes umas das outras"
+      ],
+      "correct": 0,
+      "explanation": "Os padrões de pipeline são corretos quando o trabalho é inerentemente sequencial: o codificador precisa da saída do pesquisador e o revisor precisa da saída do codificador."
+    },
+    {
+      "stage": "post",
+      "question": "Qual é o padrão de supervisor em sistemas multi-agentes?",
+      "options": [
+        "Um ser humano atribui tarefas manualmente a cada agente",
+        "Um padrão onde os agentes votam sobre a melhor resposta",
+        "Um agente orquestador central que decompõe a tarefa, delega para agentes de trabalhadores, coleta resultados e decide os próximos passos",
+        "Um sistema de monitoramento que registra as ações do agente para depurar"
+      ],
+      "correct": 2,
+      "explanation": "O agente de supervisão atua como gerente de projeto: divide a tarefa em subtarefas, atribui-as a trabalhadores especializados, revisa seu resultado e decide se deve iterar ou finalizar."
+    },
+    {
+      "stage": "post",
+      "question": "Qual é a principal diferença entre os sistemas multi-agentes e os sistemas de agentes únicos?",
+      "options": [
+        "Os sistemas multi-agentes sempre produzem resultados de qualidade inferior",
+        "Os sistemas multi-agentes não podem utilizar ferramentas externas",
+        "Os sistemas multi-agentes exigem mais dados de formação",
+        "Aumento da complexidade, da latência e do custo resultantes de várias chamadas de LLM e da comunicação entre agentes, negociados para uma melhor gestão de tarefas complexas"
+      ],
+      "correct": 3,
+      "explanation": "Cada agente adicional significa mais chamadas de LLM (custo), mais viagens de ida e volta (latencia) e mais modos de falha (complexidade de depuração)."
+    }
+  ]
+}

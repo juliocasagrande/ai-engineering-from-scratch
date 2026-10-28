@@ -1,0 +1,64 @@
+{
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "Que problema resolve o MCP (Model Context Protocol) para agentes de IA?",
+      "options": [
+        "Encrypts a comunicação entre agentes",
+        "Comprime grandes janelas de contexto para caber em modelos menores",
+        "Ele dá aos agentes uma maneira padrão de descobrir e usar ferramentas expostas por servidores externos, sem implementações de ferramentas de codificação rígida",
+        "Propõe um formato padrão para os dados de formação"
+      ],
+      "correct": 2,
+      "explanation": "O MCP padroniza o acesso às ferramentas: um servidor expõe ferramentas com esquemas JSON, e qualquer agente compatível com o MCP pode descobri-las e chamá-las."
+    },
+    {
+      "stage": "pre",
+      "question": "Qual é a diferença entre MCP e A2A?",
+      "options": [
+        "MCP é para agentes Python e A2A é para agentes JavaScript",
+        "O MCP é open source e o A2A é proprietário",
+        "O MCP conecta agentes a ferramentas (agente a ferramenta), enquanto o A2A conecta agentes a outros agentes (agente a agente) para a delegação de tarefas",
+        "O MCP é sincrono e o A2A é assíncrono"
+      ],
+      "correct": 2,
+      "explanation": "O MCP é o protocolo para acesso a ferramentas (um agente chama uma ferramenta). A2A é o protocolo para colaboração de agentes (um agente delega uma tarefa a outro agente). Eles resolvem diferentes camadas do problema de comunicação."
+    },
+    {
+      "stage": "post",
+      "question": "No A2A, o que é um \"carte de agente\" e por que é importante?",
+      "options": [
+        "Uma credencial de segurança que autentique a identidade de um agente",
+        "Um arquivo de configuração que define o prompt do sistema do agente",
+        "Um painel visual que mostra as métricas de desempenho do agente",
+        "Um documento JSON em um URL bem conhecido que descreve as capacidades, habilidades e ponto final de um agente, permitindo que outros agentes descubram e delegem tarefas para ele"
+      ],
+      "correct": 3,
+      "explanation": "O cartão de agente (hostado em /.well-known/agent-card.json) é a forma como os agentes se anunciam. Ele lista as habilidades, os formatos de entrada/saída suportados e o ponto final da tarefa. Outros agentes lêem este cartão para decidir se e como delegar trabalho."
+    },
+    {
+      "stage": "post",
+      "question": "Porque é que os sistemas multi-agentes precisam de protocolos de comunicação estruturados em vez de apenas passar cadeias entre agentes?",
+      "options": [
+        "A análise de cordas é computacionalmente cara para LLM",
+        "Os protocolos estruturados fornecem segurança de tipo, detecção, manejo de erros e interoperabilidade entre agentes construídos por diferentes equipes com diferentes estruturas",
+        "As cadeias são grandes demais para enviar para HTTP",
+        "Todos os provedores de nuvem exigem protocolos estruturados"
+      ],
+      "correct": 1,
+      "explanation": "Sem contratos estruturados, agentes de diferentes equipes interpretam mal as saídas uns dos outros, o tratamento de erros é ad-hoc, e não há maneira de descobrir o que outro agente pode fazer."
+    },
+    {
+      "stage": "post",
+      "question": "Em que aspectos o protocolo ACP (Agent Communication Protocol) difere do A2A no que respeita aos seus objectivos de concepção?",
+      "options": [
+        "ACP usa WebSockets enquanto A2A usa HTTP",
+        "ACP é mais rápido do que A2A para aplicações em tempo real",
+        "ACP só trabalha numa única organização, enquanto A2A trabalha em organizações diferentes",
+        "A ACP concentra-se na auditoria das empresas com histórico completo de mensagens e acompanhamento da conformidade, enquanto A2A concentra-se na delegação de tarefas leves"
+      ],
+      "correct": 3,
+      "explanation": "A ACP foi concebida para ambientes empresariais onde toda a interação de agentes deve ser auditável, rastreável e compatível. A A2A é mais simples e se concentra na realização de tarefas."
+    }
+  ]
+}
