@@ -1,0 +1,104 @@
+name: translate pt-BR quizzes and artifacts
+
+on:
+  workflow_dispatch:
+    inputs:
+      phase:
+        description: 'One phase directory; blank translates all phases'
+        default: ''
+        type: string
+
+concurrency:
+  group: translate-ptbr-extras
+  cancel-in-progress: false
+
+jobs:
+  prepare:
+    runs-on: ubuntu-latest
+    outputs:
+      phases: ${{ steps.matrix.outputs.phases }}
+    steps:
+      - uses: actions/checkout@v4
+      - id: matrix
+        env:
+          SELECTED_PHASE: ${{ inputs.phase }}
+        run: |
+          python3 - <<'PY' >> "$GITHUB_OUTPUT"
+          import json, os, pathlib, re
+          phases = sorted(p.name for p in pathlib.Path('phases').iterdir()
+                          if p.is_dir() and re.fullmatch(r'[0-9]{2}-[a-z0-9-]+', p.name))
+          selected = os.environ.get('SELECTED_PHASE', '')
+          if selected and selected not in phases:
+              raise SystemExit('unknown phase')
+          print('phases=' + json.dumps([selected] if selected else phases))
+          PY
+
+  translate:
+    needs: prepare
+    runs-on: ubuntu-latest
+    timeout-minutes: 330
+    permissions:
+      contents: write
+    strategy:
+      fail-fast: false
+      max-parallel: 10
+      matrix:
+        phase: ${{ fromJSON(needs.prepare.outputs.phases) }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+          cache: pip
+          cache-dependency-path: .github/translate-requirements.txt
+      - uses: actions/cache@v4
+        with:
+          path: ~/.cache/huggingface
+          key: hf-facebook/nllb-200-distilled-600M
+      - run: pip install -r .github/translate-requirements.txt
+      - name: Restore published pt-BR extras
+        run: |
+          git fetch origin '+refs/heads/translations:refs/remotes/origin/translations'
+          if git cat-file -e 'origin/translations:i18n/pt-BR/.extras-cache' 2>/dev/null; then
+            git archive origin/translations i18n/pt-BR/.extras-cache | tar -x
+          fi
+          if git cat-file -e "origin/translations:i18n/pt-BR/phases/${{ matrix.phase }}" 2>/dev/null; then
+            git archive origin/translations "i18n/pt-BR/phases/${{ matrix.phase }}" | tar -x
+          fi
+      - name: Translate quizzes and artifacts
+        env:
+          PHASE: ${{ matrix.phase }}
+        run: python3 scripts/translate_extras.py --lang pt-BR --phase "$PHASE"
+      - name: Publish phase slice
+        env:
+          GH_TOKEN: ${{ github.token }}
+          PHASE: ${{ matrix.phase }}
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email 'github-actions[bot]@users.noreply.github.com'
+          git remote set-url origin "https://x-access-token:${GH_TOKEN}@github.com/${{ github.repository }}.git"
+          SLICE="i18n/pt-BR/phases/$PHASE"
+          CACHE="i18n/pt-BR/.extras-cache/$PHASE.json"
+          for attempt in 1 2 3 4 5 6 7 8; do
+            git fetch origin '+refs/heads/translations:refs/remotes/origin/translations'
+            git worktree add --detach "$RUNNER_TEMP/publish" origin/translations
+            mkdir -p "$RUNNER_TEMP/publish/$SLICE" "$RUNNER_TEMP/publish/$(dirname "$CACHE")"
+            # Copy only extras: never overwrite the reviewed lesson Markdown.
+            while IFS= read -r -d '' file; do
+              mkdir -p "$RUNNER_TEMP/publish/$(dirname "$file")"
+              cp "$file" "$RUNNER_TEMP/publish/$file"
+            done < <(find "$SLICE" \( -name quiz.json -o -path '*/outputs/*.md' \) -type f -print0)
+            cp "$CACHE" "$RUNNER_TEMP/publish/$CACHE"
+            (
+              cd "$RUNNER_TEMP/publish"
+              git add -f "$SLICE" "$CACHE"
+              if git diff --cached --quiet; then exit 0; fi
+              git commit -m "chore(i18n): pt-BR $PHASE quizzes and artifacts"
+              git push origin HEAD:refs/heads/translations
+            ) && exit 0
+            git worktree remove --force "$RUNNER_TEMP/publish"
+            sleep "$((RANDOM % 12 + 3))"
+          done
+          exit 1
