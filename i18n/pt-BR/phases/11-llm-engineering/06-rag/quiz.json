@@ -1,0 +1,62 @@
+[
+  {
+    "question": "O que é o RAG e que problema resolve?",
+    "options": [
+      "Geração de atenção recorrente - Melhoria dos mecanismos de atenção",
+      "Geração de recuperação aumentada - dando aos LLM acesso a conhecimentos externos em que não foram treinados",
+      "Geração reduzida de arquitetura - fazendo os modelos menores",
+      "Geração aleatória aumentada - gerando saídas aleatórias"
+    ],
+    "correct": 1,
+    "explanation": "O RAG recupera documentos relevantes de uma base de conhecimentos externa e os adiciona ao prompt.",
+    "stage": "pre"
+  },
+  {
+    "question": "Por que é preferível o RAG ao ajuste fino para a maioria das aplicações baseadas no conhecimento?",
+    "options": [
+      "RAG é mais barato, atualiza-se instantaneamente quando os documentos mudam, e fornece atribuição de fonte - ajuste fino é caro e fica obsoleto",
+      "A RAG produz melhores modelos",
+      "A ajuste fina não funciona.",
+      "RAG utiliza menos memória"
+    ],
+    "correct": 0,
+    "explanation": "O ajuste fino custa milhares de dólares, produz um modelo estático que fica obsoleto à medida que os documentos mudam e não oferece atribuição de fonte.",
+    "stage": "pre"
+  },
+  {
+    "question": "Qual é a ordem correta de etapas num gasoduto RAG básico?",
+    "options": [
+      "Documentos em pedaços, pedaços embutidos, armazenamento em vector DB, consulta embutida, recuperação de pedaços semelhantes, gerar resposta com contexto",
+      "Gerenciar, recuperar, incorporar, pedaço",
+      "Embed query, gerar resposta, recuperar documentos",
+      "Armazenar documentos, consultar o LLM, adicionar documentos para responder"
+    ],
+    "correct": 0,
+    "explanation": "Ingestão: fragmentos de documentos -> embutidos fragmentos -> armazenar no vector DB. Tempo de consulta: embutida a consulta do usuário -> recuperar fragmentos semelhantes do topo K -> adicionar fragmentos ao prompt -> gerar resposta baseada no contexto recuperado.",
+    "stage": "post"
+  },
+  {
+    "question": "Qual é o modo comum de falha dos sistemas RAG básicos?",
+    "options": [
+      "As incrustações são grandes demais.",
+      "A base de dados de vetores falha .",
+      "Os blocos recuperados são semânticamente semelhantes à consulta, mas não contêm a resposta real (por exemplo, devolver \"estratégia de receita\" quando solicitado \"números de receita do terceiro trimestre\")",
+      "O Mestrado recusa-se a responder"
+    ],
+    "correct": 2,
+    "explanation": "A pesquisa semântica encontra texto que \"parece\" da consulta, não necessariamente texto que \"responde\". Uma consulta sobre receitas pode obter pedaços que discutem a estratégia de receita em vez de o pedaço que contém o número real.",
+    "stage": "post"
+  },
+  {
+    "question": "Como avaliar a qualidade do RAG?",
+    "options": [
+      "Verificando se o MLL produz qualquer saída",
+      "Usando ambas as métricas de recuperação (trovamos os pedaços certos?) e métricas de geração (a resposta é fiel ao contexto recuperado?)",
+      "Apenas medindo o tempo de resposta",
+      "Por contabilização do número de documentos recuperados"
+    ],
+    "correct": 1,
+    "explanation": "A avaliação do RAG tem duas partes: qualidade de recuperação (precisão/recall de pedaços recuperados em relação à verdade do solo) e qualidade de geração (fielidade ao contexto, relevância para a consulta, não há alucinação além das informações recuperadas).",
+    "stage": "post"
+  }
+]

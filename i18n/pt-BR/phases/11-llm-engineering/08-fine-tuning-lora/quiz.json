@@ -1,0 +1,62 @@
+[
+  {
+    "question": "Qual é a principal ideia por trás do LoRA (Adaptação de Baixo Rango)?",
+    "options": [
+      "Os modelos menores são sempre melhores",
+      "Atualizações de peso durante o ajuste fino têm baixa classificação intrínseca, de modo que podem ser aproximadas por duas pequenas matrizes em vez de atualizar a matriz de peso total",
+      "A maioria dos pesos não importa.",
+      "O ajuste precisa apenas da última camada"
+    ],
+    "correct": 1,
+    "explanation": "Aghajanyan et al. mostraram que as atualizações de ajuste fino ocupam um subespaço de baixa dimensão. LoRA explora isso representando a atualização como W + BA onde B (d x r) e A (r x d) têm pequena classificação r, tipicamente 8-64.",
+    "stage": "pre"
+  },
+  {
+    "question": "Quanto memória a LoRA economiza em comparação com o ajuste fino completo de um modelo 8B?",
+    "options": [
+      "Só economiza espaço no disco",
+      "Sem poupanças",
+      "De ~56 GB para ~6 GB, através do treinamento de < 1% dos parâmetros, mantendo congelados os pesos de base",
+      "Redução de 50%"
+    ],
+    "correct": 2,
+    "explanation": "A LoRA congela os pesos de base e apenas treina matrizes de adaptadores (~80M parâmetros na posição 16), necessitando de ~6GB total.",
+    "stage": "pre"
+  },
+  {
+    "question": "O que é QLoRA?",
+    "options": [
+      "Um algoritmo de ajuste fino diferente",
+      "LoRA aplicada a ativações quantizadas",
+      "LoRA quantizada: o modelo base é carregado em precisão de 4 bits enquanto os adaptadores LoRA treinam em 16 bits, combinando a economia de memória de ambas as técnicas",
+      "Uma versão mais rápida do LoRA"
+    ],
+    "correct": 2,
+    "explanation": "QLoRA (Dettmers et al.) carrega o modelo base congelado em 4-bit (quantizaçãoNF4) enquanto treina adaptadores LoRA em FP16/BF16. Isso permite ajustar um modelo 7B em uma GPU de consumo único com 6GB de VRAM.",
+    "stage": "post"
+  },
+  {
+    "question": "Qual é o parâmetro (r) de \"ranqueamento\" no LoRA?",
+    "options": [
+      "A taxa de aprendizagem",
+      "Número de períodos de formação",
+      "A capacidade do adaptador: um grau mais elevado permite adaptações mais complexas, mas utiliza mais parâmetros e memória",
+      "Número de camadas para ajuste fino"
+    ],
+    "correct": 2,
+    "explanation": "O rank r determina o tamanho das matrizes de adaptadores A (r x d) e B (d x r). O rank 4 possui poucos parâmetros (rápidos, baratos). O rank 64 possui mais parâmetros (mais expressivos).",
+    "stage": "post"
+  },
+  {
+    "question": "O que acontece quando você fundir os pesos de LoRA de volta para o modelo base?",
+    "options": [
+      "Não é possível a fusão",
+      "O modelo torna-se maior",
+      "O modelo precisa ser reestruturado",
+      "As matrizes do adaptador são adicionadas aos pesos de base (W_merged = W_base + B*A), produzindo um modelo padrão sem sobrecarga de inferência"
+    ],
+    "correct": 3,
+    "explanation": "Como o LoRA adiciona W_base + B*A, você pode calcular B*A uma vez e adicioná-lo permanentemente à W_base. O modelo fundido tem a mesma arquitetura e velocidade de inferência do original, sem sobrecarga do adaptador.",
+    "stage": "post"
+  }
+]

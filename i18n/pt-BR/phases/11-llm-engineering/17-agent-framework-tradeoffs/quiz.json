@@ -1,0 +1,65 @@
+{
+  "lesson": "phase-11/17-agent-framework-tradeoffs",
+  "questions": [
+    {
+      "stage": "post",
+      "question": "Qual é a primeira escolha certa para um fluxo de trabalho que deve retomar após um acidente, aceitar uma aprovação humana no meio da corrida e se espalhar para três retrievers em paralelo?",
+      "options": [
+        "LangGraph",
+        "Agno",
+        "AutoGen",
+        "A tripulação"
+      ],
+      "correct": 0,
+      "explanation": ""
+    },
+    {
+      "stage": "post",
+      "question": "Por que o roteamento selecionado pela LLM custa mais tokens por turno do que o roteamento explícito?",
+      "options": [
+        "Um planner LLM call escolhe o próximo passo a cada turno, adicionando instantâneos e tokens de conclusão para cada decisão.",
+        "Duplica a lista de ferramentas para todos os agentes da tripulação.",
+        "Envia todo o histórico de conversa para um modelo de verificação.",
+        "Ele pre-colhe o próximo nó paralelo à latência de cobertura."
+      ],
+      "correct": 0,
+      "explanation": ""
+    },
+    {
+      "stage": "post",
+      "question": "O diálogo entre o proponente e o crítico na revisão do código, naturalmente, mapeia a abstração central de que quadro?",
+      "options": [
+        "O StateGraph de LangGraph",
+        "AutoGen GroupChat / ConversableAgent par",
+        "A tripulação sequencial da CrewAI",
+        "Agno é o agente solteiro com ferramentas."
+      ],
+      "correct": 1,
+      "explanation": ""
+    },
+    {
+      "stage": "post",
+      "question": "Qual framework tem drivers de armazenamento embutidos (SQLite, Postgres, Redis, Mongo, DynamoDB) ligados diretamente à classe Agente para a persistência de sessão e memória?",
+      "options": [
+        "Agno",
+        "A tripulação",
+        "AutoGen",
+        "LangGraph"
+      ],
+      "correct": 0,
+      "explanation": ""
+    },
+    {
+      "stage": "post",
+      "question": "Você tem um resumo de duas chamadas: trazer texto, resumir. Qual opção é a escolha correta de quadro?",
+      "options": [
+        "AutoGen GroupChat  dois agentes podem discutir sobre o melhor resumo.",
+        "Python simples com o provedor SDK  nenhuma estrutura é a estrutura mais rápida para pequenos pipelines.",
+        "A equipe de IA com funções de pesquisador + resumidor  funções tornam mais claro.",
+        "LangGraph StateGraph  utiliza sempre um quadro de fiabilidade."
+      ],
+      "correct": 1,
+      "explanation": ""
+    }
+  ]
+}

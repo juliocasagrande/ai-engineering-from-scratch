@@ -1,0 +1,62 @@
+[
+  {
+    "question": "Qual é a maior diferença entre uma demonstração de LLM e uma aplicação de LLM de produção?",
+    "options": [
+      "Qualidade do modelo",
+      "Infraestrutura: tratamento de erros, transmissão de dados, rastreamento de custos, limitação de taxas, retrocesso, observabilidade e degradação graciosa sob carga",
+      "A escolha do fornecedor de API",
+      "A qualidade rápida"
+    ],
+    "correct": 1,
+    "explanation": "Uma demonstração chama uma API e imprime a resposta. A produção deve lidar com temporadas, interrupções de fornecedores, usuários simultâneos, orçamentos de custos, entrega de streaming, registro e degradação graciosa.",
+    "stage": "pre"
+  },
+  {
+    "question": "Por que a entrega de tokens de streaming é importante em aplicações de LLM de produção?",
+    "options": [
+      "Melhora a precisão do modelo",
+      "Consuma menos memória.",
+      "Os usuários percebem que o primeiro token chega rapidamente mais rápido, mesmo que o tempo total de geração seja o mesmo -- reduzindo a latência percebida de segundos para milissegundos",
+      "Reduz os custos"
+    ],
+    "correct": 2,
+    "explanation": "Sem streaming, os usuários esperam 3-10 segundos sem ver nada antes que a resposta completa apareça. Com streaming, o primeiro token chega em ~ 200ms e o texto flui continuamente, fazendo com que a experiência se sinta responsiva.",
+    "stage": "pre"
+  },
+  {
+    "question": "O que deve acontecer quando o seu fornecedor de API LLM tiver uma interrupção?",
+    "options": [
+      "Reprova indefinidamente até que o prestador se recupere",
+      "Mostrar aos usuários uma página de erro",
+      "O pedido deve ser automaticamente devolvido a um fornecedor alternativo ou devolver uma resposta degradada graciosamente",
+      "Passe para um modelo local"
+    ],
+    "correct": 2,
+    "explanation": "Os sistemas de produção precisam de estratégias de retrocesso: tente o Provedor B se o Provedor A falhar, entregue respostas em cache para consultas comuns ou retorna uma mensagem útil \"temporarmente indisponível\".",
+    "stage": "post"
+  },
+  {
+    "question": "Que métricas de observabilidade deve acompanhar uma aplicação de LLM de produção?",
+    "options": [
+      "Só o erro conta",
+      "Apenas precisão do modelo",
+      "Latência de solicitação (P50/P95/P99), custo por solicitação, taxas de erro, uso de tokens, taxas de hits no cache e pontuações de qualidade de avaliações automatizadas",
+      "Apenas custo mensal"
+    ],
+    "correct": 2,
+    "explanation": "A observabilidade abrangente abrange: percentil de latência (para conformidade com o SLA), rastreamento de custos (para gestão orçamental), taxas de erro (para confiabilidade), utilização de tokens (para otimização) e métricas de qualidade (para detecção de regressão).",
+    "stage": "post"
+  },
+  {
+    "question": "Por que deve aplicar uma limitação de taxa no seu pedido de Mestrado em Direito?",
+    "options": [
+      "Para fazer a aplicação parecer exclusiva",
+      "Para evitar que os usuários individuais esgotem o orçamento da API, proteger contra abusos e garantir um acesso justo durante o tráfego elevado",
+      "Para reduzir a precisão do modelo",
+      "Limitação de taxa é necessária apenas para níveis gratuitos"
+    ],
+    "correct": 1,
+    "explanation": "Sem limitação de taxa, um único usuário (ou bot) pode esgotar seu orçamento diário de API em minutos.",
+    "stage": "post"
+  }
+]

@@ -1,0 +1,62 @@
+[
+  {
+    "question": "Qual é a limitação da pesquisa semântica básica top-k no RAG?",
+    "options": [
+      "Requer GPU.",
+      "Retira pedaços semânticamente semelhantes à consulta, mas podem não conter a resposta real, especialmente para perguntas ambíguas ou multi-hop",
+      "É muito lento.",
+      "Não consegue lidar com documentos grandes."
+    ],
+    "correct": 1,
+    "explanation": "A pesquisa semântica básica corresponde ao significado do nível da superfície. 'Qual foi a receita no último trimestre?' retira pedaços sobre 'estratégia de receita' (semânticamente semelhante) em vez de o pedaço dizendo '$ 47,2 milhões no terceiro trimestre de 2025' (que usa 'ganhos').",
+    "stage": "pre"
+  },
+  {
+    "question": "O que é a busca híbrida no contexto do RAG?",
+    "options": [
+      "Combinando a combinação de palavras-chave BM25 com a pesquisa semântica de vetores para capturar termos exatos e relevância baseada em significado",
+      "Usando CPU e GPU para pesquisa",
+      "Pesquisas em várias bases de dados",
+      "Usando dois LLM diferentes"
+    ],
+    "correct": 0,
+    "explanation": "BM25 capta correspondências exatas de palavras-chave (por exemplo, '$47.2M' ou 'Q3'). Pesquisa semântica capta correspondências de significado. Combinando-as com um re-ranqueador dá o melhor de ambos os mundos: precisão em termos específicos e lembrança em variantes semânticas.",
+    "stage": "pre"
+  },
+  {
+    "question": "O que faz um reencoderador cruzado num gasoduto RAG avançado?",
+    "options": [
+      "Encode documentos em vetores",
+      "Gera a resposta final",
+      "Divide documentos em pedaços",
+      "Ele toma pares (questionamento, documento) e classifica a sua relevância com maior precisão do que incorporando semelhança, reordenando os resultados iniciais de recuperação"
+    ],
+    "correct": 3,
+    "explanation": "A semelhança de bi-encoder (usada para a recuperação inicial) é rápida, mas aproximada. Um cross-encoder processa o par completo de consulta-documento juntamente com a atenção cruzada, dando pontuações de relevância muito mais precisas para o re-ranqueamento dos principais candidatos.",
+    "stage": "post"
+  },
+  {
+    "question": "O que é a técnica de transformação de consulta HyDE (Hypothetical Document Embedding)?",
+    "options": [
+      "Criptografar a consulta para privacidade",
+      "Usando o LLM para gerar uma resposta hipotética, então incorporando essa resposta como a consulta de pesquisa em vez da pergunta original",
+      "Expansão das abreviaturas na consulta",
+      "Escondendo a consulta do modelo"
+    ],
+    "correct": 1,
+    "explanation": "A consulta original \"Qual foi a receita do terceiro trimestre?\" pode não estar próxima da parte da resposta. A HyDE pede ao LLM que genere uma resposta hipotética (\"A receita do terceiro trimestre foi aproximadamente\"...), em seguida, usa essa pergunta como a consulta de busca, que se incorpora mais perto de partes reais que contêm respostas.",
+    "stage": "post"
+  },
+  {
+    "question": "Porque é que o parente-filho de chunking melhora o RAG em relação ao chunking plano?",
+    "options": [
+      "É mais rápido para indexar",
+      "Pequenas partes de crianças são utilizadas para a recuperação precisa, mas a parte maior dos pais é devolvida para o contexto, evitando o problema do \"contexto perdido\"",
+      "Reduz o número de pedaços",
+      "Elimina a necessidade de incorporar"
+    ],
+    "correct": 1,
+    "explanation": "Pequenas peças (200 tokens) incorporam com precisão, mas não têm contexto. Pequenas peças (2000 tokens) têm contexto, mas incorporam imprecisamente.",
+    "stage": "post"
+  }
+]

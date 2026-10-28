@@ -1,0 +1,62 @@
+[
+  {
+    "question": "Que problema os embutidos resolvem que a pesquisa de palavras-chave não consegue?",
+    "options": [
+      "Embedings utilizam menos armazenamento",
+      "Embedings capturam significado semântico, combinando 'pagamento não passou' com 'carga foi recusada' mesmo que não compartilhem palavras",
+      "Os incorporadores são mais rápidos",
+      "Embedings funcionam offline"
+    ],
+    "correct": 1,
+    "explanation": "A pesquisa de palavras-chave trata as palavras como símbolos independentes. Embedings mapeam o texto para vetores de alta dimensão onde semântica semelhança = proximidade geométrica.",
+    "stage": "pre"
+  },
+  {
+    "question": "O que a semelhança cosínica mede entre dois vetores de incorporação?",
+    "options": [
+      "O ângulo entre os vetores, indicando o quão semelhantes são as suas direções, independentemente da magnitude",
+      "A distância euclidiana",
+      "A soma dos seus componentes",
+      "Número de dimensões correspondentes"
+    ],
+    "correct": 0,
+    "explanation": "A semelhança cosínica = ponto B / (A) = A) = B) = A (A) = B) = A (A) = B) = B. É variável de -1 (oposto) a 1 (direção idêntica).",
+    "stage": "pre"
+  },
+  {
+    "question": "Qual é a dimensão típica dos modelos modernos de inserção de texto?",
+    "options": [
+      "2 a 10 dimensões",
+      "768-3072 dimensões",
+      "50-100 dimensões",
+      "100 000+ dimensões"
+    ],
+    "correct": 1,
+    "explanation": "Modelos de incorporação modernos (OpenAI text-embedding-3, BGE, E5) produzem vetores com 768 a 3072 dimensões.",
+    "stage": "post"
+  },
+  {
+    "question": "Por que deve avaliar a qualidade de incorporação usando referências de recuperação em vez de apenas inspecionar as pontuações de semelhança?",
+    "options": [
+      "As pontuações de semelhança não usam distância cosínea",
+      "Os índices de recuperação são mais rápidos",
+      "As pontuações de semelhança são sempre erradas",
+      "Os valores de semelhança absoluta variam de modelo para modelo; o que importa é se os documentos relevantes são classificados mais alto do que os irrelevantes (precision@k, recall)"
+    ],
+    "correct": 3,
+    "explanation": "Uma semelhança cosínica de 0,85 pode significar \"muito semelhante\" para um modelo e \"algo semelhante\" para outro.",
+    "stage": "post"
+  },
+  {
+    "question": "Quando você usaria um modelo de incorporação local/open source em vez de um baseado em API?",
+    "options": [
+      "Quando você precisa de privacidade de dados, operação offline, menor custo em escala ou ajuste específico de domínio",
+      "Os modelos de API não suportam batches",
+      "Os modelos locais produzem incorporados de maior qualidade",
+      "Os modelos locais são sempre melhores."
+    ],
+    "correct": 0,
+    "explanation": "As incorporações de API (OpenAI, Cohere) são fáceis, mas enviam seus dados externamente. Os modelos locais (BGE, E5, Nomic) mantêm os dados privados, eliminam os custos por chamada em escala e podem ser ajustados para dados específicos de domínio.",
+    "stage": "post"
+  }
+]

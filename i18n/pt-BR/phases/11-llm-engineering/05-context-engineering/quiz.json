@@ -1,0 +1,62 @@
+[
+  {
+    "question": "Qual é a diferença entre a engenharia de ponta e a engenharia de contexto?",
+    "options": [
+      "A engenharia de contexto é sobre o design de bases de dados",
+      "Um prompt é a consulta do usuário; contexto é tudo na janela do modelo: prompt do sistema, ferramentas, documentos recuperados, histórico e o próprio prompt",
+      "São a mesma coisa.",
+      "A engenharia rápida é mais avançada."
+    ],
+    "correct": 1,
+    "explanation": "A engenharia de prompt se concentra na elaboração da instrução do usuário. A engenharia de contexto gerencia toda a entrada para o modelo: o que entra, o que fica fora, em que ordem e como alocar a janela de contexto limitada.",
+    "stage": "pre"
+  },
+  {
+    "question": "Por que importa a ordem da janela de contexto para o desempenho do LLM?",
+    "options": [
+      "A ordem só é importante para o código",
+      "Os LLM têm preconceitos de recência e de primate, prestando mais atenção ao início e ao fim da janela de contexto",
+      "Ordem alfabética ajuda a pesquisa do modelo mais rápido",
+      "Não é... LLMs processam todos os tokens igualmente"
+    ],
+    "correct": 1,
+    "explanation": "A pesquisa mostra que os LLM prestam mais atenção ao início e ao fim da janela de contexto (\"fenômeno perdido no meio\").",
+    "stage": "pre"
+  },
+  {
+    "question": "Um assistente de codificação usa 22.700 tokens de uma janela de contexto de 128K. Por que a gestão orçamental ainda é importante?",
+    "options": [
+      "Só importa o rápido.",
+      "Contagem de tokens é imprecisa",
+      "128K deve ser suficiente para qualquer caso de uso",
+      "Longas conversas, grandes arquivos de código e documentação recuperada podem rapidamente preencher a janela; sem gerenciamento de orçamento, o contexto crítico fica truncado"
+    ],
+    "correct": 3,
+    "explanation": "22 700 tokens são a linha de base. Uma conversa de 50 voltas adiciona 30K + tokens. Retomar uma grande base de código adiciona 50K + resultados de chamada de ferramenta adicionam mais. Sem gerenciamento ativo, a janela se enche e o contexto mais antigo é perdido.",
+    "stage": "post"
+  },
+  {
+    "question": "Qual é a estratégia de janela deslizante para histórico de conversação?",
+    "options": [
+      "Manter apenas as curvas N mais recentes no contexto e deixar cair as curvas mais antigas, opcionalmente resumindo-as primeiro",
+      "Expansão dinâmica da janela de contexto",
+      "Mover o modelo para um servidor diferente",
+      "Processar a conversa em pedaços de tamanho fixo"
+    ],
+    "correct": 0,
+    "explanation": "A janela deslizante mantém as conversas mais recentes de K em contexto completo. As conversas mais antigas são retiradas ou substituídas por um resumo. Isso limita o uso de memória, preservando o contexto mais relevante.",
+    "stage": "post"
+  },
+  {
+    "question": "Como um assembler de contexto deve atribuir tokens entre componentes?",
+    "options": [
+      "Maximizar o contexto de recuperação sempre",
+      "A atribuição igual a cada componente",
+      "Minimizar os tokens de pedido do sistema",
+      "Dinâmicamente baseada no tipo de consulta: uma pergunta simples precisa de menos contexto de recuperação; uma pergunta complexa precisa de mais, com espaço de geração sempre reservado"
+    ],
+    "correct": 3,
+    "explanation": "Uma pergunta factual simples pode precisar de 500 tokens de contexto recuperado. Uma análise complexa pode precisar de 10.000. Um bom montador de contexto ajusta a alocação dinamicamente, reservando sempre espaço para a resposta do modelo.",
+    "stage": "post"
+  }
+]

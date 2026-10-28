@@ -1,0 +1,78 @@
+{
+  "lesson": "14-model-context-protocol",
+  "title": "Modelo de protocolo de contexto",
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "Em MCP 2026-07-28, onde um cliente envia a sua versão de protocolo e capacidades?",
+      "options": [
+        "Apenas no cookie HTTP",
+        "Apenas em um pedido de inicialização",
+        "Em params._meta em cada pedido",
+        "Em um registro de sessão do lado do servidor"
+      ],
+      "correct": 2,
+      "explanation": "O MCP moderno é sem estado. Cada solicitação carrega a versão do protocolo e as capacidades do cliente em params._meta."
+    },
+    {
+      "stage": "check",
+      "question": "O que deve implementar cada servidor MCP moderno para versão inicial e descoberta de capacidade?",
+      "options": [
+        "servidor/descoberta",
+        "sessões/criar",
+        "Registo/conclusão",
+        "Iniciar"
+      ],
+      "correct": 0,
+      "explanation": "O servidor/discover anuncia versões suportadas, capacidades do servidor e identidade do servidor."
+    },
+    {
+      "stage": "check",
+      "question": "Qual é a forma de HTTP Streamable atual no MCP 2026-07-28?",
+      "options": [
+        "Uma solicitação de DELETE após cada chamada de ferramenta",
+        "Uma sessão WebSocket identificada por Mcp-Session-Id",
+        "Um POST por mensagem JSON-RPC; POSTs de solicitação recebem JSON ou SSE de solicitação",
+        "Um fluxo GET mais um ponto final POST separado"
+      ],
+      "correct": 2,
+      "explanation": "O transporte atual tem um ponto final POST. POSTs de solicitação recebem JSON ou SSE de solicitação; uma notificação POST aceita recebe HTTP 202 sem corpo."
+    },
+    {
+      "stage": "check",
+      "question": "Como um servidor deve distinguir os metadados faltantes de uma versão de protocolo de uma versão bem formada, mas não suportada?",
+      "options": [
+        "Retorno -32022 para ambos os casos",
+        "Retorno HTTP 301 para uma versão faltante e menta Mcp-Session-ID para uma versão não suportada",
+        "Retorno -32602 para metadados faltantes ou não-strings e -32022 com suportado/requerido para uma cadeia não suportada",
+        "Aceitar uma versão faltante e devolver -32601 para uma versão não suportada"
+      ],
+      "correct": 2,
+      "explanation": "Um campo requerido faltante ou mal digitado é parâmetros JSON-RPC mal formados."
+    },
+    {
+      "stage": "post",
+      "question": "Uma ferramenta de várias etapas precisa de continuidade entre chamadas.",
+      "options": [
+        "Colocar o estado mutável no clienteInfo",
+        "Restaurar o Mcp-Session-ID para esta ferramenta apenas",
+        "Tente um cabo opaco e exija-o como um argumento de ferramenta posterior",
+        "Mantenha o estado por trás da conexão TCP"
+      ],
+      "correct": 2,
+      "explanation": "O estado de chamada cruzada é o estado explícito da aplicação. Um cabo de servidor é usado como um argumento comum e autorizado."
+    },
+    {
+      "stage": "post",
+      "question": "Como um servidor moderno pede o usuário, modelo ou entrada raiz durante uma operação de ferramenta?",
+      "options": [
+        "É a pergunta que escreve para o Sr.",
+        "Abre uma segunda ligação SSE",
+        "Retorna input_required e o cliente retrata com inputRespostas",
+        "Envia um servidor independente para cliente pedido JSON-RPC"
+      ],
+      "correct": 2,
+      "explanation": "O padrão de solicitações de viagem rotunda múltipla incorpora as solicitações de entrada em um resultado input_required e retrata a operação original."
+    }
+  ]
+}

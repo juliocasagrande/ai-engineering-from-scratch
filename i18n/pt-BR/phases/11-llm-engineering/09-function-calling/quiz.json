@@ -1,0 +1,62 @@
+[
+  {
+    "question": "Os LLM podem realmente executar funções ou acessar sistemas externos?",
+    "options": [
+      "Não - LLMs apenas gerar texto (tipicamente JSON) descrevendo qual função para chamar; seu código deve executá-lo",
+      "Os LLM executam funções através de embalagens",
+      "Só o GPT-4 pode executar funções",
+      "Sim, os LLM podem chamar diretamente as APIs"
+    ],
+    "correct": 0,
+    "explanation": "LLM geram tokens. Quando 'chamando uma função', o modelo sai JSON especificando o nome da função e os argumentos. Seu código de aplicação analisa esse JSON, executa a função real e envia o resultado de volta ao modelo.",
+    "stage": "pre"
+  },
+  {
+    "question": "O que é um esquema de ferramentas no contexto da chamada de funções?",
+    "options": [
+      "A URL do ponto final da API",
+      "Um esquema de banco de dados",
+      "Diagrama de arquitetura do modelo",
+      "Uma descrição JSON do nome, parâmetros, tipos e finalidade de uma função que diz ao modelo quais ferramentas estão disponíveis"
+    ],
+    "correct": 3,
+    "explanation": "Os esquemas de ferramentas descrevem as funções disponíveis para o modelo: nome da função, nomes e tipos de parâmetros, descrições do que cada parâmetro faz e o que a função retorna.",
+    "stage": "pre"
+  },
+  {
+    "question": "Qual é o padrão padrão para um loop de chamada de função de várias voltas?",
+    "options": [
+      "Chamem todas as funções de uma vez",
+      "O modelo executa funções internamente",
+      "Enviar mensagem -> pedidos de modelo chamada de ferramenta -> execução de função -> enviar resultado de volta -> modelo gera resposta final (repetir se necessário)",
+      "Parsear toda a conversa como um lote"
+    ],
+    "correct": 2,
+    "explanation": "O ciclo: (1) enviar mensagem do usuário + esquemas de ferramentas, (2) o modelo responde com uma solicitação de chamada de ferramenta, (3) executar a função, (4) enviar o resultado de volta como uma resposta de ferramenta, (5) o modelo gera a próxima resposta ou outra chamada de ferramenta.",
+    "stage": "post"
+  },
+  {
+    "question": "Como é que se impede que as ferramentas infinitas chamem os circuitos?",
+    "options": [
+      "Use um modelo mais rápido",
+      "Defina um número máximo de iterações de chamada de ferramenta e implementa um timeout, rompendo o ciclo se o limite for atingido",
+      "Remover todos os esquemas de ferramentas após a primeira chamada",
+      "Loops infinitos não podem acontecer com a chamada de função"
+    ],
+    "correct": 1,
+    "explanation": "Sem limites, um modelo pode chamar repetidamente as ferramentas (por exemplo, pesquisar informações que nunca pode encontrar).",
+    "stage": "post"
+  },
+  {
+    "question": "Por que são importantes os nomes e descrições claros e descritórios dos parâmetros nos esquemas de ferramentas?",
+    "options": [
+      "O modelo usa descrições para decidir qual ferramenta chamar e como preencher parâmetros - descrições vagas levam a escolhas erradas de ferramentas e argumentos incorretos",
+      "Melhora o tempo de resposta",
+      "São exigidas pela API",
+      "Tornam o código mais legível ."
+    ],
+    "correct": 0,
+    "explanation": "O modelo lê as descrições das ferramentas para decidir o que chamar e como. Um parâmetro descrito como 'q' vs 'search_query: os termos de pesquisa do usuário para procurar na base de conhecimentos' dá resultados muito diferentes.",
+    "stage": "post"
+  }
+]

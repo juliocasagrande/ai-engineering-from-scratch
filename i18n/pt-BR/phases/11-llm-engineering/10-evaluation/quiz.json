@@ -1,0 +1,62 @@
+[
+  {
+    "question": "Por que não é um método de avaliação confiável ler manualmente alguns resultados do LLM?",
+    "options": [
+      "A revisão manual é muito cara.",
+      "Demora muito .",
+      "Pequenas amostras perdem os modos de falha que só aparecem na escala, e o julgamento humano é inconsistente entre os revisores e sessões",
+      "Os resultados do LLM são sempre corretos"
+    ],
+    "correct": 2,
+    "explanation": "Leia 10 saídas mostra 10 pontos em uma distribuição. Uma mudança rápida pode melhorar 90% das saídas, mas quebrar 10% dos casos de borda. Sem avaliação sistemática, você perderá a regressão até que os usuários relatarem.",
+    "stage": "pre"
+  },
+  {
+    "question": "O que é o teste de regressão no contexto de aplicações de LLM?",
+    "options": [
+      "Testeamento com base nos dados da formação",
+      "Medida da perda de modelo durante a formação",
+      "Execução de um conjunto fixo de casos de teste após cada alteração (prompt, modelo, parâmetros) para garantir que a qualidade não tenha degradado",
+      "Teste de modelos de regressão linear"
+    ],
+    "correct": 2,
+    "explanation": "Cada mudança imediata, troca de modelo ou ajuste de temperatura muda a distribuição da saída.",
+    "stage": "pre"
+  },
+  {
+    "question": "Qual é a abordagem de avaliação do LLM-as-judge?",
+    "options": [
+      "Usando um LLM forte para marcar resultados contra rubricas, substituindo a avaliação humana cara ao mesmo tempo em que se escala para milhares de casos de teste",
+      "Comparar os números de parâmetros de dois modelos",
+      "Fazer com que o modelo avaliar sua própria perda de formação",
+      "Usando os resultados de confiança do modelo"
+    ],
+    "correct": 0,
+    "explanation": "LLM-as-judge envia (input, output, rubrica) para um modelo forte (por exemplo, GPT-4) que marca a saída. É mais barato e mais rápido do que a avaliação humana, embora tenha viés conhecidos (por exemplo, preferindo respostas verbais).",
+    "stage": "post"
+  },
+  {
+    "question": "O que faz de um bom conjunto de dados de avaliação para um pedido de Mestrado em Direito?",
+    "options": [
+      "O maior número possível de exemplos",
+      "Amostra aleatória da Internet",
+      "Apenas os exemplos mais difíceis",
+      "Diversas entradas que cobrem casos comuns, casos de vantagem, entradas adversárias e saídas esperadas com rubricas claras"
+    ],
+    "correct": 3,
+    "explanation": "Um bom conjunto de avaliação cobre a distribuição: casos de caminho feliz, casos de borda (entrada vazia, entrada muito longa), entradas adversárias (injeção rápida) e consultas ambíguas.",
+    "stage": "post"
+  },
+  {
+    "question": "Como deve lidar com resultados não deterministas de Mestrado em Avaliação?",
+    "options": [
+      "Exercer cada caso de ensaio várias vezes e utilizar métricas agregadas (taxa de aprovação, pontuação média) para explicar a variação de saída",
+      "Apenas avaliar a primeira saída",
+      "Colocar a temperatura em 0 para todas as avaliações",
+      "O não-determinismo não afeta a avaliação"
+    ],
+    "correct": 0,
+    "explanation": "Mesmo a temperatura 0, alguns provedores introduzem variação de amostragem. executar cada teste 3-5 vezes e medir a taxa de aprovação ou a pontuação média dá uma imagem mais confiável do que uma única corrida que pode atingir uma amostra de sorte/insúcmulo.",
+    "stage": "post"
+  }
+]

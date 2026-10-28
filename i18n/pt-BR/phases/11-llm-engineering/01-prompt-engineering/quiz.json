@@ -1,0 +1,62 @@
+[
+  {
+    "question": "Qual é o erro mais comum que as pessoas cometem ao escrever pedidos para LLM?",
+    "options": [
+      "Não utilizar exemplos suficientes",
+      "Escrever instruções vagas e pouco especificadas que deixam o modelo adivinhando sobre formato, alcance e restrições",
+      "Usando a API errada",
+      "Usando muitos tokens"
+    ],
+    "correct": 1,
+    "explanation": "Os LLM seguem as instruções literalmente. 'Escreva-me um email de marketing' não dá restrições ao modelo. Especificar tom, audiência, comprimento, formato e restrições produz resultados dramaticamente melhores.",
+    "stage": "pre"
+  },
+  {
+    "question": "Quais são os quatro componentes fundamentais de um pedido eficaz?",
+    "options": [
+      "Sistema, utilizador, assistente, função",
+      "Pergunta, documento, resposta, pontuação",
+      "Função, contexto, restrições e formato de saída",
+      "Entrada, saída, modelo, temperatura"
+    ],
+    "correct": 2,
+    "explanation": "As instruções eficazes especificam: quem o modelo deve ser (função), o que deve saber (contexto), o que deve e não deve fazer (restrições) e como estruturar a resposta (formato de saída).",
+    "stage": "pre"
+  },
+  {
+    "question": "Por que você deve incluir instruções de formato de saída em suas instruções?",
+    "options": [
+      "Preventa alucinações.",
+      "Sem instruções de formato, o modelo escolhe sua própria estrutura, que varia entre chamadas e é difícil de analisar programaticamente",
+      "Faz o prompt mais curto",
+      "Reduz os custos da API"
+    ],
+    "correct": 1,
+    "explanation": "Os LLM são não deterministas. Sem instruções explícitas de formato, uma chamada pode devolver pontos de bala, a próxima prosa, a próxima marcação.",
+    "stage": "post"
+  },
+  {
+    "question": "Qual é o propósito de um sistema de solicitação?",
+    "options": [
+      "Para definir regras persistentes de comportamento, papel e restrições que se aplicam a toda a conversa",
+      "Para definir a arquitetura do modelo",
+      "Para autenticar a chamada de API",
+      "Para comprimir o histórico de conversação"
+    ],
+    "correct": 0,
+    "explanation": "O sistema de prompt estabelece a personalidade, regras e restrições do modelo para toda a sessão.",
+    "stage": "post"
+  },
+  {
+    "question": "Como deve-se verificar se uma alteração rápida realmente melhorou a qualidade da saída?",
+    "options": [
+      "Execute o prompt em um conjunto de testes diversificado e mede as alterações nas métricas definidas (acurateza, conformidade com o formato, relevância)",
+      "Pergunte ao modelo se está melhor.",
+      "Verifique o tempo de resposta da API",
+      "Leia algumas saídas e faça um julgamento"
+    ],
+    "correct": 0,
+    "explanation": "Uma avaliação sistemática com diversos casos de teste e métricas definidas mostra se as mudanças ajudam na distribuição, não apenas em exemplos selecionados.",
+    "stage": "post"
+  }
+]

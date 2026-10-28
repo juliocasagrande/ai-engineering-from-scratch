@@ -1,0 +1,65 @@
+{
+  "lesson": "phase-11/16-langgraph-state-machines",
+  "questions": [
+    {
+      "stage": "post",
+      "question": "Por que o `messages`campo em um estado de LangGraph TypedDict necessidade `Annotated[list, add_messages]`- Não .",
+      "options": [
+        "Comprime a lista de mensagens quando os pontos de controlo são escritos no disco.",
+        "Permite o fluxo de delta de tokens do modelo.",
+        "Converte dictos simples em objetos de mensagem de LangChain no tempo de execução.",
+        "Sem o redutor, as atualizações do nó substituem a lista em vez de anexar, de modo que cada turno perde o histórico anterior."
+      ],
+      "correct": 3,
+      "explanation": ""
+    },
+    {
+      "stage": "post",
+      "question": "Qual é a diferença entre `interrupt_before=['tools']`E ...`interrupt_after=['tools']`- Não .",
+      "options": [
+        "`interrupt_before`Pausas após o modelo emitir as chamadas de ferramenta, mas antes da execução das ferramentas; `interrupt_after`Pausas após a execução das ferramentas.",
+        "`interrupt_before`Coloca a ferramenta em uma caixa de areia primeiro; `interrupt_after`- É uma produção.",
+        "Não há diferença, são alias.",
+        "`interrupt_before`é destinado a ensaios unitários; `interrupt_after`É para produção."
+      ],
+      "correct": 0,
+      "explanation": ""
+    },
+    {
+      "stage": "post",
+      "question": "Dado o histórico de um ponto de controlo de um fio, como viajar no tempo para um estado anterior e explorar um ramo diferente?",
+      "options": [
+        "Set `graph.rewind = True`e revoca.",
+        "Liga-me .`graph.reset(thread_id)`Então ...`graph.invoke(new_input, config)`- Não .",
+        "Eliminar o diretório de pontos de verificação e reaplicar com o mesmo thread_id.",
+        "Invocar o gráfico com o prévio desejado `checkpoint_id`no config; passagem `None`Quando a entrada se repete a partir desse ponto de controlo, o passar de um novo valor é anexado antes de retomar."
+      ],
+      "correct": 3,
+      "explanation": ""
+    },
+    {
+      "stage": "post",
+      "question": "Em um gráfico ReAct de quatro nós (agente, ferramentas, borda condicional, borda estática de volta ao agente), onde vive a borda condicional?",
+      "options": [
+        "De`START`, encaminhando para qualquer um .`agent`ou `END`Baseado no comprimento da entrada.",
+        "De`tools`De volta para `agent`, roteamento sobre se a saída da ferramenta estava vazia.",
+        "Não há vantagem condicional; ambas são estáticas.",
+        "De`agent`, encaminhando para `tools`se a última mensagem tem tool_calls e para `END`- Não, não."
+      ],
+      "correct": 3,
+      "explanation": ""
+    },
+    {
+      "stage": "post",
+      "question": "Quando deve utilizar `Send(node_name, state)`Em vez de uma borda simples?",
+      "options": [
+        "Para invocar um nó num processo diferente para isolamento.",
+        "Para adiar um nó até que um temporizador expire.",
+        "Para tentar novamente um nó após um fracasso.",
+        "Para enviar N execuções paralelas de um nó-alvo cujas saídas se fundem de volta através do redutor de estado."
+      ],
+      "correct": 3,
+      "explanation": ""
+    }
+  ]
+}

@@ -1,0 +1,62 @@
+[
+  {
+    "question": "Por que é difícil obter a saída JSON estruturada dos LLM?",
+    "options": [
+      "JSON é complexo demais para LLM",
+      "As MLLs só emitem texto simples",
+      "LLM não pode gerar JSON",
+      "Os LLM geram tokens de texto em forma livre por token e podem produzir JSON inválidos (presença faltante, tipos errados, texto extra) em qualquer momento"
+    ],
+    "correct": 3,
+    "explanation": "Os LLM geram tokens autoregressivamente. Eles podem adicionar uma vírgula traseira, esquecer um braço de fechamento, incluir formatação de marcação em torno do JSON ou alucinar campos extras. Cada token é independente, por isso a validade estrutural não é garantida.",
+    "stage": "pre"
+  },
+  {
+    "question": "O que é a decodificação restrita?",
+    "options": [
+      "Limitar o tamanho do vocabulário do modelo",
+      "Utilizando um modelo menor",
+      "Compressão da saída",
+      "Restringir quais tokens o modelo pode gerar em cada etapa para garantir que a saída esteja em conformidade com uma gramática ou esquema"
+    ],
+    "correct": 3,
+    "explanation": "A decodificação restrita enfraquece os tokens inválidos em cada etapa de geração. Após um braço de abertura, apenas chaves JSON válidas são permitidas. Após um colon, apenas tokens de valor válidos. Isso garante a validade estrutural no nível do token.",
+    "stage": "pre"
+  },
+  {
+    "question": "Qual é o benefício de utilizar modelos Pydantic para a validação de resultados do LLM?",
+    "options": [
+      "Eles definem esquemas tipografados que validam, analisam e rejeitam automaticamente as saídas de LLM mal formadas com mensagens de erro claras",
+      "Eles fazem chamadas de API mais rápido",
+      "Reduzem o uso de tokens",
+      "Melhoria da precisão do modelo"
+    ],
+    "correct": 0,
+    "explanation": "Quando o LLM produz saída inválida, o Pydantic fornece mensagens de erro específicas que podem ser enviadas de volta ao modelo para auto-correção.",
+    "stage": "post"
+  },
+  {
+    "question": "O que deve fazer quando o LLM retorna JSON inválido apesar das instruções?",
+    "options": [
+      "Passe para um modelo diferente",
+      "Corrigir manualmente o JSON",
+      "Implementar um loop de retest que envia o erro de validação de volta para o modelo como contexto para uma tentativa corrigida",
+      "Aumentar a temperatura"
+    ],
+    "correct": 2,
+    "explanation": "Um ciclo de retest com feedback de erro funciona bem: analisa a saída, detecta erros de validação, envia a mensagem de erro de volta como contexto (\"A sua saída teve este erro: ... Por favor, corrija-o\").",
+    "stage": "post"
+  },
+  {
+    "question": "Quando você deve usar o modo nativo JSON da API versus extração JSON baseada em prompt?",
+    "options": [
+      "Sempre utilizar extracção baseada em prompt",
+      "Sempre use o modo JSON nativo",
+      "Use o modo nativo para a estrutura garantida; use base de prompt para extração complexa, onde você precisa do modelo para raciocinar sobre o que extrair",
+      "Produzem resultados idênticos"
+    ],
+    "correct": 2,
+    "explanation": "O modo JSON nativo (respons_format do OpenAI, tool_use do Anthropic) garante a estrutura JSON válida. A extração baseada em prompt é mais flexível para raciocínio complexo sobre quais campos preencher. Use o modo nativo quando a estrutura mais importa.",
+    "stage": "post"
+  }
+]

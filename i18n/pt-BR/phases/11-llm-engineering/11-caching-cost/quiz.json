@@ -1,0 +1,62 @@
+[
+  {
+    "question": "Por que as startups de IA muitas vezes falham em questões de custos em vez de qualidade do modelo?",
+    "options": [
+      "Os modelos são sempre bons o suficiente.",
+      "Os custos por chamada se compõem rapidamente: 10 mil usuários que fazem 10 chamadas por dia custam US$ 250 por dia em tokens antes de cobrar um único dólar",
+      "Os provedores de API oferecem níveis gratuitos ilimitados",
+      "Otimizar os custos é fácil"
+    ],
+    "correct": 1,
+    "explanation": "A API LLM custa escala linearmente com a utilização.$0.003 per call seems cheap until it's called 100K times/day ($Sem otimização de custos, muitos produtos de IA são pouco rentáveis em escala.",
+    "stage": "pre"
+  },
+  {
+    "question": "O que é o cache semântico para aplicações de LLM?",
+    "options": [
+      "Gerenciamento prévio de todas as respostas possíveis",
+      "Apenas embutidos em cache",
+      "Armazenar respostas para consultas anteriores e servir respostas em cache quando uma nova consulta é semânticamente semelhante (não apenas exatamente correspondente)",
+      "Pesos de modelos de caching"
+    ],
+    "correct": 2,
+    "explanation": "O caching de correspondência exata só ajuda com consultas idênticas. O caching semântico incorpora consultas e serve respostas cachées quando a semelhança cosínica excede um limiar. 'Qual é o tempo em NYC?' coincide com 'o tempo em NYC hoje?'.",
+    "stage": "pre"
+  },
+  {
+    "question": "O que é o roteamento de modelos como estratégia de otimização de custos?",
+    "options": [
+      "Resposta de armazenamento em cache de vários modelos",
+      "Enviar consultas simples para modelos baratos/rápidos e consultas complexas para modelos caros/potentes com base na classificação das consultas",
+      "Equilíbrio de carga entre servidores",
+      "Roteamento entre diferentes provedores de API"
+    ],
+    "correct": 1,
+    "explanation": "Não todas as consultas precisam de GPT-4. Um classificador encaminha perguntas simples (FAQ, saudações) para um modelo barato (GPT-3.5, Haiku) e perguntas complexas (razão, análise) para um modelo caro.",
+    "stage": "post"
+  },
+  {
+    "question": "O que é a compressão rápida e como reduz custos?",
+    "options": [
+      "Usando nomes de variáveis mais curtos",
+      "Remover tokens redundantes, resumir contextos longos e eliminar boilerplate para reduzir o número de tokens de entrada, preservando simultaneamente informações essenciais",
+      "Tornar as instruções mais curtas, removendo palavras",
+      "Compressão de instruções com gzip"
+    ],
+    "correct": 1,
+    "explanation": "Os tokens de entrada dominam o custo em aplicativos RAG (contextos grandes recuperados). A compressão rápida remove palavras de preenchimento, resume passagens verbais e trims pedaços de baixa relevância para reduzir a contagem de tokens sem perder informações-chave.",
+    "stage": "post"
+  },
+  {
+    "question": "O que é o caching de prefixos e qual recurso do provedor o possibilita?",
+    "options": [
+      "Reutilização da computação de cache KV para prefixos de prompt compartilhados (impressão do sistema + definições de ferramentas), redução da latência e do custo para padrões repetidos",
+      "Cachagem do navegador das respostas da API",
+      "Buscas de DNS em cache",
+      "Cachar a primeira palavra de cada resposta"
+    ],
+    "correct": 0,
+    "explanation": "Se as definições de seu sistema de prompt + ferramenta são 5000 tokens e idênticas em todas as solicitações, o prefixo de cache calcula o cache KV uma vez e o reutiliza.",
+    "stage": "post"
+  }
+]

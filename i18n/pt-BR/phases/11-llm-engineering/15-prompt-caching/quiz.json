@@ -1,0 +1,66 @@
+{
+  "lesson": "15-prompt-caching",
+  "title": "Cachagem rápida e Cachagem do contexto",
+  "questions": [
+    {
+      "stage": "post",
+      "question": "Que desconto aplica o Anthropic às leituras de cache em relação à taxa de entrada base?",
+      "options": [
+        "25% de desconto",
+        "Desconto de 90%",
+        "75% de desconto",
+        "50% de desconto"
+      ],
+      "correct": 1,
+      "explanation": ""
+    },
+    {
+      "stage": "post",
+      "question": "Porque é que as marcas de tempo dinâmicas têm de ir abaixo do ponto de ruptura do cache, não acima dele?",
+      "options": [
+        "Anthropic rejeita explícitamente timestamps em blocos em cache",
+        "Os timestamps confundem o tokenizer",
+        "Costam mais tokens do que texto estático",
+        "Caches só acertam quando o prefixo é o mesmo em byte; uma marca de tempo que muda quebra a correspondência para tudo depois dele"
+      ],
+      "correct": 3,
+      "explanation": ""
+    },
+    {
+      "stage": "post",
+      "question": "Como é configurado o cache de prompt do OpenAI?",
+      "options": [
+        "Uma bandeira de nível do sistema que você alterar por projeto",
+        "A combinação automática de prefixos sem configuração",
+        "Uma API de conteúdo em cache que você cria e consulta",
+        "marcadores de cache_control explícitos"
+      ],
+      "correct": 1,
+      "explanation": ""
+    },
+    {
+      "stage": "post",
+      "question": "Para a Anthropic, qual é o custo do prêmio de escrita da TTL prolongada de 1 hora versus o padrão de 5 minutos?",
+      "options": [
+        "4x a taxa de inscrição",
+        "2x a taxa de inscrição (50% acima da linha de base)",
+        "Não há prémio de escrita",
+        "- O mesmo."
+      ],
+      "correct": 1,
+      "explanation": ""
+    },
+    {
+      "stage": "post",
+      "question": "Quantas reutilizas são necessárias para compensar o prêmio de escrita do 25% da Anthropic?",
+      "options": [
+        "5",
+        "10",
+        "1",
+        "2"
+      ],
+      "correct": 3,
+      "explanation": ""
+    }
+  ]
+}

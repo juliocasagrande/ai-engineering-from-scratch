@@ -1,0 +1,62 @@
+[
+  {
+    "question": "Qual é a diferença entre o \"zero-shot\" e o \"minus-shot\"?",
+    "options": [
+      "Zero-shot dá apenas as instruções; few-shot inclui exemplos de demonstrações de entrada e saída antes da consulta real",
+      "O zero-shot não usa um sistema de urgência",
+      "Few-shot usa um modelo diferente",
+      "O tiro zero é mais rápido."
+    ],
+    "correct": 0,
+    "explanation": "A solicitação de poucas fotos inclui exemplos trabalhados (demonstrativos) que mostram ao modelo o padrão esperado.",
+    "stage": "pre"
+  },
+  {
+    "question": "O que faz a \"Cadeia de Pensamento\"?",
+    "options": [
+      "Instrui o modelo a mostrar etapas intermediárias de raciocínio antes de dar a resposta final, melhorando a precisão em problemas de várias etapas",
+      "Gera respostas mais longas .",
+      "Encadeia várias chamadas de API juntas",
+      "Conecta vários modelos em sequência"
+    ],
+    "correct": 0,
+    "explanation": "A co-T-Promoting (por exemplo, \"Pensemos passo a passo\") permite que o modelo \"scratch paper\" resolva problemas.",
+    "stage": "pre"
+  },
+  {
+    "question": "Como a Árvore do Pensamento é diferente da Cadeia do Pensamento?",
+    "options": [
+      "Explora vários caminhos de raciocínio em paralelo e avalia qual caminho leva à melhor resposta",
+      "Utiliza uma estrutura de dados de árvore para armazenamento",
+      "Ele usa um modelo diferente",
+      "É apenas uma cadeia de pensamentos mais longa."
+    ],
+    "correct": 0,
+    "explanation": "O CoT segue um único caminho de raciocínio. A árvore de pensamento gera vários caminhos de candidatos, os avalia (possivelmente com o próprio LLM) e seleciona o melhor.",
+    "stage": "post"
+  },
+  {
+    "question": "Quando escolhemos alguns exemplos, o que é mais importante?",
+    "options": [
+      "Usando os exemplos mais curtos",
+      "Escolher exemplos diversos que cobram casos diferentes e demonstram o formato e padrão de raciocínio exatos que você deseja",
+      "Usando o maior número possível de exemplos",
+      "Utilização de exemplos do conjunto de ensaio"
+    ],
+    "correct": 1,
+    "explanation": "Exemplo qualidade supera quantidade. 3-5 exemplos diversos, bem formatados que cobrem diferentes casos de borda ensinam o modelo o padrão melhor do que 20 exemplos repetitivos que desperdiçam tokens de janela de contexto.",
+    "stage": "post"
+  },
+  {
+    "question": "Por que o CoT incita a melhorar a precisão, mesmo que o modelo tenha o mesmo conhecimento com ou sem ele?",
+    "options": [
+      "Ele usa mais computação",
+      "Ativa capacidades ocultas de modelos",
+      "Mudança o peso do modelo",
+      "A geração de tokens intermediários cria um contexto eficaz maior para a resposta final, permitindo que o modelo se condicione com seu próprio raciocínio"
+    ],
+    "correct": 3,
+    "explanation": "Sem CoT, o modelo deve saltar diretamente para a resposta em um token. Com CoT, cada passo intermediário é um token que o modelo condiciona para o próximo passo. O modelo essencialmente 'pensam em voz alta', construindo até a resposta.",
+    "stage": "post"
+  }
+]
