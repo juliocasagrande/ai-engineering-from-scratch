@@ -1,0 +1,62 @@
+[
+  {
+    "question": "Que operação matemática realiza um perceptron em suas entradas antes de aplicar a função de ativação?",
+    "options": [
+      "soma ponderada mais preconceito",
+      "Descomposição do valor próprio",
+      "Inversão de matriz",
+      "Transformação de Fourier"
+    ],
+    "correct": 0,
+    "explanation": "Um perceptron calcula o produto de pontos de entradas e pesos, adiciona um termo de viés, e depois passa o resultado através de uma função de passo.",
+    "stage": "pre"
+  },
+  {
+    "question": "O que significa \"linearmente separável\" para um problema de classificação?",
+    "options": [
+      "Uma única linha reta (ou hiperplano) pode separar perfeitamente as classes",
+      "Os dados podem ser ordenados",
+      "As características têm uma relação linear com a etiqueta",
+      "Os dados têm apenas duas dimensões"
+    ],
+    "correct": 0,
+    "explanation": "Um conjunto de dados é linearmente separável quando você pode desenhar um único hiperplano que divide perfeitamente o espaço de entrada nas classes corretas.",
+    "stage": "pre"
+  },
+  {
+    "question": "Por que um único perceptron não consegue aprender a função XOR?",
+    "options": [
+      "A função passo impede o fluxo de gradiente",
+      "O XOR tem muitas entradas .",
+      "A taxa de aprendizagem é muito baixa",
+      "XOR não é linearmente separavel - nenhuma linha única pode separar as classes"
+    ],
+    "correct": 3,
+    "explanation": "O XOR coloca [0,1] e [1,0] em um lado e [0,0] e [1,1] no outro. Nenhuma linha reta única pode separar esses grupos, de modo que um único perceptron, que só pode desenhar um limite linear, não pode resolver o XOR.",
+    "stage": "post"
+  },
+  {
+    "question": "Na regra da aprendizagem de percepção, o que acontece quando a previsão coincide com o alvo?",
+    "options": [
+      "Nada muda - erro é zero, então a atualização é zero",
+      "A taxa de aprendizagem é reduzida à metade",
+      "Os pesos são definidos para zero",
+      "Os pesos são duplicados"
+    ],
+    "correct": 0,
+    "explanation": "A regra de atualização é w_i = w_i + lr * erro * x_i. Quando a previsão é igual ao objetivo, erro = 0, então todas as atualizações de peso são zero.",
+    "stage": "post"
+  },
+  {
+    "question": "Como é resolvido o XOR usando múltiplos perceptrões?",
+    "options": [
+      "Ao adicionar mais entradas a um único perceptron",
+      "Removendo o termo \"bias\"",
+      "Usando uma taxa de aprendizagem maior em um único perceptron",
+      "Combinando os perceptrões OR, NAND e AND em duas camadas"
+    ],
+    "correct": 3,
+    "explanation": "XOR = (x1 OR x2) E NOT ((x1 E x2). Uma camada oculta com um neurônio OR e um neurônio NAND alimenta um neurônio de saída E, criando um limite de decisão não linear a partir de componentes lineares.",
+    "stage": "post"
+  }
+]

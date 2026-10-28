@@ -1,0 +1,62 @@
+[
+  {
+    "question": "Por que o depuração de rede neural é mais difícil do que a depuração de software tradicional?",
+    "options": [
+      "Não há ferramentas de depuração para redes neurais",
+      "As redes podem produzir saídas erradas sem qualquer mensagem de erro ou falhas - o código é executado mas os resultados são silenciosamente incorretos",
+      "As redes neurais usam linguagens de programação diferentes",
+      "As redes neurais não podem ser testadas."
+    ],
+    "correct": 1,
+    "explanation": "Os bugs tradicionais caem ou lançam exceções. Os bugs de rede neural produzem um número que é apenas errado - uma perda que não diminui, precisão que plateaus, ou saídas que são sutilmente incorretas. Nenhuma mensagem de erro diz-lhe o que deu errado.",
+    "stage": "pre"
+  },
+  {
+    "question": "Qual é a técnica de depuração de \"overfit one batch\"?",
+    "options": [
+      "Formação sobre o conjunto completo de dados até que se excedam",
+      "Super-ajustamento do conjunto de validação",
+      "Utilizando um grande lote",
+      "Treinar em um único lote pequeno até que a perda alcance quase o zero, verificando o modelo pode memorizar pelo menos alguns exemplos"
+    ],
+    "correct": 3,
+    "explanation": "Se o seu modelo não consegue memorizar um lote pequeno (por exemplo, 4-8 amostras) para perda quase zero, algo está fundamentalmente quebrado: arquitetura errada, função de perda quebrada ou ciclo de treinamento incorreto. Este é o primeiro diagnóstico a ser executado.",
+    "stage": "pre"
+  },
+  {
+    "question": "A sua perda é NaN após alguns passos de treinamento.",
+    "options": [
+      "O modelo tem poucos parâmetros .",
+      "A função de ativação está errada.",
+      "Gradientes explosivos ou desbordamento numérico, muitas vezes a partir de uma taxa de aprendizagem que é muito alta ou falta de corte de gradiente",
+      "O conjunto de dados é muito pequeno"
+    ],
+    "correct": 2,
+    "explanation": "A perda de NaN normalmente vem de sobrecarga numérica: gradientes explodem, pesos crescem ilimitados, e operações como log ((0) ou exp ((1000) produzem infinito/NaN. Baixe a taxa de aprendizagem ou adicione corte de gradiente.",
+    "stage": "post"
+  },
+  {
+    "question": "A perda de treinamento diminui, mas a perda de validação permanece plana desde o início.",
+    "options": [
+      "O modelo é aprender padrões de dados de treinamento, mas eles não generalizam -- provavelmente um problema de pipeline de dados (desconformidade de dados de trem/val) ou grave sobreajuste",
+      "A taxa de aprendizagem é muito baixa",
+      "O modelo precisa de mais camadas",
+      "O modelo está em excesso."
+    ],
+    "correct": 0,
+    "explanation": "Se a perda de validação nunca melhorar, o modelo está ou memorizando o ruído de treinamento (overfitting), ou há um erro de pipeline de dados onde as distribuições de treinamento e validação são fundamentalmente diferentes.",
+    "stage": "post"
+  },
+  {
+    "question": "O que deve verificar primeiro quando a sua curva de perdas é completamente plana (a perda não diminui de forma alguma)?",
+    "options": [
+      "Tente uma arquitetura diferente",
+      "Passe para um optimizador diferente",
+      "Verifique que os gradientes não são zero, a taxa de aprendizagem é alta o suficiente, e a função de perda realmente depende das previsões do modelo",
+      "Adicionar mais dados de formação"
+    ],
+    "correct": 2,
+    "explanation": "Uma perda plana significa que o modelo não está atualizando. Causas comuns: gradientes zero (neurônios mortos, tensores separados), taxa de aprendizagem muito pequena, ou uma função de perda que não fluir gradientes para o modelo (por exemplo, usando .item() antes de .backward()).",
+    "stage": "post"
+  }
+]

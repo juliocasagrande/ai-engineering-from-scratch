@@ -1,0 +1,62 @@
+[
+  {
+    "question": "Por que uma taxa constante de aprendizagem é geralmente subóptima para treinamento de redes neurais?",
+    "options": [
+      "Ele usa muita memória.",
+      "É demasiado alto para o treino tardío (causa oscilação) ou muito baixo para o treino precoce (computação de resíduos)",
+      "As taxas constantes de aprendizagem causam sobreadaptação",
+      "Só trabalham com a SGD ."
+    ],
+    "correct": 1,
+    "explanation": "O tamanho óptimo dos passos muda durante o treinamento. No início, os passos grandes cobrem o terreno rapidamente. No final do treinamento, são necessários pequenos passos para se estabelecerem no mínimo. Uma taxa constante não pode atender às duas necessidades.",
+    "stage": "pre"
+  },
+  {
+    "question": "Qual é o propósito do aquecimento da taxa de aprendizagem?",
+    "options": [
+      "Para permitir que as estatísticas de otimização adaptativas (momento, variância) se estabilizem antes de tomar grandes passos",
+      "Para evitar o excesso de montagem",
+      "Para aumentar gradualmente o tamanho do lote",
+      "Para iniciar os pesos corretamente"
+    ],
+    "correct": 0,
+    "explanation": "As estimativas de momento de Adam são iniciadas para zero. As atualizações iniciais de gradiente são baseadas em estatísticas não confiáveis. O aquecimento começa com um pequeno LR e aumenta, dando a Adam tempo para acumular estimativas significativas.",
+    "stage": "pre"
+  },
+  {
+    "question": "Qual é o calendário de taxa de aprendizagem utilizado pelos Llama 3, GPT-3 e pela maioria dos LLM modernos?",
+    "options": [
+      "Taxa de aprendizagem constante",
+      "Decadência gradual a cada 30 épocas",
+      "Decadência exponencial",
+      "O aquecimento linear seguido de declínio cosínico"
+    ],
+    "correct": 3,
+    "explanation": "O aquecimento linear + decomposição cosínica é o padrão para o treinamento de transformadores. Llama 3 usou 2000 passos de aquecimento com decomposição cosínica de 3e-4 a 3e-5.",
+    "stage": "post"
+  },
+  {
+    "question": "O que diferencia a política de 1 ciclo de outros horários?",
+    "options": [
+      "Não requer ajuste de hiperparâmetros",
+      "Só funciona com SGD",
+      "Ele usa uma taxa de aprendizagem constante",
+      "Ele aumenta a taxa de aprendizagem para cima na primeira metade do treinamento, e depois para baixo - a fase de alta LR atua como regularização"
+    ],
+    "correct": 3,
+    "explanation": "A rampa de 1 ciclo de Leslie Smith faz a LR de baixa para alta (primeira metade) e depois alta para muito baixa (segunda metade).",
+    "stage": "post"
+  },
+  {
+    "question": "Se a perda de formação surgir repentinamente e divergir, qual é o problema mais provável da taxa de aprendizagem?",
+    "options": [
+      "A taxa de aprendizagem é muito baixa",
+      "A taxa de aprendizagem é muito alta, fazendo com que o optimizador ultrapasse o mínimo",
+      "O período de aquecimento é muito longo.",
+      "O horário decorre muito lentamente ."
+    ],
+    "correct": 1,
+    "explanation": "Uma taxa de aprendizagem muito alta faz com que o optimizador tome passos maiores do que a bacia de perdas, ultrapassando o mínimo e fazendo com que a perda aumente.",
+    "stage": "post"
+  }
+]

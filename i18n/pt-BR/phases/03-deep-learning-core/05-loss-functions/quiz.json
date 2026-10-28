@@ -1,0 +1,62 @@
+[
+  {
+    "question": "O que representa a função de perda no treinamento de rede neural?",
+    "options": [
+      "O calendário da taxa de aprendizagem",
+      "Uma medida diferenciável de quão erradas são as previsões do modelo, que o optimizador minimiza",
+      "Número de previsões incorretas",
+      "O tamanho do conjunto de dados de formação"
+    ],
+    "correct": 1,
+    "explanation": "A função de perda mapeia previsões e metas para um único escalar que o optimizador minimiza através da descida de gradiente.",
+    "stage": "pre"
+  },
+  {
+    "question": "Por que é preferida a entropia cruzada ao MSE para as tarefas de classificação?",
+    "options": [
+      "A entropia cruzada castiga as previsões erradas confiantes exponencialmente através de -log(p), enquanto a MSE dá gradientes fracos próximos a 0 e 1",
+      "A entropia cruzada não requer rótulos.",
+      "O MSE só funciona para regressão",
+      "A entropia cruzada é mais rápida para calcular"
+    ],
+    "correct": 0,
+    "explanation": "Quando um modelo prevê com confiança a classe errada (p perto de 0 para classe verdadeira), -log(p) produz uma perda enorme e um forte gradiente.",
+    "stage": "pre"
+  },
+  {
+    "question": "O que acontece se usar a perda de MSE para classificação binária?",
+    "options": [
+      "Os gradientes explodem .",
+      "A formação diverge imediatamente",
+      "O modelo de comboios normalmente",
+      "O modelo pode minimizar a perda, prevendo 0,5 para tudo, alcançando MSE = 0,25 sem aprender"
+    ],
+    "correct": 3,
+    "explanation": "Com o MSE num conjunto de dados binários equilibrados, prever 0,5 por cada entrada dá MSE = 0,25 -- o mínimo alcançável sem discriminação. O modelo satisfaz a perda sem aprender padrões úteis.",
+    "stage": "post"
+  },
+  {
+    "question": "O que faz o suavizante de rótulos e por que é útil?",
+    "options": [
+      "Limpa a taxa de aprendizagem",
+      "Substitui metas duras de 0/1 por valores macios como 0,1/0,9, evitando previsões exageradas e melhorando a generalização",
+      "Remove rótulos barulhentos do conjunto de dados",
+      "Aplica-se uma média móvel à perda"
+    ],
+    "correct": 1,
+    "explanation": "O suavizamento de rótulo muda as metas de [0,0,0,1,0] para [0,025,0.025,0.925,0.025] (com alfa=0,1). Isso impede que o modelo empurra logits para o infinito para alcançar metas difíceis, reduzindo a confiança excessiva.",
+    "stage": "post"
+  },
+  {
+    "question": "Em perda de contraste (InfoNCE), qual é o papel desempenhado pelo parâmetro de temperatura?",
+    "options": [
+      "Controla a distribuição de semelhança. Temperatura mais baixa significa separação mais difícil entre positivos e negativos.",
+      "Estabelece o número de amostras negativas",
+      "Controla a taxa de aprendizagem",
+      "Determina a dimensão de incorporação"
+    ],
+    "correct": 0,
+    "explanation": "A temperatura divide as pontuações de semelhança antes do softmax. A temperatura mais baixa (por exemplo, 0,07) cria uma distribuição mais nítida onde o modelo deve separar claramente os positivos dos negativos. A temperatura mais alta é mais tolerante.",
+    "stage": "post"
+  }
+]

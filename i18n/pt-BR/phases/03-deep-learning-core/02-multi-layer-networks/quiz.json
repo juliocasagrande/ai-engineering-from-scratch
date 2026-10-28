@@ -1,0 +1,62 @@
+[
+  {
+    "question": "Qual é o propósito de uma camada oculta numa rede de várias camadas?",
+    "options": [
+      "Transformar entradas em novas representações de características que permitam limites de decisão não lineares",
+      "Para aplicar a função de perda",
+      "Para reduzir o número de parâmetros",
+      "Para armazenar os dados de formação"
+    ],
+    "correct": 0,
+    "explanation": "As camadas ocultas aplicam pesos, preconceitos e funções de ativação para criar novas representações de recursos.",
+    "stage": "pre"
+  },
+  {
+    "question": "O que faz a passagem avançada numa rede neural?",
+    "options": [
+      "Computa gradientes para propagação de volta",
+      "Mistura os dados de formação",
+      "Atualiza os pesos usando gradientes",
+      "Impulsa entrada através de cada camada para produzir uma saída"
+    ],
+    "correct": 3,
+    "explanation": "A passagem para frente é uma computação pura: para cada camada, multiplicar por pesos, adicionar preconceito, aplicar a ativação e passar o resultado para a camada seguinte.",
+    "stage": "pre"
+  },
+  {
+    "question": "Para uma camada com 3 neurônios recebendo entrada de 2 neurônios, qual é a forma da matriz de peso?",
+    "options": [
+      "(2, 3)",
+      "(3, 2)",
+      "(2, 2)",
+      "(3, 3)"
+    ],
+    "correct": 1,
+    "explanation": "A matriz de peso tem forma (neurônios_in_current_layer, neurônios_in_previous_layer) = (3, 2). Cada linha contém os pesos de um neurônio em todas as entradas.",
+    "stage": "post"
+  },
+  {
+    "question": "O que garante o Teorema da Aproximação Universal?",
+    "options": [
+      "As redes neurais podem resolver qualquer problema computacional",
+      "Uma única camada oculta com neurônios suficientes pode aproximar qualquer função contínua",
+      "As redes mais profundas sempre superam as superficiais",
+      "Qualquer rede pode ser treinada em tempo polinômio"
+    ],
+    "correct": 1,
+    "explanation": "Cybenko (1989) provou que uma rede com uma camada oculta e neurônios suficientes pode aproximar qualquer função contínua a qualquer precisão desejada.",
+    "stage": "post"
+  },
+  {
+    "question": "Por que a função de ativação sigmoide torna possível a aprendizagem, ao contrário da função de passos usada em perceptrões?",
+    "options": [
+      "Output Sigmoid valores maiores",
+      "O Sigmoid é mais rápido para calcular",
+      "O sigmoide é liso e diferenciável em todos os lugares, por isso existem gradientes para a propagação para trás",
+      "Sigmoid produz valores negativos"
+    ],
+    "correct": 2,
+    "explanation": "A função de passo tem gradiente zero em quase todas as partes e gradiente indefinido no limiar. Sigmoide é lisa com uma derivada bem definida (s *  1) em todos os pontos, o que é essencial para a aprendizagem baseada em gradiente.",
+    "stage": "post"
+  }
+]

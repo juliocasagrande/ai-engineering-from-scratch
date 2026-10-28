@@ -1,0 +1,62 @@
+[
+  {
+    "question": "Quais são as três responsabilidades que a abstração do módulo tem num quadro de aprendizagem profunda?",
+    "options": [
+      "Dados de carga, dados de pré-processo, dados de aumento",
+      "Para frente() para o cálculo, para trás() para gradientes, parâmetros() para pesos treinosáveis",
+      "Compile, otimize, implantar",
+      "Tokenize, embebeber, decodificar"
+    ],
+    "correct": 1,
+    "explanation": "Cada módulo implementa para frente ((() para calcular a saída, para trás ((() para propagar gradientes e parâmetros ((() para expor pesos treinables. Esta interface uniforme permite que qualquer módulo seja composto com qualquer outro.",
+    "stage": "pre"
+  },
+  {
+    "question": "Por que os módulos de processo sequenciais em ordem inversa durante o retorno passam?",
+    "options": [
+      "O reverso da ordem usa menos memória",
+      "Os gradientes fluem da perda para trás através da rede, então a última camada calcula os gradientes primeiro",
+      "Prevenção de explosão de gradiente",
+      "É arbitrário. Ambas as direções funcionam."
+    ],
+    "correct": 1,
+    "explanation": "A passagem para trás começa na perda e propaga gradientes para a entrada. A última camada recebe primeiro o gradiente de perda, calcula seus gradientes locais e os passa para a camada anterior.",
+    "stage": "pre"
+  },
+  {
+    "question": "Por que é optimizer.zero_grad() uma chamada separada em vez de ser feita automaticamente?",
+    "options": [
+      "Permite a acumulação de gradientes em vários lotes antes de tomar um único passo de otimização",
+      "Faz o depósito mais fácil",
+      "Salva memória.",
+      "É um erro de design da PyTorch."
+    ],
+    "correct": 0,
+    "explanation": "Separar zero_grad do passo permite a acumulação de gradientes: você pode correr para trás várias vezes (em mini-partidas) e somar os gradientes antes de chamar passo(). Isso simula tamanhos de lote maiores.",
+    "stage": "post"
+  },
+  {
+    "question": "Qual é a ordem correta de operações num ciclo de formação?",
+    "options": [
+      "Para trás, para frente, zero_grado, passo",
+      "Para frente, perda, zero_grad, para trás, passo",
+      "Para frente, zero_grad, para trás, perda, passo",
+      "zero_grad, para frente, perda, para trás, passo"
+    ],
+    "correct": 3,
+    "explanation": "O padrão padrão: zero_grad (gradientes antigos claros), para frente (previsões de cálculo), perda (perda escalar de cálculo), para trás (gradientes de cálculo), passo (parâmetros de atualização).",
+    "stage": "post"
+  },
+  {
+    "question": "Qual é o papel do DataLoader no quadro?",
+    "options": [
+      "Divide os dados em lotes e opcionalmente mistura entre épocas para descida de gradiente de mini lotes",
+      "Ele calcula a função de perda",
+      "Inicializa os pesos .",
+      "Treina o modelo."
+    ],
+    "correct": 0,
+    "explanation": "O DataLoader lida com duas preocupações práticas: batching (você não pode colocar todos os dados na memória) e shuffling (ordem aleatória impede que o modelo memore a sequência de dados).",
+    "stage": "post"
+  }
+]

@@ -1,0 +1,62 @@
+[
+  {
+    "question": "O que é que se encaixa demais nas redes neurais?",
+    "options": [
+      "O modelo é pequeno demais para aprender os dados",
+      "O modelo treina muito devagar",
+      "O modelo memorizou dados de treinamento em vez de aprender padrões generalizáveis, mostrando uma grande diferença entre a precisão do treinamento e do teste",
+      "A função de perda está errada."
+    ],
+    "correct": 2,
+    "explanation": "O overfitting ocorre quando um modelo alcança uma alta precisão de treinamento mas uma baixa precisão de teste.",
+    "stage": "pre"
+  },
+  {
+    "question": "Como é que o abandono regulariza uma rede neural?",
+    "options": [
+      "Elimina os neurônios de pior desempenho permanentemente",
+      "Reduz a taxa de aprendizagem",
+      "Ele neutraliza aleatoriamente os neurônios durante o treinamento, forçando a rede a aprender representações redundantes",
+      "Elimina os valores fora dos dados de formação"
+    ],
+    "correct": 2,
+    "explanation": "Durante cada passagem para a frente, o abandono define aleatoriamente as saídas de neurônios para zero com probabilidade p. Isso impede a co-adaptação (neurônios dependendo de outros específicos) e é equivalente ao treinamento de um conjunto de sub-rede 2^N.",
+    "stage": "pre"
+  },
+  {
+    "question": "Por que os transformadores usam LayerNorm em vez de BatchNorm?",
+    "options": [
+      "BatchNorm causa explosão de gradiente",
+      "LayerNorm foi inventado mais recentemente",
+      "LayerNorm é mais rápido para calcular",
+      "LayerNorm normaliza através de características por amostra (independente de lote), que funciona com comprimentos de sequência variáveis e pequenos tamanhos de lote"
+    ],
+    "correct": 3,
+    "explanation": "BatchNorm depende de estatísticas de lote, que são barulhentos com lotes pequenos e sem significado com o tamanho do lote 1 (comum durante a geração).",
+    "stage": "post"
+  },
+  {
+    "question": "Qual é a diferença fundamental entre o RMSNorm e o LayerNorm?",
+    "options": [
+      "A RMSNorm utiliza estatísticas de lote",
+      "A RMSNorm só funciona nas emissoras da CNN",
+      "RMSNorm salta a subtração média, dividindo apenas pela raiz média quadrada, dando ~ 10% de aceleração com igual precisão",
+      "RMSNorm adiciona parâmetros aprendizes"
+    ],
+    "correct": 2,
+    "explanation": "O RMSNorm remove o passo de subtração média do LayerNorm, que contribui pouco para a precisão, mas adiciona computação.",
+    "stage": "post"
+  },
+  {
+    "question": "Por que é fundamental chamar modelo.eval() antes de executar inferências em PyTorch?",
+    "options": [
+      "Acelera a computação.",
+      "Permite o cálculo de gradientes",
+      "Desativar a interrupção e alterar o BatchNorm para utilizar estatísticas de execução em vez de estatísticas de lote, dando saídas deterministas",
+      "Libera a memória da GPU ."
+    ],
+    "correct": 2,
+    "explanation": "Sem modelo.eval(), o abandono reduz aleatoriamente os neurônios durante a inferência (causando variação aleatória de saída) e o BatchNorm usa estatísticas de lote de corrente em vez das médias de execução estáveis acumuladas durante o treinamento.",
+    "stage": "post"
+  }
+]

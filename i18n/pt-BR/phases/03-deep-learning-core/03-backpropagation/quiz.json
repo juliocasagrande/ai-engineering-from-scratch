@@ -1,0 +1,62 @@
+[
+  {
+    "question": "Qual é a regra da cadeia no contexto das redes neurais?",
+    "options": [
+      "Técnica de batchagem de dados",
+      "Método de inicialização de pesos",
+      "Regra para encadear camadas juntas",
+      "Se y = f(g(x)), então dy/dx = f'(g(x)) * g'(x) -- multiplicar derivados ao longo do caminho"
+    ],
+    "correct": 3,
+    "explanation": "A regra da cadeia permite calcular a derivada de uma função composta multiplicando as derivadas locais em cada etapa.",
+    "stage": "pre"
+  },
+  {
+    "question": "Por que a propagação de volta é mais eficiente do que calcular cada gradiente de forma independente?",
+    "options": [
+      "Consuma menos memória.",
+      "Ele calcula todos os gradientes em uma única passagem para trás em vez de uma passagem para a frente por parâmetro",
+      "Só funciona em redes pequenas .",
+      "Evita o uso da regra da cadeia"
+    ],
+    "correct": 1,
+    "explanation": "A computação de gradientes requer independentemente um pass para frente por parâmetro (milhões de passes para uma grande rede).",
+    "stage": "pre"
+  },
+  {
+    "question": "Na passagem para trás, por que usamos '+=' em vez de '=' ao acumular gradientes?",
+    "options": [
+      "É uma convenção Python.",
+      "Um valor pode ser usado em múltiplas operações, então seu gradiente é a soma de gradientes de todos os caminhos",
+      "Faz o código correr mais rápido.",
+      "Prevenção ao desbordamento"
+    ],
+    "correct": 1,
+    "explanation": "Quando um valor é usado como entrada para múltiplas operações (por exemplo, x usado em x*w1 e x*w2), seu gradiente total é a soma dos gradientes que fluem de volta de cada operação.",
+    "stage": "post"
+  },
+  {
+    "question": "O que causa o problema de desvanecimento de gradientes em redes sigmoides profundas?",
+    "options": [
+      "A função de perda é mal escolhida",
+      "A rede tem muitos parâmetros.",
+      "A taxa de aprendizagem é muito pequena",
+      "A derivada de Sigmoide tem um máximo de 0,25, por isso os gradientes encolhem exponencialmente através das camadas"
+    ],
+    "correct": 3,
+    "explanation": "A derivada sigmoide chega a 0,25 (quando z = 0). Cada camada multiplica o gradiente em no máximo 0,25, então após 10 camadas o gradiente é no máximo 0,25^10 = ~0,000001 do sinal original.",
+    "stage": "post"
+  },
+  {
+    "question": "Por que a classificação topológica faz a matéria passar para trás?",
+    "options": [
+      "Reduz o uso de memória",
+      "Acelera a passagem para a frente",
+      "Ele garante que o gradiente de cada nó seja completamente acumulado antes de se propagar para os seus filhos",
+      "Faz o código mais limpo."
+    ],
+    "correct": 2,
+    "explanation": "A classificação topológica garante que processemos os nós na ordem correta: o gradiente de um nó deve ser completamente acumulado de todas as vias a jusante antes de se propagarmos através dele.",
+    "stage": "post"
+  }
+]

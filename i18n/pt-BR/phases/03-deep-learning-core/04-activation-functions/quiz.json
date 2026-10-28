@@ -1,0 +1,62 @@
+[
+  {
+    "question": "Por que não pode construir uma rede profunda útil usando apenas camadas lineares (sem funções de ativação)?",
+    "options": [
+      "As camadas lineares de empilhamento desmoronam em uma única transformação linear, não dando nenhum benefício da profundidade",
+      "As camadas lineares são muito lentas",
+      "As camadas lineares não podem lidar com dados em lotes",
+      "As camadas lineares não têm preconceitos"
+    ],
+    "correct": 0,
+    "explanation": "Y = W2(W1*x + b1) + b2 simplifica para y = Ax + c. Não importa quantas camadas lineares você apilar, o resultado é equivalente a uma camada linear.",
+    "stage": "pre"
+  },
+  {
+    "question": "Qual é o intervalo de saída da função de ativação ReLU?",
+    "options": [
+      "- (infinito, infinito)",
+      "[0, infinito)",
+      "(0, 1)",
+      "(-1, 1)"
+    ],
+    "correct": 1,
+    "explanation": "ReLU(x) = max(0, x). Ele produz 0 para todas as entradas negativas e passa entradas positivas inalteradas, dando um intervalo de [0, infinito).",
+    "stage": "pre"
+  },
+  {
+    "question": "Qual é o problema de neurônios mortos nas redes ReLU?",
+    "options": [
+      "Neurônios com preconceito zero",
+      "Neurônios que computam muito devagar",
+      "Neurônios cuja entrada é permanentemente negativa, produzindo zero saída e zero gradiente para sempre",
+      "Neurônios que produzem valores NaN"
+    ],
+    "correct": 2,
+    "explanation": "Se a entrada ponderada de um neurônio ReLU é sempre negativa (devido à má inicialização ou grande viés negativo), ele sai 0 com gradiente 0.",
+    "stage": "post"
+  },
+  {
+    "question": "Qual é a função de ativação padrão para camadas ocultas em transformadores modernos como GPT e BERT?",
+    "options": [
+      "Sigmoide",
+      "Tanh",
+      "GELU",
+      "ReLU"
+    ],
+    "correct": 2,
+    "explanation": "GELU (Gaussian Error Linear Unit) é a ativação padrão em transformadores. Ele fornece fluxo de gradiente suave, evita neurônios mortos e tem sido mostrado para superar ReLU em modelos de linguagem.",
+    "stage": "post"
+  },
+  {
+    "question": "Por que é que o softmax é utilizado apenas na camada de saída e nunca em camadas ocultas?",
+    "options": [
+      "Só funciona com duas classes.",
+      "Causa gradientes explosivos .",
+      "Converte um vetor em uma distribuição de probabilidade (suma de valores para 1), que é necessária para a saída de classificação, mas não para representações intermediárias",
+      "É muito lento para camadas escondidas."
+    ],
+    "correct": 2,
+    "explanation": "Softmax normaliza um vetor para que todos os valores estejam em (0,1) e soma para 1, criando uma distribuição de probabilidade.",
+    "stage": "post"
+  }
+]

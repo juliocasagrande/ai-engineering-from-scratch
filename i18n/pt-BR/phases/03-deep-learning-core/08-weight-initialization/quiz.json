@@ -1,0 +1,62 @@
+[
+  {
+    "question": "O que acontece se inicializar todos os pesos numa rede neural para zero?",
+    "options": [
+      "A rede diverge",
+      "Zero init é o padrão recomendado",
+      "A rede treina normalmente, mas lentamente.",
+      "Todos os neurônios computam saídas idênticas e recebem gradientes idênticos, de modo que a rede tem apenas um neurônio eficaz por camada"
+    ],
+    "correct": 3,
+    "explanation": "Com pesos zero, cada neurônio em uma camada calcula a mesma função, recebe o mesmo gradiente e atualiza-se de forma idêntica.",
+    "stage": "pre"
+  },
+  {
+    "question": "Por que a escala da inicialização de peso aleatório importa?",
+    "options": [
+      "Escala só importa para a camada de saída",
+      "Se a variância for muito alta, as ativas explodem; se for muito baixa, as ativas desaparecem. Ambas impedem o treinamento.",
+      "Peso maior treina mais rápido",
+      "Não importa, desde que os pesos não sejam zero."
+    ],
+    "correct": 1,
+    "explanation": "Cada camada multiplica a variância por fan_in * Var(w. Se esse produto é > 1, o sinal explode exponencialmente através das camadas. Se < 1, ele desaparece.",
+    "stage": "pre"
+  },
+  {
+    "question": "Qual é a fórmula para a variância de inicialização Kaiming/He?",
+    "options": [
+      "Var(w) = 1/fan_in",
+      "Var(w) = 2/fan_in",
+      "Var(w) = 1/(fan_in + fan_out)",
+      "Var(w) = 2/(fan_in + fan_out)"
+    ],
+    "correct": 1,
+    "explanation": "Kaiming init usa Var(w) = 2/fan_in. O fator de 2 compensa a reLU zeroando metade das ativações (valores negativos tornam-se 0), o que efetivamente reduz a metade do fan_in.",
+    "stage": "post"
+  },
+  {
+    "question": "Quando deve utilizar a inicialização Xavier/Glorot em vez de Kaiming/He?",
+    "options": [
+      "Ao usar o Adam Optimizer",
+      "Ao treinar em pequenos conjuntos de dados",
+      "Quando usamos ativas sigmoides ou tanh, que não zero a metade das saídas como ReLU",
+      "Sempre... Xavier é universalmente melhor."
+    ],
+    "correct": 2,
+    "explanation": "Xavier init usa Var(w) = 2/(fan_in + fan_out), projetado para ativações que são aproximadamente lineares perto de zero (sigmoide, tanh). O fator extra de 2 de Kaiming compensa a metade de zero de ReLU, que Xavier não precisa.",
+    "stage": "post"
+  },
+  {
+    "question": "Por que o GPT-2 escala os pesos das camadas residuais por 1/sqrt ((2N)?",
+    "options": [
+      "Melhorar a tokenização",
+      "Para acelerar o treinamento",
+      "Cada adição residual aumenta a variância, de modo que a escalagem impede que o sinal acumulado cresça ilimitadamente através de camadas N",
+      "Para reduzir o número de parâmetros"
+    ],
+    "correct": 2,
+    "explanation": "As conexões residuais adicionam a saída de subcamada à entrada: x = x + subcamada ((x). Cada adição aumenta a variância. Com N camadas residuais, a variância cresce proporcionalmente a N. Escalado por 1/sqrt ((2N) mantém o sinal estável.",
+    "stage": "post"
+  }
+]

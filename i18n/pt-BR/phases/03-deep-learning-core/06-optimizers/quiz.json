@@ -1,0 +1,62 @@
+[
+  {
+    "question": "Que problema resolve o impulso na descida de gradientes?",
+    "options": [
+      "Prevenção de sobreajuste",
+      "Elimina a necessidade de uma taxa de aprendizagem",
+      "Reduz o uso de memória",
+      "Amplia a oscilação acumulando gradientes passados, acelerando o movimento em direções consistentes"
+    ],
+    "correct": 3,
+    "explanation": "Em vales estreitas, os gradientes oscilam através do vale, fazendo progresso lento ao longo dele.",
+    "stage": "pre"
+  },
+  {
+    "question": "Qual é a diferença fundamental entre Adam e AdamW?",
+    "options": [
+      "O AdamW utiliza uma taxa de aprendizagem mais elevada",
+      "O AdamW só funciona com transformadores",
+      "O AdamW aplica a decadência de peso diretamente aos pesos em vez de através do gradiente, dando uma regularização adequada",
+      "O AdamW não usa o impulso."
+    ],
+    "correct": 2,
+    "explanation": "Em Adam + L2, a taxa de aprendizagem adaptativa escala o termo de regularização de forma diferente por parâmetro.",
+    "stage": "pre"
+  },
+  {
+    "question": "Por que Adão usa correção de preconceito nos primeiros passos de treinamento?",
+    "options": [
+      "Para evitar o excesso de montagem",
+      "As estimativas de momento são iniciadas para zero, então os valores iniciais são tendenciosos para zero; a correção compensa esse começo frio",
+      "Para cortar grandes gradientes",
+      "Para acelerar a convergência"
+    ],
+    "correct": 1,
+    "explanation": "No passo 1 com beta1 = 0,9, m_1 = 0,1 * gradiente (10x muito pequeno). Dividir por (1 - 0,9 ^ 1) = 0,1 corrige isso para o gradiente real. A correção torna-se insignificante após ~ 50 passos.",
+    "stage": "post"
+  },
+  {
+    "question": "Quais são os hiperparâmetros padrão padrão para Adão?",
+    "options": [
+      "Lr=0.0001, beta1=0.8, beta2=0.9",
+      "Lr=0,01, beta1=0,99, beta2=0,99",
+      "Lr=0,001, beta1=0,9, beta2=0,999, epsilon=1e-8",
+      "Lr=0,1, beta1=0,5, beta2=0,5"
+    ],
+    "correct": 2,
+    "explanation": "O original Adam paper (Kingma & Ba, 2014) recomendou lr=0.001, beta1=0.9, beta2=0.999, epsilon=1e-8.",
+    "stage": "post"
+  },
+  {
+    "question": "Qual otimizador é o padrão moderno para transformadores de formação e LLM?",
+    "options": [
+      "SGD com impulso",
+      "RMSProp",
+      "Adão",
+      "DEG de baunilha"
+    ],
+    "correct": 2,
+    "explanation": "O AdamW (Adam com decomposição de peso descoplada) é usado para treinar BERT, GPT, LLaMA e praticamente todos os transformadores modernos.",
+    "stage": "post"
+  }
+]

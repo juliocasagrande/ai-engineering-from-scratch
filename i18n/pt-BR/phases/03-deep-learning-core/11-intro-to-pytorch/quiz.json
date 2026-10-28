@@ -1,0 +1,62 @@
+[
+  {
+    "question": "O que é o autograd em PyTorch?",
+    "options": [
+      "Um modelo de ferramenta de compressão",
+      "Motor de diferenciação automática que registra operações e calcula gradientes sem implementações retrocédentes manuais",
+      "Um quadro de sintonização de hiperparâmetros",
+      "Uma biblioteca de carregamento de dados"
+    ],
+    "correct": 1,
+    "explanation": "O autogrado da PyTorch constrói um gráfico computacional durante o cálculo avançado e calcula automaticamente os gradientes quando você chama .backward(). Isso elimina a necessidade de implementar manualmente para trás() em cada módulo.",
+    "stage": "pre"
+  },
+  {
+    "question": "O que faz a torch.no_grad() e quando você deve usá-la?",
+    "options": [
+      "Prevenção de sobreajuste",
+      "Abilita a aceleração da GPU.",
+      "Desativa o seguimento de gradientes para inferência, poupando memória e computação quando não é preciso treinar.",
+      "Congela todos os pesos do modelo"
+    ],
+    "correct": 2,
+    "explanation": "Durante a inferência, você não precisa de gradientes. torch.no_grad() desativa o rastreamento de gradientes, o que salva a memória que seria usada para armazenar o gráfico computacional e acelera a computação.",
+    "stage": "pre"
+  },
+  {
+    "question": "O que o nn.Linear ((784, 256) cria no PyTorch?",
+    "options": [
+      "Uma camada de normalização de lote",
+      "Uma camada de ativação de ReLU",
+      "Uma camada de abandono com p=784/256",
+      "Uma camada totalmente conectada com uma matriz de peso (256, 784) e um vetor de desvio (256,)"
+    ],
+    "correct": 3,
+    "explanation": "nn.Linear(in_features, out_features) creates a layer that computes y = x @ W^T + b, with W of shape (256, 784) and b of shape (256,). This is the PyTorch equivalent of the Layer class you built from scratch.",
+    "stage": "post"
+  },
+  {
+    "question": "Qual método PyTorch calcula gradientes para todos os parâmetros no gráfico computacional?",
+    "options": [
+      "optimizer.step()",
+      "loss.backward()",
+      "model.forward()",
+      "optimizer.zero_grad()"
+    ],
+    "correct": 1,
+    "explanation": "loss.backward() traverses the computational graph in reverse, computing dL/dp for every parameter p that requires gradients. optimizer.step() then uses these gradients to update the parameters.",
+    "stage": "post"
+  },
+  {
+    "question": "Por que o ciclo de treinamento do PyTorch é significativamente mais rápido do que o mini framework do Python puro?",
+    "options": [
+      "PyTorch utiliza tipos de dados menores",
+      "PyTorch usa um algoritmo diferente",
+      "PyTorch salta o passe para trás",
+      "PyTorch executa operações como kernels C++ / CUDA otimizados na GPU, enquanto os loops Python puros são interpretados uma operação por vez"
+    ],
+    "correct": 3,
+    "explanation": "PyTorch delega operações de matriz para kernels C++ e CUDA altamente otimizados que executam em GPU com um paralelismo maciço. Python puro executa loops sequencialmente com o overhead do intérprete em cada operação.",
+    "stage": "post"
+  }
+]
