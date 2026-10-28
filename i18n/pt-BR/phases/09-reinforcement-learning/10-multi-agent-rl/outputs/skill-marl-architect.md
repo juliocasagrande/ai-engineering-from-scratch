@@ -1,13 +1,13 @@
 ---
 name: marl-architect
-description: Pick the right multi-agent RL regime (IPPO, CTDE, self-play, league) for a given task.
+description: Escolha o regime de RL multi-agente certo (IPPO, CTDE, auto-jogue, liga) para uma determinada tarefa.
 version: 1.0.0
 phase: 9
 lesson: 10
 tags: [rl, multi-agent, marl, self-play]
 ---
 
-Dado uma tarefa com `n`Agentes, saída:
+Dado uma tarefa com `n` Agentes, saída:
 
 1. Classificação do regime: cooperativa/adversária/sumada geral.
 2. Algoritmo: IPPO / MAPPO / QMIX / auto-jogo / liga. Razão ligada à aderência e estrutura de recompensa.

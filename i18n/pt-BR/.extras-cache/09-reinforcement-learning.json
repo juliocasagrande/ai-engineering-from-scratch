@@ -1,14 +1,15 @@
 {
-  "phases/09-reinforcement-learning/01-mdps-states-actions-rewards/outputs/skill-mdp-modeler.md": "e3397775fadd73f514697cc5253d81dfc0b88556fcee0e9239488b4568f37fd8",
-  "phases/09-reinforcement-learning/02-dynamic-programming/outputs/skill-dp-solver.md": "d73a8c733d16154f2c7cbb7e90c58edd6c39d2ac8b42c1e750a9676707de6c61",
-  "phases/09-reinforcement-learning/03-monte-carlo-methods/outputs/skill-mc-evaluator.md": "2d7448d52c6853a4250bb21978e23773a5d80a6e607bbd1ccaef815e4dc7e8c2",
-  "phases/09-reinforcement-learning/04-q-learning-sarsa/outputs/skill-td-agent.md": "d2bcacc988960ccc85cd838f5910f1691a3d52add583bc8534e586a2a6cff397",
-  "phases/09-reinforcement-learning/05-dqn/outputs/skill-dqn-trainer.md": "35c7a9258fbe3581d15758dcf00bcb58d68e45e93e8da5a933dbc9ae84e4a8d4",
-  "phases/09-reinforcement-learning/06-policy-gradients-reinforce/outputs/skill-policy-gradient-trainer.md": "b68096b6edc9fe11a8f4f01bf20e79ba0fc61a34deff935bf8e4a8899ccae63d",
-  "phases/09-reinforcement-learning/07-actor-critic-a2c-a3c/outputs/skill-actor-critic-trainer.md": "950aad76e82a5c584b2289b72fb3aece202f1c3497bee1e200e39cc1f1b6a46a",
-  "phases/09-reinforcement-learning/08-ppo/outputs/skill-ppo-trainer.md": "04479ce484e977f628b789b763ad32524c973542e48d7ece983737bde6617e6f",
-  "phases/09-reinforcement-learning/09-reward-modeling-rlhf/outputs/skill-rlhf-architect.md": "23742315e8e99a77b5eaab83558f7539610edc143ea2a52bc0d6fc313ea22d71",
-  "phases/09-reinforcement-learning/10-multi-agent-rl/outputs/skill-marl-architect.md": "cdc62d4bd3971792a24ee7373cd601b07f0b88fbada011f6e0caf3b5d7caee6b",
-  "phases/09-reinforcement-learning/11-sim-to-real-transfer/outputs/skill-sim2real-planner.md": "8f9199519b8cef56234ab9e0b6aec2cd1cb5a132286c028df1c74995c251bcb8",
-  "phases/09-reinforcement-learning/12-rl-for-games/outputs/skill-game-rl-designer.md": "f4afdd7c580609c80b095a4f6132696296abf4c59b45d54b9b00619d1cc975fe"
+  "phases/09-reinforcement-learning/01-mdps-states-actions-rewards/outputs/skill-mdp-modeler.md": "0d9a10517e1bddeeb6a21c4a5c521903653052d8f8ab48eb92f84ce91bd293c3",
+  "phases/09-reinforcement-learning/02-dynamic-programming/outputs/skill-dp-solver.md": "2339d40967d8d5554fd629c26e4f1c8dd7ddce254e5038ba2d412852485e3a1f",
+  "phases/09-reinforcement-learning/03-monte-carlo-methods/outputs/skill-mc-evaluator.md": "7b9b108b73903441a9ca2bc064f15b38371a8ade4b3a3d8a5a6689c755dcec02",
+  "phases/09-reinforcement-learning/04-q-learning-sarsa/outputs/skill-td-agent.md": "c3a61055415d67571403ee33d6b98657e041d5e78e7a048189e4e65495407e40",
+  "phases/09-reinforcement-learning/05-dqn/outputs/skill-dqn-trainer.md": "5894601f345ce74569f9fc040d0a8a847a24c75e86f7d3ead1b615610fd0d717",
+  "phases/09-reinforcement-learning/06-policy-gradients-reinforce/outputs/skill-policy-gradient-trainer.md": "11b6e6bd035f7667e5fd596c6f639f94581db37c4c5e7ef8e8347182c3515e5b",
+  "phases/09-reinforcement-learning/07-actor-critic-a2c-a3c/outputs/skill-actor-critic-trainer.md": "71dae14892ca729961466453a79aa4c8e405af4f52f2fb5e40085285c5a31590",
+  "phases/09-reinforcement-learning/08-ppo/outputs/skill-ppo-trainer.md": "4352c7390bddd6bb016e49a8d7813bf8fe6d75a2db09324cded2fc69826e2c8e",
+  "phases/09-reinforcement-learning/09-reward-modeling-rlhf/outputs/skill-rlhf-architect.md": "21ef84823fff35a972da6850e891b66e0a9af70469c5f45adb650767b2bfbacf",
+  "phases/09-reinforcement-learning/10-multi-agent-rl/outputs/skill-marl-architect.md": "67cefc9377f443d4f971b569eeab68c35a5739a2d241a32890468a82a4f872a4",
+  "phases/09-reinforcement-learning/11-sim-to-real-transfer/outputs/skill-sim2real-planner.md": "5ecfc147eebc75593a5477b4fee6b19b9864220cf63fff8ecbd1a3eff9fed1af",
+  "phases/09-reinforcement-learning/12-rl-for-games/outputs/skill-game-rl-designer.md": "eb0ebae5c0aa3e2c4830baa64f124704ed7697721bef4f1e0beac2c1c792764f",
+  "phases/09-reinforcement-learning/README.md": "915542d197414676c4456aa6488e1bdd19b42fc18f770b60431a9acb1620e97a"
 }

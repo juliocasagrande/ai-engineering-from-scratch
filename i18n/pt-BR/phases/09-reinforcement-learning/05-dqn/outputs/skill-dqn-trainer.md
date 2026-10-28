@@ -1,6 +1,6 @@
 ---
 name: dqn-trainer
-description: Produce a DQN training config (buffer, target sync, ε schedule, reward clipping) for a discrete-action RL task.
+description: Produza uma configuração de treinamento DQN (buffer, sincronização de alvo, programa ε, recorte de recompensa) para uma tarefa de RL de ação discreta.
 version: 1.0.0
 phase: 9
 lesson: 5
