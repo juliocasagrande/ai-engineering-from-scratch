@@ -1,6 +1,6 @@
 ---
 name: speaker-verifier
-description: Design a speaker verification or diarization pipeline with model choice, enrollment protocol, and threshold tuning.
+description: Projetar um canal de verificação de alto-falantes ou diário com escolha de modelo, protocolo de inscrição e sintonização de limiar.
 version: 1.0.0
 phase: 6
 lesson: 06

@@ -1,6 +1,6 @@
 ---
 name: vad-tuner
-description: Pick VAD model, threshold, silence hangover, pre-roll, and turn-detection strategy for a voice agent.
+description: Escolha o modelo VAD, o limiar, a ressaca no silêncio, a estratégia de pré-rol e detecção de turno para um agente de voz.
 version: 1.0.0
 phase: 6
 lesson: 14

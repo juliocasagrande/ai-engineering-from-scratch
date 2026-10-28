@@ -1,6 +1,6 @@
 ---
 name: tts-designer
-description: Pick TTS model, voice, text-normalization scope, and evaluation plan for a given language, style, and latency target.
+description: Escolha o modelo TTS, voz, escopo de normalização de texto e plano de avaliação para um determinado idioma, estilo e alvo de latência.
 version: 1.0.0
 phase: 6
 lesson: 07

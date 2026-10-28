@@ -1,6 +1,6 @@
 ---
 name: spoof-defender
-description: Pick detection model, watermark, provenance manifest, and operational playbook for a voice-generation / voice-auth deployment.
+description: Escolha o modelo de detecção, a marca de água, o manifesto de proveniência e o manual operacional para uma implantação de geração de voz / voz-aúto.
 version: 1.0.0
 phase: 6
 lesson: 16
@@ -10,7 +10,7 @@ tags: [anti-spoofing, watermark, audioseal, asvspoof, c2pa, voice-fraud]
 Dado o volume de trabalho (voz-gen versus voz-aut, escala de implantação, região de conformidade, perfil adversário), saída:
 
 1. Detecção (CM). AASIST · RawNet2 · NeXt-TDNN + WavLM · comercial (Pindrop, Validsoft). Dados de treinamento: ASVspoof 2019 / ASVspoof 5 / domínio específico.
-2. Marcação de água (gen saída). AudioSeal codificação de carga útil de 16 bits `(model_id, user_id, generation_ts)`· WaveVerify (alt) · none (com justificação).
+2. Marcação de água (gen de saída). `(model_id, user_id, generation_ts)` · WaveVerify (alt) · none (com justificação).
 3. Provença. Manifesto C2PA assinado com a chave do implementador · Metadados IPTC · nenhum (para áudio não-consumidor).
 4. Protectores de voz-autor (se aplicável). Desafio de vivacidade (frase aleatória TTS' + transcrição), detecção de ataque de repetição (modelo AASIST + PA), calibração do limiar biométrico por canal.
 5. Operacional: retenção do registro de auditoria, retenção de artefatos de consentimento (7 anos ou mais), sinais de detecção de abuso (explosão súbita de volume, indicações de nome da entidade), procedimento de interrupção de execução.

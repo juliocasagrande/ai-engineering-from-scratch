@@ -1,6 +1,6 @@
 ---
 name: realtime-voice-pipeline
-description: Pick transport, VAD, streaming STT, LLM, streaming TTS, and orchestration for a target end-to-end latency.
+description: Escolha transporte, VAD, streaming STT, LLM, streaming TTS e orquestração para uma latência de ponta a ponta.
 version: 1.0.0
 phase: 6
 lesson: 11

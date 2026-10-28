@@ -1,6 +1,6 @@
 ---
 name: alm-picker
-description: Pick an audio-language model, benchmark subset, output modality (text vs speech), and guardrails for an audio-understanding task.
+description: Escolha um modelo de linguagem de áudio, subconjunto de referência, modalidade de saída (texto vs fala) e barris para uma tarefa de compreensão de áudio.
 version: 1.0.0
 phase: 6
 lesson: 10
