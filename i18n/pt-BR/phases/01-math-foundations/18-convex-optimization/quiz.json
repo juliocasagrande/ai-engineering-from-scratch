@@ -1,0 +1,64 @@
+{
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "Qual é a propriedade definidora de uma função convexa?",
+      "options": [
+        "Tem exactamente um ponto crítico",
+        "O segmento de linha entre quaisquer dois pontos no gráfico está acima ou no gráfico",
+        "Sua derivada é sempre positiva",
+        "Só pode ser definido em números reais positivos"
+      ],
+      "correct": 1,
+      "explanation": "Uma função é convexa se para qualquer dois pontos x, y e qualquer t em [0,1]: f(tx + (1-t) y) <= t*f(x) + (1-t) *f(y). Geométricamente, a acorde entre qualquer dois pontos no gráfico nunca cai abaixo do próprio gráfico."
+    },
+    {
+      "stage": "pre",
+      "question": "Qual destes problemas de ML tem uma paisagem de perda convexa?",
+      "options": [
+        "Treinar uma rede neural de 3 camadas com ativações ReLU",
+        "Factorizamento de matriz para recomendação",
+        "K-means clustering",
+        "Regressão logística com perda de entropia cruzada"
+      ],
+      "correct": 3,
+      "explanation": "A regressão logística tem uma perda convexa (a perda de log é convexa nos pesos). Redes neurais, meios k e fatorização de matriz são todos não convexas. Para problemas convexos, qualquer mínimo local é o mínimo global."
+    },
+    {
+      "stage": "post",
+      "question": "O método de Newton converge para o mínimo de f ((x) = 5x^2 + 3x + 1 em quantos passos?",
+      "options": [
+        "Cerca de cem passos",
+        "1 passo (é exato para funções quadráticas)",
+        "Cerca de 10 passos",
+        "Depende da taxa de aprendizagem"
+      ],
+      "correct": 1,
+      "explanation": "O método de Newton se encaixa numa aproximação quadrática local e salta para o mínimo. Para uma função quadrática real, a aproximação é exata, de modo que o método de Newton converge em um único passo independentemente do ponto de partida."
+    },
+    {
+      "stage": "post",
+      "question": "Em condições de KKT, o que significa \"localidade complementar\" (lambda_i * g_i(x) = 0)?",
+      "options": [
+        "Todas as restrições devem ser ativas no máximo",
+        "Ou uma restrição é ativa (g_i = 0) ou seu multiplicador é zero (lambda_i = 0)  uma restrição inativa não tem efeito",
+        "Os gradientes de todas as restrições devem ser ortogonais",
+        "O Lagrangiano é sempre zero no máximo"
+      ],
+      "correct": 1,
+      "explanation": "A flexibilidade complementar significa que cada restrição é vinculativa (g_i = 0, sentada na fronteira) ou irrelevante (lambda_i = 0, sem afectar a solução)."
+    },
+    {
+      "stage": "post",
+      "question": "Por que a SGD encontra boas soluções em paisagens de redes neurais não convexas, apesar da falta de garantias de convexidade?",
+      "options": [
+        "A SGD encontra sempre o mínimo global",
+        "A função de perda é irrelevante para o desempenho do modelo",
+        "Em dimensões elevadas, a maioria dos pontos críticos são pontos de sela (não maus mínimos locais), e o ruído SGD ajuda a escapar deles",
+        "As redes neurais são secretamente convexas em dimensões altas"
+      ],
+      "correct": 2,
+      "explanation": "Em espaços de parâmetros de alta dimensão, pontos críticos aleatórios são em grande parte pontos de sela. Os poucos mínimos locais que existem tendem a ter valores de perda próximos ao mínimo global."
+    }
+  ]
+}

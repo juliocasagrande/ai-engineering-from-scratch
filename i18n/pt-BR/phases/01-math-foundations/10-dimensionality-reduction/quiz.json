@@ -1,0 +1,64 @@
+{
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "O que é a \"maldição da dimensionalidade\"?",
+      "options": [
+        "À medida que as dimensões crescem, as distâncias ficam sem sentido, o volume concentra-se em cantos, e você precisa de dados exponencialmente mais",
+        "As redes neuronais não podem processar dados com mais de 100 características",
+        "Os dados de alta dimensão contêm sempre ruído",
+        "Os dados de alta dimensão demoram muito para ser baixados"
+      ],
+      "correct": 0,
+      "explanation": "Em dimensões altas, todas as distâncias em pares convergem a valores semelhantes, os pontos de dados são espalhados para cantos e manter a densidade da amostra requer exponencialmente mais dados."
+    },
+    {
+      "stage": "pre",
+      "question": "O que é que a PCA encontra?",
+      "options": [
+        "Clusters de pontos de dados semelhantes",
+        "As características mais importantes por nome",
+        "As direcções ortogonais da variância máxima dos dados",
+        "O número óptimo de características a manter"
+      ],
+      "correct": 2,
+      "explanation": "O PCA calcula os vetores próprios da matriz de covariância, que são direções ortogonais classificadas por quantidade de variação de dados que capturam."
+    },
+    {
+      "stage": "post",
+      "question": "Depois de executar PCA em dados 784 dimensional MNIST com k = 50 componentes, você vê 95% da variância é capturada.",
+      "options": [
+        "95% das imagens pertencem à mesma classe",
+        "Os dados vivem efetivamente num subespaço de ~50 dimensões; as restantes 734 dimensões são principalmente ruído ou redundância",
+        "O modelo terá uma precisão de 95%",
+        "Apenas 50 pixels importam em cada imagem"
+      ],
+      "correct": 1,
+      "explanation": "95% explica a variação com 50 componentes significa que a estrutura essencial dos dados 784 dimensionalmente é capturada por apenas 50 direções. O resto carrega apenas 5% da variação - principalmente ruído."
+    },
+    {
+      "stage": "post",
+      "question": "Por que não deve utilizar o t- SNE como pré- processamento antes de treinar um classificador?",
+      "options": [
+        "t-SNE é projetado apenas para visualização: distorce distâncias globais, é estocástico e as coordenadas de saída não têm significado consistente em todas as corridas",
+        "t-SNE exige que os rótulos sejam conhecidos com antecedência",
+        "t-SNE é muito lento para grandes conjuntos de dados",
+        "T-SNE reduz os dados a exatamente 2 dimensões, o que é muito pouco."
+      ],
+      "correct": 0,
+      "explanation": "T-SNE preserva bairros locais, mas distorce a estrutura global. As distâncias entre os aglomerados são sem sentido, e diferentes corridas produzem layouts diferentes. Use PCA para pré-processamento e t-SNE/UMAP apenas para visualização."
+    },
+    {
+      "stage": "post",
+      "question": "Quando escolheria o PCA do núcleo em vez do PCA padrão?",
+      "options": [
+        "Quando você precisa da mais rápida computação possível",
+        "Quando se deseja componentes principais interpretáveis",
+        "Quando temos mais amostras do que características",
+        "Quando os dados estão em uma variedade não linear que o PCA padrão não pode separar, como círculos concêntricos"
+      ],
+      "correct": 3,
+      "explanation": "O PCA padrão encontra subespaços lineares. Se os dados têm estrutura não linear (por exemplo, dois anéis concêntricos), o PCA projeta ambos na mesma linha."
+    }
+  ]
+}

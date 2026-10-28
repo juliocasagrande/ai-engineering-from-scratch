@@ -1,0 +1,64 @@
+{
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "O que é medida pela \"entropia\" na teoria da informação?",
+      "options": [
+        "O número de bits em uma mensagem binária",
+        "Taxa de erro de um canal de comunicação",
+        "A energia de um sistema físico",
+        "A surpresa ou incerteza média numa distribuição de probabilidades"
+      ],
+      "correct": 3,
+      "explanation": "Entropia H(P) = -sum(p(x) * log(p(x))) mede a quantidade média de surpresa em todos os resultados."
+    },
+    {
+      "stage": "pre",
+      "question": "Para que é a perda de entropia cruzada comumente usada em redes neurais?",
+      "options": [
+        "Gerenciamento de novas amostras de dados",
+        "Regularização dos pesos dos modelos para evitar o excesso de montagem",
+        "tarefas de classificação, medindo a distância das probabilidades previstas dos rótulos verdadeiros",
+        "As tarefas de regressão com saídas contínuas"
+      ],
+      "correct": 2,
+      "explanation": "A perda de entropia cruzada H(P,Q) = -sum(p(x) *log(q(x))) mede a diferença entre a distribuição real (etiquetas) e a distribuição prevista do modelo. É a perda padrão para classificação."
+    },
+    {
+      "stage": "post",
+      "question": "Por que minimizar a entropia cruzada é equivalente a minimizar a divergência KL durante o treinamento?",
+      "options": [
+        "Porque a entropia cruzada e a divergência KL são a mesma fórmula",
+        "Porque entropia cruzada = entropia + divergência KL, e a entropia dos rótulos verdadeiros é constante, então minimizar a entropia cruzada minimiza a divergência KL",
+        "Porque a divergência KL é sempre zero durante o treinamento",
+        "Porque a entropia do modelo é igual a zero na convergência"
+      ],
+      "correct": 1,
+      "explanation": "H(P,Q) = H(P) + D_KL(P que a distribuição verdadeira PQ não muda durante o treinamento, H(P) é constante. Minimizar H(P,Q) é o mesmo que minimizar D_KL(P que não é o mesmo que empurrar o modelo para a distribuição verdadeira."
+    },
+    {
+      "stage": "post",
+      "question": "Um modelo de linguagem tem perplexidade 50 num conjunto de testes.",
+      "options": [
+        "O modelo tem 50 camadas .",
+        "O modelo faz 50 erros por frase",
+        "Em média, o modelo é tão incerto como se ele estivesse escolhendo uniformemente entre 50 tokens possíveis em cada passo",
+        "O modelo foi treinado por 50 épocas"
+      ],
+      "correct": 2,
+      "explanation": "Perplexidade = e^(entropia cruzada). Uma perplexidade de 50 significa que a incerteza do modelo em cada token é equivalente a escolher aleatoriamente de 50 opções igualmente prováveis."
+    },
+    {
+      "stage": "post",
+      "question": "Como a informação mútua difere da correlação Pearson para a seleção de características?",
+      "options": [
+        "A informação mútua é mais rápida para calcular",
+        "Eles sempre dão as mesmas classificações de características",
+        "A correlação Pearson funciona para qualquer tipo de dados, enquanto a informação mútua funciona apenas para dados contínuos",
+        "A informação mútua detecta qualquer dependência estatística (linear ou não linear), enquanto a correlação detecta apenas relações lineares."
+      ],
+      "correct": 3,
+      "explanation": "A correlação de Pearson só mede a associação linear, faltando muitas relações importantes."
+    }
+  ]
+}

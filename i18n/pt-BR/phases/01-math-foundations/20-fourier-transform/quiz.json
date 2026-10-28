@@ -1,0 +1,64 @@
+{
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "O que faz a transformação de Fourier com um sinal?",
+      "options": [
+        "Descompõe o sinal em ondas sinusais de diferentes frequências, amplitudes e fases",
+        "Remove ruído do sinal",
+        "Converte o sinal de analógico para digital",
+        "Comprime o sinal para usar menos armazenamento"
+      ],
+      "correct": 0,
+      "explanation": "A transformação de Fourier converte um sinal do domínio do tempo para o domínio da frequência. Cada coeficiente de frequência X[k] diz a amplitude e fase de uma onda sinusa na frequência k. O sinal é reexpresso como uma soma dessas ondas sinusais."
+    },
+    {
+      "stage": "pre",
+      "question": "Qual é a complexidade temporal da Transforma de Fourier Rápida (FFT) em comparação com a DFT direta?",
+      "options": [
+        "FFT é O(log N), DFT é O(N)",
+        "FFT é O(N), DFT é O(N log N)",
+        "Ambos são O ((N^2)",
+        "FFT é O(N log N), DFT é O(N^2)"
+      ],
+      "correct": 3,
+      "explanation": "O DFT direto calcula N saídas, cada somando N entradas: O(N^2). O Cooley-Tukey FFT divide o sinal em pares / raros meios recursivamente, fazendo O(N) trabalho em cada um dos níveis log2(N), dando O(N log N. Para N = 1 milhão, isso é 20 milhões vs 1 trilhão de operações."
+    },
+    {
+      "stage": "post",
+      "question": "O que diz o teorema da convolução?",
+      "options": [
+        "Convolução no domínio do tempo é igual a adição no domínio da frequência",
+        "A convulsão aumenta sempre o comprimento do sinal",
+        "Convolção e correlação são operações idênticas",
+        "Convolução no domínio do tempo é igual a multiplicação pontual no domínio da frequência"
+      ],
+      "correct": 3,
+      "explanation": "O teorema da convolução afirma que a convolução no domínio do tempo é igual a multiplicação pontual no domínio de frequência: x * h = IFFT(FFT(x) . FFT(h)). É por isso que a convolução baseada em FFT é O(N log N) em vez de O(N*M) para grandes kernels."
+    },
+    {
+      "stage": "post",
+      "question": "Por que o empolgação zero de um sinal antes da FFT NÃO aumenta a resolução de frequência verdadeira?",
+      "options": [
+        "Interpolações de empolgação zero entre os recipientes de frequência existentes, mas não podem revelar detalhes de frequência ausentes das amostras originais",
+        "O empolgante zero introduz ruído que cancela a melhoria",
+        "O padding zero só funciona para comprimentos de sinal de potência de 2",
+        "O algoritmo FFT ignora amostras com pad zero"
+      ],
+      "correct": 0,
+      "explanation": "A resolução de frequência verdadeira depende do tempo de observação T = N/fs. O empolgação zero adiciona mais barris de frequência (grelha mais fina), mas apenas interpola o espectro existente  dá um resultado de aparência mais suave sem resolver frequências mais próximas de 1/T Hz."
+    },
+    {
+      "stage": "post",
+      "question": "Nas codificações posicionais sinusoidais do Transformer original, por que são atribuídos diferentes pares de dimensões frequências espaçadas geométricamente?",
+      "options": [
+        "Ele garante que todos os valores de codificação estejam entre 0 e 1",
+        "Cada frequência fornece uma resolução diferente  as frequências altas codificam a posição fina, as baixas frequências codificam a posição grosseira, dando a cada posição uma impressão digital única",
+        "O algoritmo FFT requer espaçamento geométrico",
+        "Reduz o custo computacional da atenção"
+      ],
+      "correct": 1,
+      "explanation": "As dimensões de alta frequência mudam rapidamente com a posição (resolução fina), enquanto as dimensões de baixa frequência mudam lentamente (resolução grosseira). Juntas, a codificação de várias frequências dá a cada posição um padrão único  semelhante à forma como os coeficientes de Fourier identificam um sinal de forma única."
+    }
+  ]
+}

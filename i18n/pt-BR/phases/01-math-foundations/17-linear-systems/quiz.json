@@ -1,0 +1,64 @@
+{
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "O que significa geométricamente quando um sistema Ax = b não tem solução exata?",
+      "options": [
+        "O vetor b não está no espaço de coluna de A",
+        "A matriz A tem todas as entradas zero",
+        "O sistema tem mais desconhecidos do que equações",
+        "A matriz A é simétrica"
+      ],
+      "correct": 0,
+      "explanation": "Na imagem de coluna, Ax = b pergunta: qual combinação linear das colunas de A produz b? Se b não estiver no espaço de coluna (espaço das colunas de A), não existe solução exata. Isso acontece quando o sistema é sobredeterminado (mais equações do que desconhecidas)."
+    },
+    {
+      "stage": "pre",
+      "question": "Por que é usada a rotação parcial na eliminação gaussiana?",
+      "options": [
+        "Ele seleciona o maior pivot disponível para minimizar a amplificação de erro da divisão por pequenos números",
+        "Elimina a necessidade de substituição de volta",
+        "Reduz a complexidade temporal de O ((n^3) para O ((n^2)",
+        "Ele garante que o resultado é sempre um número inteiro"
+      ],
+      "correct": 0,
+      "explanation": "Sem pivotar, dividir por um pequeno pivot amplifica erros de arredondamento."
+    },
+    {
+      "stage": "post",
+      "question": "Por que a decomposição de Cholesky é preferida ao LU para resolver (X^T X + lambda I) w = X^T y na regressão de cresta?",
+      "options": [
+        "Cholesky dá uma resposta mais precisa do que LU",
+        "Cholesky trabalha em qualquer matriz enquanto LU requer matrizes quadradas",
+        "A decomposição da LU não pode lidar com os termos de regularização",
+        "A matriz X^T X + lambda I é simétrica positiva definida, então Cholesky é duas vezes mais rápido que LU e requer metade do armazenamento"
+      ],
+      "correct": 3,
+      "explanation": "Quando lambda > 0, X^T X + lambda I é sempre simétrica positiva definida. Os fatores de Cholesky A = LL^T em O  n^3/3) operações  aproximadamente metade do O  2n^3/3) de LU  e precisa apenas do triângulo inferior."
+    },
+    {
+      "stage": "post",
+      "question": "Uma matriz tem o número de condição kappa = 10^8. Você está usando float64 (~ 15 dígitos de precisão). Quantos dígitos da solução você pode confiar?",
+      "options": [
+        "Cerca de 15 dígitos",
+        "Cerca de 7 dígitos (15 - log10(10^8) = 15 - 8)",
+        "Número zero  a solução é sem sentido",
+        "Cerca de 8 dígitos"
+      ],
+      "correct": 1,
+      "explanation": "Você perde aproximadamente log10(kappa) dígitos de precisão. com kappa = 10 ^ 8, você perde cerca de 8 dígitos dos ~ 15 dígitos do float64, deixando cerca de 7 dígitos confiáveis. Se kappa se aproxima de 10 ^ 16, a solução fica sem sentido em float64."
+    },
+    {
+      "stage": "post",
+      "question": "Qual é a principal vantagem da decomposição de LU sobre a eliminação de Gaussian quando você precisa resolver Ax = b para muitos diferentes vetores de b?",
+      "options": [
+        "A factorization de O (n^3) é feita uma vez; cada solução subsequente com um novo b custa apenas O (n^2)",
+        "A decomposição da LU é numericamente mais estável",
+        "Trabalhos de decomposição de LU em matrizes retangulares",
+        "A LU produz sempre uma solução única"
+      ],
+      "correct": 0,
+      "explanation": "Os fatores LU A = LU uma vez em O  n^3. Então, para cada novo b, você resolve Ly = b (substituição para frente) e Ux = y (substituição para trás), cada O  n^2."
+    }
+  ]
+}

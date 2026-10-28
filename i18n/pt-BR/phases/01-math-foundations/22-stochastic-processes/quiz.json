@@ -1,0 +1,64 @@
+{
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "Qual é a propriedade Markov?",
+      "options": [
+        "Todos os estados são igualmente prováveis em cada passo",
+        "O próximo estado depende apenas do estado atual, não da história dos estados anteriores.",
+        "O processo volta sempre ao seu estado inicial",
+        "O processo deve ter um número finito de estados"
+      ],
+      "correct": 1,
+      "explanation": "A propriedade Markov (sem memória) significa P(X_{t+1} = j ̊ X_t = i, X_{t-1}, ...) = P(X_{t+1} = j ̊ X_t = i). O futuro depende apenas de onde você está, não de como você chegou lá. Isso permite representação compacta através de uma matriz de transição."
+    },
+    {
+      "stage": "pre",
+      "question": "Em uma caminhada aleatória 1D, como a distância esperada da escala de origem com o número de passos n?",
+      "options": [
+        "Logaritmicamente: proporcional ao log ((n)",
+        "Como raiz quadrada: proporcional a sqrt(n)",
+        "Fica constante independentemente de n",
+        "Linearmente: proporcional a n"
+      ],
+      "correct": 1,
+      "explanation": "Cada passo é +/-1 com igual probabilidade. A variância após n passos é n, então o desvio padrão (distância típica da origem) é sqrt(n). Depois de 10.000 passos, a distância esperada é de cerca de 100, não 10.000."
+    },
+    {
+      "stage": "post",
+      "question": "Qual é a distribuição estacionária de uma cadeia Markov?",
+      "options": [
+        "A distribuição uniforme em todos os Estados",
+        "A distribuição inicial dos Estados",
+        "A distribuição dos estados após exatamente uma transição",
+        "A distribuição que não muda sob a matriz de transição: pi * P = pi"
+      ],
+      "correct": 3,
+      "explanation": "A distribuição estacionária pi satisfaz pi * P = pi  aplicando a matriz de transição deixa-a inalterada. Representa a fração de tempo de longo prazo gasto em cada estado. Para uma cadeia irredutível, aperiódica, qualquer distribuição inicial converge para pi."
+    },
+    {
+      "stage": "post",
+      "question": "Na dinâmica de Langevin x_{t+1} = x_t - dt * grad(U) + sqrt(2*T*dt) * z, o que acontece quando a temperatura T se aproxima de 0?",
+      "options": [
+        "O processo diverge para o infinito",
+        "O processo torna-se um simples passeio aleatório .",
+        "O processo torna-se descida de gradiente pura (ottimizamento determinista)",
+        "O processo congela na posição inicial"
+      ],
+      "correct": 2,
+      "explanation": "No T = 0, o termo ruído sqrt(2*T*dt) *z desaparece, deixando x_{t+1} = x_t - dt * grad(U), que é o descenso padrão de gradiente. No T alto, o ruído domina e o processo é quase um passeio aleatório."
+    },
+    {
+      "stage": "post",
+      "question": "Em um modelo de difusão, o que faz o processo de adição a uma amostra de dados sobre as etapas T?",
+      "options": [
+        "Aperta a imagem removendo ruído em cada passo",
+        "Ele adiciona gradualmente ruído Gaussiano até que a amostra se torne ruído puro, seguindo uma cadeia de Markov",
+        "Comprime a imagem para uma resolução menor",
+        "Aplica transformações aprendidas para gerar novos dados"
+      ],
+      "correct": 1,
+      "explanation": "O processo avançado é uma cadeia de Markov: x_t = sqrt(alpha_t) * x_{t-1} + sqrt(1 - alpha_t) * ruído. Depois de passos T, x_T é aproximadamente N(0, I)  ruído gaussiano puro. O processo inverso (aprendido por uma rede neural) então denota passo a passo para gerar novos dados."
+    }
+  ]
+}

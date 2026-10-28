@@ -1,0 +1,64 @@
+{
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "Qual é a faixa aproximada de números que o float32 pode representar?",
+      "options": [
+        "+/- 1,8e308",
+        "+/- 3,4e38",
+        "+/- 1,0e10",
+        "+/- 65,504"
+      ],
+      "correct": 1,
+      "explanation": "O float32 tem um exponente de 8 bits dando uma faixa de aproximadamente +/- 3,4e38."
+    },
+    {
+      "stage": "pre",
+      "question": "Por que 0.1 + 0.2 não é igual a 0.3 na aritmética de pontos flutuantes?",
+      "options": [
+        "A CPU tem um bug no circuito de adição",
+        "0,1 e 0,2 não podem ser representados exatamente em ponto flutuante binário",
+        "Python redonda todos os decimais para números inteiros",
+        "O número de ponto flutuante não é válido"
+      ],
+      "correct": 1,
+      "explanation": "O número 0,1 é uma fração repetitiva em binário (como 1/3 em decimal). Float32 o trunca, então o valor armazenado é aproximadamente 0,100000001490116. O erro acumulado faz com que a soma diferia de 0,3."
+    },
+    {
+      "stage": "post",
+      "question": "Na implementação estável softmax, por que subtrair max(logits) antes de exponenciar?",
+      "options": [
+        "Normaliza as logitas para ter zero média",
+        "Converte logits de float16 para float32",
+        "Faz as probabilidades de saída mais uniformes",
+        "Impede o ex ex ex ex ex ex ex ex ex ex ex ex ex ex ex ex ex ex ex ex ex ex ex ex ex ex ex ex ex ex ex ex ex ex ex ex ex ex ex ex ex ex ex ex ex ex ex ex ex ex ex ex ex ex ex ex ex ex ex ex ex ex ex ex ex ex ex ex ex ex ex ex ex ex ex ex ex ex ex ex ex ex ex ex ex ex ex ex ex ex ex ex ex ex ex ex ex ex ex ex ex ex ex ex ex ex ex ex ex ex ex ex ex ex ex ex ex ex ex ex ex ex ex ex ex ex ex ex ex ex ex ex ex ex ex ex ex ex ex ex ex ex ex ex ex ex ex ex ex ex ex ex ex ex ex ex ex ex ex ex ex ex ex ex ex ex ex ex ex ex ex ex ex ex ex ex ex ex ex ex ex ex ex ex ex ex ex ex ex ex ex ex ex ex ex ex ex ex ex ex ex ex ex ex ex ex ex ex ex ex ex ex ex ex ex ex ex ex ex ex ex ex ex ex ex ex ex ex ex ex ex ex ex ex ex ex ex ex ex ex ex ex ex ex ex ex ex ex ex ex ex ex ex ex ex ex ex ex ex ex ex ex ex ex ex ex ex ex ex ex ex ex ex ex ex ex ex ex ex ex ex ex ex ex ex ex ex ex ex ex ex ex ex ex ex ex ex ex ex ex ex ex ex ex ex ex ex ex ex ex ex ex ex ex ex ex ex ex ex ex ex ex ex ex ex ex ex ex ex ex ex ex ex ex ex ex ex ex ex ex ex ex ex ex ex ex ex ex ex ex ex ex ex ex ex ex ex ex ex ex ex ex ex ex ex ex ex ex ex ex ex ex ex ex ex ex ex ex ex ex ex ex ex ex ex ex ex ex ex ex ex ex ex ex ex ex ex ex ex ex ex ex ex ex ex ex ex ex ex ex ex ex ex ex ex ex ex ex ex ex ex ex ex ex ex ex ex ex ex ex ex ex ex ex ex ex ex ex ex ex ex ex ex ex ex ex ex ex ex ex ex ex ex ex ex ex ex ex ex ex ex ex ex ex ex ex ex ex ex ex ex ex ex ex ex ex ex ex ex ex ex ex ex ex ex ex ex ex ex ex ex ex ex ex ex ex ex ex ex ex ex ex ex ex ex ex ex"
+      ],
+      "correct": 3,
+      "explanation": "Depois de subtrair o máximo de logitos), o maior valor é 0 e exp(0) = 1, que não pode transbordar. Todos os outros valores são negativos, então seus exponenciais são menores que 1."
+    },
+    {
+      "stage": "post",
+      "question": "Quando se utilizam diferenças finitas centradas para a verificação de gradientes, o que acontece se o tamanho do passo h for muito pequeno (por exemplo, 1e-15)?",
+      "options": [
+        "A aproximação torna-se mais precisa",
+        "O gradiente torna-se automaticamente zero",
+        "A cancelamento catastrófica destrói o resultado porque f ((x+h) e f ((x-h) são quase idênticos",
+        "A avaliação da função torna-se mais rápida"
+      ],
+      "correct": 2,
+      "explanation": "Quando h é extremamente pequeno, f ((x+h) e f ((x-h) diferem apenas em seus últimos dígitos significativos. Subtraindo-os, os dígitos principais são anulados, deixando principalmente ruído redondeado."
+    },
+    {
+      "stage": "post",
+      "question": "Por que é que o bfloat16 é geralmente preferido ao float16 para o treinamento de redes neurais?",
+      "options": [
+        "bfloat16 usa menos memória do que float16",
+        "bfloat16 tem a mesma faixa de exponentes que float32, evitando sobrecarga em grandes ativações sem escala de perda",
+        "bfloat16 é suportado por mais arquiteturas de GPU do que float16",
+        "bfloat16 tem mais bits de mantissa, dando melhor precisão"
+      ],
+      "correct": 1,
+      "explanation": "bfloat16 tem 8 bits exponentes (seme a float32, gama até 3,4e38) enquanto float16 tem apenas 5 bits exponentes (max ~ 65,504). Durante o treinamento, as ativações e gradientes podem exceder 65,504, causando sobreflow. bfloat16 lida com isso sem escalar perdas."
+    }
+  ]
+}

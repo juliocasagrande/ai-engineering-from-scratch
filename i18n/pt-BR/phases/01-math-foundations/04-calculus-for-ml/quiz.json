@@ -1,0 +1,64 @@
+{
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "O que a derivada de uma função em um ponto lhe diz?",
+      "options": [
+        "O valor máximo que a função pode atingir",
+        "A área sob a função até esse ponto",
+        "A taxa de mudança (inclinação) da função nesse ponto",
+        "O valor da função nesse ponto"
+      ],
+      "correct": 2,
+      "explanation": "A derivada f'(x) mede o quanto a saída muda por unidade de mudança na entrada. Geometricamente, é a inclinação da linha tangente nesse ponto."
+    },
+    {
+      "stage": "pre",
+      "question": "Qual é o gradiente no contexto da aprendizagem automática?",
+      "options": [
+        "A diferença entre os valores previstos e os valores reais",
+        "Uma medida da precisão do modelo",
+        "Um vetor de todas as derivadas parciais que aponta na direção da ascensão mais íngreme",
+        "A taxa de aprendizagem utilizada durante a formação"
+      ],
+      "correct": 2,
+      "explanation": "O gradiente reúne todas as derivadas parciais em um vetor. Ele aponta na direção que aumenta a função mais rapidamente. Para minimizar a perda, você se move em frente ao gradiente."
+    },
+    {
+      "stage": "post",
+      "question": "Na descida de gradientes, o que é feito pela regra de actualização 'w = w - lr * dL/dw'?",
+      "options": [
+        "Normaliza o peso para ter magnitude 1",
+        "Aumenta a perda para testar a robustez do modelo",
+        "Reseta o peso para o seu valor inicial menos o gradiente",
+        "Ajusta cada peso na direcção que reduz a perda, escalada pela taxa de aprendizagem"
+      ],
+      "correct": 3,
+      "explanation": "dL/dw diz-lhe qual a direção que aumenta a perda. Subtraindo-a ( vezes a taxa de aprendizagem) move o peso na direção que diminui a perda."
+    },
+    {
+      "stage": "post",
+      "question": "Por que o método de Newton (que usa a matriz Hessiana) não pode ser aplicado diretamente a redes neurais com milhões de parâmetros?",
+      "options": [
+        "O método de Newton converge muito lentamente para redes profundas",
+        "O Hessiano é uma matriz N x N, que requer armazenamento O(N^2) e computação O(N^3) por passo, o que é intratavel para milhões de parâmetros",
+        "O método de Newton requer derivadas analíticas que não podem ser calculadas para redes neurais",
+        "O método de Newton só funciona para funções convexas"
+      ],
+      "correct": 1,
+      "explanation": "Para N = 1 milhão de parâmetros, o Hessian tem 1 trilhão de entradas. Computação e inversão é impossível. É por isso que usamos métodos de primeira ordem (SGD, Adam) que aproximam informações de segunda ordem a baixo custo."
+    },
+    {
+      "stage": "post",
+      "question": "Qual é a aproximação numérica (diferência central) para f'(x)?",
+      "options": [
+        "(f(x+h) - f(x)) /h",
+        "f(x) * h",
+        "(f(x+h) - f(x-h)) / (2*h)",
+        "f(x+h) / h"
+      ],
+      "correct": 2,
+      "explanation": "A diferença central (f(x+h) - f(x-h)) / (2h) é mais precisa do que a diferença para frente porque promedia a inclinação em ambos os lados de x, cancelando o termo de erro principal."
+    }
+  ]
+}

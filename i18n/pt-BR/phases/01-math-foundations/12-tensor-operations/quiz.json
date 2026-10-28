@@ -1,0 +1,64 @@
+{
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "O que é descrito pela \"forma\" de um tensor?",
+      "options": [
+        "Um tuple que enumera o tamanho ao longo de cada eixo",
+        "O endereço de memória do tensor",
+        "O número total de elementos no tensor",
+        "O tipo de dados dos elementos tensores"
+      ],
+      "correct": 0,
+      "explanation": "A forma é um tuple que lista o tamanho ao longo de cada eixo. Por exemplo, um tensor com forma (2, 3, 4) tem 2 elementos ao longo do eixo 0, 3 ao longo do eixo 1 e 4 ao longo do eixo 2."
+    },
+    {
+      "stage": "pre",
+      "question": "Em PyTorch, qual layout um tensor de lote de imagem usa por padrão?",
+      "options": [
+        "CHWN (canais, altura, largura, lote)",
+        "NHWC (batch, altura, largura, canais)",
+        "WHCN (largura, altura, canais, lote)",
+        "NCHW (batch, canais, altura, largura)"
+      ],
+      "correct": 3,
+      "explanation": "PyTorch é padrão para o layout NCHW (canal-first). TensorFlow é padrão para NHWC (canal-last)."
+    },
+    {
+      "stage": "post",
+      "question": "Qual é a forma resultante quando se transmitem tensores de forma (8, 1, 6, 1) e (7, 1, 5)?",
+      "options": [
+        "(8, 7, 6, 5)",
+        "(8, 1, 6, 5)",
+        "(8, 7, 6, 1)",
+        "Falhas de radiodifusão  formas incompatíveis"
+      ],
+      "correct": 0,
+      "explanation": "Formas de alinhamento a partir da direita: (8,1,6,1) e (1,7,1,5). As dimensões são compatíveis quando igual ou um é 1. O resultado leva o máximo ao longo de cada eixo: (8, 7, 6, 5)."
+    },
+    {
+      "stage": "post",
+      "question": "Na expressão einsum \"bhtd,bhsd->bhts\", o que acontece com o índice \"d\"?",
+      "options": [
+        "É transposto entre os dois tensores de entrada",
+        "É sumada (contrata) porque aparece em ambas as entradas, mas não na saída",
+        "É transmitido através de ambos os tensores",
+        "É mantido na saída como um novo eixo"
+      ],
+      "correct": 1,
+      "explanation": "Em einsum, qualquer índice que aparece nas entradas mas não na saída é somado."
+    },
+    {
+      "stage": "post",
+      "question": "Por que a chamada .view() falha em um tensor transposto em PyTorch?",
+      "options": [
+        "O tensor não é contíguo na memória após a transposição, e a visão requer dados contíguos",
+        "Tensores transpostos têm um tipo de dados diferente",
+        "Transposar altera o número total de elementos",
+        "Vista só funciona em tensores 2D"
+      ],
+      "correct": 0,
+      "explanation": "Transpose swaps avança sem mover dados, tornando o tensor não contiguo. A operação .view() requer layout de memória contiguosa. Use .reshape() ou chame .contiguous() primeiro."
+    }
+  ]
+}

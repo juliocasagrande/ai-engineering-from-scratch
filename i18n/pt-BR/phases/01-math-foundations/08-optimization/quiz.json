@@ -1,0 +1,64 @@
+{
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "O que significa \"optimização\" no contexto do treinamento de uma rede neural?",
+      "options": [
+        "Encontrar os pesos do modelo que minimizam a função de perda",
+        "Fazer o código correr mais rápido",
+        "Reduzir o número de parâmetros no modelo",
+        "Escolha o melhor equipamento para treinamento"
+      ],
+      "correct": 0,
+      "explanation": "A função de perda mede o quão errado é o modelo e a otimização encontra os valores de peso que o tornam o menor possível."
+    },
+    {
+      "stage": "pre",
+      "question": "O que acontece se a taxa de aprendizagem for muito alta durante a descida do gradiente?",
+      "options": [
+        "A formação converge mais rapidamente para o mínimo global",
+        "Otimizador excede o mínimo e a perda diverge (bounce ou aumento)",
+        "O modelo reduz automaticamente a taxa de aprendizagem",
+        "Os gradientes tornam-se zero"
+      ],
+      "correct": 1,
+      "explanation": "Uma taxa de aprendizagem muito alta faz com que cada passo ultrapasse o vale, potencialmente saltando entre paredes ou divergindo completamente."
+    },
+    {
+      "stage": "post",
+      "question": "Como Adão difere da descida de vanilla?",
+      "options": [
+        "Adam calcula as segundas derivadas exatas enquanto GD usa as primeiras derivadas",
+        "Adam usa uma taxa fixa de aprendizagem enquanto GD usa taxas adaptativas",
+        "Adam processa o conjunto completo de dados por passo enquanto a GD usa mini-batches",
+        "Adam acompanha a média de corrida de gradientes e gradientes quadrados para dar a cada peso sua própria taxa de aprendizagem adaptativa"
+      ],
+      "correct": 3,
+      "explanation": "Adam mantém estimativas de primeiro momento (direção gradiente) e segundo momento (magnitude de gradiente) por peso. Dividindo por segundo momento) dá pequenos passos para pesos com grandes gradientes e grandes passos para pesos com pequenos gradientes."
+    },
+    {
+      "stage": "post",
+      "question": "Por que o ruído em mini-batch SGD é considerado benéfico e não apenas um incômodo?",
+      "options": [
+        "O ruído torna a função de perda convexa",
+        "O ruído ajuda o optimizador a escapar de mínimos locais superficiais e pontos de sela em que um optimizador silencioso ficaria preso",
+        "O ruído não é benéfico; sempre retarda a convergência",
+        "O ruído reduz o uso de memória durante o treinamento"
+      ],
+      "correct": 1,
+      "explanation": "O ruído estocástico de mini-batches aleatórios fornece perturbações aleatórias que podem empurrar o optimizador para fora de mínimos locais superficiais e pontos de sela, levando a uma melhor generalização."
+    },
+    {
+      "stage": "post",
+      "question": "O que faz um cronograma de taxa de aprendizagem de anelação cosínica?",
+      "options": [
+        "Aumenta a taxa de aprendizagem durante o treino seguindo uma curva cosínica",
+        "Começa com uma alta taxa de aprendizagem e diminui suavemente seguindo uma curva cosínica, com aquecimento opcional",
+        "Alterna a taxa de aprendizagem entre dois valores fixos",
+        "Define a taxa de aprendizagem para o cosino do número de época atual"
+      ],
+      "correct": 1,
+      "explanation": "A cocinação de cozinhos reduz suavemente a taxa de aprendizagem de lr_max para lr_min após uma curva de meio cozinho."
+    }
+  ]
+}

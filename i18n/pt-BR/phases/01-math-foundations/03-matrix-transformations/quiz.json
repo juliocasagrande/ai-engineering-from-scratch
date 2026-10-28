@@ -1,0 +1,64 @@
+{
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "O que é um vetor próprio de uma matriz?",
+      "options": [
+        "Um vetor que a matriz só escala (nunca gira) quando multiplicada",
+        "As entradas diagonais da matriz expressas como vetor",
+        "A maior linha da matriz",
+        "Um vetor perpendicular a todas as colunas da matriz"
+      ],
+      "correct": 0,
+      "explanation": "Um vetor próprio v satisfaz Av = lambda*v, o que significa que a matriz A só estende v pelo fator escalar lambda (o valor próprio) sem mudar sua direção."
+    },
+    {
+      "stage": "pre",
+      "question": "O que representa o determinante de uma matriz de transformação 2D geométricamente?",
+      "options": [
+        "O número de vetores próprios da matriz tem",
+        "O ângulo de rotação aplicado pela matriz",
+        "O fator pelo qual a matriz escala a área",
+        "O rastro da matriz"
+      ],
+      "correct": 2,
+      "explanation": "O determinante mede o quanto a escala de transformação de área. det=1 preserva área (rotação), det=2 duplica área, det=0 tritura para uma dimensão inferior, e det=-1 preserva área, mas inverte orientação."
+    },
+    {
+      "stage": "post",
+      "question": "Por que a ordem das transformações de matriz importa? (isto é, por que R @ S é diferente de S @ R?)",
+      "options": [
+        "Uma ordem produz uma matriz maior que a outra",
+        "Os determinantes são diferentes para cada ordem",
+        "A multiplicação de matriz não é comutativa: girar e depois escalando dá um resultado diferente do que escalando e depois rotando",
+        "A adição de matriz não é commutativa"
+      ],
+      "correct": 2,
+      "explanation": "A multiplicação de matriz não é comutativa. Rotar (1,0) por 90 graus, em seguida, escalando por (2,0.5) dá (0,0.5), mas escalando primeiro e depois rotando dá (0,2)."
+    },
+    {
+      "stage": "post",
+      "question": "Em uma rede neural recorrente, o que acontece quando a matriz de peso tem valores próprios com magnitude maior que 1?",
+      "options": [
+        "Os valores próprios convergem para 1 durante o treinamento",
+        "A rede torna-se mais estável",
+        "As saídas explodem exponencialmente ao longo dos passos de tempo (problema de gradiente explodindo)",
+        "A rede aprende mais rápido"
+      ],
+      "correct": 2,
+      "explanation": "Multiplicação repetida por uma matriz amplifica as direções do valor próprio. Os valores próprios > 1 causam crescimento exponencial (gradientes explodindo), enquanto os valores próprios < 1 causam declínio exponencial (gradientes desaparecendo)."
+    },
+    {
+      "stage": "post",
+      "question": "A matriz A = [[2, 1], [1, 2]] tem valores próprios 3 e 1. O que a própria composição A = V @ D @ V^(-1) revela?",
+      "options": [
+        "A tem o rango 1 e mapeia todos os vetores para uma linha",
+        "A é equivalente a duas rotações",
+        "A comprime todos os vetores por um fator de 2",
+        "Um estende espaço por 3x ao longo da direção [1,1] e deixa a direção [1,-1] inalterada"
+      ],
+      "correct": 3,
+      "explanation": "O valor próprio 3 com o vetor próprio [1,1] significa que A se estende 3x ao longo da diagonal. O valor próprio 1 com o vetor próprio [1,-1] significa que A deixa o anti-diagonal inalterado. D mantém {3,1}, V mantém os vetores próprios."
+    }
+  ]
+}

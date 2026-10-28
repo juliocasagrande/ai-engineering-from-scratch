@@ -1,0 +1,64 @@
+{
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "Qual é a diferença entre uma função de massa de probabilidade (PMF) e uma função de densidade de probabilidade (PDF)?",
+      "options": [
+        "PMFs sempre somam para 0,5, PDFs integram para 1",
+        "Os PMFs dão probabilidades exatas para resultados discretos, enquanto os PDFs dão densidades para variáveis contínuas que devem ser integradas ao longo de um intervalo para obter probabilidade",
+        "Não há diferença; são o mesmo conceito com nomes diferentes",
+        "Os PMFs são usados para variáveis contínuas, PDFs para variáveis discretas"
+      ],
+      "correct": 1,
+      "explanation": "Para variáveis discretas, o PMF dá P(X=k) diretamente. Para variáveis contínuas, o PDF f(x) é uma densidade - P(a<=X<=b) requer integrar f(x) de a a b. A densidade em um único ponto não é uma probabilidade."
+    },
+    {
+      "stage": "pre",
+      "question": "O que diz o Teorema do Limites Central?",
+      "options": [
+        "A média de muitas amostras aleatórias independentes converge para uma distribuição normal independentemente da distribuição da fonte",
+        "Todos os dados seguem uma distribuição normal",
+        "A probabilidade de eventos raros diminui à medida que aumenta o tamanho da amostra",
+        "Grandes conjuntos de dados têm sempre baixa variância"
+      ],
+      "correct": 0,
+      "explanation": "A CLT diz que a média de muitas variáveis aleatórias independentes se aproxima de uma Gaussian, não importa como a distribuição original parece."
+    },
+    {
+      "stage": "post",
+      "question": "Por que o softmax subtrai a logite máxima antes de exponenciar (o \"tructo do softmax\"?)",
+      "options": [
+        "Para fazer todas as probabilidades iguais",
+        "Para evitar que o desbordamento numérico exponencialize grandes números, produzindo resultados matematicamente idênticos",
+        "Para acelerar o cálculo, reduzindo o número de exponenciações",
+        "Para normalizar os logits para ter o valor zero"
+      ],
+      "correct": 1,
+      "explanation": "exp(100) supera os fluxos para o infinito. Subtraindo max(logits) muda todos os valores para que o maior seja 0. exp(0) = 1 é seguro. A subtração se cancela na normalização, dando probabilidades idênticas."
+    },
+    {
+      "stage": "post",
+      "question": "A perda de entropia cruzada para classificação simplifica para -log(q(true_class)). O que isso significa intuitivamente?",
+      "options": [
+        "Multiplicar as probabilidades previstas pelos rótulos verdadeiros",
+        "Penalize o modelo com base em quão baixa é a probabilidade prevista para a classe correta - previsão menor significa maior perda",
+        "Averagear as probabilidades de registro em todas as classes",
+        "Calcule a entropia da distribuição verdadeira"
+      ],
+      "correct": 1,
+      "explanation": "Se o modelo prevê 0,9 para a classe correta, perda = -log(0,9) = 0,105 (baixo). Se prevê 0,01, perda = -log(0,01) = 4,6 (alto). A perda castiga a baixa confiança na resposta correta."
+    },
+    {
+      "stage": "post",
+      "question": "Por que os modelos de linguagem trabalham com probabilidades de log em vez de probabilidades brutas?",
+      "options": [
+        "Multiplicar muitas pequenas probabilidades causa o fluxo inferior numérico para zero; probabilidades de registro convertem produtos em somas, evitando isso",
+        "As probabilidades de registro são mais fáceis de interpretar visualmente",
+        "As probabilidades em bruto não podem representar valores inferiores a 0,01",
+        "Probabilidades de registro são necessárias pela arquitetura do transformador"
+      ],
+      "correct": 0,
+      "explanation": "P(sentença) = P(palavra1) * P(palavra2) * ... rapidamente desce para 0,0 com float64. Log P(sentença) = log P(palavra1) + log P(palavra2) + ... permanece em um intervalo finito. Produtos se tornam somas."
+    }
+  ]
+}

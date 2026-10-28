@@ -1,0 +1,64 @@
+{
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "O que representa a matriz de adjacência A[i][j] = 1?",
+      "options": [
+        "O nó i tem grau j",
+        "O nó i e o nó j têm a mesma etiqueta",
+        "O caminho mais curto de i para j tem comprimento 1",
+        "Há uma borda do nó i para o nó j"
+      ],
+      "correct": 3,
+      "explanation": "A matriz de adjacência é a representação central de um gráfico. A[i][j] = 1 significa que há uma borda conectando nó i ao nó j. Para gráficos não direcionados, a matriz é simétrica (A[i][j] = A[j][i])."
+    },
+    {
+      "stage": "pre",
+      "question": "Que estrutura de dados utiliza o BFS e o que encontra?",
+      "options": [
+        "Estaca; encontra componentes conectados",
+        "Cota; encontra os caminhos mais curtos em gráficos não ponderados",
+        "Cota de prioridade; encontra árvore de extensão mínima",
+        "Mapa hash; encontra nós duplicados"
+      ],
+      "correct": 1,
+      "explanation": "O BFS usa uma fila (FIFO) para explorar todos os vizinhos na distância k antes de se mover para a distância k + 1."
+    },
+    {
+      "stage": "post",
+      "question": "O gráfico Laplacian L = D - A de um gráfico conectado tem quantos valores próprios zero?",
+      "options": [
+        "0",
+        "Igual ao número de nós",
+        "Igual ao número de bordas",
+        "É exactamente um."
+      ],
+      "correct": 3,
+      "explanation": "O número de valores próprios zero do laplaciano é igual ao número de componentes conectados. Um gráfico conectado tem exatamente um componente conectado, então exatamente um valor próprio zero. Um gráfico com partes desconectadas tem k valores próprios zero."
+    },
+    {
+      "stage": "post",
+      "question": "Em GNN mensagem de passagem, o que h_v^(k+1) = sigma(W * significa({h_u^(k) : u em vizinhos(v)})) computação?",
+      "options": [
+        "O PageRank score do nó v",
+        "O caminho mais curto de v para todos os outros nós",
+        "Um novo vetor de características para o nó v agregando características vizinhas, transformando com pesos aprendidos e aplicando uma não-linearidade",
+        "O grau de nó v na camada k+1"
+      ],
+      "correct": 2,
+      "explanation": "Cada nó coleta características de seus vizinhos (agregação média), multiplica por uma matriz de peso aprendida W e aplica uma função de ativação sigma."
+    },
+    {
+      "stage": "post",
+      "question": "Como o agrupamento espectral usa o vetor Fiedler (eigenvector do segundo menor valor próprio de L)?",
+      "options": [
+        "Os nós com as maiores entradas de vetores Fiedler formam um cluster",
+        "O vetor Fiedler é usado como pesos de borda",
+        "Os nós com valores de vetor Fiedler positivos vão para um grupo, nós com valores negativos vão para o outro",
+        "O vetor Fiedler determina o número de aglomerados"
+      ],
+      "correct": 2,
+      "explanation": "O vetor Fiedler codifica a função não trivial mais suave do gráfico. Os nós no mesmo aglomerado estreitamente conectado obtêm valores semelhantes, enquanto os nós separados por um gargalo de engarrafamento obtêm valores com sinais opostos."
+    }
+  ]
+}

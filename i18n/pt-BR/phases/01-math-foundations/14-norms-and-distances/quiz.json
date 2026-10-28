@@ -1,0 +1,64 @@
+{
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "O que a semelhança cosínica mede entre dois vetores?",
+      "options": [
+        "O ângulo entre eles, ignorando as suas magnitudes",
+        "A distância euclidiana entre eles",
+        "A diferença máxima em qualquer dimensão única",
+        "A soma dos seus produtos por elementos"
+      ],
+      "correct": 0,
+      "explanation": "A semelhança cosínica mede o cosínio do ângulo entre dois vetores, normalizado por suas magnitudes."
+    },
+    {
+      "stage": "pre",
+      "question": "Por que a distância L1 é chamada de \"distância de Manhattan\"?",
+      "options": [
+        "Só funciona em duas dimensões.",
+        "Calcula a diferença máxima em todas as dimensões",
+        "Foi inventado em Manhattan .",
+        "Mita a distância ao longo de uma grade, como se caminhasse em blocos de cidade"
+      ],
+      "correct": 3,
+      "explanation": "A distância L1 soma as diferenças absolutas ao longo de cada eixo, o que corresponde ao caminho mais curto em uma grade onde você só pode se mover ao longo de eixos (sem diagonais)  como andar em uma grade de rua da cidade."
+    },
+    {
+      "stage": "post",
+      "question": "Por que a regularização L1 (Lasso) produz pesos escassos enquanto a regularização L2 (Ridge) não?",
+      "options": [
+        "L1 utiliza uma constante de penalidade maior que L2",
+        "A restrição de diamante L1 tem ângulos nos eixos onde os pesos são zero; os contornos de perda são susceptíveis de tocar em ângulos",
+        "A regularização L2 só se aplica aos termos de viés",
+        "L1 regularização de clips de peso abaixo de um limiar de zero"
+      ],
+      "correct": 1,
+      "explanation": "A região de restrição L1 é uma forma de diamante com cantos alinhados com os eixos. As elípcias de contorno da função de perda são mais prováveis de tocar primeiro o diamante em um canto, onde um ou mais pesos são exatamente zero. A restrição L2 é um círculo sem cantos, então o ponto de toque tem todos os pesos não zero."
+    },
+    {
+      "stage": "post",
+      "question": "Qual a vantagem que a distância Wasserstein tem sobre a divergência KL na comparação das distribuições de probabilidade?",
+      "options": [
+        "O Wasserstein é sempre menor que a divergência KL",
+        "Wasserstein fornece gradientes significativos mesmo quando as distribuições não se sobrepõem, enquanto KL vai para o infinito",
+        "O Wasserstein é simétrico , mas o KL não é .",
+        "Tanto B como C estão certos."
+      ],
+      "correct": 3,
+      "explanation": "A distância de Wasserstein é uma métrica verdadeira (simétrica, satisfaz a desigualdade triangular) e fornece gradientes mesmo para distribuições não-superpuestas. A divergência KL é assimetrica e vai para o infinito quando as distribuições não se sobrepujam, e é por isso que as WGANs substituíram as GANs baseadas em KL."
+    },
+    {
+      "stage": "post",
+      "question": "Quando usaria a distância de Mahalanobis em vez da distância de Euclides?",
+      "options": [
+        "Quando as características têm escalas diferentes e estão correlacionadas entre si",
+        "Quando você precisa de um cálculo mais rápido do que L2",
+        "Quando todas as características são binárias (0 ou 1)",
+        "Quando você está comparando cordas em vez de vetores"
+      ],
+      "correct": 0,
+      "explanation": "A distância de Mahalanobis conta para a estrutura de covariância dos dados, descorrelatando e normalizando as características antes de calcular a distância L2."
+    }
+  ]
+}

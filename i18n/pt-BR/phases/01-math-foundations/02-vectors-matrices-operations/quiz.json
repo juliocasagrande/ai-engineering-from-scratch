@@ -1,0 +1,76 @@
+{
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "Para a multiplicação de matriz (m x n) @ (n x p), o que deve ser verdade sobre as dimensões?",
+      "options": [
+        "As linhas da primeira matriz devem ser iguais às colunas da segunda matriz",
+        "As dimensões externas m e p devem corresponder",
+        "As colunas da primeira matriz devem ser iguais às fileiras da segunda matriz",
+        "Todas as dimensões m, n e p devem ser iguais"
+      ],
+      "correct": 2,
+      "explanation": "A multiplicação de matriz requer que o número de colunas na primeira matriz (n) seja igual ao número de linhas na segunda matriz (n). O resultado tem forma (m x p)."
+    },
+    {
+      "stage": "check",
+      "question": "Como é definida a matriz de identidade?",
+      "options": [
+        "Uma matriz quadrada que deixa uma matriz compatível inalterada quando multiplicada",
+        "Uma matriz quadrada cujas entradas são todas iguais a uma",
+        "Matriz transposta cujas linhas e colunas são trocadas",
+        "Uma matriz quadrada cujas entradas diagonais são todas distintas"
+      ],
+      "correct": 0,
+      "explanation": "A matriz de identidade eu tenho um na diagonal e zeros em todos os outros lugares. multiplicando qualquer matriz por eu retorna a matriz original inalterada, como multiplicando um número por 1."
+    },
+    {
+      "stage": "check",
+      "question": "Qual é a diferença chave entre a multiplicação por elementos e a multiplicação por matriz?",
+      "options": [
+        "A multiplicação por elemento só se aplica a vetores; a multiplicação de matriz só se aplica a matrizes",
+        "Multiplicação por elemento usa entradas correspondentes; multiplicação por matriz usa produtos de pontos de linha-coluna",
+        "Multiplicação por elemento requer dimensões internas; multiplicação de matriz requer formas idênticas",
+        "A multiplicação por elemento muda de forma; a multiplicação de matriz sempre as preserva"
+      ],
+      "correct": 1,
+      "explanation": "O produto de elementos (Hadamard) multiplica os elementos correspondentes e requer formas idênticas. A multiplicação de matriz calcula os produtos de pontos entre linhas e colunas com a regra (m,n) @(n,p) =(m,p)."
+    },
+    {
+      "stage": "check",
+      "question": "Na expressão \"output = relu(W @ x + b) \", qual é o papel desempenhado pela radiodifusão?",
+      "options": [
+        "Distribui o cálculo entre os dispositivos de computação disponíveis",
+        "Converte W e x para usar o mesmo tipo de dados numéricos",
+        "Aplica a ReLU separadamente a cada posição na saída",
+        "Expande b através de dimensões de lote compatíveis antes da adição"
+      ],
+      "correct": 3,
+      "explanation": "Para uma entrada, W @ x e b devem ter a mesma forma de saída. Para um lote orientado para coluna com forma (características, lote), use b[:, None] para que o viés tenha forma (output, 1) e transmita através de colunas."
+    },
+    {
+      "stage": "post",
+      "question": "Qual propriedade segue de um determinante zero?",
+      "options": [
+        "A matriz é singular e não pode ter um inverso",
+        "A matriz preserva comprimentos ao girar a entrada",
+        "A matriz é uma transformação de identidade sem escalagem",
+        "A matriz contém zero em cada linha e coluna"
+      ],
+      "correct": 0,
+      "explanation": "Um determinante zero significa que a transformação colapsou o espaço por pelo menos uma dimensão (por exemplo, mapeamento 2D para uma linha). A matriz não tem inverso, e os sistemas lineares que a usam não têm solução ou infinitamente muitos."
+    },
+    {
+      "stage": "post",
+      "question": "Como a operação de transposição muda uma matriz?",
+      "options": [
+        "Substitui todas as entradas fora de diagonal por zero",
+        "Troca as linhas e colunas da matriz",
+        "Garante que a matriz tem um inverso",
+        "Preserva o ângulo e a comprimento para cada vetor"
+      ],
+      "correct": 1,
+      "explanation": "A transposição muda as linhas e colunas, de modo que uma entrada na linha i e na coluna j passa para a linha j e na coluna i."
+    }
+  ]
+}

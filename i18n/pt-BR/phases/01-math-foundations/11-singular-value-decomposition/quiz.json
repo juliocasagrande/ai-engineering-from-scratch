@@ -1,0 +1,64 @@
+{
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "Qual é a vantagem do SVD em relação à sua própria composição?",
+      "options": [
+        "O SVD é sempre mais rápido para calcular",
+        "O SVD produz matrizes de saída menores",
+        "O SVD funciona em qualquer matriz de qualquer forma, enquanto a sua composição requer matrizes quadradas com conjuntos de vetores próprios completos.",
+        "O SVD não requer cálculo numérico"
+      ],
+      "correct": 2,
+      "explanation": "A composição própria só funciona em matrizes quadradas que têm n vetores próprios linearmente independentes."
+    },
+    {
+      "stage": "pre",
+      "question": "O que significa \"aproximação de baixo grau\"?",
+      "options": [
+        "Converter uma matriz para um tipo de dados de menor precisão",
+        "Remover filas com valores baixos de uma matriz",
+        "Ordenar as fileiras de uma matriz por sua magnitude",
+        "Aproximando uma matriz, mantendo apenas os seus componentes mais importantes, produzindo uma matriz mais simples com menos direções independentes"
+      ],
+      "correct": 3,
+      "explanation": "Uma aproximação de rango k mantém apenas os valores singulares superiores k e seus vetores, descartando o resto."
+    },
+    {
+      "stage": "post",
+      "question": "Em SVD A = U * Sigma * V^T, que operação geométrica representa cada fator?",
+      "options": [
+        "Os três fatores executam a mesma operação: rotação",
+        "U comprime, Sigma se expande, V^T normaliza",
+        "V^T gira no espaço de entrada, as escalas Sigma ao longo dos eixos principais, U gira no espaço de saída",
+        "Escalas U, rotas Sigma, traduções V^T"
+      ],
+      "correct": 2,
+      "explanation": "O SVD revela que cada matriz realiza: (1) V^T gira as entradas para alinhar com as direções principais, (2) Sigma estende/comprime ao longo de cada eixo, (3) U gira o resultado no espaço de saída."
+    },
+    {
+      "stage": "post",
+      "question": "Por que a sklearn implementa a PCA utilizando o SVD em vez de a própria composição da matriz de covariância?",
+      "options": [
+        "O SVD produz resultados diferentes que são mais precisos para a ML",
+        "SVD é mais fácil paralela em GPUs",
+        "O SVD trabalha diretamente na matriz de dados sem formar a matriz de covariância, evitando quadrar o número da condição e melhorando a estabilidade numérica",
+        "A SVD não exige a centralização dos dados"
+      ],
+      "correct": 2,
+      "explanation": "Formar A^T*A quadrada os valores singulares (e número de condição). Se A tem valores singulares [1000, 0,001], A^T*A tem valores próprios [10^6, 10^-6] -- 6 dígitos de precisão perdidos."
+    },
+    {
+      "stage": "post",
+      "question": "Como é que o SVD truncado permite que os sistemas de recomendação prevejam as classificações faltantes?",
+      "options": [
+        "Treina uma rede neural sobre as classificações observadas",
+        "Ele decompõe a matriz de classificações em perfis latentes de usuário e filme; o produto de pontos de um perfil de usuário com um perfil de filme prevê a classificação faltante",
+        "Enche as entradas faltantes com a classificação média",
+        "Ele agrupa usuários semelhantes e copia suas classificações"
+      ],
+      "correct": 1,
+      "explanation": "O SVD decompõe a matriz de classificação em perfis de usuário (U), importância do fator latente (Sigma) e perfis de filme (V^T)."
+    }
+  ]
+}

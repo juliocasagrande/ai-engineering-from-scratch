@@ -1,0 +1,64 @@
+{
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "O que diz a regra da cadeia no cálculo?",
+      "options": [
+        "As funções só podem ser diferenciadas se forem lineares",
+        "A derivada das funções compostas é o produto das suas derivadas individuais",
+        "A derivada de uma soma é a soma de derivados",
+        "A integração de um produto é o produto de integrais"
+      ],
+      "correct": 1,
+      "explanation": "Para y = f(g(x)), a regra da cadeia diz dy/dx = f'(g(x)) * g'(x). Você multiplica as derivadas em cada elo da cadeia. Esta é a base matemática da backpropagation."
+    },
+    {
+      "stage": "pre",
+      "question": "O que é um gráfico computacional?",
+      "options": [
+        "Um gráfico direcionado onde os nós são operações e as bordas levam valores para a frente ou gradientes para trás",
+        "Um diagrama que mostra a arquitetura de uma rede neural",
+        "Uma base de dados gráfica utilizada para armazenar dados de formação",
+        "Um plano de perda versus treino"
+      ],
+      "correct": 0,
+      "explanation": "Um gráfico computacional representa a sequência de operações em uma computação. Os dados fluem para frente através do gráfico e os gradientes fluem para trás durante a propagação para trás."
+    },
+    {
+      "stage": "post",
+      "question": "Por que a PyTorch usa auto-propagação de modo inverso em vez de modo avançado?",
+      "options": [
+        "O modo de avanço não pode lidar com funções não lineares",
+        "O modo inverso calcula todos os gradientes em uma passagem para trás, enquanto o modo avançado precisa de uma passagem por variável de entrada - redes neurais têm milhões de entradas, mas uma saída de perda",
+        "O modo inverso é mais preciso numéricamente",
+        "Modo inverso usa menos memória"
+      ],
+      "correct": 1,
+      "explanation": "As redes neurais têm milhões de entradas de peso, mas produzem uma única perda escalar. O modo inverso requer um passe para trás total. O modo avançado requer um passe por peso - milhões de passes - tornando-o impraticável."
+    },
+    {
+      "stage": "post",
+      "question": "No motor de autogrado de classe Value, por que a função retrógrada usa '+=' em vez de '=' para acumular gradientes?",
+      "options": [
+        "Porque um valor usado em múltiplas operações recebe contribuições de gradiente de cada uma, que devem ser somadas",
+        "Para mediar os gradientes em múltiplas amostras",
+        "Para evitar o desbordamento numérico nos gradientes",
+        "Porque o Python não suporta o operador '=' em fechamentos"
+      ],
+      "correct": 0,
+      "explanation": "Quando um valor se alimenta em múltiplas operações (por exemplo, x usado em x * y e x + z), seu gradiente total é a soma de todas as contribuições de gradiente entrantes."
+    },
+    {
+      "stage": "post",
+      "question": "O que é o controlo de gradientes e quando deve ser utilizado?",
+      "options": [
+        "Verificação de que os gradientes estão abaixo de um limiar para evitar a explosão dos gradientes",
+        "Comparar gradientes de auto-difusão com gradientes de diferença finita numérica para verificar a corretão do passo para trás",
+        "Verificação de que todos os parâmetros receberam gradientes não-zero durante a formação",
+        "Monitoramento das magnitudes de gradientes durante o treinamento para detectar os gradientes que desaparecem"
+      ],
+      "correct": 1,
+      "explanation": "A verificação de gradientes calcula derivadas numéricas através de (f(x+h) - f(x-h)) / 2h e as compara com gradientes de auto-difusão."
+    }
+  ]
+}

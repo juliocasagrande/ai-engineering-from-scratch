@@ -1,0 +1,64 @@
+{
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "O que significa um p-valor de 0,03 em um teste de hipótese?",
+      "options": [
+        "Há uma probabilidade de 3% de ver dados deste extremo se a hipótese nula fosse verdadeira",
+        "O modelo melhorou 3%",
+        "Há uma probabilidade de 3% a hipótese nula é verdadeira",
+        "97% dos dados apoiam a hipótese alternativa"
+      ],
+      "correct": 0,
+      "explanation": "O valor p é a probabilidade de observar dados tão extremos quanto o que você tem, assumindo que a hipótese nula é verdadeira."
+    },
+    {
+      "stage": "pre",
+      "question": "Por que você divide por (n-1) em vez de n quando calcular a variância de amostra?",
+      "options": [
+        "Converte a variância em desvio padrão",
+        "Só se aplica quando o tamanho da amostra é ímpar",
+        "Faz com que o cálculo seja mais rápido.",
+        "Ele explica o facto de a média da amostra não ser a média da população verdadeira (correcção de Bessel)"
+      ],
+      "correct": 3,
+      "explanation": "A correção de Bessel (dividindo por n-1) compensa o viés introduzido usando a média da amostra em vez da média da população verdadeira."
+    },
+    {
+      "stage": "post",
+      "question": "Você testa 20 configurações diferentes do modelo em alfa = 0,05. Qual é a probabilidade aproximada de pelo menos um falso positivo?",
+      "options": [
+        "5%",
+        "25%",
+        "95%",
+        "64%"
+      ],
+      "correct": 3,
+      "explanation": "P ((pelo menos um falso positivo) = 1 - (1 - 0,05) ^20 = 1 - 0,95 ^20 ≈ 0,64 (64%). Este é o problema de comparação múltipla."
+    },
+    {
+      "stage": "post",
+      "question": "O modelo A tem 0,9234 e o modelo B 0,9237 em 1 milhão de amostras de teste com p-valor = 0,001.",
+      "options": [
+        "O modelo A é melhor porque foi testado primeiro.",
+        "O modelo B é significativamente melhor e deve ser implantado imediatamente",
+        "A diferença é estatisticamente significativa, mas uma melhoria de 0,03% pode não ser praticamente significativa.",
+        "O ensaio é inválido porque o tamanho da amostra é muito grande"
+      ],
+      "correct": 2,
+      "explanation": "Com 1 milhão de amostras, mesmo pequenas diferenças se tornam estatisticamente significativas. O valor p confirma a diferença ser real, mas o tamanho do efeito (0,03% ganho de precisão) pode não justificar o custo de engenharia da implantação."
+    },
+    {
+      "stage": "post",
+      "question": "Qual a vantagem que o bootstrap tem sobre o teste t em par para comparar dois modelos ML?",
+      "options": [
+        "Bootstrap só pode ser usado com redes neurais",
+        "O bootstrap sempre produz valores p menores",
+        "Bootstrap não requer suposições distributivas e funciona para qualquer métrica (AUC, F1, mediana)",
+        "Bootstrap precisa de menos amostras para alcançar significância"
+      ],
+      "correct": 2,
+      "explanation": "O bootstrap resampling estima a distribuição de amostragem de qualquer estatística por meio de reposição de amostragem. Ao contrário do teste t, ele não assume normalidade. Funciona para qualquer métrica  AUC, F1, precision@k, mediana  sem necessidade de uma fórmula fechada."
+    }
+  ]
+}

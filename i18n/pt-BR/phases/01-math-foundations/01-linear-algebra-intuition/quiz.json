@@ -1,0 +1,64 @@
+{
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "O que o produto de pontos de dois vetores mede?",
+      "options": [
+        "O número de dimensões compartilhadas pelos vetores",
+        "Quão semelhantes ou alinhados os dois vetores são",
+        "A distância entre os dois vetores",
+        "O ângulo entre os vetores em graus"
+      ],
+      "correct": 1,
+      "explanation": "O produto ponto mede alinhamento: positivo significa a mesma direção (similar), zero significa perpendicular (não relacionado), negativo significa direção oposta (dissimilário). Esta é a base da busca de semelhança na IA."
+    },
+    {
+      "stage": "pre",
+      "question": "Em IA, o que significa \"embed\"?",
+      "options": [
+        "O processo de conversão de código em instruções de máquina",
+        "Técnica de compressão de pesos de modelo",
+        "Insertar um modelo dentro de outro",
+        "Uma representação vetorial que capta o significado de algo (palavra, imagem, usuário)"
+      ],
+      "correct": 3,
+      "explanation": "Um cartão de incorporação mapeia objetos discretos (palavras, imagens, usuários) para vetores contínuos em um espaço de alta dimensão onde itens semelhantes estão próximos uns dos outros. É a ponte entre conceitos do mundo real e operações matemáticas."
+    },
+    {
+      "stage": "post",
+      "question": "São dados três vetores v1=[1,0,0], v2=[0,1,0], v3=[2,1,0].",
+      "options": [
+        "Sim, porque há três vetores no espaço 3D",
+        "Não, porque v3 = 2*v1 + v2, então v3 é uma combinação linear das outras",
+        "Sim, porque nenhum dos vetores são idênticos",
+        "Não, porque todos eles têm um componente zero"
+      ],
+      "correct": 1,
+      "explanation": "V3 = 2 * v1 + v2, fazendo o conjunto linearmente dependente. Todos os três vetores estão no plano xy e não podem chegar a [0,0,1]. Apesar de ter 3 vetores em 3D, eles apenas abrangem um subespaço 2D."
+    },
+    {
+      "stage": "post",
+      "question": "O que diz a classificação de uma matriz no contexto da aprendizagem de máquina?",
+      "options": [
+        "Número de colunas linearmente independentes, indicando quantas dimensões de informação útil contém",
+        "O valor máximo na matriz",
+        "Quão rápido a matriz pode ser multiplicada",
+        "Número de entradas não-zero na matriz"
+      ],
+      "correct": 0,
+      "explanation": "Rank é igual ao número de colunas linearmente independentes. Em ML, uma matriz de características com rank-deficient significa características redundantes, infinitas soluções de peso e a necessidade de regularização."
+    },
+    {
+      "stage": "post",
+      "question": "Como o LoRA (Low-Rank Adaptation) usa álgebra linear para ajustar de forma eficiente os modelos de linguagem grandes?",
+      "options": [
+        "Ele decompõe as atualizações de peso em duas pequenas matrizes de baixo nível em vez de atualizar a matriz de peso total",
+        "Remove as linhas não utilizadas das matrizes de peso para encolher o modelo",
+        "Congela a camada de inserção e treina apenas a cabeça de saída",
+        "Converte todos os pesos do float32 para int8"
+      ],
+      "correct": 0,
+      "explanation": "O LoRA decompõe uma atualização de peso 4096x4096 em duas matrizes de tamanho 4096x16 e 16x4096 (ranque 16), reduzindo os parâmetros treinaveis de 16M para 131K assumindo que as atualizações estão em um subespaço de baixa dimensão."
+    }
+  ]
+}

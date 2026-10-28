@@ -1,0 +1,64 @@
+{
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "O que faz a temperatura < 1,0 com a distribuição de saída de um modelo de linguagem?",
+      "options": [
+        "Remove todos os tokens exceto o de cima",
+        "Não tem efeito sobre a saída",
+        "Torna a distribuição mais uniforme (mais aleatória)",
+        "Aperta a distribuição, tornando mais provável o token de maior probabilidade"
+      ],
+      "correct": 3,
+      "explanation": "A temperatura < 1,0 divide logits por um número menor que 1, o que amplifica as diferenças entre logits. Após softmax, o token de maior probabilidade obtém uma participação ainda maior."
+    },
+    {
+      "stage": "pre",
+      "question": "Qual é a diferença fundamental entre a amostragem de topo-k e a amostragem de topo-p (núcleo)?",
+      "options": [
+        "Top-k é mais rápido que top-p",
+        "Top-k mantém um número fixo de tokens; top-p mantém um número variável com base na probabilidade cumulativa",
+        "Top-p só funciona com temperatura = 1,0",
+        "Top-k trabalha em logits enquanto top-p trabalha em probabilidades"
+      ],
+      "correct": 1,
+      "explanation": "Top-k sempre mantém tokens exatamente k independentemente da distribuição de probabilidade. Top-p guarda de forma adaptativa o menor conjunto de tokens cuja probabilidade acumulada excede p. Quando o modelo é confiante, top-p mantém poucos tokens; quando incerto, mantém muitos."
+    },
+    {
+      "stage": "post",
+      "question": "Por que não pode voltar a propagar através de uma operação padrão de amostragem z ~ N  mu, sigma ^ 2)?",
+      "options": [
+        "A operação de amostragem não é determinista e não possui derivada bem definida em relação a mu e sigma",
+        "PyTorch não suporta distribuições normais",
+        "Distribuições normais não têm gradientes",
+        "O gradiente é sempre exatamente zero"
+      ],
+      "correct": 0,
+      "explanation": "A amostragem introduz uma descontinuidade estocástica  você não pode calcular d(amostra) / d(mu) para um desenho aleatório. O truque de reparameterização resolve isso escrevendo z = mu + sigma * epsilon (onde epsilon ~ N(0,1)), tornando z uma função determinista e diferenciável de mu e sigma."
+    },
+    {
+      "stage": "post",
+      "question": "No MCMC Metropolis-Hastings, o que acontece se o desvio padrão da proposta for estabelecido muito grande?",
+      "options": [
+        "A cadeia converge mais rápido porque faz passos maiores",
+        "A maioria das propostas chega a regiões de baixa probabilidade e é rejeitada, por isso a cadeia dificilmente se move",
+        "O período de queima-in torna-se zero",
+        "A distribuição estacionária muda para uma distribuição uniforme"
+      ],
+      "correct": 1,
+      "explanation": "Com um grande desvio padrão da proposta, os pontos propostos estão longe da posição atual e provavelmente aterrarão em regiões de baixa probabilidade. Estes são rejeitados, fazendo com que a cadeia permaneça presa no ponto atual."
+    },
+    {
+      "stage": "post",
+      "question": "Na amostragem de rejeição, o que acontece com a taxa de aceitação à medida que a dimensão da distribuição-alvo aumenta?",
+      "options": [
+        "Desce exponencialmente porque a maior parte do volume de propostas é rejeitada",
+        "Fica constante independentemente da dimensão",
+        "Aumente porque há mais dimensões a aceitar",
+        "Aproxima-se a 50% em todos os casos"
+      ],
+      "correct": 0,
+      "explanation": "Em dimensões altas, o volume da distribuição da proposta que se sobrepõe à distribuição-alvo diminui exponencialmente. A M ligada cresce e a taxa de aceitação (1/M) cai exponencialmente. Esta é a maldição da dimensionalidade para a amostragem de rejeição."
+    }
+  ]
+}

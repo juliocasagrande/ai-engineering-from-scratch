@@ -1,0 +1,64 @@
+{
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "Qual é a unidade imaginária que eu defino?",
+      "options": [
+        "i = -1",
+        "I^2 = -1",
+        "I^2 = 1",
+        "i = sqrt(2)"
+      ],
+      "correct": 1,
+      "explanation": "A unidade imaginária i é definida pela propriedade i^2 = -1. Ela estende a linha de números reais em um plano 2D. Geométricamente, multiplicando por i é uma rotação de 90 graus  duas multiplicações (i^2) dão uma rotação de 180 graus, que é -1."
+    },
+    {
+      "stage": "pre",
+      "question": "O que é igual à fórmula de Euler e^(i*theta) ?",
+      "options": [
+        "Cosmos (a) + i*sinos (a)",
+        "Sin(theta) + cos(theta)",
+        "I^theta",
+        "Teta + i"
+      ],
+      "correct": 0,
+      "explanation": "A fórmula de Euler diz que e^(i*theta) = cos(theta) + i*sin(theta). Isso conecta exponenciais complexos à trigonometria e mostra que e^(i*theta) rastreia o círculo unitário à medida que o theta varia."
+    },
+    {
+      "stage": "post",
+      "question": "Qual é o resultado de (3 + 2i) ((1 + 4i)?",
+      "options": [
+        "-5 + 14i",
+        "5 + 14i",
+        "3 + 8i",
+        "4 + 6i"
+      ],
+      "correct": 0,
+      "explanation": "Usando FOIL: (3)(1) + (3)(4i) + (2i)(1) + (2i)(4i) = 3 + 12i + 2i + 8i^2 = 3 + 14i + 8(-1) = 3 + 14i - 8 = -5 + 14i."
+    },
+    {
+      "stage": "post",
+      "question": "Por que os números complexos são utilizados em rotary position embedding (RoPE) para transformadores?",
+      "options": [
+        "RoPE usa números imaginários para lidar com posições negativas",
+        "Números complexos comprimem a codificação de posição para usar menos memória",
+        "Os números complexos são necessários pela função de atenção softmax",
+        "Multiplicar vetores de consulta/chave por rotações complexas codifica a posição relativa como ângulo de rotação"
+      ],
+      "correct": 3,
+      "explanation": "RoPE multiplica a consulta e vetores chave por matrizes de rotação complexas e^(i*m*theta) onde m é a posição. A posição relativa entre dois tokens se torna um ângulo de rotação, e a atenção naturalmente se torna sensível à posição relativa (não absoluta) através da multiplicação complexa."
+    },
+    {
+      "stage": "post",
+      "question": "As raízes N da unidade são pontos N igualmente espaçados no círculo unitário. Qual é a sua soma?",
+      "options": [
+        "1",
+        "N",
+        "N/2",
+        "0"
+      ],
+      "correct": 3,
+      "explanation": "As raízes N da unidade são e^(2*pi*i*k/N) para k = 0, ..., N-1. Eles são distribuídos simetricamente em torno do círculo unitário, de modo que a soma de seus vetores é anulada para zero. Esta propriedade de simetria é o que torna o DFT invertível."
+    }
+  ]
+}
