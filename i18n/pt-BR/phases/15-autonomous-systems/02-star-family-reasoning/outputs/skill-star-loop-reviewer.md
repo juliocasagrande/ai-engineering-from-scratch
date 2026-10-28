@@ -1,6 +1,6 @@
 ---
 name: star-loop-reviewer
-description: Audit a proposed self-taught reasoning pipeline (STaR-family) before you commit training compute to it.
+description: Auditar um projecto de raciocínio autodidacta (família STaR) antes de realizar um treinamento computacional.
 version: 1.0.0
 phase: 15
 lesson: 2
@@ -11,11 +11,11 @@ Tendo em conta um projecto de arranque de arranque de estilo STaR (modelo base, 
 
 Produzir:
 
-1. **Filter analysis.**Indique exatamente em que a regra "manter" classifica (resposta final, resposta final + verificação de formato, resposta final + verificador). Identifique a classe de racionalidades que o filtro preservará que um ser humano rejeitaria.
-2. **Shortcut surface.**Para a distribuição do problema, nomeie os três atalhos mais plausíveis (patrão-match, truque aritmético, adivinhação heurística) que chegam à resposta certa sem raciocínio sólido. Estima qual fração do corpo de treinamento eles podem "resolver".
-3. **OOD plan.**Requer que o pipeline sustenha um conjunto de problemas extraído de uma distribuição que os atalhos não podem alcançar.
-4. **Verifier design (if V-STaR).**Indicar o que o verificador é treinado em. Se for treinado no mesmo (problema, raciocínio, rótulo) triplicado que o gerador, sinalizar o risco de reforçar a confiança de erro.
-5. **Compute vs labelling tradeoff.**Comparar o custo de cálculo previsto do STaR com o custo de um esforço de rotulagem menor supervisionado pelo processo.
+1. **Filter analysis.** Indique exatamente em que a regra "manter" classifica (resposta final, resposta final + verificação de formato, resposta final + verificador). Identifique a classe de racionalidades que o filtro preservará que um ser humano rejeitaria.
+2. **Shortcut surface.** Para a distribuição do problema, nomeie os três atalhos mais plausíveis (patrão-match, truque aritmético, adivinhação heurística) que chegam à resposta certa sem raciocínio sólido. Estima qual fração do corpo de treinamento eles podem "resolver".
+3. **OOD plan.** Requer que o pipeline sustenha um conjunto de problemas extraído de uma distribuição que os atalhos não podem alcançar.
+4. **Verifier design (if V-STaR).** Indicar o que o verificador é treinado em. Se for treinado no mesmo (problema, raciocínio, rótulo) triplicado que o gerador, sinalizar o risco de reforçar a confiança de erro.
+5. **Compute vs labelling tradeoff.** Comparar o custo de cálculo previsto do STaR com o custo de um esforço de rotulagem menor supervisionado pelo processo.
 
 Rejeitos duros:
 - Qualquer oleoduto STaR sem uma avaliação prolongada de OOD.
@@ -30,9 +30,9 @@ Regras de recusa:
 Formatos de saída:
 
 Retorna um breve memorando com:
-- **Pipeline summary**(um parágrafo)
-- **Filter grade**(o que recompensa, o que perde)
-- **Top 3 shortcuts**(com exemplos)
-- **OOD evaluation plan**(ou um bilhete para criar um)
-- **Verifier risk**(se aplicável)
-- **Recommendation**(processar / redesenhar / escolher supervisão de processo em vez disso)
+- **Pipeline summary** (um parágrafo)
+- **Filter grade** (o que recompensa, o que perde)
+- **Top 3 shortcuts** (com exemplos)
+- **OOD evaluation plan** (ou um bilhete para criar um)
+- **Verifier risk** (se aplicável)
+- **Recommendation** (processar / redesenhar / escolher supervisão de processo em vez disso)

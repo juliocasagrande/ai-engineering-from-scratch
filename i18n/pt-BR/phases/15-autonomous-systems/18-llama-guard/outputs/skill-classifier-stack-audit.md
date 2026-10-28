@@ -1,6 +1,6 @@
 ---
 name: classifier-stack-audit
-description: Audit a deployment's input/output classifier stack (model, taxonomy, input rails, output rails, dialog rails) and flag adversarial-attack gaps.
+description: Auditar a pilha de classificadores de entrada/saída de uma implantação (modelo, taxonomia, trilhas de entrada, trilhas de saída, trilhas de diálogo) e identificar as lacunas de ataque adversário.
 version: 1.0.0
 phase: 15
 lesson: 18
@@ -11,11 +11,11 @@ Dada a pilha de classificadores de uma implantação (versão Llama Guard, confi
 
 Produzir:
 
-1. **Model inventory.**Lista dos classificadores em uso. Llama Guard 3 (8B / 1B-INT4) vs Llama Guard 4 (multimodal, S1S14). NeMo Guardrails versão. Qualquer classificadores personalizados. Se a implantação aceita imagens, confirme que o classificador é multimodal.
-2. **Taxonomy mapping.**O mapa declara categorias de negócios na taxonomia do classificador. Cada categoria que o operador se importa deve ser mapeada para uma categoria do classificador; categorias não mapeadas não são guardadas.
-3. **Rail coverage.**As vias de entrada são confirmadas antes da rotação do modelo e as vias de saída são iniciadas antes dos navios de resposta. As vias de diálogo (Colang em NeMo) impõem restrições de rotação transversal.
-4. **Normalization.**As entradas de confirmação são normalizadas em NFKC, mapeadas em homoglífico e têm caracteres de selector de largura zero / variação despojados antes da classificação.
-5. **Attack-corpus coverage.**Para cada ataque documentado (contrabando de emoji, homoglifos, redireção no contexto, parafrase semântica), nome a defesa específica na pilha.
+1. **Model inventory.** Lista dos classificadores em uso. Llama Guard 3 (8B / 1B-INT4) vs Llama Guard 4 (multimodal, S1S14). NeMo Guardrails versão. Qualquer classificadores personalizados. Se a implantação aceita imagens, confirme que o classificador é multimodal.
+2. **Taxonomy mapping.** O mapa declara categorias de negócios na taxonomia do classificador. Cada categoria que o operador se importa deve ser mapeada para uma categoria do classificador; categorias não mapeadas não são guardadas.
+3. **Rail coverage.** As vias de entrada são confirmadas antes da rotação do modelo e as vias de saída são iniciadas antes dos navios de resposta. As vias de diálogo (Colang em NeMo) impõem restrições de rotação transversal.
+4. **Normalization.** As entradas de confirmação são normalizadas em NFKC, mapeadas em homoglífico e têm caracteres de selector de largura zero / variação despojados antes da classificação.
+5. **Attack-corpus coverage.** Para cada ataque documentado (contrabando de emoji, homoglifos, redireção no contexto, parafrase semântica), nome a defesa específica na pilha.
 
 Rejeitos duros:
 - Deploições que utilizam um classificador de texto apenas em entradas multimodal.
@@ -32,10 +32,10 @@ Regras de recusa:
 Formatos de saída:
 
 Retorno de uma auditoria do classificador com:
-- **Model inventory**(nome, versão, modalidade)
-- **Taxonomy mapping**(categoria de operador → categoria de classificador)
-- **Rail coverage**(entrada / saída / diálogo; disparo antes/após modelo)
-- **Normalization note**(NFKC y/n, homoglífico y/n, faixa de largura zero y/n)
-- **Attack-corpus coverage**(ataque → defesa)
-- **Layer completeness**(classificador + constituição + tempo de execução; três necessários)
-- **Readiness**(produzir / montar / apenas para investigação)
+- **Model inventory** (nome, versão, modalidade)
+- **Taxonomy mapping** (categoria de operador → categoria de classificador)
+- **Rail coverage** (entrada / saída / diálogo; disparo antes/após modelo)
+- **Normalization note** (NFKC y/n, homoglífico y/n, faixa de largura zero y/n)
+- **Attack-corpus coverage** (ataque → defesa)
+- **Layer completeness** (classificador + constituição + tempo de execução; três necessários)
+- **Readiness** (produzir / montar / apenas para investigação)

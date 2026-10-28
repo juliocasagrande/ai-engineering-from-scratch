@@ -1,6 +1,6 @@
 ---
 name: evaluator-rigor-audit
-description: Audit a proposed AlphaEvolve-style evolutionary coding loop's evaluator before committing any compute to the search.
+description: Auditar o avaliador de um ciclo de codificação evolutiva de estilo AlphaEvolve antes de cometer qualquer cálculo para a pesquisa.
 version: 1.0.0
 phase: 15
 lesson: 3
@@ -11,11 +11,11 @@ Dado um ciclo de codificação evolutiva proposto (gerador LLM, banco de dados d
 
 Produzir:
 
-1. **Evaluator decomposition.**Nomear cada sinal que o avaliador relata: corretão, desempenho, recurso, outros. Para cada um, indicar (a) como ele é medido, (b) quão barato pode ser jogado, (c) como uma regra de entradas mantidas parece.
-2. **Confabulation surface.**Listar as três confabulações mais prováveis do MLL neste domínio: classes de complexidade reivindicadas, corretão reivindicada em casos de borda, desempenho reivindicado sem medição.
-3. **Reward-hacking surface.**Enumere três maneiras plausíveis de o loop maximizar a pontuação sem fazer a tarefa pretendida (ataque que passa o teste, jogo por proxy, memorização de entradas).
-4. **Determinism and reproducibility.**Requer que as saídas dos avaliadores sejam deterministas dentro da tolerância.
-5. **Deployment check.**Se a variante vencedora for enviada para produção, exigir uma revisão separada pré-implementação que o avaliador não verifica (segurança, custo, revisão humana).
+1. **Evaluator decomposition.** Nomear cada sinal que o avaliador relata: corretão, desempenho, recurso, outros. Para cada um, indicar (a) como ele é medido, (b) quão barato pode ser jogado, (c) como uma regra de entradas mantidas parece.
+2. **Confabulation surface.** Listar as três confabulações mais prováveis do MLL neste domínio: classes de complexidade reivindicadas, corretão reivindicada em casos de borda, desempenho reivindicado sem medição.
+3. **Reward-hacking surface.** Enumere três maneiras plausíveis de o loop maximizar a pontuação sem fazer a tarefa pretendida (ataque que passa o teste, jogo por proxy, memorização de entradas).
+4. **Determinism and reproducibility.** Requer que as saídas dos avaliadores sejam deterministas dentro da tolerância.
+5. **Deployment check.** Se a variante vencedora for enviada para produção, exigir uma revisão separada pré-implementação que o avaliador não verifica (segurança, custo, revisão humana).
 
 Rejeitos duros:
 - Qualquer ciclo em que o avaliador é um juiz de LLM sem a verdade de terra verificável pela máquina.
@@ -30,10 +30,10 @@ Regras de recusa:
 Formatos de saída:
 
 Retorna um memorando de uma página com:
-- **Loop summary**(generador, avaliador, domínio alvo)
-- **Evaluator score**(Rigor 1-5 com justificação)
-- **Confabulation surface**(top 3, com cobertura de avaliadores)
-- **Reward-hacking surface**(top 3, com mitigações)
-- **Determinism and reproducibility**(variância de pontuação versus variância de população; controlo das sementes; aprovação/falha)
-- **Deployment readiness**(navio em circuito fechado autorizado; revisões pré-desenvolvimento necessárias: segurança, custo, pessoal)
-- **Recommendation**(processar / apertar avaliador / escolher um domínio diferente)
+- **Loop summary** (generador, avaliador, domínio alvo)
+- **Evaluator score** (Rigor 1-5 com justificação)
+- **Confabulation surface** (top 3, com cobertura de avaliadores)
+- **Reward-hacking surface** (top 3, com mitigações)
+- **Determinism and reproducibility** (variância de pontuação versus variância de população; controlo das sementes; aprovação/falha)
+- **Deployment readiness** (navio em circuito fechado autorizado; revisões pré-desenvolvimento necessárias: segurança, custo, pessoal)
+- **Recommendation** (processar / apertar avaliador / escolher um domínio diferente)

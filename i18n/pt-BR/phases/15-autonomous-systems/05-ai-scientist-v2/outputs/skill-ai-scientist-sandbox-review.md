@@ -1,6 +1,6 @@
 ---
 name: ai-scientist-sandbox-review
-description: Two-gate review checklist for research-loop agent outputs before anything leaves the sandbox.
+description: Lista de revisão de dois portões para as saídas de agentes do ciclo de pesquisa antes que qualquer coisa saia da caixa de areia.
 version: 1.0.0
 phase: 15
 lesson: 5
@@ -9,29 +9,29 @@ tags: [ai-scientist, research-agent, sandbox, peer-review, disclosure]
 
 Dado um resultado de pesquisa autônomo (hipótese, código, experimentos, números, esboço de papel) produzido por um ciclo de estilo AI-Scientist-v2, produzir uma revisão de dois portões: auditoria de caixa de areia (algo sai?) mais auditoria de pesquisa (é o trabalho som?).
 
-Os dois portões são identificados diretamente nas auditorias abaixo: **Sandbox gate = item 1**- O que é ?**Research gate = items 2 (Experiment audit) + 3 (Polish audit)**Os itens 4 a 5 regem o que acontece depois de ambos os portões passarem.
+Os dois portões são identificados diretamente nas auditorias abaixo: **Sandbox gate = item 1**O artigo 2.o **Research gate = items 2 (Experiment audit) + 3 (Polish audit)**Os itens 4 a 5 regem o que acontece depois de ambos os portões passarem.
 
 Produzir:
 
-1. **Sandbox gate.**Antes de qualquer artefato sair da caixa de areia:
+1. **Sandbox gate.** Antes de qualquer artefato sair da caixa de areia:
    - Lista todas as ligações de rede feitas e o seu alvo.
    - Inventar todos os arquivos que o loop escreveu fora do seu diretório de trabalho.
    - Confirme a contenção do Docker / seccomp / gVisor para a execução completa.
    - Confirme que nenhum subprocesso escapou da supervisão da caixa de areia.
    Se algum cheque falhar, bloqueie a exportação; eleve para um humano.
-2. **Experiment audit.**Leia o código da experiência, não o papel:
+2. **Experiment audit.** Leia o código da experiência, não o papel:
    - Verifique cada experimento que se alega ter sido executado e os números relatados são reprodutíveis.
    - Verifique se os experimentos falhados foram relatados como falhas, não re-enfrentados como resultados negativos após o fato.
    - Verifique se o rótulo "novidade" na ideia é resistente a uma pesquisa de literatura por um especialista em domínio humano.
-3. **Polish audit.**Leia os números:
+3. **Polish audit.** Leia os números:
    - Certifique-se de que os dados de cada figura vieram de uma experiência registrada, não de uma reescritura em fase de poluição.
    - Os eixos, escalas e anotações confirmam que correspondem aos dados subjacentes.
    - Marque qualquer figura cuja legenda afirma mais do que os dados suportam.
-4. **Disclosure plan.**Se o artefato for destinado à distribuição externa:
+4. **Disclosure plan.** Se o artefato for destinado à distribuição externa:
    - - Diz que o artefato é de autor de agente.
    - Indicar as ferramentas utilizadas (família de modelos, versão de ciclo).
    - Divulgar o revisor humano que verificou e o que verificou.
-5. **Negative-release decision.**Se o artefato falhar em qualquer etapa de auditoria, o padrão é não liberar.
+5. **Negative-release decision.** Se o artefato falhar em qualquer etapa de auditoria, o padrão é não liberar.
 
 Rejeitos duros:
 - Qualquer submissão que salte qualquer porta.
@@ -47,8 +47,8 @@ Regras de recusa:
 Formatos de saída:
 
 Retorna um relatório de dois portões:
-- **Sandbox gate verdict**(PASS/BLOCK, com justificação)
-- **Research gate verdict**(Cobre auditoria de experimentação (2) e auditoria polaca (3)) (PASS / BLOCK / REQUIRES_EXPERT, com notas por verificação)
-- **Disclosure plan**(nome do revisor humano)
-- **Release decision**(liberar / manter / rejeitar)
-- **Next action**(quem faz o quê até quando)
+- **Sandbox gate verdict** (PASS/BLOCK, com justificação)
+- **Research gate verdict** (Cobre auditoria de experimentação (2) e auditoria polaca (3)) (PASS / BLOCK / REQUIRES_EXPERT, com notas por verificação)
+- **Disclosure plan** (nome do revisor humano)
+- **Release decision** (liberar / manter / rejeitar)
+- **Next action** (quem faz o quê até quando)

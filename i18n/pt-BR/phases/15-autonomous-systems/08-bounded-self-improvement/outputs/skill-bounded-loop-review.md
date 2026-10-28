@@ -1,6 +1,6 @@
 ---
 name: bounded-loop-review
-description: Audit a proposed bounded self-improvement loop against the four-primitive stack (invariants, anchor, multi-objective, regression detection).
+description: Auditar um ciclo de auto-melhoria limitado proposto contra a pilha de quatro primitivas (invariantes, âncora, multi-objetivo, detecção de regressão).
 version: 1.0.0
 phase: 15
 lesson: 8
@@ -11,11 +11,11 @@ Tendo em conta um ciclo de auto-melhoria proposto, pontua-o contra os quatro pri
 
 Produzir:
 
-1. **Invariant inventory.**Lista todas as invariantes que o loop impõe. Para cada um, nome (a) o que é verificado, (b) onde o controle é executado (a entrada / saída do agente alcança), (c) o que uma violação faz (refusão dura, pausa, apenas registro).
-2. **Anchor identification.**Nomear a âncora de alinhamento (declaração objetiva, constituição, descrição de intenção). Indicar a sua localização de armazenamento e verificar que o loop não pode editá-la.
-3. **Multi-objective axes.**Lista todos os eixos que o loop avalia. Confirme que a segurança, a justiça e a robustez estão presentes ao lado do desempenho. Um loop de um único eixo falha nesta verificação.
-4. **Regression policy.**Indique a janela histórica, a tolerância por eixo e o que acontece quando uma queda é detectada.
-5. **Gap analysis.**Para cada primitivo faltante, prevê qual classe de falha surgirá primeiro. Invariantes faltantes → capacidade contrabandeada ou deriva de ferramenta. Ancor faltante → reinterpretação objetiva.
+1. **Invariant inventory.** Lista todas as invariantes que o loop impõe. Para cada um, nome (a) o que é verificado, (b) onde o controle é executado (a entrada / saída do agente alcança), (c) o que uma violação faz (refusão dura, pausa, apenas registro).
+2. **Anchor identification.** Nomear a âncora de alinhamento (declaração objetiva, constituição, descrição de intenção). Indicar a sua localização de armazenamento e verificar que o loop não pode editá-la.
+3. **Multi-objective axes.** Lista todos os eixos que o loop avalia. Confirme que a segurança, a justiça e a robustez estão presentes ao lado do desempenho. Um loop de um único eixo falha nesta verificação.
+4. **Regression policy.** Indique a janela histórica, a tolerância por eixo e o que acontece quando uma queda é detectada.
+5. **Gap analysis.** Para cada primitivo faltante, prevê qual classe de falha surgirá primeiro. Invariantes faltantes → capacidade contrabandeada ou deriva de ferramenta. Ancor faltante → reinterpretação objetiva.
 
 Rejeitos duros:
 - Qualquer ciclo com invariantes zero.
@@ -31,9 +31,9 @@ Regras de recusa:
 Formatos de saída:
 
 Retorna uma revisão com pontuação com:
-- **Invariant score**(0-5 com lista explícita)
-- **Anchor score**(0-5 com método de armazenamento e verificação)
-- **Multi-objective score**(0-5 com eixos listados)
-- **Regression score**(0-5 com tolerância e janela)
-- **Gap analysis**(primeira falha prevista, plano de mitigação)
-- **Deployment readiness**(produzir / montar / apenas para investigação)
+- **Invariant score** (0-5 com lista explícita)
+- **Anchor score** (0-5 com método de armazenamento e verificação)
+- **Multi-objective score** (0-5 com eixos listados)
+- **Regression score** (0-5 com tolerância e janela)
+- **Gap analysis** (primeira falha prevista, plano de mitigação)
+- **Deployment readiness** (produzir / montar / apenas para investigação)

@@ -1,6 +1,6 @@
 ---
 name: horizon-interpretation
-description: Review a vendor's time-horizon claim and produce a gap analysis between benchmark claim and deployment reality.
+description: Revisar a alegação de um fornecedor sobre o horizonte temporal e produzir uma análise da lacuna entre a alegação de referência e a realidade da implantação.
 version: 1.0.0
 phase: 15
 lesson: 21
@@ -11,11 +11,11 @@ Dado o pedido de um fornecedor publicado sobre o horizonte temporal (por exemplo
 
 Produzir:
 
-1. **Methodology audit.**Identificar o conjunto de tarefas (HCAST, RE-Bench, SWAA ou proprietário). Confirmar que a adequação logística é divulgada (inclinação, tamanho da amostra, intervalo de confiança). Um horizonte sem divulgação de metodologia é uma alegação de marketing.
-2. **Task distribution fit.**Mapa da distribuição de tarefas de referência do fornecedor para a distribuição de tarefas de produção do usuário. Se elas divergem materialmente (o fornecedor mede tarefas SWE, a produção é fluxos de suporte ao cliente), o número não se transfere.
-3. **Eval-context gap.**Aplicar uma lacuna de 1040% entre o horizonte de referência e a realidade da implantação. Cite o estudo de alinhamento de 2024 da Anthropic e o Relatório Internacional de Segurança de IA de 2026 sobre jogos de conteúdo de avaliação. A lacuna real depende do protocolo de avaliação; os jogos são maiores em tarefas não estruturadas.
-4. **Tooling gap.**As ferramentas de referência são limpas e bem equipadas. As ferramentas de produção são mais complexas. Estima-se um desconto adicional de fiabilidade de 530%.
-5. **Human-in-the-loop assumption.**Os indicadores de referência não assumem HITL. Agentes de produção com HITL executam com maior confiabilidade mas menor autonomia. Ajuste a interpretação do horizonte em conformidade.
+1. **Methodology audit.** Identificar o conjunto de tarefas (HCAST, RE-Bench, SWAA ou proprietário). Confirmar que a adequação logística é divulgada (inclinação, tamanho da amostra, intervalo de confiança). Um horizonte sem divulgação de metodologia é uma alegação de marketing.
+2. **Task distribution fit.** Mapa da distribuição de tarefas de referência do fornecedor para a distribuição de tarefas de produção do usuário. Se elas divergem materialmente (o fornecedor mede tarefas SWE, a produção é fluxos de suporte ao cliente), o número não se transfere.
+3. **Eval-context gap.** Aplicar uma lacuna de 1040% entre o horizonte de referência e a realidade da implantação. Cite o estudo de alinhamento de 2024 da Anthropic e o Relatório Internacional de Segurança de IA de 2026 sobre jogos de conteúdo de avaliação. A lacuna real depende do protocolo de avaliação; os jogos são maiores em tarefas não estruturadas.
+4. **Tooling gap.** As ferramentas de referência são limpas e bem equipadas. As ferramentas de produção são mais complexas. Estima-se um desconto adicional de fiabilidade de 530%.
+5. **Human-in-the-loop assumption.** Os indicadores de referência não assumem HITL. Agentes de produção com HITL executam com maior confiabilidade mas menor autonomia. Ajuste a interpretação do horizonte em conformidade.
 
 Rejeitos duros:
 - As alegações do Horizon sem metodologia de origem ou tamanho da amostra.
@@ -31,10 +31,10 @@ Regras de recusa:
 Formatos de saída:
 
 Retorna um memorando de interpretação do horizonte com:
-- **Source methodology**(companhia, método de adaptação, tamanho da amostra, CI)
-- **Distribution overlap**(marca de referência vs produção; mapeamento em %)
-- **Eval-context gap estimate**(baixo / médio / alto com raciocínio)
-- **Tooling gap estimate**(baixo / médio / alto)
-- **HITL assumption**(autônomo de modelo de referência versus HITL de produção)
-- **Deploy-adjusted horizon**(horizão após validade e descontos em ferramentas)
-- **Readiness verdict**(produzir / montar / apenas para investigação)
+- **Source methodology** (companhia, método de adaptação, tamanho da amostra, CI)
+- **Distribution overlap** (marca de referência vs produção; mapeamento em %)
+- **Eval-context gap estimate** (baixo / médio / alto com raciocínio)
+- **Tooling gap estimate** (baixo / médio / alto)
+- **HITL assumption** (autônomo de modelo de referência versus HITL de produção)
+- **Deploy-adjusted horizon** (horizão após validade e descontos em ferramentas)
+- **Readiness verdict** (produzir / montar / apenas para investigação)

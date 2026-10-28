@@ -1,6 +1,6 @@
 ---
 name: scaling-policy-review
-description: Review a frontier-lab scaling policy (Anthropic RSP, OpenAI Preparedness, DeepMind FSF, internal) against the RSP v3.0 reference shape.
+description: Revisar uma política de escalagem de laboratório de fronteira (RSP antropico, OpenAI Preparedness, DeepMind FSF, interno) em relação à forma de referência RSP v3.0.
 version: 1.0.0
 phase: 15
 lesson: 19
@@ -11,11 +11,11 @@ Tendo em conta uma política de escalada publicada ou proposta, produzir uma rev
 
 Produzir:
 
-1. **Two-tier inventory.**Os compromissos no nível de recomendação são de defesa, não promessas.
-2. **Thresholds.**Nomear todos os limites de capacidade e a mitigação que desencadeia. Os limites de qualidade onde v2 tinha quantitativo. Os limites de capacidade faltantes para as capacidades que a política afirma cobrir.
-3. **Pause commitment.**Confirme que as políticas nomeiam uma cláusula de pausa (pausas de treinamento, pausas de implantação ou similares) em limiares específicos. V3.0 removido isso; políticas que seguem o exemplo herdar a regressão.
-4. **Standing artifacts.**Confirmar os mandatos de política que constam dos documentos do Mapa de Rodas de Segurança Fronteira e do Relatório de Riscos com cadência declarada.
-5. **Independent review.**A revisão interna (um "Grupo Consultivo de Segurança" composto por funcionários do laboratório) não é considerada supervisão independente.
+1. **Two-tier inventory.** Os compromissos no nível de recomendação são de defesa, não promessas.
+2. **Thresholds.** Nomear todos os limites de capacidade e a mitigação que desencadeia. Os limites de qualidade onde v2 tinha quantitativo. Os limites de capacidade faltantes para as capacidades que a política afirma cobrir.
+3. **Pause commitment.** Confirme que as políticas nomeiam uma cláusula de pausa (pausas de treinamento, pausas de implantação ou similares) em limiares específicos. V3.0 removido isso; políticas que seguem o exemplo herdar a regressão.
+4. **Standing artifacts.** Confirmar os mandatos de política que constam dos documentos do Mapa de Rodas de Segurança Fronteira e do Relatório de Riscos com cadência declarada.
+5. **Independent review.** A revisão interna (um "Grupo Consultivo de Segurança" composto por funcionários do laboratório) não é considerada supervisão independente.
 
 Rejeitos duros:
 - Políticas sem limite de capacidade designado.
@@ -32,9 +32,9 @@ Regras de recusa:
 Formatos de saída:
 
 Retorno de uma revisão da política com:
-- **Two-tier ratio**(unilateral / recomendação / contagem total)
-- **Threshold table**(nome, tipo: quantitativo / qualitativo, desencadeador, mitigação)
-- **Pause commitment**(presente y/n, cláusula específica)
-- **Standing artifacts**(Cadência do mapa de estrada, cadência do relatório de risco)
-- **Independent review**(mecanismo, identidade do revisor, frequência)
-- **Summary rating**(forte / moderada / fraca, justificada)
+- **Two-tier ratio** (unilateral / recomendação / contagem total)
+- **Threshold table** (nome, tipo: quantitativo / qualitativo, desencadeador, mitigação)
+- **Pause commitment** (presente y/n, cláusula específica)
+- **Standing artifacts** (Cadência do mapa de estrada, cadência do relatório de risco)
+- **Independent review** (mecanismo, identidade do revisor, frequência)
+- **Summary rating** (forte / moderada / fraca, justificada)

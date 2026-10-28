@@ -1,6 +1,6 @@
 ---
 name: horizon-reality-check
-description: Given a task you want to hand to an agent, decide whether the current frontier's horizon covers it with enough margin.
+description: Dado uma tarefa que deseja entregar a um agente, decida se o horizonte da fronteira atual a cobre com margem suficiente.
 version: 1.0.0
 phase: 15
 lesson: 1
@@ -11,11 +11,11 @@ Dado uma tarefa autónoma proposta (o que o agente deve fazer, quanto tempo um p
 
 Produzir:
 
-1. **Expert-time estimate.**Se não conseguirem estimar o tempo de conclusão, recuse-os e redirecione-os para que primeiro medam uma pequena amostra.
-2. **Headroom ratio.**Divida o horizonte de 50% METR do modelo escolhido pela estimativa de tempo de especialistas. Marque qualquer relação abaixo de 4x  com probabilidade de sucesso de 50%, você quer uma margem generosa. Em relação a 2x ou abaixo, recuse a implantação a menos que o HITL esteja no loop em cada ação significativa.
-3. **Reliability budget.**Estimar o comprimento de trajetória nas chamadas de ferramenta, em seguida, calcular o sucesso de ponta a ponta na confiabilidade por passo 0,95, 0,99, 0,995. Se o comprimento da tarefa exceder o limiar de sucesso de 50% na sua confiabilidade por passo suposta, exigir pontos de verificação ou dividir a tarefa.
-4. **Eval-vs-deploy adjustment.**Aplicar uma diferença de 20-40% entre o horizonte de referência e o horizonte de implementação contextual. Citar o estudo de alinhamento de 2024 da Anthropic ou o Relatório Internacional de Segurança da IA de 2026 ao justificar para as partes interessadas.
-5. **Required controls.**Com base no headroom, enumere o conjunto mínimo de controles: limite de orçamento, limite de iteração, interruptor de eliminação, pontos de controle HITL, tokens canários e cronograma de auditoria de trajetória.
+1. **Expert-time estimate.** Se não conseguirem estimar o tempo de conclusão, recuse-os e redirecione-os para que primeiro medam uma pequena amostra.
+2. **Headroom ratio.** Divida o horizonte de 50% METR do modelo escolhido pela estimativa de tempo de especialistas. Marque qualquer relação abaixo de 4x  com probabilidade de sucesso de 50%, você quer uma margem generosa. Em relação a 2x ou abaixo, recuse a implantação a menos que o HITL esteja no loop em cada ação significativa.
+3. **Reliability budget.** Estimar o comprimento de trajetória nas chamadas de ferramenta, em seguida, calcular o sucesso de ponta a ponta na confiabilidade por passo 0,95, 0,99, 0,995. Se o comprimento da tarefa exceder o limiar de sucesso de 50% na sua confiabilidade por passo suposta, exigir pontos de verificação ou dividir a tarefa.
+4. **Eval-vs-deploy adjustment.** Aplicar uma diferença de 20-40% entre o horizonte de referência e o horizonte de implementação contextual. Citar o estudo de alinhamento de 2024 da Anthropic ou o Relatório Internacional de Segurança da IA de 2026 ao justificar para as partes interessadas.
+5. **Required controls.** Com base no headroom, enumere o conjunto mínimo de controles: limite de orçamento, limite de iteração, interruptor de eliminação, pontos de controle HITL, tokens canários e cronograma de auditoria de trajetória.
 
 Rejeitos duros:
 - Qualquer implantação em relação ao horizonte inferior a 2x sem HITL em cada ação consequente.
@@ -30,9 +30,9 @@ Regras de recusa:
 Formatos de saída:
 
 Retorna um breve memorando com:
-- **Task summary**(uma frase)
-- **Expert-time estimate**(com unidades)
-- **Headroom ratio**(com número explícito)
-- **End-to-end reliability estimate**(tabela a três taxas por etapa)
-- **Minimum controls**- Não .
-- **Go / hold / no-go**(veredicto explícito mais justificação de uma sentença)
+- **Task summary** (uma frase)
+- **Expert-time estimate** (com unidades)
+- **Headroom ratio** (com número explícito)
+- **End-to-end reliability estimate** (tabela a três taxas por etapa)
+- **Minimum controls** - Não .
+- **Go / hold / no-go** (veredicto explícito mais justificação de uma sentença)
