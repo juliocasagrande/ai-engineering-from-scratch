@@ -1,6 +1,6 @@
 ---
 name: skill-function-calling-patterns
-description: Decision framework for implementing function calling in production -- tool design, error handling, security, and provider patterns
+description: Quadro de decisão para a implementação de funções de chamada na produção - design de ferramentas, gestão de erros, segurança e padrões de fornecedores
 version: 1.0.0
 phase: 11
 lesson: 09
@@ -29,15 +29,15 @@ Ao criar uma aplicação de Mestrado em Direito Jurídico que use ferramentas, a
 
 ## Orientações para a concepção de ferramentas
 
-1. **One tool, one action.**Uma ferramenta chamada `manage_database`O sistema de gestão de dados é muito amplo.`query_records`- Não .`insert_record`- Não .`update_record`O modelo seleciona melhor com ferramentas específicas.
+1. **One tool, one action.** Uma ferramenta chamada `manage_database` O sistema de gestão de dados é muito amplo. `query_records`- Não . `insert_record`- Não . `update_record`O modelo seleciona melhor com ferramentas específicas.
 
-2. **Descriptions are prompts.**O modelo lê descrições de ferramentas para decidir a seleção. Escreva-as como se você escrevesse instruções para um desenvolvedor menor. Incluir o que a ferramenta retorna, não apenas o que faz.
+2. **Descriptions are prompts.** O modelo lê descrições de ferramentas para decidir a seleção. Escreva-as como se você escrevesse instruções para um desenvolvedor menor. Incluir o que a ferramenta retorna, não apenas o que faz.
 
-3. **Constrain with enums.**Se um parâmetro tem 3 a 10 valores válidos, use um enum. O modelo vai inventar cordas -- "Celsius", "Celsius", "C", "metric" -- a menos que você o restrinja.
+3. **Constrain with enums.** Se um parâmetro tem 3 a 10 valores válidos, use um enum. O modelo vai inventar cordas -- "Celsius", "Celsius", "C", "metric" -- a menos que você o restrinja.
 
-4. **Fewer tools is better.**GPT-4o lida bem com 5-10 ferramentas. Com mais de 20 ferramentas, a precisão de seleção diminui. Com mais de 50 ferramentas, espere 10-15% de seleção errada de ferramentas.
+4. **Fewer tools is better.** GPT-4o lida bem com 5-10 ferramentas. Com mais de 20 ferramentas, a precisão de seleção diminui. Com mais de 50 ferramentas, espere 10-15% de seleção errada de ferramentas.
 
-5. **Required means required.**Marque apenas um parâmetro conforme necessário se a ferramenta não puder literalmente funcionar sem ela.
+5. **Required means required.** Marque apenas um parâmetro conforme necessário se a ferramenta não puder literalmente funcionar sem ela.
 
 ## Padrões específicos do fornecedor
 
@@ -50,9 +50,9 @@ tool_choice="required"   # must call at least one tool
 tool_choice={"type": "function", "function": {"name": "specific_tool"}}
 ```
 
-- Suporta chamadas paralelas de ferramentas (múltiplas `tool_calls`em uma resposta)
+- Suporta chamadas paralelas de ferramentas (múltiplas) `tool_calls` em uma resposta)
 - As identidades de chamada de ferramenta devem ser transmitidas com os resultados
-- `gpt-4o-mini`É 10 vezes mais barato e lida bem com o roteamento de ferramentas simples
+- `gpt-4o-mini` É 10 vezes mais barato e lida bem com o roteamento de ferramentas simples
 - Modo de saída estruturada funciona com parâmetros de ferramenta para conformidade garantida com o esquema
 
 ### Antropico (Claude 3.5 Sonnet, Claude 4 Opus)
@@ -65,8 +65,8 @@ tool_choice={"type": "tool", "name": "specific_tool"}
 ```
 
 - As chamadas de ferramentas aparecem como blocos de conteúdo com `type: "tool_use"`
-- Os resultados são enviados em mensagens de usuário com `type: "tool_result"`
-- Nome de campo é `input_schema`Não , não .`parameters`(bug comum de migração)
+- Os resultados vão para as mensagens do usuário com `type: "tool_result"`
+- Nome de campo é `input_schema`Não , não . `parameters` (bug comum de migração)
 - Suporta várias chamadas de ferramentas por resposta
 
 ### Google (Gemini 2.0 Flash, Gemini 2.0 Pro)
@@ -76,8 +76,8 @@ function_declarations=[{"name": ..., "description": ..., "parameters": ...}]
 function_calling_config={"mode": "AUTO"}   # or "ANY" or "NONE"
 ```
 
-- Utilizações `function_declarations`no nível superior
-- Resultados devolvidos através de `function_response`Partes
+- Utilizações `function_declarations` no nível superior
+- Resultados devolvidos através de `function_response` Partes
 - Suporta chamadas paralelas de funções
 
 ### Modelos de código aberto (Llama 3, Hermes, Qwen)
@@ -127,11 +127,11 @@ Defina o tempo de execução de todas as execuções da ferramenta. 30 segundos 
 
 ## Optimização de desempenho
 
-- **Parallel calls:**Quando o modelo solicitar várias ferramentas independentes, execute-as simultaneamente com `asyncio.gather()`ou `concurrent.futures`
-- **Caching:**Resultados de armazenamento em cache para argumentos idênticos na mesma sessão (o tempo não muda em 60 segundos)
-- **Streaming:**Transmitir a resposta final do modelo enquanto os resultados da ferramenta estão sendo obtidos
-- **Tool pruning:**Se o contexto for apertado, apenas inclua definições de ferramentas relevantes para a consulta atual (utilize um classificador para filtrar)
-- **Smaller models for routing:**Utilização`gpt-4o-mini`ou `claude-haiku-4-5`para a seleção de ferramentas, então passar os resultados para um modelo mais forte para síntese
+- **Parallel calls:** Quando o modelo solicitar várias ferramentas independentes, execute-as simultaneamente com `asyncio.gather()` ou `concurrent.futures`
+- **Caching:** Resultados de armazenamento em cache para argumentos idênticos na mesma sessão (o tempo não muda em 60 segundos)
+- **Streaming:** Transmitir a resposta final do modelo enquanto os resultados da ferramenta estão sendo obtidos
+- **Tool pruning:** Se o contexto for apertado, apenas inclua definições de ferramentas relevantes para a consulta atual (utilize um classificador para filtrar)
+- **Smaller models for routing:** Utilização `gpt-4o-mini` ou `claude-haiku-4-5` para a seleção de ferramentas, então passar os resultados para um modelo mais forte para síntese
 
 ## Padrões comuns de falhas
 

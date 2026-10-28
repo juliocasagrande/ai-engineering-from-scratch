@@ -1,6 +1,6 @@
 ---
 name: prompt-prompt-optimizer
-description: Takes a draft prompt and rewrites it using proven prompt engineering patterns for maximum effectiveness across models
+description: Toma um projeto de instrução e reescreve-o usando padrões de engenharia de instrução comprovados para a máxima eficácia em todos os modelos
 phase: 11
 lesson: 01
 ---

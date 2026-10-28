@@ -1,6 +1,6 @@
 ---
 name: skill-cost-patterns
-description: Decision framework for LLM cost optimization -- caching strategies, rate limiting, model routing, and budget controls
+description: Quadro de decisão para a otimização dos custos do LLM - estratégias de caching, limitação de taxas, roteamento de modelos e controles orçamentais
 version: 1.0.0
 phase: 11
 lesson: 11
@@ -29,7 +29,7 @@ Ao criar um pedido de Mestrado em Direito Jurídico que precise controlar os cus
 
 ### Cachagem exacta
 
-**Use when:**temperatura=0, repetem-se as mesmas instruções, são necessárias saídas deterministas.
+**Use when:** temperatura=0, repetem-se as mesmas instruções, são necessárias saídas deterministas.
 
 ```python
 key = sha256(json.dumps({"model": m, "messages": msgs, "temp": 0}))
@@ -40,11 +40,11 @@ key = sha256(json.dumps({"model": m, "messages": msgs, "temp": 0}))
 - Latência: < 1ms (requisitação direta)
 - Risco: respostas obsoletas em caso de alterações nos dados subjacentes
 
-**Skip when:**temperatura > 0, cada consulta é única, necessários dados em tempo real.
+**Skip when:** temperatura > 0, cada consulta é única, necessários dados em tempo real.
 
 ### Caching semântico
 
-**Use when:**Os usuários fazem a mesma pergunta em palavras diferentes, produtos com FAQs pesados, suporte ao cliente.
+**Use when:** Os usuários fazem a mesma pergunta em palavras diferentes, produtos com FAQs pesados, suporte ao cliente.
 
 - Implementação: 2-4 horas (emblematização + semelhança + armazenamento)
 - Taxa de impacto: 15-35% em cima do cache exato
@@ -57,11 +57,11 @@ key = sha256(json.dumps({"model": m, "messages": msgs, "temp": 0}))
 - 0,90: agressivo, maior taxa de acidentes mas risco de respostas erradas
 - 0,85: apenas para aplicações de baixo risco (sugestões, autocompletamento)
 
-**Skip when:**Cada consulta tem um contexto único (geração de código), as respostas devem refletir os dados mais recentes, o espaço da consulta é ilimitado.
+**Skip when:** Cada consulta tem um contexto único (geração de código), as respostas devem refletir os dados mais recentes, o espaço da consulta é ilimitado.
 
 ### Cachagem de serviço de fornecedor
 
-**Use when:**Sistema de resposta > 1.024 tokens (OpenAI) ou mínimo específico do modelo, o mesmo prefixo enviado repetidamente.
+**Use when:** Sistema de resposta > 1.024 tokens (OpenAI) ou mínimo específico do modelo, o mesmo prefixo enviado repetidamente.
 
 | Provider | Action | Savings |
 |----------|--------|---------|
@@ -69,7 +69,7 @@ key = sha256(json.dumps({"model": m, "messages": msgs, "temp": 0}))
 | OpenAI | Nothing (automatic) | 50% on cached prefix |
 | Google | Use Context Caching API with explicit TTL | ~75% on cached context |
 
-**Skip when:**alterações de pedido de sistema, o pedido é inferior ao mínimo de comprimento.
+**Skip when:** alterações de pedido de sistema, o pedido é inferior ao mínimo de comprimento.
 
 ## Regras de roteamento modelo
 
@@ -117,7 +117,7 @@ Treinar um pequeno classificador (regressão logística ou pequeno BERT) em pare
 
 1. Armazenar baldes em Redis (não em memória) para aplicativos de várias instâncias
 2. Utilização de operações atômicas (MULTI/EXEC) para evitar condições de corrida
-3. Retorno .`Retry-After`cabeçalho com respostas de rejeição
+3. Retorno `Retry-After` cabeçalho com respostas de rejeição
 4. Seguir os pedidos rejeitados como métrica (> 5% rejeição = limites de nível demasiado apertados)
 5. Implementar uma degradação graciosa: rejeitar primeiro pedidos de modelos caros, manter acesso a modelos baratos
 
@@ -161,11 +161,11 @@ Registre todas as chamadas de API com estes campos:
 
 ### Metricas-chave do painel de instrumentos
 
-- **Cost per query**(P50, P95, P99) -- por modelo, por característica, por nível de utilizador
-- **Cache hit rate**-- exato vs semântico, tendência ao longo do tempo
-- **Model distribution**-- % do tráfego por modelo, custo por modelo
-- **Budget burn rate**-- gastos correntes versus despesas mensuais previstas à taxa corrente
-- **Rejection rate**-- % de pedidos limitados por nível
+- **Cost per query** (P50, P95, P99) -- por modelo, por característica, por nível de utilizador
+- **Cache hit rate** -- exato vs semântico, tendência ao longo do tempo
+- **Model distribution** -- % do tráfego por modelo, custo por modelo
+- **Budget burn rate** -- gastos correntes versus despesas mensuais previstas à taxa corrente
+- **Rejection rate** -- % de pedidos limitados por nível
 
 ## Erros comuns
 

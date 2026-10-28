@@ -1,6 +1,6 @@
 ---
 name: prompt-eval-designer
-description: Design tailored evaluation rubrics and test suites for LLM applications from a description of the use case
+description: Rubricas de avaliação e conjuntos de ensaio personalizados para aplicações de MLL, a partir de uma descrição do caso de utilização
 phase: 11
 lesson: 10
 ---

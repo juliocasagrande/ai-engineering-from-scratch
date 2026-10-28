@@ -1,6 +1,6 @@
 ---
 name: prompt-tool-designer
-description: Design complete tool definitions (JSON Schema) for function calling from a natural language description
+description: Desenhar definições completas de ferramentas (JSON Schema) para chamadas de função a partir de uma descrição de linguagem natural
 phase: 11
 lesson: 09
 ---
@@ -36,15 +36,15 @@ Boa: "Obter o tempo atual para uma cidade, retorna a temperatura, condição, um
 ### 3. Design de parâmetros
 
 Para cada parâmetro:
-- Utilização`description`para explicar o que aceita e dar exemplos
-- Utilização`enum`para valores categóricos - nunca confiar no modelo inventando a cadeia certa
-- Utilização`minimum`- Não .`maximum`para números para evitar valores extremos alucinados
-- Set `default`para parâmetros opcionais para que o modelo conheça o comportamento quando omitido
-- Marque apenas os parâmetros verdadeiramente necessários como`required`
+- Utilização `description` para explicar o que aceita e dar exemplos
+- Utilização `enum` para valores categóricos - nunca confiar no modelo inventando a cadeia certa
+- Utilização `minimum`- Não .`maximum` para números para evitar valores extremos alucinados
+- Set `default` para parâmetros opcionais para que o modelo conheça o comportamento quando omitido
+- Marque apenas os parâmetros realmente necessários como `required`
 
 ### 4. Formatos de saída
 
-Retorna a definição de ferramenta no OpenAI `tools`formato:
+Retorna a definição de ferramenta no OpenAI `tools` formato:
 
 ```json
 {
@@ -67,7 +67,7 @@ Retorna a definição de ferramenta no OpenAI `tools`formato:
 ```
 
 Também incluem:
-- Uma versão em formato antropico (usando `input_schema`Em vez de`parameters`)
+- Uma versão em formato antropófico (usando `input_schema` em vez de `parameters`)
 - 3 exemplos de chamadas de ferramentas com argumentos esperados
 - 2 cenários de erro que a implementação deve lidar
 

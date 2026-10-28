@@ -1,6 +1,6 @@
 ---
 name: skill-advanced-rag
-description: Build production-grade RAG with hybrid search, reranking, and evaluation
+description: Construir RAG de nível de produção com pesquisa híbrida, re-ranqueamento e avaliação
 version: 1.0.0
 phase: 11
 lesson: 7

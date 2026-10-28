@@ -1,6 +1,6 @@
 ---
 name: skill-cot-patterns
-description: Decision framework for choosing the right reasoning technique based on task complexity, accuracy requirements, and cost constraints
+description: Quadro de decisão para a escolha da técnica de raciocínio correta com base na complexidade da tarefa, nos requisitos de precisão e nas restrições de custos
 version: 1.0.0
 phase: 11
 lesson: 02
@@ -14,23 +14,23 @@ Quando você precisa de um Mestrado em Direito para raciocinar um problema, esco
 ## Árvore de decisão rápida
 
 1. A tarefa é uma simples pesquisa factual ou uma classificação em um único passo?
-   - Sim: uso **zero-shot**O CoT acrescenta custos sem ganho de precisão.
+   - Sim: utilização **zero-shot**O CoT acrescenta custos sem ganho de precisão.
    - Não, continua.
 
 2. A tarefa requer raciocínio em vários passos (matemática, lógica, planejamento)?
-   - Sim: uso **Chain-of-Thought**Continuem com o passo 3.
-   - Não: uso **few-shot**Se o formato importa, zero-shot se não.
+   - Sim: utilização **Chain-of-Thought**Continuem com o passo 3.
+   - Não: utilização **few-shot** Se o formato importa, zero-shot se não.
 
 3. É aceitável um único erro de raciocínio?
-   - Sim: uso **few-shot CoT**(uma única amostra, temperatura 0,0).
-   - Não: uso **self-consistency**(N=5, temperatura 0,7). Continuar para o passo 4.
+   - Sim: utilização **few-shot CoT** (uma única amostra, temperatura 0,0).
+   - Não: utilização **self-consistency** (N=5, temperatura 0,7). Continuar para o passo 4.
 
 4. O problema é um problema de busca/planejamento com muitos caminhos possíveis?
-   - Sim: uso **Tree-of-Thought**- Não .
+   - Sim: utilização **Tree-of-Thought**- Não .
    - Não: a autoconsistência é suficiente.
 
 5. A tarefa requer informações externas ou cálculos?
-   - Sim: uso **ReAct**(razão + apelos a ferramentas).
+   - Sim: utilização **ReAct** (razão + apelos a ferramentas).
    - Não: as técnicas de raciocínio puro são suficientes.
 
 ## Matriz Técnica
@@ -102,9 +102,9 @@ A estratégia de custo-optimalidade para a maioria das aplicações: começar co
 
 As técnicas de raciocínio compõem-se de uma cadeia rápida:
 
-**Chain Step 1**(Extracto): zero-choque, temperatura 0,0
-**Chain Step 2**(Reason): CoT de poucas injecções, temperatura 0,0
-**Chain Step 3**(Verificar): autoconsistência com N=3, temperatura 0,7
+**Chain Step 1** (Extracto): zero-choque, temperatura 0,0
+**Chain Step 2** (Reason): CoT de poucas injecções, temperatura 0,0
+**Chain Step 3** (Verificar): autoconsistência com N=3, temperatura 0,7
 
 Esta cadeia de três etapas custa ~ 3x uma única chamada de CoT, mas detecta erros de extração, erros de raciocínio e fornece uma pontuação de confiança a partir da etapa de verificação.
 

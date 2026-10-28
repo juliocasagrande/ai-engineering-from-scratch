@@ -1,6 +1,6 @@
 ---
 name: skill-prompt-patterns
-description: Decision framework for choosing the right prompt pattern based on task type, reliability requirements, and target model
+description: Quadro de decisão para a escolha do modelo de solicitação adequado com base no tipo de tarefa, nos requisitos de confiabilidade e no modelo-alvo
 version: 1.0.0
 phase: 11
 lesson: 01

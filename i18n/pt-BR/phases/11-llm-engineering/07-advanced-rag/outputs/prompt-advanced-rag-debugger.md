@@ -1,6 +1,6 @@
 ---
 name: prompt-advanced-rag-debugger
-description: Diagnose and fix RAG quality issues across retrieval, generation, and evaluation
+description: Diagnóstico e resolução de problemas de qualidade de RAG em todas as áreas de recuperação, geração e avaliação
 phase: 11
 lesson: 7
 ---

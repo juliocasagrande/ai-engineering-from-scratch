@@ -1,6 +1,6 @@
 ---
 name: prompt-embedding-advisor
-description: Choose embedding models, dimensions, and strategies for specific use cases
+description: Escolha modelos, dimensões e estratégias de incorporação para casos de uso específicos
 phase: 11
 lesson: 4
 ---

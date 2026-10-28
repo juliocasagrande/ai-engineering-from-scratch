@@ -1,6 +1,6 @@
 ---
 name: prompt-rag-architect
-description: Design RAG systems for specific use cases with concrete architecture decisions
+description: Projeto de sistemas RAG para casos de utilização específicos com decisões de arquitetura concreta
 phase: 11
 lesson: 6
 ---

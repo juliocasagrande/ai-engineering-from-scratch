@@ -8,7 +8,7 @@
       "Otimizar os custos é fácil"
     ],
     "correct": 1,
-    "explanation": "A API LLM custa escala linearmente com a utilização.$0.003 per call seems cheap until it's called 100K times/day ($Sem otimização de custos, muitos produtos de IA são pouco rentáveis em escala.",
+    "explanation": "A API LLM custa escala linearmente com a utilização. $0.003 per call seems cheap until it's called 100K times/day ($Sem otimização de custos, muitos produtos de IA são pouco rentáveis em escala.",
     "stage": "pre"
   },
   {

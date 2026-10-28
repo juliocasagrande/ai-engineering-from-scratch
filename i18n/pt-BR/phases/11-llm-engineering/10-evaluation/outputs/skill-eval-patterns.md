@@ -1,6 +1,6 @@
 ---
 name: skill-eval-patterns
-description: Decision framework for choosing evaluation strategies -- when to use which method, how to size test suites, and how to integrate evals into CI/CD
+description: Quadro de decisão para escolher estratégias de avaliação - quando utilizar o método, como dimensionar os conjuntos de testes e como integrar as avaliações no CI/CD
 version: 1.0.0
 phase: 11
 lesson: 10
@@ -143,7 +143,7 @@ Se os intervalos de confiança de dois sistemas se sobrepõem, não se pode afir
 
 ### Ações do GitHub
 
-Trigger: qualquer modificação de PR `prompts/`- Não .`src/llm/`, ou `config/model*.yaml`
+Trigger: qualquer modificação de PR `prompts/`- Não . `src/llm/`, ou `config/model*.yaml`
 
 Passo:
 1. Código de caixa
@@ -155,7 +155,7 @@ Passo:
 
 ### Eval como um portão de fusão
 
-O controlo de avaliação deve ser **required**Se a avaliação disser BLOCK, o PR não se fundirá até que a regressão seja fixada ou o caso de teste seja atualizado com justificação.
+A verificação de avaliação deve ser **required** Se a avaliação disser BLOCK, o PR não se fundirá até que a regressão seja fixada ou o caso de teste seja atualizado com justificação.
 
 ### Resultados de armazenamento
 

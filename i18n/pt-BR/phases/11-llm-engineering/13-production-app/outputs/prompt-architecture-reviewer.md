@@ -1,6 +1,6 @@
 ---
 name: prompt-architecture-reviewer
-description: Review the architecture of any LLM application against a production readiness checklist -- identifies gaps, risks, and missing components
+description: Revisar a arquitetura de qualquer aplicação de LLM contra uma lista de verificação de preparação de produção - identifica lacunas, riscos e componentes faltantes
 phase: 11
 lesson: 13
 ---
@@ -40,10 +40,10 @@ Classificar cada componente numa escala de 4 pontos:
 
 Para cada diferença, classifique o risco:
 
-- **P0 (Ship blocker):**vulnerabilidades de segurança, não há manipulação de erros nas chamadas de LLM, não há limitação de taxa, chaves API em código
-- **P1 (Week-one incident):**Não há caching (explosão de custos), não há barrancas de saída (conteúdo inseguro), não há modelos de retrocesso (interrupção = tempo de inatividade)
-- **P2 (Month-one problem):**Não há rastreamento de custos (facturas de surpresa), não há registro de avaliação (degradação da qualidade não detectada), não há versão rápida (não pode ser revertida)
-- **P3 (Scale problem):**Não há tratamento de sincronia, não há plano de escala horizontal, não há pooling de conexões, não há tratamento baseado em fila
+- **P0 (Ship blocker):** vulnerabilidades de segurança, não há manipulação de erros nas chamadas de LLM, não há limitação de taxa, chaves API em código
+- **P1 (Week-one incident):** Não há caching (explosão de custos), não há barrancas de saída (conteúdo inseguro), não há modelos de retrocesso (interrupção = tempo de inatividade)
+- **P2 (Month-one problem):** Não há rastreamento de custos (facturas de surpresa), não há registro de avaliação (degradação da qualidade não detectada), não há versão rápida (não pode ser revertida)
+- **P3 (Scale problem):** Não há tratamento de sincronia, não há plano de escala horizontal, não há pooling de conexões, não há tratamento baseado em fila
 
 ### 4. Formatos de saída
 
@@ -88,16 +88,16 @@ Retorna a sua revisão nesta estrutura:
 
 Verifique sempre se há estes antipatrões específicos:
 
-- **No retry on LLM calls:**Um único erro de 500 bloqueia a solicitação em vez de tentar novamente
-- **Synchronous LLM calls blocking the web server:**Esgotamento da piscina de fios sob carga
-- **Raw API keys in environment without rotation:**A chave comprometida = aquisição de serviços completos
-- **No max token limit on input:**Os usuários enviam 100 mil pedidos de tokens, explodindo custos
-- **Cache without TTL:**Respostas obsoletas servem para sempre
-- **Guardrails as a library import, not a middleware:**Facil de contornar em novos pontos finais
-- **Logging PII in request logs:**Violação da conformidade
-- **No health check endpoint:**O equilíbrio de carga não pode detectar casos insalubres
-- **Single model, no fallback:**Interrupção do fornecedor = interrupção total do serviço
-- **Cost tracking in application logs only:**Não há alerta em tempo real sobre aumentos de gastos
+- **No retry on LLM calls:** Um único erro de 500 bloqueia a solicitação em vez de tentar novamente
+- **Synchronous LLM calls blocking the web server:** Esgotamento da piscina de fios sob carga
+- **Raw API keys in environment without rotation:** A chave comprometida = aquisição de serviços completos
+- **No max token limit on input:** Os usuários enviam 100 mil pedidos de tokens, explodindo custos
+- **Cache without TTL:** Respostas obsoletas servem para sempre
+- **Guardrails as a library import, not a middleware:** Facil de contornar em novos pontos finais
+- **Logging PII in request logs:** Violação da conformidade
+- **No health check endpoint:** O equilíbrio de carga não pode detectar casos insalubres
+- **Single model, no fallback:** Interrupção do fornecedor = interrupção total do serviço
+- **Cost tracking in application logs only:** Não há alerta em tempo real sobre aumentos de gastos
 
 ## Formatos de entrada
 

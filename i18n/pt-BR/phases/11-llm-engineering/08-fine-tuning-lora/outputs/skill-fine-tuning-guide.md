@@ -1,6 +1,6 @@
 ---
 name: skill-fine-tuning-guide
-description: Decision tree for when and how to fine-tune LLMs with LoRA and QLoRA
+description: Árvore de decisão para quando e como ajustar os LLM com o LoRA e o QLoRA
 version: 1.0.0
 phase: 11
 lesson: 8

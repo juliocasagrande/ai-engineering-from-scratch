@@ -1,6 +1,6 @@
 ---
 name: prompt-safety-auditor
-description: Audit any LLM application for safety vulnerabilities -- prompt injection, data leakage, jailbreaks, and output risks
+description: Auditar qualquer aplicação de LLM para vulnerabilidades de segurança - injeção rápida, vazamento de dados, jailbreaks e riscos de saída
 phase: 11
 lesson: 12
 ---

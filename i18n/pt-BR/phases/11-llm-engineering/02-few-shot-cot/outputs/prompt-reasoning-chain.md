@@ -1,6 +1,6 @@
 ---
 name: prompt-reasoning-chain
-description: Production-ready few-shot CoT prompt with self-consistency support for multi-step reasoning tasks
+description: Pronto para produção de CoT com poucas injeções com suporte de autoconsistência para tarefas de raciocínio em várias etapas
 phase: 11
 lesson: 02
 ---
@@ -47,11 +47,11 @@ A resposta é 3.
 </example>
 
 <example>
-P: Josh decide tentar virar uma casa.$80,000 and puts $50 mil em reparações, o que aumentou o valor da casa em 150%.
+P: Josh decide tentar virar uma casa. $80,000 and puts $50 mil em reparações, o que aumentou o valor da casa em 150%.
 
 R: Deixem-me trabalhar neste passo a passo.
 
-Dado: preço de compra $80,000, repairs $50.000, aumento de valor de 150%.
+Indicado: preço de compra $80,000, repairs $50.000, aumento de valor de 150%.
 
 Passo 1: Investimento total = $80,000 + $50.000 = 130.000 dólares
 Passo 2: Aumento de valor = $80,000 * 1.5 = $120.000

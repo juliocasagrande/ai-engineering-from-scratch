@@ -1,6 +1,6 @@
 ---
 name: skill-structured-outputs
-description: Decision framework for choosing the right structured output strategy based on provider, reliability, and complexity
+description: Quadro de decisão para a escolha da estratégia de saída estruturada correta com base no fornecedor, na confiabilidade e na complexidade
 version: 1.0.0
 phase: 11
 lesson: 03
@@ -13,23 +13,23 @@ Ao criar uma aplicação de Mestrado em Direito Jurídico que requer dados estru
 
 ## Quando utilizar cada abordagem
 
-**Prompt-based ("Return JSON"):**Apenas prototipagem. Aceitável para ferramentas internas onde falhas ocasionais de análise são toleráveis. Adicione uma tentativa/exceto com retest. Nunca use em canais de produção.
+**Prompt-based ("Return JSON"):** Apenas prototipagem. Aceitável para ferramentas internas onde falhas ocasionais de análise são toleráveis. Adicione uma tentativa/exceto com retest. Nunca use em canais de produção.
 
-**JSON mode (API flag):**Você precisa de JSON válido garantido, mas o esquema é simples ou flexível. Funciona quando você valida a forma no lado da aplicação. Disponível: OpenAI, Anthropic (através do uso de ferramentas), Google.
+**JSON mode (API flag):** Você precisa de JSON válido garantido, mas o esquema é simples ou flexível. Funciona quando você valida a forma no lado da aplicação. Disponível: OpenAI, Anthropic (através do uso de ferramentas), Google.
 
-**Schema mode (constrained decoding):**Sistemas de produção em que cada saída deve corresponder a um esquema específico. Falhas de análise zero. Violações de esquema zero. Use isso por padrão para qualquer tarefa de extração ou classificação de produção. Disponível: saídas estruturadas OpenAI, Outlines, Guidance.
+**Schema mode (constrained decoding):** Sistemas de produção em que cada saída deve corresponder a um esquema específico. Falhas de análise zero. Violações de esquema zero. Use isso por padrão para qualquer tarefa de extração ou classificação de produção. Disponível: saídas estruturadas OpenAI, Outlines, Guidance.
 
-**Function calling / tool use:**O modelo precisa escolher qual função chamar, não apenas preencher parâmetros. Você tem vários esquemas e o modelo seleciona o adequado. Também use ao se integrar com a infraestrutura de ferramentas / funções existentes.
+**Function calling / tool use:** O modelo precisa escolher qual função chamar, não apenas preencher parâmetros. Você tem vários esquemas e o modelo seleciona o adequado. Também use ao se integrar com a infraestrutura de ferramentas / funções existentes.
 
-**Instructor library:**Quer validação Pydantic com retry automático em qualquer provedor. Melhor DX para projetos Python. Enrola OpenAI, Anthropic, Google e modelos de código aberto.
+**Instructor library:** Quer validação Pydantic com retry automático em qualquer provedor. Melhor DX para projetos Python. Enrola OpenAI, Anthropic, Google e modelos de código aberto.
 
 ## Orientações específicas para o prestador
 
-**OpenAI:**Utilização`response_format`com`json_schema`Tipo. Descodagem restrita está incorporada. Modelos Pydantic funcionam diretamente.
+**OpenAI:** Utilização `response_format` com `json_schema` Tipo. Descodagem restrita está incorporada. Modelos Pydantic funcionam diretamente.
 
-**Anthropic:**Use ferramenta para saída estruturada. Defina uma única ferramenta com o esquema desejado. O modelo retorna argumentos de chamada de ferramenta correspondentes ao esquema. Confiável, mas requer que a ferramenta use padrão API.
+**Anthropic:** Use ferramenta para saída estruturada. Defina uma única ferramenta com o esquema desejado. O modelo retorna argumentos de chamada de ferramenta correspondentes ao esquema. Confiável, mas requer que a ferramenta use padrão API.
 
-**Open-source models (vLLM, Ollama):**Use Outlines ou Guidance para decodificação restrita. Essas bibliotecas compilam esquemas JSON em máquinas de estado finito que mascaram tokens inválidos durante a geração. Requer executar inferência localmente.
+**Open-source models (vLLM, Ollama):** Use Outlines ou Guidance para decodificação restrita. Essas bibliotecas compilam esquemas JSON em máquinas de estado finito que mascaram tokens inválidos durante a geração. Requer executar inferência localmente.
 
 ## Orientações para o projeto de esquemas
 

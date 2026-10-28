@@ -1,6 +1,6 @@
 ---
 name: prompt-lora-advisor
-description: Decide LoRA rank, target modules, and hyperparameters for a specific fine-tuning task
+description: Decidir a classificação do LoRA, os módulos-alvo e os hiperparâmetros para uma tarefa específica de ajuste fino
 phase: 11
 lesson: 8
 ---

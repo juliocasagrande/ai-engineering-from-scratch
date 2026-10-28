@@ -3,7 +3,7 @@
   "questions": [
     {
       "stage": "post",
-      "question": "Por que o `messages`campo em um estado de LangGraph TypedDict necessidade `Annotated[list, add_messages]`- Não .",
+      "question": "Por que o `messages` campo em um LangGraph State TypedDict necessidade `Annotated[list, add_messages]`- Não .",
       "options": [
         "Comprime a lista de mensagens quando os pontos de controlo são escritos no disco.",
         "Permite o fluxo de delta de tokens do modelo.",
@@ -15,12 +15,12 @@
     },
     {
       "stage": "post",
-      "question": "Qual é a diferença entre `interrupt_before=['tools']`E ...`interrupt_after=['tools']`- Não .",
+      "question": "Qual é a diferença entre `interrupt_before=['tools']` e `interrupt_after=['tools']`- Não .",
       "options": [
-        "`interrupt_before`Pausas após o modelo emitir as chamadas de ferramenta, mas antes da execução das ferramentas; `interrupt_after`Pausas após a execução das ferramentas.",
-        "`interrupt_before`Coloca a ferramenta em uma caixa de areia primeiro; `interrupt_after`- É uma produção.",
+        "`interrupt_before` Pausas após o modelo emitir as chamadas de ferramenta, mas antes da execução das ferramentas; `interrupt_after` Pausas após a execução das ferramentas.",
+        "`interrupt_before` Coloca a ferramenta em uma caixa de areia; `interrupt_after` - É uma produção.",
         "Não há diferença, são alias.",
-        "`interrupt_before`é destinado a ensaios unitários; `interrupt_after`É para produção."
+        "`interrupt_before` é destinado a ensaios unitários; `interrupt_after` É para produção."
       ],
       "correct": 0,
       "explanation": ""
@@ -29,10 +29,10 @@
       "stage": "post",
       "question": "Dado o histórico de um ponto de controlo de um fio, como viajar no tempo para um estado anterior e explorar um ramo diferente?",
       "options": [
-        "Set `graph.rewind = True`e revoca.",
-        "Liga-me .`graph.reset(thread_id)`Então ...`graph.invoke(new_input, config)`- Não .",
+        "Set `graph.rewind = True` e revoca.",
+        "Liga-me `graph.reset(thread_id)` Então `graph.invoke(new_input, config)`- Não .",
         "Eliminar o diretório de pontos de verificação e reaplicar com o mesmo thread_id.",
-        "Invocar o gráfico com o prévio desejado `checkpoint_id`no config; passagem `None`Quando a entrada se repete a partir desse ponto de controlo, o passar de um novo valor é anexado antes de retomar."
+        "Invocar o gráfico com o prévio desejado `checkpoint_id` no config; passagem `None` Quando a entrada se repete a partir desse ponto de controlo, o passar de um novo valor é anexado antes de retomar."
       ],
       "correct": 3,
       "explanation": ""
@@ -41,17 +41,17 @@
       "stage": "post",
       "question": "Em um gráfico ReAct de quatro nós (agente, ferramentas, borda condicional, borda estática de volta ao agente), onde vive a borda condicional?",
       "options": [
-        "De`START`, encaminhando para qualquer um .`agent`ou `END`Baseado no comprimento da entrada.",
-        "De`tools`De volta para `agent`, roteamento sobre se a saída da ferramenta estava vazia.",
+        "De `START`, encaminhando para qualquer um dos `agent` ou `END` Baseado no comprimento da entrada.",
+        "De `tools` de volta para `agent`, roteamento sobre se a saída da ferramenta estava vazia.",
         "Não há vantagem condicional; ambas são estáticas.",
-        "De`agent`, encaminhando para `tools`se a última mensagem tem tool_calls e para `END`- Não, não."
+        "De `agent`, encaminhando para `tools` se a última mensagem tem tool_calls e para `END` - Não, não."
       ],
       "correct": 3,
       "explanation": ""
     },
     {
       "stage": "post",
-      "question": "Quando deve utilizar `Send(node_name, state)`Em vez de uma borda simples?",
+      "question": "Quando deve utilizar `Send(node_name, state)` Em vez de uma borda simples?",
       "options": [
         "Para invocar um nó num processo diferente para isolamento.",
         "Para adiar um nó até que um temporizador expire.",

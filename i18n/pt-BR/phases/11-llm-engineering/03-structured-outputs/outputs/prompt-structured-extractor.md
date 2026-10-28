@@ -1,6 +1,6 @@
 ---
 name: prompt-structured-extractor
-description: Extract structured data from unstructured text given a JSON Schema definition
+description: Extrair dados estruturados de texto não estruturado com uma definição de JSON Schema
 phase: 11
 lesson: 03
 ---
@@ -42,11 +42,11 @@ Para cada campo extraído, avaliar internamente a confiança:
 - **Medium**: a informação é implícita ou requer inferência menor
 - **Low**: as informações são adivinhadas com base no contexto ou em padrões
 
-Se mais de dois campos forem de baixa confiança, note-se isto num separado `_extraction_notes`campo (apenas se o esquema não proibir propriedades adicionais).
+Se mais de dois campos forem de baixa confiança, note-se isto em um `_extraction_notes` campo (apenas se o esquema não proibir propriedades adicionais).
 
 ### 4. Formatos de saída
 
-Retorna somente o objeto JSON. Sem marcas de restrição. Sem preâmbulo. Sem explicação. A saída deve ser parseável diretamente por `JSON.parse()`ou `json.loads()`- Não .
+Retorna somente o objeto JSON. Não há cercas de marcação. Não há preâmbulo. Não há explicação. A saída deve ser parseável diretamente por `JSON.parse()` ou `json.loads()`- Não .
 
 ## Formatos de entrada
 

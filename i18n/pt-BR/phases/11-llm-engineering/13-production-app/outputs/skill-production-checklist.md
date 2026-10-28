@@ -1,6 +1,6 @@
 ---
 name: skill-production-checklist
-description: Decision framework for shipping LLM applications to production -- covers every component with specific thresholds and pass/fail criteria
+description: Marco de decisão para o envio de aplicações de MLL para produção - abrange cada componente com limiares específicos e critérios de aprovação/falha
 version: 1.0.0
 phase: 11
 lesson: 13
@@ -107,21 +107,21 @@ Não é necessário no lançamento, é necessário em 10x.
 
 ## Ordem de execução de novos projectos
 
-1. **Day 1:**Servidor de API + modelos de solicitação + chamada única de LLM com retry
-2. **Day 2:**Barras de entrada + barras de saída + manipulação de erros
-3. **Day 3:**Cachegue semântico + rastreamento de custos por pedido
-4. **Day 4:**Streaming (SSE) + ponto final de controlo de saúde
-5. **Day 5:**Registros estruturados + rastreamento de solicitações + registros de avaliação
-6. **Week 2:**Teste A/B + versão rápida + retrocesso
-7. **Week 3:**Cadena de modelos de retrocesso + degradação graciosa
-8. **Week 4:**Teste de carga + otimização de sincronia + escalação horizontal
+1. **Day 1:** Servidor de API + modelos de solicitação + chamada única de LLM com retry
+2. **Day 2:** Barras de entrada + barras de saída + manipulação de erros
+3. **Day 3:** Cachegue semântico + rastreamento de custos por pedido
+4. **Day 4:** Streaming (SSE) + ponto final de controlo de saúde
+5. **Day 5:** Registros estruturados + rastreamento de solicitações + registros de avaliação
+6. **Week 2:** Teste A/B + versão rápida + retrocesso
+7. **Week 3:** Cadena de modelos de retrocesso + degradação graciosa
+8. **Week 4:** Teste de carga + otimização de sincronia + escalação horizontal
 
 ## Diagnóstico rápido
 
 Se algo estiver errado na produção, verifique na seguinte ordem:
 
-1. **Users complaining about errors?**Verifique o ponto final de saúde, depois a taxa de erro nos registos, depois a página de status do fornecedor de LLM
-2. **Responses are slow?**Verifique a latência P99, depois a taxa de hits no cache, depois os tempos de resposta LLM em traços
-3. **Cost spiking?**Verifique a tendência de custo por solicitação, em seguida, taxa de hits no cache, em seguida, top usuários por custo, em seguida, procure mudanças de modelo imediatas que aumentaram o número de tokens
-4. **Quality dropped?**Verifique se uma nova versão de prompt foi implementada, verifique se a precisão de recuperação RAG mudou, verifique se o provedor de modelo mudou a versão padrão do modelo
-5. **Security incident?**Verifique a taxa de bloqueio do barranco de segurança (caída súbita = barrancos desativados), verifique os registos de solicitações para padrões incomuns, gire as chaves da API imediatamente
+1. **Users complaining about errors?** Verifique o ponto final de saúde, depois a taxa de erro nos registos, depois a página de status do fornecedor de LLM
+2. **Responses are slow?** Verifique a latência P99, depois a taxa de hits no cache, depois os tempos de resposta LLM em traços
+3. **Cost spiking?** Verifique a tendência de custo por solicitação, em seguida, taxa de hits no cache, em seguida, top usuários por custo, em seguida, procure mudanças de modelo imediatas que aumentaram o número de tokens
+4. **Quality dropped?** Verifique se uma nova versão de prompt foi implementada, verifique se a precisão de recuperação RAG mudou, verifique se o provedor de modelo mudou a versão padrão do modelo
+5. **Security incident?** Verifique a taxa de bloqueio do barranco de segurança (caída súbita = barrancos desativados), verifique os registos de solicitações para padrões incomuns, gire as chaves da API imediatamente

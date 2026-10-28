@@ -1,6 +1,6 @@
 ---
 name: prompt-context-optimizer
-description: Audit a context assembly strategy and recommend optimizations to reduce token waste and improve response quality
+description: Auditar uma estratégia de montagem de contexto e recomendar otimizamentos para reduzir o desperdício de tokens e melhorar a qualidade da resposta
 phase: 11
 lesson: 05
 ---

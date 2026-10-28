@@ -1,6 +1,6 @@
 ---
 name: skill-rag-pipeline
-description: Build and debug RAG pipelines from first principles
+description: Construir e depurar os gasodutos RAG a partir dos primeiros princípios
 version: 1.0.0
 phase: 11
 lesson: 6

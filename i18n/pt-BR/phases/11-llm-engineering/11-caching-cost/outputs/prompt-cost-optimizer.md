@@ -1,6 +1,6 @@
 ---
 name: prompt-cost-optimizer
-description: Analyze an LLM application and recommend specific cost optimizations with projected savings
+description: Analisar uma aplicação de LLM e recomendar otimizações específicas de custos com economias projetadas
 phase: 11
 lesson: 11
 ---
@@ -42,21 +42,21 @@ Monthly cost = total_per_request * daily_requests * 30
 
 Para cada otimização, fornecer:
 
-- **What:**técnica específica
-- **How:**Pasos de execução (2-3 frases)
-- **Savings:**montante e percentagem em dólar
-- **Effort:**Baixo / médio / alto
-- **Risk:**O que pode dar errado?
+- **What:** técnica específica
+- **How:** Pasos de execução (2-3 frases)
+- **Savings:** montante e percentagem em dólar
+- **Effort:** Baixo / médio / alto
+- **Risk:** O que pode dar errado?
 
 Ordem de prioridade (primeiro ROI mais elevado):
 
-1. **Provider prompt caching**-- se o sistema for solicitado > 1.024 tokens
-2. **Model routing**-- se > 40% das consultas forem simples
-3. **Exact caching**-- se temperatura=0 e consultas repetidas
-4. **Semantic caching**-- se os utilizadores fizerem versões parafraseadas das mesmas perguntas
-5. **Batch API**- se qualquer carga de trabalho não for em tempo real
-6. **Prompt compression**-- se o sistema solicitar > 1.000 tokens
-7. **Output length limits**-- se a saída média for > 500 tokens e possa ser menor
+1. **Provider prompt caching** -- se o sistema for solicitado > 1.024 tokens
+2. **Model routing** -- se > 40% das consultas forem simples
+3. **Exact caching** -- se temperatura=0 e consultas repetidas
+4. **Semantic caching** -- se os utilizadores fizerem versões parafraseadas das mesmas perguntas
+5. **Batch API** - se qualquer carga de trabalho não for em tempo real
+6. **Prompt compression** -- se o sistema solicitar > 1.000 tokens
+7. **Output length limits** -- se a saída média for > 500 tokens e possa ser menor
 
 ### 4. Total de poupanças do projecto
 
@@ -73,9 +73,9 @@ Produção de uma tabela antes/após:
 
 Ordenar as otimizações em 3 fases:
 
-- **Phase 1 (Week 1):**Codificação zero ou alterações mínimas.
-- **Phase 2 (Week 2-3):**Esforço moderado, cache exacto, roteamento de modelos, limitação de taxa.
-- **Phase 3 (Month 2):**Esforço significativo, cache semântico, compressão rápida, painel de monitoramento de custos.
+- **Phase 1 (Week 1):** Codificação zero ou alterações mínimas.
+- **Phase 2 (Week 2-3):** Esforço moderado, cache exacto, roteamento de modelos, limitação de taxa.
+- **Phase 3 (Month 2):** Esforço significativo, cache semântico, compressão rápida, painel de monitoramento de custos.
 
 ## Formatos de entrada
 
@@ -84,7 +84,7 @@ Ordenar as otimizações em 3 fases:
 {description}
 ```
 
-**Current monthly spend:**- Não, não.
+**Current monthly spend:** - Não, não.
 
 **Usage numbers (if known):**
 ```
