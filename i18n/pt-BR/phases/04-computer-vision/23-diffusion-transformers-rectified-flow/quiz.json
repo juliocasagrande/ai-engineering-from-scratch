@@ -1,0 +1,64 @@
+{
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "Por que os modelos de texto-imagem SOTA 2024+ (SD3, FLUX, Z-Image) substituíram o denotador U-Net por um Transformador de Difusão (DiT)?",
+      "options": [
+        "U-Net não é suportado em GPUs mais",
+        "A DiT escala de forma mais previsível do que a U-Net (o mesmo regime de regimes de regimes de escala que os LLM), lida melhor com dependências espaciais de longo alcance para geração rápida e precisa, e combina naturalmente com codificadores de texto através de atenção cruzada ou conjunta",
+        "Os transformadores são mais fáceis de escrever",
+        "DiT tem menos parâmetros"
+      ],
+      "correct": 1,
+      "explanation": "DiT trata a difusão como apenas outra tarefa de modelagem de sequência. Escala como modelos de linguagem, evita o viés indutivo fixo de convulsões que podem bloquear a estrutura de longo alcance e se integra limpa com codificadores de texto transformador."
+    },
+    {
+      "stage": "pre",
+      "question": "O fluxo corrigido treina o modelo para prever a velocidade .`v = epsilon - x_0`Por que é que isto permite a amostragem em 20 etapas em vez de 1000?",
+      "options": [
+        "Requer um modelo maior.",
+        "O ODE aprendido é mais próximo de uma linha reta do que o SDE curvo do DDPM, então a integração de poucos passos de Euler produz amostras precisas; combinado com a destilação você obtém variantes de 1-4 passos como FLUX schnell",
+        "O Euler é estritamente melhor que o DDIM",
+        "Não; o fluxo rectificado também precisa de 1000 passos"
+      ],
+      "correct": 1,
+      "explanation": "O processo inverso do DDPM é um caminho curvo estocástico que requer muitos pequenos passos. O fluxo retificado define uma interpolação reta; a velocidade aprendida é aproximadamente constante ao longo da trajetória. A integração de um ODE quase reto leva alguns passos."
+    },
+    {
+      "stage": "post",
+      "question": "MMDiT (SD3) usa dois conjuntos de pesos, um para tokens de texto e outro para tokens de imagem, que compartilham uma única camada de atenção conjunta.",
+      "options": [
+        "Para salvar a memória",
+        "Embedings de texto e imagem são distribuições conceitualmente diferentes; pesos separados permitem que cada modalidade processar sua própria representação enquanto a atenção conjunta permite que eles interajam; o resultado é melhor alinhamento de texto-imagem e seguimento rápido do que um único fluxo compartilhado",
+        "É um design legado",
+        "Só os tokens de imagem passam pela atenção."
+      ],
+      "correct": 1,
+      "explanation": "O MMDiT da Stable Diffusion 3 mantém fluxos de peso por modalidade para preservar as diferentes estatísticas de tokens de texto e imagem enquanto uma camada conjunta de auto-atenção permite que eles se fundam. Isto é estruturalmente mais expressivo do que concatenado-e-compartilhamento (que o SD1/2 usou), e empíricamente eleva a adesão rápida e a renderização de texto. A FLUX estende esta função a blocos alternados de duplo/mundo fluxo para eficiência."
+    },
+    {
+      "stage": "post",
+      "question": "O que significa AdaLN-Zero num bloco de DiT e por que ajuda?",
+      "options": [
+        "Uma norma de camada que só é aplicada 50% do tempo",
+        "LayerNorm adaptativo cuja modulação MLP é iniciada a zero para que o bloco comece como identidade; o treinamento aprende então a escala/shift/gate, que estabiliza transformadores de difusão muito profundos",
+        "Uma norma de camada com zero epsilon",
+        "Uma média de LayerNorm com zero"
+      ],
+      "correct": 1,
+      "explanation": "AdaLN prevê escala, deslocamento e porta do vetor de condicionamento. \"Zero\" significa que o MLP é iniciado em zero, então o portão começa em 0 e o bloco atua como identidade. Os gradientes empurram lentamente a modulação para longe do zero, o que impede que a pilha profunda diverja no início do treinamento. É o equivalente DiT do resíduo zero-init da ResNet e é usado em todos os transformadores de difusão modernos."
+    },
+    {
+      "stage": "post",
+      "question": "O FLUX.1-Schnell pode produzir uma imagem em 4 passos.",
+      "options": [
+        "Peso de menor precisão",
+        "Contagem de parâmetros menor",
+        "Destilação  schnell é treinado a partir de um professor lento de muitos passos usando objetivos adversários / estilo de consistência para que 1-4 passos denosando correspondam à saída de 20-30 passos do professor",
+        "Uma arquitetura base diferente da FLUX.1-dev"
+      ],
+      "correct": 2,
+      "explanation": "As variantes Schnell / Turbo / LCM usam destilação de passo. Um aluno de pequeno passo aprende a combinar a saída do professor de muitos passos. A arquitetura base e a contagem de parâmetros são muitas vezes idênticas (FLUX.1-dev e schnell são ambos 12B)."
+    }
+  ]
+}

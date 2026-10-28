@@ -1,0 +1,64 @@
+{
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "Como é que um ViT transforma uma imagem em uma sequência de tokens?",
+      "options": [
+        "Aplica um conv com kernel_size = step = patch_size para dividir a imagem em patches não-superpuestos e projetar linearmente cada um para um token incorporado em uma operação",
+        "Aplata toda a imagem em um vetor",
+        "Funciona uma CNN primeiro e usa seu mapa de recursos como tokens",
+        "Especies de intensidades de pixel"
+      ],
+      "correct": 0,
+      "explanation": "A primeira camada de um ViT é um conv com kernel_size = step = 16, transformando uma imagem de 224x224 em uma grade de 14x14 de 16x16 parches, cada um projetado para dim = 768."
+    },
+    {
+      "stage": "pre",
+      "question": "O que é o token [CLS] em ViT e por que é necessário?",
+      "options": [
+        "Um reservatório de lugar para dados faltantes",
+        "Um valor especial de píxel",
+        "Uma máscara de abandono",
+        "Um vetor aprendido prependido à sequência de tokens; depois de N transformador camadas sua saída agregado toda a imagem e alimenta o cabeçalho de classificador"
+      ],
+      "correct": 3,
+      "explanation": "O ViT segue a convenção do BERT: prepare um vetor aprendido (o token CLS) para a sequência de patches. A auto-atenção permite que cada token veja cada outro token, de modo que o token CLS agrega informações globais de todos os patches. O classificador lê apenas a saída CLS. Os designs alternativos usam um compartilhamento médio sobre todos os tokens de patch (usados pela ConvNeXt e muitos modelos pós-ViT)."
+    },
+    {
+      "stage": "post",
+      "question": "Porque é que o papel original do ViT precisava de JFT-300M para se preparar para vencer o ResNet, e porque não o DeiT?",
+      "options": [
+        "DeiT utiliza diferentes atenções",
+        "O documento da ViT estava errado.",
+        "O ViT tem preconceitos indutivos mais fracos do que os CNNs; sem dados suficientes, ele supera. DeiT mostrou que com forte aumento (RandAugment, Mixup, CutMix), profundidade estocástica e, opcionalmente, destilação CNN, os ViTs treinam bem apenas no ImageNet-1k",
+        "ViT está quebrado sem JFT-300M"
+      ],
+      "correct": 2,
+      "explanation": "A falta de viés indutivo (sem localidade, sem equivalência de tradução incorporada) da ViT significa que a rede tem que aprender isso a partir de dados. Com imagens da 1M ImageNet, isso é difícil; com imagens da 300M JFT, é fácil. DeiT substituiu os dados por melhorias na receita de treinamento: aumento pesado, profundidade estocástica e destilação de um professor da CNN, tudo o que compensa a falta de antecedentes."
+    },
+    {
+      "stage": "post",
+      "question": "Pre-LayerNorm (`x = x + sublayer(LN(x))`) vs post-LayerNorm (`x = LN(x + sublayer(x))`)  que é utilizado em transformadores modernos e porquê?",
+      "options": [
+        "Post-LN; é mais simples",
+        "Nem um nem outro; transformadores modernos ignoram a LayerNorm",
+        "Pre-LN; treina as redes mais profundas com estabilidade sem aquecimento da taxa de aprendizagem e evita as instabilidades de gradiente que o pós-LN sofre depois de cerca de 6 camadas",
+        "São idênticos."
+      ],
+      "correct": 2,
+      "explanation": "O transformer post-LN foi o original (2017) e exigia um aquecimento cuidadoso + pequenas taxas de aprendizagem após 6-8 camadas. O pre-LN (Xiong et al., 2020; usado por ViT, GPT-2+, cada LLM moderno) é numericamente mais estável: o fluxo residual se acumula sem passar pelo LN, e cada subcamada opera em uma entrada normalizada."
+    },
+    {
+      "stage": "post",
+      "question": "O Swin Transformer introduz a atenção por janelas.",
+      "options": [
+        "BatchNorm não suportado",
+        "Aquecimento excessivo à textura",
+        "Gradientes desaparecidos",
+        "Atenção total tem custo O(((H*W) ^2); Swin restringe a atenção às janelas locais de 7x7 parches, reduzindo o custo para O(H*W * janelas^2). Blocos alternativos mudar a janela pela metade do seu tamanho para que a informação eventualmente mistura-se através da imagem"
+      ],
+      "correct": 3,
+      "explanation": "Uma imagem de 224x224 com patches 4x4 tem 56*56 = 3136 tokens; atenção total é 3136^2 = ~10M pares por camada. Swin atende apenas dentro de janelas 7x7, dando 49^2 = 2401 pares por janela (mais a contagem de janelas). janelas mudadas em blocos alternados misturam informações através de janelas em algumas camadas. Isso traz uma localidade semelhante à CNN de volta ao transformador antes de desistir da atenção."
+    }
+  ]
+}

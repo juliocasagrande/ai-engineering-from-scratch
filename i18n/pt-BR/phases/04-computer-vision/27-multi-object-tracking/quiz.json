@@ -1,0 +1,64 @@
+{
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "O que faz o algoritmo húngaro no rastreamento por detecção?",
+      "options": [
+        "Treina o detector .",
+        "Previne trajetórias futuras",
+        "Ele filtra as detecções de baixa confiança",
+        "Resolve a atribuição de custo mínimo de um a um entre as faixas e as detecções  normalmente usando 1 - IoU como custo  para combinar cada faixa com no máximo uma detecção e vice-versa"
+      ],
+      "correct": 3,
+      "explanation": "Cada quadro de rastreamento por detecção faz um problema de atribuição: M tracks, detecções N, encontrar o melhor correspondência um a um. O húngaro é o algoritmo polinômio ideal para isso. O custo é geralmente 1 - IoU (superposição mais alta = custo menor). scipy.optimize.linear_sum_assignment é a implementação padrão. SORT, DeepSORT, ByteTrack, BoT-SORT todos o usam."
+    },
+    {
+      "stage": "pre",
+      "question": "Qual é a contribuição distintiva do ByteTrack?",
+      "options": [
+        "Uma nova espinha dorsal",
+        "Um aspecto incorporado",
+        "Um novo filtro Kalman",
+        "Uma associação de segunda fase que tenta combinar as pistas remanescentes com detecções de baixa confiança, recuperando oclusões curtas e identidades que os rastreadores padrão perderão ao deixar cair essas detecções"
+      ],
+      "correct": 3,
+      "explanation": "A maioria dos rastreadores descartam as detecções abaixo de um limiar de confiança (~0,5). O ByteTrack mantém-nos e faz uma segunda passagem húngara para tentar combiná-los com pistas que não correspondem a qualquer detecção de alta confiança. Isto recupera breves oclusões e travessas, levantando o IDF1 significativamente no MOT17 sem quaisquer características de aparência aprendidas. A sua simplicidade faz com que seja o padrão em Ultralítica e Supervisão de Fluxo Robo."
+    },
+    {
+      "stage": "post",
+      "question": "Como o rastreador baseado na memória do SAM 2 evita associações explícitas de estilo húngaro?",
+      "options": [
+        "Ele armazena características espaciotemporais por instância em um banco de memória; em cada novo quadro, a atenção cruzada entre memória e características atuais produz diretamente a máscara da mesma instância, com associação implícita na operação de atenção",
+        "Ele funciona SORT internamente",
+        "Ele usa um filtro Kalman",
+        "Requer identificação marcada à mão por quadro"
+      ],
+      "correct": 0,
+      "explanation": "SAM 2 substitui o ciclo de detecção e associação por um segmentador condicional à memória. O banco de memória mantém as características da instância de quadros anteriores. Em cada novo quadro, o decodificador atende as características do novo quadro contra a memória, e a máscara resultante é a mesma instância  nenhum passo de atribuição externa. Isso lida com oclusões longas graciosamente porque a memória permanece mesmo quando a instância desaparece por muitos quadros."
+    },
+    {
+      "stage": "post",
+      "question": "Para vídeos de vigilância onde manter a identidade de cada pessoa consistente é o requisito principal, que métrica deve relatar?",
+      "options": [
+        "IDF1  a média harmoniosa de precisão e de recall de ID; mede a preservação da identidade ao longo do tempo em vez de a precisão de detecção por quadro",
+        "Precuração máxima",
+        "MOTA",
+        "FID"
+      ],
+      "correct": 0,
+      "explanation": "O MOTA combina erros de detecção e associação, de modo que um rastreador com muitos falsos positivos pode esconder as falhas de identificação. O IDF1 foi concebido para responder à questão de \"quem é quem ao longo do tempo\": corresponde às pistas previstas às pistas de verdade no terreno em todo o vídeo e calcula a F1 nos rótulos de identidade. Para a vigilância e análise da multidão, a IDF1 é a métrica para relatar; HOTA é o padrão acadêmico mais amplo."
+    },
+    {
+      "stage": "post",
+      "question": "SAM 3.1 Object Multiplex (março 2026) introduz memória compartilhada em muitas instâncias rastreadas.",
+      "options": [
+        "Eficiente rastreamento multi-objeto  um banco de memória compartilhado com tokens de consulta por instância substitui N bancos de memória separados, de modo que as escalas de custo sublinearmente no número de instâncias e cenas de tamanho de multidão de concerto tornam-se tratáveis",
+        "Um novo objectivo de formação",
+        "Precision inferior",
+        "Inferência apenas em nuvem"
+      ],
+      "correct": 0,
+      "explanation": "O SAM 2 / SAM 3 pre-Multiplex rastreou cada objeto com seu próprio banco de memória; custo escalado linearmente com o número de instâncias. Multiplex (março 2026) introduz uma memória compartilhada com tokens de consulta por instância que trazem recursos específicos de instância."
+    }
+  ]
+}

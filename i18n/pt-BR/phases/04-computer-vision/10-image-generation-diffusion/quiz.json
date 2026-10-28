@@ -1,0 +1,64 @@
+{
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "Por que o treinamento de difusão pode escolher qualquer passo no tempo diretamente em vez de simular a cadeia Markov para frente passo a passo?",
+      "options": [
+        "É uma aproximação que ignora os passos intermediários",
+        "É exigido pelo autogrado da PyTorch.",
+        "Porque a composição de muitas adições gaussianas ainda produz um gaussiano, dando uma forma fechada q(x_t tambémx_0) = N(sqrt(alpha_bar_t) x_0, (1 - alpha_bar_t) I) que você pode amostrar em um passo",
+        "Porque x_t é independente de x_0"
+      ],
+      "correct": 2,
+      "explanation": "As adições Gaussian repetidas se fecham analíticamente. O produto cumulativo alpha_bar_t codifica 'quantos sinais ficam após os passos t', e você pode amostrar x_t diretamente sem executar a cadeia. É por isso que o treinamento de difusão é O(1) por passo em vez de O(T)."
+    },
+    {
+      "stage": "pre",
+      "question": "O que é que a rede neural de um DDPM prevê?",
+      "options": [
+        "A próxima imagem x_{t-1} diretamente",
+        "O rótulo de classe da entrada",
+        "O epsilon de ruído que foi adicionado no passo t, a partir do qual a média de x_{t-1} é derivada analíticamente",
+        "A relação sinal-ruído"
+      ],
+      "correct": 2,
+      "explanation": "DDPM parâmetra o modelo para prever o epsilon. Dada a previsão de ruído e o cronograma de ruído, a média e a variância de Gaussian de x_{t-1} são de forma fechada."
+    },
+    {
+      "stage": "post",
+      "question": "Por que o DDIM alcança uma qualidade de amostra semelhante à DDPM com ~20 vezes menos passos?",
+      "options": [
+        "DDIM gera imagens menores",
+        "O DDIM reformula a amostragem como um ODE determinista cuja trajetória pode ser discretada com muito menos passos, atingindo quase o mesmo ponto final; não é necessária reformulação",
+        "O DDIM utiliza uma arquitetura de modelos mais rápida",
+        "O DDIM altera o objectivo da formação"
+      ],
+      "correct": 1,
+      "explanation": "A principal observação do DDIM é que o processo inverso, quando re-parameterizado deterministicamente, se torna um ODE que alguns passos aproximam bem. O modelo (pesos e perda) é inalterado do DDPM; apenas o amostragem difere. Um ponto de controle DDPM pode ser usado com um DDIM, DPM-Solver ou amostragem Euler interchangeablemente."
+    },
+    {
+      "stage": "post",
+      "question": "Tu compostas .`alpha_bar_t`para um cronograma beta linear com T=1000 e vê-lo cair para quase zero por t=600.",
+      "options": [
+        "Não importa.",
+        "alpha_bar_t deve ser zero no final",
+        "PyTorch requer um cronograma linear",
+        "Os últimos 40% dos passos temporais não adicionam quase nenhum sinal; o treinamento desses passos temporais ensina a rede a denotar o ruído que já é aproximadamente N  0, I), o que desperdiça capacidade."
+      ],
+      "correct": 3,
+      "explanation": "Os horários beta lineares terminam o processo de difusão muito cedo. Em t = 600 o sinal já é destruído; treinamento e amostragem através de t = 600-1000 não adiciona nada. Os horários cosinosos (Nichol & Dhariwal) mantêm o sinal por mais tempo, e é por isso que os modelos modernos os usam, especialmente em resoluções mais baixas."
+    },
+    {
+      "stage": "post",
+      "question": "Porque é que o condicionamento do tempo é adicionado à rede através de um inserimento sinusoidal em vez de um passo temporal?",
+      "options": [
+        "Um só-quente viola a regra da cadeia",
+        "Vectores de um só calor são grandes demais",
+        "Uma incorporação sinusoidal é suave em t, o que permite que a rede interpole entre etapas de tempo que não viu exatamente e codifica informações de escala que a arquitetura pode usar adicionalmente em múltiplas profundidades",
+        "Sinusoidal é exigido pelo BatchNorm"
+      ],
+      "correct": 2,
+      "explanation": "Embebimentos sinusoidais dão à rede uma representação contínua de t em múltiplas frequências. Qualquer passo temporal é um ponto único nesse espaço de embebimento, e os passo temporais próximos são embebimentos próximos. Isso permite que o modelo se generalize em todos os valores T com muito menos parâmetros do que um aprendizado por passo-temporal embebimento."
+    }
+  ]
+}

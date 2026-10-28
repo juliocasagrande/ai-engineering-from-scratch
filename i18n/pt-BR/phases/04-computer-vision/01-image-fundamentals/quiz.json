@@ -1,0 +1,64 @@
+{
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "Um arquivo no disco é decodificado em uma matriz NumPy com forma (224, 224, 3) e dtype uint8.",
+      "options": [
+        "Valor de luminosidade de ponto flutuante pronto para alimentar uma rede convolucional",
+        "Uma amostra de intensidade luminosa em uma posição de rede, cuantificada para um dos 256 níveis por canal",
+        "Uma contagem de fótons por detector, normalizada para a gama dinâmica completa do sensor",
+        "A probabilidade de um pixel ser dessa cor, entre 0 e 1"
+      ],
+      "correct": 1,
+      "explanation": "Uma imagem uint8 armazena inteiros de 8 bits em [0, 255]. Cada inteiro é uma amostra quantizada de intensidade de luz em uma posição (fila, coluna, canal). Não é nem uma probabilidade nem uma flutuação; você deve dividir por 255 e padronizar antes de alimentá-lo a um modelo pré-treinado."
+    },
+    {
+      "stage": "pre",
+      "question": "Você carrega uma imagem com o Pillow e obtém uma matriz de forma (480, 640, 3). Você passa-a como um tensor batch (1, 480, 640, 3) para um PyTorch Conv2d com in_channels=3.",
+      "options": [
+        "PyTorch aumenta um erro de execução: Conv2d espera NCHW, vê 480 canais onde o peso espera 3, e se recusa a executar",
+        "A precisão cai em alguns por cento mas a inferência ainda funciona",
+        "Nada  PyTorch detecta automaticamente o layout",
+        "A primeira camada de conveção trata a altura como o eixo do canal, produzindo mapas de características sem sentido"
+      ],
+      "correct": 0,
+      "explanation": "A PyTorch Conv2d impõe uma verificação rigorosa da contagem de canais contra o tensor de peso. Uma entrada HWC em lote (1, 480, 640, 3) é interpretada como NCHW com C = 480, o que não corresponde aos 3 canais esperados do peso, e a PyTorch aumenta o RuntimeError antes de qualquer cálculo. A falha alta é uma característica  que o obriga a corrigir o layout.`.permute(0, 3, 1, 2)`) antes de alimentar PyTorch."
+    },
+    {
+      "stage": "post",
+      "question": "Por que os modelos pré-treinados da ImageNet esperam entradas padronizadas com mean=[0.485, 0.456, 0.406] e std=[0.229, 0.224, 0.225]?",
+      "options": [
+        "São necessárias pela função de ativação da ReLU",
+        "São os valores RGB de uma cena natural média",
+        "Eles fazem a entrada estritamente zero-media unidade-variância para qualquer imagem",
+        "São a média por canal e o desvio padrão do treinamento ImageNet definido no espaço [0, 1], por isso subtraindo-os centrais da distribuição do modelo foi treinado"
+      ],
+      "correct": 3,
+      "explanation": "Os números são estatísticas do corpo de treinamento da ImageNet calculadas depois de dividir pixels por 255. Usando-os alinha a sua distribuição de entrada com a que a rede viu durante o treinamento. Para um modelo treinado em um conjunto de dados diferente, você recomputa as estatísticas nesse conjunto de dados."
+    },
+    {
+      "stage": "post",
+      "question": "Você redimensionar uma máscara de segmentação (IDs de classe inteira 0..20) de 500x500 para 224x224. Qual método de interpolação é correto?",
+      "options": [
+        "Bicubic  ele preserva a nitidez",
+        "Bilinear  suaviza os limites das classes",
+        "Vezinho mais próximo  ele preserva IDs válidas de classe inteira em vez de inventar os fracionários",
+        "Lanczos  de mais alta qualidade"
+      ],
+      "correct": 2,
+      "explanation": "Bilinear, bicubo e lanczos valores médios vizinhos. Em uma máscara de classe ID que produz valores não inteiros como 4.7 entre classe 4 e classe 5, que não são classes reais. vizinho mais próximo escolhe o pixel original mais próximo e mantém o espaço de rótulo intacto. Esta regra também se aplica a qualquer canal que codifique IDs ou índices."
+    },
+    {
+      "stage": "post",
+      "question": "A conversão em escala de cinza RGB usa pesos de 0,299 R + 0,587 G + 0,114 B em vez de 0,333 R + 0,333 G + 0,333 B. Por quê?",
+      "options": [
+        "Porque os fótons verdes transportam mais energia do que os fótons vermelhos ou azuis",
+        "Porque a visão humana é mais sensível ao verde e menos sensível ao azul, então a soma ponderada corresponde à luminosidade percebida",
+        "Para combinar o comportamento do filtro Bayer nos sensores de câmera",
+        "Para compensar os artefatos de compressão JPEG em cada canal"
+      ],
+      "correct": 1,
+      "explanation": "O ITU-R BT.601 pesos 0.299/0.587/0.114 vêm da eficiência luminosa do olho humano. Uma média de peso igual faria imagens coloridas em verde parecerem muito escuras e vermelhas muito brilhantes para um observador humano. A maioria clássica de computador de visão código em escala de cinza usa esses pesos; BT.709 (0.2126/0.7152/0.0722) é a variante HDTV moderna para entradas de luz linear."
+    }
+  ]
+}

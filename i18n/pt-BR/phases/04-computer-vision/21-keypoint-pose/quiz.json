@@ -1,0 +1,64 @@
+{
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "Por que os modelos posam mapas de calor de regressão em vez de coordenadas (x, y) diretamente?",
+      "options": [
+        "Mapa de calor são mais baratos para calcular",
+        "A regressão coordenada produz NaN",
+        "Os mapas de calor são necessários pela métrica COCO",
+        "A estrutura espacial de um mapa de características conv alinha-se com a saída espacial; um objetivo de mapa de calor gaussiano fornece uma paisagem de perda suave que tolera pequenos erros de localização, enquanto a regressão direta das coordenadas é frágil e perde contexto espacial"
+      ],
+      "correct": 3,
+      "explanation": "Regressando coordenadas com MSE pede à rede para reduzir uma posição 2D para dois escalares, perdendo o alinhamento de mapa de recursos que as CNNs exploram. A regressão de mapa de calor dá à rede uma perda por pixel que é suave em torno da localização real e preserva os antecedentes espaciais. A melhoria empírica sobre a regressão de coordenadas é grande o suficiente para que todos os modelos modernos posem usar mapas de calor."
+    },
+    {
+      "stage": "pre",
+      "question": "Estimação de posição de cima para baixo versus de baixo para cima: qual é melhor com o tamanho da multidão, e por quê?",
+      "options": [
+        "Eles escalam igualmente",
+        "De cima para baixo nunca escalas",
+        "Baixo para cima, porque ele faz uma passagem para frente sobre toda a imagem, então agrupar pontos-chave, então o tempo de execução é constante no número de pessoas",
+        "De cima para baixo, porque cada pessoa usa um modelo rápido separado"
+      ],
+      "correct": 2,
+      "explanation": "Top-down executa um modelo de pontos-chave por pessoa após um detetor de pessoa, de modo que o custo cresce linearmente com o número de pessoas. Bottom-up (OpenPose, HigherHRNet) produz todos os pontos-chave e campos de associação em uma passagem, então agrupá-los  tempo constante independentemente da densidade de multidão."
+    },
+    {
+      "stage": "post",
+      "question": "O que são os campos de afinidade parcial?",
+      "options": [
+        "Técnica de aumento de dados",
+        "Um tipo de função de perda",
+        "Um algoritmo de agendamento",
+        "Campos de vectores unitários de dois canais que codificam a direção de um ponto chave para outro; integrar o PAF ao longo de uma linha candidata diz-lhe se dois pontos chave pertencem à mesma instância, permitindo associação de baixo para cima sem detecção por pessoa"
+      ],
+      "correct": 3,
+      "explanation": "Por par de pontos-chave conectados (limpa), prever um campo de 2 canais (componentes x, y do vetor unitário apontando de um ponto-chave para o outro). Para combinar um ombro candidato com um cotovelo candidato, integrar o PAF ao longo da linha que os une; maior integral = mais forte correspondência."
+    },
+    {
+      "stage": "post",
+      "question": "Por que o refinamento de sub-pixels em torno do argmax aumenta significativamente a precisão dos pontos chave?",
+      "options": [
+        "Prevenção de sobreajuste",
+        "Normaliza a produção",
+        "Integer argmax rodadas para a célula de grade mais próxima; ajustar uma parábola local ou usando o offset dx = 0,25*(heatmap[y,x+1] - heatmap[y,x-1]) recupera a posição de pico contínua, muitas vezes reduzindo pela metade o erro L2 para pontos-chave claramente previstos",
+        "Ele suaviza o mapa de calor"
+      ],
+      "correct": 2,
+      "explanation": "Um mapa de calor bem previsto tem um pico gaussiano liso cujo centro é geralmente entre células da grade. o argmax inteiro perde essa informação sub-pixel (até 0,5 px erro)."
+    },
+    {
+      "stage": "post",
+      "question": "OKS (Object Keypoint Similarity) é o análogo de estimativa de posição de que métrica de detecção de objetos?",
+      "options": [
+        "Perda de entropia cruzada",
+        "Latência de interferência",
+        "IoU  ambas medem a correspondência geométrica entre a previsão e a verdade do solo, com OKS usando distâncias de pontos-chave ponderadas pela variância de anotação de cada ponto-chave; COCO relata mAP@OKS 0,5: 0,95 para a posição",
+        "Precuração da classificação"
+      ],
+      "correct": 2,
+      "explanation": "O OKS varia de 0 a 1 como o IoU e desempenha o mesmo papel: decide se uma previsão corresponde a uma posição da verdade no fundo em um determinado nível de rigor. Cada ponto chave tem uma variância (COCO os publica) que escala sua contribuição  articulações invariantes como nariz e olhos pesam mais do que pulsos, que são anotados menos consistentemente."
+    }
+  ]
+}

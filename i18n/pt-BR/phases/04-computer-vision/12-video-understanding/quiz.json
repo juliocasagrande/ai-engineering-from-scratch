@@ -1,0 +1,64 @@
+{
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "Porque é que um modelo de vídeo 2D+pool falha no conjunto de dados Something-Something V2?",
+      "options": [
+        "A arquitetura do modelo é incompatível",
+        "As imagens são muito pequenas.",
+        "Há muitas aulas .",
+        "Os rótulos do conjunto de dados são definidos pela direcção de movimento (\"empurrar algo de esquerda para direita\"), não pela aparência; a concentração média de ordem invariante sobre características por quadro não pode distinguir a direcção de movimento"
+      ],
+      "correct": 3,
+      "explanation": "Os rótulos Something-Something são literalmente 'X movido de esquerda para direita' vs 'X movido de direita para esquerda'. Os dois parecem idênticos em qualquer quadro único, e as incorporações médias do quadro são invariaveis de ordem, então pool(f1, f2, ..., fT) == pool(fT, ..., f2, f1)."
+    },
+    {
+      "stage": "pre",
+      "question": "Qual é o truque da inflação do I3D?",
+      "options": [
+        "Um cronograma para as taxas de aprendizagem",
+        "Método de compressão de vídeos",
+        "Uma forma de treinar mais imagens",
+        "Pegue os kernels pré-treinados de uma CNN 2D, copie cada um ao longo de um novo eixo de tempo (dividindo por kernel_T para preservar a escala de ativação), e use-os para iniciar uma CNN 3D  dando ao modelo 3D fortes pesos sem pré-treinamento 3D"
+      ],
+      "correct": 3,
+      "explanation": "A inflação inicializa modelos de vídeo 3D a partir de fortes pesos 2D ImageNet. Um kernel 3x3 2D se torna um kernel 3x3 3D replicando ao longo de T com uma reescalação 1/kernel_T. Ele transfere recursos de objeto e textura aprendidos na ImageNet diretamente para o modelo de vídeo, e é por isso que o I3D foi o primeiro modelo 3D a bater seriamente as linhas de base 2D + pool."
+    },
+    {
+      "stage": "post",
+      "question": "Uma convulsão factorizada (2+1)D divide uma convulsão 3D em quais duas operações?",
+      "options": [
+        "Uma conveção espacial 1x3x3 seguida de uma conveção temporal 3x1x1, com um BN+ReLU entre eles para adicionar uma não-linearidade que as convas 3D completas não têm",
+        "Dois convos 3D com passos diferentes",
+        "Um conv temporal seguido de um conv profundamente",
+        "Uma convecção agrupada e uma convecção 1x1"
+      ],
+      "correct": 0,
+      "explanation": "(2+1) D faz factorizar o núcleo 3x3x3 em (1x3x3) e depois (3x1x1). As duas convas têm uma não-linearidade entre elas (BN+ReLU), o que aumenta a potência expressiva por parâmetro."
+    },
+    {
+      "stage": "post",
+      "question": "Em um transformador de vídeo, o que significa 'atenção dividida'?",
+      "options": [
+        "Atenção que salta algumas camadas",
+        "Atenção a mais da metade dos tokens",
+        "Cada bloco de transformador tem dois módulos de atenção: um sobre tokens na mesma posição espacial através do tempo (atensão temporal), então um sobre tokens no mesmo passo do tempo através do espaço (atensão espacial)  quebrando o O(((T*H*W) ^2) total atenção em O(T^2) + O(((H*W) ^2)",
+        "Atenção aplicada apenas durante a formação"
+      ],
+      "correct": 2,
+      "explanation": "A atenção total conjunta espaço-tempo é O(((T*H*W) ^2), o que é impossível para vídeos longos. A atenção dividida (TimeSformer) alternou atenção temporal e espacial dentro de cada bloco, levando o custo a O(T^2 + (H*W) ^2)."
+    },
+    {
+      "stage": "post",
+      "question": "O seu modelo Kinetics-400 tem uma precisão de 76 por cento e uma precisão de 82 por cento.",
+      "options": [
+        "O conjunto de ensaio é muito pequeno.",
+        "O modelo está quebrado.",
+        "As previsões por clip são ruidosas; a medição de previsões em vários clipes amostrados por vídeo (aumentar o tempo de teste) estabiliza o resultado. Uma grande lacuna sugere que as características do modelo são sensíveis à janela de 8 quadros que foi amostrada, e clipes mais longos ou aumento espacial mais forte durante o treinamento reduziriam a lacuna",
+        "A precisão do vídeo é sempre inferior à precisão do vídeo por definição"
+      ],
+      "correct": 2,
+      "explanation": "A precisão de clip avalia o modelo em uma única janela amostrada; a precisão do vídeo avalia as previsões médias em várias janelas. Uma lacuna de 6 pontos significa que o modelo é sensível à janela que você amostrou. Fechar a lacuna significa que o modelo se generalizou melhor na distribuição temporal de cada vídeo , o que é o que você quer na implantação."
+    }
+  ]
+}

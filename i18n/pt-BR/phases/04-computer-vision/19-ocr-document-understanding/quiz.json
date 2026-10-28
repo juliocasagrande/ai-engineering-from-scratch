@@ -1,0 +1,64 @@
+{
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "Por que a OCR utiliza a perda CTC em vez da entropia cruzada simples?",
+      "options": [
+        "O CTC é exigido pela PyTorch",
+        "O OCR mapeia uma sequência de características de comprimento fixo para uma sequência de caracteres de comprimento variável sem alinhamento por passo; a perda CTC marginaliza sobre todos os alinhamentos que se reduzem ao alvo após a remoção de repetições e espaços em branco, para que você possa treinar sem rótulos de cronometragem de nível de caracteres",
+        "Superfluos de entropia cruzada para sequências longas",
+        "O CTC é mais rápido."
+      ],
+      "correct": 1,
+      "explanation": "O reconhecimento produz uma distribuição por passo de tempo, mas o texto-alvo não tem alinhamento por passo. CTC lida com isso somando cada alinhamento que se reduz ao objetivo através da operação merge-repeats-and-remove-blanks."
+    },
+    {
+      "stage": "pre",
+      "question": "Na decodificação CTC, o que faz o token em branco?",
+      "options": [
+        "Indica o fim da sequência",
+        "Peda a sequência para um comprimento fixo",
+        "Mascaras para regiões barulhentas",
+        "Separa caracteres idênticos adjacentes para que as saídas como \"olá\" com um duplo L possam ser produzidas pelo modelo emitindo \"h e l _ l o\"  sem o espaço em branco, \"l l\" desmoronaria para um \"l\""
+      ],
+      "correct": 3,
+      "explanation": "O espaço em branco é o mecanismo que permite que o CTC codifique caracteres duplos. 'll' precisa de um espaço em branco entre os dois l's para que o passo 'merger repeats' os mantenha distintos: 'l _ l' sobrevive à fusão, 'l l' não. Sem o espaço em branco, o CTC não pode representar nenhuma palavra contendo caracteres idênticos adjacentes."
+    },
+    {
+      "stage": "post",
+      "question": "Por que a codificação por CTC gananciosa às vezes é melhor do que a busca por feixe em conjuntos de dados simples?",
+      "options": [
+        "A ganância é mais fácil de implementar",
+        "A pesquisa de feixe requer um modelo de linguagem",
+        "A ganância é sempre melhor.",
+        "Quando o modelo é confiante em cada passo (escrita limpa, fontes impressas), o argmax do ganhador do feixe é geralmente o ganhador; a pesquisa do feixe adiciona latência sem ganho de precisão. Em entradas ruidosas ou ambíguas, a pesquisa do feixe ajuda"
+      ],
+      "correct": 3,
+      "explanation": "A pesquisa de feixe só ganha quando o argmax por passo é improvável. caracteres ambíguos, letras sobrepostas, digitalização degradada. Para texto impresso limpo, o modelo é confiante em cada passo e ganancioso está dentro de 1% CER do feixe. Sempre comparar ambos; o comércio de latência é real."
+    },
+    {
+      "stage": "post",
+      "question": "O donut não consegue detectar textos explícitos e reconhecer caracteres.",
+      "options": [
+        "É um codificador ViT + decodificador de texto treinado para produzir a cadeia de saída final (muitas vezes JSON) diretamente a partir da imagem; o modelo aprende tanto a localização quanto o reconhecimento implícitamente através do objetivo de formação",
+        "Preprocede imagens com um detector de texto da CNN",
+        "É limitado a categorias de documentos com layouts fixos",
+        "Utiliza um motor OCR externo internamente"
+      ],
+      "correct": 0,
+      "explanation": "Donut é um modelo de ponta a ponta: o codificador ViT vê todo o documento, o decodificador transformador emite o texto-alvo ou JSON de forma regressível automática. Não há pipeline de detector + reconhecedor + módulo de layout. Isso evita a acumulação de erros em diferentes etapas, mas requer grandes conjuntos de treinamento rotulados para os tipos específicos de documentos que você se importa."
+    },
+    {
+      "stage": "post",
+      "question": "Para extracção`invoice_total`De acordo com os receitos, qual é a melhor abordagem em 2026?",
+      "options": [
+        "Só a OCR clássica é suficientemente confiável",
+        "Uma CNN separada para cada campo",
+        "Donut ou VLM de sintonia fina em um conjunto pequeno de recibos-alvo rotulado; ambos lidam com o layout e a extração semântica em um modelo e geralmente em todas as variantes de recibos melhor do que as abordagens baseadas em pipeline",
+        "Um regex feito à mão na saída Tesseract"
+      ],
+      "correct": 2,
+      "explanation": "A extração de campo estruturado costumava ser o domínio da LayoutLM + heurística. Modelos de ponta a ponta (Donut, Qwen-VL-OCR) ultrapassaram esse caminho: aceitam uma imagem e produzem o JSON diretamente. Para um pequeno conjunto de recibos rotulados (100-1000), o ajuste fino do Donut atinge F1 mais alto do que qualquer pipeline de regras OCR +."
+    }
+  ]
+}

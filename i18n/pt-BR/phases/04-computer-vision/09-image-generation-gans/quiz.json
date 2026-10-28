@@ -1,0 +1,64 @@
+{
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "Por que o treinamento GAN usa o gerador de perda não saturante -log(D(G(z))) em vez de log(1 - D(G(z)))?",
+      "options": [
+        "São matematicamente diferentes e produzem melhores equilíbrios",
+        "É exigido pela PyTorch",
+        "Acelera o discriminador",
+        "No início do treinamento D(G(z)) é perto de zero, então log(1 - D(G(z))) tem gradiente de desaparecimento; -log(D(G(z))) tem grande gradiente lá, então G recebe um sinal útil"
+      ],
+      "correct": 3,
+      "explanation": "As duas perdas compartilham a mesma direção de gradiente, mas magnitudes muito diferentes quando D(G(z)) é pequena. log(1 - D(G(z))) planícies em gradiente zero ali. A forma não saturante permanece informativa em toda a faixa. Goodfellow observou este ajuste no papel original e todos os modernos GAN usam."
+    },
+    {
+      "stage": "pre",
+      "question": "As regras do DCGAN dizem que se usem as convulsões graduadas em vez de se juntarem.",
+      "options": [
+        "O pooling não é apropriado e descarta informações que o gerador pode precisar; convos graduados permitem que a rede aprenda a sua própria downsampling, que empíricamente produz imagens geradas mais nítidas",
+        "A agregação é incompatível com a norma dos lotes",
+        "A aglutinação é mais lenta nas GPUs",
+        "Flow de gradiente de pools"
+      ],
+      "correct": 0,
+      "explanation": "O Max-pool é um downsampling selecionado à mão que descartará tudo menos o max. Em um cenário gerativo, o modelo se beneficia de um downsampling aprendido que pode preservar informações em todo o passo."
+    },
+    {
+      "stage": "post",
+      "question": "Você treina um GAN e observa que G produz amostras quase idênticas independentemente do ruído de entrada.",
+      "options": [
+        "Oscilação",
+        "Gradientes desaparecidos",
+        "O modo de colapso  G encontrou uma região estreita da distribuição de dados que consistentemente engana D e não tem incentivo para explorar; as correções incluem norma espectral, discriminação de miniparcelação ou um lote maior",
+        "O conjunto de dados é muito pequeno"
+      ],
+      "correct": 2,
+      "explanation": "O colapso de modo é a falha característica do GAN em que as amostras não têm diversidade. O diagnóstico é óbvio: ruído dentro, a mesma imagem fora."
+    },
+    {
+      "stage": "post",
+      "question": "Por que os scripts de treinamento DCGAN usam Adam com betas=(0,5, 0,999) em vez do padrão (0,9, 0,999)?",
+      "options": [
+        "É um erro de digitação propagado através de tutoriais",
+        "Uma beta1 mais baixa reduz o impulso; num jogo adversário, o impulso pesado mantém cada optimizador na direção errada por muito tempo quando o comportamento da outra rede muda, o que causa instabilidade",
+        "O padrão está quebrado",
+        "O Adam só é suportado com beta1=0,5 no CUDA"
+      ],
+      "correct": 1,
+      "explanation": "O beta1 = 0,9 de Adam tem uma média de gradientes em aproximadamente 10 passos. Em um objetivo estacionário que é útil. Em um jogo adversário onde a paisagem de perda muda a cada atualização D e G, essa média retarda a resposta do optimizador e causa oscilação. Radford et al. encontraram beta1 = 0,5 muito mais estável, e agora é o default GAN."
+    },
+    {
+      "stage": "post",
+      "question": "Um colega relata um GAN com perda de D perto de zero e perda de G aumentando ao longo do treinamento.",
+      "options": [
+        "O gerador está corretamente sobre-ajustado",
+        "Nada. Este é o equilíbrio.",
+        "O discriminador tornou-se muito forte e leva o gradiente de G a zero; as correções incluem um menor D, norma espectral, suavizamento de rótulos em rótulos reais (0,9 em vez de 1,0), ou mudança para WGAN-GP",
+        "Ambas as redes estão a melhorar corretamente"
+      ],
+      "correct": 2,
+      "explanation": "A perda de D perto de zero significa que D é perfeito em reais e falsos. Nesse ponto o gradiente BCE para G desaparece: G vê um sinal perto de zero não importa o que ele produz. A solução é enfraquecer D ou usar uma perda que não se satura. A norma espectral (limita a constante de Lipschitz de D) e WGAN-GP (usa distância de Mover da Terra em vez de BCE) são os dois resgatos padrão."
+    }
+  ]
+}

@@ -1,0 +1,64 @@
+{
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "Qual é a principal diferença entre a profundidade relativa e a profundidade métrica?",
+      "options": [
+        "A profundidade relativa dá apenas distâncias ordenadas sem unidades do mundo real; a profundidade métrica dá distâncias em metros e exige que o modelo tenha aprendido escala absoluta a partir de dados de treinamento",
+        "Profundeza métrica utiliza saída em escala de cinza; uso relativo de cor",
+        "A profundidade relativa é sempre menor resolução",
+        "Não há diferença."
+      ],
+      "correct": 0,
+      "explanation": "A profundidade relativa preserva a ordem e as proporções, mas não tem âncora para as unidades do mundo real  uma previsão MiDaS ou Depth Anything precisa de alinhamento antes que você possa compará-la com uma medição de verdade no solo em metros."
+    },
+    {
+      "stage": "pre",
+      "question": "A V3 usa um codificador DINOv2 congelado e um decodificador de estilo DPT.",
+      "options": [
+        "DINOv2 teria aprendido características ruins",
+        "O congelamento é um requisito legal",
+        "Só computa poupanças no horário de formação",
+        "As características auto-supervisionadas do DINOv2 já codificam a estrutura de cena, gradientes de textura e semântica de objetos que se correlam com a profundidade; congelar as mesmas permite que o decodificador se exerça com uma cabeça pequena em dados supervisionados com profundidade limitada mantendo a forte generalização do encodificador"
+      ],
+      "correct": 3,
+      "explanation": "As VTs auto-supervisionadas como DINOv2 / DINOv3 já têm recursos que se transferem para tarefas densas com ajuste mínimo. Um codificador congelado mais um decodificador de profundidade leve significa que você treina um pequeno número de parâmetros em dados de profundidade, e herda a generalização de domínio cruzado do DINOv2 (interior, exterior, médico, satélite) de graça. A ajuste fina da coluna vertebral às vezes dói se o conjunto de dados de profundidade for mais estreito do que a distribuição pré- treino do DINOv2."
+    },
+    {
+      "stage": "post",
+      "question": "Para levantar um pixel (u, v) com profundidade prevista d para 3D, você usa X = (u - cx) * d / fx, Y = (v - cy) * d / fy, Z = d. O que são fx, fy, cx, cy?",
+      "options": [
+        "Peso de perda de treino",
+        "Constantes de normalização",
+        "Intrínsecas da câmera de pinhole  distâncias focais e ponto principal em pixels, a partir de metadados EXIF ou calibração da câmera",
+        "Pesos obtidos pelo decodificador de profundidade"
+      ],
+      "correct": 2,
+      "explanation": "A fórmula de câmera de pinhole precisa da intrínseca da câmera. fx, fy são as distâncias focais em unidades de píxeles; cx, cy são o ponto principal (geralmente perto do centro da imagem). Sem intrínseca você só pode assumir um FOV genérico (~ 60 graus) que é suficiente para visualização, mas não para medição. Muitas pipelines de 2026 estimam intrínsecas automaticamente a partir do conteúdo da imagem (Perspectiva Fields, UniDepth)."
+    },
+    {
+      "stage": "post",
+      "question": "Ao avaliar um modelo de profundidade relativa (MiDaS, Depth Anything), por que aplicar o alinhamento de escala e mudança antes de calcular o AbsRel?",
+      "options": [
+        "As previsões de profundidade relativa têm escala e compensação arbitrárias; alinhá-las à verdade do solo através de menor encaixe quadrado de um * pred + b = alvo dá uma medição justa da qualidade de ordem que os modelos relativos são realmente treinados para produzir",
+        "Para inflar a pontuação métrica",
+        "Pytorch não pode calcular AbsRel sem alinhamento",
+        "Para permitir a inferência de GPU"
+      ],
+      "correct": 0,
+      "explanation": "Os modelos de estilo MiDaS produzem saídas onde apenas a ordem e as proporções são significativas. Computação direta do AbsRel sem alinhamento mede a desatividade da escala, não a qualidade real do modelo. A alinhamento de mínimos quadrados se encaixa em uma transformação linear que minimiza o erro quadrado; o resíduo após o alinhamento é o que você relata."
+    },
+    {
+      "stage": "post",
+      "question": "A sua previsão de profundidade em uma recepção de vidro mostra profundidade acreditável mas claramente errada para a região de vidro.",
+      "options": [
+        "A sua resolução de imagem está errada.",
+        "O modelo está quebrado.",
+        "O modelo foi treinado sem dados de vidro",
+        "Vidro, espelhos e superfícies altamente reflexivas quebram as indicações monoculares em que o modelo se baseia; a rede vê a textura / conteúdo por trás do vidro e relata uma profundidade plausível consistente com isso, não a distância real da superfície do vidro"
+      ],
+      "correct": 3,
+      "explanation": "A profundidade monocular depende de gradientes de textura, ordem de oclusão e sinais de perspectiva. As superfícies refletivas ou transparentes confundem todas elas: um espelho mostra uma cena com sua própria profundidade; o vidro mostra o conteúdo por trás dela. O modelo preenche uma profundidade plausível e está confidentemente errado. Este é um limite fundamental da profundidade monocular, não um bug. Fixar fundindo com câmeras estéreo, LiDAR ou polarização quando materiais como matéria de vidro."
+    }
+  ]
+}

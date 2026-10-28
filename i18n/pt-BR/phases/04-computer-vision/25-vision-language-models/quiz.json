@@ -1,0 +1,64 @@
+{
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "No padrão VLM ViT-MLP-LLM, qual componente é mais comumente treinado enquanto os outros são mantidos congelados durante o alinhamento?",
+      "options": [
+        "Todos os componentes são sempre treinados juntos",
+        "O codificador de visão",
+        "O Mestrado em Direito",
+        "O projetor (a MLP de 2-4 camadas entre ViT e LLM)  ele mapeia tokens de visão no espaço de incorporação do LLM e transporta a maior parte do sinal de alinhamento trans-modal"
+      ],
+      "correct": 3,
+      "explanation": "A receita padrão VLM treina o projetor primeiro com ViT e LLM congelados (fase de alinhamento), em seguida, opcionalmente descongela tudo para pre-treino e sintonização de instrução. O projetor é pequeno (dezenas a centenas de milhões de parâmetros) e assume a maior parte da ponte de modalidade."
+    },
+    {
+      "stage": "pre",
+      "question": "O DeepStack (usado em Qwen3-VL) faz o quê?",
+      "options": [
+        "Duplica a profundidade do Mestrado em Direito",
+        "Utiliza apenas as características da camada ViT mais profunda",
+        "Estaca características de múltiplas profundidades de ViT antes da projeção, de modo que o LLM vê tanto semântica de alto nível (camadas profundas) quanto detalhes espaciais de grãos finos (camadas rasas)",
+        "É um regime de quantificação específico"
+      ],
+      "correct": 2,
+      "explanation": "As VLMs da Vanilla projetam apenas características ViT de última camada. DeepStack mostra múltiplas profundidades, concatenais e projetos. As camadas profundas fornecem semântica (\"este é um gráfico\"); camadas rasas fornecem posição e textura (\"a barra em x=120 é vermelha\"). A combinação fecha a lacuna de aterramento em tarefas que exigem localização fina, como ações de agentes de GUI ou legendas densas."
+    },
+    {
+      "stage": "post",
+      "question": "Um VLM de produção mostra alta confiança no texto, mas o texto gerado descreve objetos não presentes na imagem.",
+      "options": [
+        "Latência de geração de tokens",
+        "Precuração sobre a MMMU",
+        "Taxa de erro entre modelos (CMER)  fração de saídas em que a confiança do texto é alta, mas a semelhança cosina entre imagem e texto (através de um verificador CLIP-família) é baixa; ~ 12% típico em dados web não precisos",
+        "Perplexidade"
+      ],
+      "correct": 2,
+      "explanation": "O CMER é um KPI de alinhamento de produção. Ele capta o padrão clássico de alucinação VLM: o modelo tem certeza sobre o seu texto, mas o texto não está baseado na imagem. Monitorar o CMER por ponto final e tipo de prompt; tratar o CMER em ascensão como um sinal de que o modelo está a sair da distribuição ou encontra uma categoria de prompt que não pode lidar. Skywork.ai reduziu as alucinações em ~ 35% tornando o CMER um KPI de primeira classe."
+    },
+    {
+      "stage": "post",
+      "question": "Por que os VLMs modernos usam o SigLIP ou codificadores personalizados de visão em vez de uma ResNet ImageNet supervisionada como espinha dorsal?",
+      "options": [
+        "SigLIP tem mais parâmetros",
+        "ResNets não pode produzir tokens",
+        "SigLIP é mais rápido",
+        "Os codificadores de estilo CLIP/SigLIP são treinados em conjunto com o texto, de modo que o seu espaço de saída já está aproximadamente alinhado com a linguagem; o projetor então tem que fazer muito menos trabalho e o modelo razona melhor sobre conceitos visuais-textuais"
+      ],
+      "correct": 3,
+      "explanation": "O treinamento pré-língua de visão molda o codificador para viver em um espaço compatível com o texto. Uma ImageNet ResNet supervisionada foi treinada sem nenhum sinal de texto, então a ponte para um LLM requer projetores muito maiores e mais dados. Os codificadores CLIP/SigLIP/DINOv3 produzem recursos que um LLM pode consumir com algumas camadas lineares. Quase todos os SOTA VLM usam uma família CLIP ou um codificador SigLIP por esse motivo."
+    },
+    {
+      "stage": "post",
+      "question": "Qwen3-VL-235B-A22B alcança as melhores pontuações no OSWorld. O que é OSWorld e o que isso implica?",
+      "options": [
+        "Um agente de referência onde o modelo opera GUI de desktop  identifica botões, lê estado da UI, emite ações; as melhores pontuações do Qwen3-VL implicam que os VLMs são agora agentes visuais viáveis para automação da GUI",
+        "Uma referência de avaliação de postura",
+        "Uma referência sintética",
+        "Um índice de referência de qualidade de vídeo"
+      ],
+      "correct": 0,
+      "explanation": "Os testes de OSWorld mostram se um modelo pode operar de forma autônoma um ambiente de desktop através de screenshots. Os principais resultados globais do Qwen3-VL indicam o paradigma do \"agente visual\"."
+    }
+  ]
+}

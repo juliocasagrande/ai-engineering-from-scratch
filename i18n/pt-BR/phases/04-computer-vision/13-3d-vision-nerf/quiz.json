@@ -1,0 +1,64 @@
+{
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "Porque é que uma simples CNN não pode processar uma nuvem de pontos diretamente?",
+      "options": [
+        "As nuvens pontuais exigem quaterniões",
+        "Uma CNN assume que os pixels de entrada estão dispostos em uma grade regular com estrutura de bairro; uma nuvem de pontos é um conjunto desordenado de pontos em R^3 sem grade e tamanho variável, violando ambas as suposições",
+        "As CNN só funcionam em escala cinzenta",
+        "As nuvens de ponto são grandes demais."
+      ],
+      "correct": 1,
+      "explanation": "As convulsões da CNN precisam de um bairro regular. Uma nuvem de pontos não tem nem uma grade nem um conteúdo fixo de pontos. Voxeling da nuvem traz de volta uma grade (usada por CNNs 3D), mas é caro em memória."
+    },
+    {
+      "stage": "pre",
+      "question": "Que truque torna a permutação da PointNet invariante sobre os pontos de entrada?",
+      "options": [
+        "A classificação dos pontos antes da passagem avançada",
+        "Normalização de lote",
+        "Função especial de perda",
+        "Uma MLP compartilhada aplicada a cada ponto de forma independente, seguida de uma agregação simétrica (pool ou soma máxima); uma vez que a agregação ignora a ordem de pontos, a saída de toda a rede é invariante em ordem"
+      ],
+      "correct": 3,
+      "explanation": "O truque de função simétrica é o núcleo de cada família de redes de nuvem de pontos desde 2017. Execute o mesmo MLP em todos os pontos (mesmo peso, nenhuma dependência de ordem) e depois agrega com uma função que não depende da ordem. Max e soma são as duas escolhas canônicas; max é usado pela PointNet e a maioria dos descendentes."
+    },
+    {
+      "stage": "post",
+      "question": "Uma VANILLA NERF MLP alimentada com coordenadas cruas (x, y, z) produz resultados borrosos.",
+      "options": [
+        "Adição de mais dados de formação",
+        "Passando para uma CNN",
+        "Codificação posicional: coordenadas do projeto em características de Fourier (sin/cos de 2^l * pi * x para múltiplos l) antes do MLP; isto permite que o MLP de baixa frequência preconceituoso represente detalhes de alta frequência",
+        "Usando uma precisão de 16 bits"
+      ],
+      "correct": 2,
+      "explanation": "Os MLPs são espectralmente tendenciosos: eles se encaixam facilmente em funções suaves e lutam com altas frequências. A codificação posicional levanta cada coordenada para um vetor que já contém sinais de alta frequência. O MLP então tem um trabalho muito mais fácil de compor essas características em geometria e textura nítidas. O mesmo truque é usado na codificação posicional de transformadores e na incorporação de tempo de difusão."
+    },
+    {
+      "stage": "post",
+      "question": "Como é calculado um pixel de renderização NeRF?",
+      "options": [
+        "Ao lançar um raio da câmera através do píxel, amostragem N pontos ao longo do raio, consultando o MLP em cada ponto para (densidade, cor) e compondo as amostras com uma equação de renderização volumétrica que acumula cores ponderadas alfa ao longo do raio",
+        "Ao executar uma convolução sobre um mapa de profundidade",
+        "Ao procurar uma grade de voxel pré-computada",
+        "Como saída da camada final de MLP"
+      ],
+      "correct": 0,
+      "explanation": "O rendering NeRF é um rendering clássico de volume com um campo de densidade neural. Para cada pixel você escolhe um raio, amostra ao longo dele, consulta (sigma, c) em cada amostra e composto usando (1 - exp(-sigma * delta)) alfa e transmissão cumulativa."
+    },
+    {
+      "stage": "post",
+      "question": "Por que a espalteagem gaussiana 3D substituiu em grande parte a NeRF na produção?",
+      "options": [
+        "Os NeRFs foram mostrados matematicamente incorretos",
+        "É uma representação explícita (milhões de Gaussians 3D com opacidade e cor) que rende em tempo real através de rasterizamento em vez de consultas de MLP em raios amostragados; treinamento é minutos em vez de horas, renderização é 100x mais rápido, e qualidade é comparável",
+        "Os Gaussianos são mais compressíveis.",
+        "Produz imagens de melhor qualidade"
+      ],
+      "correct": 1,
+      "explanation": "A 3D Gaussian Splating (SIGGRAPH 2023) substitui a cena implícita baseada em MLP por uma nuvem explícita de primitivas Gaussian 3D. A renderização se torna rasterizada GPU, que é ordens de magnitude mais rápidas do que a amostragem de raios por pixel através de um MLP. A maioria dos produtos NeRF 2026 são enviados com a splating Gaussian ou seus sucessores; o paradigma NeRF ainda informa o objetivo de treinamento e a matemática."
+    }
+  ]
+}

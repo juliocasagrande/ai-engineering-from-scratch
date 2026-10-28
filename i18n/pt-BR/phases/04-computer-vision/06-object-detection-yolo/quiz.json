@@ -1,0 +1,64 @@
+{
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "Um detector YOLO com grade 13x13, 3 âncoras por célula e 20 classes produz uma saída de cabeça de forma (N, 13, 13, 3, 25).",
+      "options": [
+        "Está a empolgar para a próxima potência de 2",
+        "25 é o número de classes em COCO",
+        "4 cordas de caixa + 1 bias + 20 classes",
+        "4 cordas de caixa + 1 objetividade + 20 classes = 5 + C"
+      ],
+      "correct": 3,
+      "explanation": "Cada âncora emite quatro alvos de regressão de caixa (tx, ty, tw, th), uma pontuação de objetividade e logitas de classe C. Para detectores de estilo YOLO, a dimensão por âncora é sempre 5 + C. Em COCO com 80 classes é 85; em PASCAL VOC com 20 é 25."
+    },
+    {
+      "stage": "pre",
+      "question": "Por que o YOLO prevê tx, ty através de um sigmoide antes de adicionar a célula de grade?",
+      "options": [
+        "Sigmoide é exigido pela convolução",
+        "Para prevenir a NAN durante o treinamento",
+        "Para normalizá-los para [0, 1], de modo que o centro permaneça dentro da célula e não possa escapar para o território de uma célula vizinha",
+        "Para fazer a caixa maior"
+      ],
+      "correct": 2,
+      "explanation": "sigmoid(tx) está em [0, 1], então (sigmoid(tx) + cel_x) * passo coloca o centro em algum lugar dentro da célula na coluna cell_x. Esta restrição mantém cada célula responsável apenas pelos objetos centrados dentro de sua própria área, que é a suposição que torna o treinamento baseado em grade estável."
+    },
+    {
+      "stage": "post",
+      "question": "O seu detector prevê 15 caixas em torno de um único objeto após a cabeça. Você aplica NMS com iou_threshold = 0,45 e obtém de volta 1 caixas.",
+      "options": [
+        "A média de todas as 15 previsões",
+        "Ele classificou as 15 caixas por pontuação, manteve o maior pontuação, e apagou cada caixa cuja IOU com ele excedeu 0,45; os outros 14 todos se sobrepõem ao vencedor acima do limiar, então um permaneceu",
+        "Ele escolheu um sobrevivente aleatório .",
+        "Ele fundia as caixas geométricamente"
+      ],
+      "correct": 1,
+      "explanation": "O NMS é uma deduplicação gananciosa: classificar por pontuação, manter o topo, remover tudo o que está perto dele (IoU > limiar), repetir. Não se funde ou média. É por isso que os benchmarks de latência de detecção incluem o tempo NMS e por isso que modelos modernos como RT-DETR o substituem por uma alternativa aprendida."
+    },
+    {
+      "stage": "post",
+      "question": "O seu modelo tem mAP@0.5 = 0.75 mas mAP@0.5:0.95 = 0.32. Qual é a interpretação mais precisa?",
+      "options": [
+        "O conjunto de dados tem classes demais",
+        "O modelo encontra os objetos certos mas as suas caixas não estão localizadas bem em IoU 0,5, falham em IoU 0,7+",
+        "O modelo está quebrado; mAP@0.5 deve ser igual a mAP@0.5:0.95",
+        "O limiar de inferência é demasiado alto"
+      ],
+      "correct": 1,
+      "explanation": "MAP@0.5 é indulgente em relação à localização; mAP@0.5:0.95 tem médias em limiares rígidos até 0,95. Uma grande diferença entre os dois significa que as caixas estão no lugar certo mas não apertadas."
+    },
+    {
+      "stage": "post",
+      "question": "Os pesos de perda do YOLO lambda_coord=5,0 e lambda_noobj=0,5 refletem aproximadamente o papel original.",
+      "options": [
+        "O fato de que a maioria das células não têm objeto, então as células sem objeto devem ser baixas ou eles dominariam a perda total; e o fato de que a regressão de caixa é uma perda de menor escala do que a entropia cruzada, então precisa de aumento de peso para produzir gradientes comparáveis",
+        "Comércio de memória de GPU",
+        "Número de âncoras por célula",
+        "As escolhas aleatórias que os autores nunca justificaram"
+      ],
+      "correct": 0,
+      "explanation": "Em uma grade 13x13 existem 169 células, geralmente com um a cinco objetos. As 160+ células vazias contribuem todas para a perda de objetos; sem um pequeno lambda_noobj eles sobrecarregariam o sinal positivo."
+    }
+  ]
+}

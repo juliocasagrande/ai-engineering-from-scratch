@@ -1,0 +1,64 @@
+{
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "Você alimenta uma imagem RGB 224x224 para um conv com kernel_size=3, step=1, padding=0. Qual é o tamanho espacial de saída?",
+      "options": [
+        "222x222",
+        "224x224",
+        "74x74",
+        "112x112"
+      ],
+      "correct": 0,
+      "explanation": "Tamanho de saída = (H - K + 2P) / S + 1 = (224 - 3 + 0) / 1 + 1 = 222. Sem acoplamento, cada convolução 3x3 reduz o mapa de características em 2 pixels em cada eixo  um pixel de cada borda."
+    },
+    {
+      "stage": "pre",
+      "question": "Uma camada conv tem in_channels=3, out_channels=64, kernel_size=3, com viés. Quantos parâmetros apropriados?",
+      "options": [
+        "- 570",
+        "1.792",
+        "1.728",
+        "192"
+      ],
+      "correct": 1,
+      "explanation": "C_out * C_in * K * K + C_out = 64 * 3 * 3 * 3 + 64 = 1,728 + 64 = 1,792. O + C_out é um viés por canal de saída. Compare isso com uma camada densa na mesma entrada (224 * 224 * 3 -> 64 = cerca de 9,6M parâmetros) e você verá por que a convolução é o prévio direito para imagens."
+    },
+    {
+      "stage": "post",
+      "question": "Por que as CNNs modernas preferem pilhas de 3x3 convulsões em vez de uma única convulsão 5x5 ou 7x7?",
+      "options": [
+        "3x3 é o único tamanho do núcleo que suporta enchimento",
+        "Grandes kernels sobrecarregam registros de GPU",
+        "As convulsões 3x3 são aceleradas por hardware; as maiores não são",
+        "Dois convos 3x3 cobrem o mesmo campo receptivo 5x5 com menos parâmetros (2 * 9 vs 25) e adicionam uma não-linearidade extra entre eles"
+      ],
+      "correct": 3,
+      "explanation": "A empilhamento de convas 3x3 dá o mesmo campo receptivo de um grande convo, mas com menos parâmetros e mais não-linearidades, o que aumenta a potência expressiva."
+    },
+    {
+      "stage": "post",
+      "question": "O que a transformação im2col faz realmente?",
+      "options": [
+        "Ele concatenar todas as imagens em um lote em uma única matriz 2D",
+        "Extrai todas as janelas de recepção do tamanho do núcleo da entrada e as apila como colunas para que a convolução se torne uma única matriz multiplicar",
+        "Converte float32 pixels para int8 para aritmética mais rápida",
+        "Comprime a imagem para caber no cache da GPU"
+      ],
+      "correct": 1,
+      "explanation": "Im2col remodela a entrada para que cada coluna seja um campo receptivo achatado. A achatamento do kernel em uma linha reduz a convolução para cols @ w_flat.T, uma única chamada GEMM que as GPUs executam milhares de vezes mais rápido do que um quadruplo Python loop."
+    },
+    {
+      "stage": "post",
+      "question": "Você apila quatro convulsões 3x3 (todos os passos 1, sem agrupamento). Qual é o campo receptivo de um neurônio na camada final?",
+      "options": [
+        "3x3  cada conv é 3x3",
+        "5x5  dois convos dão 5x5 e a profundidade não ajuda",
+        "9x9  cada conv adiciona 2 em cada lado: 1 + 4*(3-1) = 9",
+        "15x15  cada conve triplica o campo receptivo"
+      ],
+      "correct": 2,
+      "explanation": "Para convases em L empilhadas K x K com passo 1, campo receptivo = 1 + L * (K - 1). Com L = 4 e K = 3 que é 1 + 4 * 2 = 9. A mesma fórmula generaliza com passo: campo receptivo cresce multiplicativamente através de camadas passo, por isso uma rede profunda com downsampling pode cobrir toda a imagem em dez ou quinze blocos."
+    }
+  ]
+}

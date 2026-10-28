@@ -1,0 +1,64 @@
+{
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "Que ideia arquitetônica única foi introduzida pela AlexNet (2012) que tornou prático o treinamento de CNNs profundos em GPUs?",
+      "options": [
+        "Conexões residuais",
+        "Convolções profundamente separaveis",
+        "Substituição do tanh por ReLU, que não se satura e acelera a convergência em aproximadamente 6x",
+        "Normalização de lote"
+      ],
+      "correct": 2,
+      "explanation": "O maior acelerador de treinamento da AlexNet veio da ReLU. Tanh satura para grandes entradas positivas ou negativas, o que mata gradientes e limita a profundidade que você pode treinar. ReLU é linear em pedaços, não satura para entradas positivas, e foi a única mudança que levou treinamento de semanas para dias."
+    },
+    {
+      "stage": "pre",
+      "question": "Por que a VGG preferia pilhas de 3x3 convulsões ao único núcleo maior?",
+      "options": [
+        "Dois convos 3x3 cobrem o mesmo campo receptivo 5x5 com menos parâmetros (18C^2 vs 25C^2) e um ReLU extra entre eles",
+        "3x3 convs são rotation-invariant; 5x5 não é",
+        "Os kernels menores executam mais rápido na CPU",
+        "Os núcleos maiores não podem ser treinados com SGD"
+      ],
+      "correct": 0,
+      "explanation": "Dois convos 3x3 empilhados vêem o mesmo parche 5x5 que um convo 5x5, mas usam menos parâmetros (2 * 3 * 3 * C^2 = 18C^2 em comparação com 25C^2) e incluem uma não-linearidade adicional."
+    },
+    {
+      "stage": "post",
+      "question": "ResNet introduziu conexões residuais como y = F(x) + x. Que problema isso resolve?",
+      "options": [
+        "Ativações desaparecendo em camadas com ReLU",
+        "Consumo de memória durante o backprop",
+        "O problema de degradação  passado ~ 20 camadas de convasso simples, perda de treinamento começa a piorar porque o optimizador luta para aprender um mapeamento de identidade através de muitas camadas não lineares",
+        "Oficinação excessiva na cabeça do classificador"
+      ],
+      "correct": 2,
+      "explanation": "Antes da ResNet, a perda de treinamento começou a aumentar depois de cerca de 20 camadas, apesar da rede ter mais capacidade  o problema de degradação. Um bloco residual pode representar trivialmente a identidade, levando F para zero, dando ao optimizador um padrão seguro. Com essa escotilha de escape, cada bloco extra pode tornar a rede ligeiramente melhor, que é como redes de 100+ camadas se tornaram treináveis."
+    },
+    {
+      "stage": "post",
+      "question": "Em um ResNet BasicBlock com in_channels=64, out_channels=128, step=2, qual é o papel do ramo de atalho?",
+      "options": [
+        "É um reservatório que é removido no momento da inferência",
+        "É um máximo-pool que reduz a metade da dimensão espacial",
+        "É sempre identidade; o ramo principal lida com a mudança de forma",
+        "É um conv 1x1 com passo 2 que combina os canais de saída e tamanho espacial do ramo principal para que os dois possam ser adicionados"
+      ],
+      "correct": 3,
+      "explanation": "Quando um bloco muda de número de canais ou passo espacial, o caminho de identidade não pode ser adicionado diretamente ao ramo principal porque as formas diferem. O atalho se torna um conv 1x1 com canais de saída de passo = 2 e C_out, opcionalmente seguido pela norma de lote."
+    },
+    {
+      "stage": "post",
+      "question": "ResNet-18 tem ~ 11,7M parâmetros e corresponde ou supera o VGG-16 (138M parâmetros) na ImageNet.",
+      "options": [
+        "Os kernels da VGG eram muito pequenos para aprenderem boas características",
+        "O VGG foi treinado com um melhorador pior",
+        "A maioria dos parâmetros do VGG são desperdiçados na cabeça totalmente conectada e na profundidade redundante além do ponto onde as conexões residuais permitiriam que cada camada contribuísse",
+        "A precisão do VGG na ImageNet foi medida incorretamente"
+      ],
+      "correct": 2,
+      "explanation": "A contagem de parâmetros do VGG-16 é dominada pelo seu classificador gigante totalmente conectado (três camadas densas em 25088 ativações), e sua pilha profunda simples não pode adicionar camadas de forma tão eficiente quanto uma pilha residual. ResNet-18 substitui a cabeça FC por um pool médio global mais uma camada linear e usa blocos residuais, que juntos dão aproximadamente 12x eficiência de parâmetro com precisão semelhante."
+    }
+  ]
+}

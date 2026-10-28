@@ -1,0 +1,64 @@
+{
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "Por que SimCLR precisa de tamanhos de lote de 512-8192 enquanto a formação da ImageNet supervisionada trabalha com lote 256?",
+      "options": [
+        "Cada amostra precisa de muitos exemplos negativos para produzir um sinal de contraste útil; o lote em si é o conjunto de negativos.",
+        "A norma de lote exige",
+        "Perda de contraste dividida por tamanho do lote",
+        "SimCLR é mais lento"
+      ],
+      "correct": 0,
+      "explanation": "A perda do InfoNCE classifica o par positivo em relação a todas as outras amostras do lote. Um lote de 32 dá 30 negativos por positivo; 1024 dá 2046. Mais negativos = sinal contrastivo mais nítido. O MoCo introduziu uma fila de impulso de características passadas para que os negativos efetivos escalem além do tamanho do lote; este é o truque padrão quando a memória da GPU limita o tamanho do lote."
+    },
+    {
+      "stage": "pre",
+      "question": "O que impede que o DINO colapse para uma saída constante?",
+      "options": [
+        "Grandes lotes",
+        "O calendário de impulso",
+        "Só um aumento forte",
+        "Uma combinação de centramento (subtrair a média de EMA por dimensão da produção do professor) e de afiança (baixa temperatura do professor); o centramento impede que uma dimensão domine, o afiança impede que a produção colapse para ser uniforme"
+      ],
+      "correct": 3,
+      "explanation": "O DINO não usa negativos explícitos. Sem centralização, uma dimensão de saída pode dominar e o aluno aprende a predizê-la sempre. Sem afiamento (baja temperatura do professor), a saída do professor se torna quase uniforme e o aluno aprende a corresponder uniformemente, o que também é colapso. Os dois juntos mantêm a saída diversa em todas as dimensões e atingindo o pico por amostra."
+    },
+    {
+      "stage": "post",
+      "question": "A MAE mascara 75% dos patches, a BERT mascara 15% dos tokens.",
+      "options": [
+        "75% é arbitrário",
+        "BERT requer 15% por conceção",
+        "Os patches de imagem têm baixa entropia  os vizinhos são altamente correlacionados  por isso, mascarar apenas 15% seria trivialmente resolvivel pela extrapolação local. Mascarar 75% obriga o codificador a aprender características semânticas globais para reconstruir os patches faltantes",
+        "Tokens de texto são maiores do que patches de imagem"
+      ],
+      "correct": 2,
+      "explanation": "A proporção de máscara deve corresponder à densidade de informação da modalidade. Texto: 15% é suficiente porque cada token tem muitas conclusões plausíveis. Imagens: pixels vizinhos quase se determinam, então as baixas proporções de máscara são resolveis sem aprendizado de representação real. 75% do MAE é calibrado para forçar a compreensão semântica."
+    },
+    {
+      "stage": "post",
+      "question": "Depois de um pré-treino auto-supervisionado, a avaliação da \"sonda linear\" treina apenas o quê?",
+      "options": [
+        "Um cabeçalho de classificação de MLP completo",
+        "O codificador inteiro",
+        "A inserção posicional",
+        "Um único classificador linear em cima das características do codificador congelado; isolamento desta qualidade das características da dinâmica de ajuste fino"
+      ],
+      "correct": 3,
+      "explanation": "A sonda linear congela o codificador e encaixa Linear ((features -> num_classes) em um conjunto de dados rotulado downstream. A precisão é uma medida direta da separabilidade linear do espaço de recursos  um proxy para a qualidade das características. A sintonia fina de toda a espinha dorsa adiciona capacidade não linear e geralmente aumenta a precisão alguns pontos, mas mistura efeitos de otimização. Ambos os números são relatados em documentos SSL."
+    },
+    {
+      "stage": "post",
+      "question": "Por que a MAE utiliza um desenho de codificador-decodificador assimétrico (grande codificador em 25% de parches visíveis, pequeno decodificador em todos os tokens)?",
+      "options": [
+        "O decodificador precisa de sua própria espinha dorsal",
+        "Restrições de memória",
+        "Tokens enmascarados confundem a auto-atenção",
+        "O codificador nunca processa tokens de máscara; um pequeno decodificador apenas lida com a reconstrução. Isso torna os FLOPs do codificador proporcionais aos patches visíveis (1/4 da entrada completa) e permite que o pré-treinamento seja executado 3 vezes mais rápido do que os projetos ingênuos que processam todos os tokens através do codificador completo"
+      ],
+      "correct": 3,
+      "explanation": "A eficiência chave ganha no MAE: o codificador caro só vê patches visíveis, que são 25% da entrada. Tokens de máscara aparecem apenas no decodificador superficial. Isso torna o pré-treinamento aproximadamente 3 vezes mais rápido do que o BEiT (que processa todos os tokens através do codificador) com precisão igual ou melhor para baixo."
+    }
+  ]
+}

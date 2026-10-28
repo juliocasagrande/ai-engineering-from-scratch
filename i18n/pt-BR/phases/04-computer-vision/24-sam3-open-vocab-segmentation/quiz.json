@@ -1,0 +1,64 @@
+{
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "O que é a Segmentação de Conceptos Promptables (PCS), introduzida pelo SAM 3?",
+      "options": [
+        "Uma cadeia de detectores de várias etapas seguida de SAM",
+        "Segmentar todas as instâncias de um conceito descrito por uma frase substantiva curta ou exemplar de imagem em uma única passagem para a frente, devolvendo máscaras mais IDs de instância únicas",
+        "Uma segmentação visual de prompt (punto/caixa) como o SAM clássico",
+        "Um modo de rastreamento apenas"
+      ],
+      "correct": 1,
+      "explanation": "O PCS é a capacidade de assinatura do SAM 3. Você passa 'autobus escolar amarelo' ou um exemplo de imagem de um ônibus; o SAM 3 retorna cada instância correspondente com sua própria máscara e ID única, além de uma pontuação de presença. O SAM clássico precisa de um prompt por instância; o PCS produz todas as correspondências de ponta a ponta."
+    },
+    {
+      "stage": "pre",
+      "question": "Por que manter um detector descoplado + SAM 2 pipeline (Grounded SAM 2) em 2026 se o SAM 3 já faz segmentação por texto?",
+      "options": [
+        "SAM 3 só está disponível na nuvem",
+        "O SAM 2 baseado é sempre mais preciso.",
+        "Modularidade  você pode trocar diferentes detectores de vocabulário aberto (DINO-X, Florence-2, Grounding DINO 1.5) por diferentes domínios, restrições de licença ou comportamento de limiar; a arquitetura do SAM 3 é monolítica",
+        "SAM 3 não suporta vídeo"
+      ],
+      "correct": 2,
+      "explanation": "SAM 2 baseado é uma composição de um detector e SAM 2 com pesos congelados. Essa modularidade é às vezes exatamente o que você precisa  um detector de imagem médica, um detector amigável à licença ou controle de limiar apertado. SAM 3 é mais preciso de ponta a ponta para uso comum, mas mais difícil de personalizar. Ambos têm papéis de produção em 2026."
+    },
+    {
+      "stage": "post",
+      "question": "O que produz a cabeça de presença do SAM 3?",
+      "options": [
+        "Uma probabilidade escalar de que o conceito procurado exista na imagem, descoplada da localização; permite que o modelo diga \"não presente\" de forma clara e reduz falsos positivos sobre conceitos ausentes",
+        "Lista das caixas de limite de candidatos",
+        "Um banco de memória de rastreamento",
+        "A última máscara"
+      ],
+      "correct": 0,
+      "explanation": "A cabeça de presença separa a decisão \"este é aqui?\" da decisão \"onde é?\" Um modelo que deve produzir caixas sempre que perguntado tende a alucinar correspondências para conceitos ausentes. Com uma cabeça de presença, o SAM 3 pode retornar zero detecções limpa. Isso também melhora a discriminação entre as indicações estreitamente relacionadas (por exemplo, \"um jogador em branco\" vs \"um jogador em vermelho\")."
+    },
+    {
+      "stage": "post",
+      "question": "SAM 3.1 Object Multiplex (março 2026) introduziu um mecanismo de memória compartilhada para rastreamento.",
+      "options": [
+        "Bancos de memória separados por instância; Multiplex os desintegra em uma memória compartilhada com consultas por instância para que o rastreamento de N objetos corra substancialmente mais rápido mantendo a precisão",
+        "Toda a cabeça de presença",
+        "SAM 2 em conjunto",
+        "A espinha dorsal da ViT"
+      ],
+      "correct": 0,
+      "explanation": "O rastreamento SAM 2 / SAM 3 anterior manteve um banco de memória por instância rastreada, de modo que o custo cresceu linearmente com a contagem de objetos. Object Multiplex introduz uma única memória compartilhada mais consultas por instância que trazem recursos específicos de instância."
+    },
+    {
+      "stage": "post",
+      "question": "Precisamos de uma detecção de vocabulário aberto em tempo real num dispositivo de borda.",
+      "options": [
+        "Uma cadeia de detectores CLIP + personalizada",
+        "SAM 3",
+        "SAM 2 em terra",
+        "YOLO-World (e detectores de vocais abertos em tempo real relacionados); SAM 3 produz máscaras e é mais pesado, enquanto YOLO-World é projetado especificamente para caixas em alta velocidade em hardware de borda"
+      ],
+      "correct": 3,
+      "explanation": "O YOLO-World e modelos similares (OV-DINO, LLMDet) são detectores de vocabulário aberto em tempo real. Eles não produzem máscaras, mas atingem 30-60 fps a 640x640 em GPUs modestas. SAM 3 é a escolha certa quando as máscaras e rastreamento de matéria."
+    }
+  ]
+}

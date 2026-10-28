@@ -1,0 +1,64 @@
+{
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "Por que a 3D Gaussian Splatting substituiu em grande parte o NeRF como padrão de produção para a reconstrução fotorrealista de cenas até 2026?",
+      "options": [
+        "O NeRF foi retirado do registro de pesquisa",
+        "3DGS é explícito (sem MLP por pixel): renderização é rasterizado por GPU a 100+ fps, treinamento leva minutos em vez de horas, cenas são editáveis, e Khronos + OpenUSD ambos o padronizaram em 2026",
+        "Gaussian Splatting produz melhor qualidade de imagem do que NeRF em todos os casos",
+        "PyTorch deixou de apoiar operadores NeRF"
+      ],
+      "correct": 1,
+      "explanation": "3DGS troca um MLP implícito para milhões de Gaussians 3D explícitos. O renderização se torna composto alfa ordenado que as GPUs executam a mais de 100 fps no hardware de consumo. O treinamento é executado em minutos. Cada Gaussiano é editável. Em 2026 a Khronos ratificou uma extensão glTF para 3DGS e OpenUSD 26.03 enviou um esquema nativo, transformando 3DGS em um formato de produção portátil."
+    },
+    {
+      "stage": "pre",
+      "question": "Um gaussiano 3D em uma cena carrega posição, rotação, escala, opacidade, e que representação adicional para lidar com a cor dependente da visão (como os destaques especulares)?",
+      "options": [
+        "Uma segunda textura RGB",
+        "Um pequeno MLP por Gaussian",
+        "Coeficientes de harmonica esférica: até 3 dá 16 coeficientes por canal de cores, avaliados em relação à direção de visualização no momento de renderização",
+        "Um mapa cubístico de uma sonda de luz"
+      ],
+      "correct": 2,
+      "explanation": "Os armônicos esféricos são a base de Fourier na esfera. Cada loja gaussiana aprendeu coeficientes SH que codificam como sua cor varia com a direção de visualização. No tempo de renderização você avalia os coeficientes contra o vetor unitário do píxel ao centro gaussiano, dando destaques especulares, reflexões leves e sombras visuais dependentes sem texturas ou MLPs."
+    },
+    {
+      "stage": "post",
+      "question": "Durante o treino 3DGS, a densificação inclui operações de \"clone\" e \"split\".",
+      "options": [
+        "Nada  Gaussianos são fixos após inicialização",
+        "Grande magnitude de gradiente com pequena escala desencadeia clonagem (mais detalhes locais necessários); alta gradiente com grandes escala desencadeia divisão (um Gaussian muito liso para se adequar à região).",
+        "Tempo desde o último ponto de controlo",
+        "Amostragem aleatória durante cada época"
+      ],
+      "correct": 1,
+      "explanation": "A densificação adaptativa é o que permite que o 3DGS cresça de ~ 100k Gaussians sementeado SfM para 1-5M na convergência. Clone duplica Gaussians pequenos sub-resolvidos; divide Gaussians muito grandes em dois pequenos; poda cai Gaussians cuja opacidade sigmoide decadido abaixo do limiar. Estas três operações mais descida de gradiente em parâmetros são toda a dinâmica de treinamento."
+    },
+    {
+      "stage": "post",
+      "question": "A equação de cores para um pixel em NeRF e 3DGS é `C = sum_i alpha_i * T_i * c_i`onde`T_i = prod_{j<i}(1 - alpha_j)`O que diz esta equação compartilhada sobre os dois métodos?",
+      "options": [
+        "O NeRF é estritamente melhor.",
+        "Ambos integram a mesma equação de renderização volumétrica; a diferença é apenas na representação (mostras de MLP implícitas vs Gaussians esplicitos esparsos) e no procedimento de renderização (marcha de raios vs rasterizamento)  por isso a qualidade da imagem é comparável",
+        "São matematicamente idênticos em todos os sentidos.",
+        "3DGS é estritamente melhor"
+      ],
+      "correct": 1,
+      "explanation": "A equação compartilhada é o renderizado volumétrico clássico. A NeRF avalia-o através de amostragem ao longo de raios e consulta um MLP. 3DGS avalia-o projetando Gaussianos para 2D e compondo primícias ordenadas por pixel. A mesma física, a mesma perda, estruturas de dados diferentes e algoritmos de renderização. Essa identidade é a razão pela qual eles aterram em PSNR final semelhante / LPIPS; a lacuna prática é a velocidade e edibilidade."
+    },
+    {
+      "stage": "post",
+      "question": "Quer enviar uma cena 3DGS através do Unreal Engine, Vision Pro, Blender e um visualizador web Three.js em 2026. Qual formato de exportação é a aposta mais segura?",
+      "options": [
+        "Uma mancha binária personalizada por espectador",
+        "Faixas PNG dos Gaussianos 3D",
+        "Cobre`.ply`sozinho",
+        "glTF com o `KHR_gaussian_splatting`Extensão (Khronos RC Feb 2026) e/ou OpenUSD 26.03 com `UsdVolParticleField3DGaussianSplat`Estes são os dois formatos ratificados/estandardizados em 2026"
+      ],
+      "correct": 3,
+      "explanation": "Até 2024, cada visualizador tinha seu próprio formato. Khronos ratificou KHR_gaussian_splating para glTF em fevereiro de 2026 e OpenUSD 26.03 adicionou um esquema 3DGS nativo em abril de 2026. Exportar para qualquer um dá-lhe portabilidade entre motores, visualizadores e pipelines. `.ply`A produção transversal de ferramentas é a resposta para 2026."
+    }
+  ]
+}

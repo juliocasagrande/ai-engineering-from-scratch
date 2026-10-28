@@ -1,0 +1,64 @@
+{
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "O seu modelo produz logits crus de forma (N, C).`loss = cross_entropy(softmax(logits), y)`O que é que se passa?",
+      "options": [
+        "cross_entropy re-aplique softmax dentro, então você acaba computação softmax(softmax(logits)), produzindo probabilidades quase uniformes e gradientes inúteis",
+        "Nada  que é a API correta",
+        "cross_entropy aumenta um ValueError sobre a forma",
+        "A precisão cai exactamente em 1/C"
+      ],
+      "correct": 0,
+      "explanation": "A cross_entropy da PyTorch espera logits brutos  ele funde log_softmax e NLL internamente para a estabilidade numérica. Aplicando softmax primeiro dá softmax(softmax(x)), que comprime logits em direção a uniforme e faz com que os gradientes sejam quase zero. A perda de treinamento parece plausível por alguns passos e depois está parado. Passar sempre logits brutos."
+    },
+    {
+      "stage": "pre",
+      "question": "Você avalia um classificador de 10 classes e obtém 92% de precisão. A classe 0 tem 9.000 exemplos; as classes 1-9 compartilham 1.000 exemplos (cerca de 111 cada, 10.000 no total). O que o número de cabeçalho esconde?",
+      "options": [
+        "O modelo poderia prever classe 0 para cada entrada e ainda obter 90% (9000/10000); os 2% restantes poderiam vir de qualquer outra classe.",
+        "Nada  precisão é precisão",
+        "O modelo é definitivamente demasiado ajustado.",
+        "A perda de validação é errada"
+      ],
+      "correct": 0,
+      "explanation": "Em uma divisão 9000/1000 (desbalanço 90/10 com 10.000 exemplos totais), sempre prever a classe majoritária obtém 9000/10000 = 90% de precisão. Um número de 92% poderia esconder nove classes minoritárias com aproximadamente 20% de precisão cada."
+    },
+    {
+      "stage": "post",
+      "question": "O mixup substitui os rótulos de um só tipo com alvos moles interpolados, como lambda * y_i + (1-lambda) * y_j. Por que isso ajuda a generalização?",
+      "options": [
+        "Duplica o tamanho do lote efetivo",
+        "Garante zero perdas de trem",
+        "Permite-lhe treinar com uma maior taxa de aprendizagem",
+        "O modelo é forçado a produzir previsões suaves entre as classes em vez de memorizar alvos rígidos e simples, o que melhora tanto a calibração quanto a precisão do teste"
+      ],
+      "correct": 3,
+      "explanation": "O treinamento contra alvos rígidos e simples empurra logits para serem arbitrariamente afiados em cada ponto de treinamento, o que prejudica a calibração e convida a sobreajuste. A combinação convexa de entradas e rótulos da Mixup obriga o classificador a se comportar sem problemas entre os pontos de treinamento, o que é um antecedente razoável para as classes de imagem naturais e melhora consistentemente a precisão do teste sem dados extras."
+    },
+    {
+      "stage": "post",
+      "question": "Tu trocas .`RandomCrop(32, padding=4, padding_mode='zeros')`Para`padding_mode='reflect'`Por que é melhor refletir aqui?",
+      "options": [
+        "O pad zero cria bordas negras duras que o modelo aprende a depender; reflete pad espelha os pixels de borda para que as culturas aumentadas pareçam fotografias naturais",
+        "Para a normalização do lote é necessária uma almofada de reflexo",
+        "Reflex pad altera o tamanho de saída",
+        "O pad de reflexo é mais rápido."
+      ],
+      "correct": 0,
+      "explanation": "As culturas com pad zero têm bordas negras visíveis que vazam informações sobre a posição da planta nas características. A rede pode aprender a olhar para o canto e implícitamente desfazer o aumento."
+    },
+    {
+      "stage": "post",
+      "question": "Você treina um classificador e a matriz de confusão mostra que a maioria dos erros são classe 3 previsto como classe 5 e classe 5 previsto como classe 3. Qual é o único passo mais impactante?",
+      "options": [
+        "Aumentar o tamanho do lote",
+        "Passar de SGD para Adam",
+        "Veja uma amostra de imagens de classe 3 e classe 5 que confundem o modelo; as duas classes podem ser genuinamente ambíguas, erroneamente rotuladas ou visualmente semelhantes de uma forma que exige um aumento direcionado ou um conjunto de treinamento reetiquetado",
+        "Adicionar mais dados de formação em todas as classes de forma igual"
+      ],
+      "correct": 2,
+      "explanation": "Uma matriz de confusão concentrada em um par fora de diagonal significa que o modo de falha é específico. A ação certa é inspecionar essas imagens: muitas vezes você encontra dados erroneamente rotulados, classes quase duplicadas ou uma invariância simples que o modelo não aprendeu. Mudanças de capa (mais dados, novo optimizador) raramente ajudam quando a falha é localizada."
+    }
+  ]
+}

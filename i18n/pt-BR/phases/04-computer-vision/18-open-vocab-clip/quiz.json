@@ -1,0 +1,64 @@
+{
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "A perda de contraste do CLIP é simétrica (imagem a texto + texto a imagem).",
+      "options": [
+        "Estabilidade numérica",
+        "A PyTorch requer simetria.",
+        "Porque a perda deve somar para zero",
+        "Quer que ambas as consultas funcionem na inferência: recuperação de texto para imagem e recuperação de imagem para texto."
+      ],
+      "correct": 3,
+      "explanation": "O espaço de incorporação precisa ser simétrico entre as modalidades, porque as tarefas a jusante fazem consulta em ambas as direções. A classificação zero-shot é texto-imagem (classificar imagem dada instruções de texto). A recuperação pode ir de qualquer maneira. O treinamento com apenas i2t ou apenas t2i deixa a outra direção fraca."
+    },
+    {
+      "stage": "pre",
+      "question": "Classificação de tiro zero com CLIP funciona por... ?",
+      "options": [
+        "Encodificação de instruções como \"uma foto de um cão\" para cada classe candidata, codificação da imagem de teste e tomada de argmax de semelhanças cosinas entre a incorporação da imagem e todas as incorporações de texto da classe",
+        "Buscando uma base de dados de exemplos rotulados",
+        "Ajuste o codificador de imagem na classe",
+        "A executar um classificador treinado em ImageNet"
+      ],
+      "correct": 0,
+      "explanation": "Zero-shot significa que não há treinamento específico de tarefa: as representações do modelo já permitem comparar imagens com descrições de texto arbitrárias. Escreva um prompt por classe, codifique todos os prompt e a imagem de teste, similaridade cosínica, argmax. O único 'triko' é a engenharia de prompt  usando vários modelos por classe e ganhando em média suas incorporações 1-3 top-1 na ImageNet."
+    },
+    {
+      "stage": "post",
+      "question": "SigLIP substitui a softmax do CLIP por uma perda sigmoide por par.",
+      "options": [
+        "Melhor precisão apenas em COCO",
+        "Núcleos de GPU mais rápidos",
+        "Baixo uso de memória",
+        "A perda sigmoide é por par, por isso não depende do lote como denominador de normalização."
+      ],
+      "correct": 3,
+      "explanation": "A entropia cruzada simétrica do CLIP é uma softmax sobre todo o lote, então negativos eficazes = batch_size - 1. lotes pequenos o deixam sem água. SigLIP é por par: cada par (imagem, legenda) recebe uma decisão binária (combate ou não). Não há normalização de nível de lote, então SigLIP funciona no lote 128 enquanto CLIP precisa de 8192."
+    },
+    {
+      "stage": "post",
+      "question": "Um profissional relata 88% top-1 de tiro zero no CIFAR-10 com CLIP ViT-B/32 e 90% com o mesmo modelo usando 80 modelos de prompt por classe.",
+      "options": [
+        "Reduz a variância na escala logit_scale",
+        "Duplica o conjunto de dados",
+        "80 é o número mágico para CLIP",
+        "Diferentes modelos ativam diferentes aspectos da distribuição aprendida do codificador de texto; a média suaviza a incorporação da classe sobre o variedade de descrições plausíveis em linguagem natural da classe, produzindo um centroide mais robusto"
+      ],
+      "correct": 3,
+      "explanation": "Cada modelo é uma indicação diferente da linguagem natural. 'uma foto de um cão' enfatiza um aspecto; 'uma foto borbulha de um cão' outro; 'um esboço de um cão' outro."
+    },
+    {
+      "stage": "post",
+      "question": "Por que os VLMs modernos (LLaVA, Qwen-VL, InternVL) usam um codificador de visão da família CLIP em vez de um ImageNet ResNet supervisionado?",
+      "options": [
+        "ResNets não vê cor",
+        "As características do CLIP estão alinhadas com a linguagem natural, de modo que o LLM pode raciocinar sobre elas com menos adaptação; as características da ImageNet supervisionadas nunca foram treinadas contra legendas e precisam de camadas pesadas de projeção para pular para o texto",
+        "É um requisito de licenciamento",
+        "Os codificadores CLIP são mais rápidos"
+      ],
+      "correct": 1,
+      "explanation": "Um VLM conecta um codificador de visão a um modelo de linguagem e treina uma pequena projeção. Os codificadores de estilo CLIP foram treinados contra o texto, de modo que as suas saídas já vivem num espaço que o LLM pode consumir com algumas camadas lineares de adaptação. Os codificadores ImageNet supervisionados não têm nenhuma noção de estrutura de linguagem natural e exigem MLPs de ponte muito maiores para trabalhar com um LLM. É por isso que todos os SOTA VLM usam uma torre de visão da família CLIP."
+    }
+  ]
+}

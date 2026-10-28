@@ -1,0 +1,64 @@
+{
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "Tem 500 imagens marcadas para uma nova tarefa próxima à distribuição da ImageNet.",
+      "options": [
+        "Aponta-se a cada camada com a mesma LR grande",
+        "Ignore pesos pré-treinados; pequenos conjuntos de dados funcionam melhor com modelos pequenos",
+        "Congelhe uma espinha dorsal pré-treinada pela ImageNet e treine apenas uma nova cabeça linear",
+        "Treinar um ResNet-50 a partir do zero"
+      ],
+      "correct": 2,
+      "explanation": "Com 500 imagens, você não tem sinal suficiente para treinar uma rede profunda a partir do zero ou para ajustar com segurança todas as camadas de ponta a ponta sem destruir recursos pré-treinados."
+    },
+    {
+      "stage": "pre",
+      "question": "Por que as primeiras camadas de convecção de uma rede pre-treinada pela ImageNet transferem bem para imagens médicas, mesmo que a ImageNet não contenha raios-X?",
+      "options": [
+        "A ImageNet contém secretamente dados médicos",
+        "Transferir só funciona quando os domínios coincidem",
+        "PyTorch reinicializa as camadas iniciais automaticamente",
+        "As camadas iniciais codificam primitivas visuais genéricas  bordas, orientações, contraste  que são compartilhadas em quase qualquer domínio visual; apenas as camadas posteriores se especializam em categorias ImageNet"
+      ],
+      "correct": 3,
+      "explanation": "Os filtros Gabor-like e detectores de textura simples são as características que as primeiras camadas da CNN aprendem em qualquer corpo de imagem natural. Eles refletem as estatísticas de luz, sombra e bordas que se mantêm em fotografia, imagem médica, microscopia e dados de satélite."
+    },
+    {
+      "stage": "post",
+      "question": "Quando o ajuste fino de ponta a ponta com taxas de aprendizagem discriminatórias, por que as camadas iniciais devem obter uma LR menor do que as camadas posteriores?",
+      "options": [
+        "Uma LR menor nas camadas iniciais acelera o treinamento",
+        "As camadas iniciais têm menos parâmetros",
+        "As camadas iniciais codificam características gerais que você deseja preservar; as camadas posteriores codificam características específicas de tarefas que devem ser movidas; uma LR menor nas camadas iniciais impede a deriva de características e o esquecimento catastrófico",
+        "PyTorch requer LR de camadas para a correcção"
+      ],
+      "correct": 2,
+      "explanation": "As camadas iniciais já codificam as primitivas visuais certas; você quer pequenas atualizações para que essas características sejam preservadas. As camadas tardías precisam se mover em direção à nova tarefa. Uma taxa de aprendizagem para todo o modelo força um compromisso que prejudica ambos os extremos."
+    },
+    {
+      "stage": "post",
+      "question": "A precisão é de 10% (a probabilidade aleatória para 10 classes). Qual é a causa mais provável?",
+      "options": [
+        "ResNet não pode lidar com entrada em escala cinzenta",
+        "As estatísticas de BatchNorm são de imagem RGB de imagem e não correspondem muito à distribuição médica em escala cinzenta, então as primeiras camadas BN produzem ruído que se propaga para a frente",
+        "800 imagens são simplesmente muito poucas para qualquer aprendizagem de transferência",
+        "Usou a função de perda errada."
+      ],
+      "correct": 1,
+      "explanation": "BatchNorm mantém a execução_média e a execução_var de ImageNet. Em um conjunto de dados pequeno e com mudança de distribuição, esses amortecedores nunca se adaptam rapidamente o suficiente durante um curto ajuste fino, e BN normaliza a ativação com estatísticas erradas."
+    },
+    {
+      "stage": "post",
+      "question": "Comparamos duas corridas: (a) sonda linear na coluna vertebral congelada da ImageNet, com 82% de precisão; (b) sintonia fina de ponta a ponta, com 78% de precisão.",
+      "options": [
+        "A ajuste fina não ajuda; envia a sonda linear",
+        "Uma sintonia fina que termina abaixo da sonda linear é quase sempre um erro de treinamento  LR muito alto, BN mal manuseado, ou cronógrafo / optimizador mal configurado; diagnóstico antes de concluir qualquer coisa sobre transferência",
+        "O conjunto de dados é muito grande",
+        "Pesos previamente treinados são maus"
+      ],
+      "correct": 1,
+      "explanation": "O ajuste fino deve sempre bater ou combinar com a sonda linear, já que a sonda linear é um caso especial de ajuste fino com LR = 0."
+    }
+  ]
+}

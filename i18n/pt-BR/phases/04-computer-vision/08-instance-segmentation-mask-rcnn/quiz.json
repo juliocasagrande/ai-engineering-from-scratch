@@ -1,0 +1,64 @@
+{
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "Por que a Mask R-CNN substituiu o RoIPool pelo RoIAlign?",
+      "options": [
+        "RoIPool redonda as coordenadas da caixa para números inteiros em várias etapas, desalinhando o mapa da característica dos pixels de entrada até um pixel do mapa da característica; RoIAlign usa amostragem bilinear sem redondeamento, preservando a localização",
+        "O RoIPool foi um problema de direitos autorais",
+        "RoIPool só funciona em CPU",
+        "O RoIAlign é mais rápido em GPUs"
+      ],
+      "correct": 0,
+      "explanation": "O arredondamento do RoIPool custa até um desalinhamento de tamanho de passo (por exemplo, 32 pixels em um mapa de características de passo-32). RoIAlign amostras em coordenadas exatas de flutuação através de interpolação bilinear. A mudança levantou a máscara AP em 3-4 pontos sobre o COCO no papel original e agora é padrão em todos os detectores que se preocupam com a localização."
+    },
+    {
+      "stage": "pre",
+      "question": "A cabeça da máscara da R-CNN produz uma máscara de 28x28 por classe por proposta.",
+      "options": [
+        "O jornal exigiu .",
+        "Mascaras binárias transbordam num único canal",
+        "Desacoplamento da classificação da mascara: a cabeça da máscara só tem que aprender a forma para cada classe separadamente, de modo que a decisão do classificador não afeta a qual máscara é produzida, apenas qual canal é lido na inferência",
+        "Porque as máscaras binárias precisam de canais por classe para a represa"
+      ],
+      "correct": 2,
+      "explanation": "A produção de uma máscara por classe por proposta descopa a aprendizagem de forma de máscara da classificação. Na inferência você lê apenas o canal que corresponde à classe prevista."
+    },
+    {
+      "stage": "post",
+      "question": "Mas a previsão da torchvision R-CNN diz que `labels`que começam em 1, não em 0. Porquê?",
+      "options": [
+        "torchvision usa indexação baseada em 1 em todo",
+        "A classe 0 é reservada para o fundo; as classes de usuários são sempre baseadas em 1, para que o cabeçalho do classificador possa tratar o fundo como uma classe real com seus próprios logits e gradientes",
+        "Os dados de formação determinaram-no",
+        "Bug legado"
+      ],
+      "correct": 1,
+      "explanation": "A maioria dos detectores trata o fundo como classe 0 e as classes de primeiro plano explícitas como 1..C. As classes softmax sobre (C+1) permitem que a rede aprenda a prever ativamente 'nenhum objeto aqui' em vez de apenas baixa confiança em todas as classes. Um conjunto de dados com 4 classes reais precisa de num_classes = 5 ao trocar o predictor."
+    },
+    {
+      "stage": "post",
+      "question": "A mascarina R-CNN é ajustada num conjunto de dados de 500 imagens e em planícies de val-mAP enquanto a perda de trem continua a diminuir.",
+      "options": [
+        "Adicionar mais épocas",
+        "Usar uma taxa de aprendizagem mais elevada",
+        "Passe para segmentação U-Net",
+        "Congelando a coluna vertebral e FPN para que o modelo apenas sintonize a RPN e cabeças; 500 imagens é muito pouca para atualizar os parâmetros da coluna vertebral 23M sem sobreajuste"
+      ],
+      "correct": 3,
+      "explanation": "Em pequenos conjuntos de dados, não há sinal suficiente para ajustar todos os parâmetros. A formação de um sistema de formação pré-treinada e de um sistema de formação de base (FPN) e a formação de apenas o cabeçalho de objetos RPN e as duas cabeças de classificador/mascareta é a receita padrão e normalmente fixa este plano em uma única corrida de formação."
+    },
+    {
+      "stage": "post",
+      "question": "O FPN dentro da Máscara R-CNN tem quatro níveis (P2, P3, P4, P5) nos passos 4, 8, 16, 32.",
+      "options": [
+        "Para reduzir o número de parâmetros",
+        "Quatro níveis são arbitrários .",
+        "Os objetos em imagens naturais abrangem uma gama de escalas; encaminhando cada proposta para o nível FPN correspondente ao seu tamanho dá à cabeça um mapa de características com o campo receptivo certo para esse objeto, o que é estritamente melhor do que sempre usando uma escala",
+        "Para usar mais memória de GPU"
+      ],
+      "correct": 2,
+      "explanation": "Um pequeno objeto em um mapa de características de passo-32 ocupa uma célula única, que quase não tem informações espaciais. FPN encaminha pequenos objetos para os níveis de alta resolução e superficial (P2) e grandes objetos para os níveis de baixa resolução e profundidade (P5), correspondendo campo receptivo ao tamanho do objeto."
+    }
+  ]
+}

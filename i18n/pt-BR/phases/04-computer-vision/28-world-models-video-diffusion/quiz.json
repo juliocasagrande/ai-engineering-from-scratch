@@ -1,0 +1,64 @@
+{
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "Que diferença arquitetônica distingue um modelo de mundo com condição de ação (Genie 3) de um modelo de geração de vídeo puro (Sora 2)?",
+      "options": [
+        "Apenas os conjuntos de dados de formação diferem",
+        "Modelos mundiais só funcionam em cenas 3D",
+        "Os geradores de vídeo puros condicionam-se a um prompt em t=0 e se deslocam; os modelos mundiais condicionados a ação tomam uma ação latente ou explícita por quadro para que o usuário possa dirigir a implantação na geração média",
+        "Os modelos condicionados à acção são menores"
+      ],
+      "correct": 2,
+      "explanation": "Sora 2 é autoregressivo em tokens de espaço-tempo; seu prompt define a cena, mas você não pode mudar a direção no meio do lançamento. Genie 3 infere ou toma uma ação latente em cada passo e condiciona a previsão do próximo quadro nele, permitindo que o usuário interaja com o mundo simulado. Esta interatividade é o que faz um modelo um \"simulador de mundo\" em vez de um gerador de vídeo."
+    },
+    {
+      "stage": "pre",
+      "question": "O que significa a atenção dividida num transformador de vídeo?",
+      "options": [
+        "Metade dos tokens estão enmascarados",
+        "A atenção está dividida entre as GPUs",
+        "Cada bloco faz uma atenção temporal (a mesma posição espacial, em quadros) seguida por uma atenção espacial (a mesma estrutura, em posições); isto faz com que o custo passe de O((((T*H*W) ^2) para O((H*W) *T^2) + O(T*(H*W) ^2)  dramaticamente mais barato do que o produto conjunto",
+        "Apenas metade das camadas atrai atenção."
+      ],
+      "correct": 2,
+      "explanation": "A atenção conjunta total sobre os tokens do espaço-tempo é proibitiva: para T=150 tokens temporais e uma grade espacial 60x45 (2700 tokens espaciais), o conjunto (T*H*W) ^2 ≈ 1,6e11 pares. A atenção dividida corre a atenção temporal em cada posição espacial (H*W * T^2 ≈ 6.1e7) e a atenção espacial em cada etapa temporal (T * (H*W) ^2 ≈ 1.1e9)  múltiplas ordens de magnitude menos. O TimeSformer introduziu este padrão; quase todos os vídeos de 2026 DiT (Sora, Wan, HunyuanVideo) usam uma variante dividida ou de janela."
+    },
+    {
+      "stage": "post",
+      "question": "O lançamento de Sora 2 em 2026 anunciou melhor plausibilidade física.",
+      "options": [
+        "Peso, equilíbrio, permanência do objeto, causa e efeito  o modelo agora lida com objetos caídos, personagens em colisão e \"falhas intencionais\" (um salto perdido) de forma mais credível do que Sora 1",
+        "Duração do vídeo",
+        "Renderamento de texto dentro das imagens",
+        "Equilíbrio e contraste de cores"
+      ],
+      "correct": 0,
+      "explanation": "Modelos de vídeo de geração anterior fracassaram no consumo de espaguetes, bebendo de copos e cenas de objetos persistentes. As mãos passariam por objetos, os itens desapareceriam no meio da ação. A Sora 2 anuncia explícitamente melhorias no peso, equilíbrio, permanência de objetos e causa-e-efeito, medidas em relação a referências de plausibilidade interna e pública. Estas são as falhas de qualidade dominantes que o campo ainda está a tratar."
+    },
+    {
+      "stage": "post",
+      "question": "Na pilha de robótica emergente (VLM + geração de vídeo + dinâmica inversa), o que faz o modelo de dinâmica inversa?",
+      "options": [
+        "Ele leva um par (observação de corrente, próxima observação desejada do modelo de vídeo) e sai a ação motora de baixo nível que os conectaria; isso fecha o ciclo entre as implementações imaginadas e a ativação real",
+        "É etiquetado dados de formação",
+        "Gera a próxima imagem.",
+        "Treina o VLM ."
+      ],
+      "correct": 0,
+      "explanation": "Os planos VLM, o modelo de vídeo imagina e o modelo de dinâmica inversa transforma a imaginação em comandos motores. Dadas duas observações consecutivas, a dinâmica inversa pergunta: qual ação produziu essa transição? Esta pilha de três componentes permite que um robô treine em grande parte em um simulador aprendido, usando o modelo de vídeo para gerar dados e o modelo de dinâmica inversa para executar."
+    },
+    {
+      "stage": "post",
+      "question": "As equipes de condução autônoma usam modelos mundiais (Cosmos-Drive, Gaia-2, DrivingWorld) para substituir o custo?",
+      "options": [
+        "Depreciação do veículo",
+        "Seguro de frota real",
+        "Uma coleta de dados reais dispendiosa para casos raros ou perigosos de esquina (caminhadas pedestres, estradas geladas, veículos incomuns); vídeo de condução sintetizado fornece dados de formação e avaliação sob demanda para esses cenários",
+        "Tarifas rodoviárias"
+      ],
+      "correct": 2,
+      "explanation": "Coletar dados de condução de um caso de esquina leva milhões de quilômetros no mundo real. Cosmos-Drive, Gaia-2 e DrivingWorld geram-no condicionado a trajetórias e mapas. As equipes utilizam estes dados para expandir os conjuntos de treinamento, avaliar os planejadores em condições reprodutíveis e cenários de desemprego que não podem conduzir éticamente na realidade. Substituir uma fração da coleção do mundo real com síntese é uma das vitórias de produção mais claras para os modelos do mundo do vídeo em 2026."
+    }
+  ]
+}

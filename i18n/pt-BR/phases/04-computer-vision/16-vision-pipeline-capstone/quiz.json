@@ -1,0 +1,64 @@
+{
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "Por que as canalizações de visão de produção utilizam modelos Pydantic (ou equivalentes) em cada limite de fase?",
+      "options": [
+        "O Pydantic é mais rápido do que o acesso de dit",
+        "Ajuda com a alocação de GPU",
+        "O Pydantic é exigido pela FastAPI",
+        "Esquemas tipografados detectam desajustes de interface na fronteira; um detector que retorna (cx, cy, w, h) quando as expectativas de fluxo inferior (x1, y1, x2, y2) falham em voz alta com um erro de validação em vez de produzir silenciosamente culturas vazias"
+      ],
+      "correct": 3,
+      "explanation": "Os bugs de interface silenciosa são a dor definidora dos pipelines ML. Cada limite tem um sistema de coordenadas, uma ordem de canal, um intervalo de valores e uma forma. A validação na fronteira com Pydantic transforma cada desajuste em um erro imediato. O custo é de alguns microsecondos; as economias são horas de depuração."
+    },
+    {
+      "stage": "pre",
+      "question": "Em um canal de visão de CPU, qual estágio é o maior bloqueio de latência?",
+      "options": [
+        "Leitura do corpo de solicitação HTTP",
+        "Preprocessamento de imagens (decodificação JPEG, conversão de cores, redimensionamento); é ligado à CPU e muitas vezes domina quando nenhuma GPU está envolvida ou quando o modelo de GPU é pequeno",
+        "Escrever a resposta JSON",
+        "O último NMS do detector"
+      ],
+      "correct": 1,
+      "explanation": "Na CPU, o pré-processamento é frequentemente o maior custo único. O decodificação JPEG pode levar milissegundos, a conversão de cores mais, o redimensionamento para a entrada de modelo de outro pedaço. A regra é simples: perfil antes de otimização. Na GPU o detector normalmente domina, mas não suponha que na CPU."
+    },
+    {
+      "stage": "post",
+      "question": "O classificador de pipeline falha quando uma detecção tem tamanho de caixa 3x4 pixels.",
+      "options": [
+        "Aumentar o tamanho do lote",
+        "Re-treinar o classificador em imagens menores",
+        "Defina um limiar de min_crop (por exemplo, 16 ou 32 pixels) e omita classificação para detecções menores que essa; registre o omitido e inclua a detecção na resposta sem um campo de classificação",
+        "Adicionar uma tentativa global/exceto e retornar classificações vazias"
+      ],
+      "correct": 2,
+      "explanation": "Pequenas culturas são um modo de falha legítimo: o classificador foi treinado em 224x224 entradas e não pode classificar com confiança os patches de 3 pixels. Um limiar (min_crop) salta esses, preserva a detecção e produz uma resposta completa e honesta."
+    },
+    {
+      "stage": "post",
+      "question": "Adicionar batches ao classificador (esperar até 10 ms, batch todas as culturas pendentes, um GPU para a frente).",
+      "options": [
+        "A latência diminui rigorosamente",
+        "Não há efeito",
+        "A passagem aumenta significativamente, a latência por solicitação aumenta em até a janela de batch (~ 10ms) mais uma quantidade menor de operações de tensor maiores; a resposta correta depende de se o serviço é limitado a passagem ou limitada a latência",
+        "A produção diminui devido à espera"
+      ],
+      "correct": 2,
+      "explanation": "Batching é um comércio de atraso de rendimento. Cada solicitação espera até a janela, o que adiciona latência. O passe avançado em lote é mais eficiente por imagem, então a escala de rendimento com o tamanho do lote. Use batching quando o QPS é alto e a latência individual é flaca; evite quando a latência SLA é inferior a 50ms."
+    },
+    {
+      "stage": "post",
+      "question": "A resposta do pipeline é um erro de 500 quando um usuário carrega um JPEG danificado. Como você deve corrigi-lo?",
+      "options": [
+        "Ignore; o usuário vai tentar novamente",
+        "Captar falhas de decodificação de imagem no início do pré-processamento, retornar um 400 com um código de erro específico como 'image_decode_failed' para que o cliente possa tentar novamente com um arquivo diferente em vez de um 500 que implica erro do servidor",
+        "Sempre devolva 200 com resultado vazio .",
+        "Mover a decodificação para o classificador"
+      ],
+      "correct": 1,
+      "explanation": "Uma 500 de entrada de usuário corrupta é um bug de contrato de API. As entradas ruins devem retornar 4xx para que o cliente saiba que é o seu problema; 5xx respostas sinalizam um problema de servidor e desencadeiam a lógica de retentação do cliente com a mesma entrada ruins, amplificando a carga. Códigos de falha nomeados (image_decode_failed, image_too_large, unsupported_content_type) deixam os clientes reagir corretamente."
+    }
+  ]
+}

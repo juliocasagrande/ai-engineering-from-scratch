@@ -1,0 +1,64 @@
+{
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "Você compara um modelo e relata \"medida de 12ms por imagem em um 4090\". O que falta?",
+      "options": [
+        "Nome do conjunto de dados",
+        "Dimensão do modelo",
+        "Nada; é um ponto de referência completo",
+        "Percentiles (p50/p95/p99), disciplina de aquecimento e sincronização CUDA; uma média sozinha oculta a latência de cauda e pode medir o despacho do kernel em vez da execução do kernel"
+      ],
+      "correct": 3,
+      "explanation": "A latência de produção é medida em percentil porque os sistemas em tempo real falham em caudas, não em médias. Sem aquecimento, a compilação JIT infla as primeiras medidas. Sem torch.cuda.synchronize, o kernel da GPU lança de volta antes que o kernel termine, então você mede o despacho, não a execução."
+    },
+    {
+      "stage": "pre",
+      "question": "FLOPs e latência no dispositivo não se correlacionam perfeitamente.",
+      "options": [
+        "Diferentes operações têm diferentes facilidades de hardware; convulsões de profundidade podem ter FLOPs mais baixos, mas são ligadas à memória em GPUs, enquanto convulsões densas usam Tensor Cores de forma eficiente.",
+        "Os contadores de FLOPs estão quebrados",
+        "FLOPs ignoram o tamanho do lote",
+        "PyTorch conta os FLOP incorretamente"
+      ],
+      "correct": 0,
+      "explanation": "FLOPs é um proxy barato. A latência do relógio de parede depende de quão bem uma operação corresponde aos pontos fortes do hardware: pin tensor cores densos de matmuls; convs profundamente paralisam na largura de banda de memória; paralisam atenção em leituras de memória de longo de sequência^2. Para pesquisa de arquitetura FLOPs são úteis; para decisões de implantação medida no dispositivo alvo."
+    },
+    {
+      "stage": "post",
+      "question": "A quantização estática do INT8 pós-treino normalmente perde quanta precisão nos modelos de visão da classe ImageNet?",
+      "options": [
+        "Sempre 0; é sem perdas",
+        "20 pontos; inutilizáveis",
+        "5 a 10 pontos percentuais",
+        "0,1-1 pontos percentuais quando calibrados adequadamente; os modelos de convecção de batch-norma-fusion são particularmente bem comportados no INT8"
+      ],
+      "correct": 3,
+      "explanation": "O PTQ estático em modelos de visão bem calibrados perde uma fração de um ponto para cerca de 1 ponto. Os modos de perda maiores são (a) dados de calibração insuficientes, (b) ativações de quantização com valores extremos (fixado com quantização por canal ou corte), (c) camadas BatchNorm não fundidas. Quando essas são manuseadas, o INT8 é essencialmente livre."
+    },
+    {
+      "stage": "post",
+      "question": "O seu aplicativo móvel precisa de um modelo de visão inferior a 10 MB com latência inferior a 10 ms.",
+      "options": [
+        "ResNet-50",
+        "ConvNeXt-Large",
+        "Base ViT",
+        "MobileNetV3-Small ou EfficientNet-Lite-B0 quantificado em INT8; ambos visam este orçamento e compilam limpo para TFLite / Core ML"
+      ],
+      "correct": 3,
+      "explanation": "O transporte de visão móvel em 2026 ainda é dominado pelas variantes MobileNetV3 e EfficientNet-Lite porque elas foram projetadas para esse orçamento: convs profundos, h-swish, squeeze-excite, quantização-consciente desde o primeiro dia. ResNet-50 e ViT-Base são 100 MB + em FP32 e 25 MB + em INT8, que destroem o orçamento de tamanho antes mesmo de a latência ser medida."
+    },
+    {
+      "stage": "post",
+      "question": "Exporta um modelo PyTorch para ONNX com opset 17 e falha com \"operador não suportado\".",
+      "options": [
+        "O modelo tem muitos parâmetros.",
+        "A forma de entrada é errada",
+        "A biblioteca ONNX está ultrapassada",
+        "(1) Uma operação personalizada que não tem mapeamento ONNX; (2) um caminho de controle-fluxo não determinista que o rastreamento não pode capturar; (3) uma interação tensor-escala que é implícita no Python, mas não tem equivalente ONNX.`torch.jit.script`para controlo de fluxo ou opção de atualização"
+      ],
+      "correct": 3,
+      "explanation": "O ONNX exportando está rastreando por padrão, então qualquer coisa que o rastreamento não pode capturar  fluxo de controle de tempo de execução, ramos de nível Python, operações CUDA personalizadas falha. A maioria das falhas são um único nó que não tem equivalente ONNX (muitas vezes uma pequena operação personalizada ou uma chamada para torch.special.*).`torch.jit.script`, ou mudar para um novo opset onde a operação existe."
+    }
+  ]
+}

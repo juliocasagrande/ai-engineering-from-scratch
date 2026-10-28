@@ -1,0 +1,64 @@
+{
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "Porque é que a U-Net precisa de ligações entre o codificador e o decodificador?",
+      "options": [
+        "Porque as convulsões transpostas exigem entradas adicionais",
+        "Para combinar as convenções de forma PyTorch",
+        "O codificador comprime detalhes espaciais para obter contexto; o decodificador não pode reconstruir limites afiados sem acesso aos mapas de recursos de alta resolução do codificador, e salta fornecer exatamente isso",
+        "Para acelerar o treinamento"
+      ],
+      "correct": 2,
+      "explanation": "Sem saltos, o decodificador de uma rede U-Net está produzindo previsões H x W a partir de um gargalo de garrafa de resolução muito baixa, que não pode resolver bordas nítidas. As conexões de saltos dividem as características de alta resolução e baixa semântica do encodificador nas características de baixa resolução e alta semântica do decodificador para que conteúdo e detalhes estejam disponíveis em cada estágio de saída."
+    },
+    {
+      "stage": "pre",
+      "question": "Uma tarefa de segmentação tem 99% de pixels de fundo e 1% de pixels tumorais. Você treina com entropia cruzada simples e alcança 99% de precisão de pixels.",
+      "options": [
+        "A função de perda foi implementada incorretamente",
+        "O modelo convergiu",
+        "O modelo aprendeu a prever o fundo para cada pixel; a precisão de pixel é dominada pela classe majoritária e ignora a classe que realmente importa",
+        "Otimizador falhou"
+      ],
+      "correct": 2,
+      "explanation": "A precisão de pixels em um conjunto de dados desequilibrados é uma métrica inútil. A rede coleta o fácil 99% sempre prevendo o fundo e produz máscaras tumorais vazias. A solução: combinar entropia cruzada com perda de Dice (baseada em sobreposição, livre de escala) e relatar IoU/Dice por classe de primeiro plano."
+    },
+    {
+      "stage": "post",
+      "question": "Que tipo de tarefa separa os carros individuais da mesma classe uns dos outros?",
+      "options": [
+        "Ambos produzem a mesma produção",
+        "Segmentação semântica",
+        "Segmentação de instâncias",
+        "Nem  que requer um modelo de detecção em vez"
+      ],
+      "correct": 2,
+      "explanation": "Segmentação semântica etiqueta cada pixel com uma classe, mas funde instâncias tocantes da mesma classe em uma mancha. Segmentação de instância mantém IDs de instância, então cada carro, cada pessoa, cada maçã é uma máscara prevista separada. Segmentação panóptica unifica ambos: etiquetas semânticas para coisas, IDs de instância para coisas."
+    },
+    {
+      "stage": "post",
+      "question": "Você troca a amostra bilinear da U-Net + 3x3 conv para um ConvTranspose2d com kernel_size=2, step=2 e vê artefatos de quadro de xadrez na saída.",
+      "options": [
+        "O conv transposto está quebrado em PyTorch .",
+        "A taxa de aprendizagem era muito baixa.",
+        "Quando o kernel_size não é dividível uniformemente por passo, os pixels de saída recebem contribuições desiguais dos pixels de entrada, produzindo um padrão periódico na saída que parece um quadro de xadrez",
+        "A norma de lote deve ser adicionada antes de ser transposta"
+      ],
+      "correct": 2,
+      "explanation": "Os artefatos de quadro de cheque são produzidos por sobreposição desigual do campo receptivo da convolução transposta em posições de saída. Usando kernel_size = step * n (por exemplo, kernel 4, step 2) ou substituindo conv transposto por bilinear upsample + conv elimina os artefatos."
+    },
+    {
+      "stage": "post",
+      "question": "Se você relata mIoU = 0,78 em uma tarefa de segmentação de 10 classes, por que você também deve publicar IoU por classe?",
+      "options": [
+        "A IU média oculta falhas individuais de classes; uma IU mIoU de 0,78 é consistente com oito classes em 0,9 e duas em 0,3, o que é uma história de implantação muito diferente de todas as classes próximas de 0,78",
+        "A PyTorch requer a UIO por classe",
+        "É necessário apenas para imagens médicas.",
+        "A UO por classe é sempre superior à UO por classe"
+      ],
+      "correct": 0,
+      "explanation": "Uma média agregada comprime a distribuição de pontuações por classe, que é exatamente o que o leitor precisa para decidir se o modelo está pronto para ser enviado. Duas classes fracas em um modelo de outra forma forte podem tornar o sistema inutilizável para a tarefa pretendida; um perfil plano significa que o modelo precisa de uma atualização uniforme de dados."
+    }
+  ]
+}

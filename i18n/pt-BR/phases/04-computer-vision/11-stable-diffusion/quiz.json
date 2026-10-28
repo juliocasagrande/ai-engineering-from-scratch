@@ -1,0 +1,64 @@
+{
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "Por que a Stable Diffusion executa o seu DDPM em um espaço latente de 4x64x64 em vez de diretamente em imagens de 3x512x512 pixels?",
+      "options": [
+        "Para fazer inferências deterministas",
+        "Os latentes são mais fáceis de visualizar",
+        "Os latentes são a saída nativa das GPUs",
+        "O treinamento e a amostragem em 16.384 valores latentes em vez de 786.432 pixels é aproximadamente 48 vezes mais barato; um VAE pré-treinado lida com a conversão latente da imagem <-> e o modelo de difusão só tem que modelar o variável latente estruturado"
+      ],
+      "correct": 3,
+      "explanation": "A difusão latente é a única inovação que tornou o consumo de texto para imagem prático. O VAE comprime 48x informações espaciais e de canal. O modelo de difusão pode gastar todo o seu parâmetro e orçamento de cálculo modelagem do variável latente, que é a parte que o usuário vê após a decodificação."
+    },
+    {
+      "stage": "pre",
+      "question": "O que faz a orientação sem classificador (CFG) na inferência?",
+      "options": [
+        "Funciona dois modelos separados e as media",
+        "Adiciona um cabeçalho de classificação ao modelo no momento do ensaio",
+        "Utiliza um modelo treinado para prever tanto o ruído condicional eps_cond e o ruído incondicional eps_uncond, em seguida, combina-os como eps = eps_uncond + w*(eps_cond - eps_uncond) para amplificar a adesão rápida",
+        "Utiliza um agendador maior"
+      ],
+      "correct": 2,
+      "explanation": "CFG treina um único modelo com o condicionamento caído 10% do tempo, de modo que os mesmos pesos produzem previsões condicionais e incondicionais. Na inferência, a fórmula acima amplifica a direção condicional."
+    },
+    {
+      "stage": "post",
+      "question": "Você troca o cronógrafo padrão do SD para DPM-Solver++ 2M Karras e reduz num_inference_steps de 50 para 20. Qual é o resultado esperado?",
+      "options": [
+        "Também tem de retratar o modelo.",
+        "Qualidade comparável em aproximadamente metade do tempo; DPM-Solver++ é um integrador ODE de segunda ordem que converge em menos passos do que DDIM para a mesma qualidade de amostra",
+        "Má qualidade e maior tempo de execução",
+        "Instabilidade numérica"
+      ],
+      "correct": 1,
+      "explanation": "Os agendadores são descoplados dos pesos do modelo. DPM-Solver++ é um solvente de ordem superior que atinge a qualidade DDIM-50 em cerca de 20 passos. Zero reformulação necessária, e é o padrão de produção em 2026."
+    },
+    {
+      "stage": "post",
+      "question": "Por que é popular o ajuste fino do LoRA para a Diffusão Estavel em vez de ajuste fino completo?",
+      "options": [
+        "LoRA produz melhores imagens por padrão",
+        "LoRA mantém a base U-Net 860M congelada e inserir pequenas matrizes de decomposição de rango em camadas de atenção, de modo que um ajuste fino trens em minutos no hardware do consumidor, produz adaptadores de 10-50 MB, e pode ser trocado ou misturado à inferência",
+        "Os difusores exigem a LoRA",
+        "LoRA previne o excesso de encaixe inteiramente"
+      ],
+      "correct": 1,
+      "explanation": "O valor do LoRA é o custo de treinamento e distribuição. O ajuste fino do SD completo atualiza 860M + parâmetros e precisa de 20+ GB de VRAM. O LoRA atualiza ~ 1-10M parâmetros e se encaixa em 6-8 GB. O modelo base é inalterado, então o mesmo LoRA carrega em qualquer ponto de verificação compatível, e vários LoRAs podem ser combinados. O ecossistema da CivitAI é inteiramente LoRAs."
+    },
+    {
+      "stage": "post",
+      "question": "Gerencie o mesmo prompt com guidance_scale=15 e vê cores super saturadas e artefatos queimados.",
+      "options": [
+        "O CFG amplifica a direção condicional; além de um limiar de 9-12 a amplificação empurra previsões fora da variedade que o VAE pode decodificar limpo, produzindo artefatos visuais.",
+        "A semente está errada.",
+        "O modelo está quebrado.",
+        "A AEV precisa de reformulação"
+      ],
+      "correct": 0,
+      "explanation": "A fórmula do CFG é ilimitada: um nível superior move a previsão mais para além (eps_cond - eps_uncond). Depois de um ponto, você deixa a distribuição treinada e o decodificador VAE produz imagens super saturadas e posterizadas."
+    }
+  ]
+}

@@ -1,0 +1,64 @@
+{
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "Para um produto de pesquisa visual onde as consultas são textos e os itens da galeria são imagens, qual espinha dorsal escolhe primeiro?",
+      "options": [
+        "Um modelo CLIP ou SigLIP  eles aprendem um espaço de texto compartilhado-imagem incorporando assim a semelhança cosina entre consulta de texto e galeria de imagens é significativa fora da caixa",
+        "Um ResNet-50 supervisionado",
+        "Descrição manual de ORB",
+        "Um modelo DINOv2 auto-supervisionado"
+      ],
+      "correct": 0,
+      "explanation": "A recuperação com consultas de texto requer embutidos onde texto e imagem acabam no mesmo espaço. CLIP / SigLIP treina exatamente isso com a perda contrastiva na lição 18."
+    },
+    {
+      "stage": "pre",
+      "question": "O que significa \"minagem semi-dura\" no treino de perda de triplet?",
+      "options": [
+        "Para cada âncora, selecione um negativo que esteja mais longe do que o positivo, mas ainda dentro da margem; os negativos fáceis não contribuem com gradiente e os negativos mais duros podem desestabilizar o treinamento, então semi-duro é o ponto doce",
+        "Mineração de criptomoedas para exemplos de treinamento",
+        "Usando apenas os negativos mais difíceis possíveis",
+        "Escolhendo tríplices aleatórios"
+      ],
+      "correct": 0,
+      "explanation": "O gradiente de perda de triplet é não zero apenas quando d(a, n) < d(a, p) + margem. Negativos fáceis (já longe) dão gradiente zero. Negativos mais difíceis podem colapsar treinamento. Semi-duro  d(a, p) < d(a, n) < d(a, p) + margem  é onde a perda é informativa sem ser instável. FaceNet introduziu esta receita em 2015 e ainda é o padrão para a tonificação fina de triplet."
+    },
+    {
+      "stage": "post",
+      "question": "O seu sistema de recuperação relata recall@10 = 0,95 mas recall@1 = 0,42.",
+      "options": [
+        "O modelo está em excesso.",
+        "Os dados estão a vazarem da galeria para as consultas",
+        "A avaliação está quebrada.",
+        "O espaço de inserção tem a estrutura correta  os itens relevantes estão geralmente no top 10  mas classificar dentro do top 10 é ruidoso; um modelo de re-ranking (cross-encoder, segundo-estadiador) ou mais longo métrico-aprendizagem de ajuste fino irá corrigir recall@1 sem danificar recall@10"
+      ],
+      "correct": 3,
+      "explanation": "recall@K vs @1 diz onde a informação está. Um recall@10 alto com recall@1 baixo significa que a recuperação é aproximadamente correta, mas o modelo não está confiante em ordenar os primeiros poucos. Re-ranking  um modelo separado que pontua cada candidato top-K contra a consulta  é a correção de produção e é o que os motores de busca como Pinterest e Google Fotos usam."
+    },
+    {
+      "stage": "post",
+      "question": "A semelhança cosínica em embutimentos não normalizados não é semelhança cosínica.",
+      "options": [
+        "O matmul transbordou",
+        "Ele mistura direção com magnitude; cos(a, b) só é correto quando ambos os vetores são L2-normalizados. Em embutidos não normalizados, os itens de grande norma dominam independentemente da direção, desviando as fileiras em direção a vetores com grandes magnitudes",
+        "PyTorch cria um erro",
+        "Nada, está tudo bem."
+      ],
+      "correct": 1,
+      "explanation": "A normalização dá-lhe o produto interno, que se classifica por direção ponderada pela magnitude. Em embalagens neurais típicas, as magnitudes variam 2-3x entre as amostras, e isso sozinho domina a classificação. Sempre L2-normalise antes de calcular cosino ou antes de indexar no FAISS IndexFlatIP."
+    },
+    {
+      "stage": "post",
+      "question": "Entre a recuperação de nível de instância (encontrar este carro exato) e a recuperação de nível de categoria (encontrar carros), que requer ajuste fino de aprendizado métrico?",
+      "options": [
+        "Nível de instância. Embedings DINOv2 e CLIP fora do prato distinguem bem entre categorias, mas não entre instâncias visualmente semelhantes da mesma categoria. Um triplato ou sintonização fina contrasta em pares (same instância, instância diferente) aperta a embebedagem em torno de cada instância",
+        "Ambos requerem a mesma quantidade de ajuste fino",
+        "Nível de categoria",
+        "Nem um nem outro."
+      ],
+      "correct": 0,
+      "explanation": "A recuperação a nível de categoria é o que os modelos pré-treinados já fazem: gatos agrupam-se perto de gatos, cães perto de cães. Nível de instância  o mesmo carro, a mesma cara, o mesmo produto SKU  precisa de aprendizagem métrica porque duas instâncias do mesmo produto parecem muito semelhantes no espaço geral de incorporação. A ajuste fina com o triplet ou o InfoNCE em pares com marcação de instância reduz a distância intra-instância e aumenta a distância inter-instância."
+    }
+  ]
+}
