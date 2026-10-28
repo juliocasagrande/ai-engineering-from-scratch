@@ -1,6 +1,6 @@
 ---
 name: prompt-feature-engineer
-description: Systematic prompt for engineering features from raw tabular data
+description: Pronto sistemático para as características de engenharia a partir de dados gráficos brutos
 phase: 2
 lesson: 8
 ---

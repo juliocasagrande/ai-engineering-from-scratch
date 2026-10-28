@@ -1,6 +1,6 @@
 ---
 name: skill-naive-bayes-chooser
-description: Choose the right Naive Bayes variant for your classification task
+description: Escolha a variante Bayes Ingênua correta para a sua tarefa de classificação
 phase: 2
 lesson: 14
 ---
@@ -11,10 +11,10 @@ Quando alguém precisa escolher uma variante de Bayes ingênua, acompanha-o nest
 
 ### Passo 1: Quais são as suas características?
 
-- **Word counts or TF-IDF values**-> MultinômioNB
-- **Continuous measurements (temperature, height, sensor readings)**-> GaussianNB
-- **Binary indicators (word present/absent, checkbox states)**-> BernoulliNB
-- **Mixed types**-> Dividir em subconjuntos, ou converter todos em um tipo
+- **Word counts or TF-IDF values** -> MultinômioNB
+- **Continuous measurements (temperature, height, sensor readings)** -> GaussianNB
+- **Binary indicators (word present/absent, checkbox states)** -> BernoulliNB
+- **Mixed types** -> Dividir em subconjuntos, ou converter todos em um tipo
 
 ### Passo 2: Quantos dados tem?
 
@@ -37,10 +37,10 @@ Quando alguém precisa escolher uma variante de Bayes ingênua, acompanha-o nest
 
 ## Erros comuns
 
-1. **Using GaussianNB on text data.**As contagens de palavras não são gaussianas.
-2. **Forgetting Laplace smoothing.**Uma única palavra invisível elimina toda a probabilidade.
-3. **Trusting the probability outputs.**As probabilidades NB são mal calibradas. Use-as para classificação, não como pontuações de confiança.
-4. **Ignoring class imbalance.**NB, os antecedentes refletem as frequências de classe. Com 99% negativo e 1% positivo, o anterior supera a probabilidade. Ajustar os antecedentes manualmente ou reanalisar.
+1. **Using GaussianNB on text data.** As contagens de palavras não são gaussianas.
+2. **Forgetting Laplace smoothing.** Uma única palavra invisível elimina toda a probabilidade.
+3. **Trusting the probability outputs.** As probabilidades NB são mal calibradas. Use-as para classificação, não como pontuações de confiança.
+4. **Ignoring class imbalance.** NB, os antecedentes refletem as frequências de classe. Com 99% negativo e 1% positivo, o anterior supera a probabilidade. Ajustar os antecedentes manualmente ou reanalisar.
 
 ## Referência rápida
 

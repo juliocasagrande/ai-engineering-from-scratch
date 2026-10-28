@@ -1,6 +1,6 @@
 ---
 name: prompt-ml-pipeline
-description: Build, debug, and deploy reproducible ML pipelines
+description: Construir, depurar e implantar oleodutos ML reprodutíveis
 phase: 2
 lesson: 13
 ---

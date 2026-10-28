@@ -1,6 +1,6 @@
 ---
 name: skill-ensemble-builder
-description: Choose the right ensemble method and configure it for your problem
+description: Escolha o método de conjunto certo e configure-o para o seu problema
 version: 1.0.0
 phase: 2
 lesson: 11

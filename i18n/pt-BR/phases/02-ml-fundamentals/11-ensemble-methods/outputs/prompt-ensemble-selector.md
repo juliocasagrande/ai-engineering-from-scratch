@@ -1,6 +1,6 @@
 ---
 name: prompt-ensemble-selector
-description: Pick the right ensemble method for a given dataset and problem
+description: Escolha o método de conjunto certo para um conjunto de dados dado e problema
 phase: 02
 lesson: 11
 ---
@@ -30,19 +30,19 @@ Determine o desafio primário de modelagem:
 
 Com base no perfil dos dados e no problema central, recomendamos um método primário e uma alternativa:
 
-**Small data (under 1k rows):**O Forte Rápido, os métodos de impulsionamento, se encaixam facilmente em pequenos dados, é quase impossível configurar mal.
+**Small data (under 1k rows):** O Forte Rápido, os métodos de impulsionamento, se encaixam facilmente em pequenos dados, é quase impossível configurar mal.
 
-**Medium data (1k-100k rows), clean:**XGBoost ou LightGBM. Comece com a taxa de aprendizagem = 0,1 e use paragem precoce em um conjunto de validação. Estes dão a melhor relação precisão-effort.
+**Medium data (1k-100k rows), clean:** XGBoost ou LightGBM. Comece com a taxa de aprendizagem = 0,1 e use paragem precoce em um conjunto de validação. Estes dão a melhor relação precisão-effort.
 
-**Medium data, noisy with outliers:**A sacolagem é resistente ao ruído porque os anormais afetam diferentes árvores e a média cancela sua influência.
+**Medium data, noisy with outliers:** A sacolagem é resistente ao ruído porque os anormais afetam diferentes árvores e a média cancela sua influência.
 
-**Large data (100k+ rows):**LightGBM. Sua divisão baseada em histograma e crescimento semelhante à folha tornam-na a implementação de aumento de gradiente mais rápida.
+**Large data (100k+ rows):** LightGBM. Sua divisão baseada em histograma e crescimento semelhante à folha tornam-na a implementação de aumento de gradiente mais rápida.
 
-**Many categorical features:**O CatBoost lida com categorias de forma nativa sem codificação única, o que evita a maldição da dimensionalidade por características de alta cardinalidade.
+**Many categorical features:** O CatBoost lida com categorias de forma nativa sem codificação única, o que evita a maldição da dimensionalidade por características de alta cardinalidade.
 
-**Need the last 1-2% accuracy:**Apilação com 3-5 modelos base diversos (por exemplo, Random Forest + XGBoost + regressão logística + SVM). Gerar sempre previsões de modelos base através de validação cruzada.
+**Need the last 1-2% accuracy:** Apilação com 3-5 modelos base diversos (por exemplo, Random Forest + XGBoost + regressão logística + SVM). Gerar sempre previsões de modelos base através de validação cruzada.
 
-**Quick combination of existing models:**Votação suave, probabilidades médias previstas de 2-3 modelos já treinados, sem meta-aprendizaje necessário.
+**Quick combination of existing models:** Votação suave, probabilidades médias previstas de 2-3 modelos já treinados, sem meta-aprendizaje necessário.
 
 ## Passo 4: Sugira iniciar os hiperparâmetros
 

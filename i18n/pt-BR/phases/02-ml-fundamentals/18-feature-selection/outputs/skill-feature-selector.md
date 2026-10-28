@@ -1,6 +1,6 @@
 ---
 name: skill-feature-selector
-description: Quick reference decision tree for choosing the right feature selection method
+description: Árvore de decisão de referência rápida para escolher o método de seleção de recursos correto
 version: 1.0.0
 phase: 2
 lesson: 18
@@ -26,12 +26,12 @@ Isto leva segundos e pode eliminar 10-30% das características em conjuntos de d
 
 ### Árvore de decisão rápida
 
-1. **< 50 features?**Comece com a classificação de informações mútuas.
-2. **50 - 500 features?**Use primeiro o limiar de variância, em seguida, L1 (Lasso) se usar um modelo linear, ou a importância de árvore se usar árvores.
-3. **> 500 features?**Métodos de cadeia: limiar de variância -> filtro de informação mútua (top 50%) -> RFE sobre sobreviventes.
-4. **Need interpretability?**A regularização L1 dá-lhe zero exato/não zero.
-5. **Need to capture nonlinear relationships?**Informações mútuas ou importância baseada em árvores. Evite L1 (apenas linear).
-6. **Need feature interactions?**Os métodos de filtragem não têm interações.
+1. **< 50 features?** Comece com a classificação de informações mútuas.
+2. **50 - 500 features?** Use primeiro o limiar de variância, em seguida, L1 (Lasso) se usar um modelo linear, ou a importância de árvore se usar árvores.
+3. **> 500 features?** Métodos de cadeia: limiar de variância -> filtro de informação mútua (top 50%) -> RFE sobre sobreviventes.
+4. **Need interpretability?** A regularização L1 dá-lhe zero exato/não zero.
+5. **Need to capture nonlinear relationships?** Informações mútuas ou importância baseada em árvores. Evite L1 (apenas linear).
+6. **Need feature interactions?** Os métodos de filtragem não têm interações.
 
 ### Referência de método
 

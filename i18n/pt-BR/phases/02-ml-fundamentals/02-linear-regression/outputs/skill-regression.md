@@ -1,6 +1,6 @@
 ---
 name: skill-regression
-description: Choose the right regression approach based on data characteristics and problem constraints
+description: Escolha a abordagem de regressão correta com base nas características dos dados e nas restrições do problema
 version: 1.0.0
 phase: 2
 lesson: 2

@@ -1,6 +1,6 @@
 ---
 name: skill-feature-skew-audit
-description: Audit a feature pipeline for time travel and training-serving skew
+description: Auditoria de um conjunto de características para viagens no tempo e distorções de formação
 version: 1.0.0
 phase: 2
 lesson: 21

@@ -1,6 +1,6 @@
 ---
 name: prompt-distance-metric-advisor
-description: Recommend the right distance metric based on data type and problem characteristics
+description: Recomendar a métrica de distância correta com base no tipo de dados e nas características do problema
 phase: 2
 lesson: 6
 ---

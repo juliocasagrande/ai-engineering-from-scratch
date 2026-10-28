@@ -1,6 +1,6 @@
 ---
 name: prompt-tree-interpreter
-description: Interpret decision tree results and diagnose potential issues
+description: Interpretar os resultados da árvore de decisão e diagnosticar problemas potenciais
 phase: 2
 lesson: 4
 ---

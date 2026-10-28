@@ -1,6 +1,6 @@
 ---
 name: skill-drift-monitoring
-description: Plan drift monitors for a deployed model and triage a drift alert
+description: Planejar monitores de deriva para um modelo implantado e triagem de alerta de deriva
 version: 1.0.0
 phase: 2
 lesson: 20
@@ -76,7 +76,7 @@ Verifique estes primeiro, porque parecem deslocar-se:
 
 ### Passo 3: Verifique o tamanho do efeito
 
-Um pequeno p-valor com uma janela grande diz pouco.`D`, ou V de Cramér, e a mudança na métrica de resultado.
+Um pequeno p-valor com uma janela grande diz pouco. `D`, ou V de Cramér, e a mudança na métrica de resultado.
 
 ### Passo 4: Escreva a nota de triagem
 

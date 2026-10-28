@@ -1,6 +1,6 @@
 ---
 name: prompt-model-diagnostics
-description: Diagnose model performance issues using train/test metrics and learning curves
+description: Diagnóstico de problemas de desempenho do modelo utilizando métricas de treinamento/teste e curvas de aprendizagem
 phase: 2
 lesson: 10
 ---

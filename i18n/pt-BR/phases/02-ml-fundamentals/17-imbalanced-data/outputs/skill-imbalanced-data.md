@@ -1,6 +1,6 @@
 ---
 name: skill-imbalanced-data
-description: Decision checklist for handling imbalanced classification problems
+description: Lista de verificação das decisões para lidar com problemas de classificação desequilibrados
 version: 1.0.0
 phase: 2
 lesson: 17

@@ -1,6 +1,6 @@
 ---
 name: prompt-tuning-strategy
-description: Recommend a hyperparameter tuning strategy based on model type, data size, and compute budget
+description: Recomendar uma estratégia de sintonização de hiperparâmetros com base no tipo de modelo, no tamanho dos dados e no orçamento de cálculo
 phase: 2
 lesson: 12
 ---
@@ -101,12 +101,12 @@ Regra geral: com a pesquisa aleatória, os testes 10 * (número de hiperparâmet
 
 ## Passo 5: Recomenda o fluxo de trabalho
 
-1. **Start with library defaults.**Trem uma vez, grava a linha de base.
-2. **Coarse search.**Largas faixas, 20 a 50 testes com busca aleatória.
-3. **Analyze.**Quais os hiperparâmetros correlacionaram com um bom desempenho?
-4. **Fine search.**Optimização Bayesiana no espaço estreito, 50 a 100 testes.
-5. **Retrain.**Tome os melhores hiperparametros, retrain no conjunto de treinamento completo.
-6. **Evaluate.**Teste no conjunto de testes de duração exatamente uma vez.
+1. **Start with library defaults.** Trem uma vez, grava a linha de base.
+2. **Coarse search.** Largas faixas, 20 a 50 testes com busca aleatória.
+3. **Analyze.** Quais os hiperparâmetros correlacionaram com um bom desempenho?
+4. **Fine search.** Optimização Bayesiana no espaço estreito, 50 a 100 testes.
+5. **Retrain.** Tome os melhores hiperparametros, retrain no conjunto de treinamento completo.
+6. **Evaluate.** Teste no conjunto de testes de duração exatamente uma vez.
 
 ## Formatos de saída
 

@@ -1,6 +1,6 @@
 ---
 name: skill-classification-baseline
-description: Establish a strong classification baseline before reaching for complex models
+description: Estabelecer uma base de classificação sólida antes de chegar a modelos complexos
 version: 1.0.0
 phase: 2
 lesson: 3
@@ -24,7 +24,7 @@ Antes de tentar modelos complexos, estabeleça uma linha de base com regressão 
 
 3. O conjunto de dados está desequilibrado?
    - Ratio abaixo de 5:1: provavelmente bem sem ajuste
-   - 5:1 a 50:1: uso `class_weight="balanced"`em sklearn
+   - 5:1 a 50:1: utilização `class_weight="balanced"` em sklearn
    - Mais de 50:1: combinar a ponderação da classe com métricas adequadas (precisão, retirada ou F1)
 
 4. Há características em escalas diferentes?
@@ -53,11 +53,11 @@ Antes de tentar modelos complexos, estabeleça uma linha de base com regressão 
 
 ## Passo de pré-processamento para uma linha de base de classificação
 
-1. **Train/test split**Primeiro, antes de qualquer pré-processamento. Isto evita vazamento de dados.
+1. **Train/test split** Primeiro, antes de qualquer pré-processamento. Isto evita vazamento de dados.
 2. **Handle missing values**A mediana é numérica, a moda é categórica.
 3. **Encode categoricals**A codificação de alvos só se aplica em rolos de treinamento (utilizar a codificação fora de rolos para evitar vazamentos).
 4. **Scale numerics**- StandardScaler (média zero, variação unitária).
-5. **Fit logistic regression**com`C=1.0`(regularização por defeito).
+5. **Fit logistic regression** com `C=1.0` (regularização por defeito).
 6. **Evaluate**Matriz de confusão, precisão, recall, F1.
 7. **Tune threshold**A definição de um valor de 0,5 é raramente ideal.
 

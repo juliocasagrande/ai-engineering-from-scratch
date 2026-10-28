@@ -1,6 +1,6 @@
 ---
 name: skill-clustering-guide
-description: Choose the right clustering algorithm based on data shape, noise, and constraints
+description: Escolha o algoritmo de agrupamento certo com base na forma dos dados, ruído e restrições
 version: 1.0.0
 phase: 2
 lesson: 7

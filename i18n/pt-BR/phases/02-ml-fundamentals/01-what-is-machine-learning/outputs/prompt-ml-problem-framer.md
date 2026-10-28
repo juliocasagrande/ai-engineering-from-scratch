@@ -1,6 +1,6 @@
 ---
 name: prompt-ml-problem-framer
-description: Frame a real-world business problem as a machine learning task
+description: Enfrente um problema de negócios real como uma tarefa de aprendizado de máquina
 phase: 2
 lesson: 1
 ---

@@ -1,6 +1,6 @@
 ---
 name: prompt-time-series-advisor
-description: Frame time series problems and recommend approaches
+description: Problemas de cadeia de horários e abordagens recomendadas
 phase: 2
 lesson: 15
 ---
@@ -11,22 +11,22 @@ Quando alguém descreve um problema de previsão que envolve dados temporais, aj
 
 Pergunte-se estas perguntas:
 
-1. **What is the target?**Um único valor numérico (regressão) ou uma categoria (classificação)?
-2. **What is the forecast horizon?**Na próxima hora, no dia seguinte, no mês seguinte, no ano seguinte?
-3. **How many time series?**Um (univariado), poucos (multivariados), ou milhares (multicerícias)?
-4. **Are there external features?**Férias, promoções, tempo, indicadores econômicos?
-5. **What is the frequency?**Por minuto, por hora, diariamente, semanalmente, mensalmente?
-6. **How much history?**meses, anos, décadas?
+1. **What is the target?** Um único valor numérico (regressão) ou uma categoria (classificação)?
+2. **What is the forecast horizon?** Na próxima hora, no dia seguinte, no mês seguinte, no ano seguinte?
+3. **How many time series?** Um (univariado), poucos (multivariados), ou milhares (multicerícias)?
+4. **Are there external features?** Férias, promoções, tempo, indicadores econômicos?
+5. **What is the frequency?** Por minuto, por hora, diariamente, semanalmente, mensalmente?
+6. **How much history?** meses, anos, décadas?
 
 ## Passo 2: Verifique se há armadilhas comuns
 
 Antes de recomendar um modelo, verifique:
 
-- **No random train/test split.**As séries temporais devem usar divisões cronológicas.
-- **No future features.**Se um recurso não estiver disponível no momento da previsão, não pode ser usado.
-- **Stationarity check.**Se a média ou a variância se deslocarem ao longo do tempo, diferir a série ou utilizar um modelo que trate a não estacionalidade (modelos baseados em árvores ou ARIMA com d > 0).
-- **Seasonality identification.**Verifique o ACF para ver se há picos em intervalos regulares.
-- **Scale of target.**Os erros percentuais (MAPE) são mais importantes para as métricas de negócios.
+- **No random train/test split.** As séries temporais devem usar divisões cronológicas.
+- **No future features.** Se um recurso não estiver disponível no momento da previsão, não pode ser usado.
+- **Stationarity check.** Se a média ou a variância se deslocarem ao longo do tempo, diferir a série ou utilizar um modelo que trate a não estacionalidade (modelos baseados em árvores ou ARIMA com d > 0).
+- **Seasonality identification.** Verifique o ACF para ver se há picos em intervalos regulares.
+- **Scale of target.** Os erros percentuais (MAPE) são mais importantes para as métricas de negócios.
 
 ## Passo 3: Recomenda uma abordagem
 
@@ -55,10 +55,10 @@ Para as abordagens baseadas em características de atraso:
 Sempre utilizar a validação cruzada de caminhada para a frente (janela de expansão ou deslizante).
 
 Metricas a relatar:
-- **MAE**(Erro absoluto médio) -- interpretável em unidades originais
-- **MAPE**(Erro Percental Absoluto Médio) -- relativo, comparável em escala
-- **RMSE**(Erro de raiz média quadrado) -- penaliza erros grandes mais
-- **Baseline comparison**- sempre comparar com a média móvel sazonal ingênua e simples
+- **MAE** (Erro absoluto médio) -- interpretável em unidades originais
+- **MAPE** (Erro Percental Absoluto Médio) -- relativo, comparável em escala
+- **RMSE** (Erro de raiz média quadrado) -- penaliza erros grandes mais
+- **Baseline comparison** - sempre comparar com a média móvel sazonal ingênua e simples
 
 Bandeiras vermelhas nos resultados:
 - O modelo é pior do que a linha de base ingênua: vazamento de características ou avaliação errada

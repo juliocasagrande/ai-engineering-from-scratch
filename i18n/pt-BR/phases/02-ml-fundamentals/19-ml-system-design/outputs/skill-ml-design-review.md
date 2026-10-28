@@ -1,6 +1,6 @@
 ---
 name: skill-ml-design-review
-description: Review an ML system design document before training starts, blocking gaps first
+description: Revisar um documento de projeto do sistema ML antes do início da formação, bloqueando primeiro as lacunas
 version: 1.0.0
 phase: 2
 lesson: 19
@@ -15,12 +15,12 @@ Use essa habilidade quando alguém compartilhar um documento de projeto, uma pro
 
 Pare a revisão e peça uma correcção quando algum destes itens estiver faltando:
 
-1. **Decision.**O documento nomeia a ação que usa cada previsão e quem ou o que a leva.
-2. **Business metric.**O documento indica o resultado da empresa que a decisão deve mudar e como um experimento a mede.
-3. **Strong baseline.**O documento compara o modelo com uma regra heurística ou com o sistema atual.
-4. **No leakage.**O documento confirma que cada característica existe no momento da previsão.
-5. **Rollout and rollback.**O plano tem um estágio de sombra ou canário e um retorno que leva minutos.
-6. **Failure defaults.**Cada modo de falha tem uma ação padrão, como a regra heurística ou a última boa pontuação.
+1. **Decision.** O documento nomeia a ação que usa cada previsão e quem ou o que a leva.
+2. **Business metric.** O documento indica o resultado da empresa que a decisão deve mudar e como um experimento a mede.
+3. **Strong baseline.** O documento compara o modelo com uma regra heurística ou com o sistema atual.
+4. **No leakage.** O documento confirma que cada característica existe no momento da previsão.
+5. **Rollout and rollback.** O plano tem um estágio de sombra ou canário e um retorno que leva minutos.
+6. **Failure defaults.** Cada modo de falha tem uma ação padrão, como a regra heurística ou a última boa pontuação.
 
 ## Passo 2: Verifique o enquadramento do problema
 
@@ -81,4 +81,4 @@ Serving check: <batch $/day, online $/day, chosen mode, pass or fail>
 Questions: <at most five questions for the author>
 ```
 
-Para obter uma versão JSON do documento, execute `python3 code/main.py path/to/design_doc.json`da pasta das lições.
+Para marcar uma versão JSON do documento, execute `python3 code/main.py path/to/design_doc.json` da pasta das lições.

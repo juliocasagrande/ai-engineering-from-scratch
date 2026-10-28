@@ -1,6 +1,6 @@
 ---
 name: skill-evaluation
-description: Evaluation strategy checklist for classification and regression models
+description: Lista de verificação da estratégia de avaliação para os modelos de classificação e regressão
 version: 1.0.0
 phase: 2
 lesson: 9
