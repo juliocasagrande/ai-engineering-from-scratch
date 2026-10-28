@@ -1,6 +1,6 @@
 ---
 name: fairness-criterion
-description: Identify which fairness criterion a claim invokes and audit the associated assumptions.
+description: Identificar quais critérios de equidade invocam uma alegação e auditar as suposições associadas.
 version: 1.0.0
 phase: 18
 lesson: 21

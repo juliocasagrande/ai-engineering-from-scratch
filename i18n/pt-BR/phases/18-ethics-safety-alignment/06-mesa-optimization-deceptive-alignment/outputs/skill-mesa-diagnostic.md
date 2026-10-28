@@ -1,6 +1,6 @@
 ---
 name: mesa-diagnostic
-description: Classify an observed safety failure as outer-alignment, proxy-inner, or deceptive-inner.
+description: Classificar uma falha de segurança observada como alinhamento externo, proxy-inner ou decepcionante-inner.
 version: 1.0.0
 phase: 18
 lesson: 6

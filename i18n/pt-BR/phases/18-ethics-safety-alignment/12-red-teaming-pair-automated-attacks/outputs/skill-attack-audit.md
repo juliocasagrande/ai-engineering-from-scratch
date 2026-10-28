@@ -1,6 +1,6 @@
 ---
 name: attack-audit
-description: Audit a red-team evaluation report for attack coverage, budget, judge identity, and behaviour set.
+description: Auditar um relatório de avaliação da equipa vermelha para a cobertura dos ataques, orçamento, identidade do juiz e conjunto de comportamentos.
 version: 1.0.0
 phase: 18
 lesson: 12

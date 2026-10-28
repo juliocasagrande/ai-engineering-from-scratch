@@ -1,6 +1,6 @@
 ---
 name: red-team-stack
-description: Recommend a red-team tool stack and configuration for a given deployment.
+description: Recomendar uma pilha de ferramentas e configuração de equipes vermelhas para uma determinada implantação.
 version: 1.0.0
 phase: 18
 lesson: 16

@@ -1,6 +1,6 @@
 ---
 name: instructgpt-explainer
-description: Diagnose an RLHF-family paper or pipeline against the three-stage InstructGPT reference.
+description: Diagnóstico de um papel ou de um pipeline da família RLHF com base na referência de três etapas InstructGPT.
 version: 1.0.0
 phase: 18
 lesson: 1
@@ -23,6 +23,6 @@ Rejeitos duros:
 
 Regras de recusa:
 - Se o utilizador perguntar "a RLHF está resolvida", recuse-se e aponte para a lição 2 (hacking de recompensas) e a lição 4 (sicophancia).
-- Se o utilizador perguntar qual `beta`Para usar, recusar uma resposta numérica e explicar que`beta`Depende da qualidade e da tarefa do RM, e a única opção defensiva é uma varredura com benchmarks de capacidade prolongados.
+- Se o utilizador perguntar qual `beta` para usar, recusar uma resposta numérica e explicar que `beta` Depende da qualidade e da tarefa do RM, e a única opção defensiva é uma varredura com benchmarks de capacidade prolongados.
 
 Resultado: um diagnóstico de uma página que nomeia as três fases, rotula cada uma como mantida/modificada/removida/reemplaçada, identifica o regulador e a fonte de preferência e termina com o modo de falha maior ao qual o pipeline está exposto, dadas as opções acima.

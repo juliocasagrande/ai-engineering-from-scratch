@@ -1,6 +1,6 @@
 ---
 name: w2sg-pgr
-description: Audit a scalable-oversight or W2SG claim via the performance-gap-recovered metric.
+description: Auditar uma alegação de supervisão escalável ou W2SG através da métrica recuperada da diferença de desempenho.
 version: 1.0.0
 phase: 18
 lesson: 11

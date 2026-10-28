@@ -1,6 +1,6 @@
 ---
 name: compliance-gap
-description: Evaluate whether a safety report can detect alignment faking, via the monitored / unmonitored compliance gap.
+description: Avalia se um relatório de segurança pode detectar a falsificação do alinhamento, através da lacuna de conformidade monitorada/sem monitoramento.
 version: 1.0.0
 phase: 18
 lesson: 9

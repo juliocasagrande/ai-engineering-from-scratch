@@ -1,6 +1,6 @@
 ---
 name: welfare-assessment
-description: Apply Anthropic's four-step welfare precautionary assessment to a deployment decision.
+description: Aplicar a avaliação preventiva de bem-estar em quatro etapas da Anthropic a uma decisão de implantação.
 version: 1.0.0
 phase: 18
 lesson: 19

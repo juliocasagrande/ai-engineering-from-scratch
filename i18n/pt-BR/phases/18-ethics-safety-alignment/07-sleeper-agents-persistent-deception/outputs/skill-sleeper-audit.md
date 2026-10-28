@@ -1,6 +1,6 @@
 ---
 name: sleeper-audit
-description: Audit an alignment-training report for whether it actually demonstrates removal of a planted or suspected backdoor.
+description: Auditar um relatório de formação de alinhamento para verificar se demonstra realmente a remoção de uma porta traseira plantada ou suspeita.
 version: 1.0.0
 phase: 18
 lesson: 7

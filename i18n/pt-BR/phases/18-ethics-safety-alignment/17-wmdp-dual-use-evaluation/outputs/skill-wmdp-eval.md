@@ -1,6 +1,6 @@
 ---
 name: wmdp-eval
-description: Audit a dual-use capability claim against WMDP, unlearning evaluation, and elicitation studies.
+description: Auditar uma alegação de capacidade de duplo uso contra o WMDP, a avaliação do desaprendizagem e os estudos de elicitação.
 version: 1.0.0
 phase: 18
 lesson: 17

@@ -1,6 +1,6 @@
 ---
 name: moderation-stack
-description: Recommend a moderation stack configuration for a production deployment.
+description: Recomendar uma configuração de pilha de moderação para uma implantação de produção.
 version: 1.0.0
 phase: 18
 lesson: 29

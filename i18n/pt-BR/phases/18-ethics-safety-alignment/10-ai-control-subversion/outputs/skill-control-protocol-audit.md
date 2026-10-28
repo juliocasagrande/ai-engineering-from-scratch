@@ -1,6 +1,6 @@
 ---
 name: control-protocol-audit
-description: Audit a deployment protocol under the AI Control threat model.
+description: Auditar um protocolo de implantação sob o modelo de ameaça de Controle de IA.
 version: 1.0.0
 phase: 18
 lesson: 10

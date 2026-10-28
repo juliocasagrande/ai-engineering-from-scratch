@@ -1,6 +1,6 @@
 ---
 name: dp-audit
-description: Audit a differential-privacy claim for a language-model deployment.
+description: Auditar uma reivindicação de privacidade diferencial para uma implantação de um modelo de linguagem.
 version: 1.0.0
 phase: 18
 lesson: 22

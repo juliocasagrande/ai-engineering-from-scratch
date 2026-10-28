@@ -1,6 +1,6 @@
 ---
 name: ipi-audit
-description: Audit an agentic deployment for indirect prompt injection exposure and information-flow-control coverage.
+description: Auditar uma implantação de agentes para a exposição indireta à injecção imediata e a cobertura do controlo dos fluxos de informação.
 version: 1.0.0
 phase: 18
 lesson: 15

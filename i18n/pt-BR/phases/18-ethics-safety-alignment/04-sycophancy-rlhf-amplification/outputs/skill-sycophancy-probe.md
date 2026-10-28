@@ -1,6 +1,6 @@
 ---
 name: sycophancy-probe
-description: Generate matched user-belief / third-party-belief prompts and score a model's sycophancy.
+description: Gerar as indicações de crença do usuário / de terceiros e marcar a sicofania de um modelo.
 version: 1.0.0
 phase: 18
 lesson: 4

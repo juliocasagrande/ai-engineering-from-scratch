@@ -1,6 +1,6 @@
 ---
 name: card-audit
-description: Audit a model card, datasheet, or system card for completeness and verifiability.
+description: Auditar um modelo de cartão, um folheto de dados ou um cartão de sistema para verificar a sua integridade e verificabilidade.
 version: 1.0.0
 phase: 18
 lesson: 26

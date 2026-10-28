@@ -1,6 +1,6 @@
 ---
 name: dual-use-triage
-description: Triage a capability claim or incident report across the four CBRN domains.
+description: Triagem de uma reivindicação de capacidade ou de um relatório de incidente nos quatro domínios CBRN.
 version: 1.0.0
 phase: 18
 lesson: 30

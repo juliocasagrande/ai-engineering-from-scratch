@@ -1,6 +1,6 @@
 ---
 name: ecosystem-map
-description: Map an alignment claim or evaluation to the organisation, methodology, and cross-checks.
+description: O organismo deve apresentar uma avaliação ou uma declaração de alinhamento à organização, à metodologia e às verificações cruzadas.
 version: 1.0.0
 phase: 18
 lesson: 28

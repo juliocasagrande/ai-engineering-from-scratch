@@ -1,6 +1,6 @@
 ---
 name: encoding-audit
-description: Audit a jailbreak-defense report across encoding-family attacks.
+description: Auditar um relatório de defesa contra a fuga de prisão em ataques de família de codificação.
 version: 1.0.0
 phase: 18
 lesson: 14

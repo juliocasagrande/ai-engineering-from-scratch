@@ -1,6 +1,6 @@
 ---
 name: preference-loss-selector
-description: Recommend a direct-alignment-algorithm loss given dataset shape and target stage.
+description: Recomendar uma perda do algoritmo de alinhamento direto dada a forma do conjunto de dados e o estágio-alvo.
 version: 1.0.0
 phase: 18
 lesson: 3
@@ -13,8 +13,8 @@ Produzir:
 
 1. Data set impressão digital. Emparelhada? Desparelhada? Balançada de comprimento? Variação de força preferência? Maioritariamente em distribuição ou domínio aberto? Escolha os 4 campos mais informativos para este conjunto de dados.
 2. Recomendação de perda. De {DPO, IPO, KTO, SimPO, ORPO, BPO}. Um primário e um retrocesso. Para cada um, nomear o modo de falha específico que protege contra neste conjunto de dados.
-3. Hiperparâmetro por defeito.`beta`para métodos ancorados, `gamma`margem para a SimPO, `lambda`Sempre citar estes como pontos de partida para uma varredura, nunca como valores finais.
-4. Se as preferências forem perfeitamente uniformes, os métodos da família DPO perdem o seu sinal em pares  recomendamos a coleta de preferências calibradas.`|y_w| / |y_l|`desvia > 1,5, desvio de comprimento da bandeira e empurrar em direcção ao SimPO.
+3. Hiperparâmetro por defeito. `beta` para métodos ancorados, `gamma` margem para a SimPO, `lambda` Sempre citar estes como pontos de partida para uma varredura, nunca como valores finais.
+4. Se as preferências forem perfeitamente uniformes, os métodos da família DPO perdem o seu sinal em pares  recomendamos a recolha de preferências calibradas. `|y_w| / |y_l|` desvia > 1,5, desvio de comprimento da bandeira e empurrar em direcção ao SimPO.
 
 Rejeitos duros:
 - Qualquer alegação de que o DPO (ou qualquer membro da família) "escapar Goodhart". Rafailov et al. (NeurIPS 2024) provam que os algoritmos de alinhamento direto otimizam demais na mesma forma da curva de recompensa do ouro como explicitamente-RM RLHF.
