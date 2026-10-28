@@ -1,0 +1,67 @@
+[
+  {
+    "id": "unsupervised-pre-1",
+    "stage": "pre",
+    "question": "O que diferencia a aprendizagem não supervisionada da aprendizagem supervisionada?",
+    "options": [
+      "A aprendizagem não supervisionada não tem resultados rotulados. O algoritmo encontra estrutura por si só.",
+      "Aprender sem supervisão sempre produz melhores resultados",
+      "Aprendizagem não supervisionada utiliza mais dados",
+      "Aprendizagem não supervisionada só funciona com dados de texto"
+    ],
+    "correct": 0,
+    "explanation": "No aprendizado não supervisionado, não há rótulos. O algoritmo descobre padrões, agrupamentos ou estrutura nos dados sem ser dito qual deve ser a saída correta."
+  },
+  {
+    "id": "unsupervised-pre-2",
+    "stage": "pre",
+    "question": "O que é que a K-Means exige que especifique antes do treino?",
+    "options": [
+      "Número de aglomerados K",
+      "Os centros exatos do aglomerado",
+      "A métrica de distância a utilizar",
+      "As etiquetas de cada ponto de dados"
+    ],
+    "correct": 0,
+    "explanation": "K-Means requer o número de aglomerados K como entrada. Ele então atribui pontos iterativamente ao centroide mais próximo e recalcula os centroides até a convergência."
+  },
+  {
+    "id": "unsupervised-post-1",
+    "stage": "post",
+    "question": "O K-Means falha em duas formas de meia lua interligadas, mas o DBSCAN é bem-sucedido.",
+    "options": [
+      "DBSCAN sempre supera K-Means em todos os conjuntos de dados",
+      "DBSCAN utiliza mais dados do que K-Means",
+      "O DBSCAN encontra aglomerados com base na densidade, de modo que pode descobrir formas arbitrárias, enquanto o K-Means assume aglomerados esféricos",
+      "K-Means não pode lidar com dados 2D"
+    ],
+    "correct": 2,
+    "explanation": "O K-Means atribui pontos ao centroide mais próximo, produzindo aglomerados esféricos (convexos)."
+  },
+  {
+    "id": "unsupervised-post-2",
+    "stage": "post",
+    "question": "Qual é a pontuação da silhueta?",
+    "options": [
+      "Número total de aglomerados encontrados",
+      "Quão similar é cada ponto ao seu próprio aglomerado em comparação com o outro aglomerado mais próximo",
+      "A velocidade do algoritmo de agrupamento",
+      "A percentagem de valores anormais nos dados"
+    ],
+    "correct": 1,
+    "explanation": "A pontuação da silueta = (b - a) / max(a, b), onde a é a média da distância intra-cluster e b é a média da distância do cluster mais próximo."
+  },
+  {
+    "id": "unsupervised-post-3",
+    "stage": "post",
+    "question": "Como um Modelo de Mistura Gaussiana difere de K-Means em suas atribuições de cluster?",
+    "options": [
+      "GMM usa atribuições duras onde cada ponto pertence a exatamente um cluster",
+      "O GMM dá atribuições moles (probabilisticas) onde cada ponto tem uma probabilidade de pertencer a cada aglomerado",
+      "A GMM só funciona com dados unidimensionáveis",
+      "O GMM não utiliza centróides em absoluto"
+    ],
+    "correct": 1,
+    "explanation": "K-Means atribui cada ponto a exatamente um aglomerado (duro). GMM calcula a probabilidade de que cada ponto pertença a cada componente gaussiano (suave), e pode modelar aglomerados elípticos e sobrepostos."
+  }
+]

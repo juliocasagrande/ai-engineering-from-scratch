@@ -1,0 +1,67 @@
+[
+  {
+    "id": "ensemble-pre-1",
+    "stage": "pre",
+    "question": "Por que combinar vários classificadores fracos num conjunto melhora a precisão?",
+    "options": [
+      "Classificadores fracos são sempre mais rápidos do que classificadores fortes",
+      "Cada classificador fraco memoriza uma parte diferente do conjunto de ensaio",
+      "Os conjuntos usam sempre mais dados de formação do que os modelos individuais",
+      "Se os classificadores cometerem erros diferentes, a maioria dos votos cancelará os erros individuais"
+    ],
+    "correct": 3,
+    "explanation": "A chave é a diversidade. Se os classificadores cometem erros independentes, a maioria dos votos significa que uma resposta errada deve enganar mais da metade dos modelos."
+  },
+  {
+    "id": "ensemble-pre-2",
+    "stage": "pre",
+    "question": "Qual é a principal diferença entre emagrecer e impulsionar?",
+    "options": [
+      "O embalagem requer dados rotulados; a promoção de trabalhos não supervisionados",
+      "Emagrecer modelos de trens em paralelo em subconjuntos aleatórios; aumentar os modelos de trens de forma sequencial, com foco em erros anteriores",
+      "O empilhadeiro reduz o viés; o reforço reduz a variância",
+      "O saco usa redes neurais profundas; o impulsionamento usa árvores de decisão"
+    ],
+    "correct": 1,
+    "explanation": "O Bagging trains modela independentemente em amostras de arranque (paralelamente, reduz a variância)."
+  },
+  {
+    "id": "ensemble-post-1",
+    "stage": "post",
+    "question": "No AdaBoost, o que acontece com o peso da amostra de um ponto de treinamento mal classificado após cada rodada?",
+    "options": [
+      "Aumenta, então o próximo aluno fraco concentra-se mais neste exemplo difícil",
+      "Ele diminui, então o próximo aluno ignora-o",
+      "Fica igual .",
+      "É removido do conjunto de formação"
+    ],
+    "correct": 0,
+    "explanation": "O AdaBoost aumenta o peso das amostras mal classificadas após cada rodada. Isto obriga o próximo aprendiz fraco a prestar mais atenção aos exemplos que o conjunto está errado."
+  },
+  {
+    "id": "ensemble-post-2",
+    "stage": "post",
+    "question": "Uma floresta aleatória com 100 árvores tem a mesma precisão de teste que 200 árvores.",
+    "options": [
+      "Após árvores suficientes, as planícies de redução de variação e a adição de mais árvores proporcionam retornos diminuindo sem aumentar a sobreadaptação",
+      "500 árvores é o máximo permitido",
+      "As árvores são todas idênticas , então adicionar mais não tem efeito .",
+      "A floresta aleatória está mal adaptada e precisa de um algoritmo diferente"
+    ],
+    "correct": 0,
+    "explanation": "As florestas aleatórias não se encaixam com mais árvores (ao contrário do aumento). No entanto, os planaltos de redução de variação uma vez que as árvores diversas suficientes foram médias."
+  },
+  {
+    "id": "ensemble-post-3",
+    "stage": "post",
+    "question": "A intensificação gradual corresponde a cada nova árvore em que quantidade?",
+    "options": [
+      "As previsões da árvore anterior",
+      "Valores-alvo originais",
+      "Subconjuntos aleatórios de características",
+      "Os resíduos (errores) das previsões do conjunto atual"
+    ],
+    "correct": 3,
+    "explanation": "No aumento de gradiente, cada nova árvore é treinada para prever os resíduos (gradiente negativo da perda) do conjunto atual."
+  }
+]

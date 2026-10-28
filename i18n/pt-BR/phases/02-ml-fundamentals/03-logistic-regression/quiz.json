@@ -1,0 +1,67 @@
+[
+  {
+    "id": "logreg-pre-1",
+    "stage": "pre",
+    "question": "Qual é o alcance da saída da função sigmoide?",
+    "options": [
+      "0 a 1 (excluindo)",
+      "- 1 a 1",
+      "Infinito negativo para infinito positivo",
+      "0 a infinito positivo"
+    ],
+    "correct": 0,
+    "explanation": "A função sigmoide 1/(1+e^(-z)) produz valores estritamente entre 0 e 1, que podem ser interpretados como probabilidades."
+  },
+  {
+    "id": "logreg-pre-2",
+    "stage": "pre",
+    "question": "Por que a regressão logística é chamada de \"regressão\", mesmo que seja usada para classificação?",
+    "options": [
+      "Minimiza o erro médio quadrado como regressão linear",
+      "Previne valores contínuos que são então arredondados",
+      "O nome vem da função logística (sigmoide) que usa, não da análise de regressão",
+      "Foi originalmente concebido para regressão e mais tarde adaptado"
+    ],
+    "correct": 2,
+    "explanation": "O nome vem da função logística (sigmoide). Apesar do nome, a regressão logística é um algoritmo de classificação que produz probabilidades de classe."
+  },
+  {
+    "id": "logreg-post-1",
+    "stage": "post",
+    "question": "Por que é usada a entropia binária em vez da MSE para regressão logística?",
+    "options": [
+      "O MSE só pode ser utilizado com modelos lineares",
+      "A entropia cruzada só funciona quando o conjunto de dados está equilibrado",
+      "A entropia cruzada é mais rápida para calcular",
+      "O MSE com sigmoide cria uma superfície de custos não convexa com mínimos locais, enquanto a entropia cruzada é convexa"
+    ],
+    "correct": 3,
+    "explanation": "A MSE combinada com a ativação sigmoide cria uma superfície de custos não convexa com muitos mínimos locais."
+  },
+  {
+    "id": "logreg-post-2",
+    "stage": "post",
+    "question": "Um filtro de spam tem precisão = 0,95 e recall = 0,60.",
+    "options": [
+      "60% dos e-mails sinalizados são spam, e 95% de todo o spam é capturado",
+      "Quando marca um e-mail como spam, ele é correto 95% do tempo, mas só capta 60% do spam real",
+      "95% de todos os e-mails são classificados corretamente, e 60% do spam é capturado",
+      "O modelo é 95% preciso no conjunto de ensaio e 60% no conjunto de treinamento"
+    ],
+    "correct": 1,
+    "explanation": "Precisão = 0,95 significa que 95% dos e-mails previstos como spam são realmente spam (poucas falsas alertas). Recall = 0,60 significa que apenas 60% do spam real é capturado (40% desliza através)."
+  },
+  {
+    "id": "logreg-post-3",
+    "stage": "post",
+    "question": "Na regressão softmax para 4 classes, o que é verdade sobre as probabilidades de saída?",
+    "options": [
+      "Apenas as classes superiores a 2 recebem probabilidades não-zero",
+      "Os resultados são pontuações brutas, não probabilidades",
+      "As quatro probabilidades de saída somam a 1, e a classe com a maior probabilidade é a previsão",
+      "Cada classe obtém uma probabilidade independente entre 0 e 1"
+    ],
+    "correct": 2,
+    "explanation": "Softmax converte um vetor de pontuações brutas em probabilidades que somam a 1. A classe prevista é a com maior probabilidade."
+  }
+]

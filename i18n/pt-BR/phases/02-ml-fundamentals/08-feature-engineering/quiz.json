@@ -1,0 +1,67 @@
+[
+  {
+    "id": "feateng-pre-1",
+    "stage": "pre",
+    "question": "Por que a engenharia de recursos é muitas vezes mais impactante do que escolher um algoritmo mais sofisticado?",
+    "options": [
+      "Engenharia de recursos faz o código correr mais rápido",
+      "A engenharia de características elimina a necessidade de um conjunto de testes",
+      "Algoritmos sofisticados não podem processar dados brutos",
+      "As boas características expõem padrões para o modelo que os dados brutos escondem, tornando os modelos simples efetivos"
+    ],
+    "correct": 3,
+    "explanation": "A representação dos dados é mais importante do que o algoritmo. Uma característica bem projetada como o IMC (peso/altura^2) expõe diretamente o padrão relevante, tornando a regressão logística competitiva com conjuntos complexos."
+  },
+  {
+    "id": "feateng-pre-2",
+    "stage": "pre",
+    "question": "O que é codificação de um só?",
+    "options": [
+      "Substituição de cada categoria pela sua frequência no conjunto de dados",
+      "Criação de uma coluna binária por categoria, com exatamente uma coluna definida como 1 por linha",
+      "Codificação da variável-alvo como probabilidade",
+      "Converter todas as características em valores entre 0 e 1"
+    ],
+    "correct": 1,
+    "explanation": "A codificação de um único código cria uma coluna binária para cada categoria única. Para uma característica de cor com valores vermelho/azul/verde, produz três colunas: is_red, is_blue, is_green."
+  },
+  {
+    "id": "feateng-post-1",
+    "stage": "post",
+    "question": "Qual é o risco de vazamento de dados com a codificação alvo?",
+    "options": [
+      "Faz o modelo muito lento para treinar.",
+      "Substitui as categorias pelo valor-alvo médio, que pode filtrar informações do conjunto de ensaio, se não forem calculadas apenas com base em dados de formação",
+      "Só funciona com alvos binários .",
+      "Cria muitas características ."
+    ],
+    "correct": 1,
+    "explanation": "A codificação-alvo substitui cada categoria pela meta média para essa categoria. Se calculada no conjunto de dados completo (incluindo dados de ensaio), os rótulos de ensaio vazam-se para as características de treinamento, inflacionando as estimativas de desempenho."
+  },
+  {
+    "id": "feateng-post-2",
+    "stage": "post",
+    "question": "O TF-IDF pesa uma palavra pela sua frequência inversa do documento.",
+    "options": [
+      "Todas as palavras têm o mesmo peso, independentemente da frequência.",
+      "Palavras raras e distintas ganham mais peso, enquanto as comuns ganham menos peso",
+      "Apenas a palavra mais frequente em cada documento é mantida",
+      "Palavras comuns como \"o\" ganham peso porque aparecem com frequência"
+    ],
+    "correct": 1,
+    "explanation": "IDF = log(total de documentos / documentos contendo palavra). Palavras comuns (que aparecem em muitos documentos) ficam baixas IDF. Palavras raras e distintas ficam altas IDF, tornando-as mais influentes na representação."
+  },
+  {
+    "id": "feateng-post-3",
+    "stage": "post",
+    "question": "Tem duas características com correlação 0,98.",
+    "options": [
+      "Características altamente correlacionadas sempre causam o modelo para caír",
+      "São redundantes - ambas carregam quase a mesma informação, e manter ambas aumenta o risco de sobre-ajustar sem adicionar sinal",
+      "As características correlacionadas tornam os dados não estacionários",
+      "Correlação acima de 0,5 significa que as características estão medindo coisas diferentes"
+    ],
+    "correct": 1,
+    "explanation": "As características com r = 0,98 são quase redundantes. Manter ambas adiciona um duplicado barulhento que aumenta a dimensionalidade, o risco de sobre-ajustamento e a multicolinariedade sem fornecer novas informações sobre o alvo."
+  }
+]

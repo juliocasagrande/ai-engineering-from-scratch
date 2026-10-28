@@ -1,0 +1,67 @@
+[
+  {
+    "id": "knn-pre-1",
+    "stage": "pre",
+    "question": "A KNN é chamada de \"aprendiza preguiçoso\". O que significa isso?",
+    "options": [
+      "Converge lentamente durante o treinamento",
+      "Utiliza uma versão simplificada da função de perda",
+      "Não faz cálculos no tempo de treinamento e calcula tudo no tempo de previsão",
+      "Só funciona em pequenos conjuntos de dados"
+    ],
+    "correct": 2,
+    "explanation": "A aprendizagem preguiçosa significa que a KNN armazena os dados do treinamento e não trabalha durante o \"treinamento\"."
+  },
+  {
+    "id": "knn-pre-2",
+    "stage": "pre",
+    "question": "Por que a escalação de características é crítica para a KNN?",
+    "options": [
+      "A KNN não pode lidar com números negativos sem escalar",
+      "KNN utiliza descida de gradiente que requer entradas normalizadas",
+      "A escalagem de características reduz o número de vizinhos necessários",
+      "Os cálculos de distância são dominados por características com intervalos maiores, tornando necessária a escalação para comparações justas"
+    ],
+    "correct": 3,
+    "explanation": "A KNN depende de distâncias. Uma característica que varia de 0 a 1000 vai dominar uma característica que varia de 0 a 1 nos cálculos de distância."
+  },
+  {
+    "id": "knn-post-1",
+    "stage": "post",
+    "question": "Em 100 dimensões com pontos aleatórios uniformes, o que acontece com a relação de distância máxima a distância mínima?",
+    "options": [
+      "Aumente dramaticamente, tornando os vizinhos mais distintos",
+      "Aproxima-se a 1, fazendo todos os pontos quase equidistantes uns dos outros",
+      "Fica igual a 2 dimensões.",
+      "Torna-se negativo devido ao desbordamento numérico"
+    ],
+    "correct": 1,
+    "explanation": "Esta é a maldição da dimensionalidade. Em dimensões altas, as distâncias convergem: max_dist / min_dist aproxima 1. Quando todos os pontos são equidistantes, 'mais próximo' torna-se sem sentido."
+  },
+  {
+    "id": "knn-post-2",
+    "stage": "post",
+    "question": "Qual métrica de distância é mais adequada para a comparação de documentos de texto representados como vetores TF-IDF?",
+    "options": [
+      "Distância Chebyshev",
+      "Distância cosínica",
+      "Distância L2 (Euclídeo)",
+      "Distância L1 (Manhattan)"
+    ],
+    "correct": 1,
+    "explanation": "A distância cosínica mede o ângulo entre vetores, ignorando a magnitude. Para o texto, o comprimento do documento (magnitude) é ruído - direção capta significado. Cosínio supera consistentemente L1/L2 para o texto."
+  },
+  {
+    "id": "knn-post-3",
+    "stage": "post",
+    "question": "O que acontece com o limite de decisão KNN quando K aumenta de 1 para N (o tamanho completo do conjunto de dados)?",
+    "options": [
+      "A fronteira torna-se mais complexa e detalhada",
+      "O limite permanece o mesmo independentemente de K",
+      "A fronteira torna-se circular.",
+      "A fronteira se suaviza, eventualmente prevendo a classe majoritária para cada ponto"
+    ],
+    "correct": 3,
+    "explanation": "K=1 produz limites desviados que seguem cada ponto (overfitting). À medida que K aumenta, os limites se lisam. K=N significa que cada consulta considera todos os pontos, sempre prevendo a classe majoritária (bias máximo)."
+  }
+]

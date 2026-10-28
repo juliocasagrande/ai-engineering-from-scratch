@@ -1,0 +1,67 @@
+[
+  {
+    "id": "trees-pre-1",
+    "stage": "pre",
+    "question": "O que é a impureza de Gini num nó de árvore de decisão?",
+    "options": [
+      "Número total de amostras no nó",
+      "A probabilidade de classificação errada de uma amostra escolhida aleatoriamente dada a distribuição de classes nesse nó",
+      "A correlação entre as características",
+      "A profundidade do nó na árvore"
+    ],
+    "correct": 1,
+    "explanation": "A impureza de Gini = 1 - soma ((p_k^2). Medem a frequência com que uma amostra escolhida aleatoriamente seria mal classificada se rotulada de acordo com a distribuição de classes nesse nó."
+  },
+  {
+    "id": "trees-pre-2",
+    "stage": "pre",
+    "question": "Qual é a principal vantagem dos modelos baseados em árvores em relação às redes neurais para dados tabuleiros?",
+    "options": [
+      "Árvores treinam mais rápido com hardware GPU",
+      "As árvores são de tipo mista, requerem menos pré-processamento e são mais interpretáveis",
+      "As árvores podem processar imagens e texto de forma nativa",
+      "As árvores têm sempre um viés menor do que as redes neurais"
+    ],
+    "correct": 1,
+    "explanation": "As árvores lidam com características numéricas e categorias de forma nativa sem codificação, exigem um mínimo de pré-processamento e produzem regras interpretáveis."
+  },
+  {
+    "id": "trees-post-1",
+    "stage": "post",
+    "question": "Por que uma floresta aleatória usa amostragem de arranque e subconjuntos aleatórios de recursos em cada divisão?",
+    "options": [
+      "Reduzir a profundidade de árvores individuais",
+      "Para garantir que cada árvore veja todos os pontos de dados pelo menos uma vez",
+      "Acelerar a formação através da redução do tamanho dos conjuntos de dados",
+      "Para criar árvores diversas e descorreladas para que a média reduz a variância sem aumentar o viés"
+    ],
+    "correct": 3,
+    "explanation": "As duas fontes de aleatoriedade tornam as árvores diversas. Sem a aleatorização de características, todas as árvores se dividiriam na mesma característica dominante."
+  },
+  {
+    "id": "trees-post-2",
+    "stage": "post",
+    "question": "Um nó contém 8 cães e 2 gatos. Qual é a impureza de Gini?",
+    "options": [
+      "0,20",
+      "0,50",
+      "0,32",
+      "0,0"
+    ],
+    "correct": 2,
+    "explanation": "Gini = 1 - (0.8^2 + 0.2^2) = 1 - (0.64 + 0.04) = 0.32. O nó é principalmente cães, mas não puro, então Gini está entre 0 (puro) e 0.5 (máximo para binário)."
+  },
+  {
+    "id": "trees-post-3",
+    "stage": "post",
+    "question": "A importância do recurso MDI (Reduzimento Médio na Impuridade) é tendenciosa para que tipo de recurso?",
+    "options": [
+      "Características binárias com apenas dois valores",
+      "Características com baixa variação",
+      "Características de alta cardinalidade com muitos pontos de divisão possíveis",
+      "Características que estão fortemente correlacionadas com o alvo"
+    ],
+    "correct": 2,
+    "explanation": "O MDI é tendencioso em relação a características de alta cardinalidade porque oferecem mais pontos de divisão possíveis, dando-lhes mais chances de reduzir a impureza por sorte."
+  }
+]

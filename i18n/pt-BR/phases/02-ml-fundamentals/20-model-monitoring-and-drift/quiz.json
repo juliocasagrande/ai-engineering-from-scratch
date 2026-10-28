@@ -1,0 +1,78 @@
+{
+  "lesson": "20-model-monitoring-and-drift",
+  "title": "Modelos de monitorização na produção  Drift de dados e Drift de conceitos",
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "Um serviço modelo responde a cada solicitação com HTTP 200 e latência normal.",
+      "options": [
+        "Nada, porque um serviço saudável sempre retorna previsões corretas",
+        "Fugas de memória, porque as respostas HTTP 200 nunca atribuem memória nova",
+        "Previsões erradas, porque os dados se afastaram dos dados de treinamento",
+        "Queries lentas, porque um status HTTP 200 significa que a solicitação levou mais de um segundo"
+      ],
+      "correct": 2,
+      "explanation": "Os exames de saúde do sistema mostram que o serviço responde, não dizem nada sobre se as respostas ainda são corretas para os dados de hoje."
+    },
+    {
+      "stage": "check",
+      "question": "Os fraudadores mudam de tática, por isso as mesmas características de pagamento agora carregam um risco diferente de fraude.",
+      "options": [
+        "Drift covariado, porque P ((x) mudou",
+        "Drift anterior, porque P ((y) mudou sozinho",
+        "Não há deriva, porque as entradas parecem as mesmas",
+        "O conceito de deriva, porque o P  y  x) mudou"
+      ],
+      "correct": 3,
+      "explanation": "A distribuição de entrada pode permanecer a mesma enquanto a resposta correta para cada entrada muda."
+    },
+    {
+      "stage": "check",
+      "question": "Um dos 10 canos de referência-decílio contém 10% da referência e 30% da janela atual.",
+      "options": [
+        "Cerca de 1,10, o log natural da relação 0,30 / 0,10",
+        "Cerca de 0,66, três vezes a diferença de ações",
+        "Cerca de 0,22, que é (0,30 - 0,10) vezes ln(3)",
+        "Cerca de 0,20, a diferença entre as duas ações"
+      ],
+      "correct": 2,
+      "explanation": "Cada bin adiciona (parte atual menos compartilhamento de referência) vezes o log da sua relação. Aqui isso é 0,20 vezes 1,099, cerca de 0,22."
+    },
+    {
+      "stage": "check",
+      "question": "Um monitor de deriva verifica 50 características a cada hora em alfa 0.05, e nada mudou.",
+      "options": [
+        "Cerca de 2,5",
+        "Cerca de 60",
+        "Cerca de 1200",
+        "Nenhum, porque o alfa protege todos os testes."
+      ],
+      "correct": 1,
+      "explanation": "O monitor executa 50 vezes 24, ou 1200 testes por dia. Cada um tem uma taxa de alarme falso de 5%, por isso cerca de 60 disparos em dados inalterados."
+    },
+    {
+      "stage": "post",
+      "question": "Com um milhão de eventos em cada janela, o teste KS relata p = 2e-7 para um recurso, e D é 0,004.",
+      "options": [
+        "Marque-o no máximo como um aviso, porque o tamanho do efeito D é pequeno",
+        "Liga ao engenheiro de chamada, porque o valor p está muito abaixo do alfa",
+        "Re-treinar de uma vez, porque qualquer resultado significativo significa deriva conceitual",
+        "Ignore o KS e passe para PSI, porque o KS é inválido para janelas grandes"
+      ],
+      "correct": 0,
+      "explanation": "As grandes amostras tornam significativas pequenas lacunas. A política precisa de um limiar de tamanho do efeito em D, bem como um limiar de p-valor antes de alertar uma pessoa."
+    },
+    {
+      "stage": "post",
+      "question": "Os monitores de entrada permanecem silenciosos, mas a precisão nos eventos recém-etiquetados cai de 0,95 para 0,78.",
+      "options": [
+        "Ignora, porque os testes de entrada não encontraram nada de errado.",
+        "Baixar os limites de PSI até que os monitores de entrada também disparem",
+        "Reatrizamento dos dados originais de formação com mais épocas",
+        "Trata-o como um conceito de deriva e coleta rótulos recentes para retratar"
+      ],
+      "correct": 3,
+      "explanation": "Entradas estáveis com precisão decrescente apontam para uma mudança no P ((y ∈ x). Re-treinamento em etiquetas antigas ensina o velho conceito novamente, então as etiquetas recentes vêm em primeiro lugar."
+    }
+  ]
+}

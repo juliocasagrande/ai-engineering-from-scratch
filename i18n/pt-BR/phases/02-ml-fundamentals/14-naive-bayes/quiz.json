@@ -1,0 +1,67 @@
+[
+  {
+    "id": "nb-pre-1",
+    "stage": "pre",
+    "question": "Qual é a suposição \"ingênua\" em Naive Bayes?",
+    "options": [
+      "A probabilidade anterior de cada classe é igual",
+      "Todas as características são condicionalmente independentes, dada a etiqueta da classe",
+      "Os dados são normalmente distribuídos",
+      "O modelo não tem parâmetros para aprender"
+    ],
+    "correct": 1,
+    "explanation": "O navio Bayes assume que cada característica é independente de todas as outras características, condicionada à classe."
+  },
+  {
+    "id": "nb-pre-2",
+    "stage": "pre",
+    "question": "O que o suavização Laplace impede em Bayes Ingênuo?",
+    "options": [
+      "Nulas probabilidades de palavras nunca vistas em uma aula durante o treinamento",
+      "Desbalanço de classes no conjunto de dados",
+      "Formação lenta em dados de alta dimensão",
+      "Super-ajustamento a grandes conjuntos de dados"
+    ],
+    "correct": 0,
+    "explanation": "Sem suavizagem, uma palavra que nunca apareceu em e-mails de treinamento de \"spam\" obtém = 0, tornando o produto inteiro zero, independentemente de outras evidências fortes."
+  },
+  {
+    "id": "nb-post-1",
+    "stage": "post",
+    "question": "A suposição ingênua de independência é claramente errada para o texto.",
+    "options": [
+      "Só funciona em vocabulários muito pequenos onde a independência é válida",
+      "Só funciona quando as características são verdadeiramente independentes",
+      "As implementações modernas removem secretamente a suposição de independência",
+      "A classificação só precisa de classificações de classes corretas, não estimativas de probabilidade corretas, e a suposição introduz erros estáveis que afetam todas as classes de forma semelhante"
+    ],
+    "correct": 3,
+    "explanation": "NB precisa classificar as classes corretamente, não estimar probabilidades exatas. A suposição de independência é de alto viés, mas baixa variância, tornando-a estável com dados limitados."
+  },
+  {
+    "id": "nb-post-2",
+    "stage": "post",
+    "question": "Quando deve utilizar NB multinomial versus NB gaussiano?",
+    "options": [
+      "Multinômio para características de contagem de palavras/frequência, Gaussian para características contínuas de valor real",
+      "São intercâmbios. Sempre usem o que for mais rápido.",
+      "Multinômio para dados binários, Gaussian para problemas de várias classes",
+      "Multinômio para regressão, Gaussian para classificação"
+    ],
+    "correct": 0,
+    "explanation": "Os modelos de NB multinômicos apresentam contagens (frequências de palavras no texto)."
+  },
+  {
+    "id": "nb-post-3",
+    "stage": "post",
+    "question": "Um e-mail contém \"gratuito\" duas vezes e \"dinheiro\" uma vez.",
+    "options": [
+      "P(spam) * P(free spam) * P(money spam)",
+      "log P(spam) * 2 * log P(free spam)",
+      "log P(spam) log P(free dizer spam + log P(money dizer spam)",
+      "log P(spam) + 2 * log P(free *spam) + 1 log P(money"
+    ],
+    "correct": 3,
+    "explanation": "O número de palavras é multiplicado por um número de números."
+  }
+]

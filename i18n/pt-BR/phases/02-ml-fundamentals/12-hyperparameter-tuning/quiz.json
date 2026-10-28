@@ -1,0 +1,67 @@
+[
+  {
+    "id": "hptune-pre-1",
+    "stage": "pre",
+    "question": "Qual é a diferença entre um parâmetro e um hiperparâmetro?",
+    "options": [
+      "Não há diferença; são sinônimos",
+      "Os parâmetros são aprendidos durante o treinamento (pesos, preconceitos); os hiperparâmetros são definidos antes do início do treinamento (taxa de aprendizagem, profundidade máxima)",
+      "Os parâmetros aplicam-se apenas às redes neurais; os hiperparâmetros aplicam-se aos modelos de árvores",
+      "Os parâmetros são definidos pelo utilizador; os hiperparâmetros são aprendidos durante o treinamento"
+    ],
+    "correct": 1,
+    "explanation": "Os parâmetros são aprendidos pelo algoritmo de otimização durante o treinamento (por exemplo, pesos)."
+  },
+  {
+    "id": "hptune-pre-2",
+    "stage": "pre",
+    "question": "A busca na grade em 4 hiperparametros com 5 valores cada requer quantas avaliações?",
+    "options": [
+      "625",
+      "20",
+      "4",
+      "25"
+    ],
+    "correct": 0,
+    "explanation": "A pesquisa de grade avalia todas as combinações: 5^4 = 625. Esta escala exponencial é por isso que a pesquisa de grade se torna impraticável com muitos hiperparâmetros."
+  },
+  {
+    "id": "hptune-post-1",
+    "stage": "post",
+    "question": "Por que a pesquisa aleatória muitas vezes supera a pesquisa em rede com o mesmo orçamento de avaliação?",
+    "options": [
+      "A busca aleatória encontra sempre o óptimo global",
+      "A maioria dos hiperparâmetros tem baixa dimensionalidade eficaz, por isso a pesquisa aleatória cobre os importantes mais densamente",
+      "A pesquisa na grade não pode lidar com hiperparâmetros contínuos",
+      "Pesquisa aleatória usa um melhor algoritmo de otimização"
+    ],
+    "correct": 1,
+    "explanation": "Normalmente, apenas 1-2 hiperparâmetros importam para um determinado problema. Avaliações de resíduos de pesquisa de rede variam de não importantes. Pesquisa aleatória dá valores únicos para cada parâmetro por ensaio, cobrindo dimensões importantes de forma mais densa."
+  },
+  {
+    "id": "hptune-post-2",
+    "stage": "post",
+    "question": "Na otimização Bayesiana, o que o equilíbrio da função de aquisição?",
+    "options": [
+      "Preconceitos e variações no modelo de substituição",
+      "Velocidade de formação e precisão do modelo",
+      "Número de características e número de amostras",
+      "Exploração (busca perto de pontos de interesse conhecidos) e exploração (busca de regiões incertas)"
+    ],
+    "correct": 3,
+    "explanation": "A função de aquisição decide onde avaliar a seguir, equilibrando a exploração (quase bons resultados conhecidos) e a exploração (onde o modelo substitutivo é incerto)."
+  },
+  {
+    "id": "hptune-post-3",
+    "stage": "post",
+    "question": "Você sintoniza os hiperparâmetros usando o conjunto de testes e relata o melhor desempenho do teste.",
+    "options": [
+      "Nada. É uma prática padrão.",
+      "O conjunto de ensaio deve ser utilizado para formação, não para sintonização",
+      "Os hiperparâmetros devem ser apenas números inteiros",
+      "O resultado da avaliação é positivo e não generaliza"
+    ],
+    "correct": 3,
+    "explanation": "A sintonização no conjunto de ensaio significa que você selecionou hiperparâmetros que ocorrem ter bons resultados nessas amostras específicas. Isto é sobreajustado ao conjunto de ensaio. Use um conjunto de validação para sintonização e reserve o conjunto de ensaio para avaliação final."
+  }
+]

@@ -1,0 +1,78 @@
+{
+  "lesson": "21-feature-stores-and-training-serving-skew",
+  "title": "Lojas de Features e Skew Servindo de Formação",
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "Uma equipe junta etiquetas de churn a uma tabela de recursos do usuário apenas no user_id. A tabela contém os valores mais recentes de cada usuário. O que vai mal?",
+      "options": [
+        "O join deixa cair todos os usuários que têm mais de uma etiqueta no conjunto",
+        "As linhas de treinamento recebem valores de características após o tempo de etiqueta",
+        "Nada, porque os valores mais recentes são os mais precisos.",
+        "O modelo de trem é mais lento porque a mesa tem muitas colunas"
+      ],
+      "correct": 1,
+      "explanation": "Os valores mais recentes são obtidos após a maioria dos tempos de etiqueta. Para churn, eles já mostram o período de silêncio que a etiqueta mede, então a entrada contém a resposta."
+    },
+    {
+      "stage": "check",
+      "question": "Uma etiqueta está no dia 20. As linhas de características existem nos dias 6, 17 e 24, e o TTL é de 7 dias.",
+      "options": [
+        "Não há linha, então o valor padrão é usado",
+        "Dia 6 de linha",
+        "O dia 17 de fila",
+        "Dia 24 de fila"
+      ],
+      "correct": 2,
+      "explanation": "O join mantém filas no dia 20 ou antes, toma o último e verifica sua idade."
+    },
+    {
+      "stage": "check",
+      "question": "O treinamento enche um histórico de compras faltante com 365 dias.",
+      "options": [
+        "Diferentes padrões entre os dois caminhos",
+        "Características obsoletas de um trabalho de materialização falhado",
+        "Drift conceitual na relação entre entrada e rótulo",
+        "Viagem no tempo a partir de uma junção ingênua na chave do usuário"
+      ],
+      "correct": 0,
+      "explanation": "Os dois caminhos só discordam quando um valor está faltando."
+    },
+    {
+      "stage": "check",
+      "question": "Por que um registo de recursos cria uma nova versão quando uma definição muda, em vez de editar a antiga?",
+      "options": [
+        "Editar uma definição exclui o histórico de backfill na loja offline",
+        "Os modelos treinados na velha definição ainda precisam dos velhos valores",
+        "A loja online pode conter apenas uma característica por entidade de cada vez",
+        "As versões tornam o ponto-in-time juntar correr mais rápido em grandes mesas"
+      ],
+      "correct": 1,
+      "explanation": "Um modelo implantado espera o recurso exatamente como era durante o treinamento."
+    },
+    {
+      "stage": "post",
+      "question": "Os valores de serviço registrados correspondem exatamente ao conjunto de treinamento, mas os valores calculados de novo a pedido diferem em 83% dos pedidos.",
+      "options": [
+        "A loja online está quebrada, porque os valores novos são sempre os valores corretos",
+        "O ponto-in-time junte vazou o futuro, porque snapshots são mais novos do que pedidos",
+        "O modelo treinado em valores instantâneos, por isso um novo caminho de computação adicionaria distorção",
+        "O registo tem duas versões de cada recurso, e serve lê o errado"
+      ],
+      "correct": 2,
+      "explanation": "A novidade faz parte da característica. Um caminho mais fresco do que os dados de formação dá aos modelos entradas de uma distribuição diferente."
+    },
+    {
+      "stage": "post",
+      "question": "Um backfill que se executa hoje escreve linhas para as datas do ano passado, usando dados que foram corrigidos no mês passado.",
+      "options": [
+        "Ele só se une à chave da entidade e toma a linha mais recente para cada rótulo",
+        "Também exige que o selo de tempo criado esteja no ou antes do tempo de etiqueta",
+        "A redução do TTL para que as fileiras do ano passado expirem antes do início do treino",
+        "Ele corre o backfill novamente com a loja online como sua fonte de dados"
+      ],
+      "correct": 1,
+      "explanation": "O timestamp do evento diz quando um valor foi verdadeiro. O timestamp criado diz quando o sistema sabia. Uma junção rigorosa verifica ambos."
+    }
+  ]
+}

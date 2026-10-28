@@ -1,0 +1,67 @@
+[
+  {
+    "id": "linreg-pre-1",
+    "stage": "pre",
+    "question": "O que controla a taxa de aprendizagem na descida de gradientes?",
+    "options": [
+      "Número de características utilizadas pelo modelo",
+      "O tamanho de cada passo de atualização de parâmetros",
+      "Relação entre os dados de formação e os dados de ensaio",
+      "Quantas épocas os trens modelo para"
+    ],
+    "correct": 1,
+    "explanation": "A taxa de aprendizagem é um escalar que controla a quantidade de mudanças de pesos por passo de descida de gradiente."
+  },
+  {
+    "id": "linreg-pre-2",
+    "stage": "pre",
+    "question": "O que significa R-quadrado = 0 para um modelo de regressão?",
+    "options": [
+      "O modelo tem erro negativo",
+      "O modelo ainda não foi treinado",
+      "O modelo não é melhor do que sempre prever a média do alvo",
+      "O modelo faz previsões perfeitas"
+    ],
+    "correct": 2,
+    "explanation": "R-quadrado = 0 significa que o modelo não explica nenhuma das variações no alvo."
+  },
+  {
+    "id": "linreg-post-1",
+    "stage": "post",
+    "question": "Por que a escalação de características é importante para a descida de gradientes em regressão linear múltipla?",
+    "options": [
+      "Garante que o modelo encontrará o mínimo global",
+      "Reduz o número de características necessárias",
+      "Impede que a superfície de custos seja alongada, permitindo uma convergência mais rápida",
+      "Faz o modelo mais interpretável"
+    ],
+    "correct": 2,
+    "explanation": "Quando as características têm escalas muito diferentes, a superfície de custo se alongua. A descida gradual requer muitos passos mais para convergir."
+  },
+  {
+    "id": "linreg-post-2",
+    "stage": "post",
+    "question": "A equação normal dá peso ótimo diretamente.",
+    "options": [
+      "A descida gradual requer menos memória do que armazenar os dados",
+      "A descida gradual dá sempre resultados mais precisos",
+      "A equação normal não funciona para regressão linear",
+      "A inversão de matriz na equação normal é O ((n^3) em características, que é muito lenta para milhares de características"
+    ],
+    "correct": 3,
+    "explanation": "A equação normal requer inverter X^T * X, que é O(n^3) no número de características. Para grandes contagens de características, a descida de gradiente é mais eficiente."
+  },
+  {
+    "id": "linreg-post-3",
+    "stage": "post",
+    "question": "Um modelo de regressão polinômica de graus 10 se encaixa perfeitamente nos dados de treinamento (R^2 = 1.0) mas tem R^2 = 0,3 nos dados de teste.",
+    "options": [
+      "Aumentar o grau polinômio para 20 para um melhor ajuste de treinamento",
+      "Recolher menos dados de treinamento para que o modelo não possa memorizar",
+      "Reduzir a complexidade do modelo ( grau inferior) ou adicionar regularização (Ridge) para evitar o excesso de montagem",
+      "Retirar o conjunto de ensaio e relatar apenas o treinamento R^2"
+    ],
+    "correct": 2,
+    "explanation": "O problema é reduzir a complexidade (grau polinômio mais baixo) ou adicionar regularização para penalizar pesos grandes."
+  }
+]

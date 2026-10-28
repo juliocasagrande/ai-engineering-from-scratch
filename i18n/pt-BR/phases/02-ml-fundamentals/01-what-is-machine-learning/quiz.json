@@ -1,0 +1,67 @@
+[
+  {
+    "id": "ml-intro-pre-1",
+    "stage": "pre",
+    "question": "Na aprendizagem supervisionada, o que recebe o modelo durante a formação?",
+    "options": [
+      "Pares de entrada e saída em que se fornece a resposta correta",
+      "Um conjunto de regras escritas por um especialista humano",
+      "Um sinal de recompensa por cada ação tomada",
+      "Apenas dados de entrada sem rótulos"
+    ],
+    "correct": 0,
+    "explanation": "Os treinamentos de aprendizagem supervisionados em pares de entrada e saída (dados rotulados)."
+  },
+  {
+    "id": "ml-intro-pre-2",
+    "stage": "pre",
+    "question": "Qual é o objectivo da divisão dos dados em conjuntos de formação e de testes?",
+    "options": [
+      "Para ter dados de backup no caso de os dados de treinamento serem perdidos",
+      "Para avaliar se o modelo se generaliza a dados que nunca viu durante a formação",
+      "Para tornar o treinamento mais rápido, utilizando menos dados",
+      "Para equilibrar as classes no conjunto de dados"
+    ],
+    "correct": 1,
+    "explanation": "O conjunto de testes mede a generalização. Se avaliarmos com base em dados de treinamento, medimos a memorização, não a aprendizagem."
+  },
+  {
+    "id": "ml-intro-post-1",
+    "stage": "post",
+    "question": "Um modelo obtém 98% de precisão nos dados de treinamento, mas 55% nos dados de teste.",
+    "options": [
+      "Drift de dados: alteração da distribuição do ensaio",
+      "Subarmatamento: o modelo é muito simples",
+      "O modelo memorizou o ruído de formação em vez de aprender padrões gerais",
+      "Boa generalização: o modelo aprendeu os padrões verdadeiros"
+    ],
+    "correct": 2,
+    "explanation": "O modelo memorizou os dados do treinamento, mas não conseguiu obter a precisão necessária para o treinamento."
+  },
+  {
+    "id": "ml-intro-post-2",
+    "stage": "post",
+    "question": "Um site de comércio eletrônico quer agrupar os clientes em segmentos com base no comportamento de compra sem rótulos pré-definidos. Que tipo de ML é este?",
+    "options": [
+      "Aprendizagem não supervisionada (agrupamento)",
+      "Aprendizagem supervisionada (regressão)",
+      "Aprendizagem supervisionada (classificação)",
+      "Aprendizagem reforçada"
+    ],
+    "correct": 0,
+    "explanation": "Encontrar agrupamentos naturais em dados sem rótulos pré-definidos é agrupar, que é uma forma de aprendizagem não supervisionada."
+  },
+  {
+    "id": "ml-intro-post-3",
+    "stage": "post",
+    "question": "Qual cenário NÃO é um bom caso de uso para aprendizado de máquina?",
+    "options": [
+      "Detecção de transacções fraudulentas num fluxo de milhões de pagamentos",
+      "Previsão de turnover de clientes a partir de dados de comportamento histórico",
+      "Classificação de imagens de lesões cutâneas como benignas ou malignas",
+      "Converter temperaturas de Celsius para Fahrenheit"
+    ],
+    "correct": 3,
+    "explanation": "A fórmula Celsius a Fahrenheit é fixa (F = 9/5 * C + 32)."
+  }
+]

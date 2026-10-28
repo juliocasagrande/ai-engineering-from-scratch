@@ -1,0 +1,67 @@
+[
+  {
+    "id": "anomaly-pre-1",
+    "stage": "pre",
+    "question": "Por que a detecção de anomalias é tipicamente enquadrada como um problema não supervisionado em vez de classificação?",
+    "options": [
+      "A classificação supervisionada é sempre menos precisa",
+      "As anomalias rotuladas são extremamente raras, e os novos tipos de anomalias diferem de aqueles vistos anteriormente",
+      "A detecção de anomalias só funciona com dados de séries temporais",
+      "A detecção de anomalias não requer dados"
+    ],
+    "correct": 1,
+    "explanation": "As anomalias são raras (muitas vezes <0,1% dos dados), por isso há poucos exemplos rotulados para treinar um classificador."
+  },
+  {
+    "id": "anomaly-pre-2",
+    "stage": "pre",
+    "question": "Uma temperatura de 90°C é normal no verão, mas anormal no inverno.",
+    "options": [
+      "Anomalia de ponto",
+      "Anomalia contextual",
+      "Anomalia estatística",
+      "Anomalia coletiva"
+    ],
+    "correct": 1,
+    "explanation": "Uma anomalia contextual é um valor incomum dado seu contexto (hora, localização). O valor em si pode ser normal em um contexto diferente."
+  },
+  {
+    "id": "anomaly-post-1",
+    "stage": "post",
+    "question": "Os sinais do método Z-score apontam mais de 3 desvios padrão da média.",
+    "options": [
+      "Quando há exatamente 3 anomalias no conjunto de dados",
+      "Quando os dados são perfeitamente normalmente distribuídos",
+      "Quando as características são padronizadas",
+      "Quando os dados são multimodal, distorcidos ou quando os valores fora dos dados de formação inflacionam a média e o std"
+    ],
+    "correct": 3,
+    "explanation": "O Z-score assume uma única distribuição gaussiana. Ele falha em dados multimodal (multiples clusters), distribuições distorcidas e quando os valores fora do nível dos dados de treinamento deslocam a média/std, tornando as anomalias reais mais difíceis de detectar."
+  },
+  {
+    "id": "anomaly-post-2",
+    "stage": "post",
+    "question": "Como a Floresta de Isolamento detecta anomalias de forma diferente dos métodos baseados na distância?",
+    "options": [
+      "Isola pontos usando divisões aleatórias; anomalias exigem menos divisões para isolar porque são poucas e diferentes",
+      "Funciona apenas em dados de texto",
+      "Ele usa redes neurais em vez de árvores .",
+      "Calcula as distâncias para todos os outros pontos do conjunto de dados"
+    ],
+    "correct": 0,
+    "explanation": "Isolação Floresta particiona aleatoriamente dados com divisões de árvores. Anomalias, sendo raras e diferentes, acabam isoladas (em sua própria folha) com menos divisões. Curto comprimento médio de caminho = mais anômalo."
+  },
+  {
+    "id": "anomaly-post-3",
+    "stage": "post",
+    "question": "Construímos um detector de anomalias não supervisionado e um classificador de fraudes supervisionado.",
+    "options": [
+      "Quando você precisa detectar novos padrões de fraude que diferem de exemplos históricos rotulados",
+      "Quando temos milhões de exemplos de fraude",
+      "Quando só se importa com precisão, não lembra",
+      "Sempre ... sem supervisão é sempre melhor para detecção de anomalias"
+    ],
+    "correct": 0,
+    "explanation": "Os classificadores supervisionados só detectam os tipos de fraude presentes nos dados de formação. Os detectores não supervisionados identificam qualquer desvio dos esquemas normais de fraude, detectando novos esquemas."
+  }
+]

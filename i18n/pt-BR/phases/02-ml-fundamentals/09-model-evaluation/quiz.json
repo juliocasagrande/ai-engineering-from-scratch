@@ -1,0 +1,67 @@
+[
+  {
+    "id": "eval-pre-1",
+    "stage": "pre",
+    "question": "Por que nunca deve ajustar os hiperparâmetros com base no desempenho do conjunto de testes?",
+    "options": [
+      "O conjunto de ensaio é muito pequeno para estimativas confiáveis",
+      "A adaptação do modelo com base nos resultados dos ensaios exerce efectivamente a função no conjunto de ensaios, tornando o desempenho relatado sem sentido",
+      "Os hiperparâmetros não podem ser alterados após o treino",
+      "O conjunto de ensaio tem sempre características diferentes do conjunto de treinamento"
+    ],
+    "correct": 1,
+    "explanation": "Cada vez que você ajusta o seu modelo com base no desempenho do teste, você vai filtrar informações do teste em suas decisões de modelagem."
+  },
+  {
+    "id": "eval-pre-2",
+    "stage": "pre",
+    "question": "Um conjunto de dados tem 95% de amostras negativas e 5% positivas. Um modelo prevê \"negativo\" para cada amostra. Qual é a sua precisão?",
+    "options": [
+      "0",
+      "95%",
+      "50%",
+      "5%"
+    ],
+    "correct": 1,
+    "explanation": "Precisão = previsões corretas / total = 950/1000 = 95%. Isso mostra por que a precisão é enganosa para dados desequilibrados - um modelo inútil parece ótimo."
+  },
+  {
+    "id": "eval-post-1",
+    "stage": "post",
+    "question": "Em validação cruzada de K-fold com K=5, quantas vezes é usado cada ponto de dados para validação?",
+    "options": [
+      "Exactamente uma vez.",
+      "5 vezes",
+      "Depende da semente aleatória.",
+      "Nunca - todos os dados são usados para treinamento"
+    ],
+    "correct": 0,
+    "explanation": "No CV de K-fold, os dados são divididos em K dobras iguais. Cada dobra é usada como o conjunto de validação exatamente uma vez, enquanto as restantes dobras K-1 são usadas para treinamento."
+  },
+  {
+    "id": "eval-post-2",
+    "stage": "post",
+    "question": "Uma curva de aprendizagem mostra pontuação de treinamento = 0,95 e pontuação de validação = 0,60 que não melhora com mais dados.",
+    "options": [
+      "Aumentar a taxa de aprendizagem",
+      "Usar um modelo mais simples ou adicionar regularização para reduzir a variância (overfitting)",
+      "Retirar o conjunto de validação para dar ao modelo mais dados de formação",
+      "Recolher mais dados de formação"
+    ],
+    "correct": 1,
+    "explanation": "Uma grande diferença entre as notas de treinamento (alta) e validação (baixo) é alta variação (overfitting). A solução é um modelo mais simples, mais regularização, ou técnicas como o abandono - não mais dados se a diferença persistir."
+  },
+  {
+    "id": "eval-post-3",
+    "stage": "post",
+    "question": "AUC-ROC = 0,5 para um classificador binário.",
+    "options": [
+      "O modelo separa perfeitamente as duas classes",
+      "O modelo não tem melhor desempenho do que adivinhar aleatoriamente em classificar os positivos acima dos negativos",
+      "O modelo tem uma precisão de 50%",
+      "O modelo tem igual precisão e recall"
+    ],
+    "correct": 1,
+    "explanation": "AUC-ROC = 0,5 significa que a classificação do modelo de exemplos positivos e negativos não é melhor do que aleatório. AUC = 1,0 seria uma separação perfeita. A métrica é independente do limiar."
+  }
+]

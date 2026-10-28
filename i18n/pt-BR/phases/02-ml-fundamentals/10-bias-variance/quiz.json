@@ -1,0 +1,67 @@
+[
+  {
+    "id": "biasvar-pre-1",
+    "stage": "pre",
+    "question": "Um modelo linear é usado para encaixar uma relação claramente curva (quadrática).",
+    "options": [
+      "Preconceitos: o modelo é demasiado rígido para capturar o verdadeiro padrão não linear",
+      "Variância: o modelo muda demais com diferentes dados de formação",
+      "Ruído irredutível: os dados são muito ruidosos",
+      "Nenhum: o modelo deve caber perfeitamente"
+    ],
+    "correct": 0,
+    "explanation": "Um modelo linear não pode capturar uma curva quadrática, não importa quantos dados ele veja. Este erro sistemático de suposições de modelo erradas é viés. O modelo não se encaixa."
+  },
+  {
+    "id": "biasvar-pre-2",
+    "stage": "pre",
+    "question": "A decomposição de variação de viés do erro esperado tem três termos.",
+    "options": [
+      "Os três podem ser reduzidos a zero.",
+      "Variância",
+      "Ruído irredutível (sigma ao quadrado)",
+      "Preconceito no quadrado"
+    ],
+    "correct": 2,
+    "explanation": "O ruído irredutível vem de aleatoriedade nos próprios dados (erro de medição, variáveis faltantes). Nenhum modelo pode prever ruído."
+  },
+  {
+    "id": "biasvar-post-1",
+    "stage": "post",
+    "question": "Adicionar a regularização L2 a um modelo aumenta o viés e diminui a variância.",
+    "options": [
+      "A redução da variância pode superar o aumento do viés, reduzindo o erro total",
+      "Faz o modelo mais rápido para treinar",
+      "A regularização de L2 elimina ruído irredutível",
+      "Melhora sempre a precisão do treinamento e dos testes"
+    ],
+    "correct": 0,
+    "explanation": "A regularização troca um pequeno aumento de viés para uma diminuição maior da variância. Quando um modelo é sobreajustado (alta variância), esse trade-off reduz o erro total, mesmo que o viés aumente ligeiramente."
+  },
+  {
+    "id": "biasvar-post-2",
+    "stage": "post",
+    "question": "Um modelo tem erro de treinamento = 2% e erro de teste = 25%. Qual é o diagnóstico mais provável?",
+    "options": [
+      "Alta ruído irredutível: os dados são muito ruidosos",
+      "Alta viés (subadaptação): o modelo é muito simples",
+      "Alta variância (overfitting): o modelo memorizou dados de formação e não generaliza",
+      "O modelo está perfeitamente calibrado."
+    ],
+    "correct": 2,
+    "explanation": "O modelo se adapta ao ruído específico do treinamento. Remédios: regularizar, reduzir a complexidade, obter mais dados."
+  },
+  {
+    "id": "biasvar-post-3",
+    "stage": "post",
+    "question": "Treinar a mesma arquitetura de modelo em 50 subconjuntos de treinamento aleatório diferentes e observar que as previsões variam muito entre eles.",
+    "options": [
+      "Alta ruído irredutível: a variável-alvo é aleatória",
+      "Alta viés: o modelo não consegue ver o padrão verdadeiro",
+      "A taxa de aprendizagem é muito alta",
+      "Alta variação: o modelo é sensível aos dados específicos de formação que vê"
+    ],
+    "correct": 3,
+    "explanation": "A variação mede o quanto as previsões mudam quando treinadas em diferentes subconjuntos de dados."
+  }
+]

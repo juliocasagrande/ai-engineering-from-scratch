@@ -1,0 +1,67 @@
+[
+  {
+    "id": "svm-pre-1",
+    "stage": "pre",
+    "question": "O que são vetores de suporte em um SVM?",
+    "options": [
+      "Todos os pontos de dados do conjunto de formação",
+      "Os vetores de características após a transformação do kernel",
+      "Os vetores de peso aprendidos durante o treino",
+      "Os pontos de formação mais próximos do limite de decisão que determinam o hiperplano"
+    ],
+    "correct": 3,
+    "explanation": "Os vetores de suporte são os pontos de treinamento que se encontram exatamente nos limites da margem. Eles são os únicos pontos que determinam o hiperplano de decisão."
+  },
+  {
+    "id": "svm-pre-2",
+    "stage": "pre",
+    "question": "O que o SVM maximiza ao encontrar o limite de decisão?",
+    "options": [
+      "A complexidade do limite de decisão",
+      "A margem - a distância entre a linha de decisão e os pontos mais próximos de cada classe",
+      "A distância total de todos os pontos até à fronteira",
+      "Número de pontos de formação corretamente classificados"
+    ],
+    "correct": 1,
+    "explanation": "Os SVM encontram o hiperplano que maximiza a margem entre as duas classes. Uma margem mais ampla leva a uma melhor generalização em dados invisíveis."
+  },
+  {
+    "id": "svm-post-1",
+    "stage": "post",
+    "question": "O que acontece quando você aumenta o parâmetro C em um SVM?",
+    "options": [
+      "A margem fica mais estreita, menos classificações erradas são toleradas e o modelo pode se encaixar demais",
+      "O número de vetores de apoio aumenta sempre",
+      "A margem é mais ampla e mais classificações erradas são permitidas",
+      "A função do kernel muda de linear para RBF"
+    ],
+    "correct": 0,
+    "explanation": "O grande C penaliza fortemente as classificações erradas, produzindo uma margem estreita que se encaixa bem nos dados de treinamento."
+  },
+  {
+    "id": "svm-post-2",
+    "stage": "post",
+    "question": "Como o truque do kernel permite que os SVM aprendam os limites não lineares?",
+    "options": [
+      "Substitui o SVM por uma rede neural",
+      "Computa produtos de pontos num espaço de alta dimensão sem mapear explicitamente dados nesse espaço",
+      "Elimina os valores anormais do conjunto de dados antes da formação",
+      "Ele adiciona características polinômias aos dados de entrada diretamente"
+    ],
+    "correct": 1,
+    "explanation": "O truque do kernel substitui cada produto de pontos x_i. x_j com K(x_i, x_j), calcula o produto de pontos em um espaço de características de alta dimensão (até infinito para RBF) sem nunca construí-lo."
+  },
+  {
+    "id": "svm-post-3",
+    "stage": "post",
+    "question": "A perda de colchão é zero quando y * f(x) >= 1. O que isso significa em termos de classificação?",
+    "options": [
+      "O ponto é uma amostra de ruído que deve ser ignorada",
+      "O ponto é mal classificado",
+      "O ponto está exatamente no limite da decisão",
+      "O ponto está corretamente classificado e está fora da margem"
+    ],
+    "correct": 3,
+    "explanation": "Quando y * f(x) >= 1, o ponto é corretamente classificado E está situado em ou além do limite da margem. Somente pontos dentro da margem ou mal classificados (y * f(x) < 1) contribuem para a perda da bisagra."
+  }
+]

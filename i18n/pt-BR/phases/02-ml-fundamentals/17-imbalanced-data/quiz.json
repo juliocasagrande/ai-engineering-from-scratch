@@ -1,0 +1,67 @@
+[
+  {
+    "id": "imbalanced-pre-1",
+    "stage": "pre",
+    "question": "Um conjunto de dados de detecção de fraude tem 99,9% de transações legítimas e 0,1% de fraude.",
+    "options": [
+      "99,9%",
+      "0,1%",
+      "50%",
+      "100%"
+    ],
+    "correct": 0,
+    "explanation": "A precisão = 999/1000 = 99,9%. O modelo detecta zero fraude, mas parece ótimo em precisão. É exatamente por isso que a precisão é perigosa para conjuntos de dados desequilibrados."
+  },
+  {
+    "id": "imbalanced-pre-2",
+    "stage": "pre",
+    "question": "Que métrica identificaria corretamente o modelo sempre-predecição-negativo como inútil?",
+    "options": [
+      "Precuração (99,9%)",
+      "Taxa negativa verdadeira (100%)",
+      "Recall (0%) ou pontuação F1 (0%)",
+      "Especificidade (100%)"
+    ],
+    "correct": 2,
+    "explanation": "Recall = TP/(TP+FN) = 0/total_positivos = 0%. F1 = 2*0*0/(0+0) = 0. Ambos corretamente mostram que o modelo não capta nada na classe positiva."
+  },
+  {
+    "id": "imbalanced-post-1",
+    "stage": "post",
+    "question": "Como é que a SMOTE gera amostras sintéticas de minorias?",
+    "options": [
+      "Ao virar as etiquetas das amostras de classe majoritária",
+      "Por interpolação entre uma amostra de minoria e um dos seus vizinhos de minoria mais próximos K",
+      "Por gerar pontos aleatoriamente em qualquer lugar do espaço de recursos",
+      "Ao duplicar exatamente as amostras de minorias existentes"
+    ],
+    "correct": 1,
+    "explanation": "O SMOTE seleciona um ponto minoritário, seleciona um dos seus vizinhos minoritários mais próximos de K e cria um novo ponto no segmento de linha entre eles: novo = x + rand(0,1) * (vizinho - x)."
+  },
+  {
+    "id": "imbalanced-post-2",
+    "stage": "post",
+    "question": "Se baixarmos o limiar de classificação de 0,5 para 0,3 num conjunto de dados desequilibrado, o que acontece com a precisão e a retirada?",
+    "options": [
+      "Aumento da precisão e do recall",
+      "A precisão aumenta mas a recuperação diminui",
+      "Recall aumenta (mais positivos capturados) mas a precisão diminui (mais falsos positivos)",
+      "Nenhuma das alterações - o limiar só afeta a velocidade"
+    ],
+    "correct": 2,
+    "explanation": "A redução do limiar significa que mais amostras são previstas positivas. Isso capta mais positivos verdadeiros (recall up) mas também adiciona mais falsos positivos (precisão para baixo)."
+  },
+  {
+    "id": "imbalanced-post-3",
+    "stage": "post",
+    "question": "Por que a AUPRC (Área sob Curva de Recuperação de Precisão) é mais informativa do que a AUC-ROC para conjuntos de dados altamente desequilibrados?",
+    "options": [
+      "A AUC-ROC não pode ser calculada para dados desequilibrados",
+      "A AUPRC não exige um limiar",
+      "O AUPRC é sempre superior ao AUC-ROC",
+      "Um classificador aleatório tem AUPRC igual à taxa de classe positiva (por exemplo, 0,001), tornando visíveis as melhorias, enquanto AUC-ROC começa em 0,5 independentemente do desequilíbrio"
+    ],
+    "correct": 3,
+    "explanation": "Para dados desequilibrados, a AUC-ROC pode parecer enganosamente boa porque o grande número de verdadeiros negativos infla a verdadeira taxa negativa."
+  }
+]

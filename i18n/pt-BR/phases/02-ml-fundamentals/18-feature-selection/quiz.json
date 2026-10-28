@@ -1,0 +1,67 @@
+[
+  {
+    "id": "featsel-pre-1",
+    "stage": "pre",
+    "question": "Porque é que adicionar mais características pode realmente fazer um modelo ter um desempenho pior?",
+    "options": [
+      "Os modelos têm um limite duro no número de características que podem aceitar",
+      "Mais características sempre melhoram a precisão do modelo",
+      "Mais características fazem com que o modelo se esgotasse da memória",
+      "Características irrelevantes adicionam ruído, aumentam o risco de sobreajuste e diluem o sinal de características úteis"
+    ],
+    "correct": 3,
+    "explanation": "As características irrelevantes permitem que o modelo se sobreajuste ao ruído nos dados de formação, aumentando a dimensionalidade, tornando os dados mais escassos e as distâncias menos significativas (maldição da dimensionalidade)."
+  },
+  {
+    "id": "featsel-pre-2",
+    "stage": "pre",
+    "question": "Qual é a diferença fundamental entre os métodos de selecção de elementos de filtro e de embalagem?",
+    "options": [
+      "Metodos de filtragem pontua características usando estatísticas sem modelo; métodos de envoltura treinam um modelo para avaliar subconjuntos de características",
+      "Os métodos de filtragem são sempre mais precisos do que os métodos de embalagem",
+      "Os métodos de embalagem só podem selecionar uma característica por vez",
+      "Os métodos de filtragem utilizam um modelo para avaliar as características; os métodos de embalagem utilizam estatísticas"
+    ],
+    "correct": 0,
+    "explanation": "Os métodos de filtragem (prazo de variação, informação mútua, correlação) pontuação características com medidas estatísticas."
+  },
+  {
+    "id": "featsel-post-1",
+    "stage": "post",
+    "question": "A informação mútua pode detectar relações que a correlação Pearson não pode.",
+    "options": [
+      "Relações que exigem mais de 1000 pontos de dados",
+      "Relações não lineares, tais como dependências quadráticas ou periódicas",
+      "Relações lineares entre características contínuas",
+      "Relações entre características categóricas somente"
+    ],
+    "correct": 1,
+    "explanation": "A correlação de Pearson só mede a associação linear. Uma relação quadrática (y = x^2) tem correlação zero mas alta informação mútua."
+  },
+  {
+    "id": "featsel-post-2",
+    "stage": "post",
+    "question": "A regularização L1 (Lasso) realiza a selecção de características como parte do treinamento.",
+    "options": [
+      "Elimina características com baixa variação antes do início do treinamento",
+      "Ele classifica características por correlação com o alvo",
+      "Ele leva os pesos de características irrelevantes para exatamente zero, efetivamente eliminando-os do modelo",
+      "Treina modelos separados para cada característica"
+    ],
+    "correct": 2,
+    "explanation": "A regularização adiciona L1 . Não há penalidade para a perda A geometria da restrição L1 (forma de diamante) faz com que algumas soluções de peso pousam exatamente a zero, produzindo modelos escassos que selecionam automaticamente características."
+  },
+  {
+    "id": "featsel-post-3",
+    "stage": "post",
+    "question": "A RFE elimina o recurso menos importante e reestrutura-lo.",
+    "options": [
+      "Não é melhor - remover tudo de uma vez é sempre preferível",
+      "Importâncias de recursos mudam à medida que os recursos são removidos, então a remoção iterativa conta as interações entre recursos",
+      "Remover uma por vez é necessário apenas para redes neurais",
+      "A RFE utiliza uma métrica de importância diferente da remoção em um único passo"
+    ],
+    "correct": 1,
+    "explanation": "As importâncias das características são relativas. Quando uma característica correlacionada é removida, a importância de sua contraparte pode aumentar. A remoção iterativa permite que o modelo reavalie as importâncias em cada etapa, capturando essas interações."
+  }
+]

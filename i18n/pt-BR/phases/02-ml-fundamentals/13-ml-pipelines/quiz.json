@@ -1,0 +1,67 @@
+[
+  {
+    "id": "pipeline-pre-1",
+    "stage": "pre",
+    "question": "O que é vazamento de dados no contexto de oleodutos ML?",
+    "options": [
+      "Características que estão sendo deixadas cair durante a codificação",
+      "O modelo é muito lento para processar os dados",
+      "Informações do conjunto de ensaio ou dados futuros que contaminam o processo de formação",
+      "Os dados que são excluídos acidentalmente durante o pré-processamento"
+    ],
+    "correct": 2,
+    "explanation": "O vazamento de dados ocorre quando informações que não estariam disponíveis no momento da previsão são utilizadas durante o treinamento."
+  },
+  {
+    "id": "pipeline-pre-2",
+    "stage": "pre",
+    "question": "Por que é considerado vazante o equipamento de escalonamento no conjunto de dados completo antes de ser dividido em trens/testes?",
+    "options": [
+      "As estatísticas do escalador (média, std) incluem dados de teste, de modo que o modelo vê indiretamente as informações de teste durante o treinamento",
+      "Escalada altera a distribuição de dados",
+      "A escala deve ser feita apenas no conjunto de ensaio",
+      "A instalação do escalador demora muito tempo em grandes conjuntos de dados"
+    ],
+    "correct": 0,
+    "explanation": "Quando o escalador está em conformidade com todos os dados, a sua média e desvio padrão codificam as informações de amostras de ensaio."
+  },
+  {
+    "id": "pipeline-post-1",
+    "stage": "post",
+    "question": "Em sklearn, qual é a diferença entre chamar fit_transform e transformar em um passo de pipeline?",
+    "options": [
+      "São idênticos, tanto para se encaixar como para se transformar.",
+      "fit_transform aprende os parâmetros dos dados e aplica a transformação; transform só aplica os parâmetros aprendidos anteriormente",
+      "transform é para dados de treinamento; fit_transform é para dados de teste",
+      "fit_transform é mais lento mas mais preciso"
+    ],
+    "correct": 1,
+    "explanation": "O sistema de transformação de dados é um sistema de transformação de dados que é utilizado para calcular os dados."
+  },
+  {
+    "id": "pipeline-post-2",
+    "stage": "post",
+    "question": "Por que é necessário um ColumnTransformer para conjuntos de dados do mundo real?",
+    "options": [
+      "Faz o pipeline funcionar em paralelo em vários CPUs",
+      "Converte todas as colunas para o mesmo tipo de dados",
+      "Aplica-se diferentes etapas de pré-processamento às colunas numéricas e categorias dentro da mesma linha de condução",
+      "Remove colunas com valores faltantes automaticamente"
+    ],
+    "correct": 2,
+    "explanation": "Os conjuntos de dados reais têm tipos mistos. Colunas numéricas precisam de escala, colunas categorias precisam de codificação. ColumnTransformer encaminha cada subconjunto de colunas para o transformador apropriado dentro de um único pipeline."
+  },
+  {
+    "id": "pipeline-post-3",
+    "stage": "post",
+    "question": "Um modelo de produção recebe um valor categórico que nunca viu durante a formação (\"nova_categoria\").",
+    "options": [
+      "Converte a categoria desconhecida para o número zero",
+      "Manusear categorias desconhecidas graciosamente, por exemplo, usando um balde \"desconhecido\" ou a média global na codificação de alvo",
+      "Ignore a linha inteiramente e não retorne nenhuma previsão",
+      "Reestrine todo o modelo a partir do zero"
+    ],
+    "correct": 1,
+    "explanation": "As soluções incluem um retrocesso \"desconhecido\" para a codificação de um só hot, ou o padrão para a média global para a codificação de alvo."
+  }
+]

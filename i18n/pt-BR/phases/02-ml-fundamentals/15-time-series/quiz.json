@@ -1,0 +1,67 @@
+[
+  {
+    "id": "timeseries-pre-1",
+    "stage": "pre",
+    "question": "Por que uma divisão aleatória de trem/teste é inválida para os dados da série temporal?",
+    "options": [
+      "Os dados das séries temporais não podem ser divididos em nada",
+      "Divisões aleatórias só funcionam para problemas de classificação",
+      "Divisões aleatórias vazam informações futuras no conjunto de treinamento, permitindo que o modelo enganar",
+      "Divisões aleatórias tornam o conjunto de dados muito pequeno"
+    ],
+    "correct": 2,
+    "explanation": "Em uma divisão aleatória, os pontos de dados futuros podem acabar no conjunto de treinamento enquanto os pontos passados estão no conjunto de teste."
+  },
+  {
+    "id": "timeseries-pre-2",
+    "stage": "pre",
+    "question": "O que significa uma série temporal estar estacionária?",
+    "options": [
+      "Ele sempre tende para cima .",
+      "As suas propriedades estatísticas (média, variância, autocorrelação) não mudam ao longo do tempo",
+      "Os valores nunca mudam ao longo do tempo",
+      "Não tem padrões sazonais."
+    ],
+    "correct": 1,
+    "explanation": "Uma série estacionária tem uma média constante, variância e estrutura de autocorrelação ao longo do tempo. A maioria dos métodos de previsão assume estacionalidade."
+  },
+  {
+    "id": "timeseries-post-1",
+    "stage": "post",
+    "question": "Qual é o propósito de diferenciar uma série temporal?",
+    "options": [
+      "Para normalizar os valores entre 0 e 1",
+      "Para converter a regressão em classificação",
+      "Aumentar o número de pontos de dados",
+      "Para eliminar a tendência e fazer a série estacionária, modeladora de mudanças entre valores consecutivos"
+    ],
+    "correct": 3,
+    "explanation": "Diferenciamento substitui cada valor com a mudança do valor anterior: diff[t] = valor[t] - valor[t-1]."
+  },
+  {
+    "id": "timeseries-post-2",
+    "stage": "post",
+    "question": "As características de lag convertem uma série de tempo em um problema de aprendizagem supervisionada.",
+    "options": [
+      "O valor 3 vezes passos atrás: y[t-3]",
+      "A diferença entre o valor atual e os 3 passos adiantados",
+      "A terceira derivada da série",
+      "A média dos próximos 3 valores: (y[t+1] + y[t+2] + y[t+3]) / 3"
+    ],
+    "correct": 0,
+    "explanation": "Uma característica lag-3 é y[t-3]: o valor 3 passos de tempo no passado. Usando valores passados como características de entrada permite que modelos padrão de ML (regressão, árvores) façam previsões de séries de tempo sem algoritmos especializados."
+  },
+  {
+    "id": "timeseries-post-3",
+    "stage": "post",
+    "question": "A validação avançada divide os dados do tempo em janelas expansoras ou deslizantes. Por que é melhor que o CV de K-fold para séries de tempo?",
+    "options": [
+      "A caminhada para a frente é mais rápida para calcular",
+      "Não se pode utilizar CV de K-fold em dados numéricos",
+      "O Walk-forward utiliza mais dados para o treinamento",
+      "O avanço respeita a ordem temporal, treinando apenas os dados passados e testando dados futuros, evitando o viés de olho"
+    ],
+    "correct": 3,
+    "explanation": "A validação avançada sempre treina dados do passado e testes de dados futuros, imitando a implantação no mundo real."
+  }
+]

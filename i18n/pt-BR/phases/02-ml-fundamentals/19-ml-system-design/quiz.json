@@ -1,0 +1,78 @@
+{
+  "lesson": "19-ml-system-design",
+  "title": "Projeto de sistema ML  Do problema ao modelo implementado",
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "Uma equipe relata uma AUC offline de 0,91 para um modelo churn. O que falta antes que alguém possa chamar o modelo útil?",
+      "options": [
+        "A decisão que utiliza cada pontuação e uma linha de base para comparar com",
+        "Um modelo maior com aumento de gradientes com mais árvores e uma taxa de aprendizagem sintonizada",
+        "Uma AUC superior a 0,95, porque os sistemas de produção rejeitam pontuações inferiores",
+        "Um servidor GPU, porque os modelos de churn precisam de aceleradores para servir o tráfego"
+      ],
+      "correct": 0,
+      "explanation": "Uma métrica offline sozinha não diz nada sobre o valor. O design precisa da ação que cada pontuação começa e da linha de base mais forte que o modelo deve superar."
+    },
+    {
+      "stage": "check",
+      "question": "O que é uma métrica de guarda-panela?",
+      "options": [
+        "Uma métrica que só a equipa de segurança pode ler",
+        "A métrica com o maior valor no conjunto de validação",
+        "A métrica offline que o trabalho de treinamento minimiza em cada lote",
+        "Uma métrica que não deve piorar quando o novo modelo for lançado"
+      ],
+      "correct": 3,
+      "explanation": "Os guardrails protegem as partes do sistema que o modelo não está tentando melhorar, como custo, latência e taxa de reclamações."
+    },
+    {
+      "stage": "check",
+      "question": "As pontuações devem ser de 30 minutos no máximo, e uma corrida completa leva uma hora.",
+      "options": [
+        "A inferência de lote ainda funciona se executar o trabalho duas vezes mais vezes por dia",
+        "A inferência online não pode funcionar, porque é mais lenta do que uma leitura de pesquisa de valor de chave",
+        "A inferência de lote funciona se você adicionar réplicas ao armazém de valor chave",
+        "A inferência de lote não pode atender ao limite, por isso o projeto precisa de pontuação online"
+      ],
+      "correct": 3,
+      "explanation": "Uma pontuação de lote é pelo menos tão antiga quanto uma corrida."
+    },
+    {
+      "stage": "check",
+      "question": "Um modelo de churn tem uma pontuação de F1 0,56. A linha de base da maioria tem 0,00, e uma regra de uma característica tem 0,46.",
+      "options": [
+        "0,51, o ganho médio sobre as duas linhas de base na comparação",
+        "0,10, medido contra a regra, que é a linha de base mais forte",
+        "0,56, medido em relação à linha de base majoritária, que tem um puntuação zero",
+        "0,00, porque o elevador só é definido em relação ao sistema de produção corrente"
+      ],
+      "correct": 1,
+      "explanation": "O elevador é a diferença entre a linha de base mais forte e a linha de base mais fraca faz qualquer modelo parecer bom."
+    },
+    {
+      "stage": "post",
+      "question": "Um modelo de fraude bloqueia pagamentos arriscados e a equipe reestrutura-o todos os meses em pagamentos rotulados.",
+      "options": [
+        "Os pagamentos bloqueados nunca recebem um rótulo de fraude, por isso os dados de formação perdem exemplos",
+        "O calendário mensal de reformulação torna o modelo mais adequado ao mês mais recente",
+        "O bloqueio de pagamentos aumenta a latência p99 do serviço modelo acima do seu orçamento",
+        "Os pagamentos rotulados vazam o rótulo porque o rótulo é armazenado na mesma tabela"
+      ],
+      "correct": 0,
+      "explanation": "As decisões do modelo removem os resultados dos dados de treinamento futuros, por isso mantenha um pequeno retorno aleatório que o modelo não bloqueie."
+    },
+    {
+      "stage": "post",
+      "question": "Que fase de implantação permite que um novo modelo marque tráfego ao vivo enquanto ninguém usa sua saída?",
+      "options": [
+        "Libertação dos Canários",
+        "Teste A/B com um retardo",
+        "Desdobramento de sombras",
+        "Rollout completo com retrocesso"
+      ],
+      "correct": 2,
+      "explanation": "No modo sombra, o sistema registra as previsões do novo modelo e as compara com o modelo atual."
+    }
+  ]
+}
