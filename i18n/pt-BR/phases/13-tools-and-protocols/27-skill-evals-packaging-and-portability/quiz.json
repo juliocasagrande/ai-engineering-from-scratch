@@ -40,7 +40,7 @@
     },
     {
       "stage": "check",
-      "question": "Um anfitrião carrega o SKILL.md mas cai .`references/`E ...`scripts/`Como deve uma matriz de portabilidade classificar um pacote que requer ambos?",
+      "question": "Um host carrega SKILL.md mas cai `references/` e `scripts/` Como deve uma matriz de portabilidade classificar um pacote que requer ambos?",
       "options": [
         "Nativo, porque a matriz frontal está carregada",
         "Requerido adaptador, com os recursos de arquivo de acompanhamento e script faltantes listados",

@@ -1,6 +1,6 @@
 ---
 name: dynamic-analysis-of-your-own-program
-description: Drive lldb or gdb in batch mode over a program you compiled, record registers and memory at every stop, and grade each static claim as confirmed, refuted, or not observed for that run.
+description: Drive lldb ou gdb em modo batch sobre um programa que você compilar, registar registros e memória em cada parada, e classificar cada reivindicação estática como confirmado, refutado, ou não observado para essa execução.
 version: 1.0.0
 phase: 13
 lesson: 42
@@ -12,21 +12,21 @@ Dado um programa que você escreveu e compilado com informações de depuração
 ## Introduções necessárias
 
 - A fonte, o comando exato do compilador e o binário que produz.
-- Uma lista de `llvm-objdump -d`ou `objdump -d`de que binário, então os endereços de ponto de ruptura vêm da lista e não da memória.
-- O depósito DWARF dos tipos de estruturas mencionados nas reivindicações ou os`ctypes`O layout, como fonte de compensações de campo.
+- Uma lista de `llvm-objdump -d` ou `objdump -d` de que binário, então os endereços de ponto de ruptura vêm da lista e não da memória.
+- O depósito DWARF dos tipos de estruturas mencionados nas alegações ou `ctypes` O layout, como fonte de compensações de campo.
 - As reivindicações de teste, cada uma como uma frase com a função, o registo ou endereço, o valor esperado ou a borda, e a lição ou documento de que veio.
 - Um depurador: lldb a partir das ferramentas de linha de comando ou Xcode no macOS, lldb ou gdb no Linux. Gravar a cadeia de versões.
 
 ## Procedimento
 
 1. Leia a listagem. Para cada função nas reivindicações, registre seu endereço de início e fim. Para cada ramo condicional em uma função com uma reivindicação de borda, registre o endereço da filial, seu alvo e seu endereço de queda.
-2. Escreva os comandos debugger para um arquivo antes de executar qualquer coisa: um `breakpoint set -n`por função, um `breakpoint set -a ADDR -s MODULE`por sucessor de ramo, um gancho de parada que lê os registros de argumentos, a memória por trás do primeiro argumento e as variáveis do quadro, então `run`, o ponto de observação que você quer, um orçamento fixo de `continue`, e `breakpoint list`- E mais .`watchpoint list -v`No final.
-3. Execute o depurador em modo batch com `settings set interpreter.stop-command-source-on-error false`Então um comando que falha após o processo sair não termina a sessão. Salve a saída completa como a transcrição com a linha de comando e a versão debugger em um cabeçalho.
+2. Escreva os comandos debugger para um arquivo antes de executar qualquer coisa: um `breakpoint set -n` por função, um `breakpoint set -a ADDR -s MODULE` por sucessor de ramo, um gancho de parada que lê os registros de argumentos, a memória por trás do primeiro argumento, e as variáveis de quadro, então `run`, o ponto de observação que você quer, um orçamento fixo de `continue`, e `breakpoint list` Mais `watchpoint list -v` No final.
+3. Execute o depurador em modo batch com `settings set interpreter.stop-command-source-on-error false` Então um comando que falha após o processo sair não termina a sessão. Salve a saída completa como a transcrição com a linha de comando e a versão debugger em um cabeçalho.
 4. Parse a transcrição em paradas. Cada parada tem um contador de programa, uma função, uma razão de parada, os registros e memória do gancho impresso, e as variáveis do quadro.
 5. Classifique cada reivindicação em cada parada que possa testá-la. Uma alegação de registro compara o registro com a variável quadro. Uma reivindicação de campo de compensação decodifica as palavras de memória através dos offsets DWARF e as compara com os campos variáveis do quadro. Uma reivindicação de borda lê o valor comparado na entrada da função e verifica que a próxima parada é o sucessor da condição levantada prevê. Uma reclamação de call-edge conta as paradas de entrada após o processo ter saído.
-6. Escreva .`confirmed`Quando a observação for de acordo,`refuted`Quando não concorda, e`not-observed`Quando não houver parada, pode-se verificar a alegação.
-7. Repita uma construção otimizada da mesma fonte. Espere pontos de ruptura resolvidos com contagem de hits 0 onde o compilador alinhou a função, e mantenha essas reivindicações `not-observed`A menos que a alegação tenha sido relativa à própria vantagem da chamada, o que é refutado pela execução completa.
-8. Se a execução não puder começar, registre o erro exato.`attach failed ((os/kern) invalid address)`, e um alvo endurecido sem `com.apple.security.get-task-allow`Não há provas do programa.
+6. Escreva `confirmed` Quando a observação for de acordo, `refuted` quando não estiver de acordo, e `not-observed` Quando não houver parada, pode-se verificar a alegação.
+7. Repita uma construção otimizada da mesma fonte. Espera pontos de ruptura resolvidos com contagem de hits 0 onde o compilador alinhou a função, e mantenha essas reivindicações `not-observed` A menos que a alegação tenha sido relativa à própria vantagem da chamada, o que é refutado pela execução completa.
+8. Se a execução não puder começar, registre o erro exato. `attach failed ((os/kern) invalid address)`E um alvo endurecido sem `com.apple.security.get-task-allow` Não há provas do programa.
 
 ## Relatório necessário
 
@@ -36,7 +36,7 @@ Dado um programa que você escreveu e compilado com informações de depuração
 - Cada reivindicação com o seu veredicto, os índices de parada que produziram o veredicto, e o texto de observação
 - Contas de pontos de intervalo e de pontos de observação desde o final da corrida
 - O estado de saída do processo e a sua saída padrão
-- As reivindicações que permaneceram.`not-observed`e a razão de cada
+- As reivindicações que permaneceram `not-observed` e a razão de cada
 
 ## Rejeitos duros
 

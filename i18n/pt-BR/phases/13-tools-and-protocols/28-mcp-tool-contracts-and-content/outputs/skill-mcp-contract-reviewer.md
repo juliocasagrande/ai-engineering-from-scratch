@@ -1,6 +1,6 @@
 ---
 name: mcp-contract-reviewer
-description: Review MCP tool descriptors, results, pagination, completions, and parameter-header policy before exposing tools to a model.
+description: Revisar os descritores de ferramentas MCP, os resultados, a pagination, os completos e a política de cabeçalhos de parâmetros antes de expôr as ferramentas a um modelo.
 version: 1.0.0
 phase: 13
 lesson: 28
@@ -11,7 +11,7 @@ Revisar a superfície da ferramenta MCP fornecida em relação à versão do pro
 
 Pergunte se estão ausentes:
 
-1. O completo`tools/list`páginas de descrição, incluindo todas `nextCursor`campo.
+1. O total `tools/list` páginas de descrição, incluindo todas as `nextCursor` campo.
 2. Pelo menos um resultado bem sucedido e um resultado falhado por ferramenta.
 3. O mapeamento de cabeçalho de parâmetro HTTP Streamable, se usado.
 4. Referências de conclusão, aulas de chamadores e sugestões de exemplo.
@@ -26,9 +26,9 @@ Para cada instrumento:
 - Verificar um nome estável não vazio;
 - exigir um objeto `inputSchema`O artigo 2.o
 - Identificar o dialeto JSON Schema, que é padrão para 2020-12 quando omitido;
-- validar `outputSchema`quando estiver presente;
+- validar `outputSchema` quando estiver presente;
 - Lista as anotações como indicações não confiáveis, e não como política;
-- Retorno`ADMIT`- Não .`REJECT`, ou `CONDITIONAL`com uma razão precisa.
+- retorno `ADMIT`- Não . `REJECT`, ou `CONDITIONAL` com uma razão precisa.
 
 Rejeitar um descritivo mal formado sem rejeitar ferramentas válidas não relacionadas.
 
@@ -36,10 +36,10 @@ Rejeitar um descritivo mal formado sem rejeitar ferramentas válidas não relaci
 
 Para cada resultado completo, incluindo um com `isError: true`- Não .
 
-- exigir`resultType: complete`O artigo 2.o
+- exigir `resultType: complete`O artigo 2.o
 - validar cada bloco de conteúdo por tipo;
-- Tratamento`structuredContent`como qualquer valor JSON, não apenas para objeto;
-- exigir`structuredContent`e conformidade com `outputSchema`quando existe;
+- Tratamento `structuredContent` como qualquer valor JSON, não apenas para objeto;
+- exigir `structuredContent` e conformidade com `outputSchema` quando existe;
 - Requer um bloco de texto de compatibilidade para resultados estruturados;
 - distinguir os links de recursos dos recursos incorporados;
 - limites de tamanho do estado e tipo de mídia.
@@ -50,34 +50,34 @@ contrato de produção publicado.
 
 ## Tópicos de parâmetros
 
-Por cada um .`x-mcp-header`- Não .
+Por cada um `x-mcp-header`- Não .
 
 - Requer um token de nome de campo HTTP válido e não vazio;
 - exigir uma singularidade insensible ao caso;
 - Requerem string, inteiro ou tipo booleano;
 - atravessar todo o esquema de entrada, incluindo propriedades aninhadas, combinadores,
   elementos do conjunto e definições utilizadas por `$ref`O artigo 2.o
-- permitir a anotação apenas em um directo `inputSchema.properties`membro e
-  rejeitar todas as anotações encontradas em outros lugares ou em`outputSchema`O artigo 2.o
-- rejeitar`number`e valores inteiros fora `-9007199254740991`através
+- permitir a anotação apenas em um `inputSchema.properties` membro e
+  rejeitar todas as anotações encontradas em outros lugares ou em `outputSchema`O artigo 2.o
+- rejeitar `number` e valores inteiros fora `-9007199254740991` através
   `9007199254740991`O artigo 2.o
 - Rejeitar os campos de credenciais, tokens, segredos, senhas, autorizações e PII por política de implantação;
 - Transmitir um valor claramente apenas quando não é um ASCII visível em branco e
   Não começa com `=?base64?`O artigo 2.o
-- emite exactamente`=?base64?{Base64UTF8}?=`sem corte ou
+- emite exactamente `=?base64?{Base64UTF8}?=` sem corte ou
   Normalização do valor original;
 - codificar Unicode, vazio, espaço branco, controle, CR ou LF, enchido, e
   As cadeias de sentinela e os booleanos como texto minúsculo;
-- na fronteira HTTP, decodificação reconhecida `Mcp-Param-*`valores, cabeçalho de comparação
+- na fronteira HTTP, decodificação reconhecida `Mcp-Param-*` valores, cabeçalho de comparação
   Nomear valores insensivelmente para casos e decodificar exactamente com o corpo JSON, e
   rejeitar uma cópia que falte, seja duplicada, seja inesperada, seja malformada ou seja incompatível com a
-  HTTP `400`+ JSON-RPC `-32020`O artigo 2.o
+  HTTP `400` mais JSON-RPC `-32020`O artigo 2.o
 - Registre o nome final do cabeçalho e a categoria de rejeição, nunca o valor do argumento
   ou carga útil codificada.
 
 ## Paginação
 
-Rastrear todas as solicitações de lista. Continuar sempre que`nextCursor`Não é presente e não é nula, inclusive quando é uma cadeia vazia. Nunca decodifique, modifique, incremente, ordene ou derive significado de um cursor. Relate ferramentas duplicadas, páginas faltantes e ordenação instável.
+Seguir todas as solicitações de lista. `nextCursor` Não é presente e não é nula, inclusive quando é uma cadeia vazia. Nunca decodifique, modifique, incremente, ordene ou derive significado de um cursor. Relate ferramentas duplicadas, páginas faltantes e ordenação instável.
 
 ## Completamento
 

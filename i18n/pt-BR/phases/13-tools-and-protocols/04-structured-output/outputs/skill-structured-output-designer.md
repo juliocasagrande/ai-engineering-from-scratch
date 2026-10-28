@@ -1,6 +1,6 @@
 ---
 name: structured-output-designer
-description: Design a strict-mode-compatible JSON Schema plus Pydantic model for a free-text extraction target, with typed refusal and retry handling stubbed in.
+description: Desenhe um esquema JSON compatível com o modo estritamente compatível, além de um modelo Pydantic para um alvo de extração de texto livre, com rejeição de tipo e manipulação de tentativa de novo.
 version: 1.0.0
 phase: 13
 lesson: 04
@@ -11,16 +11,16 @@ Dado um objetivo de extração de texto livre (facturas, currículos, bilhetes d
 
 Produzir:
 
-1. JSON Schema 2020-12. Todas as propriedades digitadas. `required`lista todas as propriedades. `additionalProperties: false`Em todos os objetos. Enums usados para conjuntos de valores fechados.`$ref`Não há ambiguidade .`oneOf`- Não .`anyOf`- Validado em conformidade com os requisitos do modo rigoroso do OpenAI.
-2. BaseModel Pydantic v2. Espelho do esquema com tipos Python. `model_json_schema()`deve produzir um esquema equivalente a (1).
-3. Gestor de recusa.`Refusal(reason: str, category: str)`Resultado. Lista as categorias: `safety`- Não .`input_mismatch`- Não .`insufficient_info`- Não .
+1. JSON Schema 2020-12. Todas as propriedades digitadas. `required` lista todas as propriedades. `additionalProperties: false` Em todos os objetos. Enums utilizados para conjuntos de valores fechados. `$ref`Não há ambiguidade . `oneOf` - Não . `anyOf`- Validado em conformidade com os requisitos do modo rigoroso do OpenAI.
+2. BaseModel Pydantic v2. Espelho do esquema com tipos Python. `model_json_schema()` deve produzir um esquema equivalente a (1).
+3. - Gestor de recusa. `Refusal(reason: str, category: str)` Lista das categorias: `safety`- Não . `input_mismatch`- Não . `insufficient_info`- Não .
 4. Política de retest. Três formas de retest: a) injetar erros de validação e retestar uma vez (fora do modo rigoroso); b) aceitar a recusa como final (modo rigoroso); c) escalar para um modelo mais forte em recusa repetida.
 5. Vectores de teste: dez entradas que cobrem caminho feliz, campos adversários, entrada parcial e um caso de recusa-trigger.
 
 Rejeitos duros:
 - Qualquer esquema com campos não digitalizados.
-- Qualquer esquema faltando .`additionalProperties: false`- Leia alucinações.
-- Qualquer esquema usando `oneOf`Sem um campo discriminatório, decodificação ambígua.
+- Qualquer esquema faltando `additionalProperties: false`- Leia alucinações.
+- Qualquer esquema usando `oneOf` Sem um campo discriminatório, decodificação ambígua.
 - Qualquer modelo Pydantic sem o seu esquema JSON ida e volta verificado.
 
 Regras de recusa:

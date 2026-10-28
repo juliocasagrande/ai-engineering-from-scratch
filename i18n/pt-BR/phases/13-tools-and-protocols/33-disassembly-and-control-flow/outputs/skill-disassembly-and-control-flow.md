@@ -1,6 +1,6 @@
 ---
 name: disassembly-and-control-flow
-description: Turn an object file and a function name into a checked listing, basic blocks, typed edges, dominators, and a record of every unresolved transfer.
+description: Transforme um arquivo de objeto e um nome de função em uma listagem verificada, blocos básicos, bordas digitalizadas, dominadores e um registro de cada transferência não resolvida.
 version: 1.0.0
 phase: 13
 lesson: 33
@@ -12,20 +12,20 @@ Dado um objeto x86-64 relocable ou ligado que você construiu e uma função nel
 ## Introduções necessárias
 
 - O arquivo objeto e o compilador exato e o comando que o produziram.
-- Uma lista de referência de `llvm-objdump -d`Capturado do mesmo objeto e armazenado ao lado dele.
+- Uma lista de referência de `llvm-objdump -d` Capturado do mesmo objeto e armazenado ao lado dele.
 - O nome da função ou endereço de entrada, e a seção que contém o código.
-- A tabela de símbolos com tamanhos de funções e o `.rela.*`Seções em que o objeto não está ligado.
+- A tabela de símbolos com tamanhos de função e a `.rela.*` Seções em que o objeto não está ligado.
 - O decodificador da lição 33 (`code/main.py`) ou um equivalente que se eleva num código op desconhecido.
 
 ## Procedimento
 
 1. Execute o decodificador como uma varredura linear em toda a seção de código e compare cada instrução com a lista de referência por endereço, bytes e texto. Pare e corrija o decodificador na primeira descoincidência. Registre a contagem de instruções que concordou.
 2. Execute descida recursiva da entrada da função com a extensão da função como limite. Registre a ordem de visitas, os conflitos e cada salto indireto ou chamada não resolvido com seu endereço.
-3. Para cada salto indireto não resolvido, corresponder ao idioma da mesa: o registo o salto lê, o `add`que o produziu, a carga indexada, o relativo ao período de inquérito `lea`, e verificar os limites.`lea`através da sua realocação com `S + A + (end - P)`Leia as entradas .`.rela.rodata`Quando o objeto é realocavel, ou dos bytes quando está ligado.
-4. Repete a descida com as tabelas recuperadas e construia blocos básicos: líderes são a entrada, cada alvo direto ou de mesa, e cada instrução após uma transferência.`fallthrough`- Não .`taken`- Não .`jump`, ou `table`- Não .
+3. Para cada salto indireto não resolvido, corresponder ao idioma da mesa: o registo o salto lê, o `add` que o produziu, a carga indexada, a relação entre o período de inquérito e o período de inquérito `lea`- E as fronteiras verificam. `lea` através da sua realocação com `S + A + (end - P)`Leia as entradas . `.rela.rodata` Quando o objeto é realocavel, ou dos bytes quando está ligado.
+4. Repete a descida com as tabelas recuperadas e construa blocos básicos: líderes são a entrada, cada alvo direto ou de mesa e cada instrução após uma transferência. `fallthrough`- Não . `taken`- Não . `jump`, ou `table`- Não .
 5. Compute dominadores imediatos com o algoritmo iterativo na ordem posterior inversa. Enumere as bordas traseiras como loops.
 6. Classificar o segundo grupo como padding ou dados e o terceiro como inacessível ou faltante.
-7. Procure cargas através de um RIP-relativo `lea`A taxa de variação de carga é a taxa de variação de carga, que não alimenta um salto.
+7. Procure cargas através de um RIP-relativo `lea` A taxa de variação de carga é a taxa de variação de carga, que não alimenta um salto.
 8. Escreva cada transferência indireta, conflito e byte não codificável restante como desconhecido com seu endereço e os bytes que viu.
 
 ## Relatório necessário
@@ -36,7 +36,7 @@ Para a função, informe:
 - acordo do oráculo conforme acordado sobre instruções comparadas
 - Conta de instruções sob o varredor, a descida plana e a descida com tabelas
 - Lista de blocos com início, fim e contagem de instruções
-- lista de bordas com tipo e, para `table`em bordas, a realocação ou o offset em bytes que produziram o alvo
+- Lista de bordas com tipo e, para `table` em bordas, a realocação ou o offset em bytes que produziram o alvo
 - Dominar imediatamente de cada bloco e das bordas traseiras
 - Contabilidade de bytes: código reclamado, enchimento reclamado pela varredura, bytes de dados, bytes nunca alcançados
 - Cada tabela com secção, compensação, tamanho da entrada, contagem, entradas e tipo de evidência
@@ -45,7 +45,7 @@ Para a função, informe:
 ## Rejeitos duros
 
 - Confiar numa lista porque cada byte foi decodificado.
-- Tratamento de acordo com `llvm-objdump`O oráculo é um varredão linear.
+- Tratamento de acordo com `llvm-objdump` O oráculo é um varredão linear.
 - Imagino um código optico que o decodificador não sabe, em vez de levantar.
 - Lendo mais de 15 bytes para uma instrução ou lendo além da parte final.
 - Resolver um operando relativo ao RIP sem adicionar a distância do campo de realocação ao final da instrução.

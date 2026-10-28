@@ -16,7 +16,7 @@
     },
     {
       "stage": "check",
-      "question": "Um anfitrião reconhece .`user-invocable: false`Como deve um guia de portabilidade descrever esse campo?",
+      "question": "Um anfitrião reconhece `user-invocable: false`Como deve um guia de portabilidade descrever esse campo?",
       "options": [
         "Um bits de permissão do sistema de arquivos",
         "Substituição da descrição de habilidade",
@@ -40,7 +40,7 @@
     },
     {
       "stage": "check",
-      "question": "No modelo humano 2x2, o que faz?`human=true, model=false`- Não me digas?",
+      "question": "No modelo humano 2x2, o que faz `human=true, model=false` - Não me digas?",
       "options": [
         "A habilidade tem autoridade de ferramenta ilimitada",
         "Um ser humano pode invocá-lo explicitamente, mas o modelo não deve selecioná-lo implícitamente",

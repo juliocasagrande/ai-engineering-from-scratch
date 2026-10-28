@@ -1,6 +1,6 @@
 ---
 name: the-reverse-engineering-landscape
-description: Run several disassemblers and decompilers on one object you built, normalise their addresses, and report where they agree and where each one invents or misses code.
+description: Execute vários desmontagens e decompiladores em um objeto que você construiu, normalize seus endereços e informe onde eles concordam e onde cada um inventa ou perde código.
 version: 1.0.0
 phase: 13
 lesson: 37
@@ -14,14 +14,14 @@ Dado um objeto relocable ou vinculado que você construiu, o comando do compilad
 - O arquivo objeto e o compilador exato e o comando que o produziram.
 - A tabela de símbolos do objeto (nome de função, offsets, tamanhos) é lida a partir do próprio arquivo.
 - Para cada ferramenta: a cadeia de versões, o comando exato sem cabeça e a saída bruta capturada em um arquivo ao lado do objeto.
-- O endereço que cada ferramenta deu ao `.text`Seção, para que cada endereço possa ser reduzido a uma secção de compensação.
+- O endereço que cada ferramenta deu à `.text` Seção, para que cada endereço possa ser reduzido a uma secção de compensação.
 - A lição 37 (`code/main.py`) ou um equivalente que lê capta e nunca confia em um instrumento como o oráculo.
 
 ## Procedimento
 
-1. Capture first, compare second.`llvm-objdump -d -r`- Não .`r2 -qc`- Não .`rizin -qc`, um guião de Angr,`analyzeHeadless -postScript`), armazenar a saída, e gravar o comando e versão em um manifesto. Nunca compare a saída ao vivo que você não pode ler novamente.
+1. Capture first, compare second.`llvm-objdump -d -r`- Não . `r2 -qc`- Não . `rizin -qc`, um guião de Angr, `analyzeHeadless -postScript`), armazenar a saída, e gravar o comando e versão em um manifesto. Nunca compare a saída ao vivo que você não pode ler novamente.
 2. Leia os símbolos da função da tabela de símbolos ELF. Eles são a única verdade de terra compartilhada.
-3. Normalizar cada endereço para um `.text`Compare que uma função conhecida atinge o mesmo deslocamento em cada ferramenta antes de comparar qualquer outra coisa.
+3. Normalizar cada endereço para um `.text` Compare que uma função conhecida atinge o mesmo deslocamento em cada ferramenta antes de comparar qualquer outra coisa.
 4. Para cada extensão da função, coletar o conjunto de instruções inicia por ferramenta. Pegue a maioria definida sobre os construtores de gráficos e relatar, por ferramenta, os iniciais que adiciona e os iniciais que faltam.
 5. Reúna os blocos de iniciação e as bordas por ferramenta como pares de offset. Relate as contagens e se os conjuntos coincidem. Quando as contagens diferem, lista as bordas que cada ferramenta carece em relação à união e leia as próprias notas da ferramenta (resolução do interruptor, salto computado, alvo não resolvedor) antes de julgar.
 6. Para cada ferramenta, registar bytes de código dentro de símbolos, bytes de enchimento reclamados e bytes de símbolo deixados não reclamados. Nomear os bytes uma ferramenta afirma que a maioria não é como código inventado, e os bytes que deixa que a maioria decodifica como código perdido.

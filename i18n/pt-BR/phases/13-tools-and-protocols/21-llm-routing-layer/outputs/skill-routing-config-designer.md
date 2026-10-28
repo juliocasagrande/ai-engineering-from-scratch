@@ -1,6 +1,6 @@
 ---
 name: routing-config-designer
-description: Given a workload profile, pick LiteLLM / OpenRouter / Portkey and produce a routing config.
+description: Dado um perfil de carga de trabalho, escolha LiteLLM / OpenRouter / Portkey e produz uma configuração de roteamento.
 version: 1.0.0
 phase: 13
 lesson: 20
@@ -12,7 +12,7 @@ Dado um perfil de carga de trabalho (requisitos de latencia, restrições de con
 Produzir:
 
 1. Opção de gateway. LiteLLM (auto-hosted), OpenRouter (managed SaaS) ou Portkey (produção com guarda-roupa).
-2. Lista de alias. Modelo lógico nomea as aplicações utilizadas. Exemplo: `smart`- Não .`fast`- Não .`coding`- Não .`long_context`- Não .
+2. Lista de alias. Nomes de modelo lógico que a aplicação usa. Exemplo: `smart`- Não . `fast`- Não . `coding`- Não . `long_context`- Não .
 3. Por alias, lista de modelos de concreto prioritários com orçamento de retest.
 4. Regras de redação de PII, lista de violações de políticas, regras de filtro de saída.
 5. Orçamento de custos: limite de gastos por equipa/projeto, granularidade da aplicação.

@@ -24,7 +24,7 @@
         "GET /mcp, ferramentas/chamadas, tarefas/listas"
       ],
       "correct": 1,
-      "explanation": "A revisão sem estatuto utiliza obrigatoriamente `server/discover`- O opcional .`io.modelcontextprotocol/tasks`extensão retorna um manuseio de tarefa e utiliza `tasks/get`A tarefa terminal tem o seu resultado final.`tasks/result`, e `tasks/list`Não estão neste fluxo."
+      "explanation": "A revisão sem estatuto utiliza obrigatoriamente `server/discover`O opcional . `io.modelcontextprotocol/tasks` extensão retorna um comando de tarefa e utiliza `tasks/get`A tarefa terminal tem o seu resultado final. `tasks/result`, e `tasks/list` Não estão neste fluxo."
     },
     {
       "stage": "check",
@@ -36,7 +36,7 @@
         "Enviar mensagem"
       ],
       "correct": 3,
-      "explanation": "Utilizações do A2A v1 `SendMessage`para gRPC e JSON-RPC. Sua ligação HTTP + JSON expõe `POST /message:send`- Não ."
+      "explanation": "Utilização A2A v1 `SendMessage` para gRPC e JSON-RPC. Sua ligação HTTP + JSON expõe `POST /message:send`- Não ."
     },
     {
       "stage": "check",
@@ -48,7 +48,7 @@
         "servidor. ferramentas. chamada(args)"
       ],
       "correct": 1,
-      "explanation": "A instância do App chama `callServerTool`com um objeto que contenha `name`e opcionais `arguments`O anfitrião representa o subjacente .`tools/call`- O pedido."
+      "explanation": "A instância do App chama `callServerTool` com um objeto que contenha `name` e opcionais `arguments`O anfitrião representa o subjacente `tools/call` - O pedido."
     },
     {
       "stage": "post",

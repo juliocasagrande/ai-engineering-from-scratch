@@ -1,6 +1,6 @@
 ---
 name: rebuild-and-prove-equal
-description: Prove a rebuilt function equal to the original with a differential grid, a relocation-aware byte compare, and an evidence-backed proof record.
+description: Prove uma função reconstruída igual à original com uma grade diferencial, uma comparação de byte consciente de realocação e um registro de prova apoiado por evidências.
 version: 1.0.0
 phase: 13
 lesson: 36
@@ -26,17 +26,17 @@ Dado um arquivo objeto original que possui, evidência de função de um fornece
 3. Construir uma grade de entrada com uma classe por perigo: zero de proteção, negativo, arredondamento, sobreflow, armadilha e cada limite de ramo.
 4. Adicionar as entradas que fazem cada envoltura intermediária na largura utilizada na listagem.
 5. Compile o original, o candidato renomeado e um driver em um programa.
-6. Instalar um `SIGFPE`O motorista tem um controlador no motorista, de modo que uma armadilha divide se torna um resultado gravado.
+6. Instalar um `SIGFPE` O motorista tem um controlador no motorista, de modo que uma armadilha divide se torna um resultado gravado.
 7. Execute a grade, grava cada célula com entradas, saída original, saída candidata e classe.
 8. Verifique a coluna original contra um modelo da semântica do alvo.
 9. Recompõe o candidato com as bandeiras originais exatas.
-10. Leia ambos os objetos: símbolo de compensação e tamanho, bytes de função e o `.rela`registos dentro da função.
+10. Leia ambos os objetos: símbolo de compensação e tamanho, bytes de função, e o `.rela` registos dentro da função.
 11. Mascarar todos os campos de realocação, depois comparar tamanhos e bytes.
 12. Compare registros de realocação por secção de offset, tipo e objetivo.
 13. Leia as constantes em cada ponto de realocação e compare-as entrada por entrada.
-14. Escrever uma reivindicação por perna por função com status `pass`- Não .`fail`, ou `unknown`- Não .
-15. A primeira falha do agregado, depois desconhecido.`pass`para uma reclamação que não foi executada.
-16. Tenta o registro de prova com `predicate_type`- Não .`operation`- Não .`confidence`- Não .`authority`Marque-o para a identificação.
+14. Escreva uma reivindicação por perna por função com status `pass`- Não . `fail`, ou `unknown`- Não .
+15. A primeira falha do agregado, depois desconhecido. `pass` para uma reclamação que não foi executada.
+16. Tenta o registo de prova com `predicate_type`- Não . `operation`- Não . `confidence`- Não . `authority`Marque-o para a identificação.
 
 ## Matriz necessária
 
@@ -65,8 +65,8 @@ Para cada função, informe:
 - Relatório de igualdade de byte entre compiladores, versões ou bandeiras diferentes.
 - Tratar a igualdade de tamanho como aceitação.
 - Ler a saída de um modelo como observação.
-- Uma reivindicação com status `pass`E sem provas de identificação.
-- Um agregado `pass`enquanto qualquer reivindicação é `unknown`- Não .
+- Uma reivindicação com status `pass` E sem provas de identificação.
+- Um agregado `pass` enquanto qualquer reivindicação é `unknown`- Não .
 - Um registro comprovado cuja identidade não se recalcula do seu conteúdo.
 - Qualquer análise de um programa para o qual não possamos ou não temos autorização por escrito.
 
@@ -79,7 +79,7 @@ Retorna estas secções:
 3. 1a etapa: design de grade, contagem por classe, resultado ingênuo, desajustes, verificação do modelo, hospedeiro e tipo original.
 4. 2o Leg: tamanhos, intervalos mascarados, resultado de byte, registos de realocação, constantes referenciadas.
 5. Reclamações: uma linha por reclamação com identificação de status e de provas.
-6. Registo de prova: o registo JSON e os seus `ev_`- O que é?
+6. Registo de prova: o registo JSON e os seus `ev_` - O que é?
 7. Desconhecidos: todas as classes de entrada, arquitetura ou compilador não foram cobertos pela prova.
 
 Se cada pedido for aprovado, indique a grade, as bandeiras e a arquitetura que a passagem cobre.

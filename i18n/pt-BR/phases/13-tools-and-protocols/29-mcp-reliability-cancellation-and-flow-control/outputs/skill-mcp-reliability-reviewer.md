@@ -1,6 +1,6 @@
 ---
 name: mcp-reliability-reviewer
-description: Review MCP cancellation races, deadlines, retries, idempotency, SSE flow control, and reconnect behavior.
+description: Revisar as corridas de cancelamento do MCP, os prazos, as retemptâncias, a idempotencia, o controle do fluxo de SSE e o comportamento de reconexão.
 version: 1.0.0
 phase: 13
 lesson: 29
@@ -23,10 +23,10 @@ Produza as seguintes secções.
 
 ## Fones de cancelamento
 
-- Para estúdio, é preciso um cliente-enviado`notifications/cancelled`Notificação que faça referência a um ID de solicitação ativa.
+- Para estúdio, é preciso um cliente enviado `notifications/cancelled` Notificação que faça referência a um ID de solicitação ativa.
 - Para Streamable HTTP, exija fechar o fluxo de resposta desse pedido. Rejeita um POST de cancelamento comum.
 - Não exigir resposta JSON-RPC a uma notificação de cancelamento.
-- Reservatório de servidor enviado `notifications/cancelled`para estúdio `subscriptions/listen`- Desfecho.
+- Serviço de reserva enviado `notifications/cancelled` para estúdio `subscriptions/listen` - Desfecho.
 - Explique o que acontece quando a cancelamento é desconhecida, mal formada, atrasada ou impossível.
 
 ## Tabela de corrida
@@ -72,7 +72,7 @@ Uma fixação reaberta e uma fixação alias de mutação.
 - Coalesce progresso substituível.
 - Mark deixou de fazer progressos porque precisava de uma revisão autorizada.
 - Preservar as respostas finais JSON-RPC.
-- Set `Content-Type: text/event-stream`- Não .`Cache-Control: no-cache`, e `X-Accel-Buffering: no`para a SSE.
+- Set `Content-Type: text/event-stream`- Não . `Cache-Control: no-cache`, e `X-Accel-Buffering: no` para a SSE.
 - Define a cadência de manutenção separadamente do progresso da operação.
 - Rejeita uma fila ilimitada.
 
@@ -80,14 +80,14 @@ Uma fixação reaberta e uma fixação alias de mutação.
 
 - Abre um novo pedido com uma nova identificação.
 - Restaurar os filtros de assinatura.
-- Não utilize `Last-Event-ID`para o MCP 2026-07-28.
+- Não utilizar `Last-Event-ID` para o MCP 2026-07-28.
 - Reemptar recursos afetados, listas, instruções ou tarefas.
 - Não reproduzir mutações inseguras automaticamente.
 - Use um retroescaldo exponencial com nervosismo.
 
 ## Tarefas duradouras
 
-Quando existe uma tarefa, mantenha-a.`tasks/cancel`A confirmação completa só prova que a intenção de cancelamento foi aceita.
+Quando existe uma tarefa, mantenha-a `tasks/cancel` A confirmação completa só prova que a intenção de cancelamento foi aceita.
 
 ## Instalações necessárias
 
@@ -102,7 +102,7 @@ Retorna pelo menos os seguintes cenários executáveis:
 7. Reutilização de chaves com argumentos alterados;
 8. Consumidor lento que exceda o amortigante de progresso;
 9. A queda do stream seguida de nova assinatura e reafirmação autorizada;
-10. `tasks/cancel`O reconhecimento, seguido de cancelamento atrasado do trabalhador.
+10. `tasks/cancel` O reconhecimento, seguido de cancelamento atrasado do trabalhador.
 11. Duas conexões de contabilidade independentes que competem com base numa chave e em argumentos idênticos;
 12. Uma mutação de chamada de um resultado retornado seguida de uma repetição limpa do registro duradouro.
 

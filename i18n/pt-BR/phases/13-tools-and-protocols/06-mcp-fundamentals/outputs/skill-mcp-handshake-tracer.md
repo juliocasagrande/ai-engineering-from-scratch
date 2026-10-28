@@ -1,30 +1,30 @@
 ---
 name: mcp-request-tracer
-description: Audit MCP transcripts message by message across modern stateless and explicit legacy protocol eras.
+description: O MCP de auditoria transcreve mensagem por mensagem em épocas modernas de protocolo legado sem estado e explícito.
 version: 2.0.0
 phase: 13
 lesson: 06
 tags: [mcp, json-rpc, stateless, metadata, compatibility]
 ---
 
-Dada uma sequência de envelopes JSON-RPC do MCP, auditem cada mensagem de forma independente em relação ao MCP `2026-07-28`Detectar tráfego antigo, mas nunca assumir que exista um aperto de mão ou sessão de protocolo.
+Dado uma sequência de envelopes JSON-RPC de MCP, auditem cada mensagem de forma independente contra o MCP `2026-07-28`Detectar tráfego antigo, mas nunca assumir que exista um aperto de mão ou sessão de protocolo.
 
 Produzir:
 
 1. Anotado de mensagem: direção de estado, tipo JSON-RPC, método, primitivo, ID de solicitação e era detectada.
-2. Verificação de metadados modernos.`params._meta.io.modelcontextprotocol/protocolVersion`E ...`params._meta.io.modelcontextprotocol/clientCapabilities`Registrar se é recomendado .`clientInfo`Está presente.
-3. Verificar todos os sucessos modernos.`resultType: "complete"`ou outro tipo de resultado especificado, mais a identidade recomendada do servidor no resultado `_meta`- Não .
-4. Verificar a implementação de servidores modernos `server/discover`- Interpreta .`-32022`como evidência moderna e verificação `data.requested`- E mais .`data.supported`- Não .
-5. Verificação de cache.`server/discover`, métodos de listagem e `resources/read`, exigir`ttlMs`E ...`cacheScope`- Ordem de lista não determinista.
-6. Verificação de direção. Rejeitar solicitações JSON-RPC iniciadas pelo servidor no tráfego moderno. Permitir notificações relacionadas com solicitações e abertas pelo cliente `subscriptions/listen`- Os rios.
-7. Verificação de compatibilidade. Etiqueta `initialize`E ...`notifications/initialized`Não é necessário em trânsito moderno.
+2. Verificação de metadados modernos. `params._meta.io.modelcontextprotocol/protocolVersion` e `params._meta.io.modelcontextprotocol/clientCapabilities`Registrar se é recomendado `clientInfo` Está presente.
+3. Verificar todos os sucessos modernos `resultType: "complete"` ou outro tipo de resultado especificado, mais a identidade recomendada do servidor no resultado `_meta`- Não .
+4. Verificação de descoberta e versão. Verificar servidores modernos implementar `server/discover`Interpreta . `-32022` como evidência e verificação modernas `data.requested` Mais `data.supported`- Não .
+5. Verificação de cache. `server/discover`, métodos de listagem, e `resources/read`, exigir `ttlMs` e `cacheScope`- Ordem de lista não determinista.
+6. Verificação de direção. Rejeitar solicitações JSON-RPC iniciadas pelo servidor no tráfego moderno. Permitir notificações relacionadas a solicitações e abertas pelo cliente `subscriptions/listen` - Os rios.
+7. Verificação de compatibilidade. `initialize` e `notifications/initialized` Não é necessário em trânsito moderno.
 
 Rejeitos duros:
 
-- Tratar um processo de estúdio, conexão HTTP, ou `Mcp-Session-Id`como o protocolo moderno.
+- Tratar um processo de estúdio, conexão HTTP, ou `Mcp-Session-Id` como o protocolo moderno.
 - Inferir as capacidades do cliente a partir de uma solicitação anterior.
-- Regressando ao legado depois de um erro moderno reconhecido como`-32020`- Não .`-32021`, ou `-32022`- Não .
-- Aceitar um sucesso moderno sem`resultType`- Não .
+- Regressando ao legado após um erro moderno reconhecido como `-32020`- Não . `-32021`, ou `-32022`- Não .
+- Aceitar um sucesso moderno sem `resultType`- Não .
 
 Regras de recusa:
 

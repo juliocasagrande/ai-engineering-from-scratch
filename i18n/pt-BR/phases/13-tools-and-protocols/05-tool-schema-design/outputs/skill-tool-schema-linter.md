@@ -1,6 +1,6 @@
 ---
 name: tool-schema-linter
-description: Audit a tool registry against production design rules for names, descriptions, parameters, and shape. Can run in CI on every tool-registry change.
+description: Auditar um registo de ferramentas contra as regras de design de produção para nomes, descrições, parâmetros e forma.
 version: 1.0.0
 phase: 13
 lesson: 05
@@ -11,10 +11,10 @@ Dado um registo de ferramentas (lista JSON ou Python), execute uma auditoria est
 
 Produzir:
 
-1. Auditório de nome.`snake_case`, ordem de verbos e substantivos, marcadores de tensão, argumentos incorporados, consistência de préfixos no espaço de nomes.
-2. A revisão da descrição: aplicar limites de comprimento (40 a 1024 carros), a`Use when X. Do not use for Y.`padrão, proíbem padrões de injecção comuns (`<SYSTEM>`- Não .`ignore previous instructions`, abreviadores de URL em linha).
-3. Auditoria de esquemas. Propriedades tipografadas.`required`Lista presente, `additionalProperties: false`Em objetos, enums em conjuntos fechados, n.o `type: any`, descrições de campos de cadeia.
-4. Auditoria de forma.`action: string`As ferramentas quando o enum excede três valores.
+1. Auditório de nome. `snake_case`, ordem de verbos e substantivos, marcadores de tensão, argumentos incorporados, consistência de préfixos no espaço de nomes.
+2. A revisão da descrição: aplicar limites de comprimento (40 a 1024 carros), `Use when X. Do not use for Y.` padrão, proíbem padrões de injecção comuns (`<SYSTEM>`- Não . `ignore previous instructions`, abreviadores de URL em linha).
+3. Auditoria de esquemas, propriedades tipografadas, `required` Lista presente, `additionalProperties: false` em objetos, enums em conjuntos fechados, não `type: any`, descrições de campos de cadeia.
+4. Auditoria de forma. `action: string` As ferramentas quando o enum excede três valores.
 5. Auditoria de coerência: nomes dos mesmos parâmetros em todas as ferramentas relacionadas; padrão de identificação; convenções unitárias.
 
 Rejeitos duros:

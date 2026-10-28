@@ -4,7 +4,7 @@
   "questions": [
     {
       "stage": "pre",
-      "question": "Um SKILL.md diz`You may write anywhere on disk`Que autoridade dá essa sentença?",
+      "question": "Um SKILL.md diz `You may write anywhere on disk`Que autoridade dá essa sentença?",
       "options": [
         "Não há autoridade; o modelo de permissão do hospedeiro ainda decide cada ação",
         "Escrever acesso ao diretório de casa do usuário",
@@ -24,7 +24,7 @@
         "Um caminho lexical no espaço de trabalho pode apontar através de um link para um alvo fora da prisão"
       ],
       "correct": 3,
-      "explanation": "Verificar apenas a cadeia de entrada não apresenta links como `workspace/report`A contenção deve ser avaliada no objectivo resolvido, e os sistemas conservadores podem rejeitar inteiramente os objectivos de sincronismo direto."
+      "explanation": "Verificar apenas a cadeia de entrada não tem links como `workspace/report` A contenção deve ser avaliada no objectivo resolvido, e os sistemas conservadores podem rejeitar inteiramente os objectivos de sincronismo direto."
     },
     {
       "stage": "check",
@@ -44,7 +44,7 @@
       "options": [
         "Permitir sempre que o pacote de habilidades contém um script",
         "Execute o comando no repositório do curso e restaurar os arquivos mais tarde",
-        "Parse e classifique um vetor argv, retornar `deny`, e nunca a executar",
+        "Parsear e classificar um vetor argv, retornar `deny`, e nunca a executar",
         "Imprimir uma cadeia de shell que os alunos podem colar sem revisão"
       ],
       "correct": 2,

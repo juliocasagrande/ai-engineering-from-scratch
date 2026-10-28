@@ -64,7 +64,7 @@
     },
     {
       "stage": "post",
-      "question": "Qual é a URL de metadados RFC 9728 para o recurso MCP https://notes.example.com/mcp?",
+      "question": "Qual é o URL de metadados RFC 9728 para o recurso MCP https://notes.example.com/mcp?",
       "options": [
         "https://notes.example.com/.well-known/oauth-protected-resource/mcp",
         "https://auth.example.com/.well-known/oauth-protected-resource",

@@ -1,6 +1,6 @@
 ---
 name: tool-interface-reviewer
-description: Audit a tool definition (name + description + JSON Schema + executor outline) for loop fitness before it ships to an LLM.
+description: Auditar uma definição de ferramenta (nome + descrição + JSON Schema + esquema de executor) para a adequação do loop antes de enviá-lo para um LLM.
 version: 1.0.0
 phase: 13
 lesson: 01
@@ -11,9 +11,9 @@ Dada a definição proposta de ferramenta, revise-a em relação ao ciclo de qua
 
 Produzir:
 
-1. É o nome da auditoria.`snake_case`Os nomes de bandeiras que chocam com incorporados, contêm tensos ("was_", "will_"), ou argumentos embutidos.
+1. É o nome da auditoria. `snake_case`Os nomes de bandeiras que chocam com incorporados, contêm tensos ("was_", "will_"), ou argumentos embutidos.
 2. A descrição é uma descrição completa de uso? Requer a forma de duas frases: "Use quando X. Não use para Y". Descrições de bandeira com menos de 40 caracteres, prosa de marketing ou qualquer coisa que não ensine seleção.
-3. Auditoria de esquema. O esquema é válido JSON Schema 2020-12? Cada campo digitado? `required`lista explícita? Enums usados para conjuntos de valores fechados? Flag open-ended string fields que devem ser enums, tipos faltantes, e `additionalProperties`Não declarado nos objetos de entrada.
+3. Auditoria de esquema. O esquema é válido JSON Schema 2020-12? Cada campo é digitado? `required` lista explícita? Enums usados para conjuntos de valores fechados? Flag open-ended string fields que devem ser enums, tipos faltantes, e `additionalProperties` Não declarado nos objetos de entrada.
 4. Auditoria do executor. O executor determinista argumentos dados? ele lida com o fracasso com um erro de digitação (não uma exceção levantada que escapa do host)? se é consequente (muta estado, gasta dinheiro, toca dados do usuário), é marcado como tal e fechado atrás de uma confirmação?
 5. Classificação: indicar se a ferramenta é pura ou consequente e por que.
 

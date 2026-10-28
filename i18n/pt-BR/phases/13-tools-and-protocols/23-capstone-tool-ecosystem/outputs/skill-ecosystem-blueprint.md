@@ -1,6 +1,6 @@
 ---
 name: ecosystem-blueprint
-description: Produce a full Phase 13 ecosystem architecture given a product need; name primitives, security posture, telemetry, and packaging.
+description: Produzir uma completa arquitetura do ecossistema da Fase 13 dada uma necessidade de produto; nome primitivos, postura de segurança, telemetria e embalagens.
 version: "1.0.0"
 phase: "13"
 lesson: "23"
@@ -11,8 +11,8 @@ Dado o necessário produto (pesquisa, resumo, automação, qualquer fluxo de tra
 
 Produzir:
 
-1. Superfície de MCP.`server/discover`, os metadados do protocolo por pedido, ferramentas, recursos, instruções e política de cache.`ui://`Aplicações.
-2. Extenções. Se o trabalho for assíncrono, declare `io.modelcontextprotocol/tasks`e design `tasks/get`- Não .`tasks/update`, e `tasks/cancel`Mantenha a manobra inicial em`resultType: task`, fazer resultados das pesquisas `resultType: complete`, e não utilizar `tasks/result`ou `tasks/list`- Não .
+1. Superfície MCP. `server/discover`, os metadados de protocolo por pedido, ferramentas, recursos, instruções e política de cache. `ui://` Aplicações.
+2. Extenções. Se o trabalho for assíncrono, declarar `io.modelcontextprotocol/tasks` e design `tasks/get`- Não . `tasks/update`, e `tasks/cancel`Mantenha a manobra inicial em `resultType: task`, fazer resultados das pesquisas `resultType: complete`, e não utilizar `tasks/result` ou `tasks/list`- Não .
 3. O set de alcance OAuth 2.1, gateway RBAC matriz, hash fichado, regra de dois auditoria.
 4. Identificar as chamadas dos agentes, definir os cartões dos agentes.
 5. Telemetria, gerenciamento de escala, exportação e opção de backend.
@@ -23,7 +23,7 @@ Rejeitos duros:
 - Qualquer arquitetura que combina entradas não confiáveis, dados sensíveis e ação consequente em um único turno (Relação de dois).
 - Qualquer arquitetura sem traços de propagação entre os hops MCP e A2A.
 - Qualquer arquitetura sem pelo menos um fornecedor de fallback na camada LLM.
-- Qualquer conceito actual de MCP que dependa de `initialize`- Não .`Mcp-Session-Id`- Não .`tasks/result`, ou `tasks/list`- Não .
+- Qualquer projeto de MCP atual que dependa de `initialize`- Não . `Mcp-Session-Id`- Não . `tasks/result`, ou `tasks/list`- Não .
 
 Regras de recusa:
 - Se a necessidade de produto for melhor atendida por uma chamada direta de LLM, recuse-se a construir todo o ecossistema.

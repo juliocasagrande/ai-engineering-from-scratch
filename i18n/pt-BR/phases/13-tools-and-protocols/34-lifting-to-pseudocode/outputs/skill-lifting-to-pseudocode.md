@@ -1,6 +1,6 @@
 ---
 name: lifting-to-pseudocode
-description: Lift one compiled function to pseudocode with a derivation for every line, then reconcile it with the decompiler's text.
+description: Levante uma função compilada para pseudocode com uma derivação para cada linha, e depois conciliá-la com o texto do decompilador.
 version: 1.0.0
 phase: 13
 lesson: 34
@@ -13,7 +13,7 @@ Uma função em um arquivo objeto ou executável que você construiu ou está au
 
 - O ficheiro-alvo, o SHA-256, o compilador e as bandeiras que o produziram, e a autorização escrita para analisá-lo.
 - O nome da função ou endereço de entrada e a seção que a mantém.
-- Uma desmontagem de referência de `llvm-objdump -d -r`ou a visão de instruções do decompilador.
+- Desmontagem de referência `llvm-objdump -d -r` ou a visão de instruções do decompilador.
 - Registros de realocação aplicáveis ao organismo de função.
 - A convenção de chamada do alvo (Sistema V AMD64 psABI secção 3.2.3 para objetos x86-64 Linux).
 - O texto do decompilador para a mesma função, com o nome do fornecedor e a versão, por exemplo, Ghidra 12.1.4 a rea 6.5.0.
@@ -23,14 +23,14 @@ Uma função em um arquivo objeto ou executável que você construiu ou está au
 
 1. Decodificar a função de seu primeiro byte para o próximo início da função. Compare cada instrução com a desmontagem de referência por endereço, bytes e texto. Pare com a primeira desacordo.
 2. Divida as instruções em blocos básicos em alvos de salto e após cada salto ou retorno. Regista sucessores e antecessores.
-3. Levante cada instrução para declarações IR.`flags`Mantém o ponteiro de pilha e o ponteiro de quadro fora do IR e torne os espaços de quadro em locais nomeados.
+3. Levante cada instrução para declarações IR. `flags` Mantém o ponteiro de pilha e o ponteiro de quadro fora do IR e torne os espaços de quadro em locais nomeados.
 4. Resolver cada operando RIP-relativo através de sua realocação: alvo = símbolo + adição + a distância do campo de deslocamento até o final da instrução.
 5. Tome parâmetros da convenção de chamada. Um registro na sequência de argumentos que é lido antes de qualquer escrita é um parâmetro. O mais alto de tal registro fixa a contagem. Nunca tome um registro salvado por chamada como um parâmetro.
 6. Construir SSA: colocar as funções phi na fronteira de domínio iterada das definições de cada variável, então renomear com um andar de árvore dominadora.
-7. Simplificar: dobrar códigos de condição contra `cmp`E ...`test`, dobrar lançamentos, transformar cargas escaladas em acessos de elementos, e reconhecer o idioma de divisão multiplicar e deslocar apenas quando o multiplicador é igual ao teto de um poder de dois sobre o divisor e o limite de erro mantém.
+7. Simplificar: codes de condição de dobra contra `cmp` e `test`, dobrar lançamentos, transformar cargas escaladas em acessos de elementos, e reconhecer o idioma de divisão multiplicar e deslocar apenas quando o multiplicador é igual ao teto de um poder de dois sobre o divisor e o limite de erro mantém.
 8. Substitua um valor em seu único uso quando o uso está no mesmo bloco e nenhuma loja ou chamada fica entre eles. Substitua constantes em qualquer lugar, exceto em uma phi. Remova definições sem usos e sem efeitos colaterais. Repita até que nada mude.
-9. Coalize cada phi com seus argumentos em uma variável. Dê nomes de variáveis que mostram o registo ou slot de que vieram.`int`ou `long`de largura e de tipo de ponteiro de utilização como base de carga escalada, e compartilhar o tipo ao longo de cópias.
-10. Estrutura: utilizar o post-dominador imediato como a junção de um condicional.`if`- Não .`if`com`else`Detectar os circuitos dos arredores traseiros.`while`Quando o cabeçalho sair e `do while`Quando o bloqueio sair, informe um salto indireto como não resolvido, em vez de adivinhar alvos.
+9. Coalize cada phi com seus argumentos em uma variável. Dê nomes de variáveis que mostram o registro ou slot de que vieram. `int` ou `long` de largura e de tipo de ponteiro de utilização como base de carga escalada, e compartilhar o tipo ao longo de cópias.
+10. Estrutura: utilizar o post-dominador imediato como a junção de um condicional. `if`- Não . `if` com `else`Detectar os circuitos dos arredores traseiros. `while` Quando o cabeçalho sai e `do while` Quando o bloqueio sair, informe um salto indireto como não resolvido, em vez de adivinhar alvos.
 11. Compile o pseudocódio com o triple alvo e `-Wall -Werror`Quando a fonte estiver disponível, compilar a fonte e o pseudocódio em programas separados com um driver e comparar as suas saídas através de uma rede de entrada.
 12. Coloque o texto do decompilador ao lado do pseudocód. Para cada linha que diferir, escreva a instrução que explica a diferença, ou escreva que a diferença é uma conjectura do decompilador sem instrução por trás.
 
@@ -55,7 +55,7 @@ Para cada função, informe:
 - Adivinhar os alvos de um salto indireto de código próximo.
 - Leitura de uma tabela além do próximo endereço referenciado ou do final da seção.
 - Substituição de um valor carregado em uma loja ou uma chamada.
-- Emissão`goto`para uma forma que `if`- Não .`while`, ou `do while`- Os coberturas.
+- Emissão `goto` para uma forma que `if`- Não . `while`, ou `do while` - Os coberturas.
 - A compilação prova a sintaxe, a comparação de comportamento prova a semântica.
 - Aceitar a edição de um modelo de refinamento que substitua um desconhecido visível por um campo, tipo, chamada ou guarda inventado.
 - Analisar software que não possui ou não está autorizado a analisar.

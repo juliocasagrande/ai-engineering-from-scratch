@@ -52,7 +52,7 @@
     },
     {
       "stage": "post",
-      "question": "Referências de SKILL.md `references/archive/schema.md`O que deve fazer a validação?",
+      "question": "Referências de SKILL.md `references/archive/schema.md` O que deve fazer a validação?",
       "options": [
         "Copiar o arquivo para um cache global automaticamente",
         "Executa-o para descobrir se é útil",
@@ -60,7 +60,7 @@
         "Segue-o porque todos os caminhos relativos são seguros"
       ],
       "correct": 2,
-      "explanation": "Um contrato de um nível permite arquivos ou caminhos diretos, tais como `references/schema.md`O limite mantém os pacotes inspeccionáveis e bloqueia a complexidade de travessia antes de o conteúdo ser carregado."
+      "explanation": "Um contrato de um nível permite arquivos ou caminhos diretos, tais como: `references/schema.md`O limite mantém os pacotes inspeccionáveis e bloqueia a complexidade de travessia antes de o conteúdo ser carregado."
     },
     {
       "stage": "post",
