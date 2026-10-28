@@ -1,0 +1,102 @@
+{
+  "lesson": "12-text-summarization",
+  "title": "Resumo do texto",
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "Qual é a diferença comportamental chave entre resumo extractivo e abstracto?",
+      "options": [
+        "O extractivo é apenas multilingüe",
+        "Extractiva retorna frases literal da fonte; abstractiva gera novo texto e pode alucinar",
+        "Utilizações extractivas TF-IDF; utilizações abstractivas Word2Vec",
+        "O extractivo é mais lento do que o abstrato"
+      ],
+      "correct": 1,
+      "explanation": "A extracção eleva as frases literalmente; a reescrevação abstracta e o risco de alucinação."
+    },
+    {
+      "stage": "pre",
+      "question": "O que mede a ROUGE?",
+      "options": [
+        "Perplexidade de nível de tokens",
+        "Introdução de semelhanças",
+        "N-gram e subassequência comum mais longa sobreposição entre resumos de sistema e de referência",
+        "Tempo de leitura"
+      ],
+      "correct": 2,
+      "explanation": "A medida ROUGE-1/2/L de umigrama, de um bigrama e de um LCS se sobrepõem com referências."
+    },
+    {
+      "stage": "check",
+      "question": "Como o TextRank marca frases em resumo extractivo?",
+      "options": [
+        "Ao executar uma iteração de estilo PageRank em um gráfico onde as bordas são pesos de semelhança de frase",
+        "Ao inserir cosinus na pergunta",
+        "Comparando com um resumo de referência",
+        "Por conta de palavras"
+      ],
+      "correct": 0,
+      "explanation": "O TextRank usa o PageRank em um gráfico de semelhança de frases; frases altamente conectadas pontua mais alto."
+    },
+    {
+      "stage": "check",
+      "question": "Por que habilitar o stemming quando computa o ROUGE?",
+      "options": [
+        "Sem origens, \"running\" e \"run\" contam como tokens diferentes e ROUGE subcontam sobreposições verdadeiras",
+        "A votação normaliza o caso",
+        "O voto é exigido pelo pacote de pontuação de \"rouge\"",
+        "Para acelerar o ROUGE"
+      ],
+      "correct": 0,
+      "explanation": "A derivação funde variantes morfológicas, de modo que a ROUGE acredita formas semanticamente equivalentes."
+    },
+    {
+      "stage": "check",
+      "question": "Qual métrica 2026 é especialmente construída para detectar alucinações sumárias através da implicação de NLI?",
+      "options": [
+        "Verificações de fidelidade (por exemplo, fidelidade FactCC ou RAGAS) utilizando NLI entre as alegações de origem e as alegações sumárias",
+        "A BLU",
+        "CFR",
+        "ROUGE-L"
+      ],
+      "correct": 0,
+      "explanation": "As declarações de fidelidade baseadas em NLI que pontuavam as bandeiras no resumo não foram incluídas pela fonte."
+    },
+    {
+      "stage": "post",
+      "question": "Por que é preferível a resumo extractivo para conteúdo adjacente à conformidade?",
+      "options": [
+        "Extração de energia",
+        "As saídas são levantadas literalmente da fonte, eliminando a classe de alucinação abstrata",
+        "É mais rápido.",
+        "Os resultados do ROUGE são mais elevados"
+      ],
+      "correct": 1,
+      "explanation": "A extracção literal não pode inventar conteúdo, o que importa quando a factualidade é regulada."
+    },
+    {
+      "stage": "post",
+      "question": "Qual destes é um tipo de alucinação abstracta a monitorar?",
+      "options": [
+        "Frases longas",
+        "Intercâmbio de entidades (por exemplo, \"John Smith\" traduzido como \"John Brown\"), deriva numérica, inversão de polaridade ou invenção de fatos",
+        "Drift de pontuação",
+        "Remover palavras-chave"
+      ],
+      "correct": 1,
+      "explanation": "Os swaps de entidades, a deriva numérica, as inversiones de polaridade e os fatos inventados são os modos de falha abstrata canônicos."
+    },
+    {
+      "stage": "post",
+      "question": "Quando chegará a um ponto de controlo Pegasus sobre o BART-Grande-CNN?",
+      "options": [
+        "Ao avaliar o BLEU",
+        "Quando você precisa de saída extractiva",
+        "Para domínios como resumos científicos onde o objetivo de Pegasus de pre-treino de frases de diferença é um ajuste mais próximo",
+        "Quando a entrada é curta"
+      ],
+      "correct": 2,
+      "explanation": "O objetivo de frase de validade de Pegasus exclui na resumo de domínio de forma longa (por exemplo, pubmed)."
+    }
+  ]
+}

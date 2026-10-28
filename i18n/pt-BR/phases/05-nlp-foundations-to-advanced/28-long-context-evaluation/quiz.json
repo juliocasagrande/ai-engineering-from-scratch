@@ -1,0 +1,102 @@
+{
+  "lesson": "28-long-context-evaluation",
+  "title": "Avaliação de longo contexto  NIAH, RULER, LongBench, MRCR",
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "Qual é a medida de referência original da NIAH?",
+      "options": [
+        "Se o modelo pode recuperar um facto plantado em profundidades controladas em um longo contexto",
+        "Fertilidade do tokenizer",
+        "Embedding cosine drift",
+        "Só raciocínio multi-hop"
+      ],
+      "correct": 0,
+      "explanation": "NIAH = agulha num monte de feno: plantar um fato, pedir ao modelo para recuperá-lo, varrer profundidade e comprimento."
+    },
+    {
+      "stage": "pre",
+      "question": "Por que a janela de contexto anunciada é muitas vezes muito diferente do contexto utilizável?",
+      "options": [
+        "Transbordamento de embutidos",
+        "Tokenizers truncate",
+        "A atenção diminui com a duração e a tarefa; os máximos das folhas de especificações raramente se mantêm sob cargas de multi-hop ou raciocínio",
+        "A busca do feixe diminui"
+      ],
+      "correct": 2,
+      "explanation": "O contexto eficaz para o raciocínio é geralmente de 25 a 50% do máximo anunciado."
+    },
+    {
+      "stage": "check",
+      "question": "O que é que o RULER acrescenta ao NIAH?",
+      "options": [
+        "Probações de log por token",
+        "Tarefas de tradução",
+        "Inferência mais rápida",
+        "Trinta tipos de tarefas em retorno, rastreamento multi-hop, agregação e QA em vários comprimentos de contexto"
+      ],
+      "correct": 3,
+      "explanation": "O RULER expande o NIAH em um modelo de captura de referência de contexto longo e multi-tarefa que saturam o NIAH mas falham em outros lugares."
+    },
+    {
+      "stage": "check",
+      "question": "Qual é o efeito \"perdido no meio\"?",
+      "options": [
+        "Os modelos atendem pouco ao conteúdo colocado no meio de entradas longas; profundidade = 0,5 geralmente tem um desempenho pior do que profundidade = 0 ou 1",
+        "Os modelos perdem a pontuação",
+        "Os modelos esquecem o primeiro token",
+        "Modelos reordenar tokens"
+      ],
+      "correct": 0,
+      "explanation": "O conteúdo do meio do contexto é menos frequentado; a profundidade de varredura expõe a curva de precisão em forma de U."
+    },
+    {
+      "stage": "check",
+      "question": "Por que a avaliação apenas para a NIAH deve ser complementada por testes multi-hop?",
+      "options": [
+        "A NIAH não tem verdade",
+        "Os modelos de fronteira podem ser ace de recuperação de agulha única, mas ainda falham em tarefas de rastreamento de variáveis ou agregação de várias folhas",
+        "Multi-hop é mais rápido",
+        "O NIAH não pode ser executado em longo contexto"
+      ],
+      "correct": 1,
+      "explanation": "O \"retrieval pass\" não implica o \"reasonable pass\"; os valores de referência multi-hop expõem o teto real."
+    },
+    {
+      "stage": "post",
+      "question": "O que é que o NoLiMa enfatiza?",
+      "options": [
+        "Tokenization",
+        "Agulhas que não compartilham tokens literais com a consulta, por isso a recuperação requer um passo de raciocínio semântico",
+        "Latência",
+        "Output de streaming"
+      ],
+      "correct": 1,
+      "explanation": "NoLiMa remove a sobreposição léxica, de modo que o modelo deve raciocinar em vez de corresponder às palavras-chave."
+    },
+    {
+      "stage": "post",
+      "question": "Que dois números devem ser relatados numa folha de especificações de longo contexto?",
+      "options": [
+        "Apenas memória e latência da GPU",
+        "Tokens por segundo",
+        "Apenas o máximo anunciado",
+        "Duração efetiva da recuperação (por exemplo, 90% de aprovação da NIAH) e duração efetiva do raciocínio (por exemplo, 70% de aprovação multi-hop)"
+      ],
+      "correct": 3,
+      "explanation": "A distinção entre a comprimento efetivo de recuperação e a comprimento efetivo de raciocínio é essencial para as alegações do mundo real."
+    },
+    {
+      "stage": "post",
+      "question": "Por que medir o tempo para o primeiro token em longos comprimentos de contexto?",
+      "options": [
+        "Requerido pela RAG",
+        "A busca de feixe depende disso.",
+        "Os preenchimentos de tokens 1M podem levar dezenas de segundos; a precisão sozinha oculta a latência que impacta no produto",
+        "A tokenization é lenta"
+      ],
+      "correct": 2,
+      "explanation": "As instruções longas têm enormes custos de preenchimento; a latência deve ser rastreada ao lado da precisão."
+    }
+  ]
+}

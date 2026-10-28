@@ -1,0 +1,102 @@
+{
+  "lesson": "20-structured-outputs-constrained-decoding",
+  "title": "Outputes estruturadas e decodificação restrita",
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "Por que não é suficiente para a produção apenas o \"return JSON\"?",
+      "options": [
+        "As instruções são longas demais.",
+        "A informação não pode descrever esquemas",
+        "JSON é muito verbal",
+        "Os modelos de fronteira cumprem a maioria das vezes, mas nem sempre; a pequena fracção de saídas mal formadas quebra os parseres a jusante"
+      ],
+      "correct": 3,
+      "explanation": "A estrutura de apenas um momento funciona em 80% dos modelos de fronteira; a produção necessita de garantias mais duras."
+    },
+    {
+      "stage": "pre",
+      "question": "O que é que a decodificação restrita muda a cada passo da geração?",
+      "options": [
+        "O vetor logit, tokens de mascaragem que invalidariam a gramática-alvo para que apenas continuas válidas possam ser amostragadas",
+        "A perda de treinamento",
+        "O tokenizer",
+        "O cache KV"
+      ],
+      "correct": 0,
+      "explanation": "Um processador logit define tokens inválidos para -inf para que o softmax não possa amostrá-los."
+    },
+    {
+      "stage": "check",
+      "question": "Porque é que a decodificação limitada pode ser mais rápida do que a geração livre?",
+      "options": [
+        "O modelo é menor.",
+        "Evita completamente a softmax",
+        "Salta para trás .",
+        "Os tokens de andares forçados (por exemplo, \"{\"nome\": \"') podem ser emitidos diretamente sem amostragem, e o espaço de pesquisa com tokens válidos diminui"
+      ],
+      "correct": 3,
+      "explanation": "Tokens determinados ignoram a amostragem e conjuntos reduzidos de tokens válidos reduzem o custo de decodificação."
+    },
+    {
+      "stage": "check",
+      "question": "Qual escolha de design de esquema impede o compromisso prematuro do modelo?",
+      "options": [
+        "Coloque a resposta em primeiro lugar.",
+        "Coloque campos de raciocínio antes do campo de resposta/decisão para que o modelo pense antes de cometer",
+        "Use teclas mais curtas",
+        "Use snake_case"
+      ],
+      "correct": 1,
+      "explanation": "A ordem de campo é lógica: colocar o raciocínio em primeiro lugar permite que o modelo pense antes de bloquear uma resposta."
+    },
+    {
+      "stage": "check",
+      "question": "Qual é a limitação das ferramentas de decodificação restrita baseadas em FSM, como Outlines?",
+      "options": [
+        "Só suportam enums.",
+        "Eles trancam-te na OpenAI .",
+        "Os esquemas recursivos têm de ser aplanados; as estruturas realmente recursivas precisam de motores baseados em CFG, como o XGrammar",
+        "Não são deterministas"
+      ],
+      "correct": 2,
+      "explanation": "Os motores de CFG não podem representar recorrência ilimitada; os motores CFG são responsáveis por esta."
+    },
+    {
+      "stage": "post",
+      "question": "Por que o Instructor é descrito como não modificando logits?",
+      "options": [
+        "O instrutor forma o esquema no prompt e paralisa/retira a saída; o logit masking acontece do lado do servidor ou não acontece.",
+        "Edita o prompt",
+        "Ele usa atualizações de gradiente",
+        "Requerido pela Anthropic"
+      ],
+      "correct": 0,
+      "explanation": "O instrutor usa saída estruturada do lado do provedor, além de validação e retestes do lado do cliente, não mascaramento de logit."
+    },
+    {
+      "stage": "post",
+      "question": "Que problema pode apresentar um regex rigoroso como data='YYYY-MM-DD'?",
+      "options": [
+        "Ele quebra a análise JSON",
+        "Remove qualquer escotilha de escape para valores desconhecidos, de modo que o modelo fabrica uma data em vez de retornar null/sentinel",
+        "Requer apoio do CFG",
+        "O Regex está lento."
+      ],
+      "correct": 1,
+      "explanation": "Gramáticas exageradamente rigorosas forçam o modelo a inventar valores; sempre permite null/sentinel para desconhecidos."
+    },
+    {
+      "stage": "post",
+      "question": "Quando você deve procurar a decodificação guiada vLLM versus uma API de saída estruturada do fornecedor?",
+      "options": [
+        "Apenas com BPE de nível de byte",
+        "Sempre vendedor",
+        "Inferência auto-hosted onde você controla o modelo e quer garantias de nível logit sem retemps",
+        "Apenas para pequenos esquemas"
+      ],
+      "correct": 2,
+      "explanation": "A decodificação guiada vLLM se encaixa em servidores auto-hospedados com restrições de nível de logit; as APIs do fornecedor bloqueiam você em sua pilha."
+    }
+  ]
+}

@@ -1,0 +1,102 @@
+{
+  "lesson": "21-nli-textual-entailment",
+  "title": "Inferência da linguagem natural  Envolvimento textual",
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "Que três rótulos atribui a NLI a um par (pré-premisa, hipótese)?",
+      "options": [
+        "Verdadeiro / falso / desconhecido",
+        "Causa / efeito / não relacionada",
+        "Entra em vigor / contradição / neutralidade",
+        "Positivo / negativo / neutro"
+      ],
+      "correct": 2,
+      "explanation": "A NLI é uma classificação de três vias entre implicação, contradição e neutralidade."
+    },
+    {
+      "stage": "pre",
+      "question": "Como é utilizado o NLI como um classificador de texto de tiros zero?",
+      "options": [
+        "Por incentivar um LLM",
+        "Verbalizar cada rótulo candidato como uma hipótese (por exemplo: \"Este texto é sobre desporto\") e escolher o rótulo com a maior pontuação de implicação",
+        "Computação de TF-IDF",
+        "Por meio de medição de embutidos"
+      ],
+      "correct": 1,
+      "explanation": "O NLI-as-classifier transforma os rótulos em hipóteses; o modelo escolhe o rótulo de máxima classificação."
+    },
+    {
+      "stage": "check",
+      "question": "Por que é a NLI um controlo de fidelidade para as saídas de RAG?",
+      "options": [
+        "É barato.",
+        "Verificação de que o contexto recuperado implica cada afirmação de resposta é exatamente a formulação em que a NLI foi treinada",
+        "É multilingüe .",
+        "Ele usa tokenizers"
+      ],
+      "correct": 1,
+      "explanation": "A alucinação = afirmações de resposta não implicadas no contexto recuperado; a NLI mede diretamente a implicância."
+    },
+    {
+      "stage": "check",
+      "question": "O que é que a linha de base apenas de hipótese expõe?",
+      "options": [
+        "Drift de tokenização",
+        "Inferência lenta",
+        "Diferenças entre línguas",
+        "Dados em que a hipótese sozinha (sem a premissa) é preditiva do rótulo, sinalizando vazamento do rótulo"
+      ],
+      "correct": 3,
+      "explanation": "Uma pontuação elevada apenas em hipóteses no SNLI revelou artefatos de anotação; útil para depurar os seus dados."
+    },
+    {
+      "stage": "check",
+      "question": "Qual família de modelos NLI está em primeiro lugar nos rankings de 2026 como o cavalo de trabalho padrão?",
+      "options": [
+        "Variantes de DeBERTa-v3 ajustadas em MNLI/FEVER/ANLI",
+        "Palavra simples2Vec",
+        "GPT-2",
+        "FastText"
+      ],
+      "correct": 0,
+      "explanation": "DeBERTa-v3 ajustado em MNLI e corpora relacionadas é o cavalo de trabalho aberto da NLI em 2026."
+    },
+    {
+      "stage": "post",
+      "question": "Por que os modelos de NLI de nível de sentença diminuem a precisão em locais de comprimento de documento?",
+      "options": [
+        "Foram treinados em locais curtos e falham na inferência multi-sentença e multi-hop; os modelos com ajuste DocNLI lidam com entradas mais longas",
+        "As entradas maiores funcionam mais lentamente",
+        "Desintegração da similaridade cosina",
+        "Documentos desencadear o tokenizer drift"
+      ],
+      "correct": 0,
+      "explanation": "Desconformidade de distribuição de treinamento: os modelos de NLI de uma única frase perdem 20+ F1 em entradas de comprimento de documento."
+    },
+    {
+      "stage": "post",
+      "question": "Por que a precisão de tiro zero pode oscilar 10 pontos com base no modelo da hipótese?",
+      "options": [
+        "Modelos alteram o conjunto de rótulos",
+        "Os modelos são sensíveis à fraseologia; por exemplo, \"Este texto é sobre {etiqueta}\" vs '{etiqueta}' só muda as probabilidades de implicação",
+        "Modelos alteram o comportamento do tokenizer",
+        "Os modelos afectam os pesos do modelo"
+      ],
+      "correct": 1,
+      "explanation": "A redação do modelo muda significativamente as pontuações de envolvimento; sintonize-a em um pequeno conjunto de manobras."
+    },
+    {
+      "stage": "post",
+      "question": "Qual é o limite seguro para a afirmação de NLI para detecção de alucinações?",
+      "options": [
+        "Reduz a alucinação como sinal de fidelidade, mas não a elimina; combina com a recuperação de memória e revisão humana",
+        "Só funciona em inglês.",
+        "Elimina as alucinações.",
+        "Requer LLM"
+      ],
+      "correct": 0,
+      "explanation": "O NLI é um sinal útil, mas não uma solução completa; combina com métricas de recuperação e verificações instantâneas humanas."
+    }
+  ]
+}

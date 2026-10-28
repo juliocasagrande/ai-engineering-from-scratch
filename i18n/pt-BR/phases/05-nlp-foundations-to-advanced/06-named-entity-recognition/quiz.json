@@ -1,0 +1,102 @@
+{
+  "lesson": "06-named-entity-recognition",
+  "title": "Identificação da entidade denominada",
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "O que é etiquetado bio?",
+      "options": [
+        "Uma representação de árvores de entidades",
+        "Sistema de entidade binária versus não entidade",
+        "Rótulos por token: B-TYPE para arranque da entidade, I-TYPE para dentro, O para fora",
+        "Um estilo de tokenization"
+      ],
+      "correct": 2,
+      "explanation": "A BIO transforma a extracção de tempo em classificação de tokens com prefixos B/I/O."
+    },
+    {
+      "stage": "pre",
+      "question": "Por que os jornalistas baseados em regras são frágeis na produção de NER?",
+      "options": [
+        "Eles são lentos.",
+        "Não podem lidar com entidades multi-token",
+        "Eles têm cobertura zero em novas entidades e não podem ser inequívocos (por exemplo, frutas da Apple vs empresa)",
+        "Eles precisam de GPUs"
+      ],
+      "correct": 2,
+      "explanation": "Os jornalistas podem combinar linhas conhecidas, mas não podem desambiguar o sentido ou generalizar para nomes invisíveis."
+    },
+    {
+      "stage": "check",
+      "question": "Qual é a principal vantagem de um CRF em relação a um HMM para o NER?",
+      "options": [
+        "As CRF evitam o algoritmo Viterbi",
+        "As CRF são discriminatórias e podem misturar características arbitrárias (forma, capitalização, vizinhos)",
+        "As CRFs são mais rápidas",
+        "As CRF nunca precisam de dados de formação"
+      ],
+      "correct": 1,
+      "explanation": "As CRF são discriminatórias e permitem que se condicionem a características ricas e sobrepostas."
+    },
+    {
+      "stage": "check",
+      "question": "Em uma arquitetura BiLSTM-CRF, qual é o papel desempenhado pela camada CRF?",
+      "options": [
+        "Realiza tokenização",
+        "Substitui incorporados",
+        "Pré-treino do LSTM",
+        "Força sequências de etiquetas BIO válidas modeladores de transições de etiquetas para etiquetas em cima das emissões LSTM"
+      ],
+      "correct": 3,
+      "explanation": "O CRF em cima do LSTM apresenta modelos de dependências entre rótulos e exclui sequências ilegais."
+    },
+    {
+      "stage": "check",
+      "question": "Por que a NER deve ser avaliada com F1 de nível da entidade e não com F1 de nível do token?",
+      "options": [
+        "As extensões previstas devem corresponder exatamente às extensões reais; a F1 de nível de token exagera a precisão contando partial coincidências",
+        "A HuggingFace exige a F1 de nível de entidade",
+        "O nível de tokens F1 não pode lidar com BIO",
+        "A F1 a nível da entidade é mais fácil de calcular"
+      ],
+      "correct": 0,
+      "explanation": "A correspondência exata do span é a métrica significativa; o nível de token F1 infla as pontuações através de sobreposição parcial."
+    },
+    {
+      "stage": "post",
+      "question": "O que faz a agregação_estratégia= 'simples' no canal de NER do HuggingFace?",
+      "options": [
+        "Retorna apenas a entidade mais confiante",
+        "Fuga tokens B-X e I-X contiguientes em um único espaço",
+        "Reduz a produção",
+        "Salta a tokenização"
+      ],
+      "correct": 1,
+      "explanation": "A função de um sistema de transferência de dados de dados (BIO) é a função de um sistema de transferência de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de dados de"
+    },
+    {
+      "stage": "post",
+      "question": "Por que a Biologia padrão falha em entidades aninhadas?",
+      "options": [
+        "O BIO é um esquema plano por token e não pode expressar duas extensões sobrepostas de tipos diferentes",
+        "O BIO requer um transformador",
+        "A BIO não pode representar entidades com vários tokens",
+        "O BIO deixa de lado a etiqueta do tipo"
+      ],
+      "correct": 0,
+      "explanation": "A BIO atribui uma etiqueta por token; os espaços aninhados precisam de modelos multipass ou baseados em espaços."
+    },
+    {
+      "stage": "post",
+      "question": "Quando é que o NER clássico (CRF ou BiLSTM-CRF) ainda vence um LLM em 2026?",
+      "options": [
+        "Sobre a narrativa de domínio aberto",
+        "Em entidades aninhadas",
+        "Sempre que a entrada é em inglês",
+        "Sob orçamentos de latência apertados, rótulos abundantes, ontologias estáveis ou restrições regulatórias não geradoras"
+      ],
+      "correct": 3,
+      "explanation": "O NER clássico ganha em latência, regimes de dados rotulados, ontologias fixas e restrições locais."
+    }
+  ]
+}

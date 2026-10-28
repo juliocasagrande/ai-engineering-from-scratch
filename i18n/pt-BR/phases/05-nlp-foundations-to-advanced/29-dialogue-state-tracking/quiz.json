@@ -1,0 +1,102 @@
+{
+  "lesson": "29-dialogue-state-tracking",
+  "title": "O acompanhamento do estado do diálogo",
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "O que mantém o acompanhamento do estado do diálogo em todas as curvas?",
+      "options": [
+        "Um histórico de texto livre apenas",
+        "Uma transcrição com tag POS",
+        "Um incorporar a conversa",
+        "Um dicionário de slots-value que representa o objetivo atual do usuário, atualizado após cada turno"
+      ],
+      "correct": 3,
+      "explanation": "O DST mantém um mapa estruturado de valor de slots que o backend pode agir."
+    },
+    {
+      "stage": "pre",
+      "question": "O que é medido pela precisão dos objetivos conjuntos (JGA)?",
+      "options": [
+        "Fração de viradas em que cada slot é exatamente correto (todo ou nada)",
+        "Similhança cosínica",
+        "Latência por turno",
+        "Precuração média do slot"
+      ],
+      "correct": 0,
+      "explanation": "A JGA é a correspondência rigorosa por virada em todos os slots; a precisão por slot é mais indulgente."
+    },
+    {
+      "stage": "check",
+      "question": "Por que a regeneração de todo o estado da história, a cada turno, lida com as correções dos usuários naturalmente?",
+      "options": [
+        "Usa menos tokens",
+        "Ele funciona com GPU",
+        "Evita incorporar",
+        "A leitura do histórico completo permite que o modelo redireja o estado final incluindo correções de \"na verdade\"... sem lógica de retrocesso explícita"
+      ],
+      "correct": 3,
+      "explanation": "A regeneração completa da história absorve correções recalculando o estado final de toda a conversa."
+    },
+    {
+      "stage": "check",
+      "question": "Qual padrão de 2026 dá um ditado de slot válido garantido em 5 linhas de código?",
+      "options": [
+        "Regex manuscrito",
+        "LLM + Instructor + esquema Pydantic com saída limitada ou validada",
+        "Classificador TF-IDF",
+        "Recuperação do BM25"
+      ],
+      "correct": 1,
+      "explanation": "O esquema Pydantic + Instructor valida automaticamente a saída do estado do LLM contra a ontologia do slot."
+    },
+    {
+      "stage": "check",
+      "question": "Por que a versão do seu esquema DST?",
+      "options": [
+        "A adição de novos slots pós-hoc invalida os dados de formação mais antigos e rompe a avaliação longitudinal",
+        "Reduzir o número de tokens",
+        "Requerido por JSON",
+        "Ganhos de velocidade"
+      ],
+      "correct": 0,
+      "explanation": "As alterações de esquema não versadas quebram silenciosamente o alinhamento dos dados de treinamento e a comparabilidade de avaliação."
+    },
+    {
+      "stage": "post",
+      "question": "Por que o DST para domínios sensíveis à conformidade deve incluir uma verificação baseada em regras ao lado da extracção de LLM?",
+      "options": [
+        "Os LLM são mais lentos",
+        "Regras para evitar embutidos",
+        "DST só LLM pode extrair erroneamente parâmetros destrutivos (quantidade, conta, data); uma camada de regras impõe restrições deterministas",
+        "As regras são multilíngues"
+      ],
+      "correct": 2,
+      "explanation": "Os domínios de conformidade exigem aplicação determinista; as regras capturam erros de slot que os LLM introduzem."
+    },
+    {
+      "stage": "post",
+      "question": "Qual é a preocupação de custos com o estado regenerativo em cada turno através da LLM?",
+      "options": [
+        "Embedding drift",
+        "Mais incorporações",
+        "Re-leitar o histórico completo de cada turno produz O ((n^2) uso total de tokens; limite ou resumir voltas mais antigas",
+        "Custos de cosin"
+      ],
+      "correct": 2,
+      "explanation": "A regeneração completa da história é quadrática por turnos; o histórico de cobertura ou o uso de resumos de rolagem."
+    },
+    {
+      "stage": "post",
+      "question": "Por que são necessários fluxos de confirmação explícitos antes de ações destrutivas de backend?",
+      "options": [
+        "A confirmação aumenta o JGA",
+        "Mesmo um bom DST tem taxas de erro de slot não-zero; uma confirmação determinista evita ações de conta errada ou quantidade errada",
+        "Requeridos pelos tokenizadores",
+        "Latência"
+      ],
+      "correct": 1,
+      "explanation": "Ações destrutivas precisam de confirmação do usuário porque o DST nunca é livre de erros."
+    }
+  ]
+}

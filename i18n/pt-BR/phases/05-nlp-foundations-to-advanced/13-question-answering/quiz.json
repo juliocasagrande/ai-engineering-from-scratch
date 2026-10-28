@@ -1,0 +1,102 @@
+{
+  "lesson": "13-question-answering",
+  "title": "Sistemas de Resposta a Questões",
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "O que é que a análise extractiva prevê?",
+      "options": [
+        "Indicos de início e fim do índice de resposta dentro de uma determinada passagem",
+        "Uma identificação de passagem recuperada",
+        "Uma resposta gerada em linguagem natural",
+        "Apenas uma pontuação de confiança"
+      ],
+      "correct": 0,
+      "explanation": "A AQ extractiva produz a extensão da passagem que contém a resposta."
+    },
+    {
+      "stage": "pre",
+      "question": "Quais são os dois componentes que definem um gasoduto RAG básico?",
+      "options": [
+        "Tokenizer e tagger de POS",
+        "Um codificador e um decodificador treinados em conjunto",
+        "Um re-ranqueador e um tradutor",
+        "Um retriever (encontrar passagens relevantes) e um leitor (extrair ou gerar a resposta)"
+      ],
+      "correct": 3,
+      "explanation": "RAG = retriever (encontrar contexto relevante) mais leitor (respostas a partir dele)."
+    },
+    {
+      "stage": "check",
+      "question": "No SQuAD, o que mede a Exact Match (EM)?",
+      "options": [
+        "Nível de tokens F1",
+        "Se a previsão corresponde à referência exatamente após a normalização (minúsculas, pontuação de tira, removimento de artigos)",
+        "Edição de distância",
+        "Superposições por palavra"
+      ],
+      "correct": 1,
+      "explanation": "EM é a igualdade estrita após um passo de normalização definido; correspondências parciais pontua zero."
+    },
+    {
+      "stage": "check",
+      "question": "O que adiciona o Deepset/Roberta-base-squad2 ao modelo SQuAD 1.1?",
+      "options": [
+        "Janela de contexto maior",
+        "Suporte multilingüe",
+        "Recuperação translingual",
+        "Formação em questões sem resposta para que o modelo possa prever uma resposta nula"
+      ],
+      "correct": 3,
+      "explanation": "O SQuAD 2.0 inclui elementos que não podem ser respondidos; os modelos treinados sobre ele podem prever \"não responder\"."
+    },
+    {
+      "stage": "check",
+      "question": "Qual dimensão do RAGAS visa especificamente alucinações?",
+      "options": [
+        "Precisão do contexto",
+        "Resposta relevante",
+        "A fidelidade, medida pela ligação entre as alegações de resposta e o contexto recuperado",
+        "Recall de contexto"
+      ],
+      "correct": 2,
+      "explanation": "A fidelidade verifica cada alegação de resposta em relação ao contexto recuperado através da implicação da NLI."
+    },
+    {
+      "stage": "post",
+      "question": "Por que você deve medir a recuperação de memória antes de avaliar a precisão do leitor?",
+      "options": [
+        "A latência do leitor depende disso .",
+        "Se a passagem correta não estiver no topo da letra, o leitor não pode ter sucesso, não importa o quão bom seja.",
+        "Recall determina ROUGE",
+        "Requeridos pelos transformadores"
+      ],
+      "correct": 1,
+      "explanation": "Um leitor não pode responder quando a passagem correta está faltando; a recuperação de memória limita o desempenho do leitor."
+    },
+    {
+      "stage": "post",
+      "question": "Qual padrão de resposta reduz as alucinações na geração de RAG?",
+      "options": [
+        "Remover a questão",
+        "Incluindo mais passagens",
+        "Pedir ao modelo que seja criativo",
+        "Instruir o modelo a responder apenas a partir do contexto fornecido e a responder \"não sei\" quando o contexto for insuficiente"
+      ],
+      "correct": 3,
+      "explanation": "A instrução de rejeição explícita reduz substancialmente as taxas de alucinação."
+    },
+    {
+      "stage": "post",
+      "question": "Quando é que a AQ extractiva ainda é preferida ao RAG gerador em 2026?",
+      "options": [
+        "Domínios regulamentados (jurídicos, médicos, de auditoria) em que é necessária a citação literal de fontes autorizadas",
+        "Trivia do domínio aberto",
+        "QA de conversação",
+        "Suporte multilingüe"
+      ],
+      "correct": 0,
+      "explanation": "A AQ extractiva fornece citações literais de um corpus autorizado, que são exigidas pelos contextos de conformidade."
+    }
+  ]
+}

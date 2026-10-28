@@ -1,0 +1,102 @@
+{
+  "lesson": "05-sentiment-analysis",
+  "title": "Análise dos sentimentos",
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "Por que é que 'A comida não foi ótima' um caso difícil para os classificadores ingênuos da BoW?",
+      "options": [
+        "Não tem pontuação.",
+        "Mistura inglês e francês .",
+        "Contém poucos tokens .",
+        "A negação transforma o significado, mas o saco de palavras descartam a ligação entre \"não\" e \"grande\""
+      ],
+      "correct": 3,
+      "explanation": "O BoW não pode ligar o \"não\" à palavra que nega, por isso o classificador perde o flip de polaridade."
+    },
+    {
+      "stage": "pre",
+      "question": "Que dois passos compõem a análise clássica dos sentimentos?",
+      "options": [
+        "Traduzir, depois classificar",
+        "Representar (vectorizar texto) e classificar (modelo linear no vetor)",
+        "Procura, depois classifica",
+        "Embed, então cluster"
+      ],
+      "correct": 1,
+      "explanation": "O sentimento clássico é a extração de características seguido por um classificador linear."
+    },
+    {
+      "stage": "check",
+      "question": "Por que o Bayes Ingénuo trabalha apesar da sua suposição de independência \"ingénua\"?",
+      "options": [
+        "Laplace suavizamento corre dependência",
+        "A suposição é realmente verdadeira para o texto",
+        "Bayes ingênuo aprende secretamente as interações",
+        "Com características de texto escassas e dados moderados o classificador se importa principalmente em que lado cada palavra inclina, não probabilidades conjuntas exatas"
+      ],
+      "correct": 3,
+      "explanation": "Mesmo com uma independência errada, as informações de direção inclinação por palavra são suficientes para classificar bem."
+    },
+    {
+      "stage": "check",
+      "question": "Por que incluir tokens pré-fixados 'NOT_' durante o pré-processamento?",
+      "options": [
+        "Para conter as palavras",
+        "Para reduzir o vocabulário",
+        "Para normalizar o caso",
+        "Para transformar \"bom\" versus \"NOT_good\" em características separadas que o classificador pode pesar oposto"
+      ],
+      "correct": 3,
+      "explanation": "O escopo de negação divide as formas negadas em características distintas para que um classificador BoW possa modelar o flip."
+    },
+    {
+      "stage": "check",
+      "question": "Por que é arriscado remover palavras de parada para analisar o sentimento?",
+      "options": [
+        "Remover stopword rompe a tokenização",
+        "Aumenta a esparcialidade",
+        "As listas de palavras-chave são muito longas .",
+        "As palavras de negação (\"não\", \"não\", \"nunca\") são geralmente tratadas como palavras de parada, mas transmitem um sinal de sentimento"
+      ],
+      "correct": 3,
+      "explanation": "A palavra parada por defeito lista negações de queda e portadores semelhantes de sentimento."
+    },
+    {
+      "stage": "post",
+      "question": "Que métrica deve relatar quando as classes de sentimentos estão desequilibradas?",
+      "options": [
+        "Apenas precisão",
+        "Macro-F1 (média de F1 por classe, ponderada em igual peso)",
+        "Erro médio quadrado",
+        "Apenas Micro-F1"
+      ],
+      "correct": 1,
+      "explanation": "O macro-F1 obriga a classe minoritária a contar; a precisão ou o micro-F1 esconde-o."
+    },
+    {
+      "stage": "post",
+      "question": "Quando é que se deve saltar os modelos clássicos e procurar um transformador para sentimentos?",
+      "options": [
+        "Quando temos menos de 100 exemplos",
+        "Detecção de sarcasmo, documentos de longa duração, sentimentos baseados em aspectos ou linguagens de baixo recurso",
+        "Quando a latência é crítica",
+        "Quando precisam de explicação"
+      ],
+      "correct": 1,
+      "explanation": "Sarcasmo, sentimento baseado em aspectos e sentimento translingual excederam o alcance dos modelos clássicos de BoW."
+    },
+    {
+      "stage": "post",
+      "question": "Por que a regularização de L2 é importante para a regressão logística no texto?",
+      "options": [
+        "Acelera a inversão de matriz",
+        "Evita unidades mortas da ReLU",
+        "Esparse recursos de texto de alta dimensão, caso contrário, deixe o modelo memorizar exemplos de treinamento",
+        "Requerido para calcular gradientes"
+      ],
+      "correct": 2,
+      "explanation": "O L2 impede o excesso de montagem no regime de texto de dimensões elevadas e de características escassas."
+    }
+  ]
+}

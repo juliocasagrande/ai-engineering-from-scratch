@@ -1,0 +1,102 @@
+{
+  "lesson": "24-coreference-resolution",
+  "title": "Resolução de Coreferência",
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "Qual é o objectivo da resolução de coreferência?",
+      "options": [
+        "Cluster todas as menções (nomeadas, nominais, pronominais) que se referem à mesma entidade do mundo real",
+        "Relações de extracção",
+        "Tag partes do discurso",
+        "Traduzir pronomes para substantivos"
+      ],
+      "correct": 0,
+      "explanation": "Os aglomerados Coref mencionam intervalos que se referem todos à mesma entidade."
+    },
+    {
+      "stage": "pre",
+      "question": "Que tipo de expressão é uma menção \"nominal\"?",
+      "options": [
+        "Um verbo",
+        "Um pronome como \"ela\"",
+        "Apenas um substantivo próprio",
+        "Uma frase substantiva como \"o CEO\" ou \"a empresa\""
+      ],
+      "correct": 3,
+      "explanation": "As menções nominais são frases substantivas como 'a empresa'; as menções pronominais são pronomes."
+    },
+    {
+      "stage": "check",
+      "question": "O que é a arquitetura moderna (Lee et al., 2017)?",
+      "options": [
+        "Apenas análise sintática baseada em regras",
+        "Árvores de decisão",
+        "Baseado em intervalos de ponta a ponta: enumere intervalos, marque menções, então marque probabilidades anteriores e agrupe com ganância",
+        "Recuperação do BM25"
+      ],
+      "correct": 2,
+      "explanation": "O núcleo neural de ponta a ponta enumera os intervalos e aprende a mencionar + a pontuação antecedente em conjunto."
+    },
+    {
+      "stage": "check",
+      "question": "O que é a média da CoNLL F1?",
+      "options": [
+        "MUC, B-cube e CEAF-phi4 pontuações F1",
+        "Precision e recall",
+        "F1 em todas as línguas",
+        "Token e span F1"
+      ],
+      "correct": 0,
+      "explanation": "O CoNLL F1 é a média das métricas MUC, B-cube e CEAF-phi4."
+    },
+    {
+      "stage": "check",
+      "question": "O que é a \"parafora de ponte\"?",
+      "options": [
+        "Uma referência implícita como \"as rodas\" que implica as rodas de um carro mencionado anteriormente",
+        "Uma tradução errada",
+        "Um pronome antes do seu referente",
+        "Um pronome sem antecedente"
+      ],
+      "correct": 0,
+      "explanation": "O ponto liga uma menção a uma parte ou entidade relacionada que foi implicita, mas não explicitamente declarada."
+    },
+    {
+      "stage": "post",
+      "question": "Por que é que o núcleo de LLM só é improvável em documentos longos?",
+      "options": [
+        "Coref requer um CFG",
+        "Os LLM não podem ler texto",
+        "Os tokenizers falham",
+        "Mudanças de ligação de ligação de ligação de ligação de ligação de ligação de ligação de ligação de ligação de ligação de ligação de ligação de ligação de ligação de ligação de ligação de ligação de ligação de ligação de ligação de ligação de ligação de ligação de ligação de ligação de ligação de ligação de ligação de ligação de ligação de ligação de ligação de ligação de ligação de ligação de ligação de ligação de ligação de ligação de ligação de ligação de ligação de ligação de ligação de ligação de ligação de ligação de ligação de ligação de ligação de ligação de ligação de ligação de ligação de ligação de ligação de ligação de ligação de ligação de ligação de ligação de ligação de ligação de ligação de ligação de ligação de ligação de ligação de ligação de ligação de ligação de ligação de ligação de ligação de ligação de ligação de ligação de ligação de ligação de ligação de ligação de ligação de ligação de ligação de ligação de ligação de ligação de ligação de ligação de ligação de ligação de ligação de ligação de ligação de ligação de ligação de ligação de ligação de ligação de ligação de ligação de ligação de ligação de ligação de ligação de ligação de ligação de ligação de ligação de ligação de ligação de ligação de ligação de ligação de ligação de ligação de ligação de ligação de ligação de ligação de ligação de ligação de ligação de ligação de ligação de ligação de ligação de ligação de ligação de ligação de ligação de ligação de ligação de ligação de ligação de ligação de ligação de ligação de ligação de ligação de ligação de ligação de ligação de ligação de ligação de ligação de ligação de ligação de ligação de ligação de ligação de ligação de ligação de ligação de ligação de ligação de ligação de ligação de ligação de ligação de ligação de ligação de ligação de ligação de ligação de ligação de ligação de ligação de ligação"
+      ],
+      "correct": 3,
+      "explanation": "O núcleo do LLM de longa duração degrada; janela deslizante com janela cruzada mitigada."
+    },
+    {
+      "stage": "post",
+      "question": "Por que fundir os principais clusters em resultados de REN antes de realizarem tarefas a jusante?",
+      "options": [
+        "Requerido por Wikidata",
+        "Assim, as tarefas a jusante vêem uma entidade por cluster em vez de uma por menção de superfície, melhorando drasticamente a cobertura",
+        "Baixa latência",
+        "Para aumentar o número de tokens"
+      ],
+      "correct": 1,
+      "explanation": "Sem a fusão, o NER conta cada forma de superfície separadamente e perde 60-80% das menções de entidade."
+    },
+    {
+      "stage": "post",
+      "question": "Por que as regras de gênero codificadas são fragilidades nos sistemas centrais?",
+      "options": [
+        "Eles quebram referentes não binários, organizações e animais; pontuação aprendida é mais robusta",
+        "Não podem usar etiquetas de POS",
+        "Eles precisam de GPU",
+        "Correm muito rápido."
+      ],
+      "correct": 0,
+      "explanation": "As heurísticas de gênero falham no texto demográficamente diverso; os modelos aprendidos são preferidos."
+    }
+  ]
+}

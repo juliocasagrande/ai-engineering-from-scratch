@@ -1,0 +1,102 @@
+{
+  "lesson": "10-attention-mechanism",
+  "title": "Mecanismo de Atenção  A descoberta",
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "Que problema na sequência resolveu Bahdanau atenção?",
+      "options": [
+        "Descoincidência de tokenização",
+        "Latência de pesquisa de feixe",
+        "O gargalhão do vetor de contexto de tamanho fixo onde o decodificador só viu o estado final do codificador",
+        "Gradientes desaparecendo em codificadores"
+      ],
+      "correct": 2,
+      "explanation": "A atenção permite que o decodificador consulte cada estado do codificador, não apenas o último."
+    },
+    {
+      "stage": "pre",
+      "question": "Qual é o vector de contexto de atenção no decodificador passo t?",
+      "options": [
+        "O último estado oculto do codificador",
+        "Embedagem de entrada do decodificador",
+        "Uma projeção aleatória",
+        "Uma média ponderada de estados de codificação escondidos onde os pesos vêm de uma pontuação de chave de consulta"
+      ],
+      "correct": 3,
+      "explanation": "Context = soma de alpha_i * h_i, uma média ponderada dependente de passo dos estados do codificador."
+    },
+    {
+      "stage": "check",
+      "question": "Na Bahdanau (atribuição) atenção, qual é o papel do vetor v_a?",
+      "options": [
+        "Encode posições",
+        "Ele prejudica o softmax",
+        "Controla o abandono .",
+        "É a projeção que transforma a combinação escondida de atenção-dim em uma pontuação escalar por posição do codificador"
+      ],
+      "correct": 3,
+      "explanation": "V_a pontos-produtos com tanh(W_a s + U_a h) para desabar um vector d_attn em uma pontuação escalar."
+    },
+    {
+      "stage": "check",
+      "question": "Na variante de atenção 'pontos' de Luong, que restrição deve ser mantida?",
+      "options": [
+        "Requer-se uma busca de feixe",
+        "O estado do decodificador e o estado do codificador devem compartilhar a mesma dimensionalidade (d_s == d_h)",
+        "Softmax deve ser log-space",
+        "O codificador deve ser bidirecional"
+      ],
+      "correct": 1,
+      "explanation": "O ponto usa s^T h sem projeção, por isso as dimensões devem corresponder exatamente."
+    },
+    {
+      "stage": "check",
+      "question": "Qual mapa Q/K/V descreve a atenção clássica (Bahdanau/Luong)?",
+      "options": [
+        "Q do codificador, K e V do decodificador",
+        "Q, K, V são três projeções independentes aprendidas da fonte",
+        "Q = estado do decodificador; K e V = estados do encodificador (mesmo tensor)",
+        "Q é aleatório, K e V são aprendidos"
+      ],
+      "correct": 2,
+      "explanation": "Na atenção clássica, chaves e valores são ambos estados de codificação; transformadores dividem K e V através de projeções aprendidas."
+    },
+    {
+      "stage": "post",
+      "question": "Por que é considerado frágil relatar pesos de atenção crus como \"explicação\"?",
+      "options": [
+        "Pesquisas (por exemplo Jain e Wallace, 2019) mostraram que as distribuições de atenção podem ser permutadas sem mudar as previsões sobre algumas tarefas",
+        "Os pesos da atenção não são diferenciáveis",
+        "Peso de atenção etiquetas de vazamento",
+        "São muito pequenos para serem desenhados."
+      ],
+      "correct": 0,
+      "explanation": "Os pesos de atenção estão correlacionados com as previsões, mas não com explicações fiáveis sem ablação/controlas contrafactuosas."
+    },
+    {
+      "stage": "post",
+      "question": "Que passo faz a Bahdanau se concentrar na auto-atenção transformadora?",
+      "options": [
+        "Queriendo uma sequência contra si mesma com projeto Q, K e V aprendidas separadamente, executadas em cabeças paralelas",
+        "Pesquisa de feixe de queda",
+        "Substituição de softmax por sigmoide",
+        "Adição de mais camadas de RNN"
+      ],
+      "correct": 0,
+      "explanation": "A auto-atenção consulta a mesma sequência, com projeções divididas K e V, paralelamente em cabeças."
+    },
+    {
+      "stage": "post",
+      "question": "Qual é um caso prático de uso para disfarçar a atenção?",
+      "options": [
+        "Substituição do abandono",
+        "Posições de codificação",
+        "Definição de peso de atenção para tokens de empolgação para zero para que não contribuam para o vetor de contexto",
+        "Reduzir o tamanho do modelo"
+      ],
+      "correct": 2,
+      "explanation": "O enchimento de enmascaramento (ou futuros tokens em um decodificador) impede que o softmax se espalhe pelo peso em posições inválidas."
+    }
+  ]
+}

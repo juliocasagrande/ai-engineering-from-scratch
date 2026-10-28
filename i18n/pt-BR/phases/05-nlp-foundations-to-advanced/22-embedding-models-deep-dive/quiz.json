@@ -1,0 +1,102 @@
+{
+  "lesson": "22-embedding-models-deep-dive",
+  "title": "Modelos de inserção  O mergulho profundo de 2026",
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "O que é um incorporado denso?",
+      "options": [
+        "Um vetor de tamanho fixo por texto onde a semelhança cosínica classifica passagens por proximidade semântica",
+        "Uma matriz de alinhamento de nível de token",
+        "Um peso escasso por símbolo de vocabulário",
+        "Um gráfico sobre documentos"
+      ],
+      "correct": 0,
+      "explanation": "Embedings densos dão um vetor por texto (normalmente 384-3072 dim); cosinos rangos semelhança."
+    },
+    {
+      "stage": "pre",
+      "question": "O que o Matryoshka Representation Learning permite?",
+      "options": [
+        "Softmax mais rápido",
+        "Formação multilingue",
+        "Rescoring de codificação cruzada",
+        "Truncando uma incorporação treinada para as suas primeiras dimensões N e obtendo uma incorporação ainda útil menor"
+      ],
+      "correct": 3,
+      "explanation": "O treinamento de matrioshka torna os primeiros N dims do vetor úteis por si só, permitindo uma truncation barata."
+    },
+    {
+      "stage": "check",
+      "question": "Como as incorporações multi-vector (ColBERT) pontua os pares de consulta-doc?",
+      "options": [
+        "Cosino de vetores de tokens de média conjunta",
+        "Entropia cruzada",
+        "MaxSim: para cada token de consulta encontrar o token de documento mais semelhante, então soma o máximo",
+        "Distância do movedor terrestre"
+      ],
+      "correct": 2,
+      "explanation": "Interação tardia de estilo ColBERT usa MaxSim em vetores por token."
+    },
+    {
+      "stage": "check",
+      "question": "O que é que a BGE-M3 produz simultaneamente?",
+      "options": [
+        "Apenas um vetor escasso",
+        "Só um vetor denso",
+        "Representações densas, escassas e multi-vectoriais (colbert) de um modelo em uma única inferência",
+        "Só um vetor de colbert"
+      ],
+      "correct": 2,
+      "explanation": "O BGE-M3 emite três modos de recuperação a partir de um modelo, útil para a pontuação híbrida fundida."
+    },
+    {
+      "stage": "check",
+      "question": "Por que é que você tem que re-normalizar um vetor truncado Matryoshka antes de cosino semelhança?",
+      "options": [
+        "Truncation altera a norma vetorial; sem re-normalização, produto ponto não é mais igual a cosino",
+        "O cosino ignora a normalização.",
+        "Truncation interrupções de treinamento",
+        "Exigido apenas pela FAISS"
+      ],
+      "correct": 0,
+      "explanation": "A re-normalização após a truncation restaura a norma da unidade para que o produto ponto seja igual ao cosino novamente."
+    },
+    {
+      "stage": "post",
+      "question": "Por que os modelos BGE precisam frequentemente de uma cadeia de prefixos do lado da consulta?",
+      "options": [
+        "Para comprimir consultas",
+        "Prefixos alteram o comportamento do tokenizer",
+        "Requerido pela FAISS",
+        "A BGE foi treinada com um prompt de consulta explícito; omitê-lo custa 3-5 pontos de recall"
+      ],
+      "correct": 3,
+      "explanation": "Os modelos BGE esperam um prefixo \"Representar esta frase para pesquisa\"... nas consultas."
+    },
+    {
+      "stage": "post",
+      "question": "Por que é necessário, mas não suficiente, o MTEB para a escolha de um modelo de incorporação?",
+      "options": [
+        "MTEB abrange apenas o inglês",
+        "MTEB recompensa modelos maiores",
+        "MTEB ignora a latência",
+        "As classificações no ranking são médias em muitas tarefas; o seu domínio específico pode diferir, por isso, sempre faça referência aos seus dados"
+      ],
+      "correct": 3,
+      "explanation": "MTEB médias entre tarefas; avaliação específica de domínio pode inverter a classificação."
+    },
+    {
+      "stage": "post",
+      "question": "Quando deve adicionar SPLADE scarcity retrieval ao lado de embutidos densos?",
+      "options": [
+        "Apenas em pequenas corporações",
+        "Sempre que o codificador é multilingue",
+        "Quando as consultas são pesadas em palavras-chave ou contêm identificadores/códigos que incorporam embeddings densos",
+        "Sempre que se utiliza Matryoshka"
+      ],
+      "correct": 2,
+      "explanation": "SPLADE capta correspondências de palavras-chave/léxico que os modelos densos podem perder; fusão com densa através de RRF."
+    }
+  ]
+}

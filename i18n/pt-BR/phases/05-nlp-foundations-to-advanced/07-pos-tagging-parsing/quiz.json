@@ -1,0 +1,102 @@
+{
+  "lesson": "07-pos-tagging-parsing",
+  "title": "Tagging POS e Parsing sintático",
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "Qual é o objetivo da etiquetação de POS?",
+      "options": [
+        "Traduza a frase",
+        "Detectar sentimentos",
+        "Extracção de entidades denominadas",
+        "Asigne uma categoria gramatical (nome, verbo, etc.) a cada token"
+      ],
+      "correct": 3,
+      "explanation": "POS etiquetando cada token com sua parte de fala."
+    },
+    {
+      "stage": "pre",
+      "question": "Qual é o tagset padrão para o trabalho interlingual?",
+      "options": [
+        "Penn Treebank",
+        "CoNLL-2003",
+        "Dependências de Stanford",
+        "Dependências universais"
+      ],
+      "correct": 3,
+      "explanation": "A Universal Dependencies fornece um conjunto de 17 tags mais grosseiro e agnóstico para a linguagem."
+    },
+    {
+      "stage": "check",
+      "question": "O que faz um modelo de tagger de Bigram HMM POS?",
+      "options": [
+        "Parses de dependência",
+        "P (tags) apenas",
+        "P  tag  tag anterior  transições mais P  tag  palavras  emissões, decodificadas com Viterbi",
+        "Introdução de semelhanças"
+      ],
+      "correct": 2,
+      "explanation": "Bigram HMM usa transições de tag e emissões de palavras; Viterbi encontra a sequência de maior probabilidade."
+    },
+    {
+      "stage": "check",
+      "question": "O que o algoritmo Viterbi calcula para um tagger HMM?",
+      "options": [
+        "A matriz de transição",
+        "A probabilidade marginal de cada tag",
+        "Só as probabilidades de avanço",
+        "A sequência de tag única de maior probabilidade através de programação dinâmica sobre a rede de tag"
+      ],
+      "correct": 3,
+      "explanation": "Viterbi encontra a sequência argmax com programação dinâmica O  n *   2."
+    },
+    {
+      "stage": "check",
+      "question": "O que produz a análise de dependência?",
+      "options": [
+        "Árvore de distrito de eleição de rótulos NP/VP/PP",
+        "Uma árvore onde cada palavra tem uma palavra-chave e uma relação gramatical rotulada",
+        "Uma cadeia de coreferência",
+        "Uma sequência biológica plana"
+      ],
+      "correct": 1,
+      "explanation": "Os parses de dependência dão bordas por palavra (cabeça, relação); os parses de distrito dão estruturas de frases aninhadas."
+    },
+    {
+      "stage": "post",
+      "question": "Por que o teto de precisão no PTB POS está marcado em torno de 97-98%?",
+      "options": [
+        "Os modelos não podem exceder 98% em qualquer tarefa",
+        "Limites de dependências universais de 98%",
+        "Os anotadores humanos concordam apenas em cerca de 97% do tempo, por isso os modelos acima de ~ 98% podem ser dados de teste sobreajustados",
+        "Limitações de hardware"
+      ],
+      "correct": 2,
+      "explanation": "A desacordo entre os anotadores limita a precisão alcançável; números muito altos geralmente sinalizam sobre-ajustamento."
+    },
+    {
+      "stage": "post",
+      "question": "Por que a etiquetação de POS ainda importa em 2026 LLM pipelines?",
+      "options": [
+        "Requisitos para tokenização",
+        "Lemmatização, sentimento baseado em aspectos, decomposição de consulta, validação estruturada de saída e transferência translanguagem ainda consomem análises de POS ou dependência",
+        "Transformadores de substituição",
+        "As LLM não podem funcionar sem ela"
+      ],
+      "correct": 1,
+      "explanation": "Os dados de POS e de dependência alimentam muitas tarefas estruturadas ao longo do curso, mesmo quando os LLM geram a prosa."
+    },
+    {
+      "stage": "post",
+      "question": "Que biblioteca deve procurar na maioria das tarefas de produção de POS / análise?",
+      "options": [
+        "- Aprender",
+        "espaCy (ou stanza/trankit para maior precisão ou maior cobertura linguística)",
+        "Numero de dados",
+        "- Vai fazer o teu próprio parcer."
+      ],
+      "correct": 1,
+      "explanation": "A spaCy envia sistemas de distribuição de dados de alta velocidade de produção + sistemas de paragem de dependência; a stanza/trankit abrange linguagens mais amplas."
+    }
+  ]
+}

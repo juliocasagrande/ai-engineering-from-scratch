@@ -1,0 +1,102 @@
+{
+  "lesson": "18-multilingual-nlp",
+  "title": "PNL multilíngue",
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "O que significa transferência interlingual de tiro zero?",
+      "options": [
+        "Tradução sem modelo de tradução",
+        "Tokenização com fusões zero",
+        "Aponta um modelo multilingüe numa língua-fonte e avalia numa língua diferente sem etiquetas para a língua-alvo",
+        "Formação com zero exemplos"
+      ],
+      "correct": 2,
+      "explanation": "Transferência de tiro zero: treinar na língua-fonte, executar no alvo sem supervisão da língua-alvo."
+    },
+    {
+      "stage": "pre",
+      "question": "Que modelo de família é o modelo de base para 100 línguas?",
+      "options": [
+        "GPT-2",
+        "Glove",
+        "DistilBERT",
+        "XLM-R (por exemplo, base XLM-RoBERTa, 270M)"
+      ],
+      "correct": 3,
+      "explanation": "O XLM-R é a linha de base canônica de 100 línguas pré-estruturada para classificação interlingual."
+    },
+    {
+      "stage": "check",
+      "question": "Por que o inglês como fonte não dá sempre a melhor transferência para um alvo não inglês?",
+      "options": [
+        "O inglês tem muito pouca informação.",
+        "A semelhança linguística (tipologia, escrita, morfologia) prevê a qualidade da transferência; uma fonte de recursos mais próxima pode superar o inglês",
+        "Inglês usa BPE",
+        "O inglês é curto demais."
+      ],
+      "correct": 1,
+      "explanation": "Fontes tipologicamente relacionadas (por exemplo, hindi para alvos índicos) muitas vezes superam o inglês como fonte de sintonia fina."
+    },
+    {
+      "stage": "check",
+      "question": "Qual é o \"imposto sobre a fertilidade\" para as línguas de baixo recurso?",
+      "options": [
+        "Modelos menores treinam mais devagar",
+        "Tokenizers não podem lidar com Unicode",
+        "O BPE recusa-se a treinar",
+        "O texto de baixo recurso se tokeniza em mais subpalavras por palavra do que o inglês, consumindo janela de contexto, latência e capacidade"
+      ],
+      "correct": 3,
+      "explanation": "As línguas de cauda longa são símbolos de fertilidade muito maior, contexto alimentar e eficiência de treinamento."
+    },
+    {
+      "stage": "check",
+      "question": "Por que é necessária uma avaliação por língua, e não uma precisão agregada?",
+      "options": [
+        "Os agregados correm mais rápido",
+        "Os agregados só funcionam em matéria de classificação",
+        "Agregados ignoram a tokenização",
+        "Os números agregados escondem linguagens de cauda longa onde um modelo multilingüe pode ser muito pior do que a sua média sugere"
+      ],
+      "correct": 3,
+      "explanation": "A precisão agregada mascara o mau desempenho em línguas de baixo recurso; as pontuações por língua expõem isso."
+    },
+    {
+      "stage": "post",
+      "question": "Por que é fundamental ajustar a taxa de aprendizagem quando se adapta um modelo multilingüe com poucos dados?",
+      "options": [
+        "O LR elevado pode derrubar o alinhamento multilingüe e reduzir efetivamente o modelo a apenas inglês",
+        "Resíduos de LR inferior GPU",
+        "Mudança o vocabulário .",
+        "Requeridos pelos tokenizadores"
+      ],
+      "correct": 0,
+      "explanation": "LR excessiva deriva a representação compartilhada; LR conservador (~2e-5) preserva a estrutura translingual."
+    },
+    {
+      "stage": "post",
+      "question": "Que mitigação aborda diretamente a fertilidade do tokenizer para scripts de cauda longa?",
+      "options": [
+        "Esquecer palavras-chave",
+        "Use byte-fallback (SentencePiece byte_fallback=True) ou um tokenizer com cobertura de script mais ampla (por exemplo, XLM-V)",
+        "Mais épocas de formação",
+        "Dimensão de lote inferior"
+      ],
+      "correct": 1,
+      "explanation": "Os tokenizadores de fallback de byte e de vocabulário mais amplo reduzem a fertilidade e a OOV para scripts de baixo recurso."
+    },
+    {
+      "stage": "post",
+      "question": "Quando vale a pena tentar um modelo monolingüe a partir do zero em vez de um multilingüe?",
+      "options": [
+        "Apenas para tradução",
+        "Sempre que o tokenizer é BPE",
+        "Sempre para inglês",
+        "Quando a língua-alvo tiver dados suficientes para treinar um modelo monolingüe que ultrapasse a linha de base multilingüe; teste antes de assumir"
+      ],
+      "correct": 3,
+      "explanation": "Às vezes, a formação monolingüe supera a multilingüe para metas de alto recurso; a comparação empírica decide."
+    }
+  ]
+}

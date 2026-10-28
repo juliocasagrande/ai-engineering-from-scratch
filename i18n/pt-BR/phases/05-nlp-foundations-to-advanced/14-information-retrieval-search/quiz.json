@@ -1,0 +1,102 @@
+{
+  "lesson": "14-information-retrieval-search",
+  "title": "Recuperação e Pesquisa de Informações",
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "Em que é que o BM25 marca um documento?",
+      "options": [
+        "Frequência de termos, IDF e presença normalizada de termos de consulta em comprimento de documento",
+        "Modificar distância para a consulta",
+        "Incorporar cosino na consulta",
+        "PageRank sobre o corpus"
+      ],
+      "correct": 0,
+      "explanation": "BM25 pesa saturação TF, IDF e normalização de comprimento para marcar correspondências léxicas."
+    },
+    {
+      "stage": "pre",
+      "question": "Qual é a principal fraqueza da recuperação só densa que o BM25 capta?",
+      "options": [
+        "Questões multilíngues",
+        "Latência",
+        "A combinação exacta de palavras-chave e identificadores (códigos de produto, cadeias de erros, entidades nomeadas) que as incorporações semânticas podem perder",
+        "Documentos longos"
+      ],
+      "correct": 2,
+      "explanation": "Embedings densos podem borrar identificadores e cordas exatas; BM25 os claves."
+    },
+    {
+      "stage": "check",
+      "question": "Por que a Fusão de Rango Reciproco (RRF) ignora as pontuações brutas de cada retriever?",
+      "options": [
+        "BM25 e pontuações densas vivem em escalas diferentes; usando apenas posições de classificação torna a fusão robusta para calibração",
+        "Acelera a classificação",
+        "RRF requer probabilidades",
+        "As notas brutas são ilegais de usar"
+      ],
+      "correct": 0,
+      "explanation": "RRF utiliza 1/(k + rank), de modo que as escalas dos dois sistemas de pontuação não precisam corresponder."
+    },
+    {
+      "stage": "check",
+      "question": "Porque é que é que só executamos um reclassificador de codificação cruzada nos 30 resultados combinados?",
+      "options": [
+        "Os cross-encoders são lentos por par; amortizar-os em um pequeno pool de candidatos dá alta precisão com latência aceitável",
+        "Ranger reduz o recall",
+        "São necessários encodadores cruzados em cada etapa",
+        "O Top-30 é exigido pela FAISS"
+      ],
+      "correct": 0,
+      "explanation": "Os codificadores cruzados pontuação consulta+doc em conjunto; executá-los apenas no pequeno pool de candidatos fundidos mantém a latência gerenciável."
+    },
+    {
+      "stage": "check",
+      "question": "Qual é a métrica mais importante para otimizar para os retrievers RAG?",
+      "options": [
+        "Transmissão",
+        "Recall@k, já que o leitor não pode responder se a passagem correta está faltando no top-k",
+        "A BLU",
+        "Latência"
+      ],
+      "correct": 1,
+      "explanation": "Se a passagem correta não estiver no top-k recuperado, o leitor é garantido falhar."
+    },
+    {
+      "stage": "post",
+      "question": "De onde provêm a maioria das falhas de RAG de produção, por experiência industrial de 2026?",
+      "options": [
+        "Ingestão e pedaços, não o modelo; um contexto ruim derrota bons leitores",
+        "Verbosidade rápida",
+        "A regulação de Reranker",
+        "A escolha do Mestrado em Direito Jurídico"
+      ],
+      "correct": 0,
+      "explanation": "Cerca de 80% das falhas de RAG são atribuídas à qualidade de pedaços e ingestão, não ao modelo gerador."
+    },
+    {
+      "stage": "post",
+      "question": "Qual é o padrão de recuperação do documento \"parent-doc\"?",
+      "options": [
+        "Escolha o documento mais longo",
+        "Use apenas as incorporações do doc-parente",
+        "Retirar pequenos pedaços de criança para precisão, em seguida, expandir para o bloco pai quando vários filhos do mesmo pai aparecem, preservando o contexto",
+        "Incorporar apenas documentos de origem"
+      ],
+      "correct": 2,
+      "explanation": "A recuperação a nível infantil é precisa; expandindo-se para os pais preserva o contexto circundante que o leitor precisa."
+    },
+    {
+      "stage": "post",
+      "question": "Quando deve enviar o retorno em três vias (BM25 + denso + SPLADE)?",
+      "options": [
+        "Sempre .",
+        "Quando a infraestrutura suporta índices e consultas de espaço aprendido misturar substantivos adequados com intenção semântica",
+        "Apenas em menos de 1000 documentos",
+        "Apenas para corporações de língua inglesa"
+      ],
+      "correct": 1,
+      "explanation": "A recuperação em três vias supera os valores de referência em duas vias em 2026 para consultas mixtas de léxico-semântica, dada a infraestrutura SPLADE."
+    }
+  ]
+}

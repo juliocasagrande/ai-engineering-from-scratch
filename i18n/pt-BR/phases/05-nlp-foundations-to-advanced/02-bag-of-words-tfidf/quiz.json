@@ -1,0 +1,102 @@
+{
+  "lesson": "02-bag-of-words-tfidf",
+  "title": "Saco de Palavras, TF-IDF e Representação de Texto",
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "O que é que o Saco de Palavras jogou fora?",
+      "options": [
+        "Punctualização",
+        "Ordem de tokens",
+        "Tamanho do vocabulário",
+        "Duração do documento"
+      ],
+      "correct": 1,
+      "explanation": "O BoW conta os tokens por documento, mas descartando a sua sequência."
+    },
+    {
+      "stage": "pre",
+      "question": "Por que escalar TF por um fator da IDF?",
+      "options": [
+        "Para normalizar o comprimento do documento",
+        "Palavras que aparecem em todos os documentos não têm sinais discriminatórios e devem ser reduzidas em peso",
+        "Para remover a pontuação",
+        "Para acelerar a formação"
+      ],
+      "correct": 1,
+      "explanation": "A IDF penaliza palavras onipresentes e promove palavras raras."
+    },
+    {
+      "stage": "check",
+      "question": "Na fórmula de IDF suavizada log ((((N+1)/(df+1)) + 1, o que garante o +1 posterior?",
+      "options": [
+        "Estabilidade numérica para N grande",
+        "Compatibilidade com os números brutos",
+        "Uma palavra que aparece em todos os documentos ainda tem 1 em vez de 0.",
+        "Computação mais rápida"
+      ],
+      "correct": 2,
+      "explanation": "O +1 mantém palavras onipresentes em IDF=1 para que não sejam eliminadas, correspondendo ao padrão do scikit-learn."
+    },
+    {
+      "stage": "check",
+      "question": "Por que L2-normalizar as linhas TF-IDF antes da semelhança cosínica?",
+      "options": [
+        "Para converter vetores escassos em densos",
+        "Documentos mais longos dominariam os resultados de semelhança; a normalização coloca todos os documentos na hiperesfera unidade",
+        "Para remover zero entradas",
+        "Para comprimir o vocabulário"
+      ],
+      "correct": 1,
+      "explanation": "A normalização L2 remove o viés do comprimento do documento e transforma a semelhança cosínica em um produto de pontos."
+    },
+    {
+      "stage": "check",
+      "question": "Qual configuração do TfidfVectorizer é arriscada para permitir a análise do sentimento?",
+      "options": [
+        "sublinear_tf=Verdade",
+        "- Não, não.",
+        "Min_df=2",
+        "stop_words='inglês'"
+      ],
+      "correct": 3,
+      "explanation": "A palavra parada em inglês lista negativas como 'não', que carregam sinal de sentimento."
+    },
+    {
+      "stage": "post",
+      "question": "Qual é a tarefa que a TF-IDF ainda vai ganhar em 2026?",
+      "options": [
+        "Tradução automática",
+        "Diálogo aberto",
+        "Capção de imagem",
+        "Detecção de spam, sinalização de anomalias de registro e classificação estreita de baixa latência"
+      ],
+      "correct": 3,
+      "explanation": "O TF-IDF supera os incorporados quando a presença de palavras é o sinal e a explicabilidade ou a velocidade são importantes."
+    },
+    {
+      "stage": "post",
+      "question": "Por que o TF-IDF falha no par 'O filme não foi bom' vs 'O filme foi excelente'?",
+      "options": [
+        "O TF-IDF requer bigramas para funcionar",
+        "Ambos os documentos compartilham a maioria dos tokens; saco de palavras não tem noção de negação ou ordem de palavras",
+        "TF-IDF não pode lidar com palavras-chave",
+        "As conexões são muito altas"
+      ],
+      "correct": 1,
+      "explanation": "Sem ordem de palavras ou contexto sintático, a BoW não pode modelar que \"não\" volte o sentimento de \"bom\"."
+    },
+    {
+      "stage": "post",
+      "question": "O que é o híbrido de incorporação ponderada TF-IDF?",
+      "options": [
+        "Os componentes de carregamento de material não utilizados para a produção de material não utilizados para a produção de material não utilizados para a produção de material não utilizado para a produção de material não utilizado para a produção de material não utilizado para a produção de material não utilizado para a produção de material não utilizado para a produção de material não utilizado para a produção de material não utilizado para a produção de material não utilizado para a produção de material não utilizado para a produção de material não utilizado para a produção de material não utilizado para a produção de material não utilizado para a produção de material não utilizado para a produção de material não utilizado para a produção de material não utilizado para a produção de material não utilizado para a produção de material não utilizado para a produção de material não utilizado para a produção de material não utilizado para a produção de material não fabricado para a produção de material não fabricado para a produção de material não fabricado para a produção de material não fabricado para a produção de material não fabricado para a produção de material não fabricado para a produção de material não fabricado",
+        "Execução de PCA em TF-IDF e reinserção",
+        "Utilização de pesos TF-IDF como um peso de agregação sobre embutidos por token antes de mediar",
+        "Formação do BERT sobre as características do TF-IDF"
+      ],
+      "correct": 2,
+      "explanation": "O híbrido pesa a incorporação de cada token por sua pontuação e médias TF-IDF, misturando capacidade semântica com ênfase em palavras raras."
+    }
+  ]
+}

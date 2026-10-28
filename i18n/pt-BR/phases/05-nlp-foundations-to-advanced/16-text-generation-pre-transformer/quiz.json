@@ -1,0 +1,102 @@
+{
+  "lesson": "16-text-generation-pre-transformer",
+  "title": "Geração de texto antes dos transformadores  Modelos de linguagem N-gram",
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "O que estima um modelo de linguagem n-gram?",
+      "options": [
+        "Embedments de documentos",
+        "Edicionar distância entre palavras",
+        "P ((segunda palavra  anteriores n-1 palavras) de estatísticas de contagem",
+        "- O documento."
+      ],
+      "correct": 2,
+      "explanation": "Um n-gram LM modelos P ((w ̊ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\"
+    },
+    {
+      "stage": "pre",
+      "question": "Que problema o suavização resolve em modelos n-gram?",
+      "options": [
+        "Precision numérica",
+        "Associação de probabilidade zero para n-gramas não vistas no treinamento, que desmorona probabilidades de sentença para zero",
+        "Uso de memória",
+        "Descoincidência de tokenização"
+      ],
+      "correct": 1,
+      "explanation": "O suavizamento realoca a massa de probabilidade para que n-gramas invisíveis obtenham probabilidade não zero."
+    },
+    {
+      "stage": "check",
+      "question": "Que percepção faz o suavização de Kneser-Ney melhor do que o descontos absolutos ingênuos?",
+      "options": [
+        "Ele usa maior n",
+        "Utiliza TF-IDF",
+        "Ele usa descida de gradiente",
+        "Estima a distribuição de ordem inferior com probabilidade de continuação (número de contextos distintos em que uma palavra aparece) em vez de freqüência bruta"
+      ],
+      "correct": 3,
+      "explanation": "A probabilidade de continuação dá crédito à diversidade de contexto, não apenas à contagem bruta."
+    },
+    {
+      "stage": "check",
+      "question": "O que é que a perplexidade mede?",
+      "options": [
+        "Número de n-gramas distintos",
+        "exp da probabilidade média de registro negativo por token num conjunto de testes prolongados; menor é melhor",
+        "Entropia cruzada de rótulos",
+        "Transmissão de geração"
+      ],
+      "correct": 1,
+      "explanation": "Perplexidade = exp(- média log P); menor significa que o modelo é menos surpreendido pelo texto do ensaio."
+    },
+    {
+      "stage": "check",
+      "question": "Por que os conjuntos de treinamento e de teste devem utilizar a tokenização idêntica ao comparar números de perplexidade?",
+      "options": [
+        "Para evitar OOV",
+        "A perplexidade depende do esquema de tokenization; tokenizers incomparáveis produzem pontuações incomparáveis",
+        "Requerido pela descida de gradiente",
+        "Para controlar o tamanho do lote"
+      ],
+      "correct": 1,
+      "explanation": "Diferentes tokenizations alteram a contagem e probabilidade dos tokens, tornando os valores de perplexidade incomparáveis."
+    },
+    {
+      "stage": "post",
+      "question": "Por que as frases geradas por trigramas-LM parecem fluentes localmente mas incoerentes globalmente?",
+      "options": [
+        "O contexto do trigrama local guia cada palavra seguinte mas o modelo não tem memória de longo alcance além dos tokens n-1",
+        "Deixam cair a pontuação",
+        "Usam o suavizador Laplace .",
+        "A busca do feixe falha"
+      ],
+      "correct": 0,
+      "explanation": "Condicionar apenas os últimos tokens n-1 torna a coerência de longo alcance acidental."
+    },
+    {
+      "stage": "post",
+      "question": "Onde os modelos n-gram ainda serão lançados em produção em 2026?",
+      "options": [
+        "Tradução multilíngue",
+        "Resumo",
+        "Chatbots de domínio aberto",
+        "Pós-crítica de latência como reconhecimento de voz rescoring e autocompleto no dispositivo através de bibliotecas como KenLM"
+      ],
+      "correct": 3,
+      "explanation": "Os modelos de n-gram do estilo KenLM ainda servem como componentes rápidos no dispositivo ou de rescoring."
+    },
+    {
+      "stage": "post",
+      "question": "Por que é ainda recomendável calcular uma linha de base de n-gram antes de declarar um LM neural \"bom\"?",
+      "options": [
+        "Acelera o treinamento.",
+        "Requerido pelo ROUGE",
+        "Remove OOV",
+        "Se um transformador LM não supera uma linha de base Kneser-Ney sintonizada por uma ampla margem na mesma tokenization, algo está fora no pipeline de treinamento"
+      ],
+      "correct": 3,
+      "explanation": "As linhas de base KN são surpreendentemente fortes; um LM neural deve ganhar por uma grande margem ou você tem um bug."
+    }
+  ]
+}

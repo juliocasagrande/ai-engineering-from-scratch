@@ -1,0 +1,102 @@
+{
+  "lesson": "01-text-processing",
+  "title": "Processamento de textos  Tokenization, Stemming, Lemmatization",
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "Por que um modelo de língua precisa de um processo prévio antes de ser treinado?",
+      "options": [
+        "Modelos ler cordas diretamente",
+        "Preprocessamento melhora a utilização de GPU",
+        "Os modelos consomem tokens de números inteiros discretos, não texto bruto",
+        "Pre-processamento é necessário apenas para as línguas sem espaço em branco"
+      ],
+      "correct": 2,
+      "explanation": "Os modelos operam em IDs de tokens inteiros; o pré-processamento faz pontes de linguagem contínua para entradas discretas."
+    },
+    {
+      "stage": "pre",
+      "question": "Qual operação de pré-processamento é a desativação de sufixos baseada em regras?",
+      "options": [
+        "Marcação de POS",
+        "Referência",
+        "Lemmatização",
+        "Tokenization"
+      ],
+      "correct": 1,
+      "explanation": "A votação é um sufixo com regras; é rápida, mas pode ser errada."
+    },
+    {
+      "stage": "check",
+      "question": "O que é que o Porter voter passo 1a retorna para a palavra \"ponies\"?",
+      "options": [
+        "Pôni",
+        "Pônios",
+        "Pônio",
+        "Pôni"
+      ],
+      "correct": 0,
+      "explanation": "A regra \"ies\" substitui o sufixo por \"i\", produzindo \"poni\"; o passo 1b no Porter real limpa-o."
+    },
+    {
+      "stage": "check",
+      "question": "Por que a lemmatização geralmente precisa de uma etiqueta de POS?",
+      "options": [
+        "Manutenção de Unicode",
+        "O contexto gramatical desambigua formas como \"melhor\" (ADJ) versus \"melhor\" (VERB)",
+        "Para reduzir o uso de memória",
+        "Velocidade"
+      ],
+      "correct": 1,
+      "explanation": "Os lemmas dependem do papel gramatical; sem a etiqueta a busca é ambígua."
+    },
+    {
+      "stage": "check",
+      "question": "Quando traduzindo tags NLTK Penn Treebank POS para tags WordNet, para que é um tag que começa com 'V' mapa?",
+      "options": [
+        "\"r\" (adverbo)",
+        "\"a\" (adjetivo)",
+        "\"v\" (verbo)",
+        "\"n\" (nome)"
+      ],
+      "correct": 2,
+      "explanation": "Prefixo verbo Penn Treebank tags mapa para WordNet 'v'."
+    },
+    {
+      "stage": "post",
+      "question": "O que é \"desconformidade entre formação e inferência\" no pré-processamento de PNL?",
+      "options": [
+        "Um problema de memória de GPU",
+        "O treinamento e a prestação aplicam diferentes pré-processamento, de modo que o modelo vê uma distribuição desconhecida na inferência",
+        "Misturar bibliotecas de tokenizer dentro de um bloco de notas",
+        "Dimensões de lote diferentes entre o trem e o ensaio"
+      ],
+      "correct": 1,
+      "explanation": "O preprocessamento diferente no treinamento versus inferência é a falha mais comum da PNL de produção."
+    },
+    {
+      "stage": "post",
+      "question": "Que ferramenta procuraria num transformer em vez de pré-processamento clássico?",
+      "options": [
+        "NLTK word_tokenize",
+        "O tokenizer do modelo (por exemplo, através de tokenizadores/transformadores)",
+        "espaCy en_core_web_sm",
+        "Um tokenizer regex"
+      ],
+      "correct": 1,
+      "explanation": "Os modelos de transformadores enviam um tokenizer emparelhado; o pré-processamento clássico é ignorado."
+    },
+    {
+      "stage": "post",
+      "question": "Por que colocar as versões NLTK e spaCy em requisitos?",
+      "options": [
+        "As versões mais recentes são mais lentas",
+        "Versões mais antigas suportam mais idiomas",
+        "Tokenizer e lemmatizer comportamentos mudam entre as libertações menores, mudando silenciosamente a distribuição de treinamento",
+        "Compatibilidade com a licença"
+      ],
+      "correct": 2,
+      "explanation": "As atualizações da biblioteca podem alterar a saída de tokenização, a desviar-se da distribuição de treinamento."
+    }
+  ]
+}

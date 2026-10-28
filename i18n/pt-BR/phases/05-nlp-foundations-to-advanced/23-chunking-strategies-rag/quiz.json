@@ -1,0 +1,102 @@
+{
+  "lesson": "23-chunking-strategies-rag",
+  "title": "Estratégias de desmantelamento de RAG",
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "Por que a estratégia de fragmentação é tão importante quanto o modelo de incorporação no RAG?",
+      "options": [
+        "O despejo reduz o modelo",
+        "Pequenas peças treinam mais rápido",
+        "O FAISS requer o despejo",
+        "Os limites de pedaços determinam se a resposta é mesmo recuperável; pedaços ruins derrotam qualquer inserção"
+      ],
+      "correct": 3,
+      "explanation": "O estudo de 2025 da Vectara mostrou que a qualidade de fragmentação coincide ou excede o impacto do modelo de incorporação na qualidade da recuperação."
+    },
+    {
+      "stage": "pre",
+      "question": "O que o RecursiveCharacterTextSplitter da LangChain tenta ordenar?",
+      "options": [
+        "Tente dividir em parágrafos, depois novas linhas, depois limites de frases, depois espaços",
+        "Dividido em IDs de token",
+        "Dividido apenas em espaço branco",
+        "Sempre dividido no caracter N"
+      ],
+      "correct": 0,
+      "explanation": "A divisão recorrente retorna através do parágrafo -> nova linha -> frase -> espaço para preservar a estrutura."
+    },
+    {
+      "stage": "check",
+      "question": "Por que o padrão de documento dos pais melhora a qualidade das respostas?",
+      "options": [
+        "Remove os embebimentos",
+        "As crianças fazem uma recuperação precisa; devolver o bloco maior dos pais preserva o contexto circundante que o leitor precisa",
+        "Evita a tokenização",
+        "Utiliza menos ciclos de GPU"
+      ],
+      "correct": 1,
+      "explanation": "Retirando por pequenos pedaços de criança para precisão, em seguida, expandir para o pai para contexto."
+    },
+    {
+      "stage": "check",
+      "question": "O que adiciona a \"retorno contextual\" da Anthropic a cada peça antes de indexar?",
+      "options": [
+        "Um resumo de 50 a 100 palavras gerado pelo LLM, colocando o pedaço no contexto geral do documento",
+        "Ruído aleatório",
+        "Uma etiqueta de POS",
+        "Um código de língua"
+      ],
+      "correct": 0,
+      "explanation": "A recuperação contextual prepõe um resumo situador escrito pelo LLM para cada peça; ~ 35-50% de recall gain."
+    },
+    {
+      "stage": "check",
+      "question": "Qual descoberta de 2026 contradiz a sabedoria convencional sobre a sobreposição de pedaços?",
+      "options": [
+        "O sobreposição deve ser de 50%",
+        "É necessário superposição para o BM25",
+        "O sobreposição melhora apenas a recuperação contextual",
+        "Os índices de referência empíricos de 2026 mostram que a sobreposição geralmente proporciona benefícios mensuráveis zero enquanto duplica o custo do índice"
+      ],
+      "correct": 3,
+      "explanation": "Estudos mais recentes (SPLADE+Mistral no NQ) mostram que a sobreposição de massa raramente ajuda e infla o tamanho do índice."
+    },
+    {
+      "stage": "post",
+      "question": "Que tamanho de peça a referência 2026 da NVIDIA associa às consultas de factoid?",
+      "options": [
+        "Aproximadamente 256-512 tokens",
+        "Tokens 2048-4096",
+        "8192 tokens",
+        "64 tokens"
+      ],
+      "correct": 0,
+      "explanation": "As consultas de fattoides beneficiam de pedaços menores (256-512 tokens) que concentram o sinal de resposta."
+    },
+    {
+      "stage": "post",
+      "question": "Por que é importante um piso de min-token quando se usa chunking semântico?",
+      "options": [
+        "Sem um piso, o fragmento semântico pode produzir pequenos fragmentos de 40 tokens que prejudicam a recuperação",
+        "Requerido pela BERT",
+        "Os pisos prevêem a sobreposição",
+        "Os pisos aceleram a inferência"
+      ],
+      "correct": 0,
+      "explanation": "Os fragmentos semânticos podem ser supersegmentados; impor um tamanho mínimo evita fragmentos de baixo sinal."
+    },
+    {
+      "stage": "post",
+      "question": "O que faz o \"chunking tardío\" diferente do chunking tradicional?",
+      "options": [
+        "Cânculos após a extracção",
+        "Embeda o documento inteiro no nível do token primeiro, em seguida, agrega embeddings de token em vetores de pedaços para preservar o contexto de pedaços cruzados",
+        "Salta a partir de pedaços inteiros",
+        "Em vez disso, utiliza BM25"
+      ],
+      "correct": 1,
+      "explanation": "O chunking tardío incorpora primeiro e pisca em segundo lugar, preservando interações contextuais através das fronteiras de chunk."
+    }
+  ]
+}

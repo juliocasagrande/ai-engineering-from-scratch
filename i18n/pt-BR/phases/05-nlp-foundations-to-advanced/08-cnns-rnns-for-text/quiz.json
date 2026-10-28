@@ -1,0 +1,102 @@
+{
+  "lesson": "08-cnns-rnns-for-text",
+  "title": "CNNs e RNNs para texto",
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "O que é um filtro de convolução 1D de largura 3 sobre incorporações de palavras efetivamente aprendendo?",
+      "options": [
+        "Um detector de bigrams aprendizagem",
+        "Detector de trigramas (n-gram) aprendizagem",
+        "Uma posição de inserção",
+        "Uma contagem de unigramas"
+      ],
+      "correct": 1,
+      "explanation": "Um filtro de largura 3 abrange três tokens consecutivos, atuando como um detetor de trigramas aprenhável."
+    },
+    {
+      "stage": "pre",
+      "question": "Por que um LSTM utiliza um estado celular com interações principalmente aditivas?",
+      "options": [
+        "Softmax mais rápido",
+        "Para evitar a inversão de matriz",
+        "O fluxo aditivo permite que os gradientes se propaguem através de longas sequências sem desaparecer ou explodir",
+        "Salva memória."
+      ],
+      "correct": 2,
+      "explanation": "A estrada do estado celular mantém os gradientes estáveis em centenas de passos, resolvendo problemas de gradiente desaparecendo."
+    },
+    {
+      "stage": "check",
+      "question": "Por que o TextCNN usa o max-pooling global após a camada convolucional?",
+      "options": [
+        "Reduzir o vocabulário",
+        "O Max-pool dá uma representação de tamanho fixo, em posição invariante, selecionando a ativação mais forte por filtro",
+        "Para permitir a propagação de volta",
+        "Para remover as incorporações"
+      ],
+      "correct": 1,
+      "explanation": "O max-pool global produz um vetor de características de tamanho fixo independentemente do comprimento da entrada, com invariância de posição."
+    },
+    {
+      "stage": "check",
+      "question": "Qual é a principal vantagem de um RNN bidirecional em relação a um RNN de sentido único para a rotulagem de sequências?",
+      "options": [
+        "Memória mais barata",
+        "Evita incorporar",
+        "A representação de cada token vê o contexto esquerdo e direito, o que é essencial para a etiquetagem",
+        "Formação mais rápida"
+      ],
+      "correct": 2,
+      "explanation": "As redes bidirecionais concatenam estados ocultos para frente + para trás para que os rótulos possam usar todo o contexto."
+    },
+    {
+      "stage": "check",
+      "question": "Por que o máximo de compartilhamento sobre as saídas de um LSTM muitas vezes supera usando apenas o último estado oculto para classificação?",
+      "options": [
+        "Max-pool elimina a capitalização",
+        "A piscina do último estado ignora o enchimento",
+        "O máximo-pool é diferenciável; o último estado não é",
+        "A informação no final de uma longa sequência tende a dominar o último estado, escondendo evidências anteriores"
+      ],
+      "correct": 3,
+      "explanation": "O Max-pool agrega o sinal mais forte em posições; o último estado pode perder evidências anteriores."
+    },
+    {
+      "stage": "post",
+      "question": "Qual limitação dos codificadores-decodificadores LSTM/RNN motivou a atenção?",
+      "options": [
+        "Eles precisam de tokenizers de subpalavras",
+        "O decodificador vê apenas um estado de codificação de tamanho fixo, perdendo detalhes em entradas longas; a recorrência também serializa o treinamento",
+        "Não podem incorporar tokens",
+        "Não podem usar embalagens"
+      ],
+      "correct": 1,
+      "explanation": "Resumo de tamanho fixo e treinamento em série foram dois falhas de atenção removida."
+    },
+    {
+      "stage": "post",
+      "question": "Quando um TextCNN ou BiLSTM ainda vai bater um transformador em 2026?",
+      "options": [
+        "Sempre que o conjunto de dados é multilingüe",
+        "Edge / on-device, entrada de tokens por tokens em streaming ou linhas de base de dados minúsculas",
+        "Quando os requisitos de latência são extremamente soltos",
+        "Em entradas de imagem"
+      ],
+      "correct": 1,
+      "explanation": "Arquiteturas pequenas ainda ganham na inferência de borda, em entrada de streaming e em linhas de base rápidas."
+    },
+    {
+      "stage": "post",
+      "question": "Qual é o problema do gradiente de desaparecimento em RNNs comuns?",
+      "options": [
+        "As entradas ficam a zero",
+        "Multiplicação repetida por pesos recorrentes menores que 1 faz com que os gradientes para os primeiros passos encolham para zero",
+        "A perda torna-se negativa",
+        "A matriz de inserção torna-se singular"
+      ],
+      "correct": 1,
+      "explanation": "Os gradientes de produtos longos desaparecem (ou explodem) sem abertura; é por isso que existem LSTMs e GRUs."
+    }
+  ]
+}

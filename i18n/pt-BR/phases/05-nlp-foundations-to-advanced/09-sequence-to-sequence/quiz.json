@@ -1,0 +1,102 @@
+{
+  "lesson": "09-sequence-to-sequence",
+  "title": "Modelos de sequência em sequência",
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "Qual é o papel do codificador em um modelo seq2seq de estilo 2014?",
+      "options": [
+        "Gera tokens-alvo",
+        "Realiza uma busca de feixe",
+        "Calcula os pesos da atenção",
+        "Leia a fonte e produz um vetor de contexto de tamanho fixo resumindo-o"
+      ],
+      "correct": 3,
+      "explanation": "O codificador RNN comprime a fonte em um estado oculto final usado pelo decodificador."
+    },
+    {
+      "stage": "pre",
+      "question": "O que é o ensino forçado durante o treinamento seq2seq?",
+      "options": [
+        "Retificação manual de cada passo do decodificador",
+        "Adição de uma rede de professores durante a inferência",
+        "Duplicar o tamanho do lote",
+        "A alimentação do token anterior da verdade de base (em vez da previsão do modelo) como entrada de decodificador"
+      ],
+      "correct": 3,
+      "explanation": "O forçamento do professor estabiliza o treinamento usando tokens anteriores verdadeiros; sem ele, os erros iniciais caem em cascata."
+    },
+    {
+      "stage": "check",
+      "question": "Por que a precisão fixa do vector de contexto seq2seq cai à medida que o comprimento da entrada aumenta?",
+      "options": [
+        "Diferença de entropia cruzada",
+        "Os tokens de empate se acumulam",
+        "O vocabulário torna-se muito grande",
+        "Todas as informações sobre a fonte devem caber num único codificador de tamanho fixo, estado oculto, que perde detalhes em entradas longas"
+      ],
+      "correct": 3,
+      "explanation": "O gargalhão fixo de contextos-vectores significa que as entradas longas não podem ser resumidas sem perda."
+    },
+    {
+      "stage": "check",
+      "question": "O que é o viés de exposição?",
+      "options": [
+        "Preconceitos resultantes do desequilíbrio de classes",
+        "Preconceitos em embalagens de codificadores",
+        "Desacordo do anotador",
+        "O tren/inferência diferença de treinamento em tokens de verdade de base, mas gerando a partir das próprias previsões do modelo em inferência"
+      ],
+      "correct": 3,
+      "explanation": "O modelo nunca praticou a recuperação de seus próprios erros durante o treinamento, por isso os erros causam cascata na inferência."
+    },
+    {
+      "stage": "check",
+      "question": "Por que a pesquisa de feixe muitas vezes supera a codificação gananciosa de geração?",
+      "options": [
+        "A busca do feixe é mais rápida.",
+        "A busca de feixe mantém as sequências parciais de topo vivas em cada passo em vez de se comprometer irrevogavelmente a um token",
+        "A busca de feixe evita preconceitos de exposição",
+        "A busca de feixe reduz a perda"
+      ],
+      "correct": 1,
+      "explanation": "A ganância compromete-se por passo; a pesquisa de feixe explora múltiplas hipóteses, e depois escolhe a melhor completa."
+    },
+    {
+      "stage": "post",
+      "question": "Qual família de arquiteturas substituiu o RNN seq2seq para tarefas geracionais gerais?",
+      "options": [
+        "Bayes ingênuo",
+        "Redes neurais gráficas",
+        "1D CNNs",
+        "Modelos de transformadores de codificadores-decodificadores (BART, T5, mBART, NLLB)"
+      ],
+      "correct": 3,
+      "explanation": "Os encodadores-decodadores transformadores diminuíram a recorrência e agora dominam as tarefas de geração."
+    },
+    {
+      "stage": "post",
+      "question": "O que faz a amostragem programada?",
+      "options": [
+        "Adiciona ruído aleatório para incorporados",
+        "Analisa a relação de força do professor para baixo durante a formação para que o modelo aprenda a recuperar das suas próprias previsões",
+        "Reordena o conjunto de treinamento",
+        "Programa de declínio da taxa de aprendizagem"
+      ],
+      "correct": 1,
+      "explanation": "A amostragem programada mistura-se gradualmente nas previsões do modelo para reduzir a lacuna entre o treno e a interferência."
+    },
+    {
+      "stage": "post",
+      "question": "Por que a codificação gananciosa por si só muitas vezes falha para a geração que enfrenta o usuário?",
+      "options": [
+        "Ele sempre escolhe o \"EOS\" primeiro.",
+        "Não pode usar embutidos",
+        "A ganância pode repetir ou loop e não pode retroceder de uma escolha localmente boa mas globalmente pobre token",
+        "Requer mais memória."
+      ],
+      "correct": 2,
+      "explanation": "A escolha irrevogavel por passo da codificação gananciosa causa ciclos e repetição sem pesquisa de feixe ou amostragem."
+    }
+  ]
+}

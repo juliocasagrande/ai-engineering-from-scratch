@@ -1,0 +1,102 @@
+{
+  "lesson": "03-word-embeddings-word2vec",
+  "title": "Embedings de Word  Word2Vec a partir do zero",
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "Qual é a hipótese de distribuição?",
+      "options": [
+        "Todas as palavras podem ser incorporadas em 300 dimensões .",
+        "Palavras frequentes têm o maior significado",
+        "Saberá uma palavra da companhia que mantém",
+        "As palavras são uniformemente distribuídas entre os documentos"
+      ],
+      "correct": 2,
+      "explanation": "A hipótese de distribuição de Firth (1957): contextos semelhantes implicam significados semelhantes."
+    },
+    {
+      "stage": "pre",
+      "question": "Por que é impraticável a simples softmax sobre o vocabulário no Word2Vec?",
+      "options": [
+        "Softmax não pode modelar probabilidades",
+        "Softmax não tem gradiente",
+        "Computação de softmax superior a 100k + termos vocabulários é proibitivamente caro por etapa de treinamento",
+        "Causa a diminuição dos gradientes"
+      ],
+      "correct": 2,
+      "explanation": "O softmax de vocabulário completo é muito caro; a amostragem negativa reformula-o como classificação binária."
+    },
+    {
+      "stage": "check",
+      "question": "Qual é a diferença entre skip-gram e CBOW?",
+      "options": [
+        "O Skip-gram prevê palavras de contexto do centro; o CBOW prevê o centro do contexto",
+        "O Skip-gram prevê a palavra central a partir do contexto; CBOW faz o inverso",
+        "O Skip-gram treina uma rede profunda; o CBOW é superficial",
+        "O Skip-gram usa bigramas; o CBOW usa unigramas"
+      ],
+      "correct": 0,
+      "explanation": "Skip-gram: centro -> contexto. CBOW: contexto -> centro."
+    },
+    {
+      "stage": "check",
+      "question": "Na amostragem negativa, qual é o objetivo do par positivo (centro, contexto)?",
+      "options": [
+        "Minimizar o produto de pontos",
+        "Forçá-los a serem ortogonais.",
+        "Maximize sigmoid(W[centro] ponto W' [contexto]) para que seja próximo de 1",
+        "Descoorrectar os vetores"
+      ],
+      "correct": 2,
+      "explanation": "Os pares positivos treinam sigmoide perto de 1; os negativos da amostra treinam sigmoide perto de 0."
+    },
+    {
+      "stage": "check",
+      "question": "Depois de treinar o Word2Vec, qual matriz de peso se torna a palavra embutidos?",
+      "options": [
+        "Uma projeção de pós-treino separada",
+        "Ambos, multiplicados juntos",
+        "A matriz W' oculta para saída",
+        "A matriz W entre entrada e oculta (tabela de palavra central)"
+      ],
+      "correct": 3,
+      "explanation": "A tabela de palavra central W é a saída padrão de incorporação; W' é frequentemente descartada ou mediada."
+    },
+    {
+      "stage": "post",
+      "question": "Por que o Word2Vec falha na polissemia (por exemplo, \"banco\")?",
+      "options": [
+        "A amostragem negativa reduz significados raros",
+        "Ignora palavras raras.",
+        "O tamanho da janela é muito pequeno.",
+        "Aponta um vetor estático por palavra, de modo que \"banco do rio\" e \"banco financeiro\" compartilham o mesmo vetor"
+      ],
+      "correct": 3,
+      "explanation": "Embedings estáticos não podem desambiguar os sentidos; Embedings contextuais (ELMo/BERT) corrigem isso."
+    },
+    {
+      "stage": "post",
+      "question": "Quando ainda conseguiria o Word2Vec através de um transformador em 2026?",
+      "options": [
+        "Quando a qualidade do diálogo é importante",
+        "Quando você precisa de uma desambiguação contextual",
+        "Pesquisa de domínio específico, leve, no dispositivo, onde uma única linha de pesquisa é o orçamento de latência",
+        "Quando as entradas são muito longas"
+      ],
+      "correct": 2,
+      "explanation": "O Word2Vec ganha com pequenos orçamentos de latência, inferência no dispositivo ou treinamento específico de domínio rápido."
+    },
+    {
+      "stage": "post",
+      "question": "O que permite a famosa analogia 'rei - homem + mulher ~ rainha'?",
+      "options": [
+        "Trens de Skip-gram sobre vocabulários reais",
+        "A aritmética vetorial capta direções lineares como \"royal\" que se transferem entre os sexos",
+        "O modelo codifica a realeza como um flag bit",
+        "A semelhança cosínica é invariante ao gênero"
+      ],
+      "correct": 1,
+      "explanation": "As direções no espaço de inserção codificam características relacionais, de modo que adição/retratação se move sistematicamente."
+    }
+  ]
+}

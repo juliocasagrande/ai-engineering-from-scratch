@@ -1,0 +1,102 @@
+{
+  "lesson": "15-topic-modeling",
+  "title": "Modelagem de tópicos  LDA e BERTopic",
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "O que é que a LDA assume sobre cada documento?",
+      "options": [
+        "Cada documento pertence a um tema exato",
+        "Os documentos são frases .",
+        "Cada documento é uma mistura de tópicos; cada tópico é uma distribuição entre palavras",
+        "Os documentos são independentes dos temas"
+      ],
+      "correct": 2,
+      "explanation": "A história gerativa da LDA é de membros mistos: cada documento tem uma distribuição de tópicos, cada tópico uma distribuição de palavras."
+    },
+    {
+      "stage": "pre",
+      "question": "O que utiliza o BERTopic para formar grupos de tópicos?",
+      "options": [
+        "Execução BM25 seguida de k-media",
+        "Encodear documentos com um transformador de frases, reduzir a dimensionalidade com UMAP, em seguida, agrupar com HDBSCAN",
+        "Treinar um LSTM de ponta a ponta",
+        "Softmax direto sobre o vocabulário"
+      ],
+      "correct": 1,
+      "explanation": "BERTopic = embutidos + UMAP + HDBSCAN, com TF-IDF baseado em classe para palavras de tópico."
+    },
+    {
+      "stage": "check",
+      "question": "Por que o LDA do scikit-learn espera contagens brutas (CountVectorizer), e não TF-IDF?",
+      "options": [
+        "A LDA não pode lidar com flutuantes",
+        "O modelo probabilístico da LDA é definido em números inteiros; TF-IDF distorce a distribuição subjacente",
+        "Limite de memória",
+        "O TF-IDF é muito lento."
+      ],
+      "correct": 1,
+      "explanation": "A probabilidade de LDA assume contabilidade; a alimentação de valores TF-IDF viola a suposição do modelo."
+    },
+    {
+      "stage": "check",
+      "question": "O que significa o rótulo -1 do HDBSCAN numa saída BERTopic?",
+      "options": [
+        "Cluster de palavras-chave",
+        "Um conjunto de documentos estranhos que o algoritmo baseado na densidade não poderia atribuir com confiança",
+        "Categoria reservada",
+        "Tópico"
+      ],
+      "correct": 1,
+      "explanation": "O HDBSCAN marca pontos não agrupados com -1; no BERTopic, estes são documentos que não se encaixam em nenhum tópico."
+    },
+    {
+      "stage": "check",
+      "question": "Qual é a métrica de coerência que é a padrão comum para a avaliação do modelo de tópico?",
+      "options": [
+        "A BLU",
+        "C_v coerência através de NPMI sobre janelas deslizantes de palavras de tópico principal",
+        "Precision",
+        "Só perplexidade"
+      ],
+      "correct": 1,
+      "explanation": "C_v coerência (Roder et al., 2015) é a métrica canônica automática de coerência de tópico."
+    },
+    {
+      "stage": "post",
+      "question": "Quando é o LDA geralmente mais adequado do que o BERTopic?",
+      "options": [
+        "Quando as incorporações são barulhentas",
+        "Quando você precisa de um único tema por documento",
+        "Documentos longos em que distribuições de tópicos de membros mistos são úteis e as incorporações reduziriam a entrada",
+        "Em breves tuítes"
+      ],
+      "correct": 2,
+      "explanation": "Os documentos longos beneficiam do modelo de associação mista da LDA; os codificadores BERT truncam as entradas."
+    },
+    {
+      "stage": "post",
+      "question": "Por que o BERTopic normalmente ganha com textos curtos (tweets, manchetes)?",
+      "options": [
+        "O texto curto tem menos tópicos",
+        "Suporta mais idiomas",
+        "Semantic similarity em embutidos espaço capta significado onde sacos de palavras contam são muito escassos",
+        "É mais rápido."
+      ],
+      "correct": 2,
+      "explanation": "As incorporações BERT proporcionam semântica semelhança para texto curto, quando falham estatísticas de sobreposição de palavras."
+    },
+    {
+      "stage": "post",
+      "question": "Qual é um modo comum de falha do LDA para o qual deve monitorar os tópicos?",
+      "options": [
+        "Tópicos que correspondem perfeitamente às categorias rotuladas",
+        "Tópicos com pouca documentação",
+        "Tópicos de lixo que absorvem palavras de parada ou termos extremamente frequentes",
+        "Misturas de documentos que somam 1"
+      ],
+      "correct": 2,
+      "explanation": "A LDA pode criar tópicos de lixo que absorvam palavras-chave; min_df/max_df mais apertado e mitigar o filtro de palavras-chave."
+    }
+  ]
+}

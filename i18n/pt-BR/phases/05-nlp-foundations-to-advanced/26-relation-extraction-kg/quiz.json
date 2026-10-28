@@ -1,0 +1,102 @@
+{
+  "lesson": "26-relation-extraction-kg",
+  "title": "Relação Extração e Grafico de Conhecimento Construção",
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "Qual é a unidade atômica de um gráfico de conhecimento?",
+      "options": [
+        "Um símbolo",
+        "Uma etiqueta de POS",
+        "Um (subjeto, relação, objeto) triplo",
+        "Uma frase"
+      ],
+      "correct": 2,
+      "explanation": "Os KGs armazenam informações como (s, r, o) triples; triples agregados formam o gráfico."
+    },
+    {
+      "stage": "pre",
+      "question": "O que representa a AEVS na extração de relações em 2026?",
+      "options": [
+        "Esquema de valor agregado da entidade",
+        "Serviço de validação de entidades de sincronização",
+        "Auto-Encoder Vector Busca",
+        "Ancoramento-Extracção-Verificação-Supplement: extensões de ancoramento, triplo extracto, verificação contra a fonte, cobertura de suplemento"
+      ],
+      "correct": 3,
+      "explanation": "O AEVS é o quadro de redução de alucinações para 2026 para RE fundamentado."
+    },
+    {
+      "stage": "check",
+      "question": "Por que cada triplo deve ter a proveniência da fonte (doc id + span)?",
+      "options": [
+        "A proveniência é exigida pelo SPARQL",
+        "Acelera a extracção",
+        "A procedença altera a ontologia",
+        "A Provenance permite-lhe auditar triples e rejeitar alucinações cujos intervalos não correspondem ao texto fonte"
+      ],
+      "correct": 3,
+      "explanation": "A provença permite a auditoria e é o núcleo da detecção de alucinações no estilo AEVS."
+    },
+    {
+      "stage": "check",
+      "question": "O que faz a canonização das relações?",
+      "options": [
+        "Adiciona embutidos",
+        "Remove triples",
+        "Mapas superficial frases verbais (por exemplo, \"nasceu em\", \"é nativo de\") em um id de propriedade fixa para que o gráfico seja consultavel",
+        "Traduz o documento"
+      ],
+      "correct": 2,
+      "explanation": "A canonização desintegra parafrases em identidades de propriedade canônicas da KG."
+    },
+    {
+      "stage": "check",
+      "question": "Por que a extracção de relações geralmente requer primeiro a resolução de coreferência?",
+      "options": [
+        "Pronomes como \"fundou a Apple\" devem ser resolvidos para uma entidade nomeada antes da tripla extração",
+        "Coref normaliza o caso",
+        "Coref fornece posições",
+        "Coref adiciona embutidos"
+      ],
+      "correct": 0,
+      "explanation": "Sem coref, a RE liga relações aos pronomes em vez da entidade denominada subjacente."
+    },
+    {
+      "stage": "post",
+      "question": "Quais as opções de negociações abrem o recall de IE para consultabilidade de gráfico?",
+      "options": [
+        "Amostragem aleatória de triples",
+        "Graficos de inserção apenas",
+        "Mapeamento das relações de IE aberta em ontologia fechada (por exemplo, propriedades Wikidata) antes de se fundir no KG",
+        "Salto da NER"
+      ],
+      "correct": 2,
+      "explanation": "Ontologias fechadas tornam o gráfico consultavel; o passo de canonização paga por si mesmo para baixo."
+    },
+    {
+      "stage": "post",
+      "question": "Por que muitos KGs de produção utilizam qualificadores temporais (tempo de início/finalidade)?",
+      "options": [
+        "Requerido pela RDF",
+        "Para remover as entidades do NIL",
+        "SPARQL mais rápido",
+        "Muitas relações são limitadas por tempo ( empregador, cônjuge, papel); as qualificações impedem que as alegações \"verdadeiras para sempre\" se tornem obsoletas"
+      ],
+      "correct": 3,
+      "explanation": "Relações limitadas por tempo precisam de qualificações (por exemplo, Wikidata P580/P582) ou os fatos ficam silenciosamente obsoletos."
+    },
+    {
+      "stage": "post",
+      "question": "O que é a REBEL?",
+      "options": [
+        "Um tokenizer",
+        "Um modelo de coreferência",
+        "Um extrator de relação seq2seq que produz triples já em ids de propriedade Wikidata",
+        "Um banco de dados de vetores"
+      ],
+      "correct": 2,
+      "explanation": "REBEL (Babelscape) é um modelo de RE seq2seq treinado em triples de Wikidata supervisionados remotamente."
+    }
+  ]
+}

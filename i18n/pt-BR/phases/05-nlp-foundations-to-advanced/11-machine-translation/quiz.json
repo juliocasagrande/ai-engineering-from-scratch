@@ -1,0 +1,102 @@
+{
+  "lesson": "11-machine-translation",
+  "title": "Tradução automática",
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "O que mede o BLEU?",
+      "options": [
+        "Precisão de N-grama (normalmente 1-4) entre hipótese e referência, com penalidade de brevidade",
+        "Embedding cosine similarity",
+        "Precisão da identificação da língua",
+        "Ponto F de nível de caracteres"
+      ],
+      "correct": 0,
+      "explanation": "O BLEU é a média geométrica de 1-4 gramas de precisão contra referências, mais uma penalidade de brevidade."
+    },
+    {
+      "stage": "pre",
+      "question": "Porque usas sacrebleu em vez de fazer o teu próprio BLEU?",
+      "options": [
+        "Ele funciona com GPU",
+        "É mais preciso.",
+        "Normaliza a tokenização para que as pontuações sejam comparáveis entre os papéis e corridas",
+        "Suporta o streaming"
+      ],
+      "correct": 2,
+      "explanation": "sacrebleu congela a tokenization, eliminando uma fonte comum de números BLEU incomparáveis."
+    },
+    {
+      "stage": "check",
+      "question": "Qual configuração específica do NLLB controla a linguagem-alvo durante a decodificação?",
+      "options": [
+        "src_lang",
+        "forced_bos_token_id definido para o código de token do idioma-alvo",
+        "Número de feixes",
+        "duração_penalidade"
+      ],
+      "correct": 1,
+      "explanation": "A NLLB força o primeiro token decodificado a um código de idioma-alvo através de forced_bos_token_id."
+    },
+    {
+      "stage": "check",
+      "question": "Qual é a família métrica padrão para 2026 para a qualidade MT de produção onde existem dados rotulados?",
+      "options": [
+        "Distância de edição de tokens",
+        "Latência",
+        "Bleu sozinho",
+        "Metricas aprendidas como COMET (e BERTScore/BLEURT) formadas em julgamento humano"
+      ],
+      "correct": 3,
+      "explanation": "As métricas aprendidas como a COMET correlacionam mais fortemente com o julgamento humano do que a BLEU/chrF sozinha."
+    },
+    {
+      "stage": "check",
+      "question": "Quando é que o chrF tende a ser mais informativo do que o BLEU?",
+      "options": [
+        "Para línguas morfologicamente ricas em que correspondem os níveis de caracteres, a variação inflecional é obtida pelo BLEU",
+        "Ao utilizar a pesquisa de feixe",
+        "Em frases muito curtas",
+        "Sempre que existe uma referência"
+      ],
+      "correct": 0,
+      "explanation": "A pontuação F do caracteres capta correspondências morfológicas parciais que o nível de palavra BLEU subconta."
+    },
+    {
+      "stage": "post",
+      "question": "O que é geração fora do alvo em MT multilingue?",
+      "options": [
+        "Output que deixa cair entidades nomeadas",
+        "O modelo decodifica para a língua-alvo errada (por exemplo, a NLLB emitindo espanhol quando o francês foi solicitado)",
+        "Output que é muito curto",
+        "Output que não tem pontuação"
+      ],
+      "correct": 1,
+      "explanation": "A geração fora do alvo é comum em pares de idiomas raros; uma verificação de identificação de idioma após a tradução a detecta."
+    },
+    {
+      "stage": "post",
+      "question": "Por que o ajuste fino em alguns milhares de pares de domínio de alta qualidade muitas vezes supera os dados da web muito mais barulhentos?",
+      "options": [
+        "A qualidade e a correspondência de domínio dominam o volume; dados paralelos ruidosos introduzem deriva e alucinação",
+        "Os conjuntos de dados menores treinam mais rápido",
+        "O uso de dados da Web é ilegal",
+        "Grandes dados sobrecarregam a memória da GPU"
+      ],
+      "correct": 0,
+      "explanation": "Os pares de domínio limpos são a maior alavanca de produção; os dados ruidosos degradam a adaptação."
+    },
+    {
+      "stage": "post",
+      "question": "Quando é provável que um Mestrado em Direito (por exemplo, GPT-4) supere um modelo especializado de MT em 2026?",
+      "options": [
+        "Tradução de navegador crítico para latência",
+        "Conteúdo idiomático, contexto longo, adaptação estilística por meio de incitação ou conteúdo que exige controlo de tom",
+        "Translação de lote de maior capacidade",
+        "Pares de linguagem pequena com milhões de frases paralelas"
+      ],
+      "correct": 1,
+      "explanation": "LLM ganha na tradução idiomática, de longo contexto ou controlada por estilo; MT especializada ganha na capacidade de produção e latência."
+    }
+  ]
+}

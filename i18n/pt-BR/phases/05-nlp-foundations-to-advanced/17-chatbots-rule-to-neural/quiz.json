@@ -1,0 +1,102 @@
+{
+  "lesson": "17-chatbots-rule-to-neural",
+  "title": "Chatbots  Regras baseadas em Neural para LLM Agentes",
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "O que faz uma máquina de preencher vagas num chatbot baseado em regras?",
+      "options": [
+        "Escolhe a resposta mais fluente",
+        "Incorporar a mensagem do usuário",
+        "As pistas que exigem parâmetros (data, destino, quantidade) ainda estão ausentes e são solicitadas em sequência",
+        "Detecta sarcasmo"
+      ],
+      "correct": 2,
+      "explanation": "O preenchimento de slots recolhe iterativamente os parâmetros estruturados necessários para um gerenciador de tarefas."
+    },
+    {
+      "stage": "pre",
+      "question": "Por que o chat baseado em recuperação é resistente às alucinações?",
+      "options": [
+        "Usa BM25",
+        "Ele usa embutidos",
+        "Rejeita todas as perguntas",
+        "Retorna uma resposta em lata de um conjunto curado em vez de gerar novo texto"
+      ],
+      "correct": 3,
+      "explanation": "A recuperação apresenta respostas pré-escritas; nenhuma geração significa nenhum conteúdo fabricado."
+    },
+    {
+      "stage": "check",
+      "question": "O que define um ciclo de agente de LLM versus uma chamada de LLM de um só tiro?",
+      "options": [
+        "Um controlador que intercalar ligações LLM com invocações de ferramentas até que o modelo retorne uma resposta final ou o orçamento de etapa é atingido",
+        "Utilização de softmax",
+        "Uso de codificação gananciosa",
+        "Janela de contexto maior"
+      ],
+      "correct": 0,
+      "explanation": "Os agentes adicionam um ciclo plano-ato-observação com chamadas de ferramenta e uma condição de terminação."
+    },
+    {
+      "stage": "check",
+      "question": "Por que o roteamento híbrido (regras + recuperação + agente LLM) é o padrão de produção de 2026?",
+      "options": [
+        "Evita incorporar",
+        "Nenhuma arquitetura lida bem com todas as solicitações; regras cobrem ações destrutivas, recuperação abrange FAQ, agentes lidam com consultas abertas ambíguas",
+        "É mais barato manter",
+        "Elimina a necessidade de avaliação"
+      ],
+      "correct": 1,
+      "explanation": "Os sistemas híbridos utilizam regras deterministas para ações de risco e reservam agentes de LLM para consultas abertas."
+    },
+    {
+      "stage": "check",
+      "question": "O que é a injecção rápida?",
+      "options": [
+        "Um tipo de ataque de tokenizer",
+        "Texto fornecido pelo usuário (directo) ou fornecido por documento (indirecto) que tenta anular o sistema ou sequestrar o comportamento do agente",
+        "Apenas uma variante de injeção SQL",
+        "Injeção de tokens em embutidos"
+      ],
+      "correct": 1,
+      "explanation": "A injeção rápida reescreve o comportamento do agente através de texto não confiável nas entradas ou saídas do usuário."
+    },
+    {
+      "stage": "post",
+      "question": "Qual risco do OWASP Top 10 (LLM Apps 2025) é classificado como LLM01?",
+      "options": [
+        "Injeção SQL",
+        "Controle de acesso interrompido",
+        "Deserialização insegura",
+        "Injecção rápida (direita e indireta)"
+      ],
+      "correct": 3,
+      "explanation": "A injecção rápida é LLM01 no Top 10 dos aplicativos de LLM da OWASP (2025)."
+    },
+    {
+      "stage": "post",
+      "question": "Qual padrão de mitigação reduz a injecção imediata indireta, separando o planejamento da execução?",
+      "options": [
+        "Plano-verificar-executar: o agente planeja primeiro, verifica cada ação contra o plano, em seguida, executa  impedindo que as saídas da ferramenta injetem novas ações não planejadas",
+        "Contexto mais curto",
+        "Temperatura mais baixa",
+        "Modelo maior"
+      ],
+      "correct": 0,
+      "explanation": "O PVE verifica cada passo em relação ao plano acordado, por isso as instruções injetadas das saídas das ferramentas são rejeitadas."
+    },
+    {
+      "stage": "post",
+      "question": "Por que as acções destrutivas (pagamentos, exclusões) devem atravessar um fluxo estruturado mesmo num sistema de agentes LLM?",
+      "options": [
+        "Não se pode chamar ferramentas",
+        "A busca de feixe é insegura.",
+        "A fabricação confiante, a injecção rápida e o alcance do produto significam que o MLL não pode ser a única autoridade para efeitos colaterais irreversíveis.",
+        "Os LLM são lentos"
+      ],
+      "correct": 2,
+      "explanation": "A alucinação e a injecção tornam as ações irreversíveis através de agentes LLM puros inseguras; exigem fluxos de confirmação deterministas."
+    }
+  ]
+}

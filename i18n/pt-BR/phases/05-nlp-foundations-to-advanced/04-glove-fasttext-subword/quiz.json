@@ -1,0 +1,102 @@
+{
+  "lesson": "04-glove-fasttext-subword",
+  "title": "GloVe, FastText e Subword Embeddings",
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "O que contribuiu o GloVe para o Word2Vec?",
+      "options": [
+        "Uma rede neural mais profunda",
+        "Embedings de subpalavras n-gram",
+        "Factorizamento direto da matriz de co-ocorrência de palavras com perda ponderada",
+        "Tokenization a nível de byte"
+      ],
+      "correct": 2,
+      "explanation": "O GloVe faz uma fatoração da matriz global de co-ocorrência com uma perda de registro ponderada."
+    },
+    {
+      "stage": "pre",
+      "question": "Qual problema é resolvido pelo FastText que o Word2Vec e o GloVe não conseguem?",
+      "options": [
+        "Reduzir os custos de formação",
+        "Transferência multilíngue",
+        "Desambiguação de polissemia",
+        "Produção de vetores para palavras invisíveis compondo caracteres n-gramas"
+      ],
+      "correct": 3,
+      "explanation": "O FastText compõe um vetor de palavras a partir de suas subpalavras n-gramas, então as palavras OOV ainda recebem um vetor sensível."
+    },
+    {
+      "stage": "check",
+      "question": "Em GloVe, qual é o papel desempenhado pela função de ponderação f ((x) = (x/x_max)^alfa?",
+      "options": [
+        "Seleciona amostras negativas",
+        "Normaliza vetores para comprimento unitário",
+        "Inicializa pesos aleatoriamente",
+        "Os baixos pesos pares extremamente frequentes para que não dominar a perda"
+      ],
+      "correct": 3,
+      "explanation": "A ponderação impede que co-ocorrências onipresentes como (os e) dominem o treinamento."
+    },
+    {
+      "stage": "check",
+      "question": "Como é que o BPE combina escolhe qual par combinar a seguir?",
+      "options": [
+        "Um par aleatório",
+        "O primeiro par lexicográfico",
+        "O par de tokens adjacentes mais frequentes ao longo do corpus",
+        "O par com mais alto IDF"
+      ],
+      "correct": 2,
+      "explanation": "O BPE reiteravelmente funde o par adjacente mais frequente."
+    },
+    {
+      "stage": "check",
+      "question": "Por que o GPT-2 usa BPE de nível de byte?",
+      "options": [
+        "O vocabulário base de 256 bytes cobre qualquer entrada, eliminando completamente o vocabulário fora",
+        "Os bytes treinam mais rápido do que os caracteres",
+        "Os bytes preservam a caixa implicitamente",
+        "Formas de formação de fusão"
+      ],
+      "correct": 0,
+      "explanation": "A partir de 256 bytes significa que cada cadeia UTF-8 tokeniza; nada é OOV."
+    },
+    {
+      "stage": "post",
+      "question": "Que tokenizer deve usar ao ajustar um transformador pré-treinado?",
+      "options": [
+        "Sempre BPE de nível de byte",
+        "Sempre SentencePiece",
+        "Qualquer que tenha o maior vocabulário",
+        "O tokenizer exato com o modelo enviado; desajuste quebra os incorporados"
+      ],
+      "correct": 3,
+      "explanation": "O desajuste do modelo de tokenizer corrompe silenciosamente as entradas; sempre combina o tokenizer enviado com seu modelo."
+    },
+    {
+      "stage": "post",
+      "question": "Quando escolheria o FastText em vez do GloVe para vetores de palavras pré-treinados?",
+      "options": [
+        "Quando precisas de um modelo 50D",
+        "Quando a latência é mais apertada",
+        "Quando o corpo é muito pequeno",
+        "Para línguas ou domínios morfologicamente ricos com neologismos e erros ortográficos frequentes"
+      ],
+      "correct": 3,
+      "explanation": "A composição de subpalavras do FastText lida com inflexões, neologismos e erros ortográficos que o GloVe não pode."
+    },
+    {
+      "stage": "post",
+      "question": "Qual unidade constitui a base dos vocabulários WordPiece, BPE e SentencePiece?",
+      "options": [
+        "Sentenças",
+        "Palavras inteiras",
+        "Parágrafos",
+        "Peças de subpalavras (caracteres, n-gramas ou fusões aprendidas) abaixo do nível da palavra"
+      ],
+      "correct": 3,
+      "explanation": "Todos os três são tokenizadores de subpalavras; diferem em como se aprendem as fusões ou peças, não em ser subpalavras."
+    }
+  ]
+}

@@ -1,0 +1,102 @@
+{
+  "lesson": "27-llm-evaluation-frameworks",
+  "title": "Avaliação do Mestrado em Direito Jurídico  RAGAS, DeepEval, G-Eval",
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "Por que o Exact Match e o token-F1 são insuficientes para avaliar os resultados modernos do LLM?",
+      "options": [
+        "Não são diferenciáveis",
+        "Não têm equivalência semântica; \"29 de Junho de 2007\" vs. \"29 de Junho de 2007\" tem 0 EM apesar de ser correto",
+        "Eles precisam de GPUs",
+        "Eles são muito lentos ."
+      ],
+      "correct": 1,
+      "explanation": "A correspondência exata/F1 não pode reconhecer parafrases ou diferenças de formatagem que os humanos marcarão corretamente."
+    },
+    {
+      "stage": "pre",
+      "question": "O que é a métrica de fidelidade do RAGAS?",
+      "options": [
+        "Latência",
+        "Tokens por segundo",
+        "Se cada alegação da resposta é imposta pelo contexto recuperado, através da NLI",
+        "Recall de recuperação"
+      ],
+      "correct": 2,
+      "explanation": "A fidelidade verifica cada alegação de resposta em relação ao contexto recuperado usando a implicação NLI."
+    },
+    {
+      "stage": "check",
+      "question": "Por que é necessário a calibração do modelo de juiz contra os rótulos humanos antes de obter resultados de confiança?",
+      "options": [
+        "Requisitos do RGPD",
+        "Se a correlação entre o juiz e os rótulos humanos de Spearman for muito baixa (por exemplo, abaixo de 0,7), a pontuação é ruído em vez de sinal.",
+        "A calibração acelera o juiz",
+        "Calibração é uma questão de tokenization"
+      ],
+      "correct": 1,
+      "explanation": "Sem calibração, não se pode dizer se as pontuações dos juízes refletem a qualidade ou o viés do modelo."
+    },
+    {
+      "stage": "check",
+      "question": "O que é o preconceito de autoavaliação nas configurações de LLM como juiz?",
+      "options": [
+        "Os juízes correm mais rápido com as saídas em cache",
+        "Os juízes ignoram as instruções do sistema .",
+        "Baixa latência",
+        "Usar a mesma família de LLM para gerar e julgar infla as pontuações em 10-20% versus um juiz independente"
+      ],
+      "correct": 3,
+      "explanation": "A mesma família de geradores + juízes preconceituosos pontua para cima; use uma família de modelos diferente para julgar."
+    },
+    {
+      "stage": "check",
+      "question": "O que é que o G-Eval acrescenta especificamente a um sinal ingênuo de 0-1?",
+      "options": [
+        "Contexto maior",
+        "Uma rubrica explícita de cadeia de pensamento com passos de avaliação nomeados, que produz pontuações mais estáveis",
+        "Pontuação multilíngue",
+        "Preço reduzido"
+      ],
+      "correct": 1,
+      "explanation": "Os passos de avaliação estruturados do G-Eval produzem pontuações mais confiáveis do que as instruções de \"rating it\" de forma livre."
+    },
+    {
+      "stage": "post",
+      "question": "Por que é perigoso relatar apenas a pontuação média agregada?",
+      "options": [
+        "Agregados precisam de GPU",
+        "Os agregados ignoram o juiz",
+        "Os agregados são grandes demais",
+        "Uma média de 0,85 pode esconder 5% de falhas catastróficas; sempre inspecione o quântil inferior"
+      ],
+      "correct": 3,
+      "explanation": "Significa esconder falhas de cauda; 10% de superfície para detectar problemas de alta gravidade."
+    },
+    {
+      "stage": "post",
+      "question": "Porque é que colocaste o modelo do juiz + na CI?",
+      "options": [
+        "Requerido pela Anthropic",
+        "A atualização do juiz muda todas as métricas; a comparação longitudinal rompe sem um juiz congelado",
+        "Drift de tokenização",
+        "Preço reduzido"
+      ],
+      "correct": 1,
+      "explanation": "Um juiz atualiza silenciosamente a linha de base métrica; o pinning preserva a comparabilidade entre as corridas."
+    },
+    {
+      "stage": "post",
+      "question": "Onde se encaixa DeepEval em relação ao RAGAS?",
+      "options": [
+        "Substitui inteiramente o RAGAS",
+        "DeepEval é um tokenizer",
+        "DeepEval é um pytest-for-LLMs (portas de CI, G-Eval, métricas de alucinação); a RAGAS é especializada em monitorização RAG sem referência",
+        "DeepEval é hospedado apenas"
+      ],
+      "correct": 2,
+      "explanation": "O DeepEval ancora os testes de regressão CI/CD; o RAGAS opera o monitoramento RAG sem referência."
+    }
+  ]
+}

@@ -1,0 +1,102 @@
+{
+  "lesson": "25-entity-linking",
+  "title": "Entidade de ligação e desambiguação",
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "O que adiciona a entidade que liga ao NER?",
+      "options": [
+        "Polaridade dos sentimentos",
+        "Tags de parte do discurso",
+        "Ele mapeia cada menção detectada para uma entrada única em uma base de conhecimento (Wikidata, Wikipedia ou um domínio KB)",
+        "Traduções"
+      ],
+      "correct": 2,
+      "explanation": "O EL transforma uma menção em um ID KB canônico, desambiguando entre entidades de mesmo nome."
+    },
+    {
+      "stage": "pre",
+      "question": "Quais são as duas principais subtarefas na ligação de entidades?",
+      "options": [
+        "Geração de candidatos (lista curta de entradas KB plausíveis) e desambiguação (escolha o contexto certo)",
+        "Embarcação e agrupamento",
+        "Marcação de POS e lematização",
+        "Tokenization e parsing"
+      ],
+      "correct": 0,
+      "explanation": "O EL se decompõe em candidatos propostos e depois classifica-os por acordo contextual."
+    },
+    {
+      "stage": "check",
+      "question": "Por que deve ser relatada a menção de recall junto com a precisão da desambiguação?",
+      "options": [
+        "A desambiguação não pode ser recuperada dos candidatos desaparecidos; o pipeline é limitado pelo recall de candidatos de geração",
+        "A menção de recall é obrigatória pelo RGPD",
+        "Recall é exigido pela spaCy",
+        "Recall substitui precisão"
+      ],
+      "correct": 0,
+      "explanation": "Se os candidatos perderem a entidade dourada, nenhum desambiguador pode consertá-la; lembre-se de qualidade do oleoduto."
+    },
+    {
+      "stage": "check",
+      "question": "Como a GENRE realiza a ligação de entidades?",
+      "options": [
+        "Decodifica o nome canônico da entidade, token por token, sob decodificação restrita em um trio de ids KB válidos",
+        "Computação de TF-IDF",
+        "Por BM25",
+        "Por PageRank"
+      ],
+      "correct": 0,
+      "explanation": "GENRE gera o nome canônico KB com decodificação restrita para garantir uma identificação válida."
+    },
+    {
+      "stage": "check",
+      "question": "O que é a manipulação do NIL na ligação de entidades?",
+      "options": [
+        "Salto todas as menções",
+        "Retorno da lista completa de candidatos",
+        "Baixando a entrada",
+        "Previsão de um rótulo \"não em KB\" quando nenhum candidato é um verdadeiro correspondente (entidades emergentes, pessoas obscuras)"
+      ],
+      "correct": 3,
+      "explanation": "A previsão de NIL impede adivinhar ids KB errados para entidades que o KB não cobre."
+    },
+    {
+      "stage": "post",
+      "question": "Por que o viés de popularidade prejudica a ligação entre entidades em domínios especializados?",
+      "options": [
+        "Modelos treinados em dados da web prevêem de forma excessiva entidades frequentes (por exemplo, basquete Jordan sobre o pesquisador de ML Michael I. Jordan)",
+        "A popularidade ajuda a lembrar",
+        "Ele tem viés para entidades mais velhas apenas",
+        "A popularidade remove o NIL"
+      ],
+      "correct": 0,
+      "explanation": "Os antecedentes de popularidade distorcem as previsões de conflitos de nomes menos comuns e específicos de domínio."
+    },
+    {
+      "stage": "post",
+      "question": "Qual é um padrão seguro de LLM-EL em 2026?",
+      "options": [
+        "Basta pedir \"encontrar a entidade\"",
+        "Geração de candidatos",
+        "Geração de formas livres",
+        "Fornecer uma lista de candidatos e usar restrições de saída JSON que o LLM só pode escolher entre ids KB válidos"
+      ],
+      "correct": 3,
+      "explanation": "Restringir o LLM a uma lista de candidatos válida impede que as identidades KB inventadas e mantém a saída consultavel."
+    },
+    {
+      "stage": "post",
+      "question": "Por que a NER deve mencionar limites precisos para entidades que ligam ao trabalho?",
+      "options": [
+        "Os erros de fronteira se propagam: \"Bank of America\" recortado para \"Bank\" superficia candidatos errados e tanques EL recall",
+        "As fronteiras quebram as buscas na Wikipédia",
+        "A precisão limite só afeta as métricas de NER, não a qualidade dos candidatos que vinculam entidades",
+        "Limite de mudança de tokenização"
+      ],
+      "correct": 0,
+      "explanation": "Menções erradas restringem o conjunto de alias errados, propagando erros em desambiguação."
+    }
+  ]
+}

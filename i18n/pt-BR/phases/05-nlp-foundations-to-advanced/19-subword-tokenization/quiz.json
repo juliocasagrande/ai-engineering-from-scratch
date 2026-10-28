@@ -1,0 +1,102 @@
+{
+  "lesson": "19-subword-tokenization",
+  "title": "Tokenization de subpalavras  BPE, WordPiece, Unigram, SentencePiece",
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "O que é que a tokenização de subpalavras lhe compra em relação aos vocabulários de nível de palavras?",
+      "options": [
+        "Formação mais rápida",
+        "Modelos menores",
+        "Melhores embutidos",
+        "Palavras raras se descompõem em pedaços conhecidos de subpalavras, eliminando OOV mantendo o vocabulário limitado"
+      ],
+      "correct": 3,
+      "explanation": "Os tokens de subpalavras cobrem qualquer entrada por decomposição, removendo o problema OOV do vocabulário de nível de palavras."
+    },
+    {
+      "stage": "pre",
+      "question": "Por que o GPT-2 utiliza BPE de nível byte em vez de BPE de nível caracteres?",
+      "options": [
+        "Requeridos pelos transformadores",
+        "Um vocabulário base de 256 bytes cobre qualquer entrada UTF-8, garantindo que não há tokens [UNK]",
+        "Os bytes são menores",
+        "Fusões de byte BPE"
+      ],
+      "correct": 1,
+      "explanation": "O BPE de nível de byte começa a partir de 256 bytes, por isso todas as entradas codificam; nada é OOV."
+    },
+    {
+      "stage": "check",
+      "question": "Como o tokenizer Unigram constrói o seu vocabulário?",
+      "options": [
+        "Acompaixão de pares frequentes",
+        "Amostragem aleatória",
+        "Comece a partir de um grande conjunto de candidatos, iteravelmente poda tokens cuja remoção menos prejudica corpus log-probabilidade",
+        "Peso ganancioso das Forças de Defesa de Israel"
+      ],
+      "correct": 2,
+      "explanation": "Unigram se encaixa em um LM unigram e remove iterativamente os tokens menos úteis para atingir o tamanho do vocabulário alvo."
+    },
+    {
+      "stage": "check",
+      "question": "O que distingue o critério de fusão do WordPiece do critério de fusão do BPE?",
+      "options": [
+        "WordPiece usa bytes",
+        "WordPiece desce fusões",
+        "WordPiece não está supervisionado",
+        "WordPiece combina pares que maximizam a probabilidade de treinamento-corpus, enquanto BPE combina o par mais frequente"
+      ],
+      "correct": 3,
+      "explanation": "O WordPiece seleciona fusões por probabilidade; o BPE seleciona por freqüência bruta."
+    },
+    {
+      "stage": "check",
+      "question": "Qual ferramenta treina um tokenizer diretamente em texto Unicode multilingue bruto?",
+      "options": [
+        "Espaço",
+        "Tiktok",
+        "Tokenizers-lite",
+        "SentencePiece (codifica o espaço branco como marcador especial e traz BPE ou Unigram)"
+      ],
+      "correct": 3,
+      "explanation": "SentencePiece treina BPE/Unigram em texto bruto sem pré-tokenization; tiktoken apenas codifica."
+    },
+    {
+      "stage": "post",
+      "question": "Por que o CI de produção deve verificar o tokenizer.json implantado?",
+      "options": [
+        "O tokenizer drift produz identidades de tokens diferentes daquelas que o modelo foi treinado, silenciosamente corromper as saídas",
+        "Para comprimir o armazenamento",
+        "Reduz o tamanho do vocabulário",
+        "Requerido para abraçar o rosto"
+      ],
+      "correct": 0,
+      "explanation": "Mesmo um pequeno tokenizer muda os IDs de turno; um hash check pega a deriva antes de chegar aos usuários."
+    },
+    {
+      "stage": "post",
+      "question": "Qual é a razão comum para um único emoji levar muitos tokens?",
+      "options": [
+        "Emojis são caracteres de parada",
+        "Emojis são reservados",
+        "Emojis de vários pontos de código codificam em vários bytes UTF-8; sem tokens dedicados cada byte é sua própria subpalavra",
+        "Emojis são armazenados como flutuantes"
+      ],
+      "correct": 2,
+      "explanation": "Os emojis compostos codificam como vários bytes; os tokenizadores de nível de byte podem usar vários tokens por glifo."
+    },
+    {
+      "stage": "post",
+      "question": "Que heurística guia o tamanho do vocabulário para um novo transformador monolingüe?",
+      "options": [
+        "Correspondem ao tamanho do corpo de treinamento",
+        "Aproximadamente 32k para modelos com parâmetros inferiores a 1B; 50-100k para 1-10B; 200k+ para modelos multilíngues ou de fronteira",
+        "Sempre 1M",
+        "Sempre 8000"
+      ],
+      "correct": 1,
+      "explanation": "Escalas de tamanho de vocabulário com cobertura de modelo e linguagem; estes são padrões comunitários aproximados."
+    }
+  ]
+}
