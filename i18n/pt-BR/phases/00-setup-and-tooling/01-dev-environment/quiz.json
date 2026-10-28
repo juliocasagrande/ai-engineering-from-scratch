@@ -1,0 +1,64 @@
+{
+  "questions": [
+    {
+      "stage": "pre",
+      "question": "Por que projetos de IA precisam de um ambiente virtual separado?",
+      "options": [
+        "O Python exige ambientes virtuais para importar pacotes",
+        "Eles isolam as dependências para evitar conflitos entre projetos",
+        "Ambientes virtuais tornam a execução do código mais rápida",
+        "Ambientes virtuais dão acesso à GPU"
+      ],
+      "correct": 1,
+      "explanation": "Ambientes virtuais isolam as versões dos pacotes de cada projeto. Sem eles, atualizar o PyTorch em um projeto pode quebrar outro que depende de uma versão anterior."
+    },
+    {
+      "stage": "pre",
+      "question": "O que o CUDA oferece para cargas de trabalho de IA?",
+      "options": [
+        "Computação paralela em GPUs NVIDIA para operações matriciais",
+        "Um gerenciador de pacotes Python para bibliotecas de ML",
+        "Um framework web para implantar modelos",
+        "Um ambiente de contêineres para servir modelos"
+      ],
+      "correct": 0,
+      "explanation": "CUDA é a plataforma de computação paralela da NVIDIA. Ela permite executar operações matriciais simultaneamente em milhares de núcleos da GPU. PyTorch e TensorFlow a utilizam internamente."
+    },
+    {
+      "stage": "post",
+      "question": "Na estrutura de quatro camadas do ambiente, qual camada deve ser instalada primeiro?",
+      "options": [
+        "Ambientes de execução das linguagens (Python, Node.js)",
+        "Base do sistema (sistema operacional, shell, drivers de GPU)",
+        "Gerenciadores de pacotes (pip, npm, cargo)",
+        "Bibliotecas de IA/ML (PyTorch, JAX)"
+      ],
+      "correct": 1,
+      "explanation": "A instalação começa pela base: primeiro o sistema e os drivers; depois os gerenciadores de pacotes, os ambientes de execução das linguagens e as bibliotecas de IA. Cada camada depende da que está abaixo dela."
+    },
+    {
+      "stage": "post",
+      "question": "Para que serve o uv em um projeto de IA com Python?",
+      "options": [
+        "Monitorar a GPU",
+        "Visualizar redes neurais",
+        "Instalar pacotes Python e resolver dependências com rapidez",
+        "Compilar kernels CUDA personalizados"
+      ],
+      "correct": 2,
+      "explanation": "O uv é um instalador de pacotes Python escrito em Rust. Ele pode substituir o pip e costuma resolver dependências e instalar pacotes de 10 a 100 vezes mais rápido."
+    },
+    {
+      "stage": "post",
+      "question": "Como verificar se o PyTorch consegue acessar sua GPU?",
+      "options": [
+        "python -c 'import gpu'",
+        "import torch; print(torch.cuda.is_available())",
+        "import torch; print(torch.__version__)",
+        "nvidia-smi --query"
+      ],
+      "correct": 1,
+      "explanation": "torch.cuda.is_available() retorna True quando o PyTorch consegue acessar uma GPU CUDA. Em computadores com Apple Silicon, use torch.backends.mps.is_available() para verificar o backend Metal Performance Shaders."
+    }
+  ]
+}
