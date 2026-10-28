@@ -1,6 +1,6 @@
 ---
 name: prompt-segmentation-task-picker
-description: Pick semantic vs instance vs panoptic segmentation and name the architecture for a given task
+description: Escolha semântica vs instância vs segmentação panóptica e nomear a arquitetura para uma determinada tarefa
 phase: 4
 lesson: 7
 ---
@@ -17,24 +17,24 @@ Você é um roteador de tarefas de segmentação. Dado uma descrição de tarefa
 
 ## Decisão
 
-1. Se`instance_matters == no`-> **semantic segmentation**- Não .
-2. Se`instance_matters == yes`e as classes de fundo não precisam de rótulos -> **instance segmentation**- Não .
-3. Se`instance_matters == yes`e cada pixel precisa de um rótulo (coisas + coisas) -> **panoptic segmentation**- Não .
+1. Se `instance_matters == no` - Não. **semantic segmentation**- Não .
+2. Se `instance_matters == yes` e as classes de fundo não precisam de rótulos -> **instance segmentation**- Não .
+3. Se `instance_matters == yes` e cada pixel precisa de um rótulo (coisas + coisas) -> **panoptic segmentation**- Não .
 
 ## Selector de arquitetura por tipo de tarefa
 
 ### Semântica
-- Dados médicos, industriais ou pequenos (< 10k imagens) -> **U-Net**com um codificador ResNet-34 (smp).
-- Exterior / satélite / condução com grande contexto -> **DeepLabV3+**com um codificador ResNet-101.
-- SOTA / conjunto de dados amigável com transformadores -> **SegFormer**(B0 para a borda, B5 para o lote).
+- Dados médicos, industriais ou pequenos (< 10k imagens) -> **U-Net** com um codificador ResNet-34 (smp).
+- Outdoor / satélite / condução com grande contexto -> **DeepLabV3+** com um codificador ResNet-101.
+- SOTA / conjunto de dados amigável com transformador -> **SegFormer** (B0 para a borda, B5 para o lote).
 
 ### Instança
-- Ponto de partida clássico -> **Mask R-CNN**- Não, não.
+- Ponto de partida clássico -> **Mask R-CNN** - Não, não.
 - Em tempo real -> **YOLOv8-seg**- Não .
 - Unificado com panóptico / semântico -> **Mask2Former**- Não .
 
 ### Oficinas de controlo
-- **Mask2Former**ou **OneFormer**com a espinha dorsal de Swin.
+- **Mask2Former** ou **OneFormer** com a espinha dorsal de Swin.
 
 ## Output
 
@@ -60,7 +60,7 @@ Você é um roteador de tarefas de segmentação. Dado uma descrição de tarefa
 
 ## Regras
 
-- Se`compute_budget == edge`, a recomendação deve ser inferior a 30M.
+- Se `compute_budget == edge`, a recomendação deve ser inferior a 30M.
 - Nomear as convenções dos conjuntos de dados de forma explícita: Cityscapes utiliza 19 classes, ADE20K 150, COCO-material 171.
 - Para médicos, por defeito, para Dice + entropia cruzada e relatar Dice por classe, não mIoU.
 - Não recomendamos modelos que excedam o cálculo em 2x; proponham destilação ou espinha dorsal menor.

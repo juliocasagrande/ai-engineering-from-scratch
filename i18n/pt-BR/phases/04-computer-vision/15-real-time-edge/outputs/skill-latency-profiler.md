@@ -1,6 +1,6 @@
 ---
 name: skill-latency-profiler
-description: Write a complete latency-benchmarking script with warmup, synchronisation, percentiles, and memory tracking
+description: Escreva um script completo de benchmarking de latência com aquecimento, sincronização, percêntulos e rastreamento de memória
 version: 1.0.0
 phase: 4
 lesson: 15
@@ -20,33 +20,33 @@ Produzir um índice de latência disciplinado para qualquer modelo PyTorch.
 
 ## Input
 
-- `model`PyTorch `nn.Module`- Não .
-- `input_shape`- Não .`(1, 3, 224, 224)`- Não .
-- `device`- Não .`cpu`- Não .`cuda`- Não .`mps`- Não .
+- `model`Pitola `nn.Module`- Não .
+- `input_shape`- Não . `(1, 3, 224, 224)`- Não .
+- `device`- Não . `cpu` - Não. `cuda` - Não. `mps`- Não .
 - `warmup`- Default 10.
 - `iters`- Default 100.
 
 ## Cheques
 
 ### 1. Calor
-Executa o modelo `warmup`Capta a compilação JIT de primeira linha e efeitos de cache frio.
+Executa o modelo `warmup` Capta a compilação JIT de primeira linha e efeitos de cache frio.
 
 ### 2. Sincronização
-Para o`cuda`- Não , não .`torch.cuda.synchronize()`antes e depois de cada passagem cronometrada.
-Para o`mps`- Não , não .`torch.mps.synchronize()`- Não .
+Para `cuda`- Não . `torch.cuda.synchronize()` antes e depois de cada passagem cronometrada.
+Para `mps`- Não . `torch.mps.synchronize()`- Não .
 
 ### 3. - O tempo
-Utilização`time.perf_counter()`Para a medição de relógios de parede.
+Utilização `time.perf_counter()` Para a medição de relógios de parede.
 
 ### 4. Percentiles
-Organizar a lista completa de horários.`p50, p90, p95, p99, mean, std`- Não .
+Organizar a lista completa de horários. `p50, p90, p95, p99, mean, std`- Não .
 
 ### 5. Memória
-Para o`cuda`- Não , não .`torch.cuda.max_memory_allocated()`após a corrida e subtrair qualquer linha de base.
-Para o`cpu`, uso`tracemalloc`ou `psutil.Process().memory_info().rss`Antes e depois.
+Para `cuda`- Não . `torch.cuda.max_memory_allocated()` após a corrida e subtrair qualquer linha de base.
+Para `cpu`, uso `tracemalloc` ou `psutil.Process().memory_info().rss` Antes e depois.
 
 ### 6. Escavação em lote
-Repetir opcionalmente o índice de referência para `batch_size in [1, 4, 16, 32]`Para revelar troca de rendimento versus latência.
+Repetir opcionalmente o índice de referência para `batch_size in [1, 4, 16, 32]` Para revelar troca de rendimento versus latência.
 
 ## Modelo de saída
 
@@ -111,5 +111,5 @@ def profile(model, input_shape, device="cpu", warmup=10, iters=100):
 - Sempre se aqueça; nunca confie num primeiro momento.
 - Percentiles, não significa  um único outlier pode dobrar a média, mas mal mover p50.
 - Use a mesma forma de entrada_forma que a produção; a latência em 224x224 não é a latência em 384x384.
-- Para a CUDA, nunca omita.`torch.cuda.synchronize()`Os números não têm sentido sem ele.
+- Para a CUDA, nunca omita `torch.cuda.synchronize()`Os números não têm sentido sem ele.
 - Registre a versão da tocha, a versão CUDA e o nome do dispositivo ao lado dos números  que deixam de ser comparáveis de outra forma.

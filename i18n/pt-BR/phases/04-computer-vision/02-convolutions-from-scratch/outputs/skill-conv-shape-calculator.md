@@ -1,6 +1,6 @@
 ---
 name: skill-conv-shape-calculator
-description: Walk a CNN spec layer by layer and report output shape, receptive field, and parameter count for every block
+description: Caminhe uma camada de especificação da CNN por camada e informe a forma de saída, campo receptivo e contagem de parâmetros para cada bloco
 version: 1.0.0
 phase: 4
 lesson: 2
@@ -20,7 +20,7 @@ Um ajudante determinista para planejar ou depurar uma CNN. Dada uma forma de ent
 
 ## Input
 
-- `input_shape`- Não .`(C, H, W)`- Não .
+- `input_shape`- Não . `(C, H, W)`- Não .
 - `layers`: lista ordenada de dictos de camadas.
   - `{type: "conv", c_out, k, s, p, groups=1, bias=true}`
   - `{type: "pool", mode: "max"|"avg", k, s, p=0}`
@@ -30,27 +30,27 @@ Um ajudante determinista para planejar ou depurar uma CNN. Dada uma forma de ent
 
 ## Passo
 
-1. **Initialise trace**com`(C, H, W)`, campo receptivo `1`, passo eficaz `1`, parâmetros cumulativos `0`- Não .
+1. **Initialise trace** com `(C, H, W)`, campo receptivo `1`, passo eficaz `1`, parâmetros cumulativos `0`- Não .
 
 2. **For each layer**, atualizada na seguinte ordem:
-   - Computação`C_out`(conv/linear), ou transportar `C_in`através (poalha).
-   - Compute a saída espacial usando `(H + 2P - K) / S + 1`para condomínios e piscinas, `out_h/out_w`para piscina adaptativa, `(1, 1)`para a forma de saída plana `(C * H * W, 1, 1)`antes do linear e escalar `1x1`para linear.
+   - Computação `C_out` (conv/linear), ou transportar `C_in` através (poalha).
+   - Computação de saída espacial usando `(H + 2P - K) / S + 1` para condomínios e piscinas, `out_h/out_w` para piscina adaptativa, `(1, 1)` para a forma de saída plana `(C * H * W, 1, 1)` antes do linear e escalar `1x1` para linear.
    - Atualizar o campo receptivo e o passo eficaz:
-     - Conv/pool: `RF_new = RF_old + (K - 1) * effective_stride`- Não .`effective_stride *= S`- Não .
-     - Piscinas adaptativas: tratem-se como piscinas com efetividade `S = H_in / out_h`(Rondão para baixo). `RF_new = RF_old + (H_in - 1) * effective_stride_old`- O que é ?`effective_stride *= S`. Observe que a RF da piscina adaptativa é igual à extensão espacial anterior.
+     - Conv/pool: `RF_new = RF_old + (K - 1) * effective_stride`- Não . `effective_stride *= S`- Não .
+     - Piscinas adaptativas: tratam-se como piscinas com `S = H_in / out_h` (Rondão para baixo). `RF_new = RF_old + (H_in - 1) * effective_stride_old`O artigo 2.o `effective_stride *= S`. Observe que a RF da piscina adaptativa é igual à extensão espacial anterior.
      - Planos / lineares: RF e passo efetivo não são mais significativos; congelar-os aos valores antes do plano e omitir de linhas subsequentes.
    - Parâmetros de computação:
      - Conv: `C_out * (C_in / groups) * K * K + (C_out if bias else 0)`- Não .
      - Linear: `out_features * in_features + (out_features if bias else 0)`- Não .
      - Polar e plano: 0.
 
-3. **Detect problems**e os sinalizar:
+3. **Detect problems** e os sinalizar:
    - Dimensões de saída não inteiras (passo/padding desalinhado).
-   - `H_out <= 0`Antes do fim da pilha.
+   - `H_out <= 0` Antes do fim da pilha.
    - Campo receptor superior ao tamanho da entrada (computação perdida possível após esse ponto).
    - Subitamente, 10x salta em parâmetros por camada que sugerem o plano de canal errado.
 
-4. **Report**como tabela única:
+4. **Report** como tabela única:
 
 ```
 idx  layer                C_in  C_out  K  S  P  H_out  W_out  RF    params     cum_params
@@ -65,7 +65,7 @@ idx  layer                C_in  C_out  K  S  P  H_out  W_out  RF    params     c
 ## Regras
 
 - Sempre retorne números inteiros para tamanhos espaciais. Se a fórmula produz um não inteiro, sinalize como um erro e não pisar silenciosamente.
-- Quando ?`groups > 1`, verificar`C_in % groups == 0`E ...`C_out % groups == 0`; caso contrário, erro.
-- Para con-`groups == C_in`), etiquetar no `layer`Coluna para que o leitor veja por que os parâmetros são baixos.
-- Se o utilizador fornecer BatchNorm ou camadas de ativação, ignore-as para efeitos de forma, mas adiante os parâmetros (`2 * C`por BatchNorm).
-- Nunca adivinhe as definições padrão para campos faltantes.`k`- Não .`s`- Não .`p`Em todas as convas e piscinas.
+- Quando `groups > 1`, verificar `C_in % groups == 0` e `C_out % groups == 0`; caso contrário, erro.
+- Para con-`groups == C_in`), a etiquetar no `layer` Coluna para que o leitor veja por que os parâmetros são baixos.
+- Se o utilizador fornecer BatchNorm ou camadas de ativação, ignore-as para efeitos de forma, mas adiante os parâmetros (`2 * C` por BatchNorm).
+- Nunca adivinhe as definições padrão para campos faltantes. `k`- Não . `s`- Não . `p` Em todas as convas e piscinas.

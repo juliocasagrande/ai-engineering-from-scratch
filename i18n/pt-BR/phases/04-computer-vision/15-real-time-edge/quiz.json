@@ -55,10 +55,10 @@
         "O modelo tem muitos parâmetros.",
         "A forma de entrada é errada",
         "A biblioteca ONNX está ultrapassada",
-        "(1) Uma operação personalizada que não tem mapeamento ONNX; (2) um caminho de controle-fluxo não determinista que o rastreamento não pode capturar; (3) uma interação tensor-escala que é implícita no Python, mas não tem equivalente ONNX.`torch.jit.script`para controlo de fluxo ou opção de atualização"
+        "(1) Uma operação personalizada que não tem mapeamento ONNX; (2) um caminho de controle-fluxo não determinista que o rastreamento não pode capturar; (3) uma interação tensor-escala que é implícita no Python, mas não tem equivalente ONNX. `torch.jit.script` para controlo de fluxo ou opção de atualização"
       ],
       "correct": 3,
-      "explanation": "O ONNX exportando está rastreando por padrão, então qualquer coisa que o rastreamento não pode capturar  fluxo de controle de tempo de execução, ramos de nível Python, operações CUDA personalizadas falha. A maioria das falhas são um único nó que não tem equivalente ONNX (muitas vezes uma pequena operação personalizada ou uma chamada para torch.special.*).`torch.jit.script`, ou mudar para um novo opset onde a operação existe."
+      "explanation": "O ONNX exportando está rastreando por padrão, então qualquer coisa que o rastreamento não pode capturar  fluxo de controle de tempo de execução, ramos de nível Python, operações CUDA personalizadas falha. A maioria das falhas são um único nó que não tem equivalente ONNX (muitas vezes uma pequena operação personalizada ou uma chamada para torch.special.*). `torch.jit.script`, ou mudar para um novo opset onde a operação existe."
     }
   ]
 }

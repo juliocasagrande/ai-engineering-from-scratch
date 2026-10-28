@@ -50,7 +50,7 @@
     },
     {
       "stage": "post",
-      "question": "Para extracção`invoice_total`De acordo com os receitos, qual é a melhor abordagem em 2026?",
+      "question": "Para extração `invoice_total` De acordo com os receitos, qual é a melhor abordagem em 2026?",
       "options": [
         "Só a OCR clássica é suficientemente confiável",
         "Uma CNN separada para cada campo",

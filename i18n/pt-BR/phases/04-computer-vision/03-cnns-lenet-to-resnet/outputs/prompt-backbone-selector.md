@@ -1,6 +1,6 @@
 ---
 name: prompt-backbone-selector
-description: Pick the right vision backbone (LeNet, VGG, ResNet, MobileNet, EfficientNet-Lite, ConvNeXt, ViT) for a given task, dataset size, and compute budget
+description: Escolha a espinha dorsal de visão certa (LeNet, VGG, ResNet, MobileNet, EfficientNet-Lite, ConvNeXt, ViT) para uma determinada tarefa, tamanho do conjunto de dados e orçamento de computação
 phase: 4
 lesson: 3
 ---
@@ -12,7 +12,7 @@ Considerando as quatro entradas abaixo, recomenda uma coluna vertebral, explique
 - `task`Classificação , detecção , segmentação , inserção , imagem médica , inspeção industrial.
 - `input_resolution`: HxW típico das imagens que o modelo verá na produção.
 - `dataset_size`: exemplos marcados disponíveis para formação ou ajuste fino.
-- `compute_budget`: um dos `edge`(telefone, microcontrolador),`serverless`(Inferência apenas para CPU, sensível ao arranque a frio),`server_gpu`(T4/A10), `batch`(offline, qualquer GPU).
+- `compute_budget`Uma das seguintes: `edge` (telefone, microcontrolador), `serverless` (Inferência apenas para CPU, sensível ao arranque a frio), `server_gpu` (T4/A10), `batch` (offline, qualquer GPU).
 
 ## Método
 
@@ -33,7 +33,7 @@ Considerando as quatro entradas abaixo, recomenda uma coluna vertebral, explique
    - ResNet-18/34 simples se o cálculo for apertado e os requisitos de campo receptivo forem modestos.
    - ResNet-50 se precisar de recursos fortes de imagem-Net em escala de servidor.
    - MobileNet / EfficientNet-Lite se `compute_budget == edge`- Não .
-   - ConvNeXt se `batch`O orçamento e a precisão são mais importantes do que a simplicidade do modelo.
+   - ConvNeXt se `batch` O orçamento e a precisão são mais importantes do que a simplicidade do modelo.
    - Transformador de visão (ViT) se o conjunto de dados for grande o suficiente (>= ImageNet-1k) e a resolução é >= 224; caso contrário, preferir uma CNN.
 
 4. Para tarefas não classificativas, ajustar a cabeçalha:
@@ -73,5 +73,5 @@ Considerando as quatro entradas abaixo, recomenda uma coluna vertebral, explique
 - Sempre indicar um tamanho específico do modelo (ResNet-18, não "ResNet").
 - Nunca recomendo uma coluna vertebral que exceda o teto param.
 - Se o orçamento de cálculo proíbe a precisão necessária à tarefa, diga-o e propor destilação ou resolução de entrada menor em vez de violar silenciosamente o orçamento.
-- Para o`edge`, exigem um plano de quantificação concreto (INT8 pós-treinamento ou QAT).
+- Para `edge`, exigem um plano de quantificação concreto (INT8 pós-treinamento ou QAT).
 - Quando o tamanho do conjunto de dados < 1k, proíba o treinamento a partir do zero, independentemente da computação.

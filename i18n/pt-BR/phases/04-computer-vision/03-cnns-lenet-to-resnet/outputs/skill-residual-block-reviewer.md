@@ -1,6 +1,6 @@
 ---
 name: skill-residual-block-reviewer
-description: Review a PyTorch residual block for skip-connection correctness, BN placement, activation order, and shape alignment
+description: Revisar um bloco residual PyTorch para verificar a correcção da ligação de saltos, a colocação do BN, a ordem de ativação e o alinhamento da forma
 version: 1.0.0
 phase: 4
 lesson: 3
@@ -9,7 +9,7 @@ tags: [computer-vision, resnet, code-review, pytorch]
 
 # Revisor de blocos residuais
 
-Um crítico focado para qualquer PyTorch .`nn.Module`Aparece os quatro erros que explicam quase todas as reescrituras quebradas da ResNet.
+Um revisor focado para qualquer PyTorch `nn.Module` Aparece os quatro erros que explicam quase todas as reescrituras quebradas da ResNet.
 
 ## Quando utilizar
 
@@ -21,13 +21,13 @@ Um crítico focado para qualquer PyTorch .`nn.Module`Aparece os quatro erros que
 ## Input
 
 - Uma definição de classe PyTorch, quer como texto fonte quer como um caminho importável.
-- Facultativo`variant`- Não .`basic`- Não .`bottleneck`- Não .`preact`- Não .`seblock`- Não .
+- Opcional `variant`- Não . `basic` - Não. `bottleneck` - Não. `preact` - Não. `seblock`- Não .
 
 ## Quatro cheques
 
 ### 1. Alinhamento de forma de atalho
 
-Para qualquer bloco com `stride != 1`ou `in_channels != out_channels`, o caminho de atalho .**must**ser um módulo de correspondência de forma  tipicamente um conv 1x1 mais BN. Um nu `nn.Identity()`Neste caso, é um erro de desajuste de forma garantido no tempo de adição.
+Para qualquer bloco com `stride != 1` ou `in_channels != out_channels`, o caminho de atalho **must** ser um módulo de correspondência de forma  tipicamente um 1x1 conv mais BN. Um nu `nn.Identity()` Neste caso, é um erro de desajuste de forma garantido no tempo de adição.
 
 Diagnóstico:
 ```
@@ -39,7 +39,7 @@ Diagnóstico:
 
 ### 2. Colocação de BN em relação à adição
 
-A adição`out + shortcut(x)`Tem de acontecer .**before**O último ReLU (pós-ativação, ResNet original) ou o último ReLU deve estar completamente ausente (pre-ativação ResNet v2). Um bloco que aplica ReLU no ramo principal e depois adiciona um atalho bruto produz uma faixa de ativação assimétrica que prejudica o treinamento.
+A adição `out + shortcut(x)` Tem de acontecer. **before** O último ReLU (pós-ativação, ResNet original) ou o último ReLU deve estar completamente ausente (pre-ativação ResNet v2). Um bloco que aplica ReLU no ramo principal e depois adiciona um atalho bruto produz uma faixa de ativação assimétrica que prejudica o treinamento.
 
 Diagnóstico:
 ```
@@ -50,7 +50,7 @@ Diagnóstico:
 
 ### 3. Preconceitos nas camadas de convecção
 
-As convases seguidas imediatamente pela BatchNorm deveriam ter sido .`bias=False`. A beta do BN já parâmetra o preconceito, de modo que um preconceito extra conv desperdiça os parâmetros e pode retardar a convergência.
+Os Convs seguidos imediatamente pela BatchNorm devem ter `bias=False`. A beta do BN já parâmetra o preconceito, de modo que um preconceito extra conv desperdiça os parâmetros e pode retardar a convergência.
 
 Diagnóstico:
 ```
@@ -61,7 +61,7 @@ Diagnóstico:
 
 ### 4. ReLU e autograd no local
 
-`nn.ReLU(inplace=True)`O tensor que será adicionado ao atalho sobrepõe os valores que ainda podem ser necessários para a adição residual.`inplace=True`que não é seguido por uma camada que produz um novo tensor antes da adição.
+`nn.ReLU(inplace=True)` O tensor que será adicionado ao atalho sobreescreve valores que ainda podem ser necessários para a adição residual. `inplace=True` que não é seguido por uma camada que produz um novo tensor antes da adição.
 
 Diagnóstico:
 ```
@@ -85,6 +85,6 @@ Diagnóstico:
 ## Regras
 
 - Não reescreva o bloco, apenas informe.
-- Se o bloco estiver correto, digamos`ok`Não há sugestões.
+- Se o bloco for correto, digamos `ok` Não há sugestões.
 - Se várias coisas estão erradas, enumere-as na ordem acima (em primeiro lugar, porque é a causa mais comum de acidentes).
 - Nunca marque uma variante de pré-ativação deliberada ou de excitação de compressão como errada quando o usuário a especificou.

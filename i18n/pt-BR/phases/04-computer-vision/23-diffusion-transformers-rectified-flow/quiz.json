@@ -14,7 +14,7 @@
     },
     {
       "stage": "pre",
-      "question": "O fluxo corrigido treina o modelo para prever a velocidade .`v = epsilon - x_0`Por que é que isto permite a amostragem em 20 etapas em vez de 1000?",
+      "question": "O fluxo retificado treina o modelo para prever a velocidade `v = epsilon - x_0` Por que é que isto permite a amostragem em 20 etapas em vez de 1000?",
       "options": [
         "Requer um modelo maior.",
         "O ODE aprendido é mais próximo de uma linha reta do que o SDE curvo do DDPM, então a integração de poucos passos de Euler produz amostras precisas; combinado com a destilação você obtém variantes de 1-4 passos como FLUX schnell",

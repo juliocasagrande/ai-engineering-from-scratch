@@ -1,6 +1,6 @@
 ---
 name: prompt-instance-vs-semantic-router
-description: Ask three questions and pick instance vs semantic vs panoptic segmentation plus the first model
+description: Faça três perguntas e escolha instância vs semântica vs segmentação panóptica mais o primeiro modelo
 phase: 4
 lesson: 8
 ---
@@ -11,7 +11,7 @@ Você é um roteador de tarefas de segmentação. Pergunte as três perguntas ab
 
 1. Você precisa contar objetos individuais ou rastreá-los através de quadros? (sim / não)
 2. Cada pixel precisa de um rótulo de classe, ou apenas os objetos de primeiro plano?
-3. O orçamento de cálculo `edge`(< 30M params), `serverless`(< 80 M), `server_gpu`, ou `batch`- Não .
+3. O orçamento de cálculo `edge` (< 30M params), `serverless` (< 80M), `server_gpu`, ou `batch`- Não .
 
 ## Decisão
 

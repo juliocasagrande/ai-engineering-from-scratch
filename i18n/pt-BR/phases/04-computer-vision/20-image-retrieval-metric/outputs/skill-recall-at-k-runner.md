@@ -1,6 +1,6 @@
 ---
 name: skill-recall-at-k-runner
-description: Write a clean evaluation harness for recall@K with train/val/gallery splits and proper data contract
+description: Escrever um arame de avaliação limpo para recall@K com divisões de trem/val/galeria e contrato de dados adequado
 version: 1.0.0
 phase: 4
 lesson: 20
@@ -21,9 +21,9 @@ Transforme uma pasta de imagens de consulta e galeria, além de rótulos, em um 
 
 - `query_images`: lista de caminhos.
 - `gallery_images`: lista de caminhos (a consulta pode ou não se sobrepor).
-- `query_labels`- Não .`gallery_labels`: identificação de classe ou instância.
-- `encoder_fn`: chamável `image -> embedding`(precomputado ou em directo).
-- `ks`: lista como `[1, 5, 10]`- Não .
+- `query_labels`- Não . `gallery_labels`: identificação de classe ou instância.
+- `encoder_fn`: chamável `image -> embedding` (precomputado ou em directo).
+- `ks`Lista como: `[1, 5, 10]`- Não .
 
 ## Passo
 
@@ -112,4 +112,4 @@ def evaluate(query_images, query_labels, gallery_images, gallery_labels, encoder
 - Normalizar as incorporações antes de calcular a semelhança; FAISS IndexFlatIP em vetores normalizados é igual a cosino.
 - Quando o rótulo de verdade fundamental de uma consulta estiver ausente da galeria, excluí-lo; caso contrário, a recall é trivialmente limitada abaixo de 1.
 - Se a consulta e a galeria se sobrepõem, exclui a própria consulta de seu próprio top-K ou você mede auto-similaridade, não recuperação.
-- Para o`num_queries > 10,000`, batch o matmul de semelhança para evitar OOM.
+- Para `num_queries > 10,000`, batch o matmul de semelhança para evitar OOM.

@@ -1,6 +1,6 @@
 ---
 name: skill-vit-patch-and-pos-embed-inspector
-description: Verify a ViT's patch embedding and positional embedding shapes match the model's expected sequence length
+description: Verifique se a inserção de patch e as formas de inserção posicional de um ViT correspondem ao comprimento de sequência esperado do modelo
 version: 1.0.0
 phase: 4
 lesson: 14
@@ -25,12 +25,12 @@ O bug de portação mais comum da ViT: carregar um checkpoint pré-treinado em 2
 
 ## Passo
 
-1. Localize o cache de inserção do parche dentro do modelo.`kernel_size`- Não .`stride`- Não .`in_channels`- Não .`out_channels`- Não .
-2. Calcule o número esperado de parches. Para uma imagem quadrada: `(image_size / patch_size)^2`Para um retângulo:`(H / patch_size) * (W / patch_size)`- Requerem .`H % patch_size == 0`E ...`W % patch_size == 0`; caso contrário, emblema e recusa.
-3. Localize a inserção posicional aprendida.`(1, N, dim)`- Não .
-4. Comparar`N`contra`num_patches + 1`(com CLS) ou `num_patches`Não correspondência significa que o ponto de controlo foi pré-exercido em uma resolução ou tamanho de parche diferente.
-5. Verifica isso .`out_channels`do conv do parche é igual `dim`de inserção posicional.
-6. Se o modelo for suposto interpolar embutidos posicionais para novas resoluções, verifique a existência da utilidade de interpolação (maior `timm`Os VTs fazem isto automaticamente através de`resize_pos_embed`)).
+1. Localize o cache de inserção do corrector dentro do modelo. `kernel_size`- Não . `stride`- Não . `in_channels`- Não . `out_channels`- Não .
+2. Calcule o número esperado de parches. Para uma imagem quadrada: `(image_size / patch_size)^2`Para um retângulo: `(H / patch_size) * (W / patch_size)`- Requerem `H % patch_size == 0` e `W % patch_size == 0`; caso contrário, emblema e recusa.
+3. Localize a inserção posicional aprendida. `(1, N, dim)`- Não .
+4. Comparar `N` contra `num_patches + 1` (com CLS) ou `num_patches` Não correspondência significa que o ponto de controlo foi pré-exercido em uma resolução ou tamanho de parche diferente.
+5. Verifica isso. `out_channels` dos conjuntos de parche são iguais `dim` de inserção posicional.
+6. Se o modelo for suposto interpolar embutidos posicionais para novas resoluções, verifique se a utilidade de interpolação existe (a maioria das soluções de interpolação é `timm` Os VTs fazem isto automaticamente através de `resize_pos_embed`)).
 
 ## Relatório
 

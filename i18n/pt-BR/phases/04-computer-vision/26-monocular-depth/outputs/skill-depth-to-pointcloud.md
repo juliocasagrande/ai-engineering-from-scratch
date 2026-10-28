@@ -1,6 +1,6 @@
 ---
 name: skill-depth-to-pointcloud
-description: Build point clouds from depth maps with correct intrinsics handling and export to .ply
+description: Construa nuvens de pontos a partir de mapas de profundidade com manejo intrínseco correto e exportação para .ply
 version: 1.0.0
 phase: 4
 lesson: 26
@@ -20,17 +20,17 @@ Transformar um mapa de profundidade e uma imagem a cores numa nuvem de pontos te
 
 ## Input
 
-- `depth`- Não .`(H, W)`Numpy array de profundidades nas mesmas unidades que deseja na saída (metros recomendados).
-- `rgb`- Não .`(H, W, 3)`Array de cores numpy (uint8 ou float32 [0, 1]).
-- `intrinsics`- Não .`(fx, fy, cx, cy)`em unidades de pixels.
-- Facultativo`depth_scale`: multiplicador para converter unidades de profundidade previstas em metros.
+- `depth`- Não . `(H, W)` Numpy array de profundidades nas mesmas unidades que deseja na saída (metros recomendados).
+- `rgb`- Não . `(H, W, 3)` Array de cores numpy (uint8 ou float32 [0, 1]).
+- `intrinsics`- Não . `(fx, fy, cx, cy)` em unidades de pixels.
+- Opcional `depth_scale`: multiplicador para converter unidades de profundidade previstas em metros.
 
 ## Pipeline
 
-1. **Validate**A profundidade deve ser positiva e finita em todos os lugares que pretende incluir.
-2. **Lift**- Não .`X = (u - cx) * d / fx`- Não .`Y = (v - cy) * d / fy`- Não .`Z = d`por pixel.
-3. **Pair**com RGB  cada ponto 3D obtém um `(r, g, b)`Triplo do pixel correspondente.
-4. **Export** PLY (portátil), `.xyz`(luz), `.pcd`(Open3D-native), `.las`- Não .`.laz`(geospatial).
+1. **Validate** A profundidade deve ser positiva e finita em todos os lugares que pretende incluir.
+2. **Lift**  `X = (u - cx) * d / fx`- Não . `Y = (v - cy) * d / fy`- Não . `Z = d` por pixel.
+3. **Pair** com RGB  cada ponto 3D obtém um `(r, g, b)` Triplo do pixel correspondente.
+4. **Export**  PLY (portátil), `.xyz` (luz), `.pcd` (Open3D-native), `.las`- Não .`.laz` (geospatial).
 
 ## Modelo de execução
 
@@ -89,7 +89,7 @@ def write_ply(path, points, colors=None, valid_mask=None):
 ## Regras
 
 - Mascarar sempre profundidade inválida (zero, NaN, inf, saturada); incluindo-as produz uma nuvem de pontos de lixo na origem.
-- Para previsão a partir de um modelo de profundidade relativa, NÃO exportar como métrica; prefixo de saída de nome de arquivo com `relative_`Para sinalizar a convenção.
+- Para previsão a partir de um modelo de profundidade relativa, NÃO exportar como métrica; prefixo nome de arquivo de saída com `relative_` Para sinalizar a convenção.
 - Mantenha a convenção de coordenadas da câmera consistente (OpenCV: +X à direita, +Y para baixo, +Z para frente).
 - Para cenas densas (> 1M pontos), ofereça um parâmetro de sub-programa; os ficheiros PLY > 500 MB são difíceis de carregar em todos os lugares.
 - Nunca clipe em silêncio profundidade para produzir saída "razão"; clipe explicitamente com limites avisados para que os usuários saibam o que foi descartado.

@@ -1,6 +1,6 @@
 ---
 name: skill-dcgan-scaffold
-description: Write a complete DCGAN scaffold from z_dim, image_size, and num_channels, including training loop and sample saver
+description: Escreva um andaime completo DCGAN a partir de z_dim, image_size e num_channels, incluindo loop de treinamento e salvador de amostras
 version: 1.0.0
 phase: 4
 lesson: 9
@@ -26,7 +26,7 @@ Dados três parâmetros, emitir um esqueleto de projeto DCGAN executável com a 
 
 ## Dimensão de arquitetura
 
-O número de blocos de convos transpostos em G e de blocos de convos graduados em D depende de `image_size`- Não .
+O número de blocos de convos transpostos em G e de blocos de convos passados em D depende da `image_size`- Não .
 
 | image_size | G blocks | D blocks |
 |------------|----------|----------|
@@ -34,15 +34,15 @@ O número de blocos de convos transpostos em G e de blocos de convos graduados e
 | 64         | 5        | 5        |
 | 128        | 6        | 6        |
 
-Cada bloco adicional duplica (G) ou divide (D) a dimensão espacial.`feat_base * 2^block_index`- Não .
+Cada bloco adicional duplica (G) ou divide (D) a dimensão espacial. `feat_base * 2^block_index`- Não .
 
 ## Arquivos de saída
 
-- `model.py` Classe de gerador + discriminador
-- `train.py` ciclo de formação, perda, configuração de optimizador
-- `sample.py` Salvador de rede de amostra
-- `config.json` hiperparâmetros
-- `README.md` 10 linhas de arranque rápido
+- `model.py`  Classe de gerador + discriminador
+- `train.py`  ciclo de formação, perda, configuração de optimizador
+- `sample.py`  Salvador de rede de amostra
+- `config.json`  hiperparâmetros
+- `README.md`  10 linhas de arranque rápido
 
 ## Relatório
 
@@ -75,7 +75,7 @@ Cada bloco adicional duplica (G) ou divide (D) a dimensão espacial.`feat_base *
 
 ## Regras
 
-- Sempre usar`nn.Tanh()`sobre os dados de saída e escala de G até [-1, 1] durante o treinamento.
-- Sempre usar`LeakyReLU(0.2)`em D.
-- Quando ?`with_spectral_norm == yes`, enrolar cada convecção em D com `spectral_norm()`e remover BatchNorm de D. Mantenha BatchNorm em G.
+- Sempre utilizar `nn.Tanh()` sobre os dados de saída e escala de G até [-1, 1] durante o treinamento.
+- Sempre utilizar `LeakyReLU(0.2)` em D.
+- Quando `with_spectral_norm == yes`, envolver cada conve em D com `spectral_norm()` e remover BatchNorm de D. Mantenha BatchNorm em G.
 - Nunca emitir um andaime para imagem_size > 128  DCGAN se torna instável acima disso; apontar o usuário para StyleGAN ou um modelo de difusão.

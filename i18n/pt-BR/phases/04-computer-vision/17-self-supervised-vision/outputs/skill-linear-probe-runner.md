@@ -1,6 +1,6 @@
 ---
 name: skill-linear-probe-runner
-description: Write the complete linear-probe evaluation for any frozen encoder and labelled dataset
+description: Escrever a avaliação completa da sonda linear para qualquer codificador congelado e conjunto de dados rotulado
 version: 1.0.0
 phase: 4
 lesson: 17
@@ -19,7 +19,7 @@ Avaliação das características de um codificador congelado através da formaç
 
 ## Input
 
-- `encoder`: congelado `nn.Module`Retorno de uma característica de dim fixa por imagem.
+- `encoder`: congelado `nn.Module` Retorno de uma característica de dim fixa por imagem.
 - `feature_dim`: dimensão da saída do codificador.
 - `train_dataset`: conjunto de dados rotulado (imagem, classe_id).
 - `val_dataset`: conjunto prolongado.
@@ -28,10 +28,10 @@ Avaliação das características de um codificador congelado através da formaç
 
 ## Passo
 
-1. Configurar o codificador para o modo eval e `requires_grad=False`em todos os parâmetros.
+1. Configurar o codificador para o modo eval e `requires_grad=False` em todos os parâmetros.
 2. Extrair os conjuntos de treinamento e val uma vez.
-3. Treinar um`nn.Linear(feature_dim, num_classes)`sobre as características armazenadas em cache com SGD + cronograma cosínico.
-4. Hiperparametros padrão: `lr=0.1`- Não .`momentum=0.9`- Não .`weight_decay=0`- Não .`batch_size=1024`A sonda linear é surpreendentemente sensível a`lr` varrer se a precisão for pobre.
+3. Trem um `nn.Linear(feature_dim, num_classes)` sobre as características armazenadas em cache com SGD + cronograma cosínico.
+4. Hiperparametros padrão: `lr=0.1`- Não . `momentum=0.9`- Não . `weight_decay=0`- Não . `batch_size=1024`A sonda linear é surpreendentemente sensível a `lr`  varrer se a precisão for pobre.
 5. Relata a precisão de val no final do treino.
 
 ## Modelo de saída

@@ -1,6 +1,6 @@
 ---
 name: skill-3dgs-export-router
-description: Pick the right 3DGS export format (.ply / .splat / glTF KHR_gaussian_splatting / USD) given the downstream viewer or engine
+description: Escolha o formato de exportação 3DGS certo (.ply / .splat / glTF KHR_gaussian_splatting / USD) dado o visualizador ou motor a jusante
 version: 1.0.0
 phase: 4
 lesson: 22
@@ -40,7 +40,7 @@ Mapear um alvo a jusante para o formato de arquivo 3DGS certo.
 
 ## Comércio de quantificação
 
-- `.ply`Precision total: maior arquivo, sem perda, qualquer visualizador.
+- `.ply` Precision total: maior arquivo, sem perda, qualquer visualizador.
 - `.splat`: 4x-8x menor, ligeira perda de qualidade nos coeficientes SH3, padrão PlayCanvas-ecossistema.
 - glTF KHR: configurável através da EXT_meshopt_compressão; menor com maior compatibilidade.
 - USD: comprimido pela embalagem USDZ; menor para os oleodutos da Apple.
@@ -67,7 +67,7 @@ Mapear um alvo a jusante para o formato de arquivo 3DGS certo.
 ## Regras
 
 - Nunca desprenda os coeficientes SH3 silenciosamente.
-- Se`priority == file_size`Recomendação .`.splat`ou glTF com meshopt; adverte sobre perda de qualidade.
+- Se `priority == file_size`, recomendar `.splat` ou glTF com meshopt; adverte sobre perda de qualidade.
 - Para plataformas da Apple, prefira USD / USDZ em relação ao glTF em 2026; USDZ tem suporte a visionOS de primeira classe.
-- Se o suporte 3DGS do telespectador-alvo for pré-padrão (antes de Fevereiro 2026), recomendamos `.ply`e o carregador personalizado do espectador; ainda não será reconhecido o GLTF padrão de Khronos.
+- Se o suporte 3DGS do telespectador-alvo for pré-padrão (antes de Fevereiro 2026), recomendamos `.ply` e o carregador personalizado do espectador; ainda não será reconhecido o GLTF padrão de Khronos.
 - Valide sempre o arquivo exportado em pelo menos um visualizador antes de entregar; a corrupção silenciosa ocorre durante a quantização.

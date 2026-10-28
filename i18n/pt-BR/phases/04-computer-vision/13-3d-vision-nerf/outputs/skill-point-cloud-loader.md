@@ -1,6 +1,6 @@
 ---
 name: skill-point-cloud-loader
-description: Write a PyTorch Dataset for .ply / .pcd / .xyz files with correct normalisation, centring, and point sampling
+description: Escrever um conjunto de dados PyTorch para arquivos .ply / .pcd / .xyz com normalização correta, centramento e amostragem de pontos
 version: 1.0.0
 phase: 4
 lesson: 13
@@ -9,12 +9,12 @@ tags: [3d-vision, point-cloud, data-loading, pytorch]
 
 # Loaders de nuvem de ponto
 
-Transforme uma pasta de arquivos de digitalização 3D em um PyTorch pronto para treinamento `Dataset`- Não .
+Transforme uma pasta de arquivos de digitalização 3D em um PyTorch pronto para ser treinado `Dataset`- Não .
 
 ## Quando utilizar
 
 - Iniciando um novo projeto de classificação/segmentação de nuvem de pontos.
-- - A alternar entre os dois .`.ply`- Não .`.pcd`, e `.xyz`Formas.
+- Intercâmbio entre `.ply`- Não . `.pcd`, e `.xyz` Formas.
 - Desfazer um modelo que se exerce sem erro mas converge mal; muitas vezes a normalização do carregador de dados é errada.
 
 ## Input
@@ -28,10 +28,10 @@ Transforme uma pasta de arquivos de digitalização 3D em um PyTorch pronto para
 
 Cada linha de condução de nuvem de ponto de produção é aplicada na ordem:
 
-1. **Centre**A nuvem: subtrai a centróide.
-2. **Scale**para a esfera unitária: dividir pela distância máxima do centro.
-3. **Sample** `num_points`Se a nuvem tem mais, use **farthest point sampling**(FPS) para representação fiel da forma ou amostragem aleatória para velocidade.
-4. **Shuffle**ordem de pontos (a ordem não deve importar para o modelo de qualquer forma, mas a mistura rompe dependências de ordem acidentais).
+1. **Centre** A nuvem: subtrai a centróide.
+2. **Scale** para a esfera unitária: dividir pela distância máxima do centro.
+3. **Sample** `num_points` Se a nuvem tem mais, use **farthest point sampling** (FPS) para representação fiel da forma ou amostragem aleatória para velocidade.
+4. **Shuffle** ordem de pontos (a ordem não deve importar para o modelo de qualquer forma, mas a mistura rompe dependências de ordem acidentais).
 
 ## Modelo de saída
 
@@ -119,4 +119,4 @@ class PointCloudDataset(Dataset):
 - Sempre centro antes de escalar; trocar a ordem muda o significado de "esfera unidade".
 - Prefere FPS ao invés de amostragem aleatória para tarefas de forma; aleatório é bom para segmentação onde cada ponto importa de qualquer maneira.
 - Nunca aumentem durante a avaliação; apenas durante o treinamento.
-- Se os arquivos da nuvem de pontos incluir cores ou normais como canais extras, alargar o conjunto de dados para retornar um `(3 + C, num_points)`Tensor, não apenas XYZ.
+- Se os arquivos da nuvem de pontos incluir cores ou normais como canais extras, estender o conjunto de dados para retornar um `(3 + C, num_points)` Tensor, não apenas XYZ.

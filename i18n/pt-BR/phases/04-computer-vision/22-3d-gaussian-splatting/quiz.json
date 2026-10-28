@@ -38,7 +38,7 @@
     },
     {
       "stage": "post",
-      "question": "A equação de cores para um pixel em NeRF e 3DGS é `C = sum_i alpha_i * T_i * c_i`onde`T_i = prod_{j<i}(1 - alpha_j)`O que diz esta equação compartilhada sobre os dois métodos?",
+      "question": "A equação de cores para um píxel em NeRF e 3DGS é `C = sum_i alpha_i * T_i * c_i` onde `T_i = prod_{j<i}(1 - alpha_j)`O que diz esta equação compartilhada sobre os dois métodos?",
       "options": [
         "O NeRF é estritamente melhor.",
         "Ambos integram a mesma equação de renderização volumétrica; a diferença é apenas na representação (mostras de MLP implícitas vs Gaussians esplicitos esparsos) e no procedimento de renderização (marcha de raios vs rasterizamento)  por isso a qualidade da imagem é comparável",
@@ -54,11 +54,11 @@
       "options": [
         "Uma mancha binária personalizada por espectador",
         "Faixas PNG dos Gaussianos 3D",
-        "Cobre`.ply`sozinho",
-        "glTF com o `KHR_gaussian_splatting`Extensão (Khronos RC Feb 2026) e/ou OpenUSD 26.03 com `UsdVolParticleField3DGaussianSplat`Estes são os dois formatos ratificados/estandardizados em 2026"
+        "Cobre `.ply` sozinho",
+        "glTF com o `KHR_gaussian_splatting` Extensão (Khronos RC Feb 2026) e/ou OpenUSD 26,03 com `UsdVolParticleField3DGaussianSplat`Estes são os dois formatos ratificados/estandardizados em 2026"
       ],
       "correct": 3,
-      "explanation": "Até 2024, cada visualizador tinha seu próprio formato. Khronos ratificou KHR_gaussian_splating para glTF em fevereiro de 2026 e OpenUSD 26.03 adicionou um esquema 3DGS nativo em abril de 2026. Exportar para qualquer um dá-lhe portabilidade entre motores, visualizadores e pipelines. `.ply`A produção transversal de ferramentas é a resposta para 2026."
+      "explanation": "Até 2024, cada visualizador tinha seu próprio formato. Khronos ratificou a KHR_gaussian_splating para glTF em fevereiro de 2026 e OpenUSD 26.03 adicionou um esquema 3DGS nativo em abril de 2026. `.ply` A produção transversal de ferramentas é a resposta para 2026."
     }
   ]
 }

@@ -1,6 +1,6 @@
 ---
 name: skill-physical-plausibility-checks
-description: Automated checks for object permanence, gravity, and continuity on any generated video before shipping
+description: Verificações automáticas de permanência, gravidade e continuidade de qualquer vídeo gerado antes do envio
 version: 1.0.0
 phase: 4
 lesson: 28
@@ -19,7 +19,7 @@ As instalações de produção de vídeo gerado precisam de barris de segurança
 
 ## Input
 
-- `video`: um tensor `(T, H, W, 3)`ou um caminho para um mp4.
+- `video`um tensor `(T, H, W, 3)` ou um caminho para um mp4.
 - Informações de referência opcionais: número esperado de objetos, descrição inicial de cena.
 
 ## Cheques

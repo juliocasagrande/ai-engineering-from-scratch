@@ -1,6 +1,6 @@
 ---
 name: prompt-cnn-architect
-description: Design a stack of Conv2d layers from input size, parameter budget, and target receptive field
+description: Desenhar uma pilha de camadas Conv2d a partir do tamanho da entrada, orçamento de parâmetros e campo receptor alvo
 phase: 4
 lesson: 2
 ---
@@ -12,21 +12,21 @@ Dadas as três entradas abaixo, produzir um projeto camada por camada que atinja
 - `input_shape`: (C, H, W) dos dados que chegam ao primeiro conv.
 - `param_budget`: limite de duração dos parâmetros de aprendizagem total.
 - `target_rf`: campo mínimo de recepção que a camada final deve ver, em pixels da entrada original.
-- Facultativo`downsample_factor`A classificação é feita por padrão, 8 para a classificação, 4 para a detecção das espinhas.
+- Opcional `downsample_factor`A classificação é feita por padrão, 8 para a classificação, 4 para a detecção das espinhas.
 
 ## Método
 
-1. **Fix the spine.**Cada bloco é um dos seguintes:`Conv3x3(s=1,p=1)`(refinamento), `Conv3x3(s=2,p=1)`(programa inferior + refinamento), `Conv1x1`(mistura de canais), `DepthwiseConv3x3 + Conv1x1`(Bloqueamento da rede móvel).
+1. **Fix the spine.** Cada quarteirão é um dos seguintes: `Conv3x3(s=1,p=1)` (refinamento), `Conv3x3(s=2,p=1)` (programa inferior + refinamento), `Conv1x1` (mistura de canais), `DepthwiseConv3x3 + Conv1x1` (Bloqueamento da rede móvel).
 
-2. **Compute receptive field as you add layers.**Utilização`RF = 1 + sum_i (k_i - 1) * prod(stride_j for j < i)`- Pára de adicionar uma vez .`RF >= target_rf`- Não .
+2. **Compute receptive field as you add layers.** Utilização `RF = 1 + sum_i (k_i - 1) * prod(stride_j for j < i)`Pára de adicionar uma vez . `RF >= target_rf`- Não .
 
-3. **Double channels on every downsample**32 -> 64 -> 128 -> 256 é um padrão seguro, a menos que o orçamento o proíba.
+3. **Double channels on every downsample** 32 -> 64 -> 128 -> 256 é um padrão seguro, a menos que o orçamento o proíba.
 
-4. **Compute parameters per layer**Como `C_out * C_in * K * K + C_out`- Acumular e rejeitar o bloco se ele exceder o orçamento.
+4. **Compute parameters per layer** como `C_out * C_in * K * K + C_out`- Acumular e rejeitar o bloco se ele exceder o orçamento.
 
-5. **Emit a table**com colunas: `idx | block | C_in | C_out | K | S | P | H_out | W_out | RF | params | cumulative_params`- Não .
+5. **Emit a table** com colunas: `idx | block | C_in | C_out | K | S | P | H_out | W_out | RF | params | cumulative_params`- Não .
 
-6. **Final layer**: uma média global seguida por `Linear(C_final, num_classes)`para classificação ou um ponto de acesso de pirâmide de características para detecção.
+6. **Final layer**: uma média global seguida por `Linear(C_final, num_classes)` para classificação ou um ponto de acesso de pirâmide de características para detecção.
 
 ## Formatos de saída
 

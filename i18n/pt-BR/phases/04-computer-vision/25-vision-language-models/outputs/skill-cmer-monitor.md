@@ -1,6 +1,6 @@
 ---
 name: skill-cmer-monitor
-description: Instrument a production VLM endpoint with Cross-Modal Error Rate monitoring, dashboards, and alerts
+description: Instrumentos de produção VLM ponto final com monitoramento de taxa de erro transmodal, painéis de controle e alertas
 version: 1.0.0
 phase: 4
 lesson: 25
@@ -20,10 +20,10 @@ Tratar o alinhamento trans-modal como um KPI de produção de primeira classe.
 ## Input
 
 - `vlm_output`: texto gerado.
-- `text_confidence`: probabilidade média por token após softmax, em `[0, 1]`- Calcule como`exp(mean(log_probs))`Não passe em logits brutos; logits brutos são ilimitados e `conf_threshold`- Supõe uma probabilidade.
+- `text_confidence`: probabilidade média por token após softmax, em `[0, 1]`- Calcule como `exp(mean(log_probs))`Não passe em logits brutos; logits brutos são ilimitados e `conf_threshold` - Supõe uma probabilidade.
 - `image_embedding`: Embedamento da imagem na família CLIP (DINOv3, SigLIP, CLIP).
 - `text_embedding`: Embedamento de texto gerado na família CLIP.
-- Facultativo`prompt_type`: etiqueta para agrupamento (vqa / ocr / subtítulos / agente).
+- Opcional `prompt_type`: etiqueta para agrupamento (vqa / ocr / subtítulos / agente).
 
 ## Calculação por pedido
 
@@ -40,9 +40,9 @@ def cmer_flag(image_emb, text_emb, text_conf, sim_thr=0.25, conf_thr=0.8):
     return {"sim": sim, "flagged": flagged}
 ```
 
-Os incorporados são tensores PyTorch 1-D (`torch.float32`Se utilizar matrizes NumPy, trocar `.norm()`Para`np.linalg.norm(...)`E lançar a saída em conformidade.
+Os incorporados são tensores PyTorch 1-D (`torch.float32`Se você usar matrizes NumPy, trocar `.norm()` para `np.linalg.norm(...)` E lançar a saída em conformidade.
 
-Loja`sim`- Não .`text_conf`- Não .`flagged`- Não .`prompt_type`- Não .`timestamp`- Não .`model_version`- Não .`request_id`O seu canal de monitoramento (Prometheus, DataDog, OpenTelemetry).
+Loja `sim`- Não . `text_conf`- Não . `flagged`- Não . `prompt_type`- Não . `timestamp`- Não . `model_version`- Não . `request_id` O seu canal de monitoramento (Prometheus, DataDog, OpenTelemetry).
 
 ## Metrica agregada
 
@@ -62,7 +62,7 @@ Relatório por ponto final, por tipo de prompt, por versão de modelo.
 
 1. CMER ao longo do tempo (5 minutos de espera, 7 dias de espera).
 2. CMER por tipo prompt_type (barra empilhada).
-3. Distribuição de `sim`por hora (histograma).
+3. Distribuição de `sim` por hora (histograma).
 4. Resultados de alucinação superiores (prova de 20 respostas marcadas por dia para revisão humana).
 
 ## Ações quando o CMER aumenta
@@ -76,6 +76,6 @@ Relatório por ponto final, por tipo de prompt, por versão de modelo.
 ## Regras
 
 - Nunca compute CMER usando as próprias incorporações do VLM; use um codificador independente (DINOv3, SigLIP ou CLIP-L/14). Caso contrário, você está medindo a autoconsistência do modelo, não o alinhamento.
-- Sempre registar o que é bruto .`sim`O valor, não apenas o`flagged`Bit; as mudanças de distribuição aparecem no quartilo inferior antes das alterações na taxa de bandeira.
+- Sempre registar o crudo `sim` O valor, não só o `flagged` Bit; as mudanças de distribuição aparecem no quartilo inferior antes das alterações na taxa de bandeira.
 - Não enviar um ponto final VLM sem monitoramento CMER; as alucinações são o modo dominante de falha de produção e silenciosas sem esta métrica.
-- Para domínios sensíveis (médicos, jurídicos, financeiros), aumentar `sim_threshold`para 0,35 ou superior; a condição de bandeira é `sim < sim_threshold`, de modo que um limiar mais elevado capta mais saídas como potencialmente sem fundamento  o padrão certo para o uso de riscos elevados.
+- Para domínios sensíveis (médicos, jurídicos, financeiros), aumentar `sim_threshold` para 0,35 ou mais; a condição de bandeira é `sim < sim_threshold`, de modo que um limiar mais elevado capta mais saídas como potencialmente sem fundamento  o padrão certo para o uso de riscos elevados.

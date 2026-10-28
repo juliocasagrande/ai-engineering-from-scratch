@@ -1,6 +1,6 @@
 ---
 name: prompt-retrieval-loss-picker
-description: Pick triplet / InfoNCE / ProxyNCA for a given retrieval problem
+description: Selecione triplet / InfoNCE / ProxyNCA para um determinado problema de recuperação
 phase: 4
 lesson: 20
 ---
@@ -16,10 +16,10 @@ lesson: 20
 
 ## Decisão
 
-1. `labelled_pairs == class_labels_only`-> **ProxyNCA / ProxyAnchor**Um proxy por aula, sem mineração.
-2. `labelled_pairs == pair`E ...`batch_size in [medium, large]`-> **InfoNCE / NT-Xent**Negativos em lote, em escala com lote.
-3. `labelled_pairs == pair`E ...`batch_size == small`-> **MoCo-style contrastive**com fila de impulso.
-4. `labelled_pairs == triplet`ou `task_level == instance`-> **triplet loss with semi-hard mining**- Não .
+1. `labelled_pairs == class_labels_only` - Não. **ProxyNCA / ProxyAnchor**Um proxy por aula, sem mineração.
+2. `labelled_pairs == pair` e `batch_size in [medium, large]` - Não. **InfoNCE / NT-Xent**Negativos em lote, em escala com lote.
+3. `labelled_pairs == pair` e `batch_size == small` - Não. **MoCo-style contrastive** com fila de impulso.
+4. `labelled_pairs == triplet` ou `task_level == instance` - Não. **triplet loss with semi-hard mining**- Não .
 
 ## Output
 
@@ -45,5 +45,5 @@ lesson: 20
 ## Regras
 
 - Nunca combine duas perdas de aprendizagem métrica a menos que tenha provas fortes de que são complementares; geralmente ganha uma.
-- Para o`task_level == category`, preferem fortemente o DINOv2 / CLIP fora do prato antes de treinar uma perda personalizada.
-- Para o`dataset_size < 5k`Recomenda-se a partir de uma coluna vertebral pré-treinada e a treinar apenas a cabeça de inserção para evitar o excesso de montagem.
+- Para `task_level == category`, preferem fortemente o DINOv2 / CLIP fora do prato antes de treinar uma perda personalizada.
+- Para `dataset_size < 5k`Recomenda-se a partir de uma coluna vertebral pré-treinada e a treinar apenas a cabeça de inserção para evitar o excesso de montagem.

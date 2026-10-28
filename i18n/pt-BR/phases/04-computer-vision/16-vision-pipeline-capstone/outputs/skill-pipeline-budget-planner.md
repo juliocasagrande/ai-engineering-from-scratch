@@ -1,6 +1,6 @@
 ---
 name: skill-pipeline-budget-planner
-description: Given target latency and throughput, assign a time budget to every pipeline stage and flag which stage will miss its budget first
+description: Dada a latência e o rendimento-alvo, atribuir um orçamento de tempo a cada fase do gasoduto e indicar qual estágio perderá o seu orçamento primeiro
 version: 1.0.0
 phase: 4
 lesson: 16
@@ -21,7 +21,7 @@ Transforme um alvo de latencia/transmissão em um orçamento estágio a estágio
 
 - `p95_latency_target_ms`: orçamento por pedido.
 - `target_qps`: rendimento por réplica.
-- `stages`: lista de `{ name: str, current_ms: float }`- Não .
+- `stages`Lista de: `{ name: str, current_ms: float }`- Não .
 
 ## Regras de atribuição
 
@@ -72,4 +72,4 @@ Em tubulações ligadas a GPU (nuvem), a participação do detector muitas vezes
 - Nunca recomenda deixar de lado a validação do esquema do caminho de produção; propor que seja movida para o limite.
 - Se o pré-processamento não tiver o seu orçamento, tente sempre o Pillow-SIMD ou o NVJPEG antes de alterar o modelo.
 - Se a falha do detector for superior a 30% do alvo, mude os modelos em vez de otimizar o atual.
-- Marque o portão como `X`quando current_ms > 1.1 * target_ms; marca `ok`se estiverem dentro de 10% do orçamento.
+- Marque o portão como `X` quando current_ms > 1.1 * target_ms; marca `ok` se estiverem dentro de 10% do orçamento.

@@ -38,7 +38,7 @@
     },
     {
       "stage": "post",
-      "question": "Tu compostas .`alpha_bar_t`para um cronograma beta linear com T=1000 e vê-lo cair para quase zero por t=600.",
+      "question": "Tu compro `alpha_bar_t` para um cronograma beta linear com T=1000 e vê-lo cair para quase zero por t=600.",
       "options": [
         "Não importa.",
         "alpha_bar_t deve ser zero no final",

@@ -2,7 +2,7 @@
   "questions": [
     {
       "stage": "pre",
-      "question": "O seu modelo produz logits crus de forma (N, C).`loss = cross_entropy(softmax(logits), y)`O que é que se passa?",
+      "question": "O seu modelo produz logits crus de forma (N, C). `loss = cross_entropy(softmax(logits), y)`O que é que se passa?",
       "options": [
         "cross_entropy re-aplique softmax dentro, então você acaba computação softmax(softmax(logits)), produzindo probabilidades quase uniformes e gradientes inúteis",
         "Nada  que é a API correta",
@@ -38,7 +38,7 @@
     },
     {
       "stage": "post",
-      "question": "Tu trocas .`RandomCrop(32, padding=4, padding_mode='zeros')`Para`padding_mode='reflect'`Por que é melhor refletir aqui?",
+      "question": "Tu trocas `RandomCrop(32, padding=4, padding_mode='zeros')` para `padding_mode='reflect'` Por que é melhor refletir aqui?",
       "options": [
         "O pad zero cria bordas negras duras que o modelo aprende a depender; reflete pad espelha os pixels de borda para que as culturas aumentadas pareçam fotografias naturais",
         "Para a normalização do lote é necessária uma almofada de reflexo",

@@ -1,6 +1,6 @@
 ---
 name: skill-image-text-retriever
-description: Build an image embedding index with any CLIP checkpoint; support query-by-text and query-by-image
+description: Construir um índice de inserção de imagem com qualquer ponto de verificação CLIP; suporte de consulta por texto e consulta por imagem
 version: 1.0.0
 phase: 4
 lesson: 18
@@ -20,7 +20,7 @@ Transforme uma pasta de imagens em um índice pesquisável usando embutidos CLIP
 ## Input
 
 - `image_folder`: directório de arquivos de imagem.
-- `clip_model`Abraços: Face ID como`openai/clip-vit-base-patch32`ou `google/siglip-base-patch16-224`- Não .
+- `clip_model`Abraços: `openai/clip-vit-base-patch32` ou `google/siglip-base-patch16-224`- Não .
 - `index_type`Flat IVF HNSW.
 - `embedding_dim`: deduzido do modelo.
 
@@ -30,8 +30,8 @@ Transforme uma pasta de imagens em um índice pesquisável usando embutidos CLIP
 2. Encode em batches todas as imagens na pasta. Salve as incorporações como (N, D) float32 + lista de nomes de arquivos.
 3. Construir um índice FAISS sobre os incorporados. Use o produto interno em vetores normalizados L2 para a semelhança cosínica.
 4. Expor duas interfaces de consulta:
-   - `search_by_text(text, k)`- Encher o texto, procurar.
-   - `search_by_image(image_path, k)`- Embuchar a imagem, procurar.
+   - `search_by_text(text, k)` - Encher o texto, procurar.
+   - `search_by_image(image_path, k)` - Embuchar a imagem, procurar.
 
 ## Modelo de saída
 
@@ -114,7 +114,7 @@ class ImageTextRetriever:
 ## Regras
 
 - Sempre normaliza as incorporações L2 antes da indexação; o produto interno do FAISS em vetores normalizados é igual à semelhança cosínica.
-- Para < 100k imagens, `IndexFlatIP`É o mais simples e rápido.
-- Para 100k-10M, `IndexIVFFlat`É o padrão de troca.
+- Para imagens < 100k, `IndexFlatIP` É o mais simples e rápido.
+- Para 100k-10M, `IndexIVFFlat` É o padrão de troca.
 - Para > 10 M, utilizar HNSW ou uma variante quantizada de produto.
 - Nunca reconstruir o índice em cada consulta; inserir uma vez, pesquisar muitas vezes.

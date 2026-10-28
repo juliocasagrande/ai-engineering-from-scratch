@@ -1,6 +1,6 @@
 ---
 name: skill-ctc-decoder
-description: Write greedy and beam-search CTC decoders from scratch, including length normalisation
+description: Escrever codificadores CTC de busca de raio e ganância desde o zero, incluindo a normalização de comprimento
 version: 1.0.0
 phase: 4
 lesson: 19
@@ -21,7 +21,7 @@ Produza duas rotinas de decodificação para as saídas CTC: gananciosa (rápida
 
 - `log_probs`: (T, N, C) log-softmax sobre vocab (índice 0 = branco por convenção).
 - `vocab`: lista de caracteres C.
-- `beam_width`(só o feixe): normalmente 5 a 10.
+- `beam_width` (só o feixe): normalmente 5 a 10.
 
 ## Descódigo ganancioso
 
@@ -101,8 +101,8 @@ def _logsumexp(a, b):
 
 ## Regras
 
-- O índice em branco no CTC é 0 por convenção no PyTorch `nn.CTCLoss`- Não .
+- O índice em branco no CTC é 0 por convenção no PyTorch's `nn.CTCLoss`- Não .
 - A busca de feixe melhora a precisão em entradas de baixa confiança; nas entradas limpas a melhoria é < 1% CER.
 - Nunca poda o feixe abaixo de 5; o comércio de latência de precisão aplania abaixo disso.
 - Ao executar uma pesquisa de feixe dentro de um orçamento de latência apertado, desça para o ganancioso; o impacto de qualidade é pequeno na maioria dos dados de produção OCR.
-- Para vocabulários grandes (CJK com mais de 3000 caracteres), passe para `ctcdecode`(C++) em vez da versão Python pura acima; o feixe Python rapidamente se torna o gargalo de engarrafamento.
+- Para vocabulários grandes (CJK com mais de 3000 caracteres), passe para `ctcdecode` (C++) em vez da versão Python pura acima; o feixe Python rapidamente se torna o gargalo de engarrafamento.

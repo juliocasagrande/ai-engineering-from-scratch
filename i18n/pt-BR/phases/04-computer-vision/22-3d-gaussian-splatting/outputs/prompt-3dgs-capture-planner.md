@@ -1,6 +1,6 @@
 ---
 name: prompt-3dgs-capture-planner
-description: Plan a photo capture session for 3DGS reconstruction given scene type and hardware
+description: Planejar uma sessão de captura de fotos para reconstrução 3DGS dado tipo de cena e hardware
 phase: 4
 lesson: 22
 ---
@@ -38,7 +38,7 @@ lesson: 22
 
 - Processar fotos através do COLMAP ou GLOMAP primeiro para produzir poses da câmera + pontos escassos.
 - Verificar o erro de re-rejeição < 1 pixel em média antes de iniciar o treinamento 3DGS.
-- Output típico: `cameras.bin`- Não .`images.bin`- Não .`points3D.bin` alimentação directa a `splatfacto`- Não .
+- Output típico: `cameras.bin`- Não . `images.bin`- Não . `points3D.bin`  alimentação directa `splatfacto`- Não .
 
 ## Output
 
@@ -68,4 +68,4 @@ lesson: 22
 - Não recomendamos capturas portáteis para paisagens ao ar livre > 100 m  usar uma missão de drone.
 - Para retratos faciais, sinalize que o 3DGS luta com detalhes de cabelo abaixo de uma determinada contagem de fotos.
 - Nunca recomendemos capturar em luz solar directa e dura para a qualidade da produção; recomendamos hora de ouro ou nuvens.
-- Se o motor para baixo é Omniverse, Pixar ou Apple Vision Pro, encaminhe a exportação para OpenUSD (USDZ para Apple). Se é um motor web (Three.js, Babylon.js, Cesium), encaminhe para glTF `KHR_gaussian_splatting`Para o Unreal, encaminha-se para o Plugin Volinga ou glTF KHR.
+- Se o motor para baixo é Omniverse, Pixar ou Apple Vision Pro, encaminhe a exportação para OpenUSD (USDZ para Apple). `KHR_gaussian_splatting`Para o Unreal, encaminha-se para o Plugin Volinga ou glTF KHR.

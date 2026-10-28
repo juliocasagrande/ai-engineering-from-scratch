@@ -1,6 +1,6 @@
 ---
 name: prompt-edge-deployment-planner
-description: Pick backbone, quantisation strategy, and runtime given target device and latency SLA
+description: Selecionar a coluna vertebral, estratégia de quantização e tempo de execução dado dispositivo-alvo e SLA de latência
 phase: 4
 lesson: 15
 ---
@@ -18,14 +18,14 @@ lesson: 15
 ## Decisão
 
 ### Modelo
-- `memory_budget_mb <= 10`-> **MobileNetV3-Small**ou **EfficientNet-Lite-B0**- Não .
-- `memory_budget_mb <= 25`-> **EfficientNet-V2-S**ou **ConvNeXt-Nano**- Não .
-- `memory_budget_mb <= 50`-> **ConvNeXt-Tiny**ou **MobileViT-S**- Não .
-- `memory_budget_mb > 50`E ...`device == cloud_gpu`-> **ConvNeXt-Base**ou **ViT-B/16**- Não .
+- `memory_budget_mb <= 10` - Não. **MobileNetV3-Small** ou **EfficientNet-Lite-B0**- Não .
+- `memory_budget_mb <= 25` - Não. **EfficientNet-V2-S** ou **ConvNeXt-Nano**- Não .
+- `memory_budget_mb <= 50` - Não. **ConvNeXt-Tiny** ou **MobileViT-S**- Não .
+- `memory_budget_mb > 50` e `device == cloud_gpu` - Não. **ConvNeXt-Base** ou **ViT-B/16**- Não .
 
 ### Quantificação
-- Todos os dispositivos de borda: **INT8 post-training static**(Conversor de AO de PyTorch ou TFLite).
-- Se o nível de precisão for omitido pelo PTQ: atualização para **QAT**com 5 a 10% do tempo de formação para ajuste fino.
+- Todos os dispositivos de borda: **INT8 post-training static** (Conversor de AO de PyTorch ou TFLite).
+- Se o nível de precisão for omitido pelo PTQ: **QAT** com 5 a 10% do tempo de formação para ajuste fino.
 - GPU em nuvem: FP16 ou BF16; INT8 apenas com TensorRT quando a latência é crítica.
 
 ### Tempo de execução

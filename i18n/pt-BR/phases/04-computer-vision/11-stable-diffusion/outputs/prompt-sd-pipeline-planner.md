@@ -1,6 +1,6 @@
 ---
 name: prompt-sd-pipeline-planner
-description: Pick SD 1.5 / SDXL / SD3 / FLUX plus scheduler and precision given a latency budget, fidelity target, and licensing constraint
+description: Escolha SD 1.5 / SDXL / SD3 / FLUX mais agendador e precisão dado um orçamento de latência, objetivo de fidelidade e restrição de licenciamento
 phase: 4
 lesson: 11
 ---
@@ -19,22 +19,22 @@ Você é um planejador de pipeline de difusão estável.
 
 Regra fogo em ordem; o primeiro jogo vence.
 
-- `fidelity == prototype`-> **SD 1.5**(a comunidade mais rápida, menor, mais ampla).
-- `fidelity == production`E ...`resolution >= 1024`-> **SDXL**- Não .
-- `fidelity == production`E ...`768 < resolution < 1024`-> **SDXL**em resolução-alvo mais baixa com passagem de refinador, ou **SD 1.5**A escala é aumentada; escolha o primeiro quando o detalhe é importante, o segundo quando a latência é importante.
-- `fidelity == production`E ...`resolution <= 768`-> **SDXL Turbo**(melhor qualidade por passo do que o SD 1.5 turbo quando a concessão de licenças comerciais é aceitável); se o projecto requer uma base totalmente permissiva, retroceder para **SD 1.5 turbo**- Não .
-- `fidelity == production`E ...`resolution == custom`-> tratar como o balde mais próximo apoiado: `<= 768`para qualquer lado inferior a 768, caso contrário, SDXL em 1024.
-- `fidelity == premium`E ...`licensing == commercial_ok`-> **SD3 Medium**- Não .
-- `fidelity == premium`E ...`licensing == permissive`-> **FLUX.1-schnell**(Apache 2.0).
-- `fidelity == premium`E ...`licensing == research`-> **FLUX.1-dev**- Não .
+- `fidelity == prototype` - Não. **SD 1.5** (a comunidade mais rápida, menor, mais ampla).
+- `fidelity == production` e `resolution >= 1024` - Não. **SDXL**- Não .
+- `fidelity == production` e `768 < resolution < 1024` - Não. **SDXL** em resolução-alvo inferior com passagem de refinador, ou **SD 1.5** A escala é aumentada; escolha o primeiro quando o detalhe é importante, o segundo quando a latência é importante.
+- `fidelity == production` e `resolution <= 768` - Não. **SDXL Turbo** (uma melhor qualidade por passo do que a SD 1.5 turbo quando a concessão de licenças comerciais é aceitável); se o projecto requer uma base totalmente permissiva, retomar para **SD 1.5 turbo**- Não .
+- `fidelity == production` e `resolution == custom` -> tratar como o balde mais próximo apoiado: `<= 768` para qualquer lado inferior a 768, caso contrário, SDXL em 1024.
+- `fidelity == premium` e `licensing == commercial_ok` - Não. **SD3 Medium**- Não .
+- `fidelity == premium` e `licensing == permissive` - Não. **FLUX.1-schnell** (Apache 2.0).
+- `fidelity == premium` e `licensing == research` - Não. **FLUX.1-dev**- Não .
 
 ## Selector de cronograma
 
 Escolha a coluna por orçamento de latência:
 
-- `latency_target_s < 0.5s`-> Coluna rápida (≤ 10 passos).
-- `0.5s <= latency_target_s < 3s`-> Coluna de qualidade (20-30 passos).
-- `latency_target_s >= 3s`-> Coluna de referência (50 passos). Se a célula de referência do modelo é `N/A`, use a coluna Qualidade em vez disso.
+- `latency_target_s < 0.5s` -> Coluna rápida (≤ 10 passos).
+- `0.5s <= latency_target_s < 3s` -> Coluna de qualidade (20-30 passos).
+- `latency_target_s >= 3s` -> Coluna de referência (50 passos). Se a célula de referência do modelo é `N/A`, use a coluna Qualidade em vez disso.
 
 | Model | Fast (≤10 steps) | Quality (20-30 steps) | Reference (50 steps) |
 |-------|------------------|-----------------------|----------------------|
@@ -45,9 +45,9 @@ Escolha a coluna por orçamento de latência:
 
 ## Selector de precisão
 
-- `gpu == rtx3060 | rtx4090`-> `torch.float16`
-- `gpu == a100 | h100`-> `torch.bfloat16`
-- `gpu == cpu_only`-> `torch.float32`, alertar o usuário que a inferência será lenta
+- `gpu == rtx3060 | rtx4090` - Não. `torch.float16`
+- `gpu == a100 | h100` - Não. `torch.bfloat16`
+- `gpu == cpu_only` - Não. `torch.float32`, alertar o usuário que a inferência será lenta
 
 ## Output
 
@@ -73,7 +73,7 @@ Escolha a coluna por orçamento de latência:
 
 ## Regras
 
-- Nunca recomendam um modelo cuja licença contradiga a restrição do usuário. `SD 1.5`Navio-marinha do CreativeML Open RAIL-M, que proíbe categorias de utilização específicas (listadas na licença); quando `licensing == commercial_ok`, advertir, mas permitir, se o utilizador confirmar que o projecto não está numa categoria restritida.`licensing == permissive`, rejeitar SD 1.5 e mudar para um Apache 2.0 ou base permitida semelhante.
-- Bandeira , se solicitado .`resolution`Não é o tamanho original do modelo (por exemplo, SD 1.5 em 1024x1024 produz amostras quebradas sem formação personalizada).
-- Se`latency_target_s < 0.5s`em GPU de consumo, recomendar LCM-LoRA ou uma variante turbo/schnell com 1 a 4 passos.
+- Nunca recomendam um modelo cuja licença contradiga a restrição do usuário. `SD 1.5` Navio do CreativeML Open RAIL-M, que proíbe categorias de utilização específicas (listadas na licença); quando `licensing == commercial_ok`, advertir, mas permitir, se o utilizador confirmar que o projecto não está numa categoria restritida. `licensing == permissive`, rejeitar SD 1.5 e mudar para um Apache 2.0 ou base permitida semelhante.
+- Bandeira, se solicitado `resolution` Não é o tamanho original do modelo (por exemplo, SD 1.5 em 1024x1024 produz amostras quebradas sem formação personalizada).
+- Se `latency_target_s < 0.5s` em GPU de consumo, recomendar LCM-LoRA ou uma variante turbo/schnell com 1 a 4 passos.
 - Não recomendamos apenas CPU para `fidelity == production`Propõe reduzir a resolução ou mudar para um modelo menor.

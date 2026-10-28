@@ -26,7 +26,7 @@
     },
     {
       "stage": "post",
-      "question": "Mas a previsão da torchvision R-CNN diz que `labels`que começam em 1, não em 0. Porquê?",
+      "question": "Mas a previsão da torchvision R-CNN `labels` que começam em 1, não em 0. Porquê?",
       "options": [
         "torchvision usa indexação baseada em 1 em todo",
         "A classe 0 é reservada para o fundo; as classes de usuários são sempre baseadas em 1, para que o cabeçalho do classificador possa tratar o fundo como uma classe real com seus próprios logits e gradientes",

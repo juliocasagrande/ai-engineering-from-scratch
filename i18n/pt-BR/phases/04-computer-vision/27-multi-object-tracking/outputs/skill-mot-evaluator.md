@@ -1,6 +1,6 @@
 ---
 name: skill-mot-evaluator
-description: Write a complete evaluation harness for MOTA / IDF1 / HOTA against ground-truth tracks
+description: Escrever um arame completo de avaliação para MOTA / IDF1 / HOTA contra trilhas de verdade no solo
 version: 1.0.0
 phase: 4
 lesson: 27
@@ -19,14 +19,14 @@ Envolva a saída do seu rastreador no gasoduto MOTA/IDF1/HOTA padrão para que p
 
 ## Input
 
-- `predictions`: lista por quadro de `(track_id, x, y, w, h, confidence)`- Túples.
-- `ground_truth`: lista por quadro de `(gt_id, x, y, w, h)`- Túples.
+- `predictions`: lista por quadro de `(track_id, x, y, w, h, confidence)` - Túples.
+- `ground_truth`: lista por quadro de `(gt_id, x, y, w, h)` - Túples.
 - `iou_threshold`: 0,5 típico para MOTA; HOTA utiliza um varredor.
-- `evaluator`- Não .`py-motmetrics`(MOTA, IDF1) ou `TrackEval`- Não.
+- `evaluator`- Não . `py-motmetrics` (MOTA, IDF1) ou `TrackEval` - Não.
 
 ## Contrato de formato de saída
 
-Ambos .`py-motmetrics`E ...`TrackEval`Expectar um formato específico no disco:
+Ambos os dois . `py-motmetrics` e `TrackEval` Expectar um formato específico no disco:
 
 ```
 # predictions.txt
@@ -41,9 +41,9 @@ Os quadros são indexados em 1, as caixas são (x, y, w, h), não (x1, y1, x2, y
 ## Passo
 
 1. Converte a saída do seu rastreador para o formato de texto MOT Challenge.
-2. Corra .`py-motmetrics.io.loadtxt`Em ambos os ficheiros.
+2. Corra `py-motmetrics.io.loadtxt` Em ambos os ficheiros.
 3. Calcule MOTA + IDF1 com `mm.metrics.create().compute()`- Não .
-4. Para a HOTA, invoque`TrackEval`com os mesmos ficheiros e `Metrics: HOTA`- Não .
+4. Para a HOTA, invocar `TrackEval` com os mesmos ficheiros e `Metrics: HOTA`- Não .
 5. Salvar resultados como JSON para painéis de controle.
 
 ## Esboço de execução

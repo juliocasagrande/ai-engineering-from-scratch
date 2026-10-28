@@ -1,6 +1,6 @@
 ---
 name: prompt-open-vocab-stack-picker
-description: Pick SAM 3 / Grounded SAM 2 / YOLO-World / SAM-MI based on latency, concept complexity, and licensing
+description: Escolha SAM 3 / SAM 2 / YOLO-World / SAM-MI com base na latência, complexidade do conceito e licenciamento
 phase: 4
 lesson: 24
 ---
@@ -17,14 +17,14 @@ lesson: 24
 
 ## Decisão
 
-Regras de fogo de cima para baixo; primeira partida vence. restrições de licença atuam como filtros rígidos  se o modelo padrão de uma regra viola o modelo do chamador `license_need`, saltar para a regra seguinte em vez de sobrecarregar.
+Regras de fogo de cima para baixo; primeira partida vence. restrições de licença atuam como filtros rígidos  se o modelo padrão de uma regra viola o modelo de chamada `license_need`, saltar para a regra seguinte em vez de sobrecarregar.
 
-1. `task_output == boxes`E ...`latency_target_ms <= 50`-> **YOLO-World**(ou OV-DINO).
-2. `task_output == masks`E ...`concept_complexity == compositional`-> **SAM 3**(O PCS é o melhor em lidar com as instruções descritivas).
-3. `task_output == masks`E ...`license_need == permissive`-> **Grounded SAM 2**com detector com licença Apache (Florence-2 / Grounding DINO 1.5).
-4. `task_output == tracking_over_video`com muitas instâncias -> **SAM 3.1 Object Multiplex**- Não .
-5. `deployment == edge`E ...`task_output == masks`-> **SAM-MI**ou detector de voz aberta leve MobileSAM +.
-6. `deployment == browser`-> YOLO-World ONNX + MobileSAM ou uma variante destilada de borda.
+1. `task_output == boxes` e `latency_target_ms <= 50` - Não. **YOLO-World** (ou OV-DINO).
+2. `task_output == masks` e `concept_complexity == compositional` - Não. **SAM 3** (O PCS é o melhor em lidar com as instruções descritivas).
+3. `task_output == masks` e `license_need == permissive` - Não. **Grounded SAM 2** com detector com licença Apache (Florence-2 / Grounding DINO 1.5).
+4. `task_output == tracking_over_video` com muitas instâncias -> **SAM 3.1 Object Multiplex**- Não .
+5. `deployment == edge` e `task_output == masks` - Não. **SAM-MI** ou detector de voz aberta leve MobileSAM +.
+6. `deployment == browser` -> YOLO-World ONNX + MobileSAM ou uma variante destilada de borda.
 
 ## Output
 
@@ -50,7 +50,7 @@ Regras de fogo de cima para baixo; primeira partida vence. restrições de licen
 
 ## Regras
 
-- Se`concept_complexity == compositional`("paraguas vermelhas estriadas", "manha segurando uma taça"), favorecem o SAM 3 em vez do YOLO-World; detectores de vocabulário aberto lutam com modificadores descritórios.
+- Se `concept_complexity == compositional` ("paraguas vermelhas estriadas", "manha segurando uma taça"), favorecem o SAM 3 em vez do YOLO-World; detectores de vocabulário aberto lutam com modificadores descritórios.
 - Se o conjunto de dados for específico de domínio (médico, satélite, defeito industrial), recomendamos o SAM 2 baseado com um detector sintonizado de domínio; o SAM 3 pode não ter visto os conceitos em escala.
 - Para produção a < 100 ms p95, requer INT8 ou FP16; nunca envia FP32 na borda.
 - Para o SAM 3, note sempre o portão de solicitação de acesso HF no ponto de controlo.

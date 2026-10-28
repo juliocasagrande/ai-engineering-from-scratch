@@ -1,6 +1,6 @@
 ---
 name: skill-heatmap-to-coords
-description: Write the sub-pixel heatmap-to-coordinate routine used by every production pose model
+description: Escreva a rotina de sub-pixel heatmap-to-coordinate usada por cada modelo de pose de produção
 version: 1.0.0
 phase: 4
 lesson: 21
@@ -19,13 +19,13 @@ Transforma mapas de calor de pontos-chave em coordenadas precisas sub-pixels.
 
 ## Input
 
-- `heatmaps`- Não .`(N, K, H, W)`Tensor, mapas de calor por ponto chave do modelo.
+- `heatmaps`- Não . `(N, K, H, W)` Tensor, mapas de calor por ponto chave do modelo.
 - `confidence_threshold`: descartar pontos-chave cujo pico seja inferior a este valor.
 
 ## Passo
 
-1. **Argmax**cada mapa de calor para encontrar o pico de localização do número inteiro.
-2. **First-difference offset** estimar o deslocamento de subpixels dos pixels vizinhos.`0.25`O coeficiente é um coeficiente heurístico calibrado para mapas de calor gaussiano com `sigma >= 1`; para a recuperação de subpixels de princípio, utilizar um ajuste quadrático completo (DARK) ou um ajuste gaussiano.
+1. **Argmax** cada mapa de calor para encontrar o pico de localização do número inteiro.
+2. **First-difference offset**  estimar o deslocamento de subpixels dos pixels vizinhos. `0.25` O coeficiente é um coeficiente heurístico calibrado para mapas de calor gaussianos com `sigma >= 1`; para a recuperação de subpixels de princípio, utilizar um ajuste quadrático completo (DARK) ou um ajuste gaussiano.
 
 ```
 dx = 0.25 * sign(heatmap[y, x+1] - heatmap[y, x-1])
@@ -41,9 +41,9 @@ dx = -0.5 * (heatmap[y, x+1] - heatmap[y, x-1])
 
 O ajuste quadrático é mais preciso em mapas de calor de pico; o offset baseado em sinal é o padrão mais seguro quando os mapas de calor são barulhentos.
 
-3. **Add offset**para o pico de números inteiros.
-4. **Confidence** retornar o valor máximo por ponto chave; os clientes usam-no para mascarar as previsões de baixa confiança.
-5. **Boundary case** quando o pico atinge o primeiro ou último pixel ao longo de um eixo, um dos vizinhos é apertado; o deslocamento desabate para zero, que é o retorno mais seguro.
+3. **Add offset** para o pico de números inteiros.
+4. **Confidence**  retornar o valor máximo por ponto chave; os clientes usam-no para mascarar as previsões de baixa confiança.
+5. **Boundary case**  quando o pico atinge o primeiro ou último pixel ao longo de um eixo, um dos vizinhos é apertado; o deslocamento desabate para zero, que é o retorno mais seguro.
 
 ## Modelo de saída
 
